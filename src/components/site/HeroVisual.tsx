@@ -19,7 +19,7 @@ export function HeroVisual() {
       <div className="absolute -left-10 -top-10 size-56 rounded-full bg-primary/12 blur-3xl" />
       <div className="absolute -bottom-12 -right-8 size-52 rounded-full bg-primary/10 blur-3xl" />
 
-      <div className="relative rounded-[22px] border border-border bg-surface p-5 shadow-raised">
+      <div className="relative rounded-[22px] border border-border bg-surface p-6 shadow-raised">
         <div className="flex items-center justify-between">
           <span className="text-[11px] font-bold uppercase tracking-[0.14em] text-muted-foreground">
             ARVIO
@@ -39,11 +39,11 @@ export function HeroVisual() {
                 className="rounded-xl border border-border/80 bg-background/60 p-3"
               >
                 <span
-                  className={`inline-flex size-9 items-center justify-center rounded-lg ${accent.iconBg} ${accent.icon}`}
+                  className={`inline-flex size-10 items-center justify-center rounded-lg ${accent.iconBg} ${accent.icon}`}
                 >
-                  <ToolIcon name={tool.icon} className="size-[18px]" />
+                  <ToolIcon name={tool.icon} className="size-5" />
                 </span>
-                <p className="mt-2.5 line-clamp-2 text-[12px] font-semibold leading-snug">
+                <p className="mt-2.5 line-clamp-2 text-[13px] font-semibold leading-snug">
                   {tool.name}
                 </p>
               </div>
