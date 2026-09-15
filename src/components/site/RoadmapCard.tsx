@@ -10,7 +10,7 @@ export function RoadmapCard({ tool, index = 0 }: { tool: RoadmapTool; index?: nu
   return (
     <div
       style={{ animationDelay: `${Math.min(index, 11) * 30}ms` }}
-      className="animate-rise flex h-full min-h-[248px] flex-col gap-4 rounded-2xl border border-dashed border-border bg-surface/60 p-6"
+      className="animate-rise flex h-full min-h-[236px] flex-col gap-5 rounded-2xl border border-dashed border-border bg-surface/70 p-6"
       aria-disabled
     >
       <div className="flex items-start justify-between gap-3">
@@ -19,13 +19,13 @@ export function RoadmapCard({ tool, index = 0 }: { tool: RoadmapTool; index?: nu
         >
           <ToolIcon name={tool.icon} className="size-7" />
         </span>
-        <span className="rounded-full border border-border px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
+        <span className="rounded-full bg-muted px-3 py-1.5 text-[12px] font-semibold text-muted-foreground">
           {t.status.soon}
         </span>
       </div>
       <div className="flex-1">
-        <h3 className="text-[19px] font-semibold leading-snug text-foreground/70">{tool.name}</h3>
-        <p className="mt-2 text-[15px] leading-[1.55] text-muted-foreground/85">{tool.tagline}</p>
+        <h3 className="text-[20px] font-bold leading-snug text-foreground/75">{tool.name}</h3>
+        <p className="mt-2.5 text-[16px] leading-[1.55] text-muted-foreground">{tool.tagline}</p>
       </div>
     </div>
   );

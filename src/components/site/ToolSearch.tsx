@@ -30,7 +30,7 @@ export function ToolSearch({ size = "md" }: { size?: "md" | "lg" }) {
     <div className="relative">
       <div
         className={`transition-standard flex items-center gap-4 rounded-2xl border border-border bg-surface shadow-subtle focus-within:border-primary/60 focus-within:shadow-focus ${
-          large ? "h-16 px-6" : "h-14 px-5"
+          large ? "h-[72px] px-6" : "h-16 px-5"
         }`}
       >
         <Search
@@ -66,7 +66,7 @@ export function ToolSearch({ size = "md" }: { size?: "md" | "lg" }) {
           placeholder={t.search.placeholder}
           aria-label={t.search.placeholder}
           className={`w-full bg-transparent outline-none placeholder:text-muted-foreground ${
-            large ? "text-lg" : "text-base"
+            large ? "text-[18px]" : "text-[16px]"
           }`}
         />
       </div>
@@ -110,7 +110,7 @@ export function ToolSearch({ size = "md" }: { size?: "md" | "lg" }) {
       )}
 
       <div className="mt-4 flex flex-wrap items-center gap-2">
-        <span className="text-[12px] font-bold uppercase tracking-[0.1em] text-muted-foreground">
+        <span className="text-[13px] font-semibold text-muted-foreground">
           {t.search.popular}
         </span>
         {suggestions.map((tool) => (
@@ -122,7 +122,7 @@ export function ToolSearch({ size = "md" }: { size?: "md" | "lg" }) {
               setFocused(true);
               inputRef.current?.focus();
             }}
-            className="transition-standard rounded-full border border-border bg-surface px-4 py-2 text-[14px] font-semibold text-foreground/85 shadow-subtle hover:-translate-y-px hover:border-primary/40 hover:text-primary-dark"
+            className="transition-standard rounded-full border border-border bg-surface px-4 py-2.5 text-[15px] font-semibold text-foreground/85 hover:-translate-y-px hover:border-primary/40 hover:text-primary-dark"
           >
             {tool.name}
           </button>

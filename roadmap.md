@@ -1,7 +1,7 @@
 # ARVIO — roadmap
 
 ## Fase 1 (hecho)
-- [x] Sistema de diseño ARVIO (navy + azul eléctrico, Sora/Manrope, tokens de motion, reduced motion)
+- [x] Sistema de diseño ARVIO (navy + azul eléctrico, Archivo, tokens de motion, reduced motion)
 - [x] Tool Engine modular (ToolDefinition + runners)
 - [x] Home con buscador de herramientas (fuzzy + teclado)
 - [x] Catálogo, páginas de categoría y página por herramienta con FAQ, "cómo funciona" y JSON-LD
@@ -22,3 +22,4 @@
 - [x] Catálogo denso con filtros, grid de 2–5 columnas, hero con buscador grande y pills de populares
 - [x] Tarjetas de herramienta con icono grande, micro CTA y hover sutil; tarjetas "Próximamente" no interactivas para el roadmap
 - [x] Páginas de categoría con secciones de relleno útiles y footer compacto
+- [x] Escala visual reforzada: catálogo protagonista, textos legibles, menos divisores y tarjetas blancas respirables
