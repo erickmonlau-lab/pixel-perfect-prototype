@@ -1,54 +1,53 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ToolCard } from "@/components/site/ToolCard";
+import { CatalogBrowser } from "@/components/site/CatalogBrowser";
 import { ToolSearch } from "@/components/site/ToolSearch";
-import { CATEGORIES, TOOLS, toolsByCategory } from "@/lib/tools/registry";
+import { TOOLS } from "@/lib/tools/registry";
+import { ROADMAP_TOOLS } from "@/lib/tools/catalog";
 
 export const Route = createFileRoute("/herramientas/")({
   head: () => ({
     meta: [
-      { title: "Herramientas PDF gratuitas | ARVIO" },
+      { title: "Todas las herramientas PDF que necesitas | ARVIO" },
       {
         name: "description",
         content:
-          "Todas las herramientas PDF de ARVIO: comprimir, unir, dividir, rotar, extraer y eliminar páginas, PDF a JPG, JPG a PDF y extracción de texto.",
+          "Catálogo completo de ARVIO: comprimir, unir, dividir, rotar, extraer y eliminar páginas, PDF a JPG, JPG a PDF y extracción de texto, con más herramientas en camino.",
       },
-      { property: "og:title", content: "Herramientas PDF gratuitas | ARVIO" },
+      { property: "og:title", content: "Todas las herramientas PDF que necesitas | ARVIO" },
       {
         property: "og:description",
-        content: "Comprimir, unir, dividir, rotar y convertir PDF desde el navegador.",
+        content: "Trabaja, convierte, organiza y optimiza tus documentos directamente desde ARVIO.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: ToolsIndex,
 });
 
 function ToolsIndex() {
+  const live = TOOLS.filter((tool) => tool.status === "live").length;
+
   return (
-    <div className="mx-auto max-w-6xl px-5 py-14">
-      <p className="text-eyebrow">Catálogo</p>
-      <h1 className="text-display mt-3 text-3xl sm:text-4xl">Herramientas de ARVIO</h1>
-      <p className="mt-4 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-        {TOOLS.filter((tool) => tool.status === "live").length} herramientas funcionando hoy y más en
-        camino. Cada una resuelve una tarea concreta en el menor número de pasos posible.
-      </p>
+    <div className="mx-auto max-w-[1400px] px-5 pb-14 pt-9">
+      <section className="animate-rise rounded-2xl border border-border bg-surface px-6 py-8 shadow-subtle sm:px-10 sm:py-10">
+        <p className="text-eyebrow">Herramientas</p>
+        <h1 className="text-display mt-2.5 max-w-3xl text-3xl sm:text-4xl lg:text-[2.85rem]">
+          Todas las herramientas PDF que necesitas.
+        </h1>
+        <p className="mt-3.5 max-w-2xl text-[17px] leading-relaxed text-muted-foreground">
+          Trabaja, convierte, organiza y optimiza tus documentos directamente desde ARVIO.{" "}
+          {live} herramientas funcionan hoy en tu propio dispositivo y {ROADMAP_TOOLS.length} más
+          están en camino.
+        </p>
+        <div className="mt-7 max-w-2xl">
+          <ToolSearch size="lg" />
+        </div>
+      </section>
 
-      <div className="mt-8 max-w-xl">
-        <ToolSearch />
+      <div className="mt-8">
+        <CatalogBrowser />
       </div>
-
-      {Object.values(CATEGORIES).map((category) => (
-        <section key={category.slug} className="mt-14" aria-labelledby={`cat-${category.slug}`}>
-          <h2 id={`cat-${category.slug}`} className="text-xl sm:text-2xl">
-            {category.name}
-          </h2>
-          <p className="mt-1.5 text-sm text-muted-foreground">{category.description}</p>
-          <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {toolsByCategory(category.slug).map((tool) => (
-              <ToolCard key={tool.slug} tool={tool} />
-            ))}
-          </div>
-        </section>
-      ))}
     </div>
   );
 }

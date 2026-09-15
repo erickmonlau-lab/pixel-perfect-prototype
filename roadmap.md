@@ -16,3 +16,9 @@
 - [ ] Cuentas de usuario, historial de trabajos y límites gratuitos
 - [ ] AdSense en posiciones que no compitan con la herramienta
 - [ ] Premium y API B2B
+
+## Catálogo visual (hecho)
+- [x] Color-codificado por familia (optimizar, organizar, convertir, editar, seguridad, PDF Intelligence) en iconos, badges y estados
+- [x] Catálogo denso con filtros, grid de 2–5 columnas, hero con buscador grande y pills de populares
+- [x] Tarjetas de herramienta con icono grande, micro CTA y hover sutil; tarjetas "Próximamente" no interactivas para el roadmap
+- [x] Páginas de categoría con secciones de relleno útiles y footer compacto

@@ -33,9 +33,22 @@ export const CATEGORIES: Record<
   editar: {
     slug: "editar",
     name: "Editar",
-    description: "Cambia el contenido de tus PDF y extrae exactamente lo que necesitas.",
+    description: "Extrae, modifica y trabaja con el contenido de tus PDF.",
+  },
+  seguridad: {
+    slug: "seguridad",
+    name: "Seguridad",
+    description: "Protege tus documentos y controla quién puede abrirlos.",
+  },
+  inteligencia: {
+    slug: "inteligencia",
+    name: "PDF Intelligence",
+    description: "OCR, extracción inteligente, análisis y herramientas con IA.",
   },
 };
+
+/** Categories that already contain at least one published tool. */
+export const MAIN_CATEGORIES: ToolCategory[] = ["optimizar", "organizar", "convertir", "editar"];
 
 export const TOOLS: ToolDefinition[] = [
   {
@@ -232,7 +245,7 @@ export const TOOLS: ToolDefinition[] = [
     seoDescription:
       "Convierte imágenes JPG o PNG en un único PDF, con páginas al tamaño de la imagen o en A4. Ordena las fotos antes de generar el documento.",
     category: "convertir",
-    icon: "FileImage",
+    icon: "ImagePlus",
     status: "live",
     accept: "image/jpeg,image/png",
     multiple: true,
@@ -354,7 +367,7 @@ export const TOOLS: ToolDefinition[] = [
     seoDescription:
       "Elimina páginas concretas o intervalos de un PDF y descarga el documento limpio, sin instalar programas y sin subir el archivo a un servidor.",
     category: "editar",
-    icon: "FileX2",
+    icon: "FileMinus2",
     status: "live",
     accept: "application/pdf",
     multiple: false,
