@@ -124,8 +124,8 @@ export function ToolSearch({ size = "md" }: { size?: "md" | "lg" }) {
         </ul>
       )}
 
-      <div className="mt-4 flex flex-wrap items-center gap-2">
-        <span className="text-[13px] font-semibold text-muted-foreground">
+      <div className="mt-4 flex flex-wrap items-center gap-2.5">
+        <span className="text-[15px] font-semibold text-muted-foreground">
           {t.search.popular}
         </span>
         {suggestions.map((tool) => (
@@ -137,7 +137,7 @@ export function ToolSearch({ size = "md" }: { size?: "md" | "lg" }) {
               setFocused(true);
               inputRef.current?.focus();
             }}
-            className="transition-standard rounded-lg border border-border/70 bg-surface px-3 py-1.5 text-[14px] font-semibold text-foreground/85 hover:border-primary/40 hover:text-primary-dark"
+            className="transition-standard rounded-lg border border-border/70 bg-surface px-3.5 py-2 text-[15px] font-semibold text-foreground/85 hover:border-primary/40 hover:text-primary-dark"
           >
             {tool.name}
           </button>

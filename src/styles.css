@@ -239,9 +239,9 @@
 }
 
 @utility text-eyebrow {
-  font-size: 0.75rem;
+  font-size: 0.85rem;
   font-weight: 700;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.09em;
   text-transform: uppercase;
   color: var(--color-primary);
 }

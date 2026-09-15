@@ -125,14 +125,14 @@ function Home() {
           <div>
             <p className="text-eyebrow">{t.home.featured}</p>
             <h2 className="mt-2 text-[2rem] sm:text-[2.25rem]">{t.home.popularTitle}</h2>
-            <p className="mt-2 text-[17px] text-muted-foreground">
+            <p className="mt-2 text-[18px] text-foreground/70">
               {t.home.popularSub(liveCount(), soonCount())}
             </p>
           </div>
           <Link
             to={SECTION_ROUTE}
             params={catalogParams(locale)}
-            className="transition-standard text-[15px] font-semibold text-primary hover:text-primary-dark"
+            className="transition-standard text-[16px] font-semibold text-primary hover:text-primary-dark"
           >
             {t.home.viewAll} →
           </Link>
