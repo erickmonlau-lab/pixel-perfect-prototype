@@ -1,50 +1,39 @@
 import { useMemo, useState } from "react";
-import { CATEGORIES, TOOLS } from "@/lib/tools/registry";
-import {
-  FAMILY_ACCENTS,
-  POPULAR_SLUGS,
-  ROADMAP_TOOLS,
-  roadmapByCategory,
-} from "@/lib/tools/catalog";
+import { FAMILY_ACCENTS } from "@/lib/tools/catalog";
+import { FAMILY_ICONS, TOOL_GRID } from "@/lib/tools/families";
+import { liveCount, localizedPopular, localizedRoadmapByCategory, soonCount } from "@/lib/tools/localize";
+import { useLocale } from "@/lib/i18n/context";
 import type { ToolCategory } from "@/lib/tools/types";
 import { ToolCard } from "./ToolCard";
 import { RoadmapCard } from "./RoadmapCard";
+import { ToolIcon } from "./ToolIcon";
 
-type Filter = "todas" | "populares" | ToolCategory;
-
-const FILTERS: { id: Filter; label: string }[] = [
-  { id: "todas", label: "Todas" },
-  { id: "populares", label: "Populares" },
-  ...Object.values(CATEGORIES).map((category) => ({
-    id: category.slug as Filter,
-    label: category.name,
-  })),
-];
-
-const GRID = "grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5";
+type Filter = "all" | "popular" | ToolCategory;
 
 export function CatalogBrowser() {
-  const [filter, setFilter] = useState<Filter>("todas");
+  const { locale, t, tools, categories } = useLocale();
+  const [filter, setFilter] = useState<Filter>("all");
 
-  const popular = useMemo(
-    () =>
-      POPULAR_SLUGS.map((slug) => TOOLS.find((tool) => tool.slug === slug)).filter(
-        (tool): tool is (typeof TOOLS)[number] => Boolean(tool),
-      ),
-    [],
-  );
+  const popular = useMemo(() => localizedPopular(locale), [locale]);
 
-  const counts = (category: ToolCategory) =>
-    TOOLS.filter((tool) => tool.category === category).length + roadmapByCategory(category).length;
+  const filters: { id: Filter; label: string }[] = [
+    { id: "all", label: t.catalog.all },
+    { id: "popular", label: t.catalog.popular },
+    ...categories.map((category) => ({ id: category.category as Filter, label: category.name })),
+  ];
+
+  const countFor = (category: ToolCategory) =>
+    tools.filter((tool) => tool.category === category).length +
+    localizedRoadmapByCategory(locale, category).length;
 
   return (
     <div>
       <div
-        className="scrollbar-none -mx-5 flex gap-2 overflow-x-auto px-5 pb-1"
+        className="scrollbar-none -mx-5 flex gap-2.5 overflow-x-auto px-5 pb-1"
         role="tablist"
-        aria-label="Filtrar herramientas"
+        aria-label={t.catalog.filters}
       >
-        {FILTERS.map((item) => {
+        {filters.map((item) => {
           const isActive = filter === item.id;
           return (
             <button
@@ -53,10 +42,10 @@ export function CatalogBrowser() {
               role="tab"
               aria-selected={isActive}
               onClick={() => setFilter(item.id)}
-              className={`transition-standard shrink-0 rounded-full border px-3.5 py-1.5 text-[13px] font-semibold ${
+              className={`transition-standard shrink-0 rounded-full border px-5 py-2.5 text-[15px] font-semibold ${
                 isActive
                   ? "border-primary bg-primary text-primary-foreground shadow-subtle"
-                  : "border-border bg-surface text-foreground/75 hover:border-primary/40 hover:text-primary-dark"
+                  : "border-border bg-surface text-foreground/80 hover:border-primary/40 hover:text-primary-dark"
               }`}
             >
               {item.label}
@@ -65,9 +54,9 @@ export function CatalogBrowser() {
         })}
       </div>
 
-      {filter === "populares" && (
-        <section className="mt-7" aria-label="Herramientas populares">
-          <div className={GRID}>
+      {filter === "popular" && (
+        <section className="mt-9" aria-label={t.catalog.popularAria}>
+          <div className={TOOL_GRID}>
             {popular.map((tool, index) => (
               <ToolCard key={tool.slug} tool={tool} index={index} showCategory />
             ))}
@@ -75,51 +64,58 @@ export function CatalogBrowser() {
         </section>
       )}
 
-      {filter !== "populares" &&
-        Object.values(CATEGORIES)
-          .filter((category) => filter === "todas" || category.slug === filter)
+      {filter !== "popular" &&
+        categories
+          .filter((category) => filter === "all" || category.category === filter)
           .map((category) => {
-            const tools = TOOLS.filter((tool) => tool.category === category.slug);
-            const soon = roadmapByCategory(category.slug);
-            const accent = FAMILY_ACCENTS[category.slug];
+            const list = tools.filter((tool) => tool.category === category.category);
+            const soon = localizedRoadmapByCategory(locale, category.category);
+            const accent = FAMILY_ACCENTS[category.category];
 
             return (
               <section
-                key={category.slug}
-                className="mt-9 border-t border-border/70 pt-7 first:mt-7 first:border-0 first:pt-0"
-                aria-labelledby={`cat-${category.slug}`}
+                key={category.category}
+                className="mt-12 border-t border-border/70 pt-9 first:mt-9 first:border-0 first:pt-0"
+                aria-labelledby={`cat-${category.category}`}
               >
-                <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                <div className="flex items-center gap-3">
                   <span
-                    className={`inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.1em] ${accent.text}`}
+                    className={`inline-flex size-11 items-center justify-center rounded-xl ${accent.iconBg} ${accent.icon}`}
                   >
-                    <span className={`size-2 rounded-full ${accent.dot}`} aria-hidden />
-                    {category.name}
+                    <ToolIcon name={FAMILY_ICONS[category.category]} className="size-5" />
                   </span>
-                  <span className="text-xs text-muted-foreground">
-                    {counts(category.slug)} herramientas
-                  </span>
+                  <div>
+                    <span
+                      className={`inline-flex items-center gap-2 text-[13px] font-bold uppercase tracking-[0.1em] ${accent.text}`}
+                    >
+                      {category.name}
+                    </span>
+                    <p className="text-[13px] font-medium text-muted-foreground">
+                      {t.catalog.count(countFor(category.category))}
+                    </p>
+                  </div>
                 </div>
-                <h2 id={`cat-${category.slug}`} className="mt-1.5 text-xl">
+                <h2
+                  id={`cat-${category.category}`}
+                  className="mt-3 max-w-3xl text-[26px] leading-tight sm:text-[30px]"
+                >
                   {category.description}
                 </h2>
 
-                <div className={`mt-4 ${GRID}`}>
-                  {tools.map((tool, index) => (
+                <div className={`mt-6 ${TOOL_GRID}`}>
+                  {list.map((tool, index) => (
                     <ToolCard key={tool.slug} tool={tool} index={index} />
                   ))}
                   {soon.map((tool, index) => (
-                    <RoadmapCard key={tool.name} tool={tool} index={tools.length + index} />
+                    <RoadmapCard key={tool.name} tool={tool} index={list.length + index} />
                   ))}
                 </div>
               </section>
             );
           })}
 
-      <p className="mt-9 text-xs text-muted-foreground">
-        {TOOLS.filter((tool) => tool.status === "live").length} herramientas disponibles hoy ·{" "}
-        {ROADMAP_TOOLS.length + TOOLS.filter((tool) => tool.status === "pending").length} en el
-        roadmap de ARVIO.
+      <p className="mt-12 text-[15px] text-muted-foreground">
+        {t.catalog.summary(liveCount(), soonCount())}
       </p>
     </div>
   );
