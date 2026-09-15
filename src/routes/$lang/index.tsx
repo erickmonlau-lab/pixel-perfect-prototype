@@ -3,7 +3,7 @@ import { ArrowRight, Gauge, Layers, Lock } from "lucide-react";
 import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { CategoryTiles } from "@/components/site/CategoryTiles";
-import { HeroVisual } from "@/components/site/HeroVisual";
+
 import { ToolCard } from "@/components/site/ToolCard";
 import { ToolSearch } from "@/components/site/ToolSearch";
 import { DEFAULT_LOCALE, isLocale, preferredLocale, storedLocale } from "@/lib/i18n/config";
