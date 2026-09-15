@@ -75,10 +75,10 @@ function Home() {
   return (
     <>
       <section className="hero-canvas overflow-hidden border-b border-border/60">
-        <div className="mx-auto grid max-w-[1240px] items-center gap-10 px-5 pb-10 pt-8 sm:pb-14 sm:pt-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,400px)] lg:gap-12">
+        <div className="mx-auto max-w-[1120px] px-5 pb-14 pt-12 text-center sm:pb-20 sm:pt-16">
           <div className="animate-rise">
             <p className="text-eyebrow">{t.home.eyebrow}</p>
-            <h1 className="text-display mt-2.5 text-[2.6rem] font-extrabold leading-[1.0] tracking-[-0.03em] sm:mt-3 sm:text-[3.4rem] lg:text-[3.5rem]">
+            <h1 className="text-display mx-auto mt-3 max-w-[900px] text-[2.5rem] font-extrabold leading-[1.02] tracking-[-0.03em] sm:mt-4 sm:text-[3.4rem] lg:text-[3.6rem]">
               {headline.map((line, index) => (
                 <span
                   key={line.before + line.after}
@@ -90,10 +90,10 @@ function Home() {
                 </span>
               ))}
             </h1>
-            <p className="mt-4 max-w-[560px] text-[17px] leading-relaxed text-foreground/70 sm:text-[18px]">
+            <p className="mx-auto mt-4 max-w-[620px] text-[17px] leading-relaxed text-foreground/70 sm:mt-5 sm:text-[18px]">
               {t.home.sub}
             </p>
-            <div className="mt-5 flex flex-wrap gap-3 sm:mt-6">
+            <div className="mt-6 flex flex-wrap justify-center gap-3 sm:mt-7">
               <Button asChild size="lg" className="h-12 px-6 text-[15px] sm:px-7">
                 <Link to={SECTION_ROUTE} params={catalogParams(locale)}>
                   {t.home.ctaAll(TOOLS.length)}
@@ -111,15 +111,11 @@ function Home() {
                 </Link>
               </Button>
             </div>
-            <div className="mt-6 max-w-[600px] text-left sm:mt-7">
+            <div className="mx-auto mt-7 max-w-[640px] text-left [&_.flex-wrap]:justify-center sm:mt-8">
               <ToolSearch size="lg" />
             </div>
           </div>
 
-
-          <div className="animate-fade hidden lg:block">
-            <HeroVisual />
-          </div>
         </div>
       </section>
 
