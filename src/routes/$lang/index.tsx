@@ -44,22 +44,23 @@ export const Route = createFileRoute("/$lang/")({
 
 const HIGHLIGHT_ICONS = [Gauge, Lock, Layers];
 
-/** Highlights the "PDF" word of the H1 without duplicating translated copy. */
-function splitHeadline(text: string) {
-  const index = text.indexOf("PDF");
-  if (index === -1) return { before: text, accent: "", after: "" };
-  return {
-    before: text.slice(0, index),
-    accent: "PDF",
-    after: text.slice(index + 3),
-  };
+/** Splits the H1 into sentence lines and highlights the "PDF" word, no copy duplication. */
+function headlineLines(text: string) {
+  return text
+    .split(/(?<=\.)\s+/)
+    .filter(Boolean)
+    .map((line) => {
+      const index = line.indexOf("PDF");
+      if (index === -1) return { before: line, accent: "", after: "" };
+      return { before: line.slice(0, index), accent: "PDF", after: line.slice(index + 3) };
+    });
 }
 
 function Home() {
   const { locale, t } = useLocale();
   const navigate = useNavigate();
   const popular = localizedPopular(locale);
-  const headline = splitHeadline(t.home.h1);
+  const headline = headlineLines(t.home.h1);
 
   /** First visit only: follow the browser language, never override a manual choice. */
   useEffect(() => {
@@ -74,18 +75,22 @@ function Home() {
   return (
     <>
       <section className="hero-canvas overflow-hidden border-b border-border/60">
-        <div className="mx-auto grid max-w-[1440px] items-center gap-10 px-5 pb-10 pt-8 sm:pb-14 sm:pt-12 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)] lg:gap-12">
+        <div className="mx-auto grid max-w-[1480px] items-center gap-10 px-5 pb-10 pt-8 sm:pb-14 sm:pt-12 lg:grid-cols-[minmax(0,1.85fr)_minmax(360px,1fr)] lg:gap-10">
           <div className="animate-rise">
             <p className="text-eyebrow">{t.home.eyebrow}</p>
-            <h1 className="text-display mt-3 max-w-[24ch] text-balance text-[2.6rem] leading-[1.04] tracking-[-0.02em] sm:mt-4 sm:text-[3.6rem] lg:text-[4.15rem]">
-              {headline.before}
-              <span className="text-primary">{headline.accent}</span>
-              {headline.after}
+            <h1 className="text-display mt-2.5 max-w-[780px] text-[2.6rem] font-extrabold leading-[1.03] tracking-[-0.025em] sm:mt-3 sm:text-[3.3rem] lg:text-[3.55rem]">
+              {headline.map((line) => (
+                <span key={line.before + line.after} className="block">
+                  {line.before}
+                  {line.accent && <span className="text-primary">{line.accent}</span>}
+                  {line.after}
+                </span>
+              ))}
             </h1>
-            <p className="mt-4 max-w-2xl text-[18px] leading-relaxed text-foreground/72 sm:mt-5 sm:text-[19px]">
+            <p className="mt-3.5 max-w-[640px] text-[18px] leading-relaxed text-foreground/72 sm:mt-4 sm:text-[19px]">
               {t.home.sub}
             </p>
-            <div className="mt-6 flex flex-wrap gap-3 sm:mt-7">
+            <div className="mt-5 flex flex-wrap gap-3 sm:mt-6">
               <Button asChild size="lg" className="h-12 px-6 text-[15px] sm:px-7">
                 <Link to={SECTION_ROUTE} params={catalogParams(locale)}>
                   {t.home.ctaAll(TOOLS.length)}
@@ -103,7 +108,7 @@ function Home() {
                 </Link>
               </Button>
             </div>
-            <div className="mt-8 max-w-2xl text-left sm:mt-9">
+            <div className="mt-6 max-w-[600px] text-left sm:mt-7">
               <ToolSearch size="lg" />
             </div>
           </div>
