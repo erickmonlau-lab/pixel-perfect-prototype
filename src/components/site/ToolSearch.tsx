@@ -2,19 +2,21 @@ import { useNavigate } from "@tanstack/react-router";
 import { Search } from "lucide-react";
 import { useMemo, useRef, useState } from "react";
 import { searchTools } from "@/lib/tools/registry";
+import { FAMILY_ACCENTS } from "@/lib/tools/catalog";
 import { ToolIcon } from "./ToolIcon";
 
-const SUGGESTIONS = ["Comprimir PDF", "Unir PDF", "PDF a JPG", "Dividir PDF", "Rotar PDF"];
+const SUGGESTIONS = ["Comprimir PDF", "Unir PDF", "Dividir PDF", "PDF a JPG", "PDF a Word"];
 
-export function ToolSearch() {
+export function ToolSearch({ size = "md" }: { size?: "md" | "lg" }) {
   const navigate = useNavigate();
   const inputRef = useRef<HTMLInputElement>(null);
   const [query, setQuery] = useState("");
   const [active, setActive] = useState(0);
   const [focused, setFocused] = useState(false);
 
-  const results = useMemo(() => searchTools(query).slice(0, 6), [query]);
+  const results = useMemo(() => searchTools(query).slice(0, 7), [query]);
   const open = focused && query.trim().length > 0;
+  const large = size === "lg";
 
   const go = (slug: string) => {
     setFocused(false);
@@ -24,8 +26,16 @@ export function ToolSearch() {
 
   return (
     <div className="relative">
-      <div className="transition-standard flex items-center gap-3 rounded-xl border border-border bg-surface px-4 py-3 shadow-subtle focus-within:border-primary/50 focus-within:shadow-focus">
-        <Search className="size-5 shrink-0 text-muted-foreground" aria-hidden />
+      <div
+        className={`transition-standard flex items-center gap-3 rounded-2xl border border-border bg-surface shadow-subtle focus-within:border-primary/50 focus-within:shadow-focus ${
+          large ? "px-5 py-4" : "px-4 py-3"
+        }`}
+      >
+        <Search
+          className={`shrink-0 text-primary ${large ? "size-6" : "size-5"}`}
+          strokeWidth={2}
+          aria-hidden
+        />
         <input
           ref={inputRef}
           value={query}
@@ -51,9 +61,11 @@ export function ToolSearch() {
             }
           }}
           type="search"
-          placeholder="Buscar una herramienta..."
+          placeholder="¿Qué quieres hacer con tu PDF?"
           aria-label="¿Qué quieres hacer con tu PDF?"
-          className="w-full bg-transparent text-base outline-none placeholder:text-muted-foreground"
+          className={`w-full bg-transparent outline-none placeholder:text-muted-foreground ${
+            large ? "text-lg" : "text-base"
+          }`}
         />
       </div>
 
@@ -67,30 +79,39 @@ export function ToolSearch() {
               Todavía no tenemos esa herramienta. Prueba con «comprimir», «unir» o «convertir».
             </li>
           )}
-          {results.map((tool, index) => (
-            <li key={tool.slug} role="option" aria-selected={index === active}>
-              <button
-                type="button"
-                onMouseDown={(event) => event.preventDefault()}
-                onMouseEnter={() => setActive(index)}
-                onClick={() => go(tool.slug)}
-                className={`flex w-full items-center gap-3 px-4 py-3 text-left ${
-                  index === active ? "bg-primary-soft" : "bg-transparent"
-                }`}
-              >
-                <ToolIcon name={tool.icon} className="size-4 text-primary" />
-                <span className="text-sm font-medium">{tool.name}</span>
-                <span className="ml-auto truncate text-xs text-muted-foreground">
-                  {tool.status === "pending" ? "En construcción" : tool.tagline}
-                </span>
-              </button>
-            </li>
-          ))}
+          {results.map((tool, index) => {
+            const accent = FAMILY_ACCENTS[tool.category];
+            return (
+              <li key={tool.slug} role="option" aria-selected={index === active}>
+                <button
+                  type="button"
+                  onMouseDown={(event) => event.preventDefault()}
+                  onMouseEnter={() => setActive(index)}
+                  onClick={() => go(tool.slug)}
+                  className={`flex w-full items-center gap-3 px-3 py-2.5 text-left ${
+                    index === active ? "bg-primary-soft" : "bg-transparent"
+                  }`}
+                >
+                  <span
+                    className={`inline-flex size-8 shrink-0 items-center justify-center rounded-lg ${accent.iconBg} ${accent.icon}`}
+                  >
+                    <ToolIcon name={tool.icon} className="size-4" />
+                  </span>
+                  <span className="text-sm font-semibold">{tool.name}</span>
+                  <span className="ml-auto truncate pl-3 text-xs text-muted-foreground">
+                    {tool.status === "pending" ? "En construcción" : tool.tagline}
+                  </span>
+                </button>
+              </li>
+            );
+          })}
         </ul>
       )}
 
       <div className="mt-3 flex flex-wrap items-center gap-2">
-        <span className="text-xs text-muted-foreground">Populares:</span>
+        <span className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+          Populares
+        </span>
         {SUGGESTIONS.map((suggestion) => (
           <button
             key={suggestion}
@@ -100,7 +121,7 @@ export function ToolSearch() {
               setFocused(true);
               inputRef.current?.focus();
             }}
-            className="transition-standard rounded-full border border-border bg-surface px-3 py-1 text-xs font-medium text-foreground/80 hover:border-primary/40 hover:text-primary-dark"
+            className="transition-standard rounded-full border border-border bg-surface px-3 py-1.5 text-xs font-semibold text-foreground/80 shadow-subtle hover:-translate-y-px hover:border-primary/40 hover:text-primary-dark"
           >
             {suggestion}
           </button>
