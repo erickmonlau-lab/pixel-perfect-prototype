@@ -170,7 +170,11 @@ export function Header() {
                           key={tool.name}
                           className="flex items-center gap-2.5 p-2 text-[14px] text-muted-foreground/80"
                         >
-                          <ToolIcon name={tool.icon} className="size-[18px] opacity-60" />
+                          <span
+                            className={`inline-flex size-7 shrink-0 items-center justify-center rounded-lg ${accent.iconBg} ${accent.icon}`}
+                          >
+                            <ToolIcon name={tool.icon} className="size-4" />
+                          </span>
                           {tool.name}
                           <span className="ml-auto text-[11px] font-semibold uppercase tracking-wide">
                             {t.status.soon}

@@ -15,7 +15,7 @@ export function RoadmapCard({ tool, index = 0 }: { tool: RoadmapTool; index?: nu
     >
       <div className="flex items-start justify-between gap-3">
         <span
-          className={`inline-flex size-14 items-center justify-center rounded-2xl opacity-55 ${accent.iconBg} ${accent.icon}`}
+          className={`inline-flex size-14 items-center justify-center rounded-2xl ${accent.iconBg} ${accent.icon}`}
         >
           <ToolIcon name={tool.icon} className="size-7" />
         </span>
