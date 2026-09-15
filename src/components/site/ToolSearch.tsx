@@ -1,6 +1,6 @@
 import { useNavigate } from "@tanstack/react-router";
 import { Search } from "lucide-react";
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { FAMILY_ACCENTS } from "@/lib/tools/catalog";
 import { localizedPopular, searchLocalizedTools } from "@/lib/tools/localize";
 import { useLocale } from "@/lib/i18n/context";
@@ -19,6 +19,18 @@ export function ToolSearch({ size = "md" }: { size?: "md" | "lg" }) {
   const suggestions = useMemo(() => localizedPopular(locale).slice(0, 5), [locale]);
   const open = focused && query.trim().length > 0;
   const large = size === "lg";
+
+  /** Real ⌘K / Ctrl+K shortcut so the visible hint is never decorative. */
+  useEffect(() => {
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key.toLowerCase() === "k" && (event.metaKey || event.ctrlKey)) {
+        event.preventDefault();
+        inputRef.current?.focus();
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
 
   const go = (canonicalSlug: string) => {
     setFocused(false);
