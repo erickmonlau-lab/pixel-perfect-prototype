@@ -77,7 +77,7 @@ function Home() {
         <div className="mx-auto grid max-w-[1400px] items-center gap-10 px-5 pb-12 pt-10 sm:pb-20 sm:pt-16 lg:grid-cols-[minmax(0,1fr)_460px] lg:gap-14">
           <div className="animate-rise">
             <p className="text-eyebrow">{t.home.eyebrow}</p>
-            <h1 className="text-display mt-3 max-w-[16ch] text-[2.5rem] sm:mt-4 sm:text-[3.25rem] lg:text-[3.6rem]">
+            <h1 className="text-display mt-3 max-w-[15ch] text-balance text-[2.5rem] sm:mt-4 sm:text-[3.15rem] lg:text-[3.45rem]">
               {headline.before}
               <span className="text-primary">{headline.accent}</span>
               {headline.after}

@@ -137,7 +137,7 @@ export function ToolSearch({ size = "md" }: { size?: "md" | "lg" }) {
               setFocused(true);
               inputRef.current?.focus();
             }}
-            className="transition-standard rounded-full border border-border bg-surface px-4 py-2.5 text-[15px] font-semibold text-foreground/85 hover:-translate-y-px hover:border-primary/40 hover:text-primary-dark"
+            className="transition-standard rounded-lg border border-border/70 bg-surface px-3 py-1.5 text-[14px] font-semibold text-foreground/85 hover:border-primary/40 hover:text-primary-dark"
           >
             {tool.name}
           </button>
