@@ -10,12 +10,19 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as PrivacidadRouteImport } from './routes/privacidad'
 import { Route as CategoriaSlugRouteImport } from './routes/categoria/$slug'
 import { Route as HerramientasIndexRouteImport } from './routes/herramientas/index'
+import { Route as HerramientasSlugRouteImport } from './routes/herramientas/$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacidadRoute = PrivacidadRouteImport.update({
+  id: '/privacidad',
+  path: '/privacidad',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CategoriaSlugRoute = CategoriaSlugRouteImport.update({
@@ -28,34 +35,63 @@ const HerramientasIndexRoute = HerramientasIndexRouteImport.update({
   path: '/herramientas/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const HerramientasSlugRoute = HerramientasSlugRouteImport.update({
+  id: '/herramientas/$slug',
+  path: '/herramientas/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/privacidad': typeof PrivacidadRoute
   '/categoria/$slug': typeof CategoriaSlugRoute
+  '/herramientas/$slug': typeof HerramientasSlugRoute
   '/herramientas/': typeof HerramientasIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/privacidad': typeof PrivacidadRoute
   '/categoria/$slug': typeof CategoriaSlugRoute
+  '/herramientas/$slug': typeof HerramientasSlugRoute
   '/herramientas': typeof HerramientasIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/privacidad': typeof PrivacidadRoute
   '/categoria/$slug': typeof CategoriaSlugRoute
+  '/herramientas/$slug': typeof HerramientasSlugRoute
   '/herramientas/': typeof HerramientasIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/categoria/$slug' | '/herramientas/'
+  fullPaths:
+    | '/'
+    | '/privacidad'
+    | '/categoria/$slug'
+    | '/herramientas/$slug'
+    | '/herramientas/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/categoria/$slug' | '/herramientas'
-  id: '__root__' | '/' | '/categoria/$slug' | '/herramientas/'
+  to:
+    | '/'
+    | '/privacidad'
+    | '/categoria/$slug'
+    | '/herramientas/$slug'
+    | '/herramientas'
+  id:
+    | '__root__'
+    | '/'
+    | '/privacidad'
+    | '/categoria/$slug'
+    | '/herramientas/$slug'
+    | '/herramientas/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  PrivacidadRoute: typeof PrivacidadRoute
   CategoriaSlugRoute: typeof CategoriaSlugRoute
+  HerramientasSlugRoute: typeof HerramientasSlugRoute
   HerramientasIndexRoute: typeof HerramientasIndexRoute
 }
 
@@ -66,6 +102,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacidad': {
+      id: '/privacidad'
+      path: '/privacidad'
+      fullPath: '/privacidad'
+      preLoaderRoute: typeof PrivacidadRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/categoria/$slug': {
@@ -82,12 +125,21 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof HerramientasIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/herramientas/$slug': {
+      id: '/herramientas/$slug'
+      path: '/herramientas/$slug'
+      fullPath: '/herramientas/$slug'
+      preLoaderRoute: typeof HerramientasSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  PrivacidadRoute: PrivacidadRoute,
   CategoriaSlugRoute: CategoriaSlugRoute,
+  HerramientasSlugRoute: HerramientasSlugRoute,
   HerramientasIndexRoute: HerramientasIndexRoute,
 }
 export const routeTree = rootRouteImport
