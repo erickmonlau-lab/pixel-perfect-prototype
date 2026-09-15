@@ -78,10 +78,14 @@ function Home() {
         <div className="mx-auto grid max-w-[1480px] items-center gap-10 px-5 pb-10 pt-8 sm:pb-14 sm:pt-12 lg:grid-cols-[minmax(0,1.85fr)_minmax(360px,1fr)] lg:gap-10">
           <div className="animate-rise">
             <p className="text-eyebrow">{t.home.eyebrow}</p>
-            <h1 className="text-display mt-2.5 max-w-[760px] text-[2.6rem] font-extrabold leading-[1.02] tracking-[-0.025em] sm:mt-3 sm:text-[3.35rem] lg:text-[3.6rem]">
-              {headline.before}
-              <span className="text-primary">{headline.accent}</span>
-              {headline.after}
+            <h1 className="text-display mt-2.5 max-w-[780px] text-[2.6rem] font-extrabold leading-[1.03] tracking-[-0.025em] sm:mt-3 sm:text-[3.3rem] lg:text-[3.55rem]">
+              {headline.map((line) => (
+                <span key={line.before + line.after} className="block">
+                  {line.before}
+                  {line.accent && <span className="text-primary">{line.accent}</span>}
+                  {line.after}
+                </span>
+              ))}
             </h1>
             <p className="mt-3.5 max-w-[640px] text-[18px] leading-relaxed text-foreground/72 sm:mt-4 sm:text-[19px]">
               {t.home.sub}
