@@ -54,7 +54,7 @@ export function ToolCard({
           </span>
         )}
         <ArrowRight
-          className={`transition-standard size-4 text-muted-foreground group-hover:translate-x-1 ${accent.icon.replace("text-", "group-hover:text-")}`}
+          className={`transition-standard size-4 text-muted-foreground group-hover:translate-x-1 ${accent.arrow}`}
         />
       </div>
     </Link>

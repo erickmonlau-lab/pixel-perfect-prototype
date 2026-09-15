@@ -33,9 +33,22 @@ export const CATEGORIES: Record<
   editar: {
     slug: "editar",
     name: "Editar",
-    description: "Cambia el contenido de tus PDF y extrae exactamente lo que necesitas.",
+    description: "Extrae, modifica y trabaja con el contenido de tus PDF.",
+  },
+  seguridad: {
+    slug: "seguridad",
+    name: "Seguridad",
+    description: "Protege tus documentos y controla quién puede abrirlos.",
+  },
+  inteligencia: {
+    slug: "inteligencia",
+    name: "PDF Intelligence",
+    description: "OCR, extracción inteligente, análisis y herramientas con IA.",
   },
 };
+
+/** Categories that already contain at least one published tool. */
+export const MAIN_CATEGORIES: ToolCategory[] = ["optimizar", "organizar", "convertir", "editar"];
 
 export const TOOLS: ToolDefinition[] = [
   {
