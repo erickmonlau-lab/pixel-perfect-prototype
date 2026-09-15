@@ -245,7 +245,7 @@ export const TOOLS: ToolDefinition[] = [
     seoDescription:
       "Convierte imágenes JPG o PNG en un único PDF, con páginas al tamaño de la imagen o en A4. Ordena las fotos antes de generar el documento.",
     category: "convertir",
-    icon: "FileImage",
+    icon: "ImagePlus",
     status: "live",
     accept: "image/jpeg,image/png",
     multiple: true,
@@ -367,7 +367,7 @@ export const TOOLS: ToolDefinition[] = [
     seoDescription:
       "Elimina páginas concretas o intervalos de un PDF y descarga el documento limpio, sin instalar programas y sin subir el archivo a un servidor.",
     category: "editar",
-    icon: "FileX2",
+    icon: "FileMinus2",
     status: "live",
     accept: "application/pdf",
     multiple: false,
