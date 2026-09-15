@@ -74,15 +74,15 @@ function Home() {
   return (
     <>
       <section className="hero-canvas overflow-hidden border-b border-border/60">
-        <div className="mx-auto grid max-w-[1400px] items-center gap-10 px-5 pb-12 pt-10 sm:pb-20 sm:pt-16 lg:grid-cols-[minmax(0,1fr)_460px] lg:gap-14">
+        <div className="mx-auto grid max-w-[1440px] items-center gap-10 px-5 pb-10 pt-8 sm:pb-14 sm:pt-12 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)] lg:gap-12">
           <div className="animate-rise">
             <p className="text-eyebrow">{t.home.eyebrow}</p>
-            <h1 className="text-display mt-3 max-w-[15ch] text-balance text-[2.5rem] sm:mt-4 sm:text-[3.15rem] lg:text-[3.45rem]">
+            <h1 className="text-display mt-3 max-w-[24ch] text-balance text-[2.6rem] leading-[1.04] tracking-[-0.02em] sm:mt-4 sm:text-[3.6rem] lg:text-[4.15rem]">
               {headline.before}
               <span className="text-primary">{headline.accent}</span>
               {headline.after}
             </h1>
-            <p className="mt-4 max-w-xl text-[17px] leading-relaxed text-muted-foreground sm:mt-5 sm:text-[18px]">
+            <p className="mt-4 max-w-2xl text-[18px] leading-relaxed text-foreground/72 sm:mt-5 sm:text-[19px]">
               {t.home.sub}
             </p>
             <div className="mt-6 flex flex-wrap gap-3 sm:mt-7">
