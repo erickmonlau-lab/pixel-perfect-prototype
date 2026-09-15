@@ -86,7 +86,7 @@ function Home() {
               </div>
             </div>
 
-            <div className={`animate-rise ${GRID} lg:grid-cols-2 xl:grid-cols-2`}>
+            <div className="animate-rise grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-2">
               {popular.slice(0, 6).map((tool, index) => (
                 <ToolCard key={tool.slug} tool={tool} index={index} showCategory />
               ))}
