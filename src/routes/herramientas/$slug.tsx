@@ -4,6 +4,7 @@ import { ToolWorkspace } from "@/components/tools/ToolWorkspace";
 import { ToolCard } from "@/components/site/ToolCard";
 import { ToolIcon } from "@/components/site/ToolIcon";
 import { CATEGORIES, getTool, relatedTools } from "@/lib/tools/registry";
+import { FAMILY_ACCENTS } from "@/lib/tools/catalog";
 
 export const Route = createFileRoute("/herramientas/$slug")({
   loader: ({ params }) => {
@@ -71,7 +72,9 @@ function ToolPage() {
       </nav>
 
       <header className="mt-6 flex items-start gap-4">
-        <span className="inline-flex size-12 shrink-0 items-center justify-center rounded-xl bg-primary-soft text-primary">
+        <span
+          className={`inline-flex size-12 shrink-0 items-center justify-center rounded-xl ${FAMILY_ACCENTS[tool.category].iconBg} ${FAMILY_ACCENTS[tool.category].icon}`}
+        >
           <ToolIcon name={tool.icon} className="size-6" />
         </span>
         <div>
