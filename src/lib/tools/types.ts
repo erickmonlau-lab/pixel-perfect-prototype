@@ -1,4 +1,10 @@
-export type ToolCategory = "organizar" | "convertir" | "optimizar" | "editar";
+export type ToolCategory =
+  | "organizar"
+  | "convertir"
+  | "optimizar"
+  | "editar"
+  | "seguridad"
+  | "inteligencia";
 
 export type ToolStatus = "live" | "pending";
 
