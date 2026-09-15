@@ -60,7 +60,7 @@ function Home() {
   const { locale, t } = useLocale();
   const navigate = useNavigate();
   const popular = localizedPopular(locale);
-  const headline = splitHeadline(t.home.h1);
+  const headline = headlineLines(t.home.h1);
 
   /** First visit only: follow the browser language, never override a manual choice. */
   useEffect(() => {
