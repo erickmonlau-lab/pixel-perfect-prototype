@@ -4,11 +4,12 @@ import { Button } from "@/components/ui/button";
 import { formatBytes } from "@/lib/tools/pdf-runtime";
 import type { OptionValues, ToolDefinition, ToolOutput } from "@/lib/tools/types";
 import { useLocale } from "@/lib/i18n/context";
+import { localizeOutputName } from "@/lib/tools/output-names";
 
 type Phase = "idle" | "processing" | "done" | "error";
 
 export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
-  const { t } = useLocale();
+  const { locale, t } = useLocale();
   const inputRef = useRef<HTMLInputElement>(null);
   const [files, setFiles] = useState<File[]>([]);
   const [dragging, setDragging] = useState(false);
@@ -99,7 +100,12 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
       const result = await tool.run(files, values, {
         onProgress: (ratio) => setProgress(Math.min(1, Math.max(0, ratio))),
       });
-      setOutputs(result.outputs);
+      setOutputs(
+        result.outputs.map((output) => ({
+          ...output,
+          name: localizeOutputName(locale, output.name),
+        })),
+      );
       setNote(result.note ?? null);
       setProgress(1);
       setPhase("done");
