@@ -229,6 +229,14 @@
   box-shadow: var(--shadow-subtle);
 }
 
+@utility scrollbar-none {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 @utility transition-standard {
   transition-property: color, background-color, border-color, box-shadow, transform, opacity;
   transition-duration: var(--motion-normal);
