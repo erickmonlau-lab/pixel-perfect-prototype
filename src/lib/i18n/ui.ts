@@ -25,6 +25,7 @@ const es = {
   },
   home: {
     eyebrow: "Plataforma documental",
+    featured: "Herramientas destacadas",
     h1: "Todas tus herramientas PDF. En un solo lugar.",
     sub: "Comprime, convierte, une, divide y edita tus documentos online. Rápido, claro y sin complicaciones.",
     ctaAll: (n: number) => `Ver las ${n} herramientas`,
@@ -178,6 +179,7 @@ const ca: Dict = {
   },
   home: {
     eyebrow: "Plataforma documental",
+    featured: "Eines destacades",
     h1: "Totes les teves eines PDF. En un sol lloc.",
     sub: "Comprimeix, converteix, uneix, divideix i edita els teus documents en línia. Ràpid, clar i sense complicacions.",
     ctaAll: (n: number) => `Mostra les ${n} eines`,
@@ -327,6 +329,7 @@ const en: Dict = {
   },
   home: {
     eyebrow: "Document platform",
+    featured: "Featured tools",
     h1: "Every PDF tool you need. In one place.",
     sub: "Compress, convert, merge, split and edit your documents online. Fast, clear and free of friction.",
     ctaAll: (n: number) => `See all ${n} tools`,
