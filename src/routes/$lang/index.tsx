@@ -61,29 +61,29 @@ function Home() {
   return (
     <>
       <section className="bg-background">
-        <div className="mx-auto max-w-[1400px] px-5 pb-12 pt-16 sm:pb-16 sm:pt-20">
+        <div className="mx-auto max-w-[1400px] px-5 pb-10 pt-10 sm:pb-16 sm:pt-20">
           <div className="animate-rise mx-auto max-w-4xl text-center">
               <p className="text-eyebrow">{t.home.eyebrow}</p>
-              <h1 className="text-display mx-auto mt-4 max-w-4xl text-[2.8rem] sm:text-[3.5rem] lg:text-[3.75rem]">
+              <h1 className="text-display mx-auto mt-3 max-w-4xl text-[2.5rem] sm:mt-4 sm:text-[3.5rem] lg:text-[3.75rem]">
                 {t.home.h1}
               </h1>
-              <p className="mx-auto mt-5 max-w-2xl text-[19px] leading-relaxed text-muted-foreground sm:text-[20px]">
+              <p className="mx-auto mt-4 max-w-2xl text-[18px] leading-relaxed text-muted-foreground sm:mt-5 sm:text-[20px]">
                 {t.home.sub}
               </p>
-              <div className="mt-8 flex flex-wrap justify-center gap-3">
-                <Button asChild size="lg">
+              <div className="mt-6 flex flex-wrap justify-center gap-3 sm:mt-8">
+                <Button asChild size="lg" className="h-11 px-5 sm:px-8">
                   <Link to={SECTION_ROUTE} params={catalogParams(locale)}>
                     {t.home.ctaAll(TOOLS.length)}
                     <ArrowRight className="ml-2 size-4" />
                   </Link>
                 </Button>
-                <Button asChild size="lg" variant="outline">
+                <Button asChild size="lg" variant="outline" className="h-11 px-5 sm:px-8">
                   <Link to={DETAIL_ROUTE} params={toolParams(locale, "comprimir-pdf")}>
                     {t.home.ctaCompress}
                   </Link>
                 </Button>
               </div>
-              <div className="mx-auto mt-10 max-w-3xl text-left">
+              <div className="mx-auto mt-7 max-w-3xl text-left sm:mt-10">
                 <ToolSearch size="lg" />
               </div>
           </div>
