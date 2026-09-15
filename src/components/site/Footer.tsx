@@ -4,39 +4,47 @@ import { Logo } from "./Logo";
 
 export function Footer() {
   return (
-    <footer className="mt-24 border-t border-border bg-navy text-navy-foreground">
-      <div className="mx-auto max-w-6xl px-5 py-14">
-        <div className="grid gap-10 md:grid-cols-[1.2fr_repeat(4,1fr)]">
+    <footer className="mt-14 border-t border-border bg-navy text-navy-foreground">
+      <div className="mx-auto max-w-[1400px] px-5 py-9">
+        <div className="grid gap-7 md:grid-cols-[1.1fr_repeat(4,1fr)]">
           <div>
             <Logo tone="light" />
-            <p className="mt-4 max-w-xs text-sm leading-relaxed text-navy-foreground/70">
-              Herramientas para trabajar con documentos PDF. Rápidas, claras y procesadas en tu
-              propio dispositivo siempre que es técnicamente posible.
+            <p className="mt-3 max-w-xs text-[13px] leading-relaxed text-navy-foreground/65">
+              Herramientas para trabajar con documentos PDF, procesadas en tu propio dispositivo
+              siempre que es técnicamente posible.
             </p>
           </div>
 
-          {Object.values(CATEGORIES).map((category) => (
-            <div key={category.slug}>
-              <h2 className="text-sm font-semibold text-navy-foreground">{category.name}</h2>
-              <ul className="mt-3 space-y-2">
-                {toolsByCategory(category.slug).map((tool) => (
-                  <li key={tool.slug}>
-                    <Link
-                      to="/herramientas/$slug"
-                      params={{ slug: tool.slug }}
-                      className="transition-standard text-sm text-navy-foreground/70 hover:text-navy-foreground"
-                    >
-                      {tool.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+          {Object.values(CATEGORIES)
+            .filter((category) => toolsByCategory(category.slug).length > 0)
+            .map((category) => (
+              <div key={category.slug}>
+                <h2 className="text-[13px] font-semibold text-navy-foreground">
+                  <Link to="/categoria/$slug" params={{ slug: category.slug }}>
+                    {category.name}
+                  </Link>
+                </h2>
+                <ul className="mt-2 space-y-1.5">
+                  {toolsByCategory(category.slug).map((tool) => (
+                    <li key={tool.slug}>
+                      <Link
+                        to="/herramientas/$slug"
+                        params={{ slug: tool.slug }}
+                        className="transition-standard text-[13px] text-navy-foreground/65 hover:text-navy-foreground"
+                      >
+                        {tool.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
         </div>
 
-        <div className="mt-12 flex flex-col gap-3 border-t border-navy-foreground/10 pt-6 text-sm text-navy-foreground/60 sm:flex-row sm:items-center sm:justify-between">
-          <p>© {new Date().getFullYear()} ARVIO · {TOOLS.length} herramientas y creciendo</p>
+        <div className="mt-7 flex flex-col gap-2 border-t border-navy-foreground/10 pt-5 text-[13px] text-navy-foreground/55 sm:flex-row sm:items-center sm:justify-between">
+          <p>
+            © {new Date().getFullYear()} ARVIO · {TOOLS.length} herramientas y creciendo
+          </p>
           <div className="flex gap-5">
             <Link to="/herramientas" className="hover:text-navy-foreground">
               Herramientas
