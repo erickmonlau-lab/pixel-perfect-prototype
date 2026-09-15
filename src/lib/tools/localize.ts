@@ -18,8 +18,14 @@ export type LocalizedCategory = {
   description: string;
 };
 
+type TranslatedLocale = Exclude<Locale, "es">;
+
+function isTranslated(locale: Locale): locale is TranslatedLocale {
+  return locale !== DEFAULT_LOCALE;
+}
+
 function textFor(locale: Locale, canonicalSlug: string): ToolText | undefined {
-  if (locale === DEFAULT_LOCALE) return undefined;
+  if (!isTranslated(locale)) return undefined;
   return TOOL_TEXT[locale][canonicalSlug];
 }
 
@@ -29,9 +35,12 @@ function localizeOptions(options: OptionField[] | undefined, text: ToolText | un
   return options.map((option): OptionField => {
     const patch = text.options?.[option.key];
     if (!patch) return option;
-    const base = { ...option, label: patch.label ?? option.label, help: patch.help ?? option.help };
+    const label = patch.label ?? option.label;
+    const help = patch.help ?? option.help;
+    const base = { ...option, label, ...(help === undefined ? {} : { help }) };
     if (base.type === "text") {
-      return { ...base, placeholder: patch.placeholder ?? base.placeholder };
+      const placeholder = patch.placeholder ?? base.placeholder;
+      return { ...base, ...(placeholder === undefined ? {} : { placeholder }) };
     }
     if (base.type === "select") {
       return {
@@ -49,6 +58,8 @@ function localizeOptions(options: OptionField[] | undefined, text: ToolText | un
 function localizeTool(tool: ToolDefinition, locale: Locale): LocalizedTool {
   const text = textFor(locale, tool.slug);
   if (!text) return { ...tool, canonicalSlug: tool.slug };
+  const pendingReason = text.pendingReason ?? tool.pendingReason;
+  const options = localizeOptions(tool.options, text);
   return {
     ...tool,
     canonicalSlug: tool.slug,
@@ -62,10 +73,11 @@ function localizeTool(tool: ToolDefinition, locale: Locale): LocalizedTool {
     keywords: text.keywords,
     howItWorks: text.howItWorks,
     faq: text.faq,
-    pendingReason: text.pendingReason ?? tool.pendingReason,
-    options: localizeOptions(tool.options, text),
+    ...(pendingReason === undefined ? {} : { pendingReason }),
+    ...(options === undefined ? {} : { options }),
   };
 }
+
 
 const toolCache = new Map<Locale, LocalizedTool[]>();
 
@@ -82,8 +94,9 @@ const categoryCache = new Map<Locale, LocalizedCategory[]>();
 export function localizedCategories(locale: Locale): LocalizedCategory[] {
   const cached = categoryCache.get(locale);
   if (cached) return cached;
+  const loc = locale;
   const built = Object.values(CATEGORIES).map((category): LocalizedCategory => {
-    if (locale === DEFAULT_LOCALE) {
+    if (!isTranslated(loc)) {
       return {
         category: category.slug,
         slug: category.slug,
@@ -91,7 +104,7 @@ export function localizedCategories(locale: Locale): LocalizedCategory[] {
         description: category.description,
       };
     }
-    const text = CATEGORY_TEXT[locale][category.slug];
+    const text = CATEGORY_TEXT[loc][category.slug]!;
     return { category: category.slug, ...text };
   });
   categoryCache.set(locale, built);
@@ -152,9 +165,10 @@ export function localizedRelated(locale: Locale, tool: LocalizedTool, limit = 4)
 }
 
 export function localizedRoadmap(locale: Locale): RoadmapTool[] {
-  if (locale === DEFAULT_LOCALE) return ROADMAP_TOOLS;
+  if (!isTranslated(locale)) return ROADMAP_TOOLS;
+  const loc = locale;
   return ROADMAP_TOOLS.map((tool) => {
-    const text = ROADMAP_TEXT[locale][tool.name];
+    const text = ROADMAP_TEXT[loc][tool.name];
     return text ? { ...tool, name: text.name, tagline: text.tagline } : tool;
   });
 }

@@ -1,9 +1,9 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   Outlet,
-  Link,
   createRootRouteWithContext,
   useRouter,
+  useRouterState,
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
@@ -11,25 +11,25 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
-import { Header } from "@/components/site/Header";
-import { Footer } from "@/components/site/Footer";
+import { DEFAULT_LOCALE, HTML_LANG } from "@/lib/i18n/config";
+import { parsePath } from "@/lib/i18n/routing";
+import { UI } from "@/lib/i18n/ui";
 
 function NotFoundComponent() {
+  const t = UI[DEFAULT_LOCALE];
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
-        <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">Página no encontrada</h2>
-        <p className="mt-2 text-sm text-muted-foreground">
-          Esta página no existe o se ha movido. Puedes ver todas las herramientas de ARVIO.
-        </p>
+        <h1 className="text-display text-6xl">404</h1>
+        <h2 className="mt-4 text-xl font-semibold text-foreground">{t.notFound.title}</h2>
+        <p className="mt-2 text-[15px] text-muted-foreground">{t.notFound.body}</p>
         <div className="mt-6">
-          <Link
-            to="/herramientas"
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary-dark"
+          <a
+            href="/es/herramientas"
+            className="inline-flex items-center justify-center rounded-xl bg-primary px-5 py-2.5 text-[15px] font-medium text-primary-foreground transition-colors hover:bg-primary-dark"
           >
-            Ver herramientas
-          </Link>
+            {t.notFound.cta}
+          </a>
         </div>
       </div>
     </div>
@@ -39,6 +39,7 @@ function NotFoundComponent() {
 function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   console.error(error);
   const router = useRouter();
+  const t = UI[DEFAULT_LOCALE];
   useEffect(() => {
     reportLovableError(error, { boundary: "tanstack_root_error_component" });
   }, [error]);
@@ -46,27 +47,23 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
-        <h1 className="text-xl font-semibold tracking-tight text-foreground">
-          Esta página no se ha cargado
-        </h1>
-        <p className="mt-2 text-sm text-muted-foreground">
-          Algo ha fallado por nuestra parte. Puedes reintentarlo o volver al inicio.
-        </p>
+        <h1 className="text-xl font-semibold tracking-tight text-foreground">{t.error.title}</h1>
+        <p className="mt-2 text-[15px] text-muted-foreground">{t.error.body}</p>
         <div className="mt-6 flex flex-wrap justify-center gap-2">
           <button
             onClick={() => {
               router.invalidate();
               reset();
             }}
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary-dark"
+            className="inline-flex items-center justify-center rounded-xl bg-primary px-5 py-2.5 text-[15px] font-medium text-primary-foreground transition-colors hover:bg-primary-dark"
           >
-            Reintentar
+            {t.error.retry}
           </button>
           <a
             href="/"
-            className="inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent"
+            className="inline-flex items-center justify-center rounded-xl border border-input bg-background px-5 py-2.5 text-[15px] font-medium text-foreground transition-colors hover:bg-accent"
           >
-            Ir al inicio
+            {t.error.home}
           </a>
         </div>
       </div>
@@ -79,15 +76,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "ARVIO · Herramientas PDF rápidas y privadas" },
-      {
-        name: "description",
-        content:
-          "ARVIO reúne las herramientas PDF que necesitas: comprimir, unir, dividir, rotar y convertir documentos directamente en tu navegador.",
-      },
       { property: "og:site_name", content: "ARVIO" },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
       { name: "theme-color", content: "#0B1220" },
     ],
     links: [
@@ -108,8 +97,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 });
 
 function RootShell({ children }: { children: ReactNode }) {
+  const pathname = useRouterState({ select: (state) => state.location.pathname });
+  const { locale } = parsePath(pathname);
+
   return (
-    <html lang="es">
+    <html lang={HTML_LANG[locale]}>
       <head>
         <HeadContent />
       </head>
@@ -126,14 +118,8 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="flex min-h-screen flex-col">
-        <Header />
-        <main className="flex-1">
-          {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-          <Outlet />
-        </main>
-        <Footer />
-      </div>
+      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+      <Outlet />
     </QueryClientProvider>
   );
 }
