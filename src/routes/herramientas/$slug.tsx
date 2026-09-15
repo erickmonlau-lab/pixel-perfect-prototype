@@ -123,7 +123,7 @@ function ToolPage() {
         <h2 id="relacionadas" className="text-2xl">
           Herramientas relacionadas
         </h2>
-        <div className="mt-5 grid gap-4 sm:grid-cols-2">
+        <div className="mt-5 grid grid-cols-2 gap-3 lg:grid-cols-4">
           {relatedTools(tool).map((related) => (
             <ToolCard key={related.slug} tool={related} />
           ))}
