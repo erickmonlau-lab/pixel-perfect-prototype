@@ -9,8 +9,9 @@ export async function loadPdfLib() {
 
 export async function loadPdfjs() {
   const pdfjs = await import("pdfjs-dist");
-  // @ts-expect-error - vite url import has no type declaration
-  const worker = await import("pdfjs-dist/build/pdf.worker.min.mjs?url");
+  const worker = (await import("pdfjs-dist/build/pdf.worker.min.mjs?url")) as {
+    default: string;
+  };
   pdfjs.GlobalWorkerOptions.workerSrc = worker.default as string;
   return pdfjs;
 }

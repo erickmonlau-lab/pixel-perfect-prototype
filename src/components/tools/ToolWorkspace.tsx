@@ -67,8 +67,11 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
     setFiles((current) => {
       const next = [...current];
       const target = index + direction;
-      if (target < 0 || target >= next.length) return current;
-      [next[index], next[target]] = [next[target], next[index]];
+      const a = next[index];
+      const b = next[target];
+      if (!a || !b) return current;
+      next[index] = b;
+      next[target] = a;
       return next;
     });
   };
