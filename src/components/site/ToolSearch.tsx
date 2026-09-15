@@ -81,6 +81,9 @@ export function ToolSearch({ size = "md" }: { size?: "md" | "lg" }) {
             large ? "text-[18px]" : "text-[16px]"
           }`}
         />
+        <kbd className="hidden shrink-0 items-center gap-1 rounded-lg border border-border bg-secondary px-2.5 py-1.5 text-[12px] font-semibold text-muted-foreground sm:inline-flex">
+          ⌘ K
+        </kbd>
       </div>
 
       {open && (
