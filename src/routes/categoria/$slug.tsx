@@ -2,7 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ToolCard } from "@/components/site/ToolCard";
 import { RoadmapCard } from "@/components/site/RoadmapCard";
 import { CATEGORIES, toolsByCategory, TOOLS } from "@/lib/tools/registry";
-import { FAMILY_ACCENTS, roadmapByCategory } from "@/lib/tools/catalog";
+import { FAMILY_ACCENTS, POPULAR_SLUGS, roadmapByCategory } from "@/lib/tools/catalog";
 import type { ToolCategory } from "@/lib/tools/types";
 
 export const Route = createFileRoute("/categoria/$slug")({
@@ -60,6 +60,29 @@ function CategoryPage() {
           <RoadmapCard key={tool.name} tool={tool} index={tools.length + index} />
         ))}
       </div>
+
+      <section className="mt-10 border-t border-border/70 pt-7" aria-labelledby="mas-usadas">
+        <div className="flex flex-wrap items-baseline justify-between gap-3">
+          <h2 id="mas-usadas" className="text-lg">
+            Las más usadas en ARVIO
+          </h2>
+          <Link
+            to="/herramientas"
+            className="transition-standard text-sm font-semibold text-primary hover:text-primary-dark"
+          >
+            Ver el catálogo completo →
+          </Link>
+        </div>
+        <div className={`mt-4 ${GRID}`}>
+          {POPULAR_SLUGS.map((slug) => TOOLS.find((tool) => tool.slug === slug))
+            .filter((tool): tool is (typeof TOOLS)[number] => Boolean(tool))
+            .filter((tool) => tool.category !== category.slug)
+            .slice(0, 5)
+            .map((tool, index) => (
+              <ToolCard key={tool.slug} tool={tool} index={index} showCategory />
+            ))}
+        </div>
+      </section>
 
       <section className="mt-10 border-t border-border/70 pt-7" aria-labelledby="otras-categorias">
         <h2 id="otras-categorias" className="text-lg">
