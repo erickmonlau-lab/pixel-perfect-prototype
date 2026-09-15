@@ -28,14 +28,19 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
   }, [tool]);
   const [values, setValues] = useState<OptionValues>(defaults);
 
+  /** Reset only when the visitor switches to a different tool, never on mount. */
+  const mountedSlug = useRef(tool.slug);
   useEffect(() => {
+    if (mountedSlug.current === tool.slug) return;
+    mountedSlug.current = tool.slug;
     setValues(defaults);
     setFiles([]);
     setOutputs([]);
     setPhase("idle");
     setMessage(null);
     setNote(null);
-  }, [defaults]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [tool.slug]);
 
   useEffect(() => {
     const created = outputs.map((output) => URL.createObjectURL(output.blob));

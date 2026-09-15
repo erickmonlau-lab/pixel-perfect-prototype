@@ -10,33 +10,136 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as LangRouteImport } from './routes/$lang'
+import { Route as PrivacidadRouteImport } from './routes/privacidad'
+import { Route as LangIndexRouteImport } from './routes/$lang/index'
+import { Route as CategoriaSlugRouteImport } from './routes/categoria.$slug'
+import { Route as HerramientasIndexRouteImport } from './routes/herramientas.index'
+import { Route as HerramientasSlugRouteImport } from './routes/herramientas.$slug'
+import { Route as LangSectionIndexRouteImport } from './routes/$lang/$section/index'
+import { Route as LangSectionSlugRouteImport } from './routes/$lang/$section/$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LangRoute = LangRouteImport.update({
+  id: '/$lang',
+  path: '/$lang',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacidadRoute = PrivacidadRouteImport.update({
+  id: '/privacidad',
+  path: '/privacidad',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LangIndexRoute = LangIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => LangRoute,
+} as any)
+const CategoriaSlugRoute = CategoriaSlugRouteImport.update({
+  id: '/categoria/$slug',
+  path: '/categoria/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HerramientasIndexRoute = HerramientasIndexRouteImport.update({
+  id: '/herramientas/',
+  path: '/herramientas/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HerramientasSlugRoute = HerramientasSlugRouteImport.update({
+  id: '/herramientas/$slug',
+  path: '/herramientas/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LangSectionIndexRoute = LangSectionIndexRouteImport.update({
+  id: '/$section/',
+  path: '/$section/',
+  getParentRoute: () => LangRoute,
+} as any)
+const LangSectionSlugRoute = LangSectionSlugRouteImport.update({
+  id: '/$section/$slug',
+  path: '/$section/$slug',
+  getParentRoute: () => LangRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/$lang': typeof LangRouteWithChildren
+  '/privacidad': typeof PrivacidadRoute
+  '/categoria/$slug': typeof CategoriaSlugRoute
+  '/herramientas/$slug': typeof HerramientasSlugRoute
+  '/$lang/': typeof LangIndexRoute
+  '/herramientas/': typeof HerramientasIndexRoute
+  '/$lang/$section/$slug': typeof LangSectionSlugRoute
+  '/$lang/$section/': typeof LangSectionIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/privacidad': typeof PrivacidadRoute
+  '/categoria/$slug': typeof CategoriaSlugRoute
+  '/herramientas/$slug': typeof HerramientasSlugRoute
+  '/$lang': typeof LangIndexRoute
+  '/herramientas': typeof HerramientasIndexRoute
+  '/$lang/$section/$slug': typeof LangSectionSlugRoute
+  '/$lang/$section': typeof LangSectionIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/$lang': typeof LangRouteWithChildren
+  '/privacidad': typeof PrivacidadRoute
+  '/categoria/$slug': typeof CategoriaSlugRoute
+  '/herramientas/$slug': typeof HerramientasSlugRoute
+  '/$lang/': typeof LangIndexRoute
+  '/herramientas/': typeof HerramientasIndexRoute
+  '/$lang/$section/$slug': typeof LangSectionSlugRoute
+  '/$lang/$section/': typeof LangSectionIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/$lang'
+    | '/privacidad'
+    | '/categoria/$slug'
+    | '/herramientas/$slug'
+    | '/$lang/'
+    | '/herramientas/'
+    | '/$lang/$section/$slug'
+    | '/$lang/$section/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/privacidad'
+    | '/categoria/$slug'
+    | '/herramientas/$slug'
+    | '/$lang'
+    | '/herramientas'
+    | '/$lang/$section/$slug'
+    | '/$lang/$section'
+  id:
+    | '__root__'
+    | '/'
+    | '/$lang'
+    | '/privacidad'
+    | '/categoria/$slug'
+    | '/herramientas/$slug'
+    | '/$lang/'
+    | '/herramientas/'
+    | '/$lang/$section/$slug'
+    | '/$lang/$section/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  LangRoute: typeof LangRouteWithChildren
+  PrivacidadRoute: typeof PrivacidadRoute
+  CategoriaSlugRoute: typeof CategoriaSlugRoute
+  HerramientasSlugRoute: typeof HerramientasSlugRoute
+  HerramientasIndexRoute: typeof HerramientasIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +151,86 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/$lang': {
+      id: '/$lang'
+      path: '/$lang'
+      fullPath: '/$lang'
+      preLoaderRoute: typeof LangRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacidad': {
+      id: '/privacidad'
+      path: '/privacidad'
+      fullPath: '/privacidad'
+      preLoaderRoute: typeof PrivacidadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/$lang/': {
+      id: '/$lang/'
+      path: '/'
+      fullPath: '/$lang/'
+      preLoaderRoute: typeof LangIndexRouteImport
+      parentRoute: typeof LangRoute
+    }
+    '/categoria/$slug': {
+      id: '/categoria/$slug'
+      path: '/categoria/$slug'
+      fullPath: '/categoria/$slug'
+      preLoaderRoute: typeof CategoriaSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/herramientas/': {
+      id: '/herramientas/'
+      path: '/herramientas'
+      fullPath: '/herramientas/'
+      preLoaderRoute: typeof HerramientasIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/herramientas/$slug': {
+      id: '/herramientas/$slug'
+      path: '/herramientas/$slug'
+      fullPath: '/herramientas/$slug'
+      preLoaderRoute: typeof HerramientasSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/$lang/$section/': {
+      id: '/$lang/$section/'
+      path: '/$section'
+      fullPath: '/$lang/$section/'
+      preLoaderRoute: typeof LangSectionIndexRouteImport
+      parentRoute: typeof LangRoute
+    }
+    '/$lang/$section/$slug': {
+      id: '/$lang/$section/$slug'
+      path: '/$section/$slug'
+      fullPath: '/$lang/$section/$slug'
+      preLoaderRoute: typeof LangSectionSlugRouteImport
+      parentRoute: typeof LangRoute
+    }
   }
 }
 
+interface LangRouteChildren {
+  LangIndexRoute: typeof LangIndexRoute
+  LangSectionSlugRoute: typeof LangSectionSlugRoute
+  LangSectionIndexRoute: typeof LangSectionIndexRoute
+}
+
+const LangRouteChildren: LangRouteChildren = {
+  LangIndexRoute: LangIndexRoute,
+  LangSectionSlugRoute: LangSectionSlugRoute,
+  LangSectionIndexRoute: LangSectionIndexRoute,
+}
+
+const LangRouteWithChildren = LangRoute._addFileChildren(LangRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  LangRoute: LangRouteWithChildren,
+  PrivacidadRoute: PrivacidadRoute,
+  CategoriaSlugRoute: CategoriaSlugRoute,
+  HerramientasSlugRoute: HerramientasSlugRoute,
+  HerramientasIndexRoute: HerramientasIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
