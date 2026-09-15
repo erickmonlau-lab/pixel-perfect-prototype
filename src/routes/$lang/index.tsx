@@ -44,15 +44,16 @@ export const Route = createFileRoute("/$lang/")({
 
 const HIGHLIGHT_ICONS = [Gauge, Lock, Layers];
 
-/** Highlights the "PDF" word of the H1 without duplicating translated copy. */
-function splitHeadline(text: string) {
-  const index = text.indexOf("PDF");
-  if (index === -1) return { before: text, accent: "", after: "" };
-  return {
-    before: text.slice(0, index),
-    accent: "PDF",
-    after: text.slice(index + 3),
-  };
+/** Splits the H1 into sentence lines and highlights the "PDF" word, no copy duplication. */
+function headlineLines(text: string) {
+  return text
+    .split(/(?<=\.)\s+/)
+    .filter(Boolean)
+    .map((line) => {
+      const index = line.indexOf("PDF");
+      if (index === -1) return { before: line, accent: "", after: "" };
+      return { before: line.slice(0, index), accent: "PDF", after: line.slice(index + 3) };
+    });
 }
 
 function Home() {
