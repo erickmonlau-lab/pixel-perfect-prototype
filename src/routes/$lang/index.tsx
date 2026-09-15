@@ -92,7 +92,12 @@ function Home() {
                   <ArrowRight className="ml-2 size-4" />
                 </Link>
               </Button>
-              <Button asChild size="lg" variant="ghost" className="h-12 px-5 text-[15px]">
+              <Button
+                asChild
+                size="lg"
+                variant="outline"
+                className="h-12 border-border bg-surface px-6 text-[15px]"
+              >
                 <Link to={DETAIL_ROUTE} params={toolParams(locale, "comprimir-pdf")}>
                   {t.home.ctaCompress}
                 </Link>
