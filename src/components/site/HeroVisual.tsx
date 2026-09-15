@@ -14,7 +14,7 @@ export function HeroVisual() {
   const tools = localizedPopular(locale).slice(0, 6);
 
   return (
-    <div className="relative mx-auto w-full max-w-[460px]" aria-hidden>
+    <div className="relative mx-auto w-full max-w-[400px]" aria-hidden>
       {/* small blue light zones around the composition */}
       <div className="absolute -left-10 -top-10 size-56 rounded-full bg-primary/12 blur-3xl" />
       <div className="absolute -bottom-12 -right-8 size-52 rounded-full bg-primary/10 blur-3xl" />
