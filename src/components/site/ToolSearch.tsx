@@ -1,38 +1,40 @@
 import { useNavigate } from "@tanstack/react-router";
 import { Search } from "lucide-react";
 import { useMemo, useRef, useState } from "react";
-import { searchTools } from "@/lib/tools/registry";
 import { FAMILY_ACCENTS } from "@/lib/tools/catalog";
+import { localizedPopular, searchLocalizedTools } from "@/lib/tools/localize";
+import { useLocale } from "@/lib/i18n/context";
+import { DETAIL_ROUTE, toolParams } from "@/lib/i18n/routing";
 import { ToolIcon } from "./ToolIcon";
-
-const SUGGESTIONS = ["Comprimir PDF", "Unir PDF", "Dividir PDF", "PDF a JPG", "PDF a Word"];
 
 export function ToolSearch({ size = "md" }: { size?: "md" | "lg" }) {
   const navigate = useNavigate();
+  const { locale, t } = useLocale();
   const inputRef = useRef<HTMLInputElement>(null);
   const [query, setQuery] = useState("");
   const [active, setActive] = useState(0);
   const [focused, setFocused] = useState(false);
 
-  const results = useMemo(() => searchTools(query).slice(0, 7), [query]);
+  const results = useMemo(() => searchLocalizedTools(locale, query).slice(0, 7), [locale, query]);
+  const suggestions = useMemo(() => localizedPopular(locale).slice(0, 5), [locale]);
   const open = focused && query.trim().length > 0;
   const large = size === "lg";
 
-  const go = (slug: string) => {
+  const go = (canonicalSlug: string) => {
     setFocused(false);
     setQuery("");
-    void navigate({ to: "/herramientas/$slug", params: { slug } });
+    void navigate({ to: DETAIL_ROUTE, params: toolParams(locale, canonicalSlug) });
   };
 
   return (
     <div className="relative">
       <div
-        className={`transition-standard flex items-center gap-3 rounded-2xl border border-border bg-surface shadow-subtle focus-within:border-primary/50 focus-within:shadow-focus ${
-          large ? "px-5 py-4" : "px-4 py-3"
+        className={`transition-standard flex items-center gap-4 rounded-2xl border border-border bg-surface shadow-subtle focus-within:border-primary/60 focus-within:shadow-focus ${
+          large ? "h-16 px-6" : "h-14 px-5"
         }`}
       >
         <Search
-          className={`shrink-0 text-primary ${large ? "size-6" : "size-5"}`}
+          className={`shrink-0 text-primary ${large ? "size-7" : "size-6"}`}
           strokeWidth={2}
           aria-hidden
         />
@@ -55,14 +57,14 @@ export function ToolSearch({ size = "md" }: { size?: "md" | "lg" }) {
               setActive((i) => (i - 1 + results.length) % results.length);
             } else if (event.key === "Enter" && results[active]) {
               event.preventDefault();
-              go(results[active].slug);
+              go(results[active].canonicalSlug);
             } else if (event.key === "Escape") {
               setFocused(false);
             }
           }}
           type="search"
-          placeholder="¿Qué quieres hacer con tu PDF?"
-          aria-label="¿Qué quieres hacer con tu PDF?"
+          placeholder={t.search.placeholder}
+          aria-label={t.search.placeholder}
           className={`w-full bg-transparent outline-none placeholder:text-muted-foreground ${
             large ? "text-lg" : "text-base"
           }`}
@@ -71,13 +73,12 @@ export function ToolSearch({ size = "md" }: { size?: "md" | "lg" }) {
 
       {open && (
         <ul
-          className="animate-fade absolute inset-x-0 top-full z-30 mt-2 overflow-hidden rounded-xl border border-border bg-popover shadow-overlay"
+          className="animate-fade absolute inset-x-0 top-full z-30 mt-2 overflow-hidden rounded-2xl border border-border bg-popover shadow-overlay"
           role="listbox"
+          aria-label={t.search.results}
         >
           {results.length === 0 && (
-            <li className="px-4 py-3 text-sm text-muted-foreground">
-              Todavía no tenemos esa herramienta. Prueba con «comprimir», «unir» o «convertir».
-            </li>
+            <li className="px-5 py-4 text-[15px] text-muted-foreground">{t.search.empty}</li>
           )}
           {results.map((tool, index) => {
             const accent = FAMILY_ACCENTS[tool.category];
@@ -87,19 +88,19 @@ export function ToolSearch({ size = "md" }: { size?: "md" | "lg" }) {
                   type="button"
                   onMouseDown={(event) => event.preventDefault()}
                   onMouseEnter={() => setActive(index)}
-                  onClick={() => go(tool.slug)}
-                  className={`flex w-full items-center gap-3 px-3 py-2.5 text-left ${
+                  onClick={() => go(tool.canonicalSlug)}
+                  className={`flex w-full items-center gap-3 px-4 py-3 text-left ${
                     index === active ? "bg-primary-soft" : "bg-transparent"
                   }`}
                 >
                   <span
-                    className={`inline-flex size-8 shrink-0 items-center justify-center rounded-lg ${accent.iconBg} ${accent.icon}`}
+                    className={`inline-flex size-10 shrink-0 items-center justify-center rounded-xl ${accent.iconBg} ${accent.icon}`}
                   >
-                    <ToolIcon name={tool.icon} className="size-4" />
+                    <ToolIcon name={tool.icon} className="size-5" />
                   </span>
-                  <span className="text-sm font-semibold">{tool.name}</span>
-                  <span className="ml-auto truncate pl-3 text-xs text-muted-foreground">
-                    {tool.status === "pending" ? "En construcción" : tool.tagline}
+                  <span className="text-[15px] font-semibold">{tool.name}</span>
+                  <span className="ml-auto hidden truncate pl-4 text-[13px] text-muted-foreground sm:block">
+                    {tool.status === "pending" ? t.status.pending : tool.tagline}
                   </span>
                 </button>
               </li>
@@ -108,22 +109,22 @@ export function ToolSearch({ size = "md" }: { size?: "md" | "lg" }) {
         </ul>
       )}
 
-      <div className="mt-3 flex flex-wrap items-center gap-2">
-        <span className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-          Populares
+      <div className="mt-4 flex flex-wrap items-center gap-2">
+        <span className="text-[12px] font-bold uppercase tracking-[0.1em] text-muted-foreground">
+          {t.search.popular}
         </span>
-        {SUGGESTIONS.map((suggestion) => (
+        {suggestions.map((tool) => (
           <button
-            key={suggestion}
+            key={tool.slug}
             type="button"
             onClick={() => {
-              setQuery(suggestion);
+              setQuery(tool.name);
               setFocused(true);
               inputRef.current?.focus();
             }}
-            className="transition-standard rounded-full border border-border bg-surface px-3 py-1.5 text-xs font-semibold text-foreground/80 shadow-subtle hover:-translate-y-px hover:border-primary/40 hover:text-primary-dark"
+            className="transition-standard rounded-full border border-border bg-surface px-4 py-2 text-[14px] font-semibold text-foreground/85 shadow-subtle hover:-translate-y-px hover:border-primary/40 hover:text-primary-dark"
           >
-            {suggestion}
+            {tool.name}
           </button>
         ))}
       </div>
