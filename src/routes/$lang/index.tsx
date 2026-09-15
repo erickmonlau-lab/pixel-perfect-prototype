@@ -75,19 +75,22 @@ function Home() {
   return (
     <>
       <section className="hero-canvas overflow-hidden border-b border-border/60">
-        <div className="mx-auto grid max-w-[1480px] items-center gap-10 px-5 pb-10 pt-8 sm:pb-14 sm:pt-12 lg:grid-cols-[minmax(0,1.85fr)_minmax(360px,1fr)] lg:gap-10">
+        <div className="mx-auto grid max-w-[1240px] items-center gap-10 px-5 pb-10 pt-8 sm:pb-14 sm:pt-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,400px)] lg:gap-12">
           <div className="animate-rise">
             <p className="text-eyebrow">{t.home.eyebrow}</p>
-            <h1 className="text-display mt-2.5 max-w-[780px] text-[2.6rem] font-extrabold leading-[1.03] tracking-[-0.025em] sm:mt-3 sm:text-[3.3rem] lg:text-[3.55rem]">
-              {headline.map((line) => (
-                <span key={line.before + line.after} className="block">
+            <h1 className="text-display mt-2.5 text-[2.6rem] font-extrabold leading-[1.0] tracking-[-0.03em] sm:mt-3 sm:text-[3.4rem] lg:text-[3.5rem]">
+              {headline.map((line, index) => (
+                <span
+                  key={line.before + line.after}
+                  className={index === 0 ? "block lg:whitespace-nowrap" : "block"}
+                >
                   {line.before}
                   {line.accent && <span className="text-primary">{line.accent}</span>}
                   {line.after}
                 </span>
               ))}
             </h1>
-            <p className="mt-3.5 max-w-[640px] text-[18px] leading-relaxed text-foreground/72 sm:mt-4 sm:text-[19px]">
+            <p className="mt-4 max-w-[560px] text-[17px] leading-relaxed text-foreground/70 sm:text-[18px]">
               {t.home.sub}
             </p>
             <div className="mt-5 flex flex-wrap gap-3 sm:mt-6">
@@ -112,6 +115,7 @@ function Home() {
               <ToolSearch size="lg" />
             </div>
           </div>
+
 
           <div className="animate-fade hidden lg:block">
             <HeroVisual />
