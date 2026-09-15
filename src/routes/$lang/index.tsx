@@ -127,7 +127,7 @@ function Home() {
             const Icon = HIGHLIGHT_ICONS[index] ?? Layers;
             return (
               <div key={item.title}>
-                <span className="inline-flex size-12 items-center justify-center rounded-xl bg-primary-soft text-primary">
+                <span className="inline-flex size-12 items-center justify-center rounded-xl bg-primary text-primary-foreground">
                   <Icon className="size-6" strokeWidth={1.75} aria-hidden />
                 </span>
                 <h3 className="mt-4 text-xl font-semibold">{item.title}</h3>
