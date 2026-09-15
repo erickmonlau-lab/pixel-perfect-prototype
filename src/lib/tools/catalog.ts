@@ -16,6 +16,8 @@ export type FamilyAccent = {
   hoverBorder: string;
   /** Text colour for the micro CTA. */
   text: string;
+  /** Arrow colour on hover. */
+  arrow: string;
 };
 
 export const FAMILY_ACCENTS: Record<ToolCategory, FamilyAccent> = {
@@ -25,6 +27,7 @@ export const FAMILY_ACCENTS: Record<ToolCategory, FamilyAccent> = {
     dot: "bg-fam-optimizar",
     hoverBorder: "group-hover:border-fam-optimizar/40",
     text: "text-fam-optimizar",
+    arrow: "group-hover:text-fam-optimizar",
   },
   organizar: {
     icon: "text-fam-organizar",
@@ -32,6 +35,7 @@ export const FAMILY_ACCENTS: Record<ToolCategory, FamilyAccent> = {
     dot: "bg-fam-organizar",
     hoverBorder: "group-hover:border-fam-organizar/40",
     text: "text-fam-organizar",
+    arrow: "group-hover:text-fam-organizar",
   },
   convertir: {
     icon: "text-fam-convertir",
@@ -39,6 +43,7 @@ export const FAMILY_ACCENTS: Record<ToolCategory, FamilyAccent> = {
     dot: "bg-fam-convertir",
     hoverBorder: "group-hover:border-fam-convertir/40",
     text: "text-fam-convertir",
+    arrow: "group-hover:text-fam-convertir",
   },
   editar: {
     icon: "text-fam-editar",
@@ -46,6 +51,7 @@ export const FAMILY_ACCENTS: Record<ToolCategory, FamilyAccent> = {
     dot: "bg-fam-editar",
     hoverBorder: "group-hover:border-fam-editar/40",
     text: "text-fam-editar",
+    arrow: "group-hover:text-fam-editar",
   },
   seguridad: {
     icon: "text-fam-seguridad",
@@ -53,6 +59,7 @@ export const FAMILY_ACCENTS: Record<ToolCategory, FamilyAccent> = {
     dot: "bg-fam-seguridad",
     hoverBorder: "group-hover:border-fam-seguridad/40",
     text: "text-fam-seguridad",
+    arrow: "group-hover:text-fam-seguridad",
   },
   inteligencia: {
     icon: "text-fam-inteligencia",
@@ -60,6 +67,7 @@ export const FAMILY_ACCENTS: Record<ToolCategory, FamilyAccent> = {
     dot: "bg-fam-inteligencia",
     hoverBorder: "group-hover:border-fam-inteligencia/40",
     text: "text-fam-inteligencia",
+    arrow: "group-hover:text-fam-inteligencia",
   },
 };
 
