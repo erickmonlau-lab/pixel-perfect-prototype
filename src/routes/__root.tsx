@@ -116,6 +116,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         { name: "viewport", content: "width=device-width, initial-scale=1" },
         { property: "og:site_name", content: "BreadPDF" },
         { name: "theme-color", content: "#592316" },
+        { name: "google-adsense-account", content: "ca-pub-7477829897419785" },
       ],
       links: [
         { rel: "stylesheet", href: appCss },
