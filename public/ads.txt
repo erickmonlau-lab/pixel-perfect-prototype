@@ -1,4 +1,1 @@
-# BreadPDF Google AdSense Authorized Digital Sellers (ads.txt)
-# Inactivo / Plantilla de preparación según especificación IAB Tech Lab
-# Una vez aprobada la cuenta de AdSense, sustituir pub-0000000000000000 por el ID de editor real.
-google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0
+google.com, pub-7477829897419785, DIRECT, f08c47fec0942fa0
