@@ -1,10 +1,10 @@
-import { Link } from "@tanstack/react-router";
-import { ChevronDown, Menu, X } from "lucide-react";
-import { useState } from "react";
+import { Link, useRouterState, useNavigate } from "@tanstack/react-router";
+import { ChevronDown, Menu, X, ArrowRight, User, Star, Settings, Bell, Shield, LogOut } from "lucide-react";
+import { PremiumCrownIcon } from "./PremiumCrownIcon";
+import { useState, useRef, useEffect, useMemo } from "react";
 import { Button } from "@/components/ui/button";
 import { FAMILY_ACCENTS } from "@/lib/tools/catalog";
 import { FAMILY_ICONS } from "@/lib/tools/families";
-import { localizedRoadmapByCategory } from "@/lib/tools/localize";
 import { MAIN_CATEGORIES } from "@/lib/tools/registry";
 import { useLocale } from "@/lib/i18n/context";
 import {
@@ -14,236 +14,795 @@ import {
   catalogParams,
   categoryParams,
   homeParams,
+  parsePath,
   privacyParams,
+  premiumParams,
+  loginParams,
+  registerParams,
+  accountParams,
   toolParams,
 } from "@/lib/i18n/routing";
+import { useAuth } from "@/lib/auth/auth-context";
 import { Logo } from "./Logo";
 import { ToolIcon } from "./ToolIcon";
+import { getRichToolIcon } from "./RichToolIcon";
 import { LanguageSwitcher } from "./LanguageSwitcher";
+import type { ToolCategory } from "@/lib/tools/types";
 
 export function Header() {
   const { locale, t, categories, tools } = useLocale();
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [megaOpen, setMegaOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState<ToolCategory | "more" | null>(null);
+  const [mobileExpandedCat, setMobileExpandedCat] = useState<ToolCategory | null>(null);
+  const [userMenuOpen, setUserMenuOpen] = useState(false);
 
-  const mainCategories = categories.filter((item) => MAIN_CATEGORIES.includes(item.category));
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const navRef = useRef<HTMLElement>(null);
+  const userMenuRef = useRef<HTMLDivElement>(null);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Ordenar las categorías dinámicamente de mayor a menor número de herramientas
+  // Si empatan a herramientas (ej. Seguridad 5 vs PDF Intelligence 5), desempatar con 'seguridad' primero
+  const sortedCategories = useMemo(() => {
+    return [...categories].sort((a, b) => {
+      const countA = tools.filter((t) => t.category === a.category).length;
+      const countB = tools.filter((t) => t.category === b.category).length;
+      const diff = countB - countA;
+      if (diff !== 0) return diff;
+      if (a.category === "seguridad") return -1;
+      if (b.category === "seguridad") return 1;
+      return 0;
+    });
+  }, [categories, tools]);
+
+  // Las 3 primeras categorías más populosas (Convertir 13, Organizar 7, Optimizar 6) se muestran siempre en desktop
+  // Las categorías secundarias (Seguridad 5, PDF Intelligence 5, Editar 4) entran en "Más herramientas"
+  // manteniendo el header perfectamente holgado y sin compresión ni cortes desde 1024px hasta 2560px+
+  const mainCategories = useMemo(() => sortedCategories.slice(0, 3), [sortedCategories]);
+  const moreCategories = useMemo(() => sortedCategories.slice(3), [sortedCategories]);
+
+  // Detect the category of the current page from the URL — used for active nav state
+  const currentPageCategory = useMemo<ToolCategory | null>(() => {
+    const { page } = parsePath(pathname);
+    if (page.kind === "category") return page.category;
+    if (page.kind === "tool") {
+      return tools.find((tool) => tool.canonicalSlug === page.canonicalSlug)?.category ?? null;
+    }
+    return null;
+  }, [pathname, tools]);
+
+  // Dismiss dropdowns when pressing Escape or clicking outside
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setActiveDropdown(null);
+        setMobileOpen(false);
+        setUserMenuOpen(false);
+      }
+    };
+    const handleClickOutside = (e: MouseEvent) => {
+      if (navRef.current && !navRef.current.contains(e.target as Node)) {
+        setActiveDropdown(null);
+      }
+      if (userMenuRef.current && !userMenuRef.current.contains(e.target as Node)) {
+        setUserMenuOpen(false);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  // Close dropdowns on route changes
+  useEffect(() => {
+    setActiveDropdown(null);
+    setMobileOpen(false);
+    setUserMenuOpen(false);
+  }, [pathname]);
+
+  const handleMouseEnter = (cat: ToolCategory | "more") => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    setActiveDropdown(cat);
+  };
+
+  const handleMouseLeave = () => {
+    timeoutRef.current = setTimeout(() => {
+      setActiveDropdown(null);
+    }, 180);
+  };
 
   return (
     <header
-      className="sticky top-0 z-40 border-b border-border/80 bg-surface/90 backdrop-blur-md"
+      className="sticky top-0 z-40 border-b border-[#E5E7EB] bg-white/95 backdrop-blur-md"
       onKeyDown={(event) => {
-        if (event.key === "Escape") setMegaOpen(false);
+        if (event.key === "Escape") {
+          setActiveDropdown(null);
+          setMobileOpen(false);
+        }
       }}
     >
-      <div className="mx-auto flex h-20 max-w-[1400px] items-center gap-7 px-5">
-        <Link
-          to={HOME_ROUTE}
-          params={homeParams(locale)}
-          className="transition-standard shrink-0 hover:opacity-80"
-          aria-label={`ARVIO · ${t.nav.home}`}
-        >
-          <Logo />
-        </Link>
-
-        <nav className="hidden items-center gap-1 lg:flex" aria-label={t.nav.categories}>
+      <div className="site-header mx-auto flex w-full max-w-[1440px] items-center justify-between px-4 sm:px-6 lg:px-8">
+        {/* ============================================================
+            ZONA IZQUIERDA: LOGO BREADPDF
+            ============================================================ */}
+        <div className="flex shrink-0 items-center">
           <Link
-            to={SECTION_ROUTE}
-            params={catalogParams(locale)}
-            className="transition-standard rounded-lg px-3.5 py-2.5 text-[15px] font-semibold text-foreground/85 hover:bg-primary-soft hover:text-primary-dark"
-            activeProps={{ className: "bg-primary-soft text-primary-dark" }}
+            to={HOME_ROUTE}
+            params={homeParams(locale)}
+            className="transition-standard shrink-0 hover:opacity-90"
+            aria-label={`BreadPDF · ${t.nav.home}`}
           >
-            {t.nav.tools}
+            <Logo />
           </Link>
-          {mainCategories.map((category) => {
-            const accent = FAMILY_ACCENTS[category.category];
-            return (
-              <Link
-                key={category.category}
-                to={DETAIL_ROUTE}
-                params={categoryParams(locale, category.category)}
-                className="transition-standard inline-flex items-center gap-2 rounded-lg px-3.5 py-2.5 text-[15px] font-medium text-foreground/80 hover:bg-secondary hover:text-foreground"
-                activeProps={{ className: "bg-secondary text-foreground" }}
-              >
-                <span className={`size-2 rounded-full ${accent.dot}`} aria-hidden />
-                {category.name}
-              </Link>
-            );
-          })}
-          <button
-            type="button"
-            onClick={() => setMegaOpen((value) => !value)}
-            aria-expanded={megaOpen}
-            className="transition-standard inline-flex items-center gap-1.5 rounded-lg px-3.5 py-2.5 text-[15px] font-medium text-foreground/80 hover:bg-secondary hover:text-foreground"
-          >
-            {t.nav.more}
-            <ChevronDown
-              className={`transition-standard size-4 ${megaOpen ? "rotate-180" : ""}`}
-              aria-hidden
-            />
-          </button>
-        </nav>
-
-        <div className="ml-auto hidden items-center gap-2.5 lg:flex">
-          <Link
-            to={SECTION_ROUTE}
-            params={privacyParams(locale)}
-            className="transition-standard rounded-lg px-3 py-2.5 text-[15px] font-medium text-muted-foreground hover:text-foreground"
-          >
-            {t.nav.privacy}
-          </Link>
-          <LanguageSwitcher />
-          <Button asChild size="lg">
-            <Link to={DETAIL_ROUTE} params={toolParams(locale, "comprimir-pdf")}>
-              {t.nav.cta}
-            </Link>
-          </Button>
         </div>
 
-        <div className="ml-auto flex items-center gap-2 lg:hidden">
+        {/* ============================================================
+            ZONA CENTRAL: CATEGORÍAS + MÁS HERRAMIENTAS
+            ============================================================ */}
+        <nav
+          ref={navRef}
+          className="hidden items-center gap-1.5 xl:gap-2.5 lg:flex ml-6 xl:ml-8"
+          aria-label={t.nav.categories}
+        >
+          {/* 4 CATEGORÍAS PRINCIPALES CON MEGA MENÚ */}
+          {mainCategories.map((category) => {
+              const accent = FAMILY_ACCENTS[category.category];
+              const catTools = tools.filter((tool) => tool.category === category.category);
+              const isOpen = activeDropdown === category.category;
+              // Page-active: this category belongs to the current page's URL
+              const isPageActive = currentPageCategory === category.category;
+              // "Interacting" = menu is open (takes priority over page-active visually)
+              // "Location" = page belongs here but no menu is open
+
+              // Agrupación semántica contextual según las herramientas reales
+              let columns: { title: string; items: typeof catTools }[] = [];
+              let panelWidth = "w-[340px]"; // Ancho compacto por defecto para 1 columna (optimizar, organizar, editar)
+              let gridCols = "grid-cols-1";
+
+              if (category.category === "convertir") {
+                // Orden lógico estipulado para "Convertir a PDF" (8 herramientas)
+                const toPdfOrder = [
+                  "jpg-a-pdf",
+                  "png-a-pdf",
+                  "webp-a-pdf",
+                  "word-a-pdf",
+                  "excel-a-pdf",
+                  "powerpoint-a-pdf",
+                  "markdown-a-pdf",
+                  "svg-a-pdf",
+                ];
+                const toPdf = toPdfOrder
+                  .map((slug) => catTools.find((t) => t.canonicalSlug === slug))
+                  .filter(Boolean) as typeof catTools;
+
+                // Orden lógico estipulado para "Convertir desde PDF" (9 herramientas)
+                const fromPdfOrder = [
+                  "pdf-a-jpg",
+                  "pdf-a-png",
+                  "pdf-a-webp",
+                  "pdf-a-word",
+                  "pdf-a-excel",
+                  "pdf-a-pptx",
+                  "pdf-a-markdown",
+                  "extraer-texto-pdf",
+                  "pdf-a-pdfa",
+                ];
+                const fromPdf = fromPdfOrder
+                  .map((slug) => catTools.find((t) => t.canonicalSlug === slug))
+                  .filter(Boolean) as typeof catTools;
+
+                columns = [
+                  {
+                    title: locale === "ca" ? "Convertir a PDF" : locale === "en" ? "Convert to PDF" : "Convertir a PDF",
+                    items: toPdf,
+                  },
+                  {
+                    title: locale === "ca" ? "Convertir des de PDF" : locale === "en" ? "Convert from PDF" : "Convertir desde PDF",
+                    items: fromPdf,
+                  },
+                ];
+                panelWidth = "w-[760px]";
+                gridCols = "grid-cols-2 gap-x-10";
+              } else {
+                // Optimizar (6), Organizar (7), Editar (4) -> Un único grupo natural y vertical
+                columns = [
+                  {
+                    title: category.name,
+                    items: catTools,
+                  },
+                ];
+                panelWidth = "w-[340px]";
+                gridCols = "grid-cols-1";
+              }
+
+              // ─── BUTTON CLASSES — three exclusive states ───────────────────────
+              // Priority: open > page-active > normal
+              let buttonClass: string;
+              let chevronClass: string;
+
+              if (isOpen || isPageActive) {
+                // State: ACTIVE OR MENU OPEN — full solid category color, white text, white chevron, matching border
+                buttonClass = `${accent.iconBg} text-white border border-transparent shadow-sm`;
+                chevronClass = `text-white ${isOpen ? "rotate-180" : ""}`;
+              } else {
+                // State: NORMAL — transparent background, dark text, dark chevron
+                buttonClass = "bg-transparent text-[#1E293B] border border-transparent hover:bg-[#F1F5F9] hover:text-[#0F172A]";
+                chevronClass = "text-[#0F172A]";
+              }
+
+              return (
+                <div
+                  key={category.category}
+                  className="relative"
+                  onMouseEnter={() => handleMouseEnter(category.category)}
+                  onMouseLeave={handleMouseLeave}
+                >
+                  <button
+                    type="button"
+                    onClick={() => setActiveDropdown(isOpen ? null : category.category)}
+                    aria-expanded={isOpen}
+                    aria-current={isPageActive && !activeDropdown ? "page" : undefined}
+                    aria-label={`Categoría ${category.name}`}
+                    className={`site-nav-btn group inline-flex items-center gap-2 cursor-pointer select-none uppercase whitespace-nowrap transition-all duration-150 ${buttonClass}`}
+                  >
+                    <span>{category.name}</span>
+
+                    {/* Chevron: gira cuando el menú está abierto */}
+                    <ChevronDown
+                      className={`size-5 shrink-0 stroke-[3] transition-transform duration-200 ${chevronClass}`}
+                      aria-hidden
+                    />
+                  </button>
+
+                  {/* MEGA MENÚ DE CATEGORÍA */}
+                  {isOpen && (
+                    <div
+                      className={`animate-fade absolute left-0 top-full z-50 pt-2.5 ${panelWidth} max-w-[calc(100vw-2rem)] font-sans`}
+                      onMouseEnter={() => handleMouseEnter(category.category)}
+                      onMouseLeave={handleMouseLeave}
+                      role="region"
+                      aria-label={`Herramientas de ${category.name}`}
+                    >
+                      <div className="overflow-hidden rounded-2xl border border-slate-200/90 bg-white p-6 shadow-[0_24px_60px_rgba(15,23,42,0.14)]">
+                        <div className={`grid ${gridCols} gap-y-6`}>
+                          {columns.map((col, colIdx) => (
+                            <div key={colIdx} className="space-y-4">
+                              <h3 className="flex items-center gap-3 text-[15px] font-black uppercase tracking-wider text-slate-800 pb-3 border-b border-slate-100">
+                                <span
+                                  className={`inline-flex size-7 items-center justify-center rounded-lg ${accent.iconBg} ${accent.icon} shadow-xs`}
+                                >
+                                  <ToolIcon
+                                    name={FAMILY_ICONS[category.category]}
+                                    className="size-4"
+                                  />
+                                </span>
+                                <span>{col.title}</span>
+                              </h3>
+
+                              <ul className="space-y-1.5">
+                                {col.items.map((tool) => {
+                                  const RichIcon = getRichToolIcon(tool.canonicalSlug);
+                                  return (
+                                    <li key={tool.slug}>
+                                      <Link
+                                        to={DETAIL_ROUTE}
+                                        params={toolParams(locale, tool.canonicalSlug)}
+                                        onClick={() => setActiveDropdown(null)}
+                                        className="group flex items-center gap-3.5 rounded-xl px-3 py-2.5 transition-all hover:bg-slate-100/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/20"
+                                      >
+                                        {/* Icono de herramienta visual y nítido */}
+                                        <span
+                                          className={`inline-flex size-8 sm:size-8.5 shrink-0 items-center justify-center rounded-lg ${accent.iconBg} ${accent.icon} transition-transform duration-150 group-hover:scale-105 shadow-2xs`}
+                                        >
+                                          <ToolIcon name={tool.icon} canonicalSlug={tool.canonicalSlug} className="size-5 sm:size-5.5" />
+                                        </span>
+
+                                        <span className="truncate text-[15px] font-semibold text-slate-800 group-hover:text-primary transition-colors flex items-center">
+                                          {tool.name}
+                                          {tool.canonicalSlug === "pdf-a-pdfa" && (
+                                            <span className="ml-2 inline-flex items-center px-1.5 py-0.5 rounded text-[10.5px] font-black uppercase tracking-wider bg-slate-100 text-slate-600 border border-slate-200/80">
+                                              PDF/A
+                                            </span>
+                                          )}
+                                        </span>
+                                      </Link>
+                                    </li>
+                                  );
+                                })}
+                              </ul>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+
+            {/* MÁS HERRAMIENTAS: CATEGORÍAS SECUNDARIAS ORDENADAS (SEGURIDAD, PDF INTELLIGENCE, EDITAR) */}
+            <div
+              className="relative"
+              onMouseEnter={() => handleMouseEnter("more")}
+              onMouseLeave={handleMouseLeave}
+            >
+              {(() => {
+                const isMoreOpen = activeDropdown === "more";
+                const isMorePageActive =
+                  currentPageCategory !== null &&
+                  moreCategories.some((c) => c.category === currentPageCategory);
+
+                let moreButtonClass: string;
+                let moreChevronClass: string;
+
+                if (isMoreOpen || isMorePageActive) {
+                  // Estado ACTIVO/ABIERTO: Sólido NEUTRO OSCURO (slate-900 / navy) con texto y chevron blancos
+                  // Totalmente diferenciado de las categorías de color y coherente con el filtro neutro "Todas"
+                  moreButtonClass = "bg-[#0F172A] text-white border border-[#0F172A] shadow-sm";
+                  moreChevronClass = `text-white ${isMoreOpen ? "rotate-180" : ""}`;
+                } else {
+                  // Estado NORMAL: fondo transparente, texto oscuro, chevron oscuro
+                  moreButtonClass = "bg-transparent text-[#1E293B] border border-transparent hover:bg-[#F1F5F9] hover:text-[#0F172A]";
+                  moreChevronClass = "text-[#0F172A]";
+                }
+
+                return (
+                  <button
+                    type="button"
+                    onClick={() => setActiveDropdown(isMoreOpen ? null : "more")}
+                    aria-expanded={isMoreOpen}
+                    aria-current={isMorePageActive && !activeDropdown ? "page" : undefined}
+                    aria-label={t.nav.more}
+                    className={`site-nav-btn group inline-flex items-center gap-2 cursor-pointer select-none uppercase whitespace-nowrap transition-all duration-150 ${moreButtonClass}`}
+                  >
+                    <span>{t.nav.more}</span>
+                    <ChevronDown
+                      className={`size-5 shrink-0 stroke-[3] transition-transform duration-200 ${moreChevronClass}`}
+                      aria-hidden
+                    />
+                  </button>
+                );
+              })()}
+
+              {activeDropdown === "more" && (
+                <div
+                  className="animate-fade absolute left-0 top-full z-50 pt-2.5 w-[840px] max-w-[calc(100vw-2rem)] font-sans"
+                  onMouseEnter={() => handleMouseEnter("more")}
+                  onMouseLeave={handleMouseLeave}
+                  role="region"
+                  aria-label="Más herramientas: Seguridad, PDF Intelligence y Editar"
+                >
+                  <div className="overflow-hidden rounded-2xl border border-slate-200/90 bg-white p-6 shadow-[0_24px_60px_rgba(15,23,42,0.14)]">
+                    <div className="grid grid-cols-3 gap-x-8">
+                      {moreCategories.map((cat) => {
+                        const accent = FAMILY_ACCENTS[cat.category];
+                        const catTools = tools.filter((tool) => tool.category === cat.category);
+
+                        return (
+                          <div key={cat.category} className="space-y-4">
+                            {/* TÍTULO DE GRUPO: Con enlace a la categoría, icono y nombre en mayúsculas */}
+                            <h3 className="pb-3 border-b border-slate-100">
+                              <Link
+                                to={DETAIL_ROUTE}
+                                params={categoryParams(locale, cat.category)}
+                                onClick={() => setActiveDropdown(null)}
+                                className="inline-flex items-center gap-2.5 text-[14.5px] font-black uppercase tracking-wider text-slate-800 hover:text-primary transition-colors"
+                              >
+                                <span
+                                  className={`inline-flex size-7 items-center justify-center rounded-lg ${accent.iconBg} ${accent.icon} shadow-xs`}
+                                >
+                                  <ToolIcon name={FAMILY_ICONS[cat.category]} className="size-4" />
+                                </span>
+                                <span>{cat.name}</span>
+                              </Link>
+                            </h3>
+
+                            {/* LISTA DE HERRAMIENTAS: [ICONO] + NOMBRE */}
+                            <ul className="space-y-1.5">
+                              {catTools.map((tool) => {
+                                const RichIcon = getRichToolIcon(tool.canonicalSlug);
+                                return (
+                                  <li key={tool.slug}>
+                                    <Link
+                                      to={DETAIL_ROUTE}
+                                      params={toolParams(locale, tool.canonicalSlug)}
+                                      onClick={() => setActiveDropdown(null)}
+                                      className="group flex items-center gap-3 rounded-xl px-2.5 py-2.5 transition-all hover:bg-slate-100/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/20"
+                                    >
+                                      <span
+                                        className={`inline-flex size-7.5 sm:size-8 shrink-0 items-center justify-center rounded-lg ${accent.iconBg} ${accent.icon} transition-transform duration-150 group-hover:scale-105 shadow-2xs`}
+                                      >
+                                        <ToolIcon name={tool.icon} canonicalSlug={tool.canonicalSlug} className="size-4.5 sm:size-5" />
+                                      </span>
+                                      <span className="truncate text-[14.5px] font-semibold text-slate-800 group-hover:text-primary transition-colors">
+                                        {tool.name}
+                                      </span>
+                                    </Link>
+                                  </li>
+                                );
+                              })}
+                            </ul>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          </nav>
+
+        {/* ESPACIO FLEXIBLE: Absorbe todo el espacio sobrante empujando los controles al extremo derecho */}
+        <div className="flex-1 min-w-6 hidden lg:block" aria-hidden="true" />
+
+        {/* ============================================================
+            ZONA DERECHA (ALINEADA AL EXTREMO DERECHO):
+            [👤 Mi Cuenta ▼] o [👤 Acceder]  [Registrarse]  |  [ ES CA EN ]
+            ============================================================ */}
+        <div className="hidden shrink-0 items-center gap-4 xl:gap-5 lg:flex">
+          {/* Bloque de Cuenta */}
+          {user ? (
+            <div className="relative" ref={userMenuRef}>
+              <button
+                type="button"
+                onClick={() => setUserMenuOpen(!userMenuOpen)}
+                className="inline-flex items-center gap-2.5 rounded-xl border border-slate-200 bg-white px-3 py-1.5 text-[14px] font-bold text-slate-800 hover:bg-slate-50 transition-all shadow-2xs cursor-pointer"
+                aria-expanded={userMenuOpen}
+                aria-label="Menú de usuario"
+              >
+                {user.avatarUrl ? (
+                  <img
+                    src={user.avatarUrl}
+                    alt={user.name}
+                    className="size-7 rounded-full object-cover border border-slate-200"
+                  />
+                ) : (
+                  <span className="flex size-7 items-center justify-center rounded-full bg-[#0F172A] text-white">
+                    <User className="size-3.5 text-white" />
+                  </span>
+                )}
+                <span className="max-w-[120px] truncate">{user.name}</span>
+                <ChevronDown className={`size-4 text-slate-500 transition-transform ${userMenuOpen ? "rotate-180" : ""}`} />
+              </button>
+
+              {/* Menú Desplegable Usuario */}
+              {userMenuOpen && (
+                <div className="animate-fade absolute right-0 top-full mt-2 w-60 rounded-2xl border border-slate-200 bg-white p-1.5 shadow-[0_16px_36px_rgba(15,23,42,0.12)] z-50 font-sans">
+                  <div className="px-3 py-2 border-b border-slate-100 mb-1">
+                    <div className="flex items-center justify-between gap-2">
+                      <p className="text-[14px] font-black text-[#0F172A] truncate">{user.name}</p>
+                      {user.isPremium ? (
+                        <span className="rounded-full bg-[#EC3C2D] text-white px-2 py-0.5 text-[10px] font-black uppercase tracking-wider animate-premium-badge">
+                          {t.nav.premiumPlan}
+                        </span>
+                      ) : (
+                        <span className="rounded-full bg-slate-100 border border-slate-200 px-2 py-0.5 text-[10px] font-extrabold uppercase text-[#0F172A]">
+                          {t.nav.freePlan}
+                        </span>
+                      )}
+                    </div>
+                    <p className="text-[12px] text-slate-500 truncate">{user.email}</p>
+                  </div>
+
+                  <Link
+                    to={SECTION_ROUTE}
+                    params={accountParams(locale)}
+                    search={{ tab: "resumen" }}
+                    onClick={() => setUserMenuOpen(false)}
+                    className="flex items-center gap-2.5 rounded-xl px-3 py-2 text-[13.5px] font-semibold text-slate-700 hover:bg-slate-100 transition-colors"
+                  >
+                    <User className="size-4 text-slate-500" />
+                    <span>{t.nav.myAccount}</span>
+                  </Link>
+
+                  <Link
+                    to={SECTION_ROUTE}
+                    params={accountParams(locale)}
+                    search={{ tab: "favoritos" }}
+                    onClick={() => setUserMenuOpen(false)}
+                    className="flex items-center gap-2.5 rounded-xl px-3 py-2 text-[13.5px] font-semibold text-slate-700 hover:bg-slate-100 transition-colors"
+                  >
+                    <span className="flex size-4.5 items-center justify-center rounded-full bg-[#F59E0B] text-white">
+                      <Star className="size-2.5 fill-white text-white" />
+                    </span>
+                    <span>{t.nav.myFavorites}</span>
+                  </Link>
+
+                  <Link
+                    to={SECTION_ROUTE}
+                    params={accountParams(locale)}
+                    search={{ tab: "preferencias" }}
+                    onClick={() => setUserMenuOpen(false)}
+                    className="flex items-center gap-2.5 rounded-xl px-3 py-2 text-[13.5px] font-semibold text-slate-700 hover:bg-slate-100 transition-colors"
+                  >
+                    <Settings className="size-4 text-slate-500" />
+                    <span>{t.nav.preferences}</span>
+                  </Link>
+
+                  <Link
+                    to={SECTION_ROUTE}
+                    params={accountParams(locale)}
+                    search={{ tab: "comunicaciones" }}
+                    onClick={() => setUserMenuOpen(false)}
+                    className="flex items-center gap-2.5 rounded-xl px-3 py-2 text-[13.5px] font-semibold text-slate-700 hover:bg-slate-100 transition-colors"
+                  >
+                    <Bell className="size-4 text-slate-500" />
+                    <span>{t.nav.communications}</span>
+                  </Link>
+
+                  <Link
+                    to={SECTION_ROUTE}
+                    params={accountParams(locale)}
+                    search={{ tab: "seguridad" }}
+                    onClick={() => setUserMenuOpen(false)}
+                    className="flex items-center gap-2.5 rounded-xl px-3 py-2 text-[13.5px] font-semibold text-slate-700 hover:bg-slate-100 transition-colors"
+                  >
+                    <Shield className="size-4 text-slate-500" />
+                    <span>{t.nav.security}</span>
+                  </Link>
+
+                  <Link
+                    to={SECTION_ROUTE}
+                    params={accountParams(locale)}
+                    search={{ tab: "premium" }}
+                    onClick={() => setUserMenuOpen(false)}
+                    className="flex items-center gap-2.5 rounded-xl px-3 py-2 text-[13.5px] font-bold text-[#EC3C2D] hover:bg-red-50 transition-colors"
+                  >
+                    <PremiumCrownIcon className="size-4 text-[#EC3C2D]" />
+                    <span>{t.nav.premiumStatus}</span>
+                  </Link>
+
+                  <div className="my-1 border-t border-slate-100" />
+
+                  <button
+                    type="button"
+                    onClick={async () => {
+                      setUserMenuOpen(false);
+                      await logout();
+                      navigate({ to: `/${locale}` });
+                    }}
+                    className="w-full flex items-center gap-2.5 rounded-xl px-3 py-2 text-[13.5px] font-bold text-red-600 hover:bg-red-50 transition-colors cursor-pointer text-left"
+                  >
+                    <LogOut className="size-4 text-red-500" />
+                    <span>{t.nav.logout}</span>
+                  </button>
+                </div>
+              )}
+            </div>
+          ) : (
+            <div className="flex items-center gap-2 xl:gap-3">
+              {/* 1. Acceder */}
+              <Link
+                to={SECTION_ROUTE}
+                params={loginParams(locale)}
+                className="site-auth-login inline-flex items-center gap-1.5 text-[#334155] hover:text-[#0F172A] rounded-xl hover:bg-[#F1F5F9] transition-all"
+                aria-label={t.nav.login || "Acceder"}
+              >
+                <User className="size-4 text-[#64748B] stroke-[2.2]" />
+                <span>{t.nav.login || "Acceder"}</span>
+              </Link>
+
+              {/* 2. Registrarse (CTA en Rojo BreadPDF) */}
+              <Link
+                to={SECTION_ROUTE}
+                params={registerParams(locale)}
+                className="site-auth-register inline-flex items-center justify-center bg-brand-pdf text-white hover:bg-brand-pdf-dark transition-all shadow-xs hover:shadow-sm whitespace-nowrap"
+                aria-label={t.nav.register || "Registrarse"}
+              >
+                <span>{t.nav.register || "Registrarse"}</span>
+              </Link>
+            </div>
+          )}
+
+          {/* Separador vertical sutil */}
+          <div className="h-5 w-px bg-[#E2E8F0] shrink-0" aria-hidden="true" />
+
+          {/* Selector de idioma compacto en cápsula [ ES CA EN ] */}
+          <LanguageSwitcher />
+        </div>
+
+        {/* ============================================================
+            MÓVIL: TOGGLE + IDIOMA
+            ============================================================ */}
+        <div className="ml-auto flex items-center gap-2.5 lg:hidden">
           <LanguageSwitcher />
           <button
             type="button"
             onClick={() => setMobileOpen((value) => !value)}
-            className="transition-standard inline-flex size-11 items-center justify-center rounded-xl border border-border text-foreground"
+            className="transition-standard inline-flex size-11 items-center justify-center rounded-xl border border-[#E5E7EB] text-[#0F172A] hover:bg-[#F5F7FA]"
             aria-expanded={mobileOpen}
             aria-label={mobileOpen ? t.nav.closeMenu : t.nav.openMenu}
           >
-            {mobileOpen ? <X className="size-5" /> : <Menu className="size-5" />}
+            {mobileOpen ? <X className="size-6" /> : <Menu className="size-6" />}
           </button>
         </div>
       </div>
 
-      {megaOpen && (
-        <div
-          className="animate-rise hidden border-t border-border bg-surface shadow-overlay lg:block"
-          onMouseLeave={() => setMegaOpen(false)}
-        >
-          <div className="mx-auto max-w-[1400px] px-5 py-8">
-            <p className="text-[12px] font-bold uppercase tracking-[0.1em] text-muted-foreground">
-              {t.nav.megaTitle}
-            </p>
-            <div className="mt-5 grid gap-7 xl:grid-cols-3 2xl:grid-cols-6">
-              {categories.map((category) => {
-                const accent = FAMILY_ACCENTS[category.category];
-                const list = tools.filter((tool) => tool.category === category.category);
-                const soon = localizedRoadmapByCategory(locale, category.category);
-                return (
-                  <div key={category.category}>
+      {/* MOBILE ACCORDION DRAWER */}
+      {mobileOpen && (
+        <div className="animate-rise border-t border-[#E5E7EB] bg-white px-4 py-4 lg:hidden max-h-[calc(100vh-4rem)] overflow-y-auto">
+          <nav className="flex flex-col gap-1.5" aria-label={t.nav.menu}>
+            {/* Quick Catalog Link */}
+            <Link
+              to={SECTION_ROUTE}
+              params={catalogParams(locale)}
+              onClick={() => setMobileOpen(false)}
+              className="rounded-xl bg-primary-soft/80 px-4 py-3 text-[15px] font-bold text-primary-dark flex items-center justify-between"
+            >
+              <span>{t.nav.allTools}</span>
+              <span className="font-mono text-[12px] bg-primary/10 px-2 py-0.5 rounded-md font-semibold">
+                {tools.length} {locale === "ca" ? "eines" : locale === "en" ? "tools" : "herramientas"}
+              </span>
+            </Link>
+
+            {/* Expandable Categories ordenadas por número de herramientas */}
+            {sortedCategories.map((category) => {
+              const accent = FAMILY_ACCENTS[category.category];
+              const isExpanded = mobileExpandedCat === category.category;
+              const catTools = tools.filter((tool) => tool.category === category.category);
+
+              return (
+                <div
+                  key={category.category}
+                  className="rounded-xl border border-[#E5E7EB] bg-slate-50/50 overflow-hidden"
+                >
+                  <div className="flex items-center justify-between p-3">
                     <Link
                       to={DETAIL_ROUTE}
                       params={categoryParams(locale, category.category)}
-                      onClick={() => setMegaOpen(false)}
-                      className={`inline-flex items-center gap-2 text-[13px] font-bold uppercase tracking-[0.08em] ${accent.text}`}
+                      onClick={() => setMobileOpen(false)}
+                      className="inline-flex items-center gap-3 text-[15px] font-bold text-[#0F172A]"
                     >
                       <span
-                        className={`inline-flex size-7 items-center justify-center rounded-lg ${accent.iconBg}`}
+                        className={`inline-flex size-7 items-center justify-center rounded-lg ${accent.iconBg} ${accent.icon}`}
                       >
-                        <ToolIcon name={FAMILY_ICONS[category.category]} className="size-4" />
+                        <ToolIcon name={FAMILY_ICONS[category.category]} className="size-3.5" />
                       </span>
                       {category.name}
                     </Link>
-                    <ul className="mt-3 space-y-1">
-                      {list.map((tool) => (
-                        <li key={tool.slug}>
-                          <Link
-                            to={DETAIL_ROUTE}
-                            params={toolParams(locale, tool.canonicalSlug)}
-                            onClick={() => setMegaOpen(false)}
-                            className="transition-standard flex items-start gap-2.5 rounded-lg p-2 hover:bg-secondary"
-                          >
-                            <span className={`mt-0.5 ${accent.icon}`}>
-                              <ToolIcon name={tool.icon} className="size-[18px]" />
-                            </span>
-                            <span>
-                              <span className="block text-[14px] font-semibold leading-tight">
-                                {tool.name}
-                              </span>
-                              <span className="mt-0.5 block text-[12.5px] leading-snug text-muted-foreground">
-                                {tool.status === "pending" ? t.status.pending : tool.tagline}
-                              </span>
-                            </span>
-                          </Link>
-                        </li>
-                      ))}
-                      {soon.slice(0, 3).map((tool) => (
-                        <li
-                          key={tool.name}
-                          className="flex items-center gap-2.5 p-2 text-[14px] text-muted-foreground/80"
+
+                    <button
+                      type="button"
+                      onClick={() => setMobileExpandedCat(isExpanded ? null : category.category)}
+                      className="p-2 text-[#64748B] hover:text-[#0F172A]"
+                      aria-label={`Expandir ${category.name}`}
+                    >
+                      <ChevronDown
+                        className={`size-4 stroke-[2.2] transition-transform ${isExpanded ? "rotate-180" : ""}`}
+                      />
+                    </button>
+                  </div>
+
+                  {isExpanded && (
+                    <div className="border-t border-[#E5E7EB] bg-white px-3 py-2 space-y-1">
+                      {catTools.map((tool) => (
+                        <Link
+                          key={tool.slug}
+                          to={DETAIL_ROUTE}
+                          params={toolParams(locale, tool.canonicalSlug)}
+                          onClick={() => setMobileOpen(false)}
+                          className="flex items-center gap-3 py-2.5 px-2.5 text-[14.5px] font-medium text-[#1E293B] hover:bg-[#F5F7FA] rounded-xl transition-colors"
                         >
                           <span
                             className={`inline-flex size-7 shrink-0 items-center justify-center rounded-lg ${accent.iconBg} ${accent.icon}`}
                           >
-                            <ToolIcon name={tool.icon} className="size-4" />
+                            <ToolIcon name={tool.icon} canonicalSlug={tool.canonicalSlug} className="size-4" />
                           </span>
-                          {tool.name}
-                          <span className="ml-auto text-[11px] font-semibold uppercase tracking-wide">
-                            {t.status.soon}
-                          </span>
-                        </li>
+                          <span className="flex-1 truncate">{tool.name}</span>
+                          <ArrowRight className="size-3.5 text-[#94A3B8]" />
+                        </Link>
                       ))}
-                    </ul>
-                  </div>
-                );
-              })}
-            </div>
-            <Link
-              to={SECTION_ROUTE}
-              params={catalogParams(locale)}
-              onClick={() => setMegaOpen(false)}
-              className="transition-standard mt-6 inline-block text-[15px] font-semibold text-primary hover:text-primary-dark"
-            >
-              {t.nav.megaFooter} →
-            </Link>
-          </div>
-        </div>
-      )}
-
-      {mobileOpen && (
-        <div className="animate-rise border-t border-border bg-surface px-5 py-5 lg:hidden">
-          <nav className="flex flex-col gap-1.5" aria-label={t.nav.menu}>
-            <Link
-              to={SECTION_ROUTE}
-              params={catalogParams(locale)}
-              onClick={() => setMobileOpen(false)}
-              className="rounded-xl bg-primary-soft px-4 py-3.5 text-[16px] font-semibold text-primary-dark"
-            >
-              {t.nav.allTools}
-            </Link>
-            {categories.map((category) => {
-              const accent = FAMILY_ACCENTS[category.category];
-              return (
-                <Link
-                  key={category.category}
-                  to={DETAIL_ROUTE}
-                  params={categoryParams(locale, category.category)}
-                  onClick={() => setMobileOpen(false)}
-                  className="transition-standard inline-flex items-center gap-3 rounded-xl px-4 py-3.5 text-[16px] font-medium hover:bg-secondary"
-                >
-                  <span
-                    className={`inline-flex size-9 items-center justify-center rounded-lg ${accent.iconBg} ${accent.icon}`}
-                  >
-                    <ToolIcon name={FAMILY_ICONS[category.category]} className="size-[18px]" />
-                  </span>
-                  {category.name}
-                </Link>
+                    </div>
+                  )}
+                </div>
               );
             })}
+
+            {/* Mobile Auth Links */}
+            {user ? (
+              <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4 space-y-3">
+                <div className="flex items-center gap-3">
+                  {user.avatarUrl ? (
+                    <img
+                      src={user.avatarUrl}
+                      alt={user.name}
+                      className="size-9 rounded-full object-cover border border-slate-200"
+                    />
+                  ) : (
+                    <div className="flex size-9 items-center justify-center rounded-full bg-[#0F172A] text-white">
+                      <User className="size-4.5 text-white" />
+                    </div>
+                  )}
+                  <div className="min-w-0 flex-1">
+                    <p className="text-[14px] font-black text-[#0F172A] truncate">{user.name}</p>
+                    <p className="text-[12px] text-slate-500 truncate">{user.email}</p>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-2 gap-2 pt-1">
+                  <Link
+                    to={SECTION_ROUTE}
+                    params={accountParams(locale)}
+                    onClick={() => setMobileOpen(false)}
+                    className="flex items-center justify-center gap-1.5 rounded-xl bg-white border border-slate-200 py-2.5 text-[13.5px] font-bold text-slate-800 shadow-2xs"
+                  >
+                    <span>{t.nav.myAccount}</span>
+                  </Link>
+
+                  <button
+                    type="button"
+                    onClick={async () => {
+                      setMobileOpen(false);
+                      await logout();
+                      navigate({ to: `/${locale}` });
+                    }}
+                    className="flex items-center justify-center gap-1.5 rounded-xl bg-white border border-slate-200 py-2.5 text-[13.5px] font-bold text-red-600 shadow-2xs cursor-pointer"
+                  >
+                    <span>{t.nav.exit}</span>
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <div className="grid grid-cols-2 gap-2.5 py-2">
+                <Link
+                  to={SECTION_ROUTE}
+                  params={loginParams(locale)}
+                  onClick={() => setMobileOpen(false)}
+                  className="flex items-center justify-center gap-2 rounded-xl border border-slate-200 py-3 text-[14.5px] font-semibold text-[#334155] hover:bg-slate-50"
+                >
+                  <User className="size-4 text-[#64748B]" />
+                  <span>{t.nav.login || "Acceder"}</span>
+                </Link>
+                <Link
+                  to={SECTION_ROUTE}
+                  params={registerParams(locale)}
+                  onClick={() => setMobileOpen(false)}
+                  className="flex items-center justify-center rounded-xl bg-brand-pdf py-3 text-[14.5px] font-bold text-white hover:bg-brand-pdf-dark shadow-xs"
+                >
+                  <span>{t.nav.register || "Registrarse"}</span>
+                </Link>
+              </div>
+            )}
+
+            {/* Privacy Link */}
             <Link
               to={SECTION_ROUTE}
               params={privacyParams(locale)}
               onClick={() => setMobileOpen(false)}
-              className="rounded-xl px-4 py-3.5 text-[16px] font-medium text-muted-foreground"
+              className="rounded-xl px-4 py-3 text-[14.5px] font-normal text-[#64748B] hover:bg-[#F5F7FA] hover:text-[#0F172A]"
             >
               {t.nav.privacy}
             </Link>
+
+            {/* Mobile CTA */}
+            <div className="pt-2">
+              <Button
+                asChild
+                size="lg"
+                className="w-full font-bold bg-primary hover:bg-primary-dark text-white"
+              >
+                <Link
+                  to={DETAIL_ROUTE}
+                  params={toolParams(locale, "comprimir-pdf")}
+                  onClick={() => setMobileOpen(false)}
+                >
+                  {t.nav.cta}
+                </Link>
+              </Button>
+            </div>
           </nav>
-          <div className="mt-5 border-t border-border pt-5">
-            <p className="text-[12px] font-bold uppercase tracking-[0.1em] text-muted-foreground">
+
+          {/* Language selector footer in mobile */}
+          <div className="mt-5 border-t border-[#E5E7EB] pt-4">
+            <p className="text-[11px] font-bold uppercase tracking-wider text-[#64748B] mb-2">
               {t.nav.language}
             </p>
-            <div className="mt-3">
-              <LanguageSwitcher variant="inline" />
-            </div>
+            <LanguageSwitcher variant="inline" />
           </div>
         </div>
       )}

@@ -1,14 +1,30 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /*/cuenta
+Disallow: /*/compte
+Disallow: /*/account
+Disallow: /*/login
+Disallow: /*/registro
+Disallow: /*/registre
+Disallow: /*/register
+Disallow: /*/recuperar-password
+Disallow: /*/recuperar-contrasenya
+Disallow: /*/forgot-password
+
 User-agent: Googlebot
 Allow: /
 
 User-agent: Bingbot
 Allow: /
 
-User-agent: Twitterbot
+User-agent: Applebot
 Allow: /
 
-User-agent: facebookexternalhit
+User-agent: OAI-SearchBot
 Allow: /
 
-User-agent: *
+User-agent: PerplexityBot
 Allow: /
+
+Sitemap: https://breadpdf.com/sitemap.xml

@@ -1,6 +1,8 @@
-import { createFileRoute, notFound, Outlet } from "@tanstack/react-router";
+import { createFileRoute, notFound, Outlet, useRouterState } from "@tanstack/react-router";
 import { isLocale } from "@/lib/i18n/config";
 import { LocaleProvider } from "@/lib/i18n/context";
+import { AuthProvider } from "@/lib/auth/auth-context";
+import { parsePath } from "@/lib/i18n/routing";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 
@@ -13,17 +15,23 @@ export const Route = createFileRoute("/$lang")({
 
 function LocaleLayout() {
   const { lang } = Route.useParams();
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
   if (!isLocale(lang)) return null;
+
+  const { page } = parsePath(pathname);
+  const isAuthPage = page.kind === "login" || page.kind === "register" || page.kind === "forgotPassword";
 
   return (
     <LocaleProvider locale={lang}>
-      <div className="flex min-h-screen flex-col">
-        <Header />
-        <main className="flex-1">
-          <Outlet />
-        </main>
-        <Footer />
-      </div>
+      <AuthProvider>
+        <div className="flex min-h-screen flex-col bg-[#F8FAFC]">
+          <Header />
+          <main className="flex-1 flex flex-col">
+            <Outlet />
+          </main>
+          {!isAuthPage && <Footer />}
+        </div>
+      </AuthProvider>
     </LocaleProvider>
   );
 }

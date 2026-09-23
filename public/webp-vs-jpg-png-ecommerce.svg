@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0B1220" />
+      <stop offset="50%" stop-color="#0F172A" />
+      <stop offset="100%" stop-color="#1E293B" />
+    </linearGradient>
+    <linearGradient id="cardBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1E293B" stop-opacity="0.9" />
+      <stop offset="100%" stop-color="#0F172A" stop-opacity="0.9" />
+    </linearGradient>
+    <linearGradient id="primaryGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3B82F6" />
+      <stop offset="100%" stop-color="#2563EB" />
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10B981" />
+      <stop offset="100%" stop-color="#059669" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="16" stdDeviation="20" flood-color="#000000" flood-opacity="0.4" />
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)" />
+
+  <!-- Subtle Tech Grid Accent -->
+  <g opacity="0.05" stroke="#94A3B8" stroke-width="1">
+    <line x1="0" y1="126" x2="1200" y2="126" />
+    <line x1="0" y1="252" x2="1200" y2="252" />
+    <line x1="0" y1="378" x2="1200" y2="378" />
+    <line x1="0" y1="504" x2="1200" y2="504" />
+    <line x1="240" y1="0" x2="240" y2="630" />
+    <line x1="480" y1="0" x2="480" y2="630" />
+    <line x1="720" y1="0" x2="720" y2="630" />
+    <line x1="960" y1="0" x2="960" y2="630" />
+  </g>
+
+  <!-- Top Header / Brand -->
+  <g transform="translate(80, 70)">
+    <rect width="42" height="42" rx="10" fill="url(#primaryGrad)" />
+    <text x="56" y="29" fill="#F8FAFC" font-family="system-ui, -apple-system, sans-serif" font-size="24" font-weight="900" letter-spacing="0.05em">BreadPDF</text>
+    <rect x="150" y="8" width="160" height="26" rx="13" fill="#1E293B" stroke="#334155" />
+    <text x="230" y="25" text-anchor="middle" fill="#38BDF8" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" letter-spacing="0.08em">GUÍA TÉCNICA WEB</text>
+  </g>
+
+  <!-- Main Comparison Diagram (Center) -->
+  <g transform="translate(80, 160)">
+    <!-- Source Card: JPG / PNG (Before) -->
+    <g filter="url(#shadow)">
+      <rect x="0" y="40" width="440" height="300" rx="20" fill="url(#cardBg)" stroke="#334155" stroke-width="1.5" />
+      <rect x="24" y="64" width="80" height="28" rx="6" fill="#DC2626" fill-opacity="0.15" stroke="#DC2626" stroke-width="1" />
+      <text x="64" y="83" text-anchor="middle" fill="#F87171" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="800">ORIGINAL</text>
+      
+      <text x="24" y="135" fill="#F8FAFC" font-family="system-ui, -apple-system, sans-serif" font-size="32" font-weight="800">JPG / PNG</text>
+      <text x="24" y="165" fill="#94A3B8" font-family="system-ui, -apple-system, sans-serif" font-size="16">Fotografía o gráfico estándar</text>
+
+      <!-- Metric Visual -->
+      <rect x="24" y="200" width="392" height="64" rx="12" fill="#0F172A" stroke="#1E293B" />
+      <text x="44" y="238" fill="#E2E8F0" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="700">Peso máster habitual:</text>
+      <text x="396" y="239" text-anchor="end" fill="#F87171" font-family="system-ui, -apple-system, sans-serif" font-size="22" font-weight="800">1.8 MB</text>
+      <text x="24" y="295" fill="#64748B" font-family="system-ui, -apple-system, sans-serif" font-size="14">Sobrecarga de LCP en conexiones móviles</text>
+    </g>
+
+    <!-- Transition Indicator -->
+    <g transform="translate(475, 170)">
+      <circle cx="45" cy="20" r="28" fill="#1E293B" stroke="#3B82F6" stroke-width="2" />
+      <path d="M38 12 L50 20 L38 28" fill="none" stroke="#38BDF8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+      <text x="45" y="65" text-anchor="middle" fill="#94A3B8" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600">CONVERSIÓN</text>
+    </g>
+
+    <!-- Target Card: WebP (Optimized) -->
+    <g transform="translate(600, 0)" filter="url(#shadow)">
+      <rect x="0" y="40" width="440" height="300" rx="20" fill="url(#cardBg)" stroke="#059669" stroke-width="2" />
+      <rect x="24" y="64" width="94" height="28" rx="6" fill="#059669" fill-opacity="0.2" stroke="#10B981" stroke-width="1" />
+      <text x="71" y="83" text-anchor="middle" fill="#34D399" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="800">OPTIMIZADO</text>
+
+      <text x="24" y="135" fill="#F8FAFC" font-family="system-ui, -apple-system, sans-serif" font-size="32" font-weight="800">WebP</text>
+      <text x="24" y="165" fill="#A7F3D0" font-family="system-ui, -apple-system, sans-serif" font-size="16">Compresión moderna con o sin pérdida</text>
+
+      <!-- Metric Visual -->
+      <rect x="24" y="200" width="392" height="64" rx="12" fill="#064E3B" fill-opacity="0.4" stroke="#059669" />
+      <text x="44" y="238" fill="#E2E8F0" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="700">Peso optimizado web:</text>
+      <text x="396" y="239" text-anchor="end" fill="#34D399" font-family="system-ui, -apple-system, sans-serif" font-size="22" font-weight="800">320 KB</text>
+      <text x="24" y="295" fill="#10B981" font-family="system-ui, -apple-system, sans-serif" font-size="14">✓ Canal alfa (transparencia) + compatibilidad total</text>
+    </g>
+  </g>
+
+  <!-- Footer Features -->
+  <g transform="translate(80, 545)">
+    <text x="0" y="20" fill="#94A3B8" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="600">
+      Ecommerce • Shopify • WooCommerce • WordPress • Core Web Vitals (LCP)
+    </text>
+    <text x="1040" y="20" text-anchor="end" fill="#64748B" font-family="system-ui, -apple-system, sans-serif" font-size="14">
+      breadpdf.com
+    </text>
+  </g>
+</svg>

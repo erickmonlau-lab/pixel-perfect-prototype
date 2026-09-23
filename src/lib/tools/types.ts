@@ -1,10 +1,5 @@
 export type ToolCategory =
-  | "organizar"
-  | "convertir"
-  | "optimizar"
-  | "editar"
-  | "seguridad"
-  | "inteligencia";
+  "organizar" | "convertir" | "optimizar" | "editar" | "seguridad" | "inteligencia";
 
 export type ToolStatus = "live" | "pending";
 
@@ -77,7 +72,7 @@ export type ToolDefinition = {
   minFiles: number;
   ctaLabel: string;
   keywords: string[];
-  howItWorks: string[];
+  howItWorks: (string | { title: string; desc: string })[];
   faq: { q: string; a: string }[];
   options?: OptionField[];
   run?: ToolRunner;

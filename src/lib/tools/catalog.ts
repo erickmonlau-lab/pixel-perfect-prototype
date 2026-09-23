@@ -8,66 +8,98 @@ import type { ToolCategory } from "./types";
 export type FamilyAccent = {
   /** Icon foreground colour class. */
   icon: string;
-  /** Soft icon background class. */
+  /** Solid icon background class. */
   iconBg: string;
   /** Small dot/indicator class. */
   dot: string;
   /** Hover border class for cards. */
   hoverBorder: string;
-  /** Text colour for the micro CTA. */
+  /** Focus ring class for cards accessibility. */
+  focusRing: string;
+  /** Text colour for the micro CTA / title hover. */
   text: string;
   /** Arrow colour on hover. */
   arrow: string;
+  /** Solid light-tint background for the open/active nav pill. */
+  activeBg: string;
+  /** Text colour for the open/active nav pill. */
+  activeText: string;
+  /** Ring colour for the open/active nav pill. */
+  activeRing: string;
 };
 
 export const FAMILY_ACCENTS: Record<ToolCategory, FamilyAccent> = {
   optimizar: {
-    icon: "text-primary-foreground",
-    iconBg: "bg-fam-optimizar",
-    dot: "bg-fam-optimizar",
-    hoverBorder: "group-hover:border-fam-optimizar/40",
-    text: "text-fam-optimizar",
-    arrow: "group-hover:text-fam-optimizar",
+    icon: "text-white",
+    iconBg: "bg-[#2563EB]",
+    dot: "bg-[#2563EB]",
+    hoverBorder: "hover:border-[#2563EB]",
+    focusRing: "focus-visible:ring-[#2563EB]",
+    text: "text-[#2563EB]",
+    arrow: "group-hover:text-[#2563EB]",
+    activeBg: "bg-[#EFF6FF]",
+    activeText: "text-[#1D4ED8]",
+    activeRing: "ring-[#BFDBFE]",
   },
   organizar: {
-    icon: "text-primary-foreground",
-    iconBg: "bg-fam-organizar",
-    dot: "bg-fam-organizar",
-    hoverBorder: "group-hover:border-fam-organizar/40",
-    text: "text-fam-organizar",
-    arrow: "group-hover:text-fam-organizar",
+    icon: "text-white",
+    iconBg: "bg-[#7C3AED]",
+    dot: "bg-[#7C3AED]",
+    hoverBorder: "hover:border-[#7C3AED]",
+    focusRing: "focus-visible:ring-[#7C3AED]",
+    text: "text-[#7C3AED]",
+    arrow: "group-hover:text-[#7C3AED]",
+    activeBg: "bg-[#F5F3FF]",
+    activeText: "text-[#6D28D9]",
+    activeRing: "ring-[#DDD6FE]",
   },
   convertir: {
-    icon: "text-primary-foreground",
-    iconBg: "bg-fam-convertir",
-    dot: "bg-fam-convertir",
-    hoverBorder: "group-hover:border-fam-convertir/40",
-    text: "text-fam-convertir",
-    arrow: "group-hover:text-fam-convertir",
+    icon: "text-white",
+    iconBg: "bg-[#059669]",
+    dot: "bg-[#059669]",
+    hoverBorder: "hover:border-[#059669]",
+    focusRing: "focus-visible:ring-[#059669]",
+    text: "text-[#059669]",
+    arrow: "group-hover:text-[#059669]",
+    activeBg: "bg-[#ECFDF5]",
+    activeText: "text-[#047857]",
+    activeRing: "ring-[#6EE7B7]",
   },
   editar: {
-    icon: "text-primary-foreground",
-    iconBg: "bg-fam-editar",
-    dot: "bg-fam-editar",
-    hoverBorder: "group-hover:border-fam-editar/40",
-    text: "text-fam-editar",
-    arrow: "group-hover:text-fam-editar",
+    icon: "text-white",
+    iconBg: "bg-[#EA580C]",
+    dot: "bg-[#EA580C]",
+    hoverBorder: "hover:border-[#EA580C]",
+    focusRing: "focus-visible:ring-[#EA580C]",
+    text: "text-[#EA580C]",
+    arrow: "group-hover:text-[#EA580C]",
+    activeBg: "bg-[#FFF7ED]",
+    activeText: "text-[#C2410C]",
+    activeRing: "ring-[#FED7AA]",
   },
   seguridad: {
-    icon: "text-primary-foreground",
-    iconBg: "bg-fam-seguridad",
-    dot: "bg-fam-seguridad",
-    hoverBorder: "group-hover:border-fam-seguridad/40",
-    text: "text-fam-seguridad",
-    arrow: "group-hover:text-fam-seguridad",
+    icon: "text-white",
+    iconBg: "bg-[#0284C7]",
+    dot: "bg-[#0284C7]",
+    hoverBorder: "hover:border-[#0284C7]",
+    focusRing: "focus-visible:ring-[#0284C7]",
+    text: "text-[#0284C7]",
+    arrow: "group-hover:text-[#0284C7]",
+    activeBg: "bg-[#E0F2FE]",
+    activeText: "text-[#0369A1]",
+    activeRing: "ring-[#BAE6FD]",
   },
   inteligencia: {
-    icon: "text-primary-foreground",
-    iconBg: "bg-fam-inteligencia",
-    dot: "bg-fam-inteligencia",
-    hoverBorder: "group-hover:border-fam-inteligencia/40",
-    text: "text-fam-inteligencia",
-    arrow: "group-hover:text-fam-inteligencia",
+    icon: "text-white",
+    iconBg: "bg-[#9333EA]",
+    dot: "bg-[#9333EA]",
+    hoverBorder: "hover:border-[#9333EA]",
+    focusRing: "focus-visible:ring-[#9333EA]",
+    text: "text-[#9333EA]",
+    arrow: "group-hover:text-[#9333EA]",
+    activeBg: "bg-[#F3E8FF]",
+    activeText: "text-[#7E22CE]",
+    activeRing: "ring-[#E9D5FF]",
   },
 };
 
@@ -77,9 +109,9 @@ export const POPULAR_SLUGS = [
   "unir-pdf",
   "dividir-pdf",
   "pdf-a-jpg",
+  "extraer-paginas-pdf",
   "jpg-a-pdf",
   "rotar-pdf",
-  "extraer-paginas-pdf",
   "pdf-a-word",
 ];
 
@@ -94,80 +126,7 @@ export type RoadmapTool = {
  * Real roadmap entries (see roadmap.md). They are rendered as non-interactive
  * "Próximamente" cards: no fake buttons, no fake pages.
  */
-export const ROADMAP_TOOLS: RoadmapTool[] = [
-  {
-    name: "Proteger PDF",
-    tagline: "Añade contraseña y permisos de apertura a un documento.",
-    icon: "Lock",
-    category: "seguridad",
-  },
-  {
-    name: "Desbloquear PDF",
-    tagline: "Quita la contraseña de un PDF del que tienes la clave.",
-    icon: "Unlock",
-    category: "seguridad",
-  },
-  {
-    name: "Firmar PDF",
-    tagline: "Firma documentos y solicita firmas a otras personas.",
-    icon: "Signature",
-    category: "seguridad",
-  },
-  {
-    name: "Marca de agua",
-    tagline: "Sella cada página con texto o imagen y control de opacidad.",
-    icon: "Droplets",
-    category: "seguridad",
-  },
-  {
-    name: "OCR de PDF",
-    tagline: "Convierte escaneos en documentos con texto buscable.",
-    icon: "ScanText",
-    category: "inteligencia",
-  },
-  {
-    name: "Resumir PDF",
-    tagline: "Resúmenes y puntos clave de documentos largos.",
-    icon: "Sparkles",
-    category: "inteligencia",
-  },
-  {
-    name: "Extraer datos",
-    tagline: "Saca tablas y campos estructurados de facturas y formularios.",
-    icon: "TableProperties",
-    category: "inteligencia",
-  },
-  {
-    name: "Comparar PDF",
-    tagline: "Detecta las diferencias entre dos versiones de un documento.",
-    icon: "FileSearch",
-    category: "inteligencia",
-  },
-  {
-    name: "Numerar páginas",
-    tagline: "Inserta numeración con formato y posición configurables.",
-    icon: "Hash",
-    category: "editar",
-  },
-  {
-    name: "Reparar PDF",
-    tagline: "Recupera documentos dañados o incompletos.",
-    icon: "Wrench",
-    category: "optimizar",
-  },
-  {
-    name: "PDF a Excel",
-    tagline: "Pasa tablas de un PDF a una hoja de cálculo.",
-    icon: "FileSpreadsheet",
-    category: "convertir",
-  },
-  {
-    name: "PDF a PowerPoint",
-    tagline: "Convierte presentaciones en PDF a formato editable.",
-    icon: "Presentation",
-    category: "convertir",
-  },
-];
+export const ROADMAP_TOOLS: RoadmapTool[] = [];
 
 export function roadmapByCategory(category: ToolCategory): RoadmapTool[] {
   return ROADMAP_TOOLS.filter((tool) => tool.category === category);

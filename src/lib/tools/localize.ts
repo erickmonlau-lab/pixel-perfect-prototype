@@ -78,7 +78,6 @@ function localizeTool(tool: ToolDefinition, locale: Locale): LocalizedTool {
   };
 }
 
-
 const toolCache = new Map<Locale, LocalizedTool[]>();
 
 export function localizedTools(locale: Locale): LocalizedTool[] {
@@ -114,9 +113,7 @@ export function localizedCategories(locale: Locale): LocalizedCategory[] {
 export function localizedCategory(locale: Locale, category: ToolCategory): LocalizedCategory {
   const found = localizedCategories(locale).find((item) => item.category === category);
   // Every ToolCategory has an entry, so this fallback is unreachable in practice.
-  return (
-    found ?? { category, slug: category, name: category, description: "" }
-  );
+  return found ?? { category, slug: category, name: category, description: "" };
 }
 
 export function findCategoryBySlug(locale: Locale, slug: string): LocalizedCategory | undefined {
@@ -177,6 +174,14 @@ export function localizedRoadmapByCategory(locale: Locale, category: ToolCategor
   return localizedRoadmap(locale).filter((tool) => tool.category === category);
 }
 
+function normalizeSearch(str: string): string {
+  return str
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .trim();
+}
+
 function isSubsequence(needle: string, hay: string): boolean {
   let i = 0;
   for (const char of hay) {
@@ -186,23 +191,47 @@ function isSubsequence(needle: string, hay: string): boolean {
   return i === needle.length;
 }
 
-/** Locale-aware fuzzy search over the localised names, keywords and taglines. */
+/** Locale-aware fuzzy search over the localised names, keywords, canonical slugs and taglines with accent normalization. */
 export function searchLocalizedTools(locale: Locale, query: string): LocalizedTool[] {
-  const q = query.trim().toLowerCase();
+  const q = normalizeSearch(query);
   const all = localizedTools(locale);
   if (!q) return all;
 
   const score = (tool: LocalizedTool): number => {
-    const haystacks = [tool.name, ...tool.keywords, tool.tagline].map((h) => h.toLowerCase());
-    let best = 0;
-    for (const [index, hay] of haystacks.entries()) {
-      const weight = index === 0 ? 3 : index < tool.keywords.length + 1 ? 2 : 1;
-      if (hay === q) best = Math.max(best, 100 * weight);
-      else if (hay.startsWith(q)) best = Math.max(best, 60 * weight);
-      else if (hay.includes(q)) best = Math.max(best, 40 * weight);
-      else if (isSubsequence(q, hay)) best = Math.max(best, 12 * weight);
+    // Check direct matches across key fields
+    const nameNorm = normalizeSearch(tool.name);
+    const slugNorm = normalizeSearch(tool.slug);
+    const canonicalNorm = normalizeSearch(tool.canonicalSlug);
+    const categoryNorm = normalizeSearch(tool.category);
+    const taglineNorm = normalizeSearch(tool.tagline);
+    const keywordsNorm = tool.keywords.map(normalizeSearch);
+
+    // Exact matches
+    if (nameNorm === q || slugNorm === q || canonicalNorm === q) return 1000;
+    if (nameNorm.startsWith(q)) return 500;
+    if (nameNorm.includes(q)) return 300;
+
+    // Keyword matches
+    for (const kw of keywordsNorm) {
+      if (kw === q) return 250;
+      if (kw.startsWith(q)) return 180;
+      if (kw.includes(q)) return 120;
     }
-    return best;
+
+    // Slug / canonical matches
+    if (slugNorm.startsWith(q) || canonicalNorm.startsWith(q)) return 100;
+    if (slugNorm.includes(q) || canonicalNorm.includes(q)) return 80;
+
+    // Tagline matches
+    if (taglineNorm.includes(q)) return 50;
+
+    // Category matches
+    if (categoryNorm.startsWith(q) || categoryNorm === q) return 40;
+
+    // Subsequence on tool name
+    if (isSubsequence(q, nameNorm)) return 20;
+
+    return 0;
   };
 
   return all

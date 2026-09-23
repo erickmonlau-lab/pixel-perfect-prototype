@@ -14,6 +14,7 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { DEFAULT_LOCALE, HTML_LANG } from "@/lib/i18n/config";
 import { parsePath } from "@/lib/i18n/routing";
 import { UI } from "@/lib/i18n/ui";
+import { OFFICIAL_CONTACT_EMAIL, SITE_URL } from "@/lib/brand";
 
 function NotFoundComponent() {
   const t = UI[DEFAULT_LOCALE];
@@ -49,6 +50,12 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
       <div className="max-w-md text-center">
         <h1 className="text-xl font-semibold tracking-tight text-foreground">{t.error.title}</h1>
         <p className="mt-2 text-[15px] text-muted-foreground">{t.error.body}</p>
+        {import.meta.env.DEV && error && (
+          <div className="mt-4 p-3 rounded-lg bg-red-50 border border-red-200 text-left text-xs font-mono text-red-800 max-h-48 overflow-auto">
+            <p className="font-bold">{error.name}: {error.message}</p>
+            {error.stack && <pre className="mt-1 text-[10px] whitespace-pre-wrap">{error.stack}</pre>}
+          </div>
+        )}
         <div className="mt-6 flex flex-wrap justify-center gap-2">
           <button
             onClick={() => {
@@ -72,24 +79,65 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 }
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
-  head: () => ({
-    meta: [
-      { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { property: "og:site_name", content: "ARVIO" },
-      { name: "theme-color", content: "#0B1220" },
-    ],
-    links: [
-      { rel: "stylesheet", href: appCss },
-      { rel: "preconnect", href: "https://fonts.googleapis.com" },
-      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      {
-        rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&display=swap",
-      },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
-    ],
-  }),
+  head: () => {
+    const organizationSchema = {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": `${SITE_URL}/#organization`,
+          name: "BreadPDF",
+          url: SITE_URL,
+          logo: `${SITE_URL}/brand/breadpdf-logo.png`,
+          email: OFFICIAL_CONTACT_EMAIL,
+          contactPoint: {
+            "@type": "ContactPoint",
+            email: OFFICIAL_CONTACT_EMAIL,
+            contactType: "customer support",
+            availableLanguage: ["es", "ca", "en"],
+          },
+          description:
+            "Plataforma de herramientas PDF online. Comprime, une, divide, convierte y edita documentos PDF directamente en el navegador.",
+        },
+        {
+          "@type": "WebSite",
+          "@id": `${SITE_URL}/#website`,
+          url: SITE_URL,
+          name: "BreadPDF",
+          publisher: { "@id": `${SITE_URL}/#organization` },
+          inLanguage: ["es", "ca", "en"],
+        },
+      ],
+    };
+
+    return {
+      meta: [
+        { charSet: "utf-8" },
+        { name: "viewport", content: "width=device-width, initial-scale=1" },
+        { property: "og:site_name", content: "BreadPDF" },
+        { name: "theme-color", content: "#592316" },
+      ],
+      links: [
+        { rel: "stylesheet", href: appCss },
+        { rel: "preconnect", href: "https://fonts.googleapis.com" },
+        { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+        {
+          rel: "stylesheet",
+          href: "https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@500;600;700;800&display=swap",
+        },
+        { rel: "icon", href: "/brand/breadpdf-icon.png?v=2", type: "image/png" },
+        { rel: "icon", href: "/brand/favicon-32x32.png?v=2", sizes: "32x32", type: "image/png" },
+        { rel: "icon", href: "/favicon.ico?v=2", sizes: "any" },
+        { rel: "apple-touch-icon", href: "/brand/breadpdf-app-icon.png?v=2" },
+      ],
+      scripts: [
+        {
+          type: "application/ld+json",
+          children: JSON.stringify(organizationSchema),
+        },
+      ],
+    };
+  },
   shellComponent: RootShell,
   component: RootComponent,
   notFoundComponent: NotFoundComponent,

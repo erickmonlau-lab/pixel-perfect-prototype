@@ -1,0 +1,153 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0B1220" />
+      <stop offset="50%" stop-color="#0F172A" />
+      <stop offset="100%" stop-color="#1E293B" />
+    </linearGradient>
+    <linearGradient id="cardBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1E293B" stop-opacity="0.95" />
+      <stop offset="100%" stop-color="#0F172A" stop-opacity="0.95" />
+    </linearGradient>
+    <linearGradient id="primaryGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3B82F6" />
+      <stop offset="100%" stop-color="#2563EB" />
+    </linearGradient>
+    <linearGradient id="roseGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F43F5E" />
+      <stop offset="100%" stop-color="#E11D48" />
+    </linearGradient>
+    <linearGradient id="emeraldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10B981" />
+      <stop offset="100%" stop-color="#059669" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="16" stdDeviation="20" flood-color="#000000" flood-opacity="0.4" />
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)" />
+
+  <!-- Subtle Tech Grid Accent -->
+  <g opacity="0.05" stroke="#94A3B8" stroke-width="1">
+    <line x1="0" y1="126" x2="1200" y2="126" />
+    <line x1="0" y1="252" x2="1200" y2="252" />
+    <line x1="0" y1="378" x2="1200" y2="378" />
+    <line x1="0" y1="504" x2="1200" y2="504" />
+    <line x1="240" y1="0" x2="240" y2="630" />
+    <line x1="480" y1="0" x2="480" y2="630" />
+    <line x1="720" y1="0" x2="720" y2="630" />
+    <line x1="960" y1="0" x2="960" y2="630" />
+  </g>
+
+  <!-- Top Header / Brand -->
+  <g transform="translate(80, 65)">
+    <rect width="42" height="42" rx="10" fill="url(#primaryGrad)" />
+    <text x="56" y="29" fill="#F8FAFC" font-family="system-ui, -apple-system, sans-serif" font-size="24" font-weight="900" letter-spacing="0.05em">BreadPDF</text>
+    <rect x="150" y="8" width="250" height="26" rx="13" fill="#1E293B" stroke="#334155" />
+    <text x="275" y="25" text-anchor="middle" fill="#38BDF8" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" letter-spacing="0.08em">ECOMMERCE & WORDPRESS INFRA</text>
+  </g>
+
+  <!-- Main Architecture Diagram (3 Columns: Input/Failure -> Multi-layer Diagnostic -> Dual Resolution) -->
+  <g transform="translate(80, 145)">
+    <!-- Column 1: Failure Event (WordPress Upload Error) -->
+    <g filter="url(#shadow)">
+      <rect x="0" y="30" width="300" height="340" rx="18" fill="url(#cardBg)" stroke="#334155" stroke-width="1.5" />
+      <rect x="24" y="52" width="136" height="26" rx="6" fill="#DC2626" fill-opacity="0.18" stroke="#DC2626" stroke-width="1" />
+      <text x="92" y="69" text-anchor="middle" fill="#F87171" font-family="system-ui, -apple-system, sans-serif" font-size="11.5" font-weight="800">FALLO DE SUBIDA</text>
+
+      <text x="24" y="112" fill="#F8FAFC" font-family="system-ui, -apple-system, sans-serif" font-size="22" font-weight="800">Subida Rechazada</text>
+      <text x="24" y="136" fill="#94A3B8" font-family="system-ui, -apple-system, sans-serif" font-size="13">Biblioteca o WooCommerce</text>
+
+      <line x1="24" y1="156" x2="276" y2="156" stroke="#334155" stroke-width="1" />
+
+      <!-- Symptom list -->
+      <g transform="translate(24, 180)">
+        <text x="0" y="0" fill="#E2E8F0" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="600">• Archivo supera cuota</text>
+        <text x="0" y="26" fill="#E2E8F0" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="600">• Mensaje "HTTP error"</text>
+        <text x="0" y="52" fill="#E2E8F0" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="600">• Timeout en procesamiento</text>
+        <text x="0" y="78" fill="#E2E8F0" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="600">• Catálogo o foto bloqueada</text>
+      </g>
+
+      <rect x="24" y="290" width="252" height="56" rx="10" fill="#450A0A" fill-opacity="0.4" stroke="#DC2626" stroke-width="1" />
+      <text x="36" y="313" fill="#F87171" font-family="system-ui, -apple-system, sans-serif" font-size="11.5" font-weight="700">Aviso común:</text>
+      <text x="36" y="331" fill="#FCA5A5" font-family="system-ui, -apple-system, sans-serif" font-size="11.5">No hay un límite universal</text>
+    </g>
+
+    <!-- Arrow 1 -> 2 -->
+    <g transform="translate(315, 185)">
+      <circle cx="20" cy="15" r="16" fill="#1E293B" stroke="#3B82F6" stroke-width="1.5" />
+      <path d="M16 9 L24 15 L16 21" fill="none" stroke="#38BDF8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+
+    <!-- Column 2: Diagnostic Layers (Where does it come from?) -->
+    <g transform="translate(370, 0)" filter="url(#shadow)">
+      <rect x="0" y="30" width="340" height="340" rx="18" fill="url(#cardBg)" stroke="#3B82F6" stroke-width="1.8" />
+      <rect x="24" y="52" width="130" height="26" rx="6" fill="#2563EB" fill-opacity="0.2" stroke="#3B82F6" stroke-width="1" />
+      <text x="89" y="69" text-anchor="middle" fill="#60A5FA" font-family="system-ui, -apple-system, sans-serif" font-size="11.5" font-weight="800">AISLAR LA CAUSA</text>
+
+      <text x="24" y="112" fill="#F8FAFC" font-family="system-ui, -apple-system, sans-serif" font-size="22" font-weight="800">Capas de Control</text>
+      <text x="24" y="136" fill="#94A3B8" font-family="system-ui, -apple-system, sans-serif" font-size="13">Salud del Sitio → Servidor</text>
+
+      <line x1="24" y1="156" x2="316" y2="156" stroke="#334155" stroke-width="1" />
+
+      <!-- Layers stack -->
+      <g transform="translate(24, 172)">
+        <rect x="0" y="0" width="292" height="32" rx="6" fill="#0F172A" stroke="#334155" />
+        <text x="12" y="21" fill="#E2E8F0" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600">PHP: upload_max_filesize</text>
+
+        <rect x="0" y="40" width="292" height="32" rx="6" fill="#0F172A" stroke="#334155" />
+        <text x="12" y="61" fill="#E2E8F0" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600">PHP: post_max_size</text>
+
+        <rect x="0" y="80" width="292" height="32" rx="6" fill="#0F172A" stroke="#334155" />
+        <text x="12" y="101" fill="#E2E8F0" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600">Servidor Web: Nginx / Apache</text>
+
+        <rect x="0" y="120" width="292" height="32" rx="6" fill="#0F172A" stroke="#334155" />
+        <text x="12" y="141" fill="#E2E8F0" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600">Perímetro: Cloudflare / CDN / WAF</text>
+      </g>
+
+      <text x="24" y="348" fill="#64748B" font-family="system-ui, -apple-system, sans-serif" font-size="11.5">Diagnosticar antes de asumir que el archivo está dañado</text>
+    </g>
+
+    <!-- Arrow 2 -> 3 -->
+    <g transform="translate(725, 185)">
+      <circle cx="20" cy="15" r="16" fill="#1E293B" stroke="#10B981" stroke-width="1.5" />
+      <path d="M16 9 L24 15 L16 21" fill="none" stroke="#34D399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+
+    <!-- Column 3: Dual Resolution (Optimize File vs Server Adjustment) -->
+    <g transform="translate(780, 0)" filter="url(#shadow)">
+      <rect x="0" y="30" width="260" height="340" rx="18" fill="url(#cardBg)" stroke="#059669" stroke-width="2" />
+      <rect x="20" y="52" width="130" height="26" rx="6" fill="#059669" fill-opacity="0.2" stroke="#10B981" stroke-width="1" />
+      <text x="85" y="69" text-anchor="middle" fill="#34D399" font-family="system-ui, -apple-system, sans-serif" font-size="11.5" font-weight="800">VÍAS DE SOLUCIÓN</text>
+
+      <text x="20" y="112" fill="#F8FAFC" font-family="system-ui, -apple-system, sans-serif" font-size="22" font-weight="800">Resolución</text>
+      <text x="20" y="136" fill="#34D399" font-family="system-ui, -apple-system, sans-serif" font-size="13">Según el origen real</text>
+
+      <line x1="20" y1="156" x2="240" y2="156" stroke="#334155" stroke-width="1" />
+
+      <!-- Action A: Optimize File -->
+      <rect x="18" y="174" width="224" height="68" rx="8" fill="#064E3B" fill-opacity="0.4" stroke="#059669" />
+      <text x="28" y="196" fill="#34D399" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="800">A. Reducir el archivo (BreadPDF)</text>
+      <text x="28" y="214" fill="#E2E8F0" font-family="system-ui, -apple-system, sans-serif" font-size="11">• Comprimir PDF de catálogo</text>
+      <text x="28" y="230" fill="#E2E8F0" font-family="system-ui, -apple-system, sans-serif" font-size="11">• Convertir fotos a WebP</text>
+
+      <!-- Action B: Server Intervention -->
+      <rect x="18" y="254" width="224" height="68" rx="8" fill="#0F172A" stroke="#334155" />
+      <text x="28" y="276" fill="#60A5FA" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="800">B. Intervención en Servidor</text>
+      <text x="28" y="294" fill="#94A3B8" font-family="system-ui, -apple-system, sans-serif" font-size="11">• Aumentar límites en Hosting</text>
+      <text x="28" y="310" fill="#94A3B8" font-family="system-ui, -apple-system, sans-serif" font-size="11">• Revisar WAF y permisos de uploads</text>
+    </g>
+  </g>
+
+  <!-- Footer Features -->
+  <g transform="translate(80, 560)">
+    <text x="0" y="20" fill="#94A3B8" font-family="system-ui, -apple-system, sans-serif" font-size="14.5" font-weight="600">
+      WordPress • WooCommerce • PHP Settings • Site Health • Web Performance (LCP)
+    </text>
+    <text x="1040" y="20" text-anchor="end" fill="#64748B" font-family="system-ui, -apple-system, sans-serif" font-size="14">
+      breadpdf.com
+    </text>
+  </g>
+</svg>

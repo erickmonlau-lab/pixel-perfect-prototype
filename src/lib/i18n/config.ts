@@ -1,9 +1,13 @@
 /**
- * Locale configuration for ARVIO.
+ * Locale configuration for BreadPDF.
  * URLs are localised: /es/herramientas/comprimir-pdf, /ca/eines/comprimeix-pdf,
  * /en/tools/compress-pdf. Every locale uses the same route files with a
  * localised `$section` segment.
  */
+
+import { BRAND_NAME } from "@/lib/brand";
+
+export { BRAND_NAME };
 
 export const LOCALES = ["es", "ca", "en"] as const;
 
@@ -30,13 +34,13 @@ export const HTML_LANG: Record<Locale, string> = {
   en: "en",
 };
 
-export type SectionKind = "tools" | "category" | "privacy";
+export type SectionKind = "tools" | "category" | "privacy" | "guides" | "premium" | "login" | "register" | "forgotPassword" | "account";
 
 /** Localised URL segments. Keep them unique inside each locale. */
 export const SEGMENTS: Record<Locale, Record<SectionKind, string>> = {
-  es: { tools: "herramientas", category: "categoria", privacy: "privacidad" },
-  ca: { tools: "eines", category: "categoria", privacy: "privacitat" },
-  en: { tools: "tools", category: "category", privacy: "privacy" },
+  es: { tools: "herramientas", category: "categoria", privacy: "privacidad", guides: "guias", premium: "premium", login: "login", register: "registro", forgotPassword: "recuperar-password", account: "cuenta" },
+  ca: { tools: "eines", category: "categoria", privacy: "privacitat", guides: "guies", premium: "premium", login: "login", register: "registre", forgotPassword: "recuperar-contrasenya", account: "compte" },
+  en: { tools: "tools", category: "category", privacy: "privacy", guides: "guides", premium: "premium", login: "login", register: "register", forgotPassword: "forgot-password", account: "account" },
 };
 
 export function isLocale(value: string): value is Locale {
@@ -48,6 +52,12 @@ export function sectionKind(locale: Locale, segment: string): SectionKind | unde
   if (segment === map.tools) return "tools";
   if (segment === map.category) return "category";
   if (segment === map.privacy) return "privacy";
+  if (segment === map.guides) return "guides";
+  if (segment === map.premium) return "premium";
+  if (segment === map.login) return "login";
+  if (segment === map.register) return "register";
+  if (segment === map.forgotPassword) return "forgotPassword";
+  if (segment === map.account) return "account";
   return undefined;
 }
 
@@ -60,13 +70,26 @@ export function detectLocale(tags: readonly string[]): Locale {
   return DEFAULT_LOCALE;
 }
 
-export const LOCALE_STORAGE_KEY = "arvio.locale";
+export const LOCALE_STORAGE_KEY = "breadpdf.locale";
+const LEGACY_LOCALE_STORAGE_KEY = "arvio.locale";
 
-/** Stored manual preference, if any. Browser only. */
+/** Stored manual preference, if any. Browser only. Migrates legacy arvio.locale if present. */
 export function storedLocale(): Locale | undefined {
   if (typeof window === "undefined") return undefined;
   try {
-    const value = window.localStorage.getItem(LOCALE_STORAGE_KEY);
+    let value = window.localStorage.getItem(LOCALE_STORAGE_KEY);
+    if (!value) {
+      const legacy = window.localStorage.getItem(LEGACY_LOCALE_STORAGE_KEY);
+      if (legacy && isLocale(legacy)) {
+        value = legacy;
+        try {
+          window.localStorage.setItem(LOCALE_STORAGE_KEY, legacy);
+          window.localStorage.removeItem(LEGACY_LOCALE_STORAGE_KEY);
+        } catch {
+          // ignore write errors
+        }
+      }
+    }
     return value && isLocale(value) ? value : undefined;
   } catch {
     return undefined;

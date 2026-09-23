@@ -44,7 +44,9 @@ export function CategoryTiles({ exclude }: { exclude?: ToolCategory }) {
             <p className="flex-1 text-[16px] leading-[1.55] text-muted-foreground">
               {item.description}
             </p>
-            <span className={`inline-flex items-center gap-2 text-[14px] font-semibold ${accent.text}`}>
+            <span
+              className={`inline-flex items-center gap-2 text-[14px] font-semibold ${accent.text}`}
+            >
               {t.category.toolsIn}
               <ArrowRight className="transition-standard size-4 group-hover:translate-x-[3px]" />
             </span>

@@ -1,26 +1,16 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Gauge, Layers, Lock } from "lucide-react";
+import { createFileRoute } from "@tanstack/react-router";
 import { useEffect } from "react";
-import { Button } from "@/components/ui/button";
-import { CategoryTiles } from "@/components/site/CategoryTiles";
+import { CatalogBrowser } from "@/components/site/CatalogBrowser";
+import { FloatingIcons } from "@/components/site/FloatingIcons";
+import { TrustBanner } from "@/components/site/TrustBanner";
+import { HomePremiumBlock } from "@/components/site/HomePremiumBlock";
+import { Cpu, UserCheck, ArrowLeftRight } from "lucide-react";
 
-import { ToolCard } from "@/components/site/ToolCard";
 import { ToolSearch } from "@/components/site/ToolSearch";
 import { DEFAULT_LOCALE, isLocale, preferredLocale, storedLocale } from "@/lib/i18n/config";
 import { useLocale } from "@/lib/i18n/context";
-import {
-  DETAIL_ROUTE,
-  HOME_ROUTE,
-  SECTION_ROUTE,
-  alternateLinks,
-  catalogParams,
-  homeParams,
-  toolParams,
-} from "@/lib/i18n/routing";
+import { HOME_ROUTE, alternateLinks, homeParams } from "@/lib/i18n/routing";
 import { UI } from "@/lib/i18n/ui";
-import { liveCount, localizedPopular, soonCount } from "@/lib/tools/localize";
-import { TOOLS } from "@/lib/tools/registry";
-import { TOOL_GRID } from "@/lib/tools/families";
 import { useNavigate } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/$lang/")({
@@ -37,14 +27,36 @@ export const Route = createFileRoute("/$lang/")({
         { name: "twitter:card", content: "summary_large_image" },
       ],
       links: alternateLinks(locale, { kind: "home" }),
+      scripts: [
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@graph": [
+              {
+                "@type": "Organization",
+                name: "BreadPDF",
+                url: "https://breadpdf.com",
+                logo: "https://breadpdf.com/brand/breadpdf-logo.png",
+                sameAs: [],
+              },
+              {
+                "@type": "WebSite",
+                name: "BreadPDF",
+                url: "https://breadpdf.com",
+                inLanguage: locale,
+                description: t.meta.homeDescription,
+              },
+            ],
+          }),
+        },
+      ],
     };
   },
   component: Home,
 });
 
-const HIGHLIGHT_ICONS = [Gauge, Lock, Layers];
-
-/** Splits the H1 into sentence lines and highlights the "PDF" word, no copy duplication. */
+/** Splits the H1 into sentence lines and highlights the "PDF" word. */
 function headlineLines(text: string) {
   return text
     .split(/(?<=\.)\s+/)
@@ -59,7 +71,6 @@ function headlineLines(text: string) {
 function Home() {
   const { locale, t } = useLocale();
   const navigate = useNavigate();
-  const popular = localizedPopular(locale);
   const headline = headlineLines(t.home.h1);
 
   /** First visit only: follow the browser language, never override a manual choice. */
@@ -74,101 +85,156 @@ function Home() {
 
   return (
     <>
-      <section className="hero-canvas overflow-hidden border-b border-border/60">
-        <div className="mx-auto max-w-[1120px] px-5 pb-14 pt-12 text-center sm:pb-20 sm:pt-16">
+      {/* ============================================================
+          HERO: Compact, Direct & Functional Product Header
+          ============================================================ */}
+      <section className="hero-canvas relative z-20 border-b border-[#E5E7EB] pt-8 pb-8 sm:pt-10 sm:pb-9 lg:pt-11 lg:pb-10">
+        {/* Floating decorative tool icons — positioned symmetrically around the hero */}
+        <FloatingIcons />
+
+        {/* Central content column */}
+        <div className="relative z-30 mx-auto max-w-[800px] px-5 text-center">
           <div className="animate-rise">
-            <p className="text-eyebrow">{t.home.eyebrow}</p>
-            <h1 className="text-display mx-auto mt-3 max-w-[900px] text-[2.5rem] font-extrabold leading-[1.02] tracking-[-0.03em] sm:mt-4 sm:text-[3.4rem] lg:text-[3.6rem]">
+            {/* H1 — Large, horizontal and commanding */}
+            <h1 className="text-display mx-auto max-w-[860px] text-[2.4rem] font-extrabold leading-[1.08] tracking-[-0.035em] text-[#0F172A] sm:text-[3rem] lg:text-[3.25rem]">
               {headline.map((line, index) => (
                 <span
                   key={line.before + line.after}
-                  className={index === 0 ? "block lg:whitespace-nowrap" : "block"}
+                  className={index === 0 ? "block" : "block mt-0.5"}
                 >
                   {line.before}
-                  {line.accent && <span className="text-primary">{line.accent}</span>}
+                  {line.accent && <span className="text-brand-pdf">{line.accent}</span>}
                   {line.after}
                 </span>
               ))}
             </h1>
-            <p className="mx-auto mt-4 max-w-[620px] text-[17px] leading-relaxed text-foreground/70 sm:mt-5 sm:text-[18px]">
+
+            {/* Subtitle — Brief, human, exactly 1-2 lines */}
+            <p className="mx-auto mt-2.5 max-w-[560px] text-[16px] leading-relaxed text-[#475569] sm:text-[17.5px]">
               {t.home.sub}
             </p>
-            <div className="mt-6 flex flex-wrap justify-center gap-3 sm:mt-7">
-              <Button asChild size="lg" className="h-12 px-6 text-[15px] sm:px-7">
-                <Link to={SECTION_ROUTE} params={catalogParams(locale)}>
-                  {t.home.ctaAll(TOOLS.length)}
-                  <ArrowRight className="ml-2 size-4" />
-                </Link>
-              </Button>
-              <Button
-                asChild
-                size="lg"
-                variant="outline"
-                className="h-12 border-border bg-surface px-6 text-[15px]"
-              >
-                <Link to={DETAIL_ROUTE} params={toolParams(locale, "comprimir-pdf")}>
-                  {t.home.ctaCompress}
-                </Link>
-              </Button>
-            </div>
-            <div className="mx-auto mt-7 max-w-[640px] text-left [&_.flex-wrap]:justify-center sm:mt-8">
+
+            {/* Search bar & Populares — Interactive centerpiece of the Hero */}
+            <div className="mx-auto mt-6 max-w-[700px] text-left [&_.flex-wrap]:justify-center sm:mt-7">
               <ToolSearch size="lg" />
             </div>
           </div>
-
         </div>
       </section>
 
-      <section className="border-b border-border/70 bg-surface py-16 sm:py-20">
-        <div className="mx-auto max-w-[1400px] px-5">
-        <div className="flex flex-wrap items-end justify-between gap-4">
+      {/* ============================================================
+          SECTION — FULL CATALOG: Direct Product Entry via Filters
+          ============================================================ */}
+      <section
+        className="border-b border-[#E5E7EB] bg-[#F8FAFC] pt-7 pb-14 sm:pt-9 sm:pb-16"
+        id="catalogo"
+      >
+        <div className="mx-auto max-w-[1520px] px-5">
+          {/* Accessible H2 for screen readers and SEO without taking vertical space */}
+          <h2 className="sr-only">{t.catalog.h1}</h2>
+
           <div>
-            <p className="text-eyebrow">{t.home.featured}</p>
-            <h2 className="mt-2 text-[2rem] sm:text-[2.25rem]">{t.home.popularTitle}</h2>
-            <p className="mt-2 text-[18px] text-foreground/70">
-              {t.home.popularSub(liveCount(), soonCount())}
+            <CatalogBrowser />
+          </div>
+        </div>
+      </section>
+
+      {/* Trust & Transparency Banner (3 clear core pillars) */}
+      <TrustBanner />
+
+      {/* ============================================================
+          SECTION — EDITORIAL: Clear, honest information without marketing fluff
+          ============================================================ */}
+      {/* ============================================================
+          SECTION — EDITORIAL: Clear, honest information without marketing fluff
+          ============================================================ */}
+      <section className="border-t border-[#F1F5F9] bg-white py-10 sm:py-14">
+        <div className="mx-auto max-w-[1360px] px-6 sm:px-8">
+          <div className="mx-auto max-w-3xl text-center">
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-brand-pdf bg-brand-pdf px-3.5 py-1 text-[12px] sm:text-[12.5px] font-bold tracking-widest text-white uppercase shadow-2xs">
+              <span className="size-1.5 rounded-full bg-white shrink-0" />
+              {t.home.editorial.eyebrow}
+            </span>
+            <h2 className="mt-3 text-[2.1rem] sm:text-[2.5rem] lg:text-[2.85rem] font-bold tracking-[-0.03em] leading-[1.1] text-[#0F172A]">
+              {t.home.editorial.title}
+            </h2>
+            <p className="mx-auto mt-2.5 max-w-[720px] text-[15.5px] sm:text-[16.5px] leading-relaxed text-[#475569]">
+              {t.home.editorial.sub}
             </p>
           </div>
-          <Link
-            to={SECTION_ROUTE}
-            params={catalogParams(locale)}
-            className="transition-standard text-[16px] font-semibold text-primary hover:text-primary-dark"
-          >
-            {t.home.viewAll} →
-          </Link>
-        </div>
-        <div className={`mt-7 ${TOOL_GRID}`}>
-          {popular.map((tool, index) => (
-            <ToolCard key={tool.slug} tool={tool} index={index} showCategory />
-          ))}
-        </div>
+
+          <div className="mt-8 sm:mt-10 grid gap-5 sm:grid-cols-2">
+            {t.home.editorial.articles.map((article, idx) => {
+              // Custom semantic SVG for optimization & compression (File + reduction arrow)
+              function DocumentOptimizeIcon({ className = "size-6" }: { className?: string }) {
+                return (
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                    <polyline points="14 2 14 8 20 8" />
+                    <path d="M12 18v-6" />
+                    <path d="m9 15 3 3 3-3" />
+                  </svg>
+                );
+              }
+
+              const ARTICLE_ACCENTS = [
+                {
+                  icon: Cpu,
+                  bg: "bg-[#2563EB]", // Azul / Optimizar / Navegador
+                  shadowGlow: "shadow-[0_6px_16px_rgba(37,99,235,0.18)]",
+                  border: "hover:border-[#2563EB]/40",
+                },
+                {
+                  icon: UserCheck,
+                  bg: "bg-[#059669]", // Verde esmeralda / Sin registros
+                  shadowGlow: "shadow-[0_6px_16px_rgba(5,150,105,0.18)]",
+                  border: "hover:border-[#059669]/40",
+                },
+                {
+                  icon: ArrowLeftRight,
+                  bg: "bg-[#7C3AED]", // Morado / Conversión
+                  shadowGlow: "shadow-[0_6px_16px_rgba(124,58,237,0.18)]",
+                  border: "hover:border-[#7C3AED]/40",
+                },
+                {
+                  icon: DocumentOptimizeIcon,
+                  bg: "bg-[#EA580C]", // Naranja / Optimización y compresión documental
+                  shadowGlow: "shadow-[0_6px_16px_rgba(234,88,12,0.18)]",
+                  border: "hover:border-[#EA580C]/40",
+                },
+              ];
+              const accent = ARTICLE_ACCENTS[idx % ARTICLE_ACCENTS.length];
+              const Icon = accent.icon;
+
+              return (
+                <article
+                  key={article.title}
+                  className={`group relative flex flex-col justify-start rounded-2xl border border-slate-200/90 bg-white p-6 sm:p-6.5 shadow-[0_1px_4px_rgba(15,23,42,0.03)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_24px_rgba(15,23,42,0.06)] ${accent.border}`}
+                >
+                  <div className="flex items-center gap-3.5">
+                    <span
+                      className={`inline-flex size-[44px] sm:size-[48px] shrink-0 items-center justify-center rounded-xl text-white transition-transform duration-300 group-hover:scale-105 ${accent.bg} ${accent.shadowGlow}`}
+                    >
+                      <Icon className="size-5.5 sm:size-6 stroke-[2.2]" />
+                    </span>
+                    <h3 className="text-[17.5px] sm:text-[19px] font-bold tracking-tight text-[#0F172A] leading-snug">
+                      {article.title}
+                    </h3>
+                  </div>
+                  <p className="mt-3 text-[14.5px] sm:text-[15px] leading-relaxed text-[#64748B]">
+                    {article.desc}
+                  </p>
+                </article>
+              );
+            })}
+          </div>
         </div>
       </section>
 
-      <section>
-        <div className="mx-auto grid max-w-[1400px] gap-10 px-5 py-16 sm:grid-cols-3 sm:py-20">
-          {t.home.highlights.map((item, index) => {
-            const Icon = HIGHLIGHT_ICONS[index] ?? Layers;
-            return (
-              <div key={item.title}>
-                <span className="inline-flex size-12 items-center justify-center rounded-xl bg-primary text-primary-foreground">
-                  <Icon className="size-6" strokeWidth={1.75} aria-hidden />
-                </span>
-                <h3 className="mt-5 text-[21px] font-bold">{item.title}</h3>
-                <p className="mt-2 text-[16px] leading-relaxed text-muted-foreground">{item.body}</p>
-              </div>
-            );
-          })}
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-[1400px] px-5 py-16 sm:py-20">
-        <h2 className="text-[2rem] sm:text-[2.25rem]">{t.home.categoriesTitle}</h2>
-        <p className="mt-2 text-[17px] text-muted-foreground">{t.home.categoriesSub}</p>
-        <div className="mt-7">
-          <CategoryTiles />
-        </div>
-      </section>
+      {/* ============================================================
+          SECTION — BREADPDF PREMIUM BLOCK: Real value proposition & route
+          ============================================================ */}
+      <HomePremiumBlock />
     </>
   );
 }

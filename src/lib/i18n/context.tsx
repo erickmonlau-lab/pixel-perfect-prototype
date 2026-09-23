@@ -1,5 +1,5 @@
 import { createContext, useContext, useMemo, type ReactNode } from "react";
-import type { Locale } from "./config";
+import { DEFAULT_LOCALE, type Locale } from "./config";
 import { UI, type Dict } from "./ui";
 import {
   localizedCategories,
@@ -20,15 +20,19 @@ type LocaleContextValue = {
 
 const LocaleContext = createContext<LocaleContextValue | null>(null);
 
+function createLocaleValue(locale: Locale): LocaleContextValue {
+  return {
+    locale,
+    t: UI[locale],
+    tools: localizedTools(locale),
+    categories: localizedCategories(locale),
+    roadmap: localizedRoadmap(locale),
+  };
+}
+
 export function LocaleProvider({ locale, children }: { locale: Locale; children: ReactNode }) {
   const value = useMemo<LocaleContextValue>(
-    () => ({
-      locale,
-      t: UI[locale],
-      tools: localizedTools(locale),
-      categories: localizedCategories(locale),
-      roadmap: localizedRoadmap(locale),
-    }),
+    () => createLocaleValue(locale),
     [locale],
   );
 
@@ -37,6 +41,14 @@ export function LocaleProvider({ locale, children }: { locale: Locale; children:
 
 export function useLocale(): LocaleContextValue {
   const value = useContext(LocaleContext);
-  if (!value) throw new Error("useLocale must be used inside a LocaleProvider");
+  if (!value) {
+    return createLocaleValue(DEFAULT_LOCALE);
+  }
   return value;
+}
+
+/** Convenient alias providing { lang, locale, t } for components */
+export function useI18n() {
+  const { locale, t } = useLocale();
+  return { lang: locale, locale, t };
 }

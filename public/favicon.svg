@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
+  <!-- Toast mascot body with subtle gradient -->
+  <defs>
+    <linearGradient id="crust" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E58E55"/>
+      <stop offset="100%" stop-color="#C9682E"/>
+    </linearGradient>
+    <linearGradient id="crumb" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFF3E3"/>
+      <stop offset="100%" stop-color="#FEE4C8"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="1.5" stdDeviation="1" flood-color="#592316" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+
+  <!-- Mascot Feet -->
+  <ellipse cx="17" cy="44" rx="3.5" ry="2.2" fill="#421A0F"/>
+  <ellipse cx="31" cy="44" rx="3.5" ry="2.2" fill="#421A0F"/>
+
+  <!-- Toast Crust (Outer) -->
+  <path d="M12 9 C8 9 5 12 5 17 C5 21 7 24 6 28 C5 33 6 40 10 41 C15 42 33 42 38 41 C42 40 43 33 42 28 C41 24 43 21 43 17 C43 12 40 9 36 9 C32 9 29 12 24 12 C19 12 16 9 12 9 Z" fill="url(#crust)" stroke="#592316" stroke-width="2.5" stroke-linejoin="round" filter="url(#shadow)"/>
+
+  <!-- Toast Face/Crumb (Inner) -->
+  <path d="M13 12 C10 12 8 14 8 18 C8 21 9.5 24 9 28 C8 32 9 38 12 39 C16 40 32 40 36 39 C39 38 40 32 39 28 C38.5 24 40 21 40 18 C40 14 38 12 35 12 C31 12 28.5 14.5 24 14.5 C19.5 14.5 17 12 13 12 Z" fill="url(#crumb)"/>
+
+  <!-- Happy Eyes (curved arcs) -->
+  <path d="M15 21 Q 17.5 17.5 20 21" stroke="#421A0F" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+  <path d="M28 21 Q 30.5 17.5 33 21" stroke="#421A0F" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+
+  <!-- Blushing Cheeks -->
+  <ellipse cx="14" cy="24.5" rx="2" ry="1.2" fill="#F87171" opacity="0.6"/>
+
+  <!-- Happy Open Mouth -->
+  <path d="M21.5 24 Q 24 28 26.5 24 Z" fill="#421A0F"/>
+  <path d="M22.8 25.5 Q 24 27.5 25.2 25.5 Z" fill="#EF4444"/>
+
+  <!-- Hands holding the PDF document -->
+  <!-- Left hand -->
+  <ellipse cx="20" cy="33" rx="3" ry="2.2" fill="#421A0F" transform="rotate(-15 20 33)"/>
+
+  <!-- White PDF Document -->
+  <g filter="url(#shadow)">
+    <!-- Folded paper sheet -->
+    <path d="M23 21 L35 21 L40 26 L40 42 L23 42 Z" fill="#FFFFFF" stroke="#421A0F" stroke-width="1.8" stroke-linejoin="round"/>
+    <!-- Fold corner -->
+    <path d="M35 21 L35 26 L40 26 Z" fill="#E2E8F0" stroke="#421A0F" stroke-width="1.5" stroke-linejoin="round"/>
+    
+    <!-- Red PDF Badge -->
+    <rect x="25" y="28" width="13" height="8" rx="2" fill="#EC3C2D"/>
+    <!-- Crisp 'PDF' text inside badge -->
+    <text x="31.5" y="34.2" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="5" fill="#FFFFFF" text-anchor="middle" letter-spacing="0.2">PDF</text>
+  </g>
+
+  <!-- Right hand over doc -->
+  <ellipse cx="40.5" cy="34" rx="2.5" ry="3" fill="#421A0F" transform="rotate(10 40.5 34)"/>
+</svg>

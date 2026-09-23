@@ -1,92 +1,325 @@
 import { Link } from "@tanstack/react-router";
+import { Mail, MessageSquare, ShieldCheck, BookOpen } from "lucide-react";
+import { PremiumCrownIcon } from "./PremiumCrownIcon";
 import { useLocale } from "@/lib/i18n/context";
 import {
   DETAIL_ROUTE,
+  HOME_ROUTE,
   SECTION_ROUTE,
-  catalogParams,
-  categoryParams,
+  homeParams,
   privacyParams,
+  premiumParams,
   toolParams,
 } from "@/lib/i18n/routing";
-import { FAMILY_ACCENTS } from "@/lib/tools/catalog";
-import { TOOLS } from "@/lib/tools/registry";
-import { Logo } from "./Logo";
+import { BRAND_WORDMARK, BRAND_ASSETS, OFFICIAL_CONTACT_EMAIL } from "@/lib/brand";
 import { LanguageSwitcher } from "./LanguageSwitcher";
+import { BreadPDFFooterMascot } from "./BreadPDFFooterMascot";
+
+/** Herramientas principales para la columna HERRAMIENTAS */
+const FEATURED_TOOLS = [
+  { slug: "comprimir-pdf", name: "Comprimir PDF" },
+  { slug: "unir-pdf", name: "Unir PDF" },
+  { slug: "dividir-pdf", name: "Dividir PDF" },
+  { slug: "pdf-a-jpg", name: "PDF a JPG" },
+  { slug: "jpg-a-pdf", name: "JPG a PDF" },
+  { slug: "rotar-pdf", name: "Rotar PDF" },
+] as const;
+
+/** Textos del footer localizados con rutas 100% reales auditadas */
+const FOOTER_COPY = {
+  es: {
+    description:
+      "Herramientas PDF online para comprimir, unir, dividir, convertir y editar documentos. Directamente en tu navegador.",
+    colTools: "HERRAMIENTAS",
+    colInfo: "INFORMACIÓN",
+    colLegal: "LEGAL",
+    viewAllTools: "Ver las 50 herramientas →",
+    toolsCatalogHash: "#catalogo",
+    about: "BreadPDF",
+    premium: "BreadPDF Premium",
+    privacy: "Privacidad",
+    support: "Soporte",
+    supportDesc: OFFICIAL_CONTACT_EMAIL,
+    contactEmail: OFFICIAL_CONTACT_EMAIL,
+    guides: "Guías & Tutoriales",
+    privacyFull: "Política de privacidad",
+    cookies: "Política de cookies",
+    legalTerms: "Términos del servicio",
+    copyright: (year: number) => `© ${year} BreadPDF. Todos los derechos reservados.`,
+    bottomTools: "Herramientas",
+    bottomPrivacy: "Privacidad",
+  },
+  ca: {
+    description:
+      "Eines PDF en línia per comprimir, unir, dividir, convertir i editar documents. Directament al teu navegador.",
+    colTools: "EINES",
+    colInfo: "INFORMACIÓ",
+    colLegal: "LEGAL",
+    viewAllTools: "Totes les 50 eines →",
+    toolsCatalogHash: "#catalogo",
+    about: "BreadPDF",
+    premium: "BreadPDF Premium",
+    privacy: "Privadesa",
+    support: "Suport",
+    supportDesc: OFFICIAL_CONTACT_EMAIL,
+    contactEmail: OFFICIAL_CONTACT_EMAIL,
+    guides: "Guies & Tutorials",
+    privacyFull: "Política de privadesa",
+    cookies: "Política de cookies",
+    legalTerms: "Termes del servei",
+    copyright: (year: number) => `© ${year} BreadPDF. Tots els drets reservats.`,
+    bottomTools: "Eines",
+    bottomPrivacy: "Privadesa",
+  },
+  en: {
+    description:
+      "Online PDF tools to compress, merge, split, convert and edit documents. Directly inside your browser.",
+    colTools: "TOOLS",
+    colInfo: "INFORMATION",
+    colLegal: "LEGAL",
+    viewAllTools: "View all 50 tools →",
+    toolsCatalogHash: "#catalogo",
+    about: "BreadPDF",
+    premium: "BreadPDF Premium",
+    privacy: "Privacy",
+    support: "Support",
+    supportDesc: OFFICIAL_CONTACT_EMAIL,
+    contactEmail: OFFICIAL_CONTACT_EMAIL,
+    guides: "Guides & Tutorials",
+    privacyFull: "Privacy Policy",
+    cookies: "Cookie Policy",
+    legalTerms: "Terms of Service",
+    copyright: (year: number) => `© ${year} BreadPDF. All rights reserved.`,
+    bottomTools: "Tools",
+    bottomPrivacy: "Privacy",
+  },
+} as const;
 
 export function Footer() {
-  const { locale, t, categories, tools } = useLocale();
+  const { locale, tools } = useLocale();
+  const copy = FOOTER_COPY[locale as keyof typeof FOOTER_COPY] ?? FOOTER_COPY.es;
+  const year = new Date().getFullYear();
 
   return (
-    <footer className="mt-16 border-t border-border bg-navy text-navy-foreground">
-      <div className="mx-auto max-w-[1400px] px-5 py-11">
-        <div className="grid gap-9 md:grid-cols-2 xl:grid-cols-[1.1fr_repeat(4,1fr)]">
-          <div>
-            <Logo tone="light" />
-            <p className="mt-3.5 max-w-xs text-[14px] leading-relaxed text-navy-foreground/70">
-              {t.brandTagline}
+    <footer className="mt-20 border-t border-[#1E293B] bg-[#070D18] text-white">
+      {/* ── CUERPO PRINCIPAL DEL FOOTER ── */}
+      <div className="w-full max-w-[1560px] mx-auto px-6 sm:px-10 lg:px-12 pt-16 pb-14 sm:pt-20 sm:pb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-6 xl:gap-8 items-start">
+          
+          {/* COL 1: MARCA + DESCRIPCIÓN + IDIOMAS DISCRETOS (lg:col-span-3) */}
+          <div className="lg:col-span-3 space-y-4">
+            <Link
+              to={HOME_ROUTE}
+              params={homeParams(locale)}
+              className="inline-flex items-center gap-3.5 group select-none"
+            >
+              <img
+                src={BRAND_ASSETS.icon}
+                alt="BreadPDF"
+                width={56}
+                height={54}
+                className="h-13 sm:h-14 w-auto object-contain drop-shadow-md transition-transform duration-200 group-hover:scale-105"
+              />
+              <span className="font-heading text-[28px] sm:text-[32px] font-extrabold tracking-tight leading-none">
+                <span className="text-white">{BRAND_WORDMARK.bread}</span>
+                <span className="text-[#EC3C2D] ml-0.5">{BRAND_WORDMARK.pdf}</span>
+              </span>
+            </Link>
+
+            <p className="text-[15px] sm:text-[15.5px] leading-[1.65] text-slate-300 max-w-[280px]">
+              {copy.description}
             </p>
-            <div className="mt-5">
-              <p className="text-[12px] font-bold uppercase tracking-[0.1em] text-navy-foreground/55">
-                {t.footer.language}
-              </p>
-              <div className="mt-2.5 flex gap-4 text-[14px]">
-                <LanguageSwitcher variant="inline" />
-              </div>
+
+            {/* Selector de idioma discreto en una sola línea de texto */}
+            <div className="pt-2">
+              <LanguageSwitcher variant="minimal" />
             </div>
           </div>
 
-          {categories
-            .filter((category) => tools.some((tool) => tool.category === category.category))
-            .map((category) => {
-              const accent = FAMILY_ACCENTS[category.category];
-              return (
-                <div key={category.category}>
-                  <h2 className="text-[14px] font-semibold text-navy-foreground">
+          {/* COL 2: HERRAMIENTAS (lg:col-span-2) */}
+          <div className="lg:col-span-2">
+            <h3 className="mb-6 text-[18px] sm:text-[19px] font-extrabold uppercase tracking-[0.04em] text-white leading-tight">
+              {copy.colTools}
+            </h3>
+            <ul className="space-y-4">
+              {FEATURED_TOOLS.map((item) => {
+                const toolDef = tools.find((t) => t.canonicalSlug === item.slug);
+                const name = toolDef?.name ?? item.name;
+                return (
+                  <li key={item.slug}>
                     <Link
                       to={DETAIL_ROUTE}
-                      params={categoryParams(locale, category.category)}
-                      className="inline-flex items-center gap-2"
+                      params={toolParams(locale, item.slug)}
+                      className="group inline-flex items-center gap-2.5 text-[15px] sm:text-[15.5px] font-medium text-slate-300 transition-colors hover:text-[#EC3C2D]"
                     >
-                      <span className={`size-2 rounded-full ${accent.dot}`} aria-hidden />
-                      {category.name}
+                      <span className="size-2 rounded-full bg-[#EC3C2D] shrink-0 opacity-90 group-hover:opacity-100 transition-opacity" aria-hidden="true" />
+                      <span>{name}</span>
                     </Link>
-                  </h2>
-                  <ul className="mt-3 space-y-2">
-                    {tools
-                      .filter((tool) => tool.category === category.category)
-                      .map((tool) => (
-                        <li key={tool.slug}>
-                          <Link
-                            to={DETAIL_ROUTE}
-                            params={toolParams(locale, tool.canonicalSlug)}
-                            className="transition-standard text-[14px] text-navy-foreground/70 hover:text-navy-foreground"
-                          >
-                            {tool.name}
-                          </Link>
-                        </li>
-                      ))}
-                  </ul>
-                </div>
-              );
-            })}
-        </div>
+                  </li>
+                );
+              })}
+              {/* "Ver las 50 herramientas →" lleva al catálogo central y actual de BreadPDF */}
+              <li className="pt-1.5">
+                <Link
+                  to={HOME_ROUTE}
+                  params={homeParams(locale)}
+                  hash="catalogo"
+                  className="group inline-flex items-center gap-1.5 text-[15px] font-bold text-[#EC3C2D] transition-colors hover:text-[#FF5A4D]"
+                >
+                  <span>{copy.viewAllTools}</span>
+                </Link>
+              </li>
+            </ul>
+          </div>
 
-        <div className="mt-9 flex flex-col gap-3 border-t border-navy-foreground/10 pt-6 text-[14px] text-navy-foreground/60 sm:flex-row sm:items-center sm:justify-between">
-          <p>{t.footer.rights(new Date().getFullYear(), TOOLS.length)}</p>
-          <div className="flex gap-6">
+          {/* COL 3: INFORMACIÓN (lg:col-span-2 xl:col-span-3) */}
+          <div className="lg:col-span-2 xl:col-span-3">
+            <h3 className="mb-6 text-[18px] sm:text-[19px] font-extrabold uppercase tracking-[0.04em] text-white leading-tight">
+              {copy.colInfo}
+            </h3>
+            <ul className="space-y-4 text-[15px] sm:text-[15.5px] text-slate-300">
+              {/* BreadPDF */}
+              <li>
+                <Link
+                  to={HOME_ROUTE}
+                  params={homeParams(locale)}
+                  className="group inline-flex items-center gap-2.5 font-medium text-slate-300 transition-colors hover:text-[#EC3C2D]"
+                >
+                  <span className="size-2 rounded-full bg-[#EC3C2D] shrink-0 opacity-90 group-hover:opacity-100 transition-opacity" aria-hidden="true" />
+                  <span>{copy.about}</span>
+                </Link>
+              </li>
+
+              {/* BreadPDF Premium en Rojo */}
+              <li>
+                <Link
+                  to={SECTION_ROUTE}
+                  params={premiumParams(locale)}
+                  className="group inline-flex items-center gap-2 font-bold text-[#EC3C2D] transition-colors hover:text-[#FF5A4D]"
+                >
+                  <PremiumCrownIcon className="size-4 shrink-0 text-[#EC3C2D]" />
+                  <span>{copy.premium}</span>
+                </Link>
+              </li>
+
+              {/* Privacidad independiente */}
+              <li>
+                <Link
+                  to={SECTION_ROUTE}
+                  params={privacyParams(locale)}
+                  className="group inline-flex items-center gap-2.5 font-medium text-slate-300 transition-colors hover:text-[#EC3C2D]"
+                >
+                  <ShieldCheck className="size-4 shrink-0 text-[#EC3C2D]" />
+                  <span>{copy.privacy}</span>
+                </Link>
+              </li>
+
+              {/* Soporte independiente */}
+              <li>
+                <a
+                  href={`mailto:${copy.contactEmail}`}
+                  className="group inline-flex items-center gap-2.5 font-medium text-slate-300 transition-colors hover:text-[#EC3C2D]"
+                >
+                  <MessageSquare className="size-4 shrink-0 text-[#EC3C2D]" />
+                  <span>{copy.support} ({copy.supportDesc})</span>
+                </a>
+              </li>
+
+              {/* Guías documentales */}
+              <li>
+                <Link
+                  to={DETAIL_ROUTE}
+                  params={{
+                    lang: locale,
+                    section: locale === "ca" ? "guies" : locale === "en" ? "guides" : "guias",
+                    slug: locale === "ca"
+                      ? "reduir-pdf-limit-pujada-campus-virtual"
+                      : locale === "en"
+                        ? "reduce-pdf-file-size-for-virtual-campus-submission"
+                        : "reducir-pdf-limite-subida-campus-virtual",
+                  }}
+                  className="group inline-flex items-center gap-2.5 font-medium text-slate-300 transition-colors hover:text-[#EC3C2D]"
+                >
+                  <BookOpen className="size-4 shrink-0 text-[#EC3C2D]" />
+                  <span>{copy.guides}</span>
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* COL 4: LEGAL (lg:col-span-2) */}
+          <div className="lg:col-span-2">
+            <h3 className="mb-6 text-[18px] sm:text-[19px] font-extrabold uppercase tracking-[0.04em] text-white leading-tight">
+              {copy.colLegal}
+            </h3>
+            <ul className="space-y-4">
+              <li>
+                <Link
+                  to={SECTION_ROUTE}
+                  params={privacyParams(locale)}
+                  className="group inline-flex items-center gap-2.5 text-[15px] sm:text-[15.5px] font-medium text-slate-300 transition-colors hover:text-[#EC3C2D]"
+                >
+                  <span className="size-2 rounded-full bg-[#EC3C2D] shrink-0 opacity-90 group-hover:opacity-100 transition-opacity" aria-hidden="true" />
+                  <span>{copy.privacyFull}</span>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to={SECTION_ROUTE}
+                  params={privacyParams(locale)}
+                  className="group inline-flex items-center gap-2.5 text-[15px] sm:text-[15.5px] font-medium text-slate-300 transition-colors hover:text-[#EC3C2D]"
+                >
+                  <span className="size-2 rounded-full bg-[#EC3C2D] shrink-0 opacity-90 group-hover:opacity-100 transition-opacity" aria-hidden="true" />
+                  <span>{copy.cookies}</span>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to={SECTION_ROUTE}
+                  params={privacyParams(locale)}
+                  className="group inline-flex items-center gap-2.5 text-[15px] sm:text-[15.5px] font-medium text-slate-300 transition-colors hover:text-[#EC3C2D]"
+                >
+                  <span className="size-2 rounded-full bg-[#EC3C2D] shrink-0 opacity-90 group-hover:opacity-100 transition-opacity" aria-hidden="true" />
+                  <span>{copy.legalTerms}</span>
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* COL 5: PERSONAJE (lg:col-span-3 xl:col-span-2, CON ESPACIADO HOLGADO pl-8 xl:pl-12) */}
+          <div className="lg:col-span-3 xl:col-span-2 flex items-center justify-center lg:justify-end pl-0 lg:pl-8 xl:pl-12">
+            <BreadPDFFooterMascot />
+          </div>
+
+        </div>
+      </div>
+
+      {/* ── BARRA INFERIOR LEGAL ────────────────────────────────────── */}
+      <div className="border-t border-[#1E293B] bg-[#040812]">
+        <div className="w-full max-w-[1560px] mx-auto flex flex-col gap-4 px-6 sm:px-10 lg:px-12 py-5 text-[14px] text-slate-400 sm:flex-row sm:items-center sm:justify-between">
+          <p>{copy.copyright(year)}</p>
+          <div className="flex flex-wrap items-center gap-6 sm:gap-8">
             <Link
               to={SECTION_ROUTE}
-              params={catalogParams(locale)}
-              className="hover:text-navy-foreground"
+              params={premiumParams(locale)}
+              className="font-bold text-[#EC3C2D] transition-colors hover:text-[#FF5A4D]"
             >
-              {t.nav.tools}
+              Premium
             </Link>
             <Link
               to={SECTION_ROUTE}
               params={privacyParams(locale)}
-              className="hover:text-navy-foreground"
+              className="transition-colors hover:text-white"
             >
-              {t.nav.privacy}
+              {copy.bottomPrivacy}
+            </Link>
+            <Link
+              to={HOME_ROUTE}
+              params={homeParams(locale)}
+              hash="catalogo"
+              className="transition-colors hover:text-white"
+            >
+              {copy.bottomTools}
             </Link>
           </div>
         </div>

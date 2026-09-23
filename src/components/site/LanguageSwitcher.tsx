@@ -1,6 +1,4 @@
-import { useNavigate, useRouterState } from "@tanstack/react-router";
-import { Check, Globe } from "lucide-react";
-import { useState } from "react";
+﻿import { Link, useRouterState } from "@tanstack/react-router";
 import {
   LOCALES,
   LOCALE_LABEL,
@@ -11,77 +9,69 @@ import {
 import { translatePath } from "@/lib/i18n/routing";
 import { useLocale } from "@/lib/i18n/context";
 
-export function LanguageSwitcher({ variant = "menu" }: { variant?: "menu" | "inline" }) {
+export function LanguageSwitcher({ variant = "menu" }: { variant?: "menu" | "inline" | "minimal" }) {
   const { locale, t } = useLocale();
-  const navigate = useNavigate();
   const pathname = useRouterState({ select: (state) => state.location.pathname });
-  const [open, setOpen] = useState(false);
 
-  const change = (target: Locale) => {
-    rememberLocale(target);
-    setOpen(false);
-    void navigate({ href: translatePath(pathname, target) });
-  };
-
-  if (variant === "inline") {
+  /* ── Minimal text-only variant (footer): Español · Català · English ── */
+  if (variant === "minimal" || variant === "inline") {
     return (
-      <div className="flex flex-wrap gap-2" role="group" aria-label={t.nav.languageAria}>
-        {LOCALES.map((item) => (
-          <button
-            key={item}
-            type="button"
-            onClick={() => change(item)}
-            aria-current={item === locale}
-            className={`transition-standard rounded-full border px-4 py-2 text-[14px] font-semibold ${
-              item === locale
-                ? "border-primary bg-primary text-primary-foreground"
-                : "border-border bg-surface text-foreground/80 hover:border-primary/40"
-            }`}
-          >
-            {LOCALE_LABEL[item]}
-          </button>
-        ))}
+      <div className="flex items-center gap-2 text-[13.5px] text-slate-400 font-medium" role="group" aria-label={t.nav.languageAria}>
+        {LOCALES.map((item, idx) => {
+          const isActive = item === locale;
+          return (
+            <span key={item} className="inline-flex items-center gap-2">
+              <Link
+                to={translatePath(pathname, item)}
+                onClick={() => rememberLocale(item)}
+                aria-current={isActive ? "true" : undefined}
+                className={`transition-colors ${
+                  isActive
+                    ? "text-[#EC3C2D] font-bold"
+                    : "text-slate-400 hover:text-white"
+                }`}
+              >
+                {LOCALE_LABEL[item]}
+              </Link>
+              {idx < LOCALES.length - 1 && (
+                <span className="text-slate-600 select-none">·</span>
+              )}
+            </span>
+          );
+        })}
       </div>
     );
   }
 
+  /* ── Menu / Header — compact clean capsule [ ES  CA  EN ] ────────────────────── */
   return (
-    <div className="relative">
-      <button
-        type="button"
-        onClick={() => setOpen((value) => !value)}
-        onBlur={() => window.setTimeout(() => setOpen(false), 140)}
-        aria-expanded={open}
-        aria-haspopup="menu"
-        aria-label={t.nav.languageAria}
-        className="transition-standard inline-flex h-11 items-center gap-2 rounded-xl border border-border bg-surface px-3.5 text-[15px] font-semibold text-foreground/85 hover:border-primary/40 hover:text-primary-dark"
-      >
-        <Globe className="size-[18px]" aria-hidden />
-        {LOCALE_SHORT[locale]}
-      </button>
-
-      {open && (
-        <div
-          className="animate-fade absolute right-0 top-full z-40 mt-2 w-52 overflow-hidden rounded-xl border border-border bg-popover shadow-overlay"
-          role="menu"
-        >
-          {LOCALES.map((item) => (
-            <button
+    <div
+      className="inline-flex items-center rounded-xl border border-[#E2E8F0] bg-white p-1 shadow-[0_1px_3px_rgba(0,0,0,0.04)]"
+      role="group"
+      aria-label={t.nav.languageAria}
+    >
+      {/* Locale switch links — Real Links for SEO & accessibility */}
+      <div className="flex items-center gap-0.5">
+        {LOCALES.map((item) => {
+          const isActive = item === locale;
+          return (
+            <Link
               key={item}
-              type="button"
-              role="menuitem"
-              onMouseDown={(event) => event.preventDefault()}
-              onClick={() => change(item)}
-              className={`transition-standard flex w-full items-center justify-between px-4 py-3 text-left text-[15px] font-medium hover:bg-primary-soft ${
-                item === locale ? "text-primary-dark" : "text-foreground/85"
+              to={translatePath(pathname, item)}
+              onClick={() => rememberLocale(item)}
+              aria-current={isActive ? "true" : undefined}
+              title={LOCALE_LABEL[item]}
+              className={`site-lang-btn flex items-center justify-center rounded-lg tracking-[0.04em] uppercase transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-pdf/40 ${
+                isActive
+                  ? "bg-brand-pdf text-white shadow-xs font-black"
+                  : "text-[#475569] hover:bg-[#F1F5F9] hover:text-[#0F172A]"
               }`}
             >
-              {LOCALE_LABEL[item]}
-              {item === locale && <Check className="size-4" aria-hidden />}
-            </button>
-          ))}
-        </div>
-      )}
+              {LOCALE_SHORT[item]}
+            </Link>
+          );
+        })}
+      </div>
     </div>
   );
 }

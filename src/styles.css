@@ -5,9 +5,9 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * ARVIO design system.
- * Navy + electric blue + cold whites. Colour is reserved for action,
- * navigation state, progress and important icons. Surfaces stay white/off-white.
+ * BreadPDF design system.
+ * BreadPDF Red + Navy + Functional Category Colors + Crisp Solid Whites.
+ * Surfaces stay clean, solid, and high-contrast.
  */
 
 @theme inline {
@@ -19,8 +19,22 @@
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
 
-  --font-sans: "Archivo", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Archivo", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter", "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Plus Jakarta Sans", "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-heading: "Plus Jakarta Sans", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  --color-brand-bread: #592316;
+  --color-brand-pdf: #EC3C2D;
+  --color-brand-red: #EC3C2D;
+  --color-brand-coral: #FFF5F2;
+  --color-brand-crust: #DE834C;
+  --color-brand-crumb: #FEE7CE;
+  --color-brand-bread-soft: #FDF6F0;
+  --color-brand-pdf-soft: #FEF2F2;
+
+  --color-favorite-amber: #F59E0B;
+  --color-favorite-foreground: #FFFFFF;
+  --color-border-neutral: #E2E8F0;
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -76,7 +90,7 @@
   --shadow-subtle: 0 1px 2px oklch(0.18 0.03 265 / 0.025), 0 2px 8px oklch(0.18 0.03 265 / 0.025);
   --shadow-raised: 0 2px 4px oklch(0.18 0.03 265 / 0.035), 0 10px 28px oklch(0.18 0.03 265 / 0.07);
   --shadow-overlay: 0 12px 48px oklch(0.18 0.03 265 / 0.12);
-  --shadow-focus: 0 0 0 4px oklch(0.51 0.2 265 / 0.14);
+  --shadow-focus: 0 0 0 4px oklch(0.622 0.214 29.5 / 0.16);
 
   --ease-standard: cubic-bezier(0.2, 0, 0.2, 1);
   --ease-enter: cubic-bezier(0.05, 0.7, 0.1, 1);
@@ -93,6 +107,12 @@
 :root {
   --radius: 0.875rem;
 
+  --brand-red: #EC3C2D;
+  --brand-coral: #FFF5F2;
+  --favorite-amber: #F59E0B;
+  --favorite-foreground: #FFFFFF;
+  --border-neutral: #E2E8F0;
+
   --motion-instant: 80ms;
   --motion-fast: 120ms;
   --motion-short: 160ms;
@@ -108,10 +128,10 @@
   --card-foreground: oklch(0.21 0.029 265);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.21 0.029 265);
-  --primary: oklch(0.512 0.196 266);
+  --primary: oklch(0.622 0.214 29.5);
   --primary-foreground: oklch(1 0 0);
-  --primary-dark: oklch(0.415 0.174 266);
-  --primary-soft: oklch(0.953 0.024 265);
+  --primary-dark: oklch(0.53 0.21 29.5);
+  --primary-soft: oklch(0.975 0.02 29.5);
   --navy: oklch(0.184 0.033 266);
   --navy-foreground: oklch(0.985 0.004 265);
   --fam-optimizar: oklch(0.512 0.196 266);
@@ -141,15 +161,15 @@
   --warning-soft: oklch(0.98 0.03 90);
   --border: oklch(0.921 0.012 255);
   --input: oklch(0.921 0.012 255);
-  --ring: oklch(0.512 0.196 266);
+  --ring: oklch(0.622 0.214 29.5);
   --sidebar: oklch(1 0 0);
   --sidebar-foreground: oklch(0.21 0.029 265);
-  --sidebar-primary: oklch(0.512 0.196 266);
+  --sidebar-primary: oklch(0.622 0.214 29.5);
   --sidebar-primary-foreground: oklch(1 0 0);
-  --sidebar-accent: oklch(0.953 0.024 265);
-  --sidebar-accent-foreground: oklch(0.415 0.174 266);
+  --sidebar-accent: oklch(0.975 0.02 29.5);
+  --sidebar-accent-foreground: oklch(0.53 0.21 29.5);
   --sidebar-border: oklch(0.921 0.012 255);
-  --sidebar-ring: oklch(0.512 0.196 266);
+  --sidebar-ring: oklch(0.622 0.214 29.5);
 }
 
 @keyframes rise {
@@ -201,6 +221,31 @@
   }
 }
 
+@keyframes premiumIntroGlow {
+  0% {
+    box-shadow: 0 0 0 0 rgba(236, 60, 45, 0);
+    transform: scale(0.98);
+  }
+  40% {
+    box-shadow: 0 0 14px 2px rgba(236, 60, 45, 0.35);
+    transform: scale(1.02);
+  }
+  100% {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    transform: scale(1);
+  }
+}
+
+.animate-premium-badge {
+  animation: premiumIntroGlow 900ms cubic-bezier(0.16, 1, 0.3, 1) 1 forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-premium-badge {
+    animation: none !important;
+  }
+}
+
 @layer base {
   * {
     border-color: var(--color-border);
@@ -211,9 +256,18 @@
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: geometricPrecision;
+    font-variant-ligatures: none;
+    font-feature-settings: "liga" 0, "clig" 0;
     font-size: 16px;
-    line-height: 1.55;
+    line-height: 1.6;
+    text-wrap: pretty;
+  }
+
+  p,
+  li {
+    text-wrap: pretty;
   }
 
   h1,
@@ -223,6 +277,7 @@
     font-family: var(--font-display);
     letter-spacing: 0;
     font-weight: 700;
+    text-wrap: balance;
   }
 
   ::selection {
@@ -236,6 +291,7 @@
   font-weight: 700;
   letter-spacing: 0;
   line-height: 1.08;
+  text-wrap: balance;
 }
 
 @utility text-eyebrow {
@@ -246,22 +302,68 @@
   color: var(--color-primary);
 }
 
-/* Hero canvas: white space with a very subtle blue technology wash. */
+/* Hero canvas: pure white center with soft BreadPDF lateral coral warmth fading smoothly to pure white at bottom */
 @utility hero-canvas {
   position: relative;
   isolation: isolate;
   background:
+    /* Bottom soft fade to pure white (last 50-60px) */
+    linear-gradient(180deg, transparent 0%, transparent 82%, #ffffff 100%),
+    /* Left ambient wing: delicate BreadPDF brand coral glow */
     radial-gradient(
-      100% 80% at 78% 30%,
-      oklch(0.955 0.032 264 / 0.7) 0%,
-      transparent 68%
+      56% 64% at 0% 32%,
+      rgba(236, 60, 45, 0.045) 0%,
+      rgba(255, 245, 242, 0.6) 45%,
+      transparent 76%
     ),
-    linear-gradient(
-      180deg,
-      #ffffff 0%,
-      oklch(0.978 0.014 264) 48%,
-      #ffffff 100%
-    );
+    /* Right ambient wing: delicate BreadPDF brand coral glow */
+    radial-gradient(
+      56% 64% at 100% 32%,
+      rgba(236, 60, 45, 0.042) 0%,
+      rgba(255, 245, 242, 0.6) 45%,
+      transparent 76%
+    ),
+    /* Base canvas: pure crisp white */ #ffffff;
+}
+
+/* Ambient glow microanimation: breathes and shifts very slowly, imperceptibly */
+@keyframes ambientGlowPulse {
+  0%, 100% {
+    transform: scale(1) translate3d(0, 0, 0);
+    opacity: 0.85;
+  }
+  50% {
+    transform: scale(1.06) translate3d(6px, -4px, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes ambientGlowPulseReverse {
+  0%, 100% {
+    transform: scale(1) translate3d(0, 0, 0);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.08) translate3d(-6px, 4px, 0);
+    opacity: 0.75;
+  }
+}
+
+.hero-ambient-glow {
+  animation: ambientGlowPulse 16s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+.hero-ambient-glow-reverse {
+  animation: ambientGlowPulseReverse 18s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-ambient-glow,
+  .hero-ambient-glow-reverse {
+    animation: none !important;
+  }
 }
 
 @utility surface-card {
@@ -285,13 +387,232 @@
   transition-timing-function: var(--ease-standard);
 }
 
+/* Floating hero badge animation: subtle vertical drift (3-4px) for organic life */
+@keyframes floatBadge {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+.floating-badge {
+  animation: floatBadge 7s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Atmospheric hero lighting animation: ultra-slow, breathing ambient glow */
+@keyframes heroGlowPulse {
+  0%,
+  100% {
+    opacity: 0.85;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+.hero-glow-ambient {
+  animation: heroGlowPulse 10s ease-in-out infinite alternate;
+  will-change: transform, opacity;
+}
+
+/* Mascot footer animation: gentle breathing float + authentic friendly wave greeting */
+@keyframes mascotBodyTilt {
+  0%, 15%, 85%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  25%, 75% {
+    transform: translateY(-7px) rotate(2deg);
+  }
+  40%, 60% {
+    transform: translateY(-10px) rotate(-1.5deg);
+  }
+}
+
+@keyframes mascotHandWave {
+  0%, 20%, 80%, 100% {
+    transform: rotate(0deg);
+  }
+  28% {
+    transform: rotate(-18deg) translateY(-2px);
+  }
+  36% {
+    transform: rotate(14deg) translateY(0);
+  }
+  44% {
+    transform: rotate(-16deg) translateY(-2px);
+  }
+  52% {
+    transform: rotate(12deg) translateY(0);
+  }
+  60% {
+    transform: rotate(-10deg) translateY(-1px);
+  }
+  68% {
+    transform: rotate(4deg);
+  }
+}
+
+@keyframes mascotSparklePulse {
+  0%, 18%, 78%, 100% {
+    opacity: 0.2;
+    transform: scale(0.85);
+  }
+  30%, 65% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+
+@keyframes mascotShadowPulse {
+  0%, 15%, 85%, 100% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  40%, 60% {
+    transform: scale(0.88);
+    opacity: 0.4;
+  }
+}
+
+/* Mascot footer animation: lively wave greeting with natural rest interval (Option 1) */
+@keyframes mascotWaveBody {
+  0%, 100% {
+    /* Reposo: posición base */
+    transform: translateY(0) rotate(0deg);
+  }
+  15% {
+    /* Sube con entusiasmo para saludar */
+    transform: translateY(-10px) rotate(-4deg);
+  }
+  25% {
+    /* Gesto de saludo (hacia la derecha) */
+    transform: translateY(-10px) rotate(8deg);
+  }
+  35% {
+    /* Saludo de vuelta (hacia la izquierda) */
+    transform: translateY(-10px) rotate(-6deg);
+  }
+  45% {
+    /* Saludo de vuelta (hacia la derecha) */
+    transform: translateY(-10px) rotate(6deg);
+  }
+  60% {
+    /* Vuelve a su posición original */
+    transform: translateY(0) rotate(0deg);
+  }
+  /* Del 60% al 100% reposo natural esperando el siguiente ciclo */
+}
+
+@keyframes mascotShadowWave {
+  0%, 60%, 100% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  15%, 25%, 35%, 45% {
+    transform: scale(0.82);
+    opacity: 0.35;
+  }
+}
+
+.mascot-waving {
+  animation: mascotWaveBody 3.5s ease-in-out infinite;
+  transform-origin: bottom center; /* Clave: pivota desde la base */
+  will-change: transform;
+}
+
+.mascot-shadow-wave {
+  animation: mascotShadowWave 3.5s ease-in-out infinite;
+  transform-origin: center center;
+  will-change: transform, opacity;
+}
+
+/* Header & nav typography classes for balanced SaaS density */
+.site-header {
+  height: 76px !important;
+  min-height: 76px !important;
+}
+
+.site-nav-btn {
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  line-height: 1.2 !important;
+  letter-spacing: 0.03em !important;
+  padding: 10px 18px !important;
+  border-radius: 12px !important;
+}
+
+.site-logo-icon {
+  height: 46px !important;
+  width: auto !important;
+}
+
+.site-logo-text {
+  font-size: 26px !important;
+  line-height: 1 !important;
+  font-weight: 800 !important;
+}
+
+.site-auth-login {
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  padding: 8px 14px !important;
+}
+
+.site-auth-register {
+  font-size: 14.5px !important;
+  font-weight: 700 !important;
+  padding: 8px 18px !important;
+  border-radius: 10px !important;
+}
+
+.site-lang-btn {
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  height: 32px !important;
+  padding-left: 10px !important;
+  padding-right: 10px !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
+  *:not(.breadpdf-live-mascot):not(.breadpdf-live-shadow):not(.mascot-waving):not(.mascot-shadow-wave),
+  *:not(.breadpdf-live-mascot)::before,
+  *:not(.breadpdf-live-mascot)::after {
     animation-duration: 1ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 1ms !important;
     scroll-behavior: auto !important;
   }
 }
+
+/* ==========================================================================
+   BREADPDF EDITORIAL GUIDES DESIGN TOKENS
+   Strict palette: BreadPDF Red + Category Accent + Solid Navy + Solid White
+   ========================================================================== */
+:root {
+  --guide-brand: #EC3C2D;
+  --guide-brand-hover: #D43426;
+  --guide-brand-soft: #FDF2F1;
+  --guide-navy: #0F172A;
+  --guide-navy-soft: #F8FAFC;
+  --guide-surface: #FFFFFF;
+  --guide-border: #E2E8F0;
+  --guide-text: #334155;
+  --guide-muted: #64748B;
+  
+  /* Category accents (Solid accents for badges & sub-indicators) */
+  --guide-cat-educacion: #059669;
+  --guide-cat-educacion-soft: #ECFDF5;
+  --guide-cat-ecommerce: #2563EB;
+  --guide-cat-ecommerce-soft: #EFF6FF;
+  --guide-cat-empresas: #7C3AED;
+  --guide-cat-empresas-soft: #F5F3FF;
+  --guide-cat-tecnica: #0284C7;
+  --guide-cat-tecnica-soft: #E0F2FE;
+}
+

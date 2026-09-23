@@ -59,7 +59,10 @@ export function formatBytes(bytes: number): string {
 }
 
 export async function renderPageToJpeg(
-  page: { getViewport: (o: { scale: number }) => { width: number; height: number }; render: (o: never) => { promise: Promise<void> } },
+  page: {
+    getViewport: (o: { scale: number }) => { width: number; height: number };
+    render: (o: never) => { promise: Promise<void> };
+  },
   scale: number,
   quality: number,
 ): Promise<{ blob: Blob; width: number; height: number }> {
@@ -80,3 +83,96 @@ export async function renderPageToJpeg(
   if (!blob) throw new Error("No se pudo generar la imagen de la página.");
   return { blob, width: canvas.width, height: canvas.height };
 }
+
+export async function renderPageToWebp(
+  page: {
+    getViewport: (o: { scale: number }) => { width: number; height: number };
+    render: (o: never) => { promise: Promise<void> };
+  },
+  scale: number,
+  quality: number,
+): Promise<{ blob: Blob; width: number; height: number }> {
+  const viewport = page.getViewport({ scale });
+  const canvas = document.createElement("canvas");
+  canvas.width = Math.max(1, Math.floor(viewport.width));
+  canvas.height = Math.max(1, Math.floor(viewport.height));
+  const context = canvas.getContext("2d");
+  if (!context) throw new Error("No se pudo preparar el lienzo de render.");
+  context.fillStyle = "#ffffff";
+  context.fillRect(0, 0, canvas.width, canvas.height);
+
+  await page.render({ canvasContext: context, viewport, canvas } as never).promise;
+
+  const blob = await new Promise<Blob | null>((resolve) =>
+    canvas.toBlob((b) => resolve(b), "image/webp", quality),
+  );
+  if (!blob) throw new Error("No se pudo generar la imagen WebP de la página.");
+  return { blob, width: canvas.width, height: canvas.height };
+}
+
+export async function renderPageToPng(
+  page: {
+    getViewport: (o: { scale: number }) => { width: number; height: number };
+    render: (o: never) => { promise: Promise<void> };
+  },
+  scale: number,
+): Promise<{ blob: Blob; width: number; height: number }> {
+  const viewport = page.getViewport({ scale });
+  const canvas = document.createElement("canvas");
+  canvas.width = Math.max(1, Math.floor(viewport.width));
+  canvas.height = Math.max(1, Math.floor(viewport.height));
+  const context = canvas.getContext("2d");
+  if (!context) throw new Error("No se pudo preparar el lienzo de render.");
+  context.fillStyle = "#ffffff";
+  context.fillRect(0, 0, canvas.width, canvas.height);
+
+  await page.render({ canvasContext: context, viewport, canvas } as never).promise;
+
+  const blob = await new Promise<Blob | null>((resolve) =>
+    canvas.toBlob((b) => resolve(b), "image/png"),
+  );
+  if (!blob) throw new Error("No se pudo generar la imagen PNG de la página.");
+  return { blob, width: canvas.width, height: canvas.height };
+}
+
+export async function renderPageToGrayscalePng(
+  page: {
+    getViewport: (o: { scale: number }) => { width: number; height: number };
+    render: (o: never) => { promise: Promise<void> };
+  },
+  scale: number,
+): Promise<{ blob: Blob; width: number; height: number }> {
+  const viewport = page.getViewport({ scale });
+  const canvas = document.createElement("canvas");
+  canvas.width = Math.max(1, Math.floor(viewport.width));
+  canvas.height = Math.max(1, Math.floor(viewport.height));
+  const context = canvas.getContext("2d", { willReadFrequently: true });
+  if (!context) throw new Error("No se pudo preparar el lienzo de render.");
+  context.fillStyle = "#ffffff";
+  context.fillRect(0, 0, canvas.width, canvas.height);
+
+  await page.render({ canvasContext: context, viewport, canvas } as never).promise;
+
+  // Convert canvas pixel buffer to accurate luminance grayscale (Rec. 709 / sRGB)
+  const imgData = context.getImageData(0, 0, canvas.width, canvas.height);
+  const data = imgData.data;
+  const len = data.length;
+  for (let i = 0; i < len; i += 4) {
+    const r = data[i];
+    const g = data[i + 1];
+    const b = data[i + 2];
+    // Perceptual grayscale luminance
+    const gray = Math.round(0.299 * r + 0.587 * g + 0.114 * b);
+    data[i] = gray;
+    data[i + 1] = gray;
+    data[i + 2] = gray;
+  }
+  context.putImageData(imgData, 0, 0);
+
+  const blob = await new Promise<Blob | null>((resolve) =>
+    canvas.toBlob((b) => resolve(b), "image/png"),
+  );
+  if (!blob) throw new Error("No se pudo generar la imagen en escala de grises de la página.");
+  return { blob, width: canvas.width, height: canvas.height };
+}
+

@@ -1,0 +1,189 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0B1220" />
+      <stop offset="50%" stop-color="#0F172A" />
+      <stop offset="100%" stop-color="#1E293B" />
+    </linearGradient>
+    <linearGradient id="cardBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1E293B" stop-opacity="0.95" />
+      <stop offset="100%" stop-color="#0F172A" stop-opacity="0.95" />
+    </linearGradient>
+    <linearGradient id="primaryGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3B82F6" />
+      <stop offset="100%" stop-color="#2563EB" />
+    </linearGradient>
+    <linearGradient id="emeraldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10B981" />
+      <stop offset="100%" stop-color="#059669" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="16" stdDeviation="20" flood-color="#000000" flood-opacity="0.4" />
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)" />
+
+  <!-- Subtle Tech Grid Accent -->
+  <g opacity="0.05" stroke="#94A3B8" stroke-width="1">
+    <line x1="0" y1="126" x2="1200" y2="126" />
+    <line x1="0" y1="252" x2="1200" y2="252" />
+    <line x1="0" y1="378" x2="1200" y2="378" />
+    <line x1="0" y1="504" x2="1200" y2="504" />
+    <line x1="240" y1="0" x2="240" y2="630" />
+    <line x1="480" y1="0" x2="480" y2="630" />
+    <line x1="720" y1="0" x2="720" y2="630" />
+    <line x1="960" y1="0" x2="960" y2="630" />
+  </g>
+
+  <!-- Top Header / Brand -->
+  <g transform="translate(80, 65)">
+    <rect width="42" height="42" rx="10" fill="url(#primaryGrad)" />
+    <text x="56" y="29" fill="#F8FAFC" font-family="system-ui, -apple-system, sans-serif" font-size="24" font-weight="900" letter-spacing="0.05em">BreadPDF</text>
+    <rect x="150" y="8" width="260" height="26" rx="13" fill="#1E293B" stroke="#334155" />
+    <text x="280" y="25" text-anchor="middle" fill="#38BDF8" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" letter-spacing="0.08em">ESCÁNER & DIGITALIZACIÓN DOCUMENTAL</text>
+  </g>
+
+  <!-- Flow Comparison Container: Input (4 Pages ADF) -> Detection Engine (Sensibilidad) -> Output (Clean PDF) -->
+  <g transform="translate(80, 140)">
+    <!-- Stage 1: Scanned Document with duplex blank pages -->
+    <g filter="url(#shadow)">
+      <rect x="0" y="30" width="360" height="350" rx="18" fill="url(#cardBg)" stroke="#334155" stroke-width="1.5" />
+      <rect x="24" y="52" width="130" height="26" rx="6" fill="#DC2626" fill-opacity="0.18" stroke="#DC2626" stroke-width="1" />
+      <text x="89" y="69" text-anchor="middle" fill="#F87171" font-family="system-ui, -apple-system, sans-serif" font-size="11.5" font-weight="800">ESCÁNER DÚPLEX</text>
+
+      <text x="24" y="112" fill="#F8FAFC" font-family="system-ui, -apple-system, sans-serif" font-size="22" font-weight="800">PDF Escaneado</text>
+      <text x="24" y="136" fill="#94A3B8" font-family="system-ui, -apple-system, sans-serif" font-size="13">ADF con hojas de 1 sola cara</text>
+
+      <line x1="24" y1="156" x2="336" y2="156" stroke="#334155" stroke-width="1" />
+
+      <!-- Visual Page Miniatures (4 pages in a row) -->
+      <g transform="translate(24, 175)">
+        <!-- Page 1 (Content) -->
+        <g transform="translate(0, 0)">
+          <rect width="64" height="90" rx="4" fill="#0F172A" stroke="#38BDF8" stroke-width="1.5" />
+          <line x1="10" y1="18" x2="54" y2="18" stroke="#38BDF8" stroke-width="2" />
+          <line x1="10" y1="28" x2="46" y2="28" stroke="#64748B" stroke-width="2" />
+          <line x1="10" y1="38" x2="50" y2="38" stroke="#64748B" stroke-width="2" />
+          <line x1="10" y1="48" x2="40" y2="48" stroke="#64748B" stroke-width="2" />
+          <text x="32" y="78" text-anchor="middle" fill="#38BDF8" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700">Pág 01</text>
+        </g>
+
+        <!-- Page 2 (Blank Revers) -->
+        <g transform="translate(80, 0)">
+          <rect width="64" height="90" rx="4" fill="#0F172A" stroke="#DC2626" stroke-width="1.5" stroke-dasharray="4 2" />
+          <circle cx="32" cy="40" r="14" fill="#DC2626" fill-opacity="0.15" />
+          <line x1="26" y1="34" x2="38" y2="46" stroke="#F87171" stroke-width="2" stroke-linecap="round" />
+          <line x1="38" y1="34" x2="26" y2="46" stroke="#F87171" stroke-width="2" stroke-linecap="round" />
+          <text x="32" y="78" text-anchor="middle" fill="#F87171" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700">Pág 02 ✕</text>
+        </g>
+
+        <!-- Page 3 (Content) -->
+        <g transform="translate(160, 0)">
+          <rect width="64" height="90" rx="4" fill="#0F172A" stroke="#38BDF8" stroke-width="1.5" />
+          <line x1="10" y1="18" x2="54" y2="18" stroke="#38BDF8" stroke-width="2" />
+          <line x1="10" y1="28" x2="48" y2="28" stroke="#64748B" stroke-width="2" />
+          <line x1="10" y1="38" x2="52" y2="38" stroke="#64748B" stroke-width="2" />
+          <line x1="10" y1="48" x2="42" y2="48" stroke="#64748B" stroke-width="2" />
+          <text x="32" y="78" text-anchor="middle" fill="#38BDF8" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700">Pág 03</text>
+        </g>
+
+        <!-- Page 4 (Blank Revers) -->
+        <g transform="translate(240, 0)">
+          <rect width="64" height="90" rx="4" fill="#0F172A" stroke="#DC2626" stroke-width="1.5" stroke-dasharray="4 2" />
+          <circle cx="32" cy="40" r="14" fill="#DC2626" fill-opacity="0.15" />
+          <line x1="26" y1="34" x2="38" y2="46" stroke="#F87171" stroke-width="2" stroke-linecap="round" />
+          <line x1="38" y1="34" x2="26" y2="46" stroke="#F87171" stroke-width="2" stroke-linecap="round" />
+          <text x="32" y="78" text-anchor="middle" fill="#F87171" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700">Pág 04 ✕</text>
+        </g>
+      </g>
+
+      <rect x="24" y="295" width="312" height="56" rx="10" fill="#450A0A" fill-opacity="0.4" stroke="#DC2626" stroke-width="1" />
+      <text x="38" y="318" fill="#F87171" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700">Sobrecarga de páginas:</text>
+      <text x="38" y="337" fill="#FCA5A5" font-family="system-ui, -apple-system, sans-serif" font-size="11.5">50% de páginas vacías innecesarias</text>
+    </g>
+
+    <!-- Arrow 1 -> 2 -->
+    <g transform="translate(385, 190)">
+      <circle cx="20" cy="15" r="16" fill="#1E293B" stroke="#3B82F6" stroke-width="1.5" />
+      <path d="M16 9 L24 15 L16 21" fill="none" stroke="#38BDF8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+
+    <!-- Stage 2: Detection Engine (Sensibilidad configurable) -->
+    <g transform="translate(440, 0)" filter="url(#shadow)">
+      <rect x="0" y="30" width="280" height="350" rx="18" fill="url(#cardBg)" stroke="#3B82F6" stroke-width="1.8" />
+      <rect x="20" y="52" width="136" height="26" rx="6" fill="#2563EB" fill-opacity="0.2" stroke="#3B82F6" stroke-width="1" />
+      <text x="88" y="69" text-anchor="middle" fill="#60A5FA" font-family="system-ui, -apple-system, sans-serif" font-size="11.5" font-weight="800">MOTOR BreadPDF</text>
+
+      <text x="20" y="112" fill="#F8FAFC" font-family="system-ui, -apple-system, sans-serif" font-size="22" font-weight="800">Detección de Píxel</text>
+      <text x="20" y="136" fill="#94A3B8" font-family="system-ui, -apple-system, sans-serif" font-size="13">Análisis cromático en cliente</text>
+
+      <line x1="20" y1="156" x2="260" y2="156" stroke="#334155" stroke-width="1" />
+
+      <!-- Specs list -->
+      <g transform="translate(20, 180)">
+        <text x="0" y="0" fill="#E2E8F0" font-family="system-ui, -apple-system, sans-serif" font-size="12.5" font-weight="600">• Umbral de luminosidad &gt; 240</text>
+        <text x="0" y="26" fill="#E2E8F0" font-family="system-ui, -apple-system, sans-serif" font-size="12.5" font-weight="600">• Ratio ajustable (95% - 99%)</text>
+        <text x="0" y="52" fill="#E2E8F0" font-family="system-ui, -apple-system, sans-serif" font-size="12.5" font-weight="600">• Detección de motas y líneas</text>
+        <text x="0" y="78" fill="#E2E8F0" font-family="system-ui, -apple-system, sans-serif" font-size="12.5" font-weight="600">• Preservación visual en memoria</text>
+      </g>
+
+      <rect x="20" y="295" width="240" height="56" rx="10" fill="#0F172A" stroke="#334155" />
+      <text x="30" y="318" fill="#60A5FA" font-family="system-ui, -apple-system, sans-serif" font-size="11.5" font-weight="700">Sensibilidad ajustable:</text>
+      <text x="30" y="337" fill="#94A3B8" font-family="system-ui, -apple-system, sans-serif" font-size="11">Tolerancia a ruido de escáner</text>
+    </g>
+
+    <!-- Arrow 2 -> 3 -->
+    <g transform="translate(745, 190)">
+      <circle cx="20" cy="15" r="16" fill="#1E293B" stroke="#10B981" stroke-width="1.5" />
+      <path d="M16 9 L24 15 L16 21" fill="none" stroke="#34D399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+
+    <!-- Stage 3: Clean PDF Result (Pages 1 and 3 kept) -->
+    <g transform="translate(800, 0)" filter="url(#shadow)">
+      <rect x="0" y="30" width="240" height="350" rx="18" fill="url(#cardBg)" stroke="#059669" stroke-width="2" />
+      <rect x="20" y="52" width="115" height="26" rx="6" fill="#059669" fill-opacity="0.2" stroke="#10B981" stroke-width="1" />
+      <text x="77" y="69" text-anchor="middle" fill="#34D399" font-family="system-ui, -apple-system, sans-serif" font-size="11.5" font-weight="800">RESULTADO</text>
+
+      <text x="20" y="112" fill="#F8FAFC" font-family="system-ui, -apple-system, sans-serif" font-size="22" font-weight="800">PDF Limpio</text>
+      <text x="20" y="136" fill="#34D399" font-family="system-ui, -apple-system, sans-serif" font-size="13">Solo páginas útiles</text>
+
+      <line x1="20" y1="156" x2="220" y2="156" stroke="#334155" stroke-width="1" />
+
+      <!-- Kept Miniatures (2 pages) -->
+      <g transform="translate(30, 175)">
+        <g transform="translate(0, 0)">
+          <rect width="64" height="90" rx="4" fill="#064E3B" fill-opacity="0.5" stroke="#10B981" stroke-width="2" />
+          <line x1="10" y1="18" x2="54" y2="18" stroke="#34D399" stroke-width="2" />
+          <line x1="10" y1="28" x2="46" y2="28" stroke="#A7F3D0" stroke-width="2" />
+          <line x1="10" y1="38" x2="50" y2="38" stroke="#A7F3D0" stroke-width="2" />
+          <line x1="10" y1="48" x2="40" y2="48" stroke="#A7F3D0" stroke-width="2" />
+          <text x="32" y="78" text-anchor="middle" fill="#34D399" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700">Pág 01 ✓</text>
+        </g>
+        <g transform="translate(90, 0)">
+          <rect width="64" height="90" rx="4" fill="#064E3B" fill-opacity="0.5" stroke="#10B981" stroke-width="2" />
+          <line x1="10" y1="18" x2="54" y2="18" stroke="#34D399" stroke-width="2" />
+          <line x1="10" y1="28" x2="48" y2="28" stroke="#A7F3D0" stroke-width="2" />
+          <line x1="10" y1="38" x2="52" y2="38" stroke="#A7F3D0" stroke-width="2" />
+          <line x1="10" y1="48" x2="42" y2="48" stroke="#A7F3D0" stroke-width="2" />
+          <text x="32" y="78" text-anchor="middle" fill="#34D399" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700">Pág 02 ✓</text>
+        </g>
+      </g>
+
+      <rect x="20" y="295" width="200" height="56" rx="10" fill="#064E3B" fill-opacity="0.5" stroke="#059669" />
+      <text x="30" y="318" fill="#34D399" font-family="system-ui, -apple-system, sans-serif" font-size="11.5" font-weight="700">Preparado para:</text>
+      <text x="30" y="337" fill="#A7F3D0" font-family="system-ui, -apple-system, sans-serif" font-size="11">Lectura, archivo y OCR limpio</text>
+    </g>
+  </g>
+
+  <!-- Footer Features -->
+  <g transform="translate(80, 560)">
+    <text x="0" y="20" fill="#94A3B8" font-family="system-ui, -apple-system, sans-serif" font-size="14.5" font-weight="600">
+      Escaneo Dúplex • Alimentador ADF • Detección por Píxeles • Reducción de Ruido • OCR Preparatorio
+    </text>
+    <text x="1040" y="20" text-anchor="end" fill="#64748B" font-family="system-ui, -apple-system, sans-serif" font-size="14">
+      breadpdf.com
+    </text>
+  </g>
+</svg>

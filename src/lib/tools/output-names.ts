@@ -6,8 +6,8 @@ import { DEFAULT_LOCALE, type Locale } from "@/lib/i18n/config";
  */
 const REPLACEMENTS: Record<Exclude<Locale, "es">, [string, string][]> = {
   ca: [
-    ["arvio-documento-unido", "arvio-document-unit"],
-    ["arvio-imagenes", "arvio-imatges"],
+    ["breadpdf-documento-unido", "breadpdf-document-unit"],
+    ["breadpdf-imagenes", "breadpdf-imatges"],
     ["-pagina-", "-pagina-"],
     ["-rotado", "-girat"],
     ["-extraido", "-extret"],
@@ -15,8 +15,8 @@ const REPLACEMENTS: Record<Exclude<Locale, "es">, [string, string][]> = {
     ["-comprimido", "-comprimit"],
   ],
   en: [
-    ["arvio-documento-unido", "arvio-merged-document"],
-    ["arvio-imagenes", "arvio-images"],
+    ["breadpdf-documento-unido", "breadpdf-merged-document"],
+    ["breadpdf-imagenes", "breadpdf-images"],
     ["-pagina-", "-page-"],
     ["-rotado", "-rotated"],
     ["-extraido", "-extracted"],

@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 450 110" fill="none">
+  <!-- Mascot character + Document (Left) -->
+  <g transform="translate(10, 8)">
+    <defs>
+      <linearGradient id="crust-logo" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#DE834C"/>
+        <stop offset="100%" stop-color="#B85D25"/>
+      </linearGradient>
+      <linearGradient id="crumb-logo" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#FFF5E9"/>
+        <stop offset="100%" stop-color="#FEE7CE"/>
+      </linearGradient>
+      <filter id="logo-drop" x="-10%" y="-10%" width="120%" height="120%">
+        <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#592316" flood-opacity="0.15"/>
+      </filter>
+    </defs>
+
+    <!-- Subtle floor shadow under character -->
+    <ellipse cx="48" cy="88" rx="36" ry="6" fill="#592316" opacity="0.08"/>
+
+    <!-- Feet -->
+    <ellipse cx="33" cy="85" rx="8" ry="4.5" fill="#421A0F"/>
+    <ellipse cx="68" cy="85" rx="8" ry="4.5" fill="#421A0F"/>
+
+    <!-- Toast Crust -->
+    <path d="M22 18 C14 18 8 24 8 34 C8 42 12 48 10 56 C8 66 10 80 18 82 C28 84 64 84 74 82 C82 80 84 66 82 56 C80 48 84 42 84 34 C84 24 78 18 70 18 C62 18 56 24 46 24 C36 24 30 18 22 18 Z" fill="url(#crust-logo)" stroke="#421A0F" stroke-width="4" stroke-linejoin="round" filter="url(#logo-drop)"/>
+
+    <!-- Toast Face/Crumb -->
+    <path d="M24 24 C18 24 14 28 14 36 C14 42 17 48 16 56 C14 64 16 76 22 78 C30 80 62 80 70 78 C76 76 78 64 76 56 C75 48 78 42 78 36 C78 28 74 24 68 24 C60 24 55 29 46 29 C37 29 32 24 24 24 Z" fill="url(#crumb-logo)"/>
+
+    <!-- Joyful Eyes -->
+    <path d="M28 42 Q 33 35 38 42" stroke="#421A0F" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+    <path d="M54 42 Q 59 35 64 42" stroke="#421A0F" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+
+    <!-- Cheeks -->
+    <ellipse cx="26" cy="49" rx="4" ry="2.5" fill="#F87171" opacity="0.6"/>
+
+    <!-- Open Happy Smile -->
+    <path d="M41 48 Q 46 56 51 48 Z" fill="#421A0F"/>
+    <path d="M43.5 51 Q 46 55 48.5 51 Z" fill="#EF4444"/>
+
+    <!-- Left hand holding doc -->
+    <ellipse cx="38" cy="66" rx="6" ry="4.5" fill="#421A0F" transform="rotate(-15 38 66)"/>
+
+    <!-- Document -->
+    <g filter="url(#logo-drop)">
+      <path d="M45 42 L68 42 L78 52 L78 84 L45 84 Z" fill="#FFFFFF" stroke="#421A0F" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M68 42 L68 52 L78 52 Z" fill="#E2E8F0" stroke="#421A0F" stroke-width="2.5" stroke-linejoin="round"/>
+      <!-- Red Badge -->
+      <rect x="49" y="56" width="25" height="15" rx="3.5" fill="#EC3C2D"/>
+      <text x="61.5" y="67.5" font-family="'Plus Jakarta Sans', system-ui, -apple-system, sans-serif" font-weight="900" font-size="9.5" fill="#FFFFFF" text-anchor="middle" letter-spacing="0.4">PDF</text>
+    </g>
+
+    <!-- Right hand holding doc -->
+    <ellipse cx="79" cy="68" rx="5" ry="6" fill="#421A0F" transform="rotate(10 79 68)"/>
+
+    <!-- Cute exclamation sparkles top right -->
+    <path d="M84 22 L87 14" stroke="#EC3C2D" stroke-width="3.5" stroke-linecap="round"/>
+    <path d="M91 28 L98 23" stroke="#EC3C2D" stroke-width="3.5" stroke-linecap="round"/>
+  </g>
+
+  <!-- Wordmark "BreadPDF" -->
+  <g transform="translate(125, 75)">
+    <!-- "Bread" in #592316 -->
+    <text x="0" y="0" font-family="'Plus Jakarta Sans', 'Archivo', system-ui, -apple-system, sans-serif" font-weight="900" font-size="64" fill="#592316" letter-spacing="-1.5">Bread</text>
+    <!-- "PDF" in #EC3C2D -->
+    <text x="180" y="0" font-family="'Plus Jakarta Sans', 'Archivo', system-ui, -apple-system, sans-serif" font-weight="900" font-size="64" fill="#EC3C2D" letter-spacing="-1.5">PDF</text>
+  </g>
+</svg>
