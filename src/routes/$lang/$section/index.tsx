@@ -92,6 +92,32 @@ export const Route = createFileRoute("/$lang/$section/")({
         links: alternateLinks(locale, { kind: "privacy" }),
       };
     }
+    if (kind === "cookies") {
+      return {
+        meta: [
+          { title: t.cookies.seoTitle },
+          { name: "description", content: t.cookies.seoDescription },
+          { property: "og:title", content: t.cookies.seoTitle },
+          { property: "og:description", content: t.cookies.seoDescription },
+          { property: "og:type", content: "article" },
+          { name: "twitter:card", content: "summary_large_image" },
+        ],
+        links: alternateLinks(locale, { kind: "cookies" }),
+      };
+    }
+    if (kind === "terms") {
+      return {
+        meta: [
+          { title: t.terms.seoTitle },
+          { name: "description", content: t.terms.seoDescription },
+          { property: "og:title", content: t.terms.seoTitle },
+          { property: "og:description", content: t.terms.seoDescription },
+          { property: "og:type", content: "article" },
+          { name: "twitter:card", content: "summary_large_image" },
+        ],
+        links: alternateLinks(locale, { kind: "terms" }),
+      };
+    }
     return {
       meta: [
         { title: t.meta.catalogTitle },
@@ -114,7 +140,10 @@ function SectionPage() {
   if (kind === "forgotPassword") return <AuthSplitLayout initialMode="forgotPassword" />;
   if (kind === "account") return <AccountDashboard />;
   if (kind === "premium") return <PremiumPage />;
-  return kind === "privacy" ? <PrivacyPage /> : <CatalogPage />;
+  if (kind === "privacy") return <PrivacyPage />;
+  if (kind === "cookies") return <LegalDocPage docKey="cookies" />;
+  if (kind === "terms") return <LegalDocPage docKey="terms" />;
+  return <CatalogPage />;
 }
 
 function CatalogPage() {
@@ -157,6 +186,32 @@ function PrivacyPage() {
         </p>
       ))}
       {t.privacy.sections.map((section) => (
+        <section key={section.title} className="mt-10">
+          <h2 className="text-2xl">{section.title}</h2>
+          <p className="mt-3 text-[17px] leading-relaxed text-muted-foreground">{section.body}</p>
+        </section>
+      ))}
+    </article>
+  );
+}
+
+function LegalDocPage({ docKey }: { docKey: "cookies" | "terms" }) {
+  const { t } = useLocale();
+  const doc = t[docKey];
+  const label = docKey === "cookies" ? t.footer.language === "Idioma" ? "Cookies" : "Cookies" : t.footer.language === "Idioma" ? "Términos" : "Terms";
+
+  return (
+    <article className="mx-auto max-w-3xl px-5 py-10 sm:py-14">
+      <Breadcrumb items={[{ label }]} />
+
+      <p className="text-eyebrow">{doc.eyebrow}</p>
+      <h1 className="text-display mt-3 text-4xl sm:text-[2.9rem]">{doc.title}</h1>
+      {doc.body.map((paragraph) => (
+        <p key={paragraph} className="mt-5 text-[17px] leading-relaxed text-muted-foreground">
+          {paragraph}
+        </p>
+      ))}
+      {doc.sections.map((section) => (
         <section key={section.title} className="mt-10">
           <h2 className="text-2xl">{section.title}</h2>
           <p className="mt-3 text-[17px] leading-relaxed text-muted-foreground">{section.body}</p>

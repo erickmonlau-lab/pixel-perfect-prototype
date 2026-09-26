@@ -22,12 +22,18 @@ export function ToolCatalogCard({
   isRoadmap = false,
   index = 0,
   compact = false,
+  isFavorite: isFavoriteProp,
+  onToggleFavorite: onToggleFavoriteProp,
 }: {
   tool: LocalizedTool | RoadmapTool;
   isRoadmap?: boolean;
   index?: number;
   /** Compact layout for secondary placements like "Related tools". */
   compact?: boolean;
+  /** Optional hoisted favorite status */
+  isFavorite?: boolean;
+  /** Optional hoisted toggle handler */
+  onToggleFavorite?: (slug: string) => void;
 }) {
   const { locale, t } = useLocale();
   const accent = FAMILY_ACCENTS[tool.category];
@@ -48,8 +54,13 @@ export function ToolCatalogCard({
     : "text-[15px] sm:text-[15.5px] leading-[1.55]";
   const mtTitle = compact ? "mt-3.5" : "mt-4.5";
 
-  const { isFavorite, toggleFavorite } = useFavorites();
-  const isFav = canonicalSlug ? isFavorite(canonicalSlug) : false;
+  const fallbackFavorites = useFavorites();
+  const isFav = canonicalSlug
+    ? isFavoriteProp !== undefined
+      ? isFavoriteProp
+      : fallbackFavorites.isFavorite(canonicalSlug)
+    : false;
+  const toggleFavorite = onToggleFavoriteProp ?? fallbackFavorites.toggleFavorite;
 
   const cardContent = (
     <div

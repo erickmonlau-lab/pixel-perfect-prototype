@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import { ROADMAP_TOOLS } from "@/lib/tools/catalog";
 import { useLocale } from "@/lib/i18n/context";
 import type { ToolCategory } from "@/lib/tools/types";
+import { useFavorites } from "@/lib/auth/favorites-store";
 import { ToolCatalogCard } from "./ToolCatalogCard";
 
 type Filter = ToolCategory | "all";
@@ -40,6 +41,7 @@ const FILTER_BADGE_STYLES: Record<Filter, { active: string; inactive: string }> 
 export function CatalogBrowser() {
   const { tools, categories, t } = useLocale();
   const [filter, setFilter] = useState<Filter>("all");
+  const { isFavorite, toggleFavorite } = useFavorites();
 
   const filters: { id: Filter; label: string; count: number }[] = useMemo(() => {
     const catFilters = categories.map((cat) => ({
@@ -119,7 +121,13 @@ export function CatalogBrowser() {
       <div className="mt-9">
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {displayedTools.live.map((tool, index) => (
-            <ToolCatalogCard key={tool.slug} tool={tool} index={index} />
+            <ToolCatalogCard
+              key={tool.slug}
+              tool={tool}
+              index={index}
+              isFavorite={tool.canonicalSlug ? isFavorite(tool.canonicalSlug) : false}
+              onToggleFavorite={toggleFavorite}
+            />
           ))}
           {displayedTools.roadmap.map((tool, index) => (
             <ToolCatalogCard
