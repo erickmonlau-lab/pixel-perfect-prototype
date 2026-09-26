@@ -103,7 +103,7 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="cv-footer mt-20 border-t border-[#1E293B] bg-[#070D18] text-white">
+    <footer className="mt-20 border-t border-[#1E293B] bg-[#070D18] text-white">
       {/* ── CUERPO PRINCIPAL DEL FOOTER ── */}
       <div className="w-full max-w-[1560px] mx-auto px-6 sm:px-10 lg:px-12 pt-16 pb-14 sm:pt-20 sm:pb-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-6 xl:gap-8 items-start">
