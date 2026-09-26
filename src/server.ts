@@ -53,6 +53,40 @@ function isH3SwallowedErrorBody(body: string): boolean {
   }
 }
 
+function pruneModulepreloads(html: string): string {
+  // Prunes non-essential modulepreloads from the initial SSR HTML.
+  // Critical boot modules (router runtime, Radix UI base, localized route layout) are preserved.
+  // Secondary component modules (icons, buttons, search modal, sub-components) are dynamically fetched upon need.
+  return html.replace(/<link\s+[^>]*rel="modulepreload"[^>]*\/?>/gi, (match) => {
+    const hrefMatch = match.match(/href="([^"]+)"/);
+    if (!hrefMatch) return match;
+    const href = hrefMatch[1];
+    const filename = href.split("/").pop() || "";
+    const isEssential =
+      filename.startsWith("index-") ||
+      filename.startsWith("rolldown-runtime-") ||
+      filename.startsWith("ui-") ||
+      filename.startsWith("_lang-") ||
+      filename.startsWith("brand-") ||
+      filename.startsWith("preload-helper-");
+
+    return isEssential ? match : "";
+  });
+}
+
+async function optimizeSsrResponse(response: Response): Promise<Response> {
+  const contentType = response.headers.get("content-type") ?? "";
+  if (!contentType.includes("text/html")) return response;
+
+  const html = await response.text();
+  const prunedHtml = pruneModulepreloads(html);
+  return new Response(prunedHtml, {
+    status: response.status,
+    statusText: response.statusText,
+    headers: response.headers,
+  });
+}
+
 function jsonResponse(data: unknown, status = 200, headersInit?: HeadersInit): Response {
   const headers = new Headers(headersInit);
   headers.set("Content-Type", "application/json; charset=utf-8");
@@ -157,7 +191,8 @@ export default {
     try {
       const handler = await getServerEntry();
       const response = await handler.fetch(request, env, ctx);
-      return await normalizeCatastrophicSsrResponse(response);
+      const normalized = await normalizeCatastrophicSsrResponse(response);
+      return await optimizeSsrResponse(normalized);
     } catch (error) {
       console.error(error);
       return new Response(renderErrorPage(), {
