@@ -1,5 +1,4 @@
-import { BRAND_ASSETS } from "@/lib/brand";
-import { useEffect, useRef, useState } from "react";
+﻿import { BRAND_ASSETS } from "@/lib/brand";
 
 interface BreadPDFFooterMascotProps {
   className?: string;
@@ -8,39 +7,17 @@ interface BreadPDFFooterMascotProps {
 /**
  * BreadPDFFooterMascot:
  * Animación directa de saludo y vuelco alegre de lado a lado.
- * Se inicia en estado pausado (animation-play-state: paused) durante el SSR y primer render
- * para evitar carga de composición en la GPU antes de FCP/LCP.
- * Se activa mediante IntersectionObserver únicamente cuando el footer entra en el viewport.
+ * Se inyecta la animación vía etiqueta <style> inline para garantizar al 100%
+ * que ningún filtro de navegador (como prefers-reduced-motion en Windows) ni
+ * caché de estilos CSS bloquee la animación.
  */
 export function BreadPDFFooterMascot({ className = "" }: BreadPDFFooterMascotProps) {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [isPlaying, setIsPlaying] = useState(false);
-
-  useEffect(() => {
-    const el = containerRef.current;
-    if (!el || typeof IntersectionObserver === "undefined") {
-      setIsPlaying(true);
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsPlaying(entry.isIntersecting);
-      },
-      { rootMargin: "100px" }
-    );
-
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
   return (
     <div
-      ref={containerRef}
       className={`relative flex flex-col items-center justify-end select-none ${className}`}
       aria-hidden="true"
     >
-      {/* Estilos locales inline con animación pausada por defecto hasta que sea visible */}
+      {/* Estilos locales inline auto-contenidos e inmunes a caché o flags de sistema */}
       <style>{`
         @keyframes breadPdfWaveAndSway {
           0%, 100% {
@@ -83,14 +60,12 @@ export function BreadPDFFooterMascot({ className = "" }: BreadPDFFooterMascotPro
 
         .breadpdf-live-mascot {
           animation: breadPdfWaveAndSway 3s cubic-bezier(0.34, 1.3, 0.64, 1) infinite !important;
-          animation-play-state: ${isPlaying ? "running" : "paused"} !important;
           transform-origin: bottom center !important;
           will-change: transform !important;
         }
 
         .breadpdf-live-shadow {
           animation: breadPdfShadowSway 3s ease-in-out infinite !important;
-          animation-play-state: ${isPlaying ? "running" : "paused"} !important;
           transform-origin: center center !important;
           will-change: transform, opacity !important;
         }
@@ -112,4 +87,3 @@ export function BreadPDFFooterMascot({ className = "" }: BreadPDFFooterMascotPro
     </div>
   );
 }
-
