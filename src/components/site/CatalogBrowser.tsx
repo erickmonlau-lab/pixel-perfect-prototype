@@ -18,8 +18,8 @@ const FILTER_BADGE_STYLES: Record<Filter, { active: string; inactive: string }> 
     inactive: "bg-[#7C3AED] text-white shadow-xs",
   },
   convertir: {
-    active: "bg-white text-[#059669]",
-    inactive: "bg-[#059669] text-white shadow-xs",
+    active: "bg-white text-[#047857]",
+    inactive: "bg-[#047857] text-white shadow-xs",
   },
   editar: {
     active: "bg-white text-[#EA580C]",

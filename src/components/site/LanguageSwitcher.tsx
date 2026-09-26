@@ -1,4 +1,4 @@
-﻿import { Link, useRouterState } from "@tanstack/react-router";
+import { Link, useRouterState } from "@tanstack/react-router";
 import {
   LOCALES,
   LOCALE_LABEL,
@@ -63,7 +63,7 @@ export function LanguageSwitcher({ variant = "menu" }: { variant?: "menu" | "inl
               title={LOCALE_LABEL[item]}
               className={`site-lang-btn flex items-center justify-center rounded-lg tracking-[0.04em] uppercase transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-pdf/40 ${
                 isActive
-                  ? "bg-brand-pdf text-white shadow-xs font-black"
+                  ? "bg-[#B91C1C] text-white shadow-xs font-black"
                   : "text-[#475569] hover:bg-[#F1F5F9] hover:text-[#0F172A]"
               }`}
             >

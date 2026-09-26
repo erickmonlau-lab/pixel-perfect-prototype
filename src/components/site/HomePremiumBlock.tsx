@@ -67,14 +67,14 @@ export function HomePremiumBlock() {
           desc: "Entorno limpio, despejado y sin banners de publicidad para concentrarte en tus documentos.",
           isComingSoon: false,
           Icon: AdFreeIcon,
-          // CARD 1: ROJO SÓLIDO BREADPDF (#EC3C2D)
+          // CARD 1: ROJO SÓLIDO BREADPDF ACCESIBLE (#B91C1C)
           theme: {
-            bg: "bg-[#EC3C2D]",
-            border: "border-[#EC3C2D]",
+            bg: "bg-[#B91C1C]",
+            border: "border-[#B91C1C]",
             textTitle: "text-white",
-            textDesc: "text-white/95",
-            iconCircle: "bg-white text-[#EC3C2D]",
-            shadow: "shadow-[0_8px_24px_rgba(236,60,45,0.28)]",
+            textDesc: "text-[#FEF2F2]",
+            iconCircle: "bg-white text-[#B91C1C]",
+            shadow: "shadow-[0_8px_24px_rgba(185,28,28,0.28)]",
           },
         },
         {
@@ -140,12 +140,12 @@ export function HomePremiumBlock() {
           isComingSoon: false,
           Icon: AdFreeIcon,
           theme: {
-            bg: "bg-[#EC3C2D]",
-            border: "border-[#EC3C2D]",
+            bg: "bg-[#B91C1C]",
+            border: "border-[#B91C1C]",
             textTitle: "text-white",
-            textDesc: "text-white/95",
-            iconCircle: "bg-white text-[#EC3C2D]",
-            shadow: "shadow-[0_8px_24px_rgba(236,60,45,0.28)]",
+            textDesc: "text-[#FEF2F2]",
+            iconCircle: "bg-white text-[#B91C1C]",
+            shadow: "shadow-[0_8px_24px_rgba(185,28,28,0.28)]",
           },
         },
         {
@@ -208,12 +208,12 @@ export function HomePremiumBlock() {
           isComingSoon: false,
           Icon: AdFreeIcon,
           theme: {
-            bg: "bg-[#EC3C2D]",
-            border: "border-[#EC3C2D]",
+            bg: "bg-[#B91C1C]",
+            border: "border-[#B91C1C]",
             textTitle: "text-white",
-            textDesc: "text-white/95",
-            iconCircle: "bg-white text-[#EC3C2D]",
-            shadow: "shadow-[0_8px_24px_rgba(236,60,45,0.28)]",
+            textDesc: "text-[#FEF2F2]",
+            iconCircle: "bg-white text-[#B91C1C]",
+            shadow: "shadow-[0_8px_24px_rgba(185,28,28,0.28)]",
           },
         },
         {
@@ -294,7 +294,7 @@ export function HomePremiumBlock() {
             <div className="lg:col-span-6 flex flex-col justify-center">
               {/* Prominent BreadPDF Brand Eyebrow Badge (100% Solid) */}
               <div className="flex items-center">
-                <span className="inline-flex items-center gap-2 rounded-full border border-brand-pdf bg-brand-pdf px-4 py-1.5 text-[12.5px] sm:text-[13.5px] font-extrabold tracking-widest text-white uppercase shadow-sm">
+                <span className="inline-flex items-center gap-2 rounded-full border border-[#B91C1C] bg-[#B91C1C] px-4 py-1.5 text-[12.5px] sm:text-[13.5px] font-extrabold tracking-widest text-white uppercase shadow-sm">
                   <PremiumCrownIcon className="size-3.5 text-white" />
                   {current.eyebrow}
                 </span>
@@ -318,7 +318,7 @@ export function HomePremiumBlock() {
                   <Link
                     to={SECTION_ROUTE}
                     params={premiumParams(locale)}
-                    className="inline-flex h-[52px] sm:h-[56px] items-center justify-center gap-3 rounded-2xl bg-brand-pdf px-8 text-[16px] sm:text-[16.5px] font-bold text-white shadow-[0_6px_22px_rgba(236,60,45,0.4)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#D93426] hover:shadow-[0_10px_28px_rgba(236,60,45,0.48)] active:translate-y-0 focus:outline-none focus:ring-4 focus:ring-brand-pdf/25"
+                    className="inline-flex h-[52px] sm:h-[56px] items-center justify-center gap-3 rounded-2xl bg-[#C53024] px-8 text-[16px] sm:text-[16.5px] font-bold text-white shadow-[0_6px_22px_rgba(197,48,36,0.4)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#B91C1C] hover:shadow-[0_10px_28px_rgba(185,28,28,0.48)] active:translate-y-0 focus:outline-none focus:ring-4 focus:ring-brand-pdf/25"
                   >
                     <span>{current.cta}</span>
                     <ArrowRight className="size-5 stroke-[2.4]" />

@@ -128,7 +128,7 @@ export function TrustBanner() {
       <div className="mx-auto max-w-[1440px] px-6 sm:px-8">
         {/* Encabezado con mayor jerarquía y presencia visual */}
         <div className="mx-auto max-w-3xl text-center">
-          <span className="inline-flex items-center gap-2 rounded-full border border-brand-pdf bg-brand-pdf px-4 py-1.5 text-[12.5px] sm:text-[13.5px] font-bold tracking-widest text-white uppercase shadow-xs">
+          <span className="inline-flex items-center gap-2 rounded-full border border-[#B91C1C] bg-[#B91C1C] px-4 py-1.5 text-[12.5px] sm:text-[13.5px] font-bold tracking-widest text-white uppercase shadow-xs">
             <span className="size-2 rounded-full bg-white shrink-0" />
             {current.eyebrow}
           </span>

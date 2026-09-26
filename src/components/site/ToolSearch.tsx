@@ -18,7 +18,7 @@ const POPULAR_TOOL_STYLES: Record<ToolCategory, { pill: string }> = {
     pill: "bg-[#7C3AED] text-white hover:bg-[#6D28D9] shadow-[0_1px_2px_rgba(124,58,237,0.25)]",
   },
   convertir: {
-    pill: "bg-[#059669] text-white hover:bg-[#047857] shadow-[0_1px_2px_rgba(5,150,105,0.25)]",
+    pill: "bg-[#047857] text-white hover:bg-[#065F46] shadow-[0_1px_2px_rgba(4,120,87,0.25)]",
   },
   editar: {
     pill: "bg-[#EA580C] text-white hover:bg-[#C2410C] shadow-[0_1px_2px_rgba(234,88,12,0.25)]",
