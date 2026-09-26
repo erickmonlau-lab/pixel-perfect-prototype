@@ -94,7 +94,7 @@ function Home() {
 
         {/* Central content column */}
         <div className="relative z-30 mx-auto max-w-[800px] px-5 text-center">
-          <div className="animate-rise">
+          <div>
             {/* H1 — Large, horizontal and commanding */}
             <h1 className="text-display mx-auto max-w-[860px] text-[2.4rem] font-extrabold leading-[1.08] tracking-[-0.035em] text-[#0F172A] sm:text-[3rem] lg:text-[3.25rem]">
               {headline.map((line, index) => (
@@ -151,7 +151,7 @@ function Home() {
       <section className="border-t border-[#F1F5F9] bg-white py-10 sm:py-14">
         <div className="mx-auto max-w-[1360px] px-6 sm:px-8">
           <div className="mx-auto max-w-3xl text-center">
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-brand-pdf bg-brand-pdf px-3.5 py-1 text-[12px] sm:text-[12.5px] font-bold tracking-widest text-white uppercase shadow-2xs">
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-[#B91C1C] bg-[#B91C1C] px-3.5 py-1 text-[12px] sm:text-[12.5px] font-bold tracking-widest text-white uppercase shadow-2xs">
               <span className="size-1.5 rounded-full bg-white shrink-0" />
               {t.home.editorial.eyebrow}
             </span>
