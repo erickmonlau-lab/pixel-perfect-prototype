@@ -126,7 +126,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           type: "font/woff2",
           href: "/fonts/plus-jakarta-sans-latin-700.woff2",
           crossOrigin: "anonymous",
-          fetchpriority: "high",
         },
         { rel: "icon", href: "/brand/breadpdf-icon.png?v=2", type: "image/png" },
         { rel: "icon", href: "/brand/favicon-32x32.png?v=2", sizes: "32x32", type: "image/png" },
