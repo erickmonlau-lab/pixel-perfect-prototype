@@ -120,19 +120,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       ],
       links: [
         { rel: "stylesheet", href: appCss },
-        { rel: "preconnect", href: "https://fonts.googleapis.com" },
-        { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
         {
           rel: "preload",
-          as: "style",
-          href: "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@500;600;700&display=swap",
-        },
-        {
-          rel: "stylesheet",
-          href: "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@500;600;700&display=swap",
-          media: "print",
-          // @ts-expect-error tanstack meta link onLoad attribute
-          onLoad: "this.media='all'",
+          as: "font",
+          type: "font/woff2",
+          href: "/fonts/plus-jakarta-sans-latin-700.woff2",
+          crossOrigin: "anonymous",
         },
         { rel: "icon", href: "/brand/breadpdf-icon.png?v=2", type: "image/png" },
         { rel: "icon", href: "/brand/favicon-32x32.png?v=2", sizes: "32x32", type: "image/png" },
