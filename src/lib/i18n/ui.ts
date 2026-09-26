@@ -244,11 +244,61 @@ const es = {
     sections: [
       {
         title: "Herramientas que sí necesitarán servidor",
-        body: "Algunas conversiones, como PDF a Word o Word a PDF, requieren un motor de procesamiento en servidor. Están marcadas como «en construcción» y no aceptan archivos todavía. Cuando se publiquen, esta página explicará exactamente cuánto tiempo se conserva cada archivo y cómo se elimina.",
+        body: "Algunas conversiones complejas, como PDF a Word o Word a PDF, requieren motores especializados de procesamiento en servidor. Cuando dichas herramientas se publiquen, esta política indicará con total transparencia el tiempo estricto de retención y su eliminación automatizada.",
       },
       {
-        title: "Sin cuentas ni seguimiento innecesario",
-        body: "Puedes usar las herramientas sin registrarte. Todavía no existen cuentas de usuario, por lo que no recogemos datos personales asociados a tu actividad.",
+        title: "Cuentas de usuario y privacidad de tus archivos",
+        body: "Puedes utilizar las herramientas de BreadPDF de forma anónima y gratuita sin necesidad de registrarte. Si decides crear una cuenta para gestionar tus preferencias o suscripción Premium, tus datos de autenticación se protegen de forma cifrada mediante Supabase Auth. Los archivos que procesas en el navegador nunca se asocian a tu cuenta ni se almacenan en servidores.",
+      },
+    ],
+  },
+  cookies: {
+    eyebrow: "Consentimiento y Transparencia",
+    title: "Política de Cookies de BreadPDF",
+    seoTitle: "Política de Cookies | BreadPDF",
+    seoDescription:
+      "Información detallada sobre el uso de cookies técnicas, preferencias y preparación de consentimiento publicitario en BreadPDF.",
+    body: [
+      "BreadPDF utiliza cookies estrictamente necesarias y almacenamiento local para permitir el funcionamiento de las herramientas, recordar tus preferencias de idioma e inicio de sesión seguro.",
+      "No utilizamos cookies invasivas ni vendemos tus datos. En cumplimiento de la normativa europea de protección de datos (RGPD y ePrivacy), te informamos de forma clara sobre qué tecnologías se utilizan.",
+    ],
+    sections: [
+      {
+        title: "1. Cookies técnicas y funcionales",
+        body: "Son imprescindibles para el funcionamiento de la plataforma: mantener tu sesión iniciada si estás registrado, almacenar tu selección de idioma ('es', 'ca', 'en') y conservar el estado temporal de tu procesamiento.",
+      },
+      {
+        title: "2. Preparación para Google AdSense y publicidad",
+        body: "BreadPDF está preparado para integrar publicidad de Google AdSense sujeta a plataformas de consentimiento certificadas (CMP / TCF v2.2). Cuando los anuncios estén activos, podrás aceptar o rechazar cookies de personalización en cualquier momento desde el panel de consentimiento.",
+      },
+      {
+        title: "3. Cómo gestionar o desactivar cookies",
+        body: "Puedes configurar o bloquear las cookies en cualquier momento a través de los ajustes de tu navegador (Chrome, Firefox, Safari, Edge). Ten en cuenta que desactivar cookies técnicas puede afectar a la persistencia de tus preferencias.",
+      },
+    ],
+  },
+  terms: {
+    eyebrow: "Condiciones de Uso",
+    title: "Términos del Servicio de BreadPDF",
+    seoTitle: "Términos del Servicio | BreadPDF",
+    seoDescription:
+      "Condiciones generales de uso, responsabilidad sobre el procesamiento local y suscripciones de BreadPDF.",
+    body: [
+      "Al acceder o utilizar BreadPDF, aceptas estos términos y condiciones. Si no estás de acuerdo con alguna parte, te rogamos que no utilices la plataforma.",
+      "BreadPDF proporciona herramientas documentales orientadas a la privacidad y el procesamiento local directo en el navegador del usuario.",
+    ],
+    sections: [
+      {
+        title: "1. Uso del servicio y propiedad de los archivos",
+        body: "Conservas en todo momento el 100% de la propiedad y los derechos sobre los documentos que procesas. Eres el único responsable del contenido de tus archivos y de contar con los derechos necesarios para su manipulación.",
+      },
+      {
+        title: "2. Garantía y disponibilidad",
+        body: "Las herramientas se proporcionan «tal cual» y «según disponibilidad». Aunque implementamos estándares de ingeniería rigurosos, BreadPDF no garantiza que el servicio esté libre de errores ni se hace responsable de pérdidas documentales derivadas del uso indebido.",
+      },
+      {
+        title: "3. Suscripciones Premium y pagos",
+        body: "Las suscripciones Premium otorgan acceso a funciones extendidas (procesamiento prioritario, entorno libre de publicidad). Los pagos se procesan de forma segura mediante plataformas de pago certificadas (Stripe) sin que BreadPDF almacene datos de tarjetas bancarias.",
       },
     ],
   },
@@ -540,11 +590,61 @@ const ca: Dict = {
     sections: [
       {
         title: "Eines que sí que necessitaran servidor",
-        body: "Algunes conversions, com PDF a Word o Word a PDF, necessiten un motor de processament al servidor. Estan marcades com «en construcció» i encara no accepten fitxers. Quan es publiquin, aquesta pàgina explicarà exactament quant temps es conserva cada fitxer i com s'elimina.",
+        body: "Algunes conversions complexes, com PDF a Word o Word a PDF, requereixen motors especialitzats de processament al servidor. Quan aquestes eines es publiquin, aquesta política indicarà amb total transparència el temps estricte de retenció i la seva eliminació automatitzada.",
       },
       {
-        title: "Sense comptes ni seguiment innecessari",
-        body: "Pots fer servir les eines sense registrar-te. Encara no hi ha comptes d'usuari, de manera que no recollim dades personals associades a la teva activitat.",
+        title: "Comptes d'usuari i privadesa dels teus fitxers",
+        body: "Pots fer servir les eines de BreadPDF de forma anònima i gratuïta sense necessitat de registrar-te. Si decideixes crear un compte per gestionar les teves preferències o subscripció Premium, les teves dades d'autenticació es protegeixen de forma xifrada mitjançant Supabase Auth. Els fitxers que processis al navegador mai s'associen al teu compte ni s'emmagatzemen a servidors.",
+      },
+    ],
+  },
+  cookies: {
+    eyebrow: "Consentiment i Transparència",
+    title: "Política de Cookies de BreadPDF",
+    seoTitle: "Política de Cookies | BreadPDF",
+    seoDescription:
+      "Informació detallada sobre l'ús de cookies tècniques, preferències i preparació de consentiment publicitari a BreadPDF.",
+    body: [
+      "BreadPDF utilitza cookies estrictament necessàries i emmagatzematge local per permetre el funcionament de les eines, recordar la teva tria d'idioma i mantenir sessions segures.",
+      "No fem servir cookies invasives ni venem les teves dades. En compliment del RGPD i de la normativa europea ePrivacy, t'informem amb total claredat.",
+    ],
+    sections: [
+      {
+        title: "1. Cookies tècniques i funcionals",
+        body: "Són imprescindibles perquè la plataforma funcioni: mantenir la teva sessió si t'has registrat, guardar el teu idioma seleccionat ('es', 'ca', 'en') i conservar l'estat temporal del teu document.",
+      },
+      {
+        title: "2. Preparació per a Google AdSense i publicitat",
+        body: "BreadPDF està preparat per integrar publicitat de Google AdSense subjecta a plataformes de consentiment certificades (CMP / TCF v2.2). Quan els anuncis estiguin actius, podràs acceptar o rebutjar cookies publicitàries des del panell de consentiment.",
+      },
+      {
+        title: "3. Com gestionar o desactivar cookies",
+        body: "Pots configurar o bloquejar cookies en qualsevol moment des dels ajustos del teu navegador web (Chrome, Firefox, Safari, Edge).",
+      },
+    ],
+  },
+  terms: {
+    eyebrow: "Condicions d'Ús",
+    title: "Termes del Servei de BreadPDF",
+    seoTitle: "Termes del Servei | BreadPDF",
+    seoDescription:
+      "Condicions generals d'ús, responsabilitat sobre el processament local i subscripcions a BreadPDF.",
+    body: [
+      "En accedir o utilitzar BreadPDF, acceptes aquests termes i condicions. Si no hi estàs d'acord, et preguem que no utilitzis la plataforma.",
+      "BreadPDF ofereix eines documentals orientades a la privadesa i el processament local directe al navegador.",
+    ],
+    sections: [
+      {
+        title: "1. Ús del servei i propietat dels fitxers",
+        body: "Mantens en tot moment el 100% de la propietat i els drets sobre els fitxers que processos. Ets l'únic responsable del contingut dels teus documents.",
+      },
+      {
+        title: "2. Garantia i disponibilitat",
+        body: "Les eines es proporcionen «tal com són» i «segons disponibilitat». BreadPDF no es fa responsable de pèrdues de dades derivades d'un ús inadequat.",
+      },
+      {
+        title: "3. Subscripcions Premium i pagaments",
+        body: "Les subscripcions Premium atorguen accés a funcions avançades sense publicitat. Els pagaments es gestionen de manera segura mitjançant passarel·les certificades (Stripe).",
       },
     ],
   },
@@ -832,11 +932,61 @@ const en: Dict = {
     sections: [
       {
         title: "Tools that will need a server",
-        body: "Some conversions, such as PDF to Word or Word to PDF, require a server-side processing engine. They are marked as in development and accept no files yet. When they launch, this page will explain exactly how long each file is kept and how it is deleted.",
+        body: "Some complex conversions, such as PDF to Word or Word to PDF, require specialized server-side processing engines. When these tools launch, this policy will transparently describe the strict retention period and automated deletion process.",
       },
       {
-        title: "No accounts, no needless tracking",
-        body: "You can use the tools without signing up. There are no user accounts yet, so we collect no personal data tied to your activity.",
+        title: "User accounts and the privacy of your files",
+        body: "You can use BreadPDF tools anonymously and free of charge without creating an account. If you choose to register an account to manage your preferences or Premium subscription, your authentication credentials are secure and encrypted via Supabase Auth. Documents processed inside your browser are never linked to your account and never stored on remote servers.",
+      },
+    ],
+  },
+  cookies: {
+    eyebrow: "Consent & Transparency",
+    title: "Cookie Policy | BreadPDF",
+    seoTitle: "Cookie Policy | BreadPDF",
+    seoDescription:
+      "Detailed information about technical cookies, local storage preferences, and advertising consent preparation on BreadPDF.",
+    body: [
+      "BreadPDF uses strictly necessary cookies and local storage to enable core tool workflows, remember your language preference, and ensure secure authentication.",
+      "We do not use invasive tracking cookies or sell your personal data. In full compliance with European data privacy regulations (GDPR & ePrivacy), we outline our practices with complete transparency.",
+    ],
+    sections: [
+      {
+        title: "1. Technical and functional cookies",
+        body: "Essential for site reliability: persisting your authenticated session, storing your language preference ('es', 'ca', 'en'), and keeping temporary document state inside your browser.",
+      },
+      {
+        title: "2. Preparation for Google AdSense and advertising",
+        body: "BreadPDF is architected to integrate Google AdSense under certified Consent Management Platforms (CMP / TCF v2.2). When advertisements become active, you will be able to review, accept, or reject personalization cookies at any time.",
+      },
+      {
+        title: "3. How to manage or disable cookies",
+        body: "You can modify or block cookie settings anytime via your browser preferences (Chrome, Firefox, Safari, Edge).",
+      },
+    ],
+  },
+  terms: {
+    eyebrow: "Terms & Conditions",
+    title: "Terms of Service | BreadPDF",
+    seoTitle: "Terms of Service | BreadPDF",
+    seoDescription:
+      "General conditions of use, local processing liability, and subscription terms on BreadPDF.",
+    body: [
+      "By accessing or using BreadPDF, you agree to these Terms of Service. If you disagree with any portion, please refrain from using the platform.",
+      "BreadPDF delivers document productivity utilities emphasizing local in-browser processing and data privacy.",
+    ],
+    sections: [
+      {
+        title: "1. Acceptable use and file ownership",
+        body: "You retain 100% ownership and all intellectual property rights to the documents you process. You are solely responsible for ensuring you hold the legal authority to handle and modify your files.",
+      },
+      {
+        title: "2. Availability and warranties",
+        body: "Tools are provided 'as is' and 'as available'. While we uphold rigorous engineering and privacy standards, BreadPDF does not warrant uninterrupted uptime and disclaims liability for data loss arising from misuse.",
+      },
+      {
+        title: "3. Premium subscriptions and billing",
+        body: "Premium subscriptions unlock enhanced capabilities (priority speed, ad-free environment). Payments are processed securely via certified payment gateways (Stripe) without BreadPDF ever storing payment card details.",
       },
     ],
   },

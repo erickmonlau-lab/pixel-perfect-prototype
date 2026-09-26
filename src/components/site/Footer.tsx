@@ -8,6 +8,8 @@ import {
   SECTION_ROUTE,
   homeParams,
   privacyParams,
+  cookiesParams,
+  termsParams,
   premiumParams,
   toolParams,
 } from "@/lib/i18n/routing";
@@ -266,7 +268,7 @@ export function Footer() {
               <li>
                 <Link
                   to={SECTION_ROUTE}
-                  params={privacyParams(locale)}
+                  params={cookiesParams(locale)}
                   className="group inline-flex items-center gap-2.5 text-[15px] sm:text-[15.5px] font-medium text-slate-300 transition-colors hover:text-[#EC3C2D]"
                 >
                   <span className="size-2 rounded-full bg-[#EC3C2D] shrink-0 opacity-90 group-hover:opacity-100 transition-opacity" aria-hidden="true" />
@@ -276,7 +278,7 @@ export function Footer() {
               <li>
                 <Link
                   to={SECTION_ROUTE}
-                  params={privacyParams(locale)}
+                  params={termsParams(locale)}
                   className="group inline-flex items-center gap-2.5 text-[15px] sm:text-[15.5px] font-medium text-slate-300 transition-colors hover:text-[#EC3C2D]"
                 >
                   <span className="size-2 rounded-full bg-[#EC3C2D] shrink-0 opacity-90 group-hover:opacity-100 transition-opacity" aria-hidden="true" />

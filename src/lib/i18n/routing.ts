@@ -30,6 +30,14 @@ export function privacyParams(locale: Locale) {
   return { lang: locale, section: SEGMENTS[locale].privacy };
 }
 
+export function cookiesParams(locale: Locale) {
+  return { lang: locale, section: SEGMENTS[locale].cookies };
+}
+
+export function termsParams(locale: Locale) {
+  return { lang: locale, section: SEGMENTS[locale].terms };
+}
+
 export function loginParams(locale: Locale) {
   return { lang: locale, section: SEGMENTS[locale].login };
 }
@@ -79,6 +87,14 @@ export function privacyPath(locale: Locale) {
   return `/${locale}/${SEGMENTS[locale].privacy}`;
 }
 
+export function cookiesPath(locale: Locale) {
+  return `/${locale}/${SEGMENTS[locale].cookies}`;
+}
+
+export function termsPath(locale: Locale) {
+  return `/${locale}/${SEGMENTS[locale].terms}`;
+}
+
 export function loginPath(locale: Locale) {
   return `/${locale}/${SEGMENTS[locale].login}`;
 }
@@ -111,6 +127,8 @@ export type PageRef =
   | { kind: "home" }
   | { kind: "catalog" }
   | { kind: "privacy" }
+  | { kind: "cookies" }
+  | { kind: "terms" }
   | { kind: "premium" }
   | { kind: "login" }
   | { kind: "register" }
@@ -129,6 +147,8 @@ export function parsePath(pathname: string): { locale: Locale; page: PageRef } {
 
   const kind = sectionKind(locale, section);
   if (kind === "privacy") return { locale, page: { kind: "privacy" } };
+  if (kind === "cookies") return { locale, page: { kind: "cookies" } };
+  if (kind === "terms") return { locale, page: { kind: "terms" } };
   if (kind === "premium") return { locale, page: { kind: "premium" } };
   if (kind === "login") return { locale, page: { kind: "login" } };
   if (kind === "register") return { locale, page: { kind: "register" } };
@@ -158,6 +178,10 @@ export function pathFor(locale: Locale, page: PageRef): string {
       return catalogPath(locale);
     case "privacy":
       return privacyPath(locale);
+    case "cookies":
+      return cookiesPath(locale);
+    case "terms":
+      return termsPath(locale);
     case "premium":
       return premiumPath(locale);
     case "login":

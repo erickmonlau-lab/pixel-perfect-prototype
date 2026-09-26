@@ -4,6 +4,8 @@ import { useLocale } from "@/lib/i18n/context";
 import type { ToolCategory } from "@/lib/tools/types";
 import { ToolCatalogCard } from "./ToolCatalogCard";
 
+type Filter = ToolCategory | "all";
+
 const FILTER_BADGE_STYLES: Record<Filter, { active: string; inactive: string }> = {
   all: {
     active: "bg-white text-[#0F172A]",

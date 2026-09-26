@@ -587,11 +587,11 @@ export function Header() {
                 <span>{t.nav.login || "Acceder"}</span>
               </Link>
 
-              {/* 2. Registrarse (CTA en Rojo BreadPDF) */}
+              {/* 2. Registrarse (CTA en Rojo BreadPDF Accesible) */}
               <Link
                 to={SECTION_ROUTE}
                 params={registerParams(locale)}
-                className="site-auth-register inline-flex items-center justify-center bg-brand-pdf text-white hover:bg-brand-pdf-dark transition-all shadow-xs hover:shadow-sm whitespace-nowrap"
+                className="site-auth-register inline-flex items-center justify-center bg-[#C53024] text-white hover:bg-[#B91C1C] transition-all shadow-xs hover:shadow-sm whitespace-nowrap"
                 aria-label={t.nav.register || "Registrarse"}
               >
                 <span>{t.nav.register || "Registrarse"}</span>
@@ -762,7 +762,7 @@ export function Header() {
                   to={SECTION_ROUTE}
                   params={registerParams(locale)}
                   onClick={() => setMobileOpen(false)}
-                  className="flex items-center justify-center rounded-xl bg-brand-pdf py-3 text-[14.5px] font-bold text-white hover:bg-brand-pdf-dark shadow-xs"
+                  className="flex items-center justify-center rounded-xl bg-[#C53024] py-3 text-[14.5px] font-bold text-white hover:bg-[#B91C1C] shadow-xs"
                 >
                   <span>{t.nav.register || "Registrarse"}</span>
                 </Link>

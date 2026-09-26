@@ -80,6 +80,35 @@ export function generateSitemap(): string {
       ],
     });
 
+    // 2.2 Legal pages (Privacy, Cookies, Terms)
+    entries.push({
+      loc: `${SITE_URL}/${locale}/${SEGMENTS[locale].privacy}`,
+      priority: "0.5",
+      changefreq: "monthly",
+      alternates: [
+        ...LOCALES.map((l) => ({ lang: l, href: `${SITE_URL}/${l}/${SEGMENTS[l].privacy}` })),
+        { lang: "x-default", href: `${SITE_URL}/es/${SEGMENTS.es.privacy}` },
+      ],
+    });
+    entries.push({
+      loc: `${SITE_URL}/${locale}/${SEGMENTS[locale].cookies}`,
+      priority: "0.5",
+      changefreq: "monthly",
+      alternates: [
+        ...LOCALES.map((l) => ({ lang: l, href: `${SITE_URL}/${l}/${SEGMENTS[l].cookies}` })),
+        { lang: "x-default", href: `${SITE_URL}/es/${SEGMENTS.es.cookies}` },
+      ],
+    });
+    entries.push({
+      loc: `${SITE_URL}/${locale}/${SEGMENTS[locale].terms}`,
+      priority: "0.5",
+      changefreq: "monthly",
+      alternates: [
+        ...LOCALES.map((l) => ({ lang: l, href: `${SITE_URL}/${l}/${SEGMENTS[l].terms}` })),
+        { lang: "x-default", href: `${SITE_URL}/es/${SEGMENTS.es.terms}` },
+      ],
+    });
+
     // 3. Live tool pages (50 herramientas)
     for (const tool of TOOLS.filter((t) => t.status === "live")) {
       entries.push({
