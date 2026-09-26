@@ -126,7 +126,7 @@ function Home() {
           SECTION — FULL CATALOG: Direct Product Entry via Filters
           ============================================================ */}
       <section
-        className="border-b border-[#E5E7EB] bg-[#F8FAFC] pt-7 pb-14 sm:pt-9 sm:pb-16"
+        className="cv-catalog border-b border-[#E5E7EB] bg-[#F8FAFC] pt-7 pb-14 sm:pt-9 sm:pb-16"
         id="catalogo"
       >
         <div className="mx-auto max-w-[1520px] px-5">
@@ -148,7 +148,7 @@ function Home() {
       {/* ============================================================
           SECTION — EDITORIAL: Clear, honest information without marketing fluff
           ============================================================ */}
-      <section className="border-t border-[#F1F5F9] bg-white py-10 sm:py-14">
+      <section className="cv-editorial border-t border-[#F1F5F9] bg-white py-10 sm:py-14">
         <div className="mx-auto max-w-[1360px] px-6 sm:px-8">
           <div className="mx-auto max-w-3xl text-center">
             <span className="inline-flex items-center gap-1.5 rounded-full border border-[#B91C1C] bg-[#B91C1C] px-3.5 py-1 text-[12px] sm:text-[12.5px] font-bold tracking-widest text-white uppercase shadow-2xs">

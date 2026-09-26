@@ -124,7 +124,7 @@ export function TrustBanner() {
   const current = copy[locale as "es" | "ca" | "en"] ?? copy.es;
 
   return (
-    <section className="border-b border-[#E5E7EB] bg-white py-20 sm:py-28">
+    <section className="cv-trust border-b border-[#E5E7EB] bg-white py-20 sm:py-28">
       <div className="mx-auto max-w-[1440px] px-6 sm:px-8">
         {/* Encabezado con mayor jerarquía y presencia visual */}
         <div className="mx-auto max-w-3xl text-center">

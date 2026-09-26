@@ -635,3 +635,33 @@
   --guide-cat-tecnica-soft: #E0F2FE;
 }
 
+/* ==========================================================================
+   CONTENT-VISIBILITY OPTIMIZATION (Below-The-Fold Isolation)
+   Skips rendering, style recalc, layout & offscreen animations during initial paint.
+   Preserves full SSR markup, SEO indexability, accessibility & DOM searchability.
+   ========================================================================== */
+.cv-catalog {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 1800px;
+}
+
+.cv-trust {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 550px;
+}
+
+.cv-editorial {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 650px;
+}
+
+.cv-premium {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 750px;
+}
+
+.cv-footer {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 600px;
+}
+

@@ -267,7 +267,7 @@ export function HomePremiumBlock() {
   const current = copy[locale as "es" | "ca" | "en"] ?? copy.es;
 
   return (
-    <section className="relative overflow-hidden border-t border-b border-[#E2E8F0] bg-linear-to-b from-[#FFFDFD] via-[#FAFBFD] to-[#F1F5F9]/60 py-20 sm:py-28">
+    <section className="cv-premium relative overflow-hidden border-t border-b border-[#E2E8F0] bg-linear-to-b from-[#FFFDFD] via-[#FAFBFD] to-[#F1F5F9]/60 py-20 sm:py-28">
       {/* Delicate BreadPDF Brand Ambient Aura */}
       <div
         className="pointer-events-none absolute -left-32 top-10 size-[520px] rounded-full bg-[#EC3C2D]/4 blur-[160px]"
