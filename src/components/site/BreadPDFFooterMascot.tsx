@@ -1,4 +1,4 @@
-﻿import { BRAND_ASSETS } from "@/lib/brand";
+import { BRAND_ASSETS } from "@/lib/brand";
 
 interface BreadPDFFooterMascotProps {
   className?: string;
@@ -61,7 +61,6 @@ export function BreadPDFFooterMascot({ className = "" }: BreadPDFFooterMascotPro
         .breadpdf-live-mascot {
           animation: breadPdfWaveAndSway 3s cubic-bezier(0.34, 1.3, 0.64, 1) infinite !important;
           transform-origin: bottom center !important;
-          will-change: transform !important;
         }
 
         .breadpdf-live-shadow {
