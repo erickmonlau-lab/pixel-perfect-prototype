@@ -38,7 +38,7 @@ type TabKey = "resumen" | "favoritos" | "preferencias" | "comunicaciones" | "seg
 export function AccountDashboard() {
   const { locale, tools, t } = useLocale();
   const { user, logout, updateProfile } = useAuth();
-  const { favorites, toggleFavorite } = useFavorites();
+  const { favorites } = useFavorites();
   const navigate = useNavigate();
 
   // Lee tab desde URL si está presente
@@ -494,13 +494,7 @@ export function AccountDashboard() {
                   {favoriteTools.length > 0 ? (
                     <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                       {favoriteTools.map((tool) => (
-                        <ToolCatalogCard
-                          key={tool.slug}
-                          tool={tool}
-                          compact={true}
-                          isFavorite={true}
-                          onToggleFavorite={toggleFavorite}
-                        />
+                        <ToolCatalogCard key={tool.slug} tool={tool} compact={true} />
                       ))}
                     </div>
                   ) : (

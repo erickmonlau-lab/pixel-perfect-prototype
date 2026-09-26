@@ -526,14 +526,7 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
         </div>
         <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {localizedRelated(locale, tool).map((related, index) => (
-            <ToolCatalogCard
-              key={related.slug}
-              tool={related}
-              index={index}
-              compact
-              isFavorite={related.canonicalSlug ? isFavorite(related.canonicalSlug) : false}
-              onToggleFavorite={toggleFavorite}
-            />
+            <ToolCatalogCard key={related.slug} tool={related} index={index} compact />
           ))}
         </div>
       </section>
@@ -1001,7 +994,6 @@ function CategoryPage({ category }: { category: ToolCategory }) {
   const soon = localizedRoadmapByCategory(locale, category);
   const popular = localizedPopular(locale).filter((tool) => tool.category !== category);
   const accent = FAMILY_ACCENTS[category];
-  const { isFavorite, toggleFavorite } = useFavorites();
 
   return (
     <div className="mx-auto max-w-[1400px] px-5 pb-16 pt-8 sm:pt-10">
@@ -1042,13 +1034,7 @@ function CategoryPage({ category }: { category: ToolCategory }) {
         </h2>
         <div className={`mt-6 ${TOOL_GRID}`}>
           {tools.map((tool, index) => (
-            <ToolCatalogCard
-              key={tool.slug}
-              tool={tool}
-              index={index}
-              isFavorite={tool.canonicalSlug ? isFavorite(tool.canonicalSlug) : false}
-              onToggleFavorite={toggleFavorite}
-            />
+            <ToolCatalogCard key={tool.slug} tool={tool} index={index} />
           ))}
           {soon.map((tool, index) => (
             <ToolCatalogCard key={tool.name} tool={tool} isRoadmap index={tools.length + index} />
