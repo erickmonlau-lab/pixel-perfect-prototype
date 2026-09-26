@@ -41,49 +41,31 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   useEffect(() => {
-    let isSubscribed = true;
-    let unsubscribeFn: (() => void) | null = null;
-    let idleId: number | null = null;
-    let timeoutId: ReturnType<typeof setTimeout> | null = null;
+    refreshSession();
 
-    const runDeferredRefresh = () => {
-      if (!isSubscribed) return;
-      refreshSession();
+    // Si Supabase está configurado, escuchar cambios de estado de autenticación en tiempo real
+    if (isSupabaseConfigured) {
+      let isSubscribed = true;
+      let unsubscribeFn: (() => void) | null = null;
 
-      // Si Supabase está configurado, escuchar cambios de estado de autenticación en tiempo real
-      if (isSupabaseConfigured) {
-        getSupabase().then((supabase) => {
-          if (!supabase || !isSubscribed) return;
-          const { data: authListener } = supabase.auth.onAuthStateChange(async (event) => {
-            if (event === "SIGNED_IN" || event === "USER_UPDATED" || event === "TOKEN_REFRESHED") {
-              await refreshSession();
-            } else if (event === "SIGNED_OUT") {
-              setUser(null);
-              setIsLoading(false);
-            }
-          });
-          unsubscribeFn = () => authListener.subscription.unsubscribe();
+      getSupabase().then((supabase) => {
+        if (!supabase || !isSubscribed) return;
+        const { data: authListener } = supabase.auth.onAuthStateChange(async (event) => {
+          if (event === "SIGNED_IN" || event === "USER_UPDATED" || event === "TOKEN_REFRESHED") {
+            await refreshSession();
+          } else if (event === "SIGNED_OUT") {
+            setUser(null);
+            setIsLoading(false);
+          }
         });
-      }
-    };
+        unsubscribeFn = () => authListener.subscription.unsubscribe();
+      });
 
-    // Aplazar la verificación fuera del critical path del primer render (LCP/FCP)
-    if (typeof window !== "undefined" && "requestIdleCallback" in window) {
-      idleId = (window as any).requestIdleCallback(runDeferredRefresh, { timeout: 3500 });
-    } else {
-      timeoutId = setTimeout(runDeferredRefresh, 1500);
+      return () => {
+        isSubscribed = false;
+        if (unsubscribeFn) unsubscribeFn();
+      };
     }
-
-    return () => {
-      isSubscribed = false;
-      if (idleId !== null && typeof window !== "undefined" && "cancelIdleCallback" in window) {
-        (window as any).cancelIdleCallback(idleId);
-      }
-      if (timeoutId !== null) {
-        clearTimeout(timeoutId);
-      }
-      if (unsubscribeFn) unsubscribeFn();
-    };
   }, [refreshSession]);
 
   const handleLogin = async (payload: LoginPayload) => {
