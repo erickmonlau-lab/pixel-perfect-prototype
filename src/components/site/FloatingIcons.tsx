@@ -139,7 +139,7 @@ export function FloatingIcons() {
           ============================================================ */}
       {/* Halo 1 — Left ambient glow: warm coral aura framing the left tool cluster */}
       <div
-        className="hero-glow-ambient absolute -left-20 top-[-5%] h-[460px] w-[460px] rounded-full blur-[105px] pointer-events-none mix-blend-multiply transition-opacity duration-700"
+        className="hero-glow-ambient absolute -left-20 top-[-5%] h-[460px] w-[460px] rounded-full blur-[105px] pointer-events-none mix-blend-multiply transition-opacity duration-700 hidden md:block"
         style={{
           background:
             "radial-gradient(circle, rgba(236, 60, 45, 0.10) 0%, rgba(255, 235, 232, 0.55) 45%, rgba(255, 255, 255, 0) 70%)",
@@ -149,7 +149,7 @@ export function FloatingIcons() {
 
       {/* Halo 2 — Right ambient glow: warm coral aura framing the right tool cluster */}
       <div
-        className="hero-glow-ambient absolute -right-20 top-[0%] h-[480px] w-[480px] rounded-full blur-[115px] pointer-events-none mix-blend-multiply transition-opacity duration-700"
+        className="hero-glow-ambient absolute -right-20 top-[0%] h-[480px] w-[480px] rounded-full blur-[115px] pointer-events-none mix-blend-multiply transition-opacity duration-700 hidden md:block"
         style={{
           animationDelay: "3s",
           background:
