@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { useAuth } from "./auth-context";
-import { supabase, isSupabaseConfigured } from "@/lib/supabase/client";
+import { getSupabase, isSupabaseConfigured } from "@/lib/supabase/client";
 
 const FAVORITES_STORAGE_PREFIX = "breadpdf_favorites_";
 const GUEST_STORAGE_KEY = `${FAVORITES_STORAGE_PREFIX}guest`;
@@ -58,25 +58,28 @@ export function useFavorites() {
       const mergedSet = new Set<string>([...userLocalList, ...guestList]);
 
       // 2. Si Supabase está conectado, sincronizar con public.user_favorites
-      if (isSupabaseConfigured && supabase) {
+      if (isSupabaseConfigured) {
         try {
-          const { data: remoteRows, error } = await supabase
-            .from("user_favorites")
-            .select("tool_id")
-            .eq("user_id", user.id);
+          const supabase = await getSupabase();
+          if (supabase) {
+            const { data: remoteRows, error } = await supabase
+              .from("user_favorites")
+              .select("tool_id")
+              .eq("user_id", user.id);
 
-          if (!error && remoteRows) {
-            remoteRows.forEach((r) => mergedSet.add(r.tool_id));
-          }
+            if (!error && remoteRows) {
+              remoteRows.forEach((r) => mergedSet.add(r.tool_id));
+            }
 
-          // Persistir los locales combinados a la base de datos Supabase
-          const allMerged = Array.from(mergedSet);
-          if (allMerged.length > 0) {
-            const rowsToInsert = allMerged.map((tool_id) => ({
-              user_id: user.id,
-              tool_id,
-            }));
-            await supabase.from("user_favorites").upsert(rowsToInsert, { onConflict: "user_id,tool_id" });
+            // Persistir los locales combinados a la base de datos Supabase
+            const allMerged = Array.from(mergedSet);
+            if (allMerged.length > 0) {
+              const rowsToInsert = allMerged.map((tool_id) => ({
+                user_id: user.id,
+                tool_id,
+              }));
+              await supabase.from("user_favorites").upsert(rowsToInsert, { onConflict: "user_id,tool_id" });
+            }
           }
         } catch (e) {
           console.error("Error syncing favorites with Supabase", e);
@@ -116,20 +119,23 @@ export function useFavorites() {
         }
 
         // Si está autenticado y Supabase está disponible, persistir en DB
-        if (user && isSupabaseConfigured && supabase) {
-          if (exists) {
-            supabase
-              .from("user_favorites")
-              .delete()
-              .eq("user_id", user.id)
-              .eq("tool_id", canonicalSlug)
-              .then();
-          } else {
-            supabase
-              .from("user_favorites")
-              .insert({ user_id: user.id, tool_id: canonicalSlug })
-              .then();
-          }
+        if (user && isSupabaseConfigured) {
+          getSupabase().then((supabase) => {
+            if (!supabase) return;
+            if (exists) {
+              supabase
+                .from("user_favorites")
+                .delete()
+                .eq("user_id", user.id)
+                .eq("tool_id", canonicalSlug)
+                .then();
+            } else {
+              supabase
+                .from("user_favorites")
+                .insert({ user_id: user.id, tool_id: canonicalSlug })
+                .then();
+            }
+          });
         }
 
         return next;

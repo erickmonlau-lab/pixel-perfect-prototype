@@ -7,7 +7,7 @@ import {
   logoutUser,
   updateUserProfile,
 } from "./auth-store";
-import { supabase, isSupabaseConfigured } from "@/lib/supabase/client";
+import { getSupabase, isSupabaseConfigured } from "@/lib/supabase/client";
 
 interface AuthContextValue {
   user: User | null;
@@ -44,18 +44,26 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     refreshSession();
 
     // Si Supabase está configurado, escuchar cambios de estado de autenticación en tiempo real
-    if (isSupabaseConfigured && supabase) {
-      const { data: authListener } = supabase.auth.onAuthStateChange(async (event) => {
-        if (event === "SIGNED_IN" || event === "USER_UPDATED" || event === "TOKEN_REFRESHED") {
-          await refreshSession();
-        } else if (event === "SIGNED_OUT") {
-          setUser(null);
-          setIsLoading(false);
-        }
+    if (isSupabaseConfigured) {
+      let isSubscribed = true;
+      let unsubscribeFn: (() => void) | null = null;
+
+      getSupabase().then((supabase) => {
+        if (!supabase || !isSubscribed) return;
+        const { data: authListener } = supabase.auth.onAuthStateChange(async (event) => {
+          if (event === "SIGNED_IN" || event === "USER_UPDATED" || event === "TOKEN_REFRESHED") {
+            await refreshSession();
+          } else if (event === "SIGNED_OUT") {
+            setUser(null);
+            setIsLoading(false);
+          }
+        });
+        unsubscribeFn = () => authListener.subscription.unsubscribe();
       });
 
       return () => {
-        authListener.subscription.unsubscribe();
+        isSubscribed = false;
+        if (unsubscribeFn) unsubscribeFn();
       };
     }
   }, [refreshSession]);

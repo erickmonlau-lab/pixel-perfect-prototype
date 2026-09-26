@@ -14,7 +14,7 @@ import {
 import { PremiumCrownIcon } from "@/components/site/PremiumCrownIcon";
 import { GuideMascot } from "@/components/guides/editorial/GuideEditorial";
 import { useAuth } from "@/lib/auth/auth-context";
-import { supabase, isSupabaseConfigured } from "@/lib/supabase/client";
+import { getSupabase, isSupabaseConfigured } from "@/lib/supabase/client";
 import { useLocale } from "@/lib/i18n/context";
 import {
   HOME_ROUTE,
@@ -248,14 +248,21 @@ export function AuthSplitLayout({ initialMode = "login" }: AuthSplitLayoutProps)
 
   // Detectar modo updatePassword reactivamente con Supabase onAuthStateChange
   React.useEffect(() => {
-    if (isSupabaseConfigured && supabase) {
-      const { data: { subscription } } = supabase.auth.onAuthStateChange((event) => {
-        if (event === "PASSWORD_RECOVERY") {
-          setMode("updatePassword");
-        }
+    if (isSupabaseConfigured) {
+      let isSubscribed = true;
+      let unsubscribeFn: (() => void) | null = null;
+      getSupabase().then((supabase) => {
+        if (!supabase || !isSubscribed) return;
+        const { data: { subscription } } = supabase.auth.onAuthStateChange((event) => {
+          if (event === "PASSWORD_RECOVERY") {
+            setMode("updatePassword");
+          }
+        });
+        unsubscribeFn = () => subscription.unsubscribe();
       });
       return () => {
-        subscription.unsubscribe();
+        isSubscribed = false;
+        if (unsubscribeFn) unsubscribeFn();
       };
     }
   }, []);
