@@ -67,8 +67,7 @@ function pruneModulepreloads(html: string): string {
       filename.startsWith("rolldown-runtime-") ||
       filename.startsWith("ui-") ||
       filename.startsWith("_lang-") ||
-      filename.startsWith("brand-") ||
-      filename.startsWith("preload-helper-");
+      filename.startsWith("brand-");
 
     return isEssential ? match : "";
   });
