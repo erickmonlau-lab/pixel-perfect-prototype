@@ -119,14 +119,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         { name: "google-adsense-account", content: "ca-pub-7477829897419785" },
       ],
       links: [
-        { rel: "preload", as: "style", href: appCss },
-        {
-          rel: "stylesheet",
-          href: appCss,
-          media: "print",
-          // @ts-expect-error tanstack meta link onLoad attribute
-          onLoad: "this.media='all'",
-        },
+        { rel: "stylesheet", href: appCss },
         { rel: "preconnect", href: "https://fonts.googleapis.com" },
         { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
         {
@@ -168,21 +161,6 @@ function RootShell({ children }: { children: ReactNode }) {
     <html lang={HTML_LANG[locale]}>
       <head>
         <HeadContent />
-        <style
-          dangerouslySetInnerHTML={{
-            __html: `
-              :root{--brand-red:#EC3C2D;--brand-bread:#592316;--font-display:"Plus Jakarta Sans","Inter",sans-serif;--font-sans:"Inter","Plus Jakarta Sans",sans-serif;}
-              body{margin:0;background-color:#F8FAFC;color:#0F172A;font-family:var(--font-sans);-webkit-font-smoothing:antialiased;}
-              .site-header{height:76px;min-height:76px;}
-              .hero-canvas{position:relative;background:#ffffff;}
-              .text-display{font-family:var(--font-display);font-weight:700;line-height:1.08;}
-              .text-brand-pdf{color:#EC3C2D;}
-            `,
-          }}
-        />
-        <noscript>
-          <link rel="stylesheet" href={appCss} />
-        </noscript>
       </head>
       <body>
         {children}
