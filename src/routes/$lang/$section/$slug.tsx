@@ -1088,7 +1088,7 @@ function CategoryPage({ category }: { category: ToolCategory }) {
           </h2>
           <div className={`mt-6 ${TOOL_GRID}`}>
             {popular.slice(0, 5).map((tool, index) => (
-              <ToolCard key={tool.slug} tool={tool} index={index} showCategory />
+              <ToolCatalogCard key={tool.slug} tool={tool} index={index} />
             ))}
           </div>
         </section>
