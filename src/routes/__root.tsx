@@ -127,10 +127,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           href: "/fonts/plus-jakarta-sans-latin-700.woff2",
           crossOrigin: "anonymous",
         },
-        { rel: "icon", href: "/brand/breadpdf-icon.png?v=2", type: "image/png" },
-        { rel: "icon", href: "/brand/favicon-32x32.png?v=2", sizes: "32x32", type: "image/png" },
-        { rel: "icon", href: "/favicon.ico?v=2", sizes: "any" },
-        { rel: "apple-touch-icon", href: "/brand/breadpdf-app-icon.png?v=2" },
+        { rel: "icon", href: "/favicon.ico?v=3", sizes: "48x48 32x32 16x16" },
+        { rel: "icon", href: "/favicon.svg?v=3", type: "image/svg+xml" },
+        { rel: "icon", href: "/favicon-32x32.png?v=3", sizes: "32x32", type: "image/png" },
+        { rel: "icon", href: "/favicon-16x16.png?v=3", sizes: "16x16", type: "image/png" },
+        { rel: "apple-touch-icon", href: "/apple-touch-icon.png?v=3", sizes: "180x180" },
       ],
       scripts: [
         {
