@@ -12,8 +12,16 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { loadPdfjs, loadPdfLib } from "@/lib/tools/pdf-runtime";
+import { useLocale } from "@/lib/i18n/context";
+import {
+  trackFileSelected,
+  trackProcessingStarted,
+  trackProcessingCompleted,
+  trackDownloadClicked,
+} from "@/lib/analytics/gtm";
 
 export function CompareWorkspace() {
+  const { locale } = useLocale();
   const [fileA, setFileA] = useState<File | null>(null);
   const [fileB, setFileB] = useState<File | null>(null);
 
@@ -38,6 +46,7 @@ export function CompareWorkspace() {
   const handleExportDiffReport = async () => {
     if (!docA || !docB || !fileA || !fileB) return;
     setIsExporting(true);
+    trackProcessingStarted({ tool: "comparar-pdf", language: locale });
     try {
       const { PDFDocument, rgb, StandardFonts } = await loadPdfLib();
       const reportPdf = await PDFDocument.create();
@@ -156,6 +165,8 @@ export function CompareWorkspace() {
       a.download = `comparacion-${fileA.name.replace(/\.[^/.]+$/, "")}-vs-${fileB.name.replace(/\.[^/.]+$/, "")}.pdf`;
       document.body.appendChild(a);
       a.click();
+      trackProcessingCompleted({ tool: "comparar-pdf", language: locale, outputCount: 1 });
+      trackDownloadClicked({ tool: "comparar-pdf", language: locale });
       document.body.removeChild(a);
       setTimeout(() => URL.revokeObjectURL(url), 1000);
     } catch (e) {
@@ -168,6 +179,7 @@ export function CompareWorkspace() {
   // Cargar documento A
   useEffect(() => {
     if (!fileA) return;
+    trackFileSelected({ tool: "comparar-pdf", language: locale, fileCount: fileB ? 2 : 1 });
     let cancelled = false;
     (async () => {
       try {
@@ -182,11 +194,12 @@ export function CompareWorkspace() {
       }
     })();
     return () => { cancelled = true; };
-  }, [fileA]);
+  }, [fileA, fileB, locale]);
 
   // Cargar documento B
   useEffect(() => {
     if (!fileB) return;
+    trackFileSelected({ tool: "comparar-pdf", language: locale, fileCount: fileA ? 2 : 1 });
     let cancelled = false;
     (async () => {
       try {
@@ -201,7 +214,7 @@ export function CompareWorkspace() {
       }
     })();
     return () => { cancelled = true; };
-  }, [fileB]);
+  }, [fileB, fileA, locale]);
 
   // Actualizar número total de páginas comparables
   useEffect(() => {

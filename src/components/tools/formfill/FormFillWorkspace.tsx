@@ -11,6 +11,12 @@ import {
 import { Button } from "@/components/ui/button";
 import { formatBytes, loadPdfLib, loadPdfjs } from "@/lib/tools/pdf-runtime";
 import { useLocale } from "@/lib/i18n/context";
+import {
+  trackFileSelected,
+  trackProcessingStarted,
+  trackProcessingCompleted,
+  trackDownloadClicked,
+} from "@/lib/analytics/gtm";
 
 type FieldType = "text" | "checkbox" | "radio" | "dropdown";
 
@@ -99,7 +105,7 @@ async function fillAndExport(file: File, fields: FormField[]): Promise<Uint8Arra
 }
 
 export function FormFillWorkspace() {
-  const { t } = useLocale();
+  const { locale, t } = useLocale();
   const inputRef = useRef<HTMLInputElement>(null);
   const [file, setFile] = useState<File | null>(null);
   const [dragging, setDragging] = useState(false);
@@ -123,6 +129,7 @@ export function FormFillWorkspace() {
       setPhase("error"); setMessage("Solo se aceptan archivos PDF con campos de formulario AcroForm."); return;
     }
     setFile(f); setPhase("loading"); setMessage(null); setFields([]);
+    trackFileSelected({ tool: "rellenar-formulario-pdf", language: locale, fileCount: 1 });
     if (outputUrl) URL.revokeObjectURL(outputUrl); setOutputUrl(null);
     try {
       const detected = await detectFields(f);
@@ -137,7 +144,7 @@ export function FormFillWorkspace() {
       setMessage(err instanceof Error ? err.message : "Error al leer el formulario. Verifica que el PDF no esté protegido.");
       setFile(null);
     }
-  }, [outputUrl]);
+  }, [outputUrl, locale]);
 
   const addFromInput = useCallback((fl: FileList | null) => { const f = fl?.[0]; if (f) loadFile(f); }, [loadFile]);
   const handleDrop = useCallback((e: React.DragEvent) => { e.preventDefault(); setDragging(false); const f = e.dataTransfer.files[0]; if (f) loadFile(f); }, [loadFile]);
@@ -146,12 +153,14 @@ export function FormFillWorkspace() {
   const handleSubmit = async () => {
     if (!file) return;
     setPhase("processing"); setMessage(null);
+    trackProcessingStarted({ tool: "rellenar-formulario-pdf", language: locale });
     try {
       const bytes = await fillAndExport(file, fields);
       const blob = new Blob([bytes.buffer as ArrayBuffer], { type: "application/pdf" });
       const url = URL.createObjectURL(blob);
       const base = file.name.replace(/\.[^/.]+$/, "");
       setOutputUrl(url); setOutputName(`${base}-rellenado.pdf`); setOutputSize(blob.size); setPhase("done");
+      trackProcessingCompleted({ tool: "rellenar-formulario-pdf", language: locale, outputCount: 1 });
     } catch (err) {
       setPhase("filling"); setMessage(err instanceof Error ? err.message : "Error al exportar el PDF.");
     }
@@ -185,7 +194,12 @@ export function FormFillWorkspace() {
           <div className="flex items-center gap-2.5 text-success"><CheckCircle2 className="size-6" aria-hidden /><h3 className="text-[18px] font-bold">Formulario exportado con éxito</h3></div>
           <p className="mt-2 text-[15px] font-medium text-foreground/85">{fields.filter((f) => !f.readOnly).length} campos rellenados y guardados.</p>
           <div className="mt-5">
-            <a href={outputUrl} download={outputName} className="transition-all flex items-center gap-3.5 rounded-xl border border-success/40 bg-surface p-4 shadow-subtle hover:-translate-y-0.5 hover:border-success hover:shadow-raised">
+            <a
+              href={outputUrl}
+              download={outputName}
+              onClick={() => trackDownloadClicked({ tool: "rellenar-formulario-pdf", language: locale })}
+              className="transition-all flex items-center gap-3.5 rounded-xl border border-success/40 bg-surface p-4 shadow-subtle hover:-translate-y-0.5 hover:border-success hover:shadow-raised"
+            >
               <div className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-success text-success-foreground"><Download className="size-5" aria-hidden /></div>
               <span className="min-w-0 flex-1"><span className="block truncate text-[15px] font-bold text-foreground">{outputName}</span><span className="text-[13px] font-semibold text-success">{formatBytes(outputSize)} · Descargar PDF rellenado</span></span>
             </a>

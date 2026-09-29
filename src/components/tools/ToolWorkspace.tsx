@@ -20,6 +20,12 @@ import { useLocale } from "@/lib/i18n/context";
 import { localizeOutputName } from "@/lib/tools/output-names";
 import { BRAND_NAME } from "@/lib/i18n/config";
 import { BRAND_ASSETS } from "@/lib/brand";
+import {
+  trackFileSelected,
+  trackProcessingStarted,
+  trackProcessingCompleted,
+  trackDownloadClicked,
+} from "@/lib/analytics/gtm";
 import { PageGrid } from "./workspace/PageGrid";
 import { useWorkspaceHistory } from "./workspace/useWorkspaceHistory";
 import { exportWorkspacePdf } from "./workspace/exportWorkspacePdf";
@@ -260,6 +266,7 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
       setOutputs([]);
       const nextFiles = tool.multiple ? [...files, ...valid] : valid.slice(0, 1);
       setFiles(nextFiles);
+      trackFileSelected({ tool: tool.slug, language: locale, fileCount: valid.length });
       if (isPageWorkspace) {
         loadPagesForFiles(nextFiles);
       }
@@ -292,6 +299,7 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
     setMessage(null);
     setNote(null);
     setOutputs([]);
+    trackProcessingStarted({ tool: tool.slug, language: locale });
 
     try {
       if (isPageWorkspace && workspaceState.pages.length > 0) {
@@ -350,6 +358,7 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
         setNote(t.workspace.pagesProcessed(pagesToExport.length));
         setProgress(1);
         setPhase("done");
+        trackProcessingCompleted({ tool: tool.slug, language: locale, outputCount: 1 });
         return;
       }
 
@@ -366,6 +375,11 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
       setNote(result.note ?? null);
       setProgress(1);
       setPhase("done");
+      trackProcessingCompleted({
+        tool: tool.slug,
+        language: locale,
+        outputCount: result.outputs.length,
+      });
     } catch (error) {
       setPhase("error");
       setMessage(error instanceof Error ? error.message : t.workspace.genericError);
@@ -763,6 +777,7 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                 key={output.name}
                 href={urls[index]}
                 download={output.name}
+                onClick={() => trackDownloadClicked({ tool: tool.slug, language: locale })}
                 className="transition-all flex items-center gap-3.5 rounded-2xl border border-slate-200 bg-white p-4.5 shadow-sm hover:-translate-y-0.5 hover:border-[#059669] hover:shadow-md"
               >
                 <div className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-[#059669] text-white shadow-xs">
