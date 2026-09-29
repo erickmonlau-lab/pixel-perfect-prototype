@@ -64,15 +64,21 @@ export function PageCard({
     >
       {/* Top action bar: Selection badge + Grip */}
       <div className="flex w-full items-center justify-between gap-1 mb-2">
-        <span
-          className={`flex size-5.5 items-center justify-center rounded-md border text-[11px] font-bold transition-colors ${
+        <button
+          type="button"
+          onClick={(e) => {
+            e.stopPropagation();
+            onToggleSelect(page.id, true);
+          }}
+          title={isSelected ? "Desmarcar página" : "Seleccionar página"}
+          className={`flex size-5.5 items-center justify-center rounded-md border text-[11px] font-bold transition-all cursor-pointer ${
             isSelected
-              ? "border-primary bg-primary text-white"
-              : "border-slate-200 bg-slate-50 text-slate-500 group-hover:border-slate-300"
+              ? "border-primary bg-primary text-white scale-105"
+              : "border-slate-200 bg-slate-50 text-slate-500 hover:border-primary/50 hover:bg-slate-100 group-hover:border-slate-300"
           }`}
         >
           {isSelected ? <Check className="size-3.5" /> : displayIndex + 1}
-        </span>
+        </button>
 
         {/* Hover quick tools */}
         <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">

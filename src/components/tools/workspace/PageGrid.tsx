@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+import { Plus } from "lucide-react";
 import { PageCard } from "./PageCard";
 import { PageSelectionToolbar } from "./PageSelectionToolbar";
 import type { PageItem, PageWorkspaceDocument, WorkspaceAction } from "./types";
@@ -22,6 +23,7 @@ type PageGridProps = {
   canRedo: boolean;
   onUndo: () => void;
   onRedo: () => void;
+  onAddFiles?: () => void;
 };
 
 export function PageGrid({
@@ -37,6 +39,7 @@ export function PageGrid({
   canRedo,
   onUndo,
   onRedo,
+  onAddFiles,
 }: PageGridProps) {
   const draggedIndex = useRef<number | null>(null);
 
@@ -116,6 +119,21 @@ export function PageGrid({
             />
           );
         })}
+
+        {onAddFiles && (
+          <button
+            type="button"
+            onClick={onAddFiles}
+            className="group flex flex-col items-center justify-center rounded-xl border-2 border-dashed border-slate-300 bg-slate-50/70 p-4 min-h-[160px] text-slate-500 hover:border-primary hover:bg-[#FEECEB]/40 hover:text-primary transition-all duration-150 cursor-pointer"
+          >
+            <div className="flex size-11 items-center justify-center rounded-full bg-white border border-slate-200 shadow-2xs group-hover:border-primary group-hover:scale-105 transition-all text-slate-600 group-hover:text-primary">
+              <Plus className="size-5" />
+            </div>
+            <span className="mt-2.5 text-[12.5px] font-bold text-center leading-tight">
+              Añadir más PDFs
+            </span>
+          </button>
+        )}
       </div>
     </div>
   );

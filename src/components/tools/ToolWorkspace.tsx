@@ -11,6 +11,8 @@ import {
   AlertCircle,
   LayoutGrid,
   List,
+  Plus,
+  PlusCircle,
 } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -451,7 +453,10 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
           accept={tool.accept}
           multiple={tool.multiple}
           className="sr-only"
-          onChange={(event) => addFiles(event.target.files)}
+          onChange={(event) => {
+            addFiles(event.target.files);
+            event.target.value = "";
+          }}
         />
 
         {/* Icono de subida con presencia visual sólida en Rojo BreadPDF */}
@@ -518,34 +523,49 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
               </span>
             </div>
 
-            {isPageWorkspace && (
-              <div className="flex items-center gap-1 rounded-lg border border-slate-200 bg-slate-50 p-1">
-                <button
+            <div className="flex items-center gap-2">
+              {tool.multiple && (
+                <Button
                   type="button"
-                  onClick={() => setViewMode("visual")}
-                  className={`flex items-center gap-1.5 rounded-md px-2.5 py-1 text-[12px] font-semibold transition-all ${
-                    viewMode === "visual"
-                      ? "bg-white text-slate-900 shadow-xs"
-                      : "text-slate-500 hover:text-slate-800"
-                  }`}
+                  variant="outline"
+                  size="sm"
+                  onClick={() => inputRef.current?.click()}
+                  className="h-8.5 px-3 text-[12.5px] font-bold text-slate-700 hover:text-primary hover:border-primary/40 gap-1.5 shadow-2xs"
                 >
-                  <LayoutGrid className="size-3.5" />
-                  <span>Miniaturas</span>
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setViewMode("list")}
-                  className={`flex items-center gap-1.5 rounded-md px-2.5 py-1 text-[12px] font-semibold transition-all ${
-                    viewMode === "list"
-                      ? "bg-white text-slate-900 shadow-xs"
-                      : "text-slate-500 hover:text-slate-800"
-                  }`}
-                >
-                  <List className="size-3.5" />
-                  <span>Archivos</span>
-                </button>
-              </div>
-            )}
+                  <Plus className="size-3.5" />
+                  <span>{t.workspace.addMoreFiles ?? "Añadir más archivos"}</span>
+                </Button>
+              )}
+
+              {isPageWorkspace && (
+                <div className="flex items-center gap-1 rounded-lg border border-slate-200 bg-slate-50 p-1">
+                  <button
+                    type="button"
+                    onClick={() => setViewMode("visual")}
+                    className={`flex items-center gap-1.5 rounded-md px-2.5 py-1 text-[12px] font-semibold transition-all ${
+                      viewMode === "visual"
+                        ? "bg-white text-slate-900 shadow-xs"
+                        : "text-slate-500 hover:text-slate-800"
+                    }`}
+                  >
+                    <LayoutGrid className="size-3.5" />
+                    <span>Miniaturas</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setViewMode("list")}
+                    className={`flex items-center gap-1.5 rounded-md px-2.5 py-1 text-[12px] font-semibold transition-all ${
+                      viewMode === "list"
+                        ? "bg-white text-slate-900 shadow-xs"
+                        : "text-slate-500 hover:text-slate-800"
+                    }`}
+                  >
+                    <List className="size-3.5" />
+                    <span>Archivos</span>
+                  </button>
+                </div>
+              )}
+            </div>
           </div>
 
           {/* Panel de ajustes específicos para Marca de Agua, Numeración, Firma y Añadir Texto */}
@@ -580,63 +600,77 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                 canRedo={canRedo}
                 onUndo={undo}
                 onRedo={redo}
+                onAddFiles={tool.multiple ? () => inputRef.current?.click() : undefined}
               />
             </div>
           ) : (
-            <ul className="mt-4 divide-y divide-border overflow-hidden rounded-xl border border-border bg-background/50">
-              {files.map((file, index) => (
-                <li
-                  key={`${file.name}-${index}`}
-                  className="flex items-center gap-3 p-3.5 transition-colors hover:bg-surface"
-                >
-                  <div className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-primary-soft text-primary">
-                    <FileText className="size-5" />
-                  </div>
-                  <span className="min-w-0 flex-1">
-                    <span className="block truncate text-[14.5px] font-semibold text-foreground">
-                      {file.name}
-                    </span>
-                    <span className="text-[13px] text-muted-foreground">
-                      {formatBytes(file.size)}
-                    </span>
-                  </span>
-                  {tool.multiple && files.length > 1 && (
-                    <span className="flex gap-1.5">
-                      <button
-                        type="button"
-                        onClick={() => move(index, -1)}
-                        disabled={index === 0}
-                        aria-label={t.workspace.moveUp(file.name)}
-                        className="transition-standard rounded-lg border border-border p-2 text-muted-foreground hover:text-primary disabled:opacity-40"
-                      >
-                        <ArrowUp className="size-4" />
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => move(index, 1)}
-                        disabled={index === files.length - 1}
-                        aria-label={t.workspace.moveDown(file.name)}
-                        className="transition-standard rounded-lg border border-border p-2 text-muted-foreground hover:text-primary disabled:opacity-40"
-                      >
-                        <ArrowDown className="size-4" />
-                      </button>
-                    </span>
-                  )}
-                  <button
-                    type="button"
-                    onClick={() => {
-                      const remaining = files.filter((_, i) => i !== index);
-                      setFiles(remaining);
-                      if (isPageWorkspace) loadPagesForFiles(remaining);
-                    }}
-                    aria-label={t.workspace.remove(file.name)}
-                    className="transition-standard rounded-lg border border-border p-2 text-muted-foreground hover:border-destructive/40 hover:text-destructive"
+            <div className="mt-4 space-y-3">
+              <ul className="divide-y divide-border overflow-hidden rounded-xl border border-border bg-background/50">
+                {files.map((file, index) => (
+                  <li
+                    key={`${file.name}-${index}`}
+                    className="flex items-center gap-3 p-3.5 transition-colors hover:bg-surface"
                   >
-                    <Trash2 className="size-4" />
-                  </button>
-                </li>
-              ))}
-            </ul>
+                    <div className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-primary-soft text-primary">
+                      <FileText className="size-5" />
+                    </div>
+                    <span className="min-w-0 flex-1">
+                      <span className="block truncate text-[14.5px] font-semibold text-foreground">
+                        {file.name}
+                      </span>
+                      <span className="text-[13px] text-muted-foreground">
+                        {formatBytes(file.size)}
+                      </span>
+                    </span>
+                    {tool.multiple && files.length > 1 && (
+                      <span className="flex gap-1.5">
+                        <button
+                          type="button"
+                          onClick={() => move(index, -1)}
+                          disabled={index === 0}
+                          aria-label={t.workspace.moveUp(file.name)}
+                          className="transition-standard rounded-lg border border-border p-2 text-muted-foreground hover:text-primary disabled:opacity-40"
+                        >
+                          <ArrowUp className="size-4" />
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => move(index, 1)}
+                          disabled={index === files.length - 1}
+                          aria-label={t.workspace.moveDown(file.name)}
+                          className="transition-standard rounded-lg border border-border p-2 text-muted-foreground hover:text-primary disabled:opacity-40"
+                        >
+                          <ArrowDown className="size-4" />
+                        </button>
+                      </span>
+                    )}
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const remaining = files.filter((_, i) => i !== index);
+                        setFiles(remaining);
+                        if (isPageWorkspace) loadPagesForFiles(remaining);
+                      }}
+                      aria-label={t.workspace.remove(file.name)}
+                      className="transition-standard rounded-lg border border-border p-2 text-muted-foreground hover:border-destructive/40 hover:text-destructive"
+                    >
+                      <Trash2 className="size-4" />
+                    </button>
+                  </li>
+                ))}
+              </ul>
+
+              {tool.multiple && (
+                <button
+                  type="button"
+                  onClick={() => inputRef.current?.click()}
+                  className="w-full flex items-center justify-center gap-2 rounded-xl border border-dashed border-slate-300 bg-slate-50/70 p-3 text-[13px] font-bold text-slate-600 hover:border-primary hover:bg-[#FEECEB]/40 hover:text-primary transition-all cursor-pointer"
+                >
+                  <Plus className="size-4" />
+                  <span>{t.workspace.addMoreFiles ?? "Añadir más archivos"}</span>
+                </button>
+              )}
+            </div>
           )}
 
           {/* Opciones configurables de la herramienta (si existen) */}
@@ -697,16 +731,33 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
             </div>
           )}
 
-          <div className="mt-7 flex flex-wrap items-center gap-4">
-            <Button
-              size="lg"
-              onClick={run}
-              disabled={phase === "processing"}
-              className="h-12 px-7 text-[15px] font-bold shadow-md"
-            >
-              {phase === "processing" && <Loader2 className="mr-2 size-4 animate-spin" />}
-              {phase === "processing" ? t.workspace.processing : tool.ctaLabel}
-            </Button>
+          <div className="mt-7 flex flex-wrap items-center gap-3">
+            {files.length < tool.minFiles ? (
+              <div className="flex flex-wrap items-center gap-3">
+                <Button
+                  size="lg"
+                  type="button"
+                  onClick={() => inputRef.current?.click()}
+                  className="h-12 px-7 text-[15px] font-bold shadow-md bg-primary hover:bg-primary/90 text-white gap-2"
+                >
+                  <Plus className="size-4.5" />
+                  <span>{t.workspace.addMoreFiles ?? "Añadir más archivos"}</span>
+                </Button>
+                <span className="text-[13.5px] font-medium text-slate-500 bg-slate-100/80 rounded-lg px-3.5 py-2 border border-slate-200">
+                  {t.workspace.addMoreFilesSubtitle ?? t.workspace.minFiles(tool.minFiles)}
+                </span>
+              </div>
+            ) : (
+              <Button
+                size="lg"
+                onClick={run}
+                disabled={phase === "processing"}
+                className="h-12 px-7 text-[15px] font-bold shadow-md"
+              >
+                {phase === "processing" && <Loader2 className="mr-2 size-4 animate-spin" />}
+                {phase === "processing" ? t.workspace.processing : tool.ctaLabel}
+              </Button>
+            )}
           </div>
 
           {phase === "processing" && (

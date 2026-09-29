@@ -230,6 +230,8 @@ const es = {
       count === 1 ? "1 página procesada con éxito." : `${count} páginas procesadas con éxito.`,
     downloadNow: "Descargar ahora",
     loadingPages: "Generando vista previa de páginas...",
+    addMoreFiles: "Añadir más archivos",
+    addMoreFilesSubtitle: "Añade al menos otro archivo para poder combinarlos.",
   },
   privacy: {
     eyebrow: "Transparencia",
@@ -576,6 +578,8 @@ const ca: Dict = {
       count === 1 ? "1 pàgina processada amb èxit." : `${count} pàgines processades amb èxit.`,
     downloadNow: "Descarrega ara",
     loadingPages: "Generant vista prèvia de pàgines...",
+    addMoreFiles: "Afegeix més fitxers",
+    addMoreFilesSubtitle: "Afegeix com a mínim un altre fitxer per poder combinar-los.",
   },
   privacy: {
     eyebrow: "Transparència",
@@ -918,6 +922,8 @@ const en: Dict = {
       count === 1 ? "1 page processed successfully." : `${count} pages processed successfully.`,
     downloadNow: "Download now",
     loadingPages: "Generating pages preview...",
+    addMoreFiles: "Add more files",
+    addMoreFilesSubtitle: "Add at least one more file to merge them together.",
   },
   privacy: {
     eyebrow: "Transparency",
