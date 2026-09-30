@@ -179,7 +179,7 @@ export function AccountDashboard() {
     ...(activeTab !== "resumen"
       ? [
           {
-            label: tabLabels[activeTab]?.[locale] || tabLabels[activeTab]?.es || activeTab,
+            label: tabLabels[activeTab]?.[locale] || tabLabels[activeTab]?.["es"] || activeTab,
           },
         ]
       : []),

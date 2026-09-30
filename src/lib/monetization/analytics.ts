@@ -3,7 +3,7 @@ export type MonetizationEvent =
   | { type: 'upgrade_click'; feature?: string; source?: string; locale?: string }
   | { type: 'checkout_started'; plan: string; interval?: string }
   | { type: 'checkout_completed'; plan: string }
-  | { type: 'feature_locked'; feature: string; source?: string }
+  | { type: 'feature_locked'; feature: string; source?: string; locale?: string }
   | { type: 'feature_unlocked'; feature: string; source?: string };
 
 export function trackMonetizationEvent(event: MonetizationEvent): void {

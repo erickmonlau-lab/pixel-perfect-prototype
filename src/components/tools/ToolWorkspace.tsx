@@ -16,7 +16,8 @@ import {
 } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { formatBytes } from "@/lib/tools/pdf-runtime";
+import { formatBytes, loadPdfLib, parsePageRanges } from "@/lib/tools/pdf-runtime";
+import type { PageItem, PageWorkspaceDocument } from "./workspace/types";
 import type { OptionValues, ToolDefinition, ToolOutput } from "@/lib/tools/types";
 import { useLocale } from "@/lib/i18n/context";
 import { localizeOutputName } from "@/lib/tools/output-names";
@@ -355,7 +356,7 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
             } else {
               // Guardar en archivos individuales (1 por cada página seleccionada)
               for (let i = 0; i < selectedIndices.length; i++) {
-                const pageIdx = selectedIndices[i];
+                const pageIdx = selectedIndices[i]!;
                 const doc = await PDFDocument.create();
                 const copied = await doc.copyPages(sourcePdf, [pageIdx]);
                 copied.forEach((p) => doc.addPage(p));
@@ -377,7 +378,7 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
             }
           } else {
             // Ninguna página seleccionada específicamente: usar los ajustes de "Modo" (una por archivo o intervalos)
-            const splitMode = values.mode ?? "each";
+            const splitMode = values["mode"] ?? "each";
             if (splitMode === "each") {
               for (let i = 0; i < totalPdfPages; i++) {
                 const doc = await PDFDocument.create();
@@ -400,7 +401,7 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
               );
             } else {
               // Modo intervalos
-              const rangeStr = String(values.ranges ?? "").trim();
+              const rangeStr = String(values["ranges"] ?? "").trim();
               const groups = rangeStr.split(",").map((c) => c.trim()).filter(Boolean);
               if (groups.length === 0) {
                 throw new Error(
@@ -542,7 +543,7 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
     return (
       <section
         className="surface-card p-8 sm:p-10 border-dashed"
-        aria-label={t.workspace.pendingAria}
+        aria-label={t.status.pending}
       >
         <div className="flex items-center gap-2">
           <span className="rounded-full bg-warning-soft px-3.5 py-1 text-[12px] font-bold uppercase tracking-wider text-warning">
@@ -918,7 +919,7 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                     .filter((opt) => {
                       // En dividir-pdf, solo mostrar el campo de texto "ranges" si el modo es "ranges"
                       if (tool.slug === "dividir-pdf" && opt.key === "ranges") {
-                        return values.mode === "ranges";
+                        return values["mode"] === "ranges";
                       }
                       return true;
                     })
@@ -994,7 +995,7 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
             ) : (
               <Button
                 size="lg"
-                onClick={run}
+                onClick={() => run()}
                 disabled={phase === "processing"}
                 className="h-12 px-7 text-[15px] font-bold shadow-md"
               >
@@ -1161,7 +1162,7 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                     : "Nivel de compresión:"}
                 </span>
                 <select
-                  value={values.level ?? "balanced"}
+                  value={values["level"] ?? "balanced"}
                   onChange={(e) => {
                     const nextVal = { ...values, level: e.target.value };
                     setValues(nextVal);
