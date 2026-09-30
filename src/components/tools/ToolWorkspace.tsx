@@ -305,6 +305,108 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
 
     try {
       if (isPageWorkspace && workspaceState.pages.length > 0) {
+        // Manejo especial para dividir-pdf con miniaturas interactivas
+        if (tool.slug === "dividir-pdf") {
+          const selectedIndices = workspaceState.pages
+            .map((p, idx) => (workspaceState.selectedPageIds.includes(p.id) ? idx : -1))
+            .filter((idx) => idx !== -1);
+
+          const { PDFDocument } = await loadPdfLib();
+          const sourceDocEntry = workspaceState.documents[workspaceState.pages[0]?.sourceDocumentId ?? ""];
+          if (!sourceDocEntry) throw new Error("No se ha encontrado el documento original.");
+          const sourcePdf = await PDFDocument.load(sourceDocEntry.arrayBuffer, { ignoreEncryption: true });
+          const totalPdfPages = sourcePdf.getPageCount();
+          const baseTitle = files[0]?.name.replace(/\.[^/.]+$/, "") ?? BRAND_NAME.toLowerCase();
+          const outItems: ToolOutput[] = [];
+
+          if (selectedIndices.length > 0) {
+            // El usuario seleccionó páginas concretas en la cuadrícula visual para dividir/separar
+            for (let i = 0; i < selectedIndices.length; i++) {
+              const pageIdx = selectedIndices[i];
+              const doc = await PDFDocument.create();
+              const copied = await doc.copyPages(sourcePdf, [pageIdx]);
+              copied.forEach((p) => doc.addPage(p));
+              const outBytes = await doc.save({ useObjectStreams: true });
+              outItems.push({
+                name: localizeOutputName(locale, `${baseTitle}-pagina-${pageIdx + 1}.pdf`),
+                blob: new Blob([outBytes as BlobPart], { type: "application/pdf" }),
+              });
+              setProgress((i + 1) / selectedIndices.length);
+            }
+            setOutputs(outItems);
+            setNote(
+              selectedIndices.length === 1
+                ? (locale === "ca" ? "1 pàgina extreta amb èxit." : locale === "en" ? "1 page extracted successfully." : "1 página extraída con éxito.")
+                : (locale === "ca" ? `${selectedIndices.length} pàgines separades en fitxers individuals.` : locale === "en" ? `${selectedIndices.length} pages split into individual files.` : `${selectedIndices.length} páginas separadas en archivos individuales.`)
+            );
+          } else {
+            // Ninguna página seleccionada específicamente: usar los ajustes de "Modo" (una por archivo o intervalos)
+            const splitMode = values.mode ?? "each";
+            if (splitMode === "each") {
+              for (let i = 0; i < totalPdfPages; i++) {
+                const doc = await PDFDocument.create();
+                const copied = await doc.copyPages(sourcePdf, [i]);
+                copied.forEach((p) => doc.addPage(p));
+                const outBytes = await doc.save({ useObjectStreams: true });
+                outItems.push({
+                  name: localizeOutputName(locale, `${baseTitle}-pagina-${i + 1}.pdf`),
+                  blob: new Blob([outBytes as BlobPart], { type: "application/pdf" }),
+                });
+                setProgress((i + 1) / totalPdfPages);
+              }
+              setOutputs(outItems);
+              setNote(
+                locale === "ca"
+                  ? `${totalPdfPages} PDF d'una pàgina generats.`
+                  : locale === "en"
+                  ? `${totalPdfPages} single-page PDFs generated.`
+                  : `${totalPdfPages} PDF de una página generados.`
+              );
+            } else {
+              // Modo intervalos
+              const rangeStr = String(values.ranges ?? "").trim();
+              const groups = rangeStr.split(",").map((c) => c.trim()).filter(Boolean);
+              if (groups.length === 0) {
+                throw new Error(
+                  locale === "ca"
+                    ? "Indica almenys un interval (ex: 1-3, 4, 5-9) o selecciona pàgines a les miniatures."
+                    : locale === "en"
+                    ? "Specify at least one range (e.g. 1-3, 4, 5-9) or select pages in the thumbnails."
+                    : "Indica al menos un intervalo (ej: 1-3, 4, 5-9) o selecciona páginas en las miniaturas."
+                );
+              }
+              for (let g = 0; g < groups.length; g++) {
+                const group = groups[g] ?? "";
+                const indices = parsePageRanges(group, totalPdfPages).map((p) => p - 1);
+                if (indices.length === 0) {
+                  throw new Error(`El intervalo "${group}" no existe en este documento.`);
+                }
+                const doc = await PDFDocument.create();
+                const copied = await doc.copyPages(sourcePdf, indices);
+                copied.forEach((p) => doc.addPage(p));
+                const outBytes = await doc.save({ useObjectStreams: true });
+                outItems.push({
+                  name: localizeOutputName(locale, `${baseTitle}-${group.replace(/\s/g, "")}.pdf`),
+                  blob: new Blob([outBytes as BlobPart], { type: "application/pdf" }),
+                });
+                setProgress((g + 1) / groups.length);
+              }
+              setOutputs(outItems);
+              setNote(
+                locale === "ca"
+                  ? `${outItems.length} documents generats.`
+                  : locale === "en"
+                  ? `${outItems.length} documents generated.`
+                  : `${outItems.length} documentos generados.`
+              );
+            }
+          }
+          setProgress(1);
+          setPhase("done");
+          trackProcessingCompleted({ tool: tool.slug, language: locale, outputCount: outItems.length });
+          return;
+        }
+
         let pagesToExport = workspaceState.pages;
 
         if (tool.slug === "extraer-paginas-pdf" && workspaceState.selectedPageIds.length > 0) {
@@ -584,7 +686,41 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
 
           {/* VISUAL PAGE GRID */}
           {isPageWorkspace && viewMode === "visual" ? (
-            <div className="mt-4">
+            <div className="mt-4 flex flex-col gap-3">
+              {/* Ayuda visual amigable para seleccionar o dividir páginas */}
+              <div className="flex flex-wrap items-center justify-between gap-2 rounded-xl border border-primary/20 bg-primary/5 px-4 py-2.5 text-[13px] text-slate-700">
+                <div className="flex items-center gap-2">
+                  <span className="flex size-5 shrink-0 items-center justify-center rounded-full bg-primary text-[11px] font-bold text-white">
+                    ℹ
+                  </span>
+                  <span>
+                    {tool.slug === "dividir-pdf" ? (
+                      workspaceState.selectedPageIds.length > 0 ? (
+                        <>
+                          <strong className="font-semibold text-primary">
+                            {workspaceState.selectedPageIds.length} página(s) seleccionada(s) para separar.
+                          </strong>{" "}
+                          Haz clic en cualquier página para añadirla o quitarla de la selección.
+                        </>
+                      ) : (
+                        <>
+                          <strong>Haz clic en cualquier página</strong> para seleccionarla y separarla, o usa los ajustes inferiores para dividir por intervalos o todas a la vez.
+                        </>
+                      )
+                    ) : (
+                      <>
+                        <strong>Haz clic en cualquier página</strong> para seleccionarla, girarla o moverla a tu gusto.
+                      </>
+                    )}
+                  </span>
+                </div>
+                {workspaceState.selectedPageIds.length > 0 && (
+                  <span className="text-[12px] font-semibold text-primary bg-white border border-primary/20 px-2 py-0.5 rounded-md">
+                    {workspaceState.selectedPageIds.length} de {workspaceState.pages.length} páginas
+                  </span>
+                )}
+              </div>
+
               <PageGrid
                 documents={workspaceState.documents}
                 pages={workspaceState.pages}
@@ -755,7 +891,11 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                 className="h-12 px-7 text-[15px] font-bold shadow-md"
               >
                 {phase === "processing" && <Loader2 className="mr-2 size-4 animate-spin" />}
-                {phase === "processing" ? t.workspace.processing : tool.ctaLabel}
+                {phase === "processing"
+                  ? t.workspace.processing
+                  : tool.slug === "dividir-pdf" && workspaceState.selectedPageIds.length > 0
+                  ? `Separar ${workspaceState.selectedPageIds.length} página${workspaceState.selectedPageIds.length > 1 ? "s" : ""}`
+                  : tool.ctaLabel}
               </Button>
             )}
           </div>

@@ -55,7 +55,7 @@ export function PageCard({
       onDrop={(e) => onDrop(e, displayIndex)}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      onClick={(e) => onToggleSelect(page.id, e.shiftKey || e.metaKey || e.ctrlKey)}
+      onClick={() => onToggleSelect(page.id, true)}
       className={`group relative flex flex-col items-center rounded-xl border bg-white p-3 transition-all duration-150 cursor-pointer select-none ${
         isSelected
           ? "border-primary ring-2 ring-primary/20 shadow-md"
