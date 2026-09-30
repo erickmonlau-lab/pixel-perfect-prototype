@@ -1,6 +1,6 @@
-import { createFileRoute, notFound, Outlet, useRouterState } from "@tanstack/react-router";
+import { createFileRoute, notFound, Outlet, useRouter, useRouterState } from "@tanstack/react-router";
 import { isLocale } from "@/lib/i18n/config";
-import { use } from "react";
+import { use, useEffect, useRef } from "react";
 import { loadLocaleText, localeTextPending } from "@/lib/tools/localize";
 import { LocaleProvider } from "@/lib/i18n/context";
 import { AuthProvider } from "@/lib/auth/auth-context";
@@ -19,10 +19,19 @@ export const Route = createFileRoute("/$lang")({
 function LocaleLayout() {
   const { lang } = Route.useParams();
   const pathname = useRouterState({ select: (s) => s.location.pathname });
-  if (!isLocale(lang)) return null;
-  // Client hydration does not rerun beforeLoad: wait for this locale's copy so markup matches SSR.
-  const loading = localeTextPending(lang);
+  const router = useRouter();
+  const loading = isLocale(lang) ? localeTextPending(lang) : null;
+  const waited = useRef(false);
+  if (loading) waited.current = true;
+  // Page titles were computed before the copy arrived: refresh them once it is in.
+  useEffect(() => {
+    if (waited.current) {
+      waited.current = false;
+      void router.invalidate();
+    }
+  }, [router, lang]);
   if (loading) use(loading);
+  if (!isLocale(lang)) return null;
 
   const { page } = parsePath(pathname);
   const isAuthPage = page.kind === "login" || page.kind === "register" || page.kind === "forgotPassword";
