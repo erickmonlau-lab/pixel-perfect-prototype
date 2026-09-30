@@ -872,62 +872,72 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
           )}
 
           {/* Opciones configurables de la herramienta (si existen) */}
-          {tool.options && tool.options.length > 0 && (
-            <div className="mt-6 rounded-xl border border-slate-200 bg-slate-50/70 p-5 shadow-xs">
-              <h4 className="text-[14.5px] font-bold text-slate-800 mb-4">Ajustes de la herramienta</h4>
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                {tool.options.map((opt) => (
-                  <div key={opt.key} className="flex flex-col gap-1.5">
-                    <div className="flex items-center justify-between">
-                      <label className="text-[13px] font-semibold text-slate-700">{opt.label}</label>
-                      {opt.type === "range" && (
-                        <span className="text-[12px] font-mono text-slate-500 font-bold">
-                          {values[opt.key]}
-                          {opt.unit ?? ""}
-                        </span>
-                      )}
-                    </div>
-                    {opt.type === "select" && (
-                      <select
-                        value={values[opt.key] ?? opt.default}
-                        onChange={(e) => setValues((v) => ({ ...v, [opt.key]: e.target.value }))}
-                        className="rounded-lg border border-slate-300 bg-white px-3 py-2 text-[13.5px] font-medium text-slate-800 shadow-2xs transition-all focus:border-primary focus:outline-hidden focus:ring-2 focus:ring-primary/20"
-                      >
-                        {opt.options.map((o) => (
-                          <option key={o.value} value={o.value}>
-                            {o.label}
-                          </option>
-                        ))}
-                      </select>
-                    )}
-                    {opt.type === "text" && (
-                      <input
-                        type="text"
-                        value={values[opt.key] ?? opt.default}
-                        placeholder={opt.placeholder}
-                        onChange={(e) => setValues((v) => ({ ...v, [opt.key]: e.target.value }))}
-                        className="rounded-lg border border-slate-300 bg-white px-3 py-2 text-[13.5px] font-medium text-slate-800 placeholder:text-slate-400 shadow-2xs transition-all focus:border-primary focus:outline-hidden focus:ring-2 focus:ring-primary/20"
-                      />
-                    )}
-                    {opt.type === "range" && (
-                      <input
-                        type="range"
-                        min={opt.min}
-                        max={opt.max}
-                        step={opt.step}
-                        value={values[opt.key] ?? opt.default}
-                        onChange={(e) =>
-                          setValues((v) => ({ ...v, [opt.key]: parseFloat(e.target.value) }))
-                        }
-                        className="w-full accent-primary mt-1 cursor-pointer"
-                      />
-                    )}
-                    {opt.help && <span className="text-[12px] text-slate-500">{opt.help}</span>}
-                  </div>
-                ))}
+          {tool.options &&
+            tool.options.length > 0 &&
+            !(tool.slug === "dividir-pdf" && workspaceState.selectedPageIds.length > 0) && (
+              <div className="mt-6 rounded-xl border border-slate-200 bg-slate-50/70 p-5 shadow-xs">
+                <h4 className="text-[14.5px] font-bold text-slate-800 mb-4">Ajustes de la herramienta</h4>
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                  {tool.options
+                    .filter((opt) => {
+                      // En dividir-pdf, solo mostrar el campo de texto "ranges" si el modo es "ranges"
+                      if (tool.slug === "dividir-pdf" && opt.key === "ranges") {
+                        return values.mode === "ranges";
+                      }
+                      return true;
+                    })
+                    .map((opt) => (
+                      <div key={opt.key} className="flex flex-col gap-1.5">
+                        <div className="flex items-center justify-between">
+                          <label className="text-[13px] font-semibold text-slate-700">{opt.label}</label>
+                          {opt.type === "range" && (
+                            <span className="text-[12px] font-mono text-slate-500 font-bold">
+                              {values[opt.key]}
+                              {opt.unit ?? ""}
+                            </span>
+                          )}
+                        </div>
+                        {opt.type === "select" && (
+                          <select
+                            value={values[opt.key] ?? opt.default}
+                            onChange={(e) => setValues((v) => ({ ...v, [opt.key]: e.target.value }))}
+                            className="rounded-lg border border-slate-300 bg-white px-3 py-2 text-[13.5px] font-medium text-slate-800 shadow-2xs transition-all focus:border-primary focus:outline-hidden focus:ring-2 focus:ring-primary/20"
+                          >
+                            {opt.options.map((o) => (
+                              <option key={o.value} value={o.value}>
+                                {o.label}
+                              </option>
+                            ))}
+                          </select>
+                        )}
+                        {opt.type === "text" && (
+                          <input
+                            type="text"
+                            value={values[opt.key] ?? opt.default}
+                            placeholder={opt.placeholder}
+                            onChange={(e) => setValues((v) => ({ ...v, [opt.key]: e.target.value }))}
+                            className="rounded-lg border border-slate-300 bg-white px-3 py-2 text-[13.5px] font-medium text-slate-800 placeholder:text-slate-400 shadow-2xs transition-all focus:border-primary focus:outline-hidden focus:ring-2 focus:ring-primary/20"
+                          />
+                        )}
+                        {opt.type === "range" && (
+                          <input
+                            type="range"
+                            min={opt.min}
+                            max={opt.max}
+                            step={opt.step}
+                            value={values[opt.key] ?? opt.default}
+                            onChange={(e) =>
+                              setValues((v) => ({ ...v, [opt.key]: parseFloat(e.target.value) }))
+                            }
+                            className="w-full accent-primary mt-1 cursor-pointer"
+                          />
+                        )}
+                        {opt.help && <span className="text-[12px] text-slate-500">{opt.help}</span>}
+                      </div>
+                    ))}
+                </div>
               </div>
-            </div>
-          )}
+            )}
 
           <div className="mt-7 flex flex-wrap items-center gap-3">
             {files.length < tool.minFiles ? (
