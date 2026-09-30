@@ -116,11 +116,13 @@ export function Footer() {
               className="inline-flex items-center gap-3.5 group select-none"
             >
               <img
-                src={BRAND_ASSETS.icon}
+                src={BRAND_ASSETS.iconWebp}
                 alt="BreadPDF"
                 width={56}
                 height={54}
                 className="h-13 sm:h-14 w-auto object-contain drop-shadow-md transition-transform duration-200 group-hover:scale-105"
+                loading="lazy"
+                decoding="async"
               />
               <span className="font-heading text-[28px] sm:text-[32px] font-extrabold tracking-tight leading-none">
                 <span className="text-white">{BRAND_WORDMARK.bread}</span>
