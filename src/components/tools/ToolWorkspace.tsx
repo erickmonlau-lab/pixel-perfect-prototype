@@ -1059,16 +1059,18 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                 loading="lazy"
               />
               <div>
-                <div className="flex items-center gap-2">
-                  <span className="flex size-6 items-center justify-center rounded-full bg-[#059669] text-white">
-                    <CheckCircle2 className="size-4" aria-hidden />
+                <div className="flex items-center gap-2.5">
+                  <span className="flex size-6.5 items-center justify-center rounded-full bg-[#059669] text-white shrink-0 shadow-xs">
+                    <CheckCircle2 className="size-4.5" aria-hidden />
                   </span>
-                  <h3 className="text-[22px] sm:text-[24px] font-black text-[#0F172A] tracking-tight">{t.workspace.done}</h3>
+                  <h3 className="text-[21px] sm:text-[23px] font-black text-[#0F172A] tracking-normal leading-snug">
+                    {t.workspace.done}
+                  </h3>
                 </div>
                 {note ? (
-                  <p className="mt-1 text-[15px] font-semibold text-slate-700">{note}</p>
+                  <p className="mt-1 text-[14.5px] font-medium text-slate-700 leading-normal">{note}</p>
                 ) : (
-                  <p className="mt-1 text-[14.5px] text-slate-600 font-medium">¡Listo! Tu documento ha sido procesado con éxito y está preparado para descargar.</p>
+                  <p className="mt-1 text-[14px] text-slate-600 font-medium leading-normal">¡Listo! Tu documento ha sido procesado con éxito y está preparado para descargar.</p>
                 )}
               </div>
             </div>
