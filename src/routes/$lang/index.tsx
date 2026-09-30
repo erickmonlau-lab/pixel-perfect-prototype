@@ -73,15 +73,6 @@ function Home() {
   const navigate = useNavigate();
   const headline = headlineLines(t.home.h1);
 
-  /** First visit only: follow the browser language, never override a manual choice. */
-  useEffect(() => {
-    if (locale !== DEFAULT_LOCALE) return;
-    if (storedLocale()) return;
-    const preferred = preferredLocale();
-    if (preferred !== locale) {
-      navigate({ to: HOME_ROUTE, params: homeParams(preferred), replace: true });
-    }
-  }, [locale, navigate]);
 
   return (
     <>

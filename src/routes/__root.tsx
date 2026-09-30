@@ -186,7 +186,7 @@ function RootShell({ children }: { children: ReactNode }) {
         {/* Carga diferida de gtm.js: tras el evento load + idle, sin bloquear pintura ni hidratación */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){var load=function(){var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtm.js?id=${GTM_CONTAINER_ID}';document.body.appendChild(s);};var schedule=function(){if('requestIdleCallback' in window){window.requestIdleCallback(load,{timeout:3000});}else{setTimeout(load,1500);}};if(document.readyState==='complete'){schedule();}else{window.addEventListener('load',schedule,{once:true});}})();`,
+            __html: `(function(){var load=function(){var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtm.js?id=${GTM_CONTAINER_ID}';document.body.appendChild(s);};var done=false;var go=function(){if(done)return;done=true;['pointerdown','keydown','scroll','touchstart'].forEach(function(e){removeEventListener(e,go)});load();};['pointerdown','keydown','scroll','touchstart'].forEach(function(e){addEventListener(e,go,{once:true,passive:true})});var later=function(){setTimeout(go,8000)};if(document.readyState==='complete'){later();}else{addEventListener('load',later,{once:true});}})();`,
           }}
         />
         <Scripts />
