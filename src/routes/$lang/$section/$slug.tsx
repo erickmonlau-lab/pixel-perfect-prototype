@@ -563,7 +563,7 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
               </div>
             </div>
             <Link
-              to={`/${locale}/${SEGMENTS[locale].guides}/${guideSlugFor(locale, "reducir-pdf-limite-subida-campus-virtual")}`}
+              to={`/${locale}/${SEGMENTS[locale].guides}/${guideSlugFor(locale, "reducir-pdf-limite-subida-campus-virtual")}` as any}
               className="shrink-0 inline-flex items-center gap-1.5 rounded-xl bg-[#EC3C2D] px-5 py-2.5 text-[14px] font-bold text-white shadow-sm transition-colors hover:bg-[#D93426]"
             >
               <span>{locale === "ca" ? "Llegir la guia" : locale === "en" ? "Read guide" : "Leer la guía"}</span>
@@ -605,7 +605,7 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
               </div>
             </div>
             <Link
-              to={`/${locale}/${SEGMENTS[locale].guides}/${guideSlugFor(locale, "webp-vs-jpg-png-tiendas-online")}`}
+              to={`/${locale}/${SEGMENTS[locale].guides}/${guideSlugFor(locale, "webp-vs-jpg-png-tiendas-online")}` as any}
               className="shrink-0 inline-flex items-center gap-1.5 rounded-xl bg-[#EC3C2D] px-5 py-2.5 text-[14px] font-bold text-white shadow-sm transition-colors hover:bg-[#D93426]"
             >
               <span>{locale === "ca" ? "Llegir la guia" : locale === "en" ? "Read guide" : "Leer la guía"}</span>
@@ -708,7 +708,7 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
               </div>
             </div>
             <Link
-              to={`/${locale}/${SEGMENTS[locale].guides}/${guideSlugFor(locale, "ocultar-datos-personales-pdf")}`}
+              to={`/${locale}/${SEGMENTS[locale].guides}/${guideSlugFor(locale, "ocultar-datos-personales-pdf")}` as any}
               className="shrink-0 inline-flex items-center gap-1.5 rounded-xl bg-[#EC3C2D] px-5 py-2.5 text-[14px] font-bold text-white shadow-sm transition-colors hover:bg-[#D93426]"
             >
               <span>{locale === "ca" ? "Llegir la guia" : locale === "en" ? "Read guide" : "Leer la guía"}</span>
@@ -751,7 +751,7 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
               </div>
             </div>
             <Link
-              to={`/${locale}/${SEGMENTS[locale].guides}/${guideSlugFor(locale, "pasar-tablas-pdf-a-excel")}`}
+              to={`/${locale}/${SEGMENTS[locale].guides}/${guideSlugFor(locale, "pasar-tablas-pdf-a-excel")}` as any}
               className="shrink-0 inline-flex items-center gap-1.5 rounded-xl bg-[#EC3C2D] px-5 py-2.5 text-[14px] font-bold text-white shadow-sm transition-colors hover:bg-[#D93426]"
             >
               <span>{locale === "ca" ? "Llegir la guia" : locale === "en" ? "Read guide" : "Leer la guía"}</span>
@@ -795,7 +795,7 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
               </div>
             </div>
             <Link
-              to={`/${locale}/${SEGMENTS[locale].guides}/${guideSlugFor(locale, "hacer-buscable-pdf-escaneado-ocr")}`}
+              to={`/${locale}/${SEGMENTS[locale].guides}/${guideSlugFor(locale, "hacer-buscable-pdf-escaneado-ocr")}` as any}
               className="shrink-0 inline-flex items-center gap-1.5 rounded-xl bg-[#EC3C2D] px-5 py-2.5 text-[14px] font-bold text-white shadow-sm transition-colors hover:bg-[#D93426]"
             >
               <span>{locale === "ca" ? "Llegir la guia" : locale === "en" ? "Read guide" : "Leer la guía"}</span>
@@ -839,7 +839,7 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
               </div>
             </div>
             <Link
-              to={`/${locale}/${SEGMENTS[locale].guides}/${guideSlugFor(locale, "rellenar-y-firmar-formulario-pdf")}`}
+              to={`/${locale}/${SEGMENTS[locale].guides}/${guideSlugFor(locale, "rellenar-y-firmar-formulario-pdf")}` as any}
               className="shrink-0 inline-flex items-center gap-1.5 rounded-xl bg-[#EC3C2D] px-5 py-2.5 text-[14px] font-bold text-white shadow-sm transition-colors hover:bg-[#D93426]"
             >
               <span>{locale === "ca" ? "Llegir la guia" : locale === "en" ? "Read guide" : "Leer la guía"}</span>
@@ -883,7 +883,7 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
               </div>
             </div>
             <Link
-              to={`/${locale}/${SEGMENTS[locale].guides}/${guideSlugFor(locale, "que-es-pdfa-cuando-convertir")}`}
+              to={`/${locale}/${SEGMENTS[locale].guides}/${guideSlugFor(locale, "que-es-pdfa-cuando-convertir")}` as any}
               className="shrink-0 inline-flex items-center gap-1.5 rounded-xl bg-[#EC3C2D] px-5 py-2.5 text-[14px] font-bold text-white shadow-sm transition-colors hover:bg-[#D93426]"
             >
               <span>{locale === "ca" ? "Llegir la guia" : locale === "en" ? "Read guide" : "Leer la guía"}</span>
@@ -925,7 +925,7 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
               </div>
             </div>
             <Link
-              to={`/${locale}/${SEGMENTS[locale].guides}/${guideSlugFor(locale, "subir-archivos-grandes-wordpress-woocommerce")}`}
+              to={`/${locale}/${SEGMENTS[locale].guides}/${guideSlugFor(locale, "subir-archivos-grandes-wordpress-woocommerce")}` as any}
               className="shrink-0 inline-flex items-center gap-1.5 rounded-xl bg-[#EC3C2D] px-5 py-2.5 text-[14px] font-bold text-white shadow-sm transition-colors hover:bg-[#D93426]"
             >
               <span>{locale === "ca" ? "Llegir la guia" : locale === "en" ? "Read guide" : "Leer la guía"}</span>
@@ -969,7 +969,7 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
               </div>
             </div>
             <Link
-              to={`/${locale}/${SEGMENTS[locale].guides}/${guideSlugFor(locale, "eliminar-paginas-en-blanco-pdf-escaneado")}`}
+              to={`/${locale}/${SEGMENTS[locale].guides}/${guideSlugFor(locale, "eliminar-paginas-en-blanco-pdf-escaneado")}` as any}
               className="shrink-0 inline-flex items-center gap-1.5 rounded-xl bg-[#EC3C2D] px-5 py-2.5 text-[14px] font-bold text-white shadow-sm transition-colors hover:bg-[#D93426]"
             >
               <span>{locale === "ca" ? "Llegir la guia" : locale === "en" ? "Read guide" : "Leer la guía"}</span>
