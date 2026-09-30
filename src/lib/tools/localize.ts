@@ -1,7 +1,8 @@
 import { DEFAULT_LOCALE, type Locale } from "@/lib/i18n/config";
 import { CATEGORIES, TOOLS } from "./registry";
 import { POPULAR_SLUGS, ROADMAP_TOOLS, type RoadmapTool } from "./catalog";
-import { CATEGORY_TEXT, ROADMAP_TEXT, TOOL_TEXT, type ToolText } from "./translations";
+import { CATEGORY_TEXT, ROADMAP_TEXT, type ToolText } from "./translations";
+import { TOOL_SLUGS } from "./tool-slugs";
 import type { OptionField, ToolCategory, ToolDefinition } from "./types";
 
 /**
@@ -26,7 +27,30 @@ function isTranslated(locale: Locale): locale is TranslatedLocale {
 
 function textFor(locale: Locale, canonicalSlug: string): ToolText | undefined {
   if (!isTranslated(locale)) return undefined;
-  return TOOL_TEXT[locale][canonicalSlug];
+  return TOOL_TEXT[locale]?.[canonicalSlug];
+}
+
+/** Per-locale tool copy is code-split; loaded before rendering any locale route. */
+const TOOL_TEXT: Partial<Record<TranslatedLocale, Record<string, ToolText>>> = {};
+
+const pending = new Map<Locale, Promise<void>>();
+
+/** Promise to suspend on while a locale's copy loads, or null when already available. */
+export function localeTextPending(locale: Locale): Promise<void> | null {
+  if (!isTranslated(locale) || TOOL_TEXT[locale]) return null;
+  let promise = pending.get(locale);
+  if (!promise) {
+    promise = loadLocaleText(locale);
+    pending.set(locale, promise);
+  }
+  return promise;
+}
+
+export async function loadLocaleText(locale: Locale): Promise<void> {
+  if (!isTranslated(locale) || TOOL_TEXT[locale]) return;
+  const mod = locale === "ca" ? await import("./translations-ca") : await import("./translations-en");
+  TOOL_TEXT[locale] = mod.default;
+  toolCache.delete(locale);
 }
 
 function localizeOptions(options: OptionField[] | undefined, text: ToolText | undefined) {
@@ -57,7 +81,10 @@ function localizeOptions(options: OptionField[] | undefined, text: ToolText | un
 
 function localizeTool(tool: ToolDefinition, locale: Locale): LocalizedTool {
   const text = textFor(locale, tool.slug);
-  if (!text) return { ...tool, canonicalSlug: tool.slug };
+  if (!text) {
+    const slug = isTranslated(locale) ? TOOL_SLUGS[locale][tool.slug] : undefined;
+    return { ...tool, canonicalSlug: tool.slug, ...(slug ? { slug } : {}) };
+  }
   const pendingReason = text.pendingReason ?? tool.pendingReason;
   const options = localizeOptions(tool.options, text);
   return {
@@ -84,7 +111,7 @@ export function localizedTools(locale: Locale): LocalizedTool[] {
   const cached = toolCache.get(locale);
   if (cached) return cached;
   const built = TOOLS.map((tool) => localizeTool(tool, locale));
-  toolCache.set(locale, built);
+  if (!isTranslated(locale) || TOOL_TEXT[locale]) toolCache.set(locale, built);
   return built;
 }
 
@@ -125,7 +152,7 @@ export function findToolBySlug(locale: Locale, slug: string): LocalizedTool | un
 }
 
 export function toolSlugFor(locale: Locale, canonicalSlug: string): string {
-  return textFor(locale, canonicalSlug)?.slug ?? canonicalSlug;
+  return (isTranslated(locale) ? TOOL_SLUGS[locale][canonicalSlug] : undefined) ?? canonicalSlug;
 }
 
 export function categorySlugFor(locale: Locale, category: ToolCategory): string {
