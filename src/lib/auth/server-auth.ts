@@ -30,7 +30,7 @@ export const SESSION_TTL_MS = 30 * 24 * 60 * 60 * 1000;
 
 // Secret key for cookie HMAC signing (Server-only)
 const COOKIE_SIGNING_SECRET =
-  (typeof process !== "undefined" && process.env?["AUTH_SECRET"]) ||
+  (typeof process !== "undefined" && process.env?.["AUTH_SECRET"]) ||
   "breadpdf_secure_hmac_secret_production_seed_987428174129";
 
 /**

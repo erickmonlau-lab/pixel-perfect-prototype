@@ -37,7 +37,7 @@ export interface EmailDeliveryResult {
 
 export const RESEND_CONFIG = {
   apiKey:
-    (typeof process !== 'undefined' ? process.env?["RESEND_API_KEY"] : undefined) ||
+    (typeof process !== 'undefined' ? process.env?.["RESEND_API_KEY"] : undefined) ||
     (typeof import.meta !== 'undefined' && import.meta.env ? import.meta.env['VITE_RESEND_API_KEY'] : undefined) ||
     '',
   defaultFrom: 'BreadPDF <no-reply@breadpdf.com>',
@@ -54,7 +54,7 @@ export async function sendTransactionalEmail(payload: ResendEmailPayload): Promi
   const from = payload.from || RESEND_CONFIG.defaultFrom;
 
   const isProduction =
-    (typeof process !== 'undefined' && process.env?["NODE_ENV"] === 'production') ||
+    (typeof process !== 'undefined' && process.env?.["NODE_ENV"] === 'production') ||
     (typeof import.meta !== 'undefined' && import.meta.env?.PROD);
 
   // En producción, si falta la clave de Resend, se debe arrojar un error explícito y controlado

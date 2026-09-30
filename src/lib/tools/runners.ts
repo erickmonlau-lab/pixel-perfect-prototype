@@ -2493,8 +2493,8 @@ export const svgToPdf: ToolRunner = async (files, options, { onProgress }) => {
   let svgHeight = 841.89;
 
   const viewBoxMatch = svgText.match(/viewBox\s*=\s*["']\s*([-\d.]+)\s+([-\d.]+)\s+([\d.]+)\s+([\d.]+)\s*["']/i);
-  const widthMatch = svgText.match(/<svg[^>]*\bwidth\s*=\s*["']([\d.]+)(?:px)?["']/i);
-  const heightMatch = svgText.match(/<svg[^>]*\bheight\s*=\s*["']([\d.]+)(?:px)?["']/i);
+  const widthMatch = svgText.match(/<svg[^>]*\bwidth\s*=\s*["']([\d.]+)(?:px)?.["']/i);
+  const heightMatch = svgText.match(/<svg[^>]*\bheight\s*=\s*["']([\d.]+)(?:px)?.["']/i);
 
   if (viewBoxMatch) {
     svgWidth = parseFloat(viewBoxMatch[3] ?? "595.28") || 595.28;
