@@ -25,23 +25,23 @@ export interface StripeConfig {
 
 export const STRIPE_CONFIG: StripeConfig = {
   publishableKey:
-    (typeof import.meta !== 'undefined' && import.meta.env?.VITE_STRIPE_PUBLISHABLE_KEY) ||
+    (typeof import.meta !== 'undefined' && import.meta.env?["VITE_STRIPE_PUBLISHABLE_KEY"]) ||
     'pk_test_breadpdf_mock_key_000000',
   isTestMode:
-    (typeof import.meta !== 'undefined' && import.meta.env?.VITE_STRIPE_LIVE_MODE !== 'true') ||
+    (typeof import.meta !== 'undefined' && import.meta.env?["VITE_STRIPE_LIVE_MODE"] !== 'true') ||
     true,
   priceIds: {
     premiumMonthly:
-      (typeof import.meta !== 'undefined' && import.meta.env?.VITE_STRIPE_PREMIUM_MONTHLY_PRICE_ID) ||
+      (typeof import.meta !== 'undefined' && import.meta.env?["VITE_STRIPE_PREMIUM_MONTHLY_PRICE_ID"]) ||
       'price_test_premium_monthly',
     premiumYearly:
-      (typeof import.meta !== 'undefined' && import.meta.env?.VITE_STRIPE_PREMIUM_YEARLY_PRICE_ID) ||
+      (typeof import.meta !== 'undefined' && import.meta.env?["VITE_STRIPE_PREMIUM_YEARLY_PRICE_ID"]) ||
       'price_test_premium_yearly',
     teamMonthly:
-      (typeof import.meta !== 'undefined' && import.meta.env?.VITE_STRIPE_TEAM_MONTHLY_PRICE_ID) ||
+      (typeof import.meta !== 'undefined' && import.meta.env?["VITE_STRIPE_TEAM_MONTHLY_PRICE_ID"]) ||
       'price_test_team_monthly',
     teamYearly:
-      (typeof import.meta !== 'undefined' && import.meta.env?.VITE_STRIPE_TEAM_YEARLY_PRICE_ID) ||
+      (typeof import.meta !== 'undefined' && import.meta.env?["VITE_STRIPE_TEAM_YEARLY_PRICE_ID"]) ||
       'price_test_team_yearly',
   },
 };

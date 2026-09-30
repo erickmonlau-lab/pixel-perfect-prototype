@@ -1760,7 +1760,7 @@ export const resizePdf: ToolRunner = async (files, options, { onProgress }) => {
     a3: { width: 841.89, height: 1190.55, name: "A3 (297 × 420 mm)" },
   };
 
-  const targetSpec = SIZES[targetSize] ?? SIZES.a4;
+  const targetSpec = SIZES[targetSize] ?? SIZES["a4"];
   const out = await PDFDocument.create();
 
   // Copiar páginas y escalar cada una dentro de la nueva dimensión objetivo

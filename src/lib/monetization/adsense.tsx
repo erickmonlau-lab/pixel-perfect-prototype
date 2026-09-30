@@ -23,13 +23,13 @@ export interface AdSenseConfig {
 
 export const ADSENSE_CONFIG: AdSenseConfig = {
   clientId:
-    (typeof import.meta !== 'undefined' && import.meta.env?.VITE_ADSENSE_CLIENT_ID) ||
+    (typeof import.meta !== 'undefined' && import.meta.env?["VITE_ADSENSE_CLIENT_ID"]) ||
     'ca-pub-0000000000000000',
   isEnabled:
-    (typeof import.meta !== 'undefined' && import.meta.env?.VITE_ADSENSE_ENABLED === 'true') ||
+    (typeof import.meta !== 'undefined' && import.meta.env?["VITE_ADSENSE_ENABLED"] === 'true') ||
     false,
   testMode:
-    (typeof import.meta !== 'undefined' && import.meta.env?.VITE_ADSENSE_TEST_MODE === 'true') ||
+    (typeof import.meta !== 'undefined' && import.meta.env?["VITE_ADSENSE_TEST_MODE"] === 'true') ||
     true,
 };
 
