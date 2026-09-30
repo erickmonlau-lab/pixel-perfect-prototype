@@ -1047,8 +1047,8 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
       )}
 
       {phase === "done" && outputs.length > 0 && (
-        <div className="animate-rise border-t border-slate-200 bg-slate-50 p-6 sm:p-8">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-5">
+        <div className="animate-rise border-t border-slate-200 bg-linear-to-b from-[#FFF8F7] to-white p-6 sm:p-9">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
             <div className="flex items-center gap-4">
               <img
                 src={BRAND_ASSETS.mascots.celebrate}
@@ -1059,14 +1059,16 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                 loading="lazy"
               />
               <div>
-                <div className="flex items-center gap-2 text-[#059669]">
-                  <CheckCircle2 className="size-5.5 text-[#059669]" aria-hidden />
-                  <h3 className="text-[20px] sm:text-[22px] font-black text-[#0F172A] tracking-tight">{t.workspace.done}</h3>
+                <div className="flex items-center gap-2">
+                  <span className="flex size-6 items-center justify-center rounded-full bg-[#059669] text-white">
+                    <CheckCircle2 className="size-4" aria-hidden />
+                  </span>
+                  <h3 className="text-[22px] sm:text-[24px] font-black text-[#0F172A] tracking-tight">{t.workspace.done}</h3>
                 </div>
                 {note ? (
-                  <p className="mt-1 text-[14.5px] font-medium text-slate-700">{note}</p>
+                  <p className="mt-1 text-[15px] font-semibold text-slate-700">{note}</p>
                 ) : (
-                  <p className="mt-1 text-[14px] text-slate-600 font-medium">¡Listo! Tu documento ha sido procesado con éxito y está preparado para descargar.</p>
+                  <p className="mt-1 text-[14.5px] text-slate-600 font-medium">¡Listo! Tu documento ha sido procesado con éxito y está preparado para descargar.</p>
                 )}
               </div>
             </div>
@@ -1097,32 +1099,42 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                     console.error("Error creating ZIP", err);
                   }
                 }}
-                className="inline-flex items-center gap-2 rounded-xl bg-primary px-4 py-2.5 text-[13.5px] font-bold text-white shadow-sm hover:bg-primary/90 transition-all cursor-pointer self-start sm:self-auto shrink-0"
+                className="inline-flex items-center gap-2 rounded-xl bg-[#0F172A] px-4 py-2.5 text-[13.5px] font-bold text-white shadow-sm hover:bg-slate-800 transition-all cursor-pointer self-start sm:self-auto shrink-0"
               >
                 <Download className="size-4" />
                 <span>{t.workspace.downloadAllZip ?? "Descargar todo en un ZIP"}</span>
               </button>
             )}
           </div>
-          <div className="grid gap-3.5 sm:grid-cols-2" aria-label={t.workspace.downloads}>
+
+          {/* Botones de descarga de gran impacto visual en Rojo BREADPDF */}
+          <div className="grid gap-3.5 sm:grid-cols-1 max-w-xl mx-auto" aria-label={t.workspace.downloads}>
             {outputs.map((output, index) => (
               <a
                 key={output.name}
                 href={urls[index]}
                 download={output.name}
                 onClick={() => trackDownloadClicked({ tool: tool.slug, language: locale })}
-                className="transition-all flex items-center gap-3.5 rounded-2xl border border-slate-200 bg-white p-4.5 shadow-sm hover:-translate-y-0.5 hover:border-[#059669] hover:shadow-md"
+                className="group relative flex items-center justify-between gap-4 rounded-2xl bg-[#EC3C2D] hover:bg-[#D93426] p-4.5 sm:p-5.5 text-white shadow-lg shadow-[#EC3C2D]/25 transition-all hover:shadow-xl hover:shadow-[#EC3C2D]/35 hover:-translate-y-0.5 active:translate-y-0"
               >
-                <div className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-[#059669] text-white shadow-xs">
-                  <Download className="size-6 text-white" aria-hidden />
+                <div className="flex items-center gap-4 min-w-0">
+                  <div className="flex size-13 sm:size-14 shrink-0 items-center justify-center rounded-xl bg-white/20 text-white backdrop-blur-xs group-hover:scale-105 transition-transform">
+                    <Download className="size-7 text-white stroke-[2.5]" aria-hidden />
+                  </div>
+                  <div className="min-w-0 text-left">
+                    <span className="block truncate text-[16.5px] sm:text-[18px] font-black text-white tracking-tight">
+                      {output.name}
+                    </span>
+                    <span className="inline-flex items-center gap-1.5 mt-0.5 text-[13.5px] font-semibold text-white/90">
+                      <span>{formatBytes(output.blob.size)}</span>
+                      <span>•</span>
+                      <span className="underline decoration-white/50 underline-offset-2">Descargar PDF gratis</span>
+                    </span>
+                  </div>
                 </div>
-                <span className="min-w-0 flex-1">
-                  <span className="block truncate text-[15.5px] font-bold text-[#0F172A]">
-                    {output.name}
-                  </span>
-                  <span className="text-[13px] font-bold text-[#059669]">
-                    {formatBytes(output.blob.size)} · Descargar ahora
-                  </span>
+
+                <span className="hidden sm:inline-flex items-center justify-center rounded-xl bg-white px-4 py-2.5 text-[14px] font-black text-[#EC3C2D] shadow-xs shrink-0 group-hover:bg-[#FFF5F4] transition-colors">
+                  Descargar
                 </span>
               </a>
             ))}
