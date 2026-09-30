@@ -99,8 +99,9 @@ export const TOOLS: ToolDefinition[] = [
     icon: "Minimize2",
     status: "live",
     accept: "application/pdf",
-    multiple: false,
+    multiple: true,
     minFiles: 1,
+    autoProcess: true,
     ctaLabel: "Comprimir PDF",
     keywords: ["comprimir pdf", "reducir tamaño pdf", "pdf ligero"],
     howItWorks: [

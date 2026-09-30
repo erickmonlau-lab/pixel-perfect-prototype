@@ -197,62 +197,88 @@ const COMPRESSION_PRESETS: Record<string, { scale: number; quality: number }> = 
 };
 
 export const compressPdf: ToolRunner = async (files, options, { onProgress }) => {
-  const file = firstFile(files);
-  const original = file.size;
+  if (files.length === 0) throw new Error("Añade al menos un archivo para continuar.");
+
   const level = str(options, "level", "balanced");
   const { PDFDocument } = await loadPdfLib();
+  const outputs: ToolOutput[] = [];
+  let totalOriginalSize = 0;
+  let totalCompressedSize = 0;
 
-  if (level === "lossless") {
-    const doc = await PDFDocument.load(await file.arrayBuffer(), { ignoreEncryption: true });
-    const blob = pdfBlob(await doc.save({ useObjectStreams: true }));
-    onProgress(1);
-    return {
-      outputs: [{ name: `${baseName(file.name)}-comprimido.pdf`, blob }],
-      note:
-        blob.size < original
-          ? `${formatBytes(original)} → ${formatBytes(blob.size)} (−${Math.round((1 - blob.size / original) * 100)}%)`
-          : `Sin pérdida: este documento ya estaba optimizado (${formatBytes(original)}).`,
-    };
-  }
+  for (let fIdx = 0; fIdx < files.length; fIdx++) {
+    const file = files[fIdx];
+    if (!file) continue;
 
-  const preset = COMPRESSION_PRESETS[level] ?? { scale: 1.1, quality: 0.68 };
-  const pdfjs = await loadPdfjs();
-  const doc = await pdfjs.getDocument({ data: new Uint8Array(await file.arrayBuffer()) }).promise;
-  const out = await PDFDocument.create();
+    const original = file.size;
+    totalOriginalSize += original;
 
-  for (let i = 1; i <= doc.numPages; i++) {
-    const page = await doc.getPage(i);
-    const { blob, width, height } = await renderPageToJpeg(
-      page as never,
-      preset.scale,
-      preset.quality,
-    );
-    const image = await out.embedJpg(new Uint8Array(await blob.arrayBuffer()));
-    const target = out.addPage([width * 0.75, height * 0.75]);
-    target.drawImage(image, { x: 0, y: 0, width: target.getWidth(), height: target.getHeight() });
-    onProgress(i / doc.numPages);
-  }
+    const fileBaseProgress = fIdx / files.length;
+    const fileProgressSpan = 1 / files.length;
 
-  let finalBlob = pdfBlob(await out.save({ useObjectStreams: true }));
+    let finalBlob: Blob;
 
-  // SALVAGUARDA CRÍTICA: Si la rasterización genera un archivo más pesado que el original
-  // (típico en PDFs con texto plano o gráficos vectoriales ligeros), recurrimos a la optimización
-  // estructural sin pérdida para asegurar que el archivo NUNCA engorde.
-  if (finalBlob.size >= original) {
-    const losslessDoc = await PDFDocument.load(await file.arrayBuffer(), { ignoreEncryption: true });
-    const losslessBlob = pdfBlob(await losslessDoc.save({ useObjectStreams: true }));
-    if (losslessBlob.size < finalBlob.size) {
-      finalBlob = losslessBlob;
+    if (level === "lossless") {
+      const doc = await PDFDocument.load(await file.arrayBuffer(), { ignoreEncryption: true });
+      finalBlob = pdfBlob(await doc.save({ useObjectStreams: true }));
+      onProgress(fileBaseProgress + fileProgressSpan);
+    } else {
+      const preset = COMPRESSION_PRESETS[level] ?? { scale: 1.1, quality: 0.68 };
+      const pdfjs = await loadPdfjs();
+      const doc = await pdfjs.getDocument({ data: new Uint8Array(await file.arrayBuffer()) }).promise;
+      const out = await PDFDocument.create();
+
+      for (let i = 1; i <= doc.numPages; i++) {
+        const page = await doc.getPage(i);
+        const { blob, width, height } = await renderPageToJpeg(
+          page as never,
+          preset.scale,
+          preset.quality,
+        );
+        const image = await out.embedJpg(new Uint8Array(await blob.arrayBuffer()));
+        const target = out.addPage([width * 0.75, height * 0.75]);
+        target.drawImage(image, { x: 0, y: 0, width: target.getWidth(), height: target.getHeight() });
+
+        const pageProgress = i / doc.numPages;
+        onProgress(fileBaseProgress + fileProgressSpan * pageProgress);
+      }
+
+      finalBlob = pdfBlob(await out.save({ useObjectStreams: true }));
+
+      // Salvaguarda: si la rasterización aumentó de tamaño, probar lossless
+      if (finalBlob.size >= original) {
+        const losslessDoc = await PDFDocument.load(await file.arrayBuffer(), { ignoreEncryption: true });
+        const losslessBlob = pdfBlob(await losslessDoc.save({ useObjectStreams: true }));
+        if (losslessBlob.size < finalBlob.size) {
+          finalBlob = losslessBlob;
+        }
+      }
     }
+
+    totalCompressedSize += finalBlob.size;
+    outputs.push({
+      name: `${baseName(file.name)}-comprimido.pdf`,
+      blob: finalBlob,
+    });
   }
 
-  const saved = Math.round((1 - finalBlob.size / original) * 100);
+  const overallSaved = Math.round((1 - totalCompressedSize / totalOriginalSize) * 100);
+
+  let note = "";
+  if (files.length === 1) {
+    note =
+      overallSaved > 0
+        ? `${formatBytes(totalOriginalSize)} → ${formatBytes(totalCompressedSize)} (−${overallSaved}%)`
+        : `El documento ya estaba optimizado al máximo (${formatBytes(totalOriginalSize)}).`;
+  } else {
+    note =
+      overallSaved > 0
+        ? `${files.length} archivos comprimidos · ${formatBytes(totalOriginalSize)} → ${formatBytes(totalCompressedSize)} (−${overallSaved}% ahorro global)`
+        : `${files.length} archivos procesados · Todos estaban optimizados al máximo (${formatBytes(totalOriginalSize)}).`;
+  }
+
   return {
-    outputs: [{ name: `${baseName(file.name)}-comprimido.pdf`, blob: finalBlob }],
-    note:
-      saved > 0
-        ? `${formatBytes(original)} → ${formatBytes(finalBlob.size)} (−${saved}%)`
-        : `El documento ya estaba optimizado al máximo (${formatBytes(original)}).`,
+    outputs,
+    note,
   };
 };
 

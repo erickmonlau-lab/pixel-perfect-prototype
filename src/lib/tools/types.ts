@@ -75,5 +75,6 @@ export type ToolDefinition = {
   howItWorks: (string | { title: string; desc: string })[];
   faq: { q: string; a: string }[];
   options?: OptionField[];
+  autoProcess?: boolean;
   run?: ToolRunner;
 };

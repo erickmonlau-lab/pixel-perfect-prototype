@@ -41,9 +41,9 @@ import type {
   SignatureConfig,
   TextOverlayConfig,
 } from "./workspace/overlayTypes";
-import { loadPdfLib } from "@/lib/tools/pdf-runtime";
+import { BreadProcessingMachine } from "./workspace/BreadProcessingMachine";
 
-type Phase = "idle" | "loading-pages" | "processing" | "done" | "error";
+type Phase = "idle" | "uploading" | "loading-pages" | "processing" | "done" | "error";
 
 const PAGE_BASED_TOOLS = new Set([
   "unir-pdf",
@@ -272,9 +272,15 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
       trackFileSelected({ tool: tool.slug, language: locale, fileCount: valid.length });
       if (isPageWorkspace) {
         loadPagesForFiles(nextFiles);
+      } else if (tool.autoProcess) {
+        // En herramientas automáticas como comprimir-pdf: SUBIR -> PROCESAR -> RESULTADO -> DESCARGAR
+        setPhase("uploading");
+        setTimeout(() => {
+          run(nextFiles, values);
+        }, 350);
       }
     },
-    [tool, t, files, locale, isPageWorkspace, loadPagesForFiles],
+    [tool, t, files, locale, isPageWorkspace, loadPagesForFiles, values],
   );
 
   const move = (index: number, direction: -1 | 1) => {
@@ -290,8 +296,11 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
     });
   };
 
-  const run = async () => {
-    if (files.length < tool.minFiles) {
+  const run = async (filesToRun?: File[], optionsOverride?: OptionValues) => {
+    const targetFiles = filesToRun || files;
+    const targetOptions = optionsOverride || values;
+
+    if (targetFiles.length < tool.minFiles) {
       setPhase("error");
       setMessage(t.workspace.minFiles(tool.minFiles));
       return;
@@ -494,7 +503,7 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
       }
 
       if (!tool.run) return;
-      const result = await tool.run(files, values, {
+      const result = await tool.run(targetFiles, targetOptions, {
         onProgress: (ratio) => setProgress(Math.min(1, Math.max(0, ratio))),
       });
       setOutputs(
@@ -553,79 +562,105 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
     );
   }
 
+  const isAutoFlow = Boolean(tool.autoProcess && !isPageWorkspace);
+  const isBusy = phase === "uploading" || phase === "processing";
+
   return (
     <section
       className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm"
       aria-label={t.workspace.aria(tool.name)}
     >
-      <div
-        onDragOver={(event) => {
-          event.preventDefault();
-          setDragging(true);
-        }}
-        onDragLeave={() => setDragging(false)}
-        onDrop={(event) => {
-          event.preventDefault();
-          setDragging(false);
-          addFiles(event.dataTransfer.files);
-        }}
-        className={`transition-all m-3.5 sm:m-5 rounded-2xl border-2 border-dashed px-6 py-10 sm:py-14 text-center cursor-pointer ${
-          dragging
-            ? "border-[#EC3C2D] bg-[#FEECEB] scale-[1.004]"
-            : "border-slate-300 bg-slate-50 hover:border-[#EC3C2D] hover:bg-white"
-        }`}
-        onClick={() => inputRef.current?.click()}
-      >
-        <input
-          ref={inputRef}
-          type="file"
-          accept={tool.accept}
-          multiple={tool.multiple}
-          className="sr-only"
-          onChange={(event) => {
-            addFiles(event.target.files);
-            event.target.value = "";
+      {/* Zona de Subida / Dropzone principal: visible si no estamos procesando ni terminados en modo auto */}
+      {(!isAutoFlow || (phase !== "uploading" && phase !== "processing" && phase !== "done")) && (
+        <div
+          onDragOver={(event) => {
+            event.preventDefault();
+            setDragging(true);
           }}
-        />
-
-        {/* Icono de subida con presencia visual sólida en Rojo BreadPDF */}
-        <span className="mx-auto flex size-16 sm:size-18 items-center justify-center rounded-2xl bg-[#EC3C2D] text-white shadow-sm transition-transform hover:scale-105">
-          <Upload className="size-8 sm:size-9 text-white" strokeWidth={2.3} aria-hidden />
-        </span>
-
-        {/* Título de acción principal */}
-        <h2 className="mt-5 text-xl sm:text-2xl lg:text-[1.75rem] font-black tracking-tight text-[#0F172A]">
-          {tool.multiple ? t.workspace.dropMany : t.workspace.dropOne}
-        </h2>
-
-        {/* Subtítulo aclaratorio */}
-        <p className="mt-2 text-[15.5px] sm:text-[16.5px] text-slate-600 max-w-md mx-auto leading-normal font-normal">
-          {tool.multiple ? t.workspace.hint : t.workspace.hintOne}
-        </p>
-
-        {/* Botón protagonista "Seleccionar archivos" en Rojo BreadPDF sólido */}
-        <div className="mt-6 flex justify-center">
-          <Button
-            size="lg"
-            className="h-13 sm:h-14 px-9 sm:px-11 text-[16px] sm:text-[17px] font-black rounded-xl sm:rounded-2xl bg-[#EC3C2D] text-white shadow-md hover:bg-[#D93426] transition-all hover:-translate-y-0.5"
-            onClick={(e) => {
-              e.stopPropagation();
-              inputRef.current?.click();
+          onDragLeave={() => setDragging(false)}
+          onDrop={(event) => {
+            event.preventDefault();
+            setDragging(false);
+            addFiles(event.dataTransfer.files);
+          }}
+          className={`transition-all m-3.5 sm:m-5 rounded-2xl border-2 border-dashed px-6 py-10 sm:py-14 text-center cursor-pointer ${
+            dragging
+              ? "border-[#EC3C2D] bg-[#FEECEB] scale-[1.004]"
+              : "border-slate-300 bg-slate-50 hover:border-[#EC3C2D] hover:bg-white"
+          }`}
+          onClick={() => inputRef.current?.click()}
+        >
+          <input
+            ref={inputRef}
+            type="file"
+            accept={tool.accept}
+            multiple={tool.multiple}
+            className="sr-only"
+            onChange={(event) => {
+              addFiles(event.target.files);
+              event.target.value = "";
             }}
-            type="button"
-          >
-            {tool.multiple ? t.workspace.selectMany : t.workspace.selectOne}
-          </Button>
-        </div>
+          />
 
-        {/* Mensaje de privacidad sólido y nítido cerca de la acción */}
-        <div className="mt-5 flex justify-center">
-          <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-1.5 text-[13px] font-semibold text-[#0F172A] shadow-xs">
-            <ShieldCheck className="size-4.5 text-[#059669] shrink-0" />
-            <span>{t.workspace.privacyNote}</span>
+          {/* Icono de subida con presencia visual sólida en Rojo BreadPDF */}
+          <span className="mx-auto flex size-16 sm:size-18 items-center justify-center rounded-2xl bg-[#EC3C2D] text-white shadow-sm transition-transform hover:scale-105">
+            <Upload className="size-8 sm:size-9 text-white" strokeWidth={2.3} aria-hidden />
+          </span>
+
+          {/* Título de acción principal */}
+          <h2 className="mt-5 text-xl sm:text-2xl lg:text-[1.75rem] font-black tracking-tight text-[#0F172A]">
+            {tool.multiple ? t.workspace.dropMany : t.workspace.dropOne}
+          </h2>
+
+          {/* Subtítulo aclaratorio */}
+          <p className="mt-2 text-[15.5px] sm:text-[16.5px] text-slate-600 max-w-md mx-auto leading-normal font-normal">
+            {tool.multiple ? t.workspace.hint : t.workspace.hintOne}
+          </p>
+
+          {/* Botón protagonista "Seleccionar archivos" en Rojo BreadPDF sólido */}
+          <div className="mt-6 flex justify-center">
+            <Button
+              size="lg"
+              className="h-13 sm:h-14 px-9 sm:px-11 text-[16px] sm:text-[17px] font-black rounded-xl sm:rounded-2xl bg-[#EC3C2D] text-white shadow-md hover:bg-[#D93426] transition-all hover:-translate-y-0.5"
+              onClick={(e) => {
+                e.stopPropagation();
+                inputRef.current?.click();
+              }}
+              type="button"
+            >
+              {tool.multiple ? t.workspace.selectMany : t.workspace.selectOne}
+            </Button>
+          </div>
+
+          {/* Mensaje de privacidad sólido y nítido cerca de la acción */}
+          <div className="mt-5 flex justify-center">
+            <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-1.5 text-[13px] font-semibold text-[#0F172A] shadow-xs">
+              <ShieldCheck className="size-4.5 text-[#059669] shrink-0" />
+              <span>{t.workspace.privacyNote}</span>
+            </div>
           </div>
         </div>
-      </div>
+      )}
+
+      {/* Pantalla interactiva de Máquina BREADPDF durante subida / procesamiento */}
+      {isBusy && (
+        <div className="p-6 sm:p-10 flex flex-col items-center">
+          <BreadProcessingMachine
+            phase={phase === "uploading" ? "uploading" : "processing"}
+            progress={progress}
+            files={files}
+            statusMessage={
+              phase === "uploading"
+                ? locale === "ca"
+                  ? "Carregant document..."
+                  : locale === "en"
+                  ? "Loading document..."
+                  : "Cargando documento..."
+                : undefined
+            }
+          />
+        </div>
+      )}
 
       {phase === "loading-pages" && (
         <div className="flex items-center justify-center gap-3 p-8 text-primary font-semibold">
@@ -634,7 +669,8 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
         </div>
       )}
 
-      {(files.length > 0 || tool.minFiles === 0) && phase !== "loading-pages" && (
+      {/* Zona de configuración / archivos para herramientas interactivas o de configuración manual */}
+      {!isAutoFlow && (files.length > 0 || tool.minFiles === 0) && phase !== "loading-pages" && (
         <div className="animate-rise border-t border-border p-6 sm:p-8">
           <div className="flex items-center justify-between mb-4">
             <div>
@@ -1049,7 +1085,8 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                     const baseTitle = files[0]?.name.replace(/\.[^/.]+$/, "") ?? BRAND_NAME.toLowerCase();
                     const a = document.createElement("a");
                     a.href = zipUrl;
-                    a.download = localizeOutputName(locale, `${baseTitle}-separadas.zip`);
+                    const zipNameSuffix = tool.slug === "dividir-pdf" ? "separadas" : tool.slug;
+                    a.download = localizeOutputName(locale, `${baseTitle}-${zipNameSuffix}.zip`);
                     document.body.appendChild(a);
                     a.click();
                     document.body.removeChild(a);
@@ -1088,6 +1125,71 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                 </span>
               </a>
             ))}
+          </div>
+
+          {/* Barra de acciones secundarias: procesar más archivos o volver a empezar */}
+          <div className="mt-6 pt-5 border-t border-slate-200/80 flex flex-wrap items-center justify-between gap-3">
+            <button
+              type="button"
+              onClick={() => {
+                setFiles([]);
+                setOutputs([]);
+                setPhase("idle");
+                setMessage(null);
+                setNote(null);
+                if (inputRef.current) inputRef.current.value = "";
+              }}
+              className="inline-flex items-center gap-2 text-[13.5px] font-semibold text-slate-600 hover:text-primary transition-colors cursor-pointer"
+            >
+              <PlusCircle className="size-4 text-primary" />
+              <span>
+                {locale === "ca"
+                  ? "Comprimir altres arxius"
+                  : locale === "en"
+                  ? "Compress other files"
+                  : "Comprimir otros archivos"}
+              </span>
+            </button>
+
+            {tool.options && tool.options.length > 0 && (
+              <div className="flex items-center gap-2">
+                <span className="text-[12.5px] text-slate-500 font-medium">
+                  {locale === "ca"
+                    ? "Nivell de compressió:"
+                    : locale === "en"
+                    ? "Compression level:"
+                    : "Nivel de compresión:"}
+                </span>
+                <select
+                  value={values.level ?? "balanced"}
+                  onChange={(e) => {
+                    const nextVal = { ...values, level: e.target.value };
+                    setValues(nextVal);
+                    if (files.length > 0) {
+                      run(files, nextVal);
+                    }
+                  }}
+                  className="rounded-lg border border-slate-300 bg-white px-2.5 py-1 text-[12.5px] font-bold text-slate-700 shadow-2xs hover:border-primary focus:border-primary focus:outline-hidden"
+                >
+                  <option value="lossless">
+                    {locale === "ca"
+                      ? "Sense pèrdua (estructural)"
+                      : locale === "en"
+                      ? "Lossless (structural)"
+                      : "Sin pérdida (estructural)"}
+                  </option>
+                  <option value="light">
+                    {locale === "ca" ? "Lleuger (alta qualitat)" : locale === "en" ? "Light (high quality)" : "Ligero (alta calidad)"}
+                  </option>
+                  <option value="balanced">
+                    {locale === "ca" ? "Equilibrat (recomanat)" : locale === "en" ? "Balanced (recommended)" : "Equilibrado (recomendado)"}
+                  </option>
+                  <option value="strong">
+                    {locale === "ca" ? "Màxim (més reducció)" : locale === "en" ? "Maximum (highest reduction)" : "Máximo (más reducción)"}
+                  </option>
+                </select>
+              </div>
+            )}
           </div>
         </div>
       )}
