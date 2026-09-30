@@ -15,7 +15,7 @@ import { DEFAULT_LOCALE, HTML_LANG } from "@/lib/i18n/config";
 import { parsePath } from "@/lib/i18n/routing";
 import { UI } from "@/lib/i18n/ui";
 import { OFFICIAL_CONTACT_EMAIL, SITE_URL } from "@/lib/brand";
-import { GTM_CONTAINER_ID, GA4_MEASUREMENT_ID, trackPageView } from "@/lib/analytics/gtm";
+import { GTM_CONTAINER_ID, trackPageView } from "@/lib/analytics/gtm";
 
 function NotFoundComponent() {
   const t = UI[DEFAULT_LOCALE];
@@ -162,10 +162,10 @@ function RootShell({ children }: { children: ReactNode }) {
   return (
     <html lang={HTML_LANG[locale]}>
       <head>
-        {/* Google Tag Manager & GA4 — dataLayer & gtag inicializado al instante; gtm.js se carga diferido tras el primer render para no bloquear LCP/TBT */}
+        {/* Google Tag Manager — dataLayer inicializado al instante; gtm.js se carga diferido tras el primer render para no bloquear LCP/TBT */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `window.dataLayer=window.dataLayer||[];function gtag(){window.dataLayer.push(arguments);}window.gtag=gtag;gtag('js',new Date());gtag('config','${GA4_MEASUREMENT_ID}',{send_page_view:false});window.dataLayer.push({'gtm.start':new Date().getTime(),event:'gtm.js'});`,
+            __html: `window.dataLayer=window.dataLayer||[];window.dataLayer.push({'gtm.start':new Date().getTime(),event:'gtm.js'});`,
           }}
         />
         {/* End Google Tag Manager */}
