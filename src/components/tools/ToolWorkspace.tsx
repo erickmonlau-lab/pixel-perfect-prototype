@@ -672,6 +672,36 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
             </Button>
           </div>
 
+          {/* Selector de Ajuste / Preset de Compresión visible antes de subir */}
+          {tool.options && tool.options.length > 0 && (
+            <div
+              className="mt-6 inline-flex flex-wrap items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-white/90 px-4 py-2.5 shadow-2xs backdrop-blur-xs max-w-lg mx-auto"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {tool.options.map((opt) => (
+                <div key={opt.key} className="flex flex-wrap items-center justify-center gap-2 text-left">
+                  <label htmlFor={`preset-${opt.key}`} className="text-[13px] font-bold text-slate-700">
+                    {opt.label}:
+                  </label>
+                  {opt.type === "select" && (
+                    <select
+                      id={`preset-${opt.key}`}
+                      value={values[opt.key] ?? opt.default}
+                      onChange={(e) => setValues((v) => ({ ...v, [opt.key]: e.target.value }))}
+                      className="rounded-xl border border-slate-300 bg-white px-3 py-1.5 text-[13px] font-bold text-[#0F172A] shadow-2xs transition-all hover:border-primary focus:border-primary focus:outline-hidden"
+                    >
+                      {opt.options.map((o) => (
+                        <option key={o.value} value={o.value}>
+                          {o.label}
+                        </option>
+                      ))}
+                    </select>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
+
           {/* Mensaje de privacidad sólido y nítido cerca de la acción */}
           <div className="mt-5 flex justify-center">
             <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-1.5 text-[13px] font-semibold text-[#0F172A] shadow-xs">
