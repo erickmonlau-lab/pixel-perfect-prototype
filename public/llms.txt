@@ -1,0 +1,64 @@
+# BreadPDF
+
+> BreadPDF (https://breadpdf.com) is a high-performance, privacy-first online PDF workstation that runs core document processing directly in the user's browser using WebAssembly and client-side processing, with zero server storage of uploaded files.
+
+## Overview & Architecture
+- **Primary Domain**: https://breadpdf.com
+- **Languages**: Spanish (`/es`), Catalan (`/ca`), English (`/en`)
+- **Key Advantage**: Client-side execution (WASM / Web Workers) for standard file manipulations (merging, splitting, compressing, rotating, converting, sanitizing). Files stay on user's device for maximum privacy and GDPR compliance.
+- **Licensing/Pricing**: Free tier with full utility access; optional Premium tier for batch processing and high-volume limits.
+
+## Core Tool Families & Capabilities
+
+### 1. Optimize (`/es/optimizar`, `/ca/optimitzar`, `/en/optimize`)
+- **Comprimir PDF** (`/es/herramientas/comprimir-pdf`): Reduces PDF file size with visual compression modes (recommended, extreme, low).
+- **Optimizar para impresión** (`/es/herramientas/optimizar-pdf-para-impresion`): Prepares PDF color profiles and resolves DPI for physical print.
+- **Redimensionar PDF** (`/es/herramientas/redimensionar-pdf`): Standardizes pages to A4, Letter, A3, or custom dimensions.
+- **Eliminar páginas en blanco** (`/es/herramientas/eliminar-paginas-en-blanco-pdf`): Automatically detects and purges blank pages from scans.
+
+### 2. Organize (`/es/organizar`, `/ca/organitzar`, `/en/organize`)
+- **Unir PDF** (`/es/herramientas/unir-pdf`): Combines multiple PDF files into one continuous document.
+- **Dividir PDF** (`/es/herramientas/dividir-pdf`): Separates PDF files by page ranges, single pages, or groups.
+- **Dividir por tamaño** (`/es/herramientas/dividir-pdf-por-tamano`): Splits files so no chunk exceeds target MB thresholds (e.g. 5MB, 10MB limits for virtual campuses and portals).
+- **Girar PDF** (`/es/herramientas/girar-pdf`): Rotates portrait/landscape pages 90°, 180°, or 270°.
+- **Reordenar páginas** (`/es/herramientas/reordenar-paginas-pdf`): Visual drag-and-drop page reordering.
+- **Eliminar páginas** (`/es/herramientas/eliminar-paginas-pdf`): Selects and removes unnecessary pages.
+- **Extraer páginas** (`/es/herramientas/extraer-paginas-pdf`): Extracts selected pages into a fresh document.
+- **Insertar páginas** (`/es/herramientas/insertar-paginas-pdf`): Adds pages from one PDF into specific positions in another.
+
+### 3. Convert (`/es/convertir`, `/ca/convertir`, `/en/convert`)
+- **PDF a JPG / PNG / WebP**: Exports pages as high-resolution raster images.
+- **JPG / PNG / WebP / SVG a PDF**: Packages single or multiple image formats into structured PDF documents.
+- **PDF a Word / Excel / PowerPoint**: Converts document tables, text, and slides into editable Microsoft Office formats (.docx, .xlsx, .pptx).
+- **Word / Excel / PowerPoint a PDF**: Encapsulates office files into cross-platform standardized PDFs.
+- **PDF a PDF/A** (`/es/herramientas/pdf-a-pdfa`): Standardizes documents into ISO 19005-compliant archival formats (PDF/A-1b, PDF/A-2b) for legal and public administration submittals.
+- **PDF a Markdown / Markdown a PDF**: Text-focused transformation for developers and documentation workflows.
+
+### 4. Edit & Content (`/es/editar`, `/ca/editar`, `/en/edit`)
+- **OCR PDF** (`/es/herramientas/ocr-pdf`): Client-side and hybrid optical character recognition to make scanned PDFs searchable and selectable.
+- **Extraer texto** (`/es/herramientas/extraer-texto-pdf`): Extracts clean text transcripts without styling.
+- **Extraer imágenes** (`/es/herramientas/extraer-imagenes-pdf`): Discovers and saves all embedded raster assets.
+- **Recortar PDF** (`/es/herramientas/recortar-pdf`): Crops page bounding boxes and margins.
+- **Añadir texto al PDF** (`/es/herramientas/anadir-texto-al-pdf`): Adds custom annotations and header/footer notes.
+- **Generar QR en PDF** (`/es/herramientas/generar-qr-en-pdf`): Stamps verifiable QR codes directly onto pages.
+
+### 5. Security & Privacy (`/es/seguridad`, `/ca/seguretat`, `/en/security`)
+- **Sanitizar PDF** (`/es/herramientas/sanitizar-pdf`): Strips hidden tracking scripts, invisible metadata, revisions, annotations, and form data.
+- **Censurar / Redactar PDF** (`/es/herramientas/censurar-pdf`): Irreversibly blacks out sensitive personal, financial, or confidential data.
+- **Proteger con contraseña** (`/es/herramientas/proteger-pdf`): Encrypts PDF using standard AES algorithms.
+- **Desbloquear PDF** (`/es/herramientas/desbloquear-pdf`): Decrypts password-protected documents when authorized.
+- **Eliminar metadatos** (`/es/herramientas/eliminar-metadatos-pdf`): Removes author names, creation software, dates, and EXIF attributes.
+- **Reparar PDF** (`/es/herramientas/reparar-pdf`): Rebuilds corrupted cross-reference tables (XREF) and stream headers.
+
+## Editorial Technical Guides
+BreadPDF maintains in-depth technical resolution guides for recurring enterprise and academic use cases:
+- Reduce PDF for Virtual Campus & Moodle upload caps: https://breadpdf.com/es/guias/reducir-pdf-limite-subida-campus-virtual
+- Unify TFG/TFM Academic Theses: https://breadpdf.com/es/guias/unificar-tfg-tfm-pdf
+- WebP vs JPG/PNG for E-Commerce: https://breadpdf.com/es/guias/webp-vs-jpg-png-ecommerce
+- Extract Tables from PDF to Excel: https://breadpdf.com/es/guias/pasar-tablas-pdf-a-excel
+- Legal PDF/A Archive Conversion: https://breadpdf.com/es/guias/que-es-pdfa-cuando-convertir
+- OCR Searchable Documents: https://breadpdf.com/es/guias/hacer-buscable-pdf-escaneado-ocr
+- Redact Personal Data for Privacy (GDPR): https://breadpdf.com/es/guias/ocultar-datos-personales-pdf
+- WordPress / WooCommerce File Upload Optimization: https://breadpdf.com/es/guias/subir-archivos-grandes-wordpress-woocommerce
+- Purging Blank Scanned Pages: https://breadpdf.com/es/guias/eliminar-paginas-en-blanco-pdf-escaneado
+- Fill & Sign Official Forms: https://breadpdf.com/es/guias/rellenar-y-firmar-formulario-pdf
