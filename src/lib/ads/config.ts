@@ -18,14 +18,14 @@ export const ADS_CONFIG = {
    * Format: ca-pub-XXXXXXXXXXXXXXXX
    * Found in: AdSense Dashboard → Account → Account information
    */
-  clientId: import.meta.env.VITE_ADSENSE_CLIENT_ID ?? "",
+  clientId: import.meta.env["VITE_ADSENSE_CLIENT_ID"] ?? "",
 
   /**
    * Whether to request non-personalized ads (NPA).
    * Default: true — safe for GDPR/Spain without a CMP.
    * Set to false only once a certified CMP (IAB TCF 2.x) is integrated.
    */
-  nonPersonalizedAds: import.meta.env.VITE_ADSENSE_NPA !== "false",
+  nonPersonalizedAds: import.meta.env["VITE_ADSENSE_NPA"] !== "false",
 
   /**
    * Ad slot IDs per placement.
@@ -36,26 +36,26 @@ export const ADS_CONFIG = {
      * Shown on tool pages after a successful tool run (phase === "done").
      * Position: below the download area, before related tools.
      */
-    toolResult: import.meta.env.VITE_AD_SLOT_TOOL_RESULT ?? "",
+    toolResult: import.meta.env["VITE_AD_SLOT_TOOL_RESULT"] ?? "",
 
     /**
      * Shown on tool pages in the content area.
      * Position: between "Cómo funciona" and the FAQ section.
      */
-    toolContent: import.meta.env.VITE_AD_SLOT_TOOL_CONTENT ?? "",
+    toolContent: import.meta.env["VITE_AD_SLOT_TOOL_CONTENT"] ?? "",
 
     /**
      * Shown on category pages.
      * Position: between the tool grid and the "Popular tools" section.
      * Currently disabled by default — enable in CategoryPage when ready.
      */
-    category: import.meta.env.VITE_AD_SLOT_CATEGORY ?? "",
+    category: import.meta.env["VITE_AD_SLOT_CATEGORY"] ?? "",
 
     /**
      * Reserved for the homepage footer area.
      * Not active in Phase 1 — left here for future experimentation.
      */
-    homepage: import.meta.env.VITE_AD_SLOT_HOMEPAGE ?? "",
+    homepage: import.meta.env["VITE_AD_SLOT_HOMEPAGE"] ?? "",
   },
 } as const;
 

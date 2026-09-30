@@ -265,6 +265,7 @@ export function AuthSplitLayout({ initialMode = "login" }: AuthSplitLayoutProps)
         if (unsubscribeFn) unsubscribeFn();
       };
     }
+    return undefined;
   }, []);
 
   // Detectar modo updatePassword si la URL tiene fragmento/parámetro de recovery (callback fallback)
@@ -290,6 +291,7 @@ export function AuthSplitLayout({ initialMode = "login" }: AuthSplitLayoutProps)
       }, 1000);
       return () => clearTimeout(timer);
     }
+    return undefined;
   }, [resendCooldown]);
 
   const handleLoginSubmit = async (e: React.FormEvent) => {

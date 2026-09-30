@@ -7,10 +7,10 @@ import type {
 } from "./overlayTypes";
 
 type OverlayPreviewProps = {
-  watermarkConfig?: WatermarkConfig | null;
-  pageNumberConfig?: PageNumberConfig | null;
-  signatureConfig?: SignatureConfig | null;
-  textOverlayConfig?: TextOverlayConfig | null;
+  watermarkConfig?: WatermarkConfig | null | undefined;
+  pageNumberConfig?: PageNumberConfig | null | undefined;
+  signatureConfig?: SignatureConfig | null | undefined;
+  textOverlayConfig?: TextOverlayConfig | null | undefined;
   pageIndex: number;
   totalPages: number;
   isSelected?: boolean;

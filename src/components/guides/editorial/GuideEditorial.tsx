@@ -261,6 +261,7 @@ export interface GuideStepProps {
   title: string;
   children: React.ReactNode;
   action?: React.ReactNode;
+  badge?: string;
 }
 
 export function GuideStep({

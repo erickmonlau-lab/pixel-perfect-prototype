@@ -420,8 +420,9 @@ export const ocrPdf: ToolRunner = async (files, options, { onProgress }) => {
           });
 
           // Capa de texto seleccionable invisible (opacity 0) superpuesta
-          if (ret.data.words && ret.data.words.length > 0) {
-            for (const word of ret.data.words) {
+          const ocrWords = (ret.data as any).words as any[] | undefined;
+          if (ocrWords && ocrWords.length > 0) {
+            for (const word of ocrWords) {
               const bbox = word.bbox;
               if (!bbox) continue;
               const wordWidth = (bbox.x1 - bbox.x0) * 0.5;
@@ -1186,7 +1187,8 @@ export const generateQrPdf: ToolRunner = async (_files, options, { onProgress })
   const title = str(options, "title", "Escanear código QR").trim();
   const size = num(options, "size", 300);
 
-  const QRCode = await import("qrcode");
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const QRCode: any = await import("qrcode");
   onProgress(0.3);
 
   const qrDataUrl = await QRCode.toDataURL(text || "https://breadpdf.com", {
@@ -1760,12 +1762,12 @@ export const resizePdf: ToolRunner = async (files, options, { onProgress }) => {
     a3: { width: 841.89, height: 1190.55, name: "A3 (297 × 420 mm)" },
   };
 
-  const targetSpec = SIZES[targetSize] ?? SIZES.a4;
+  const targetSpec = SIZES[targetSize] ?? SIZES["a4"]!;
   const out = await PDFDocument.create();
 
   // Copiar páginas y escalar cada una dentro de la nueva dimensión objetivo
   for (let i = 0; i < total; i++) {
-    const embeddedPage = await out.embedPage(source.getPages()[i]);
+    const embeddedPage = await out.embedPage(source.getPages()[i]!);
     const origWidth = embeddedPage.width;
     const origHeight = embeddedPage.height;
 
@@ -1866,7 +1868,7 @@ export const addTextPdf: ToolRunner = async (files, options, { onProgress }) => 
     else if (pageTarget === "last" && i === total - 1) shouldApply = true;
 
     if (shouldApply) {
-      const page = doc.getPages()[i];
+      const page = doc.getPages()[i]!;
       const { width, height } = page.getSize();
       const textWidth = font.widthOfTextAtSize(text, fontSize);
       const centerX = (width * xPercent) / 100;
@@ -2401,7 +2403,7 @@ export const powerpointToPdf: ToolRunner = async (files, _options, { onProgress 
     for (const pXml of paragraphMatches) {
       const textMatches = pXml.match(/<a:t[^>]*>([\s\S]*?)<\/a:t>/g) || [];
       const lineText = textMatches
-        .map((tXml) => tXml.replace(/<[^>]+>/g, "").trim())
+        .map((tXml: string) => tXml.replace(/<[^>]+>/g, "").trim())
         .filter(Boolean)
         .join(" ")
         .trim();
@@ -2491,8 +2493,8 @@ export const svgToPdf: ToolRunner = async (files, options, { onProgress }) => {
   let svgHeight = 841.89;
 
   const viewBoxMatch = svgText.match(/viewBox\s*=\s*["']\s*([-\d.]+)\s+([-\d.]+)\s+([\d.]+)\s+([\d.]+)\s*["']/i);
-  const widthMatch = svgText.match(/<svg[^>]*\bwidth\s*=\s*["']([\d.]+)(?:px)?["']/i);
-  const heightMatch = svgText.match(/<svg[^>]*\bheight\s*=\s*["']([\d.]+)(?:px)?["']/i);
+  const widthMatch = svgText.match(/<svg[^>]*\bwidth\s*=\s*["']([\d.]+)(?:px)?.["']/i);
+  const heightMatch = svgText.match(/<svg[^>]*\bheight\s*=\s*["']([\d.]+)(?:px)?.["']/i);
 
   if (viewBoxMatch) {
     svgWidth = parseFloat(viewBoxMatch[3] ?? "595.28") || 595.28;
@@ -2668,7 +2670,7 @@ export const extractImagesPdf: ToolRunner = async (files, _opts, { onProgress })
 
   if (blobs.length === 1) {
     return {
-      outputs: [{ name: blobs[0].name, blob: blobs[0].blob }],
+      outputs: [{ name: blobs[0]!.name, blob: blobs[0]!.blob }],
       note: `1 imagen extraída de ${total} página${total !== 1 ? "s" : ""}.`,
     };
   }

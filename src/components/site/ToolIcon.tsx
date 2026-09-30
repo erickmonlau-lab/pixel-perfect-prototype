@@ -31,7 +31,7 @@ export function ToolIcon({
   if (canonicalSlug) {
     const RichIcon = getRichToolIcon(canonicalSlug);
     if (RichIcon) {
-      return <RichIcon className={className} aria-hidden />;
+      return <RichIcon className={className || ""} aria-hidden />;
     }
   }
   const Icon = ICONS[name] ?? FileOutput;

@@ -50,10 +50,10 @@ export async function fetchCurrentSession(): Promise<User | null> {
         return {
           id: user.id,
           email: user.email || "",
-          name: profile?.name || user.user_metadata?.name || user.email?.split("@")[0] || "Usuario",
-          avatarUrl: profile?.avatar_url || user.user_metadata?.avatar_url,
-          preferredLocale: profile?.preferred_locale || user.user_metadata?.preferred_locale || "es",
-          newsletterSubscribed: profile?.newsletter_subscribed ?? !!user.user_metadata?.newsletter_subscribed,
+          name: profile?.name || user.user_metadata?.["name"] || user.email?.split("@")[0] || "Usuario",
+          avatarUrl: profile?.avatar_url || user.user_metadata?.["avatar_url"],
+          preferredLocale: profile?.preferred_locale || user.user_metadata?.["preferred_locale"] || "es",
+          newsletterSubscribed: profile?.newsletter_subscribed ?? !!user.user_metadata?.["newsletter_subscribed"],
           emailVerified: Boolean(user.email_confirmed_at),
           isPremium: false,
           createdAt: user.created_at,
@@ -85,8 +85,8 @@ export async function fetchCurrentSession(): Promise<User | null> {
 import { getEmailConfirmRedirectUrl, getPasswordResetRedirectUrl } from "./auth-redirects";
 
 export class AuthErrorWithCode extends Error {
-  code?: string;
-  isUnconfirmed?: boolean;
+  code?: string | undefined;
+  isUnconfirmed?: boolean | undefined;
 
   constructor(message: string, code?: string, isUnconfirmed?: boolean) {
     super(message);
@@ -126,10 +126,10 @@ export async function loginUser(payload: LoginPayload): Promise<User> {
       return {
         id: user.id,
         email: user.email || "",
-        name: profile?.name || user.user_metadata?.name || user.email?.split("@")[0] || "Usuario",
-        avatarUrl: profile?.avatar_url || user.user_metadata?.avatar_url,
-        preferredLocale: profile?.preferred_locale || user.user_metadata?.preferred_locale || "es",
-        newsletterSubscribed: profile?.newsletter_subscribed ?? !!user.user_metadata?.newsletter_subscribed,
+        name: profile?.name || user.user_metadata?.["name"] || user.email?.split("@")[0] || "Usuario",
+        avatarUrl: profile?.avatar_url || user.user_metadata?.["avatar_url"],
+        preferredLocale: profile?.preferred_locale || user.user_metadata?.["preferred_locale"] || "es",
+        newsletterSubscribed: profile?.newsletter_subscribed ?? !!user.user_metadata?.["newsletter_subscribed"],
         emailVerified: Boolean(user.email_confirmed_at),
         isPremium: false,
         createdAt: user.created_at,
@@ -330,10 +330,10 @@ export async function updateUserProfile(updates: Partial<User>): Promise<User> {
       const profileUpdates: Record<string, any> = {
         updated_at: new Date().toISOString(),
       };
-      if (updates.name !== undefined) profileUpdates.name = updates.name.trim();
-      if (updates.avatarUrl !== undefined) profileUpdates.avatar_url = updates.avatarUrl;
-      if (updates.preferredLocale !== undefined) profileUpdates.preferred_locale = updates.preferredLocale;
-      if (updates.newsletterSubscribed !== undefined) profileUpdates.newsletter_subscribed = updates.newsletterSubscribed;
+      if (updates.name !== undefined) profileUpdates["name"] = updates.name.trim();
+      if (updates.avatarUrl !== undefined) profileUpdates["avatar_url"] = updates.avatarUrl;
+      if (updates.preferredLocale !== undefined) profileUpdates["preferred_locale"] = updates.preferredLocale;
+      if (updates.newsletterSubscribed !== undefined) profileUpdates["newsletter_subscribed"] = updates.newsletterSubscribed;
 
       const { error: updateErr } = await supabase
         .from("profiles")
@@ -344,7 +344,7 @@ export async function updateUserProfile(updates: Partial<User>): Promise<User> {
         // Si el perfil no existía aún, realizar upsert
         await supabase.from("profiles").upsert({
           id: user.id,
-          name: updates.name || user.user_metadata?.name || "Usuario",
+          name: updates.name || user.user_metadata?.["name"] || "Usuario",
           preferred_locale: updates.preferredLocale || "es",
           newsletter_subscribed: !!updates.newsletterSubscribed,
           ...profileUpdates,
@@ -363,8 +363,8 @@ export async function updateUserProfile(updates: Partial<User>): Promise<User> {
       return {
         id: user.id,
         email: user.email || "",
-        name: updates.name ?? user.user_metadata?.name ?? "Usuario",
-        avatarUrl: updates.avatarUrl ?? user.user_metadata?.avatar_url,
+        name: updates.name ?? user.user_metadata?.["name"] ?? "Usuario",
+        avatarUrl: updates.avatarUrl ?? user.user_metadata?.["avatar_url"],
         preferredLocale: updates.preferredLocale ?? "es",
         newsletterSubscribed: updates.newsletterSubscribed ?? false,
         emailVerified: Boolean(user.email_confirmed_at),

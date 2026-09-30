@@ -24,7 +24,7 @@ interface FormField {
   name: string;
   type: FieldType;
   value: string;
-  options?: string[];
+  options?: string[] | undefined;
   readOnly: boolean;
   required: boolean;
   multiline: boolean;

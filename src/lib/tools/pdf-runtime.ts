@@ -158,9 +158,9 @@ export async function renderPageToGrayscalePng(
   const data = imgData.data;
   const len = data.length;
   for (let i = 0; i < len; i += 4) {
-    const r = data[i];
-    const g = data[i + 1];
-    const b = data[i + 2];
+    const r = data[i]!;
+    const g = data[i + 1]!;
+    const b = data[i + 2]!;
     // Perceptual grayscale luminance
     const gray = Math.round(0.299 * r + 0.587 * g + 0.114 * b);
     data[i] = gray;

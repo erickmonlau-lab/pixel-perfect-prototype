@@ -30,7 +30,7 @@ export const SESSION_TTL_MS = 30 * 24 * 60 * 60 * 1000;
 
 // Secret key for cookie HMAC signing (Server-only)
 const COOKIE_SIGNING_SECRET =
-  (typeof process !== "undefined" && process.env?.AUTH_SECRET) ||
+  (typeof process !== "undefined" && process.env?.["AUTH_SECRET"]) ||
   "breadpdf_secure_hmac_secret_production_seed_987428174129";
 
 /**
@@ -205,11 +205,11 @@ async function verifyCookieValue(signedValue: string): Promise<string | null> {
   );
 
   const sigBytes = new Uint8Array(
-    signature.match(/.{1,2}/g)?.map((byte) => parseInt(byte, 16)) || []
+    signature!.match(/.{1,2}/g)?.map((byte) => parseInt(byte, 16)) || []
   );
 
-  const isValid = await crypto.subtle.verify("HMAC", key, sigBytes, enc.encode(value));
-  return isValid ? value : null;
+  const isValid = await crypto.subtle.verify("HMAC", key, sigBytes, enc.encode(value!));
+  return isValid ? (value ?? null) : null;
 }
 
 // ============================================================================

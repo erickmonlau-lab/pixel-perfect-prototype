@@ -23,7 +23,7 @@ type PageGridProps = {
   canRedo: boolean;
   onUndo: () => void;
   onRedo: () => void;
-  onAddFiles?: () => void;
+  onAddFiles?: (() => void) | undefined;
 };
 
 export function PageGrid({

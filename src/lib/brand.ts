@@ -42,6 +42,7 @@ export const BRAND_ASSETS = {
   mascotSvg: "/brand/breadpdf-mascot.svg",
   mascotPng: "/brand/breadpdf-mascot.png",
   icon: "/brand/breadpdf-icon.png",
+  iconWebp: "/brand/breadpdf-icon.webp",
   appIcon: "/brand/breadpdf-app-icon.png",
   faviconSvg: "/favicon.svg",
   faviconIco: "/favicon.ico",

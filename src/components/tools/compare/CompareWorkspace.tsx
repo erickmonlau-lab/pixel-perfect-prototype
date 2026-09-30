@@ -10,6 +10,7 @@ import {
   Download,
   Loader2,
 } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { loadPdfjs, loadPdfLib } from "@/lib/tools/pdf-runtime";
 import { useLocale } from "@/lib/i18n/context";
@@ -158,7 +159,7 @@ export function CompareWorkspace() {
       }
 
       const pdfBytes = await reportPdf.save({ useObjectStreams: true });
-      const blob = new Blob([pdfBytes], { type: "application/pdf" });
+      const blob = new Blob([pdfBytes as BlobPart], { type: "application/pdf" });
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;

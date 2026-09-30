@@ -6,9 +6,9 @@ import { HOME_ROUTE, homeParams } from "@/lib/i18n/routing";
 
 export interface BreadcrumbItem {
   label: string;
-  to?: string;
-  params?: Record<string, any>;
-  search?: Record<string, any>;
+  to?: string | undefined;
+  params?: Record<string, any> | undefined;
+  search?: Record<string, any> | undefined;
 }
 
 export interface BreadcrumbProps {
@@ -67,8 +67,8 @@ export function Breadcrumb({ items, className = "", showHomeIcon = true }: Bread
                 ) : (
                   <Link
                     to={item.to as any}
-                    params={item.params}
-                    search={item.search}
+                    params={item.params as any}
+                    search={item.search as any}
                     className="text-slate-500 hover:text-[#0F172A] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EC3C2D]/30 rounded-md py-0.5 px-1 -mx-1 font-medium"
                   >
                     {item.label}

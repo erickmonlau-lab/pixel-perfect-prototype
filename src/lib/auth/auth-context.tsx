@@ -66,6 +66,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         if (unsubscribeFn) unsubscribeFn();
       };
     }
+    return undefined;
   }, [refreshSession]);
 
   const handleLogin = async (payload: LoginPayload) => {

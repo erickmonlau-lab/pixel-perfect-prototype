@@ -18,7 +18,7 @@ interface BreadProcessingMachineProps {
   progress: number; // 0 to 1
   files: File[];
   activeFileIndex?: number;
-  statusMessage?: string;
+  statusMessage?: string | undefined;
 }
 
 export function BreadProcessingMachine({

@@ -24,12 +24,13 @@ export function Logo({ tone = "dark", size = "md", showWordmark = true }: LogoPr
     <span className="inline-flex items-center gap-2.5 select-none shrink-0 group">
       {/* Official Mascot Character holding PDF document */}
       <img
-        src={BRAND_ASSETS.icon}
+        src={BRAND_ASSETS.iconWebp}
         alt="BreadPDF"
         width={44}
         height={42}
         className={`${iconSizes[size]} site-logo-icon object-contain drop-shadow-xs transition-transform duration-200 group-hover:scale-105`}
         loading="eager"
+        fetchPriority="high"
         decoding="async"
       />
 

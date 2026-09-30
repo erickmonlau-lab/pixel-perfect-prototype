@@ -3,12 +3,12 @@ export interface User {
   name: string;
   email: string;
   createdAt: string;
-  lastLoginAt?: string;
+  lastLoginAt?: string | undefined;
   emailVerified?: boolean;
   isPremium: boolean;
   newsletterSubscribed: boolean;
   preferredLocale: string;
-  avatarUrl?: string;
+  avatarUrl?: string | undefined;
 }
 
 export interface AuthState {
