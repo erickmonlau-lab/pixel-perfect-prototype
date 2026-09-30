@@ -10,7 +10,6 @@ import { DEFAULT_LOCALE, isLocale } from "@/lib/i18n/config";
 import { useLocale } from "@/lib/i18n/context";
 import { alternateLinks } from "@/lib/i18n/routing";
 import { UI } from "@/lib/i18n/ui";
-import { SITE_URL } from "@/lib/brand";
 
 export const Route = createFileRoute("/$lang/")({
   head: ({ params }) => {
@@ -26,29 +25,6 @@ export const Route = createFileRoute("/$lang/")({
         { name: "twitter:card", content: "summary_large_image" },
       ],
       links: alternateLinks(locale, { kind: "home" }),
-      scripts: [
-        {
-          type: "application/ld+json",
-          children: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebSite",
-            "@id": `${SITE_URL}/#website`,
-            name: "BreadPDF",
-            url: `${SITE_URL}/${locale}`,
-            inLanguage: locale,
-            description: t.meta.homeDescription,
-            publisher: { "@id": `${SITE_URL}/#organization` },
-            potentialAction: {
-              "@type": "SearchAction",
-              target: {
-                "@type": "EntryPoint",
-                urlTemplate: `${SITE_URL}/${locale}/herramientas?q={search_term_string}`,
-              },
-              "query-input": "required name=search_term_string",
-            },
-          }),
-        },
-      ],
     };
   },
   component: Home,

@@ -8,17 +8,15 @@
  */
 
 export const GTM_CONTAINER_ID = "GTM-M6D3R3JF";
+export const GA4_MEASUREMENT_ID = "G-22E1Z6BZXE";
 
 declare global {
   interface Window {
     dataLayer: Array<Record<string, unknown>>;
+    gtag?: (...args: any[]) => void;
   }
 }
 
-/**
- * Pushes a structured event to the GTM dataLayer.
- * Safe to call on both server (no-op) and client.
- */
 export function pushGtmEvent(event: string, data: Record<string, unknown> = {}) {
   if (typeof window === "undefined") return;
   window.dataLayer = window.dataLayer || [];
