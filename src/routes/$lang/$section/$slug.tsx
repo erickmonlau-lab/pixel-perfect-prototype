@@ -423,13 +423,13 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
             </p>
           </div>
 
-          {/* Right Column: Contextual Official BreadPDF Mascot (Transparent, No background, High quality, Eager loaded) */}
-          <div className="shrink-0 flex items-center justify-center md:justify-end self-center md:self-center select-none pointer-events-none py-2 md:py-0">
+          {/* Right Column: Contextual Official BreadPDF Mascot (Hidden on mobile to ensure instant H1 LCP paint, visible on md+) */}
+          <div className="hidden md:flex shrink-0 items-center justify-end self-center select-none pointer-events-none py-2 md:py-0">
             <GuideMascot
               variant={mascotForTool(tool.category, tool.canonicalSlug)}
               priority={true}
               alt={`Mascota oficial de BreadPDF para ${tool.name}`}
-              className="w-auto h-[140px] sm:h-[180px] md:h-[190px] lg:h-[220px] xl:h-[240px] object-contain drop-shadow-[0_10px_20px_rgba(0,0,0,0.12)] transition-transform hover:scale-105"
+              className="w-auto h-[180px] md:h-[190px] lg:h-[220px] xl:h-[240px] object-contain drop-shadow-[0_10px_20px_rgba(0,0,0,0.12)] transition-transform hover:scale-105"
             />
           </div>
         </div>

@@ -56,10 +56,10 @@ export const BRAND_ASSETS = {
    * - celebrate: éxito / descarga completada / confirmación
    */
   mascots: {
-    run: "/brand/mascots/breadpdf-run.png",
-    think: "/brand/mascots/breadpdf-think.png",
-    sad: "/brand/mascots/breadpdf-sad.png",
-    celebrate: "/brand/mascots/breadpdf-celebrate.png",
+    run: "/brand/mascots/breadpdf-run.webp",
+    think: "/brand/mascots/breadpdf-think.webp",
+    sad: "/brand/mascots/breadpdf-sad.webp",
+    celebrate: "/brand/mascots/breadpdf-celebrate.webp",
   },
 } as const;
 
