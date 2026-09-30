@@ -568,7 +568,8 @@
 
 .site-logo-icon {
   height: 46px !important;
-  width: auto !important;
+  width: 48px !important;
+  aspect-ratio: 44 / 42;
 }
 
 .site-logo-text {
