@@ -85,8 +85,8 @@ export async function fetchCurrentSession(): Promise<User | null> {
 import { getEmailConfirmRedirectUrl, getPasswordResetRedirectUrl } from "./auth-redirects";
 
 export class AuthErrorWithCode extends Error {
-  code?: string;
-  isUnconfirmed?: boolean;
+  code?: string | undefined;
+  isUnconfirmed?: boolean | undefined;
 
   constructor(message: string, code?: string, isUnconfirmed?: boolean) {
     super(message);

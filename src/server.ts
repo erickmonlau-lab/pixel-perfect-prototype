@@ -60,7 +60,7 @@ function pruneModulepreloads(html: string): string {
   return html.replace(/<link\s+[^>]*rel="modulepreload"[^>]*\/?>/gi, (match) => {
     const hrefMatch = match.match(/href="([^"]+)"/);
     if (!hrefMatch) return match;
-    const href = hrefMatch[1];
+    const href = hrefMatch[1]!;
     const filename = href.split("/").pop() || "";
     const isEssential =
       filename.startsWith("index-") ||

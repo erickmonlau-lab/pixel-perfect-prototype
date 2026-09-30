@@ -16,10 +16,10 @@ type PageCardProps = {
   displayIndex: number;
   totalPages: number;
   isSelected: boolean;
-  watermarkConfig?: WatermarkConfig | null;
-  pageNumberConfig?: PageNumberConfig | null;
-  signatureConfig?: SignatureConfig | null;
-  textOverlayConfig?: TextOverlayConfig | null;
+  watermarkConfig?: WatermarkConfig | null | undefined;
+  pageNumberConfig?: PageNumberConfig | null | undefined;
+  signatureConfig?: SignatureConfig | null | undefined;
+  textOverlayConfig?: TextOverlayConfig | null | undefined;
   onToggleSelect: (pageId: string, isMulti: boolean) => void;
   onRotate: (pageId: string) => void;
   onRemove: (pageId: string) => void;

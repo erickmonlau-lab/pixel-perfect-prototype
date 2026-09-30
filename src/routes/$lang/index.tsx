@@ -203,7 +203,7 @@ function Home() {
                   border: "hover:border-[#EA580C]/40",
                 },
               ];
-              const accent = ARTICLE_ACCENTS[idx % ARTICLE_ACCENTS.length];
+              const accent = ARTICLE_ACCENTS[idx % ARTICLE_ACCENTS.length]!;
               const Icon = accent.icon;
 
               return (
