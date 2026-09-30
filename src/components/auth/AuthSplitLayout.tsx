@@ -678,6 +678,287 @@ export function AuthSplitLayout({ initialMode = "login" }: AuthSplitLayoutProps)
                 </form>
               )}
 
+              {/* ===================== MODO REGISTER ===================== */}
+              {mode === "register" && (
+                <form onSubmit={handleRegisterSubmit} className="mt-4.5 space-y-3.5">
+                  <div>
+                    <label className="block text-[13.5px] font-bold text-slate-700 mb-1">
+                      {copy.nameLabel}
+                    </label>
+                    <div className="relative">
+                      <UserIcon className="absolute left-3.5 top-1/2 -translate-y-1/2 size-4.5 text-slate-500" />
+                      <input
+                        type="text"
+                        required
+                        value={regName}
+                        onChange={(e) => setRegName(e.target.value)}
+                        placeholder="Erick Monlau"
+                        className="w-full rounded-xl border border-slate-300 bg-white pl-10.5 pr-4 py-2.5 sm:py-3 text-[15px] text-[#0F172A] outline-none transition-all focus:border-[#EC3C2D] focus:ring-2 focus:ring-[#EC3C2D]/20 font-medium placeholder:text-slate-400"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-[13.5px] font-bold text-slate-700 mb-1">
+                      {copy.emailLabel}
+                    </label>
+                    <div className="relative">
+                      <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 size-4.5 text-slate-500" />
+                      <input
+                        type="email"
+                        required
+                        value={regEmail}
+                        onChange={(e) => setRegEmail(e.target.value)}
+                        placeholder="tu@email.com"
+                        className="w-full rounded-xl border border-slate-300 bg-white pl-10.5 pr-4 py-2.5 sm:py-3 text-[15px] text-[#0F172A] outline-none transition-all focus:border-[#EC3C2D] focus:ring-2 focus:ring-[#EC3C2D]/20 font-medium placeholder:text-slate-400"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-[13.5px] font-bold text-slate-700 mb-1">
+                      {copy.passwordMin}
+                    </label>
+                    <div className="relative">
+                      <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 size-4.5 text-slate-500" />
+                      <input
+                        type={showPassword ? "text" : "password"}
+                        required
+                        minLength={8}
+                        value={regPassword}
+                        onChange={(e) => setRegPassword(e.target.value)}
+                        placeholder="••••••••"
+                        className="w-full rounded-xl border border-slate-300 bg-white pl-10.5 pr-10.5 py-2.5 sm:py-3 text-[15px] text-[#0F172A] outline-none transition-all focus:border-[#EC3C2D] focus:ring-2 focus:ring-[#EC3C2D]/20 font-medium placeholder:text-slate-400"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => setShowPassword(!showPassword)}
+                        className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 cursor-pointer"
+                        aria-label={showPassword ? "Ocultar contraseña" : "Ver contraseña"}
+                      >
+                        {showPassword ? <EyeOff className="size-4.5" /> : <Eye className="size-4.5" />}
+                      </button>
+                    </div>
+                  </div>
+
+                  <div className="pt-1">
+                    <label className="flex items-start gap-2.5 cursor-pointer select-none text-[13px] sm:text-[13.5px] text-slate-600 leading-snug">
+                      <input
+                        type="checkbox"
+                        checked={regNewsletter}
+                        onChange={(e) => setRegNewsletter(e.target.checked)}
+                        className="mt-0.5 rounded border-slate-300 text-[#EC3C2D] focus:ring-[#EC3C2D]/20"
+                      />
+                      <span>{copy.newsletter}</span>
+                    </label>
+                  </div>
+
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full mt-2 inline-flex items-center justify-center gap-2 rounded-xl bg-[#EC3C2D] py-3 sm:py-3.5 text-[15.5px] font-bold text-white shadow-xs hover:bg-[#d53224] transition-all cursor-pointer disabled:opacity-70"
+                  >
+                    {isSubmitting ? (
+                      copy.ctaRegistering
+                    ) : (
+                      <>
+                        <span>{copy.ctaRegister}</span>
+                        <ArrowRight className="size-4.5" />
+                      </>
+                    )}
+                  </button>
+
+                  <div className="pt-1.5 text-center">
+                    <p className="text-[14px] text-slate-600 font-medium">
+                      {copy.haveAccount}{" "}
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setMode("login");
+                          setErrorMessage(null);
+                          setSuccessMessage(null);
+                          setUnconfirmedEmail(null);
+                        }}
+                        className="font-bold text-[#EC3C2D] hover:underline cursor-pointer"
+                      >
+                        {copy.tabLogin}
+                      </button>
+                    </p>
+                  </div>
+                </form>
+              )}
+
+              {/* ===================== MODO FORGOT PASSWORD ===================== */}
+              {mode === "forgotPassword" && (
+                <form onSubmit={handleForgotSubmit} className="mt-4.5 space-y-3.5">
+                  <div>
+                    <label className="block text-[13.5px] font-bold text-slate-700 mb-1">
+                      {copy.emailLabel}
+                    </label>
+                    <div className="relative">
+                      <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 size-4.5 text-slate-500" />
+                      <input
+                        type="email"
+                        required
+                        value={forgotEmail}
+                        onChange={(e) => setForgotEmail(e.target.value)}
+                        placeholder="tu@email.com"
+                        className="w-full rounded-xl border border-slate-300 bg-white pl-10.5 pr-4 py-2.5 sm:py-3 text-[15px] text-[#0F172A] outline-none transition-all focus:border-[#EC3C2D] focus:ring-2 focus:ring-[#EC3C2D]/20 font-medium placeholder:text-slate-400"
+                      />
+                    </div>
+                  </div>
+
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full mt-2 inline-flex items-center justify-center gap-2 rounded-xl bg-[#EC3C2D] py-3 sm:py-3.5 text-[15.5px] font-bold text-white shadow-xs hover:bg-[#d53224] transition-all cursor-pointer disabled:opacity-70"
+                  >
+                    {isSubmitting ? (
+                      copy.ctaSending
+                    ) : (
+                      <>
+                        <span>{copy.ctaForgot}</span>
+                        <ArrowRight className="size-4.5" />
+                      </>
+                    )}
+                  </button>
+
+                  <div className="pt-1.5 text-center">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setMode("login");
+                        setErrorMessage(null);
+                        setSuccessMessage(null);
+                        setUnconfirmedEmail(null);
+                      }}
+                      className="font-bold text-[14px] text-slate-600 hover:text-[#EC3C2D] cursor-pointer"
+                    >
+                      {copy.backToLogin}
+                    </button>
+                  </div>
+                </form>
+              )}
+
+              {/* ===================== MODO VERIFY EMAIL ===================== */}
+              {mode === "verifyEmail" && (
+                <div className="mt-5 space-y-4 text-center">
+                  <div className="mx-auto flex size-14 items-center justify-center rounded-2xl bg-red-50 text-[#EC3C2D]">
+                    <Mail className="size-7" />
+                  </div>
+                  <div>
+                    <p className="text-[15px] font-semibold text-slate-800">
+                      {registeredEmail || loginEmail}
+                    </p>
+                    <p className="mt-2 text-[13.5px] text-slate-600 leading-relaxed">
+                      {copy.spamNotice}
+                    </p>
+                  </div>
+
+                  <div className="pt-2">
+                    <button
+                      type="button"
+                      onClick={() => handleResendConfirmation(registeredEmail || loginEmail)}
+                      disabled={isResending || resendCooldown > 0}
+                      className="w-full inline-flex items-center justify-center gap-2 rounded-xl border border-slate-300 bg-white py-2.5 text-[14px] font-bold text-slate-700 hover:bg-slate-50 transition-all cursor-pointer disabled:opacity-60"
+                    >
+                      {isResending
+                        ? copy.unconfirmedSending
+                        : resendCooldown > 0
+                        ? `${copy.resendCooldown} ${resendCooldown}s`
+                        : copy.unconfirmedCta}
+                    </button>
+                  </div>
+
+                  <div className="pt-1 text-center">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setMode("login");
+                        setErrorMessage(null);
+                        setSuccessMessage(null);
+                        setUnconfirmedEmail(null);
+                      }}
+                      className="font-bold text-[14px] text-slate-600 hover:text-[#EC3C2D] cursor-pointer"
+                    >
+                      {copy.backToLogin}
+                    </button>
+                  </div>
+                </div>
+              )}
+
+              {/* ===================== MODO UPDATE PASSWORD ===================== */}
+              {mode === "updatePassword" && (
+                <form onSubmit={handleUpdatePasswordSubmit} className="mt-4.5 space-y-3.5">
+                  <div>
+                    <label className="block text-[13.5px] font-bold text-slate-700 mb-1">
+                      {copy.newPasswordLabel}
+                    </label>
+                    <div className="relative">
+                      <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 size-4.5 text-slate-500" />
+                      <input
+                        type={showPassword ? "text" : "password"}
+                        required
+                        minLength={8}
+                        value={newPassword}
+                        onChange={(e) => setNewPassword(e.target.value)}
+                        placeholder="••••••••"
+                        className="w-full rounded-xl border border-slate-300 bg-white pl-10.5 pr-10.5 py-2.5 sm:py-3 text-[15px] text-[#0F172A] outline-none transition-all focus:border-[#EC3C2D] focus:ring-2 focus:ring-[#EC3C2D]/20 font-medium placeholder:text-slate-400"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => setShowPassword(!showPassword)}
+                        className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 cursor-pointer"
+                        aria-label={showPassword ? "Ocultar contraseña" : "Ver contraseña"}
+                      >
+                        {showPassword ? <EyeOff className="size-4.5" /> : <Eye className="size-4.5" />}
+                      </button>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-[13.5px] font-bold text-slate-700 mb-1">
+                      {copy.confirmPasswordLabel}
+                    </label>
+                    <div className="relative">
+                      <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 size-4.5 text-slate-500" />
+                      <input
+                        type={showConfirmPassword ? "text" : "password"}
+                        required
+                        minLength={8}
+                        value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
+                        placeholder="••••••••"
+                        className="w-full rounded-xl border border-slate-300 bg-white pl-10.5 pr-10.5 py-2.5 sm:py-3 text-[15px] text-[#0F172A] outline-none transition-all focus:border-[#EC3C2D] focus:ring-2 focus:ring-[#EC3C2D]/20 font-medium placeholder:text-slate-400"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                        className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 cursor-pointer"
+                        aria-label={showConfirmPassword ? "Ocultar contraseña" : "Ver contraseña"}
+                      >
+                        {showConfirmPassword ? <EyeOff className="size-4.5" /> : <Eye className="size-4.5" />}
+                      </button>
+                    </div>
+                  </div>
+
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full mt-2 inline-flex items-center justify-center gap-2 rounded-xl bg-[#EC3C2D] py-3 sm:py-3.5 text-[15.5px] font-bold text-white shadow-xs hover:bg-[#d53224] transition-all cursor-pointer disabled:opacity-70"
+                  >
+                    {isSubmitting ? (
+                      copy.ctaUpdating
+                    ) : (
+                      <>
+                        <span>{copy.ctaUpdatePassword}</span>
+                        <ArrowRight className="size-4.5" />
+                      </>
+                    )}
+                  </button>
+                </form>
+              )}
+
             </div>
 
             {/* Aviso de privacidad limpio debajo del formulario (PUNTO 4 Y 5) */}
