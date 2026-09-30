@@ -33,6 +33,19 @@ function textFor(locale: Locale, canonicalSlug: string): ToolText | undefined {
 /** Per-locale tool copy is code-split; loaded before rendering any locale route. */
 const TOOL_TEXT: Partial<Record<TranslatedLocale, Record<string, ToolText>>> = {};
 
+const pending = new Map<Locale, Promise<void>>();
+
+/** Promise to suspend on while a locale's copy loads, or null when already available. */
+export function localeTextPending(locale: Locale): Promise<void> | null {
+  if (!isTranslated(locale) || TOOL_TEXT[locale]) return null;
+  let promise = pending.get(locale);
+  if (!promise) {
+    promise = loadLocaleText(locale);
+    pending.set(locale, promise);
+  }
+  return promise;
+}
+
 export async function loadLocaleText(locale: Locale): Promise<void> {
   if (!isTranslated(locale) || TOOL_TEXT[locale]) return;
   const mod = locale === "ca" ? await import("./translations-ca") : await import("./translations-en");

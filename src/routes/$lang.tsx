@@ -1,6 +1,7 @@
 import { createFileRoute, notFound, Outlet, useRouterState } from "@tanstack/react-router";
 import { isLocale } from "@/lib/i18n/config";
-import { loadLocaleText } from "@/lib/tools/localize";
+import { use } from "react";
+import { loadLocaleText, localeTextPending } from "@/lib/tools/localize";
 import { LocaleProvider } from "@/lib/i18n/context";
 import { AuthProvider } from "@/lib/auth/auth-context";
 import { parsePath } from "@/lib/i18n/routing";
@@ -19,6 +20,9 @@ function LocaleLayout() {
   const { lang } = Route.useParams();
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   if (!isLocale(lang)) return null;
+  // Client hydration does not rerun beforeLoad: wait for this locale's copy so markup matches SSR.
+  const loading = localeTextPending(lang);
+  if (loading) use(loading);
 
   const { page } = parsePath(pathname);
   const isAuthPage = page.kind === "login" || page.kind === "register" || page.kind === "forgotPassword";
