@@ -1,5 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect } from "react";
 import { CatalogBrowser } from "@/components/site/CatalogBrowser";
 import { FloatingIcons } from "@/components/site/FloatingIcons";
 import { TrustBanner } from "@/components/site/TrustBanner";
@@ -7,11 +6,10 @@ import { HomePremiumBlock } from "@/components/site/HomePremiumBlock";
 import { Cpu, UserCheck, ArrowLeftRight } from "lucide-react";
 
 import { ToolSearch } from "@/components/site/ToolSearch";
-import { DEFAULT_LOCALE, isLocale, preferredLocale, storedLocale } from "@/lib/i18n/config";
+import { DEFAULT_LOCALE, isLocale } from "@/lib/i18n/config";
 import { useLocale } from "@/lib/i18n/context";
-import { HOME_ROUTE, alternateLinks, homeParams } from "@/lib/i18n/routing";
+import { alternateLinks } from "@/lib/i18n/routing";
 import { UI } from "@/lib/i18n/ui";
-import { useNavigate } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/$lang/")({
   head: ({ params }) => {
@@ -70,18 +68,8 @@ function headlineLines(text: string) {
 
 function Home() {
   const { locale, t } = useLocale();
-  const navigate = useNavigate();
   const headline = headlineLines(t.home.h1);
 
-  /** First visit only: follow the browser language, never override a manual choice. */
-  useEffect(() => {
-    if (locale !== DEFAULT_LOCALE) return;
-    if (storedLocale()) return;
-    const preferred = preferredLocale();
-    if (preferred !== locale) {
-      navigate({ to: HOME_ROUTE, params: homeParams(preferred), replace: true });
-    }
-  }, [locale, navigate]);
 
   return (
     <>
