@@ -194,12 +194,22 @@ const COMPRESSION_PRESETS: Record<string, { scale: number; quality: number }> = 
   light: { scale: 1.4, quality: 0.82 },
   balanced: { scale: 1.1, quality: 0.68 },
   strong: { scale: 0.85, quality: 0.5 },
+  target_10mb: { scale: 1.25, quality: 0.75 },
+  target_5mb: { scale: 1.05, quality: 0.64 },
+  target_2mb: { scale: 0.85, quality: 0.52 },
+};
+
+const TARGET_MAX_BYTES: Record<string, number> = {
+  target_2mb: 2 * 1024 * 1024,
+  target_5mb: 5 * 1024 * 1024,
+  target_10mb: 10 * 1024 * 1024,
 };
 
 export const compressPdf: ToolRunner = async (files, options, { onProgress }) => {
   if (files.length === 0) throw new Error("Añade al menos un archivo para continuar.");
 
   const level = str(options, "level", "balanced");
+  const targetBytes = TARGET_MAX_BYTES[level];
   const { PDFDocument } = await loadPdfLib();
   const outputs: ToolOutput[] = [];
   let totalOriginalSize = 0;
@@ -222,29 +232,45 @@ export const compressPdf: ToolRunner = async (files, options, { onProgress }) =>
       finalBlob = pdfBlob(await doc.save({ useObjectStreams: true }));
       onProgress(fileBaseProgress + fileProgressSpan);
     } else {
-      const preset = COMPRESSION_PRESETS[level] ?? { scale: 1.1, quality: 0.68 };
+      const initialPreset = COMPRESSION_PRESETS[level] ?? { scale: 1.1, quality: 0.68 };
       const pdfjs = await loadPdfjs();
       const doc = await pdfjs.getDocument({ data: new Uint8Array(await file.arrayBuffer()) }).promise;
-      const out = await PDFDocument.create();
 
-      for (let i = 1; i <= doc.numPages; i++) {
-        const page = await doc.getPage(i);
-        const { blob, width, height } = await renderPageToJpeg(
-          page as never,
-          preset.scale,
-          preset.quality,
-        );
-        const image = await out.embedJpg(new Uint8Array(await blob.arrayBuffer()));
-        const target = out.addPage([width * 0.75, height * 0.75]);
-        target.drawImage(image, { x: 0, y: 0, width: target.getWidth(), height: target.getHeight() });
+      const renderWithSettings = async (preset: { scale: number; quality: number }): Promise<Blob> => {
+        const out = await PDFDocument.create();
+        for (let i = 1; i <= doc.numPages; i++) {
+          const page = await doc.getPage(i);
+          const { blob, width, height } = await renderPageToJpeg(
+            page as never,
+            preset.scale,
+            preset.quality,
+          );
+          const image = await out.embedJpg(new Uint8Array(await blob.arrayBuffer()));
+          const target = out.addPage([width * 0.75, height * 0.75]);
+          target.drawImage(image, { x: 0, y: 0, width: target.getWidth(), height: target.getHeight() });
 
-        const pageProgress = i / doc.numPages;
-        onProgress(fileBaseProgress + fileProgressSpan * pageProgress);
+          const pageProgress = i / doc.numPages;
+          onProgress(fileBaseProgress + fileProgressSpan * pageProgress);
+        }
+        return pdfBlob(await out.save({ useObjectStreams: true }));
+      };
+
+      finalBlob = await renderWithSettings(initialPreset);
+
+      // Si se definió un objetivo de tamaño (ej. 2MB, 5MB, 10MB) y el resultado inicial aún lo supera:
+      if (targetBytes && finalBlob.size > targetBytes) {
+        // Segunda pasada de reducción adaptativa client-side
+        const aggressivePreset = {
+          scale: Math.max(0.65, initialPreset.scale * 0.78),
+          quality: Math.max(0.40, initialPreset.quality * 0.72),
+        };
+        const aggressiveBlob = await renderWithSettings(aggressivePreset);
+        if (aggressiveBlob.size < finalBlob.size) {
+          finalBlob = aggressiveBlob;
+        }
       }
 
-      finalBlob = pdfBlob(await out.save({ useObjectStreams: true }));
-
-      // Salvaguarda: si la rasterización aumentó de tamaño, probar lossless
+      // Salvaguarda: si la compresión con rasterización aumentó de tamaño (PDFs de texto puro), probar lossless
       if (finalBlob.size >= original) {
         const losslessDoc = await PDFDocument.load(await file.arrayBuffer(), { ignoreEncryption: true });
         const losslessBlob = pdfBlob(await losslessDoc.save({ useObjectStreams: true }));
@@ -265,10 +291,19 @@ export const compressPdf: ToolRunner = async (files, options, { onProgress }) =>
 
   let note = "";
   if (files.length === 1) {
-    note =
-      overallSaved > 0
-        ? `${formatBytes(totalOriginalSize)} → ${formatBytes(totalCompressedSize)} (−${overallSaved}%)`
-        : `El documento ya estaba optimizado al máximo (${formatBytes(totalOriginalSize)}).`;
+    const isTargetMet = targetBytes ? totalCompressedSize <= targetBytes : true;
+    const targetLabel = targetBytes === 2 * 1024 * 1024 ? "≤ 2 MB" : targetBytes === 5 * 1024 * 1024 ? "≤ 5 MB" : "≤ 10 MB";
+    
+    if (targetBytes && isTargetMet) {
+      note = `Objetivo conseguido (${targetLabel}): ${formatBytes(totalOriginalSize)} → ${formatBytes(totalCompressedSize)} (−${overallSaved}%)`;
+    } else if (targetBytes && !isTargetMet) {
+      note = `Reducido al máximo posible: ${formatBytes(totalOriginalSize)} → ${formatBytes(totalCompressedSize)} (−${overallSaved}%). Por densidad de contenido no se pudo bajar de ${targetLabel}.`;
+    } else {
+      note =
+        overallSaved > 0
+          ? `${formatBytes(totalOriginalSize)} → ${formatBytes(totalCompressedSize)} (−${overallSaved}%)`
+          : `El documento ya estaba optimizado al máximo (${formatBytes(totalOriginalSize)}).`;
+    }
   } else {
     note =
       overallSaved > 0

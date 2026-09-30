@@ -206,12 +206,12 @@ export function CampusUploadGuide({ locale, guide }: GuideArticleProps) {
             title={isCa ? "Comprimir PDF a BreadPDF" : isEn ? "Compress PDF on BreadPDF" : "Comprimir PDF en BreadPDF"}
             description={
               isCa
-                ? "Rebaixa el pes del teu document al teu navegador amb nivell equilibrat. Els teus apunts i treballs mai no es transmeten a cap servidor extern."
+                ? "Rebaixa el pes del teu document al navegador amb l'ajust predefinit 'Objectiu ≤ 5 MB (Moodle)'. Els teus apunts i treballs mai no surten del teu dispositiu."
                 : isEn
-                ? "Reduce document weight locally in your browser with fine controls. Your academic files are never uploaded to external servers."
-                : "Rebaja el peso de tu documento en tu navegador con nivel equilibrado. Tus apuntes y trabajos nunca se transmiten a servidores externos."
+                ? "Reduce document weight locally in your browser using the 'Target ≤ 5 MB (Moodle)' preset. Your academic files never leave your computer."
+                : "Rebaja el peso de tu documento en tu navegador con el ajuste predefinido 'Objetivo ≤ 5 MB (Moodle)'. Tus apuntes y trabajos nunca salen de tu ordenador."
             }
-            buttonText={isCa ? "Comprimir PDF ara" : isEn ? "Compress PDF now" : "Comprimir PDF ahora"}
+            buttonText={isCa ? "Comprimir amb ajust Moodle" : isEn ? "Compress with Moodle preset" : "Comprimir con ajuste Moodle"}
             icon={<FileDown className="size-4" />}
             variant="solid-red"
           />

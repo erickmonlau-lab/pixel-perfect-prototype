@@ -103,7 +103,14 @@ export const TOOLS: ToolDefinition[] = [
     minFiles: 1,
     autoProcess: true,
     ctaLabel: "Comprimir PDF",
-    keywords: ["comprimir pdf", "reducir tamaño pdf", "pdf ligero"],
+    keywords: [
+      "comprimir pdf",
+      "reducir tamaño pdf",
+      "bajar peso pdf",
+      "comprimir pdf a 2mb",
+      "comprimir pdf moodle 5mb",
+      "pdf ligero",
+    ],
     howItWorks: [
       "Selecciona el PDF que quieres reducir.",
       "Elige el nivel: sin pérdida, ligero, equilibrado o máximo.",
@@ -131,6 +138,14 @@ export const TOOLS: ToolDefinition[] = [
         a: "En los modos Ligero, Equilibrado y Máximo las páginas se procesan como imágenes optimizadas, por lo que el texto vectorial se aplana. Si necesitas mantener el texto seleccionable para copiar o buscar con Ctrl+F, utiliza siempre el modo 'Sin pérdida'.",
       },
       {
+        q: "¿Cómo comprimir un PDF para que pese menos de 2 MB, 5 MB o 10 MB?",
+        a: "Selecciona el selector 'Nivel de compresión' y elige el preset correspondiente (≤ 2 MB para CV y portales de empleo, ≤ 5 MB para Moodle y campus virtuales, o ≤ 10 MB para sedes judiciales como LexNET). El motor adaptativo ajusta dinámicamente el submuestreo de imágenes hasta alcanzar el objetivo sin romper la legibilidad.",
+      },
+      {
+        q: "¿Por qué Moodle o mi campus universitario rechazan mi PDF por tamaño?",
+        a: "La mayoría de plataformas Moodle y campus virtuales están configuradas por su administrador con un límite de subida por tarea (frecuentemente 5 MB o 10 MB). Con el ajuste 'Objetivo ≤ 5 MB (Moodle)', el archivo se comprime localmente en tu equipo para garantizar que la entrega se suba de inmediato sin errores.",
+      },
+      {
         q: "¿Se sube mi archivo a algún servidor externo?",
         a: "No. Toda la compresión y análisis de páginas se procesa localmente en la memoria de tu navegador mediante JavaScript y WebAssembly. Tus documentos confidenciales nunca viajan por internet.",
       },
@@ -140,13 +155,15 @@ export const TOOLS: ToolDefinition[] = [
         key: "level",
         type: "select",
         label: "Nivel de compresión",
-        help: "Sin pérdida conserva el texto seleccionable; el resto rasteriza las páginas.",
         default: "balanced",
         options: [
-          { value: "lossless", label: "Sin pérdida — reestructura el archivo" },
-          { value: "light", label: "Ligero — máxima calidad visual" },
           { value: "balanced", label: "Equilibrado — recomendado" },
-          { value: "strong", label: "Máximo — el archivo más pequeño" },
+          { value: "target_2mb", label: "Objetivo ≤ 2 MB (CV, InfoJobs, portales)" },
+          { value: "target_5mb", label: "Objetivo ≤ 5 MB (Moodle, Campus Virtual)" },
+          { value: "target_10mb", label: "Objetivo ≤ 10 MB (LexNET, sedes judiciales)" },
+          { value: "lossless", label: "Sin pérdida — reestructura sin rasterizar" },
+          { value: "light", label: "Ligero — máxima nitidez visual" },
+          { value: "strong", label: "Máximo — reducción extrema" },
         ],
       },
     ],
@@ -1031,6 +1048,10 @@ export const TOOLS: ToolDefinition[] = [
       {
         q: "¿Puedo colocar la firma en varias páginas?",
         a: "Sí, puedes elegir colocarla en la última página, la primera, todas las páginas o solo las páginas que selecciones.",
+      },
+      {
+        q: "¿Qué validez legal tiene esta firma según la normativa eIDAS?",
+        a: "Esta herramienta genera una Firma Electrónica Simple (rúbrica gráfica manuscrita estampada sobre el documento), plenamente admitida como prueba en procedimientos de común acuerdo (contratos de arrendamiento, autorizaciones, solicitudes cotidianas o recibís laborales). No es una Firma Cualificada con certificado digital de la FNMT/DNIe, requerida para trámites específicos con la Administración Pública española o LexNET.",
       },
     ],
   },

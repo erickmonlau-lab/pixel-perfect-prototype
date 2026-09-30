@@ -1,0 +1,5 @@
+task,nativeEsQuery,nativeCaQuery,nativeEnQuery,searchIntent,esVolumeBand,caVolumeBand,enVolumeBand,esToolRoute,caToolRoute,enToolRoute,localizationAction
+"Comprimir PDF","comprimir pdf","comprimeix pdf / reduir mida pdf","compress pdf","Transactional","200K–350K","15K–25K","2.5M–4.0M","/es/herramientas/comprimir-pdf","/ca/eines/comprimeix-pdf","/en/tools/compress-pdf","Traducción nativa ya en producción con hreflang bidireccional y x-default."
+"Unir PDF","unir pdf","unir pdf / ajuntar pdf","merge pdf / combine pdf","Transactional","150K–250K","12K–20K","1.8M–3.0M","/es/herramientas/unir-pdf","/ca/eines/unir-pdf","/en/tools/merge-pdf","Totalmente traducido y verificado."
+"Dividir PDF","dividir pdf","dividir pdf / separar pdf","split pdf","Transactional","80K–140K","6K–10K","900K–1.5M","/es/herramientas/dividir-pdf","/ca/eines/dividir-pdf","/en/tools/split-pdf","Totalmente traducido y verificado."
+"Firmar PDF","firmar pdf","signar pdf","sign pdf","Transactional","60K–100K","8K–14K","1.5M–2.5M","/es/herramientas/firmar-pdf","/ca/eines/signar-pdf","/en/tools/sign-pdf","Adaptación legal a Firma Simple en las 3 lenguas."

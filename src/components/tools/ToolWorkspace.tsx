@@ -23,12 +23,21 @@ import { useLocale } from "@/lib/i18n/context";
 import { localizeOutputName } from "@/lib/tools/output-names";
 import { BRAND_NAME } from "@/lib/i18n/config";
 import { BRAND_ASSETS } from "@/lib/brand";
+import { Link, useNavigate } from "@tanstack/react-router";
+import { ArrowRight } from "lucide-react";
 import {
   trackFileSelected,
   trackProcessingStarted,
   trackProcessingCompleted,
   trackDownloadClicked,
+  trackWorkflowNextClicked,
 } from "@/lib/analytics/gtm";
+import { TOOL_WORKFLOW_MAP } from "@/lib/tools/workflow-definitions";
+import {
+  setPendingWorkflowFiles,
+  consumePendingWorkflowFiles,
+} from "@/lib/tools/workflow-handoff";
+import { toolPath } from "@/lib/i18n/routing";
 import { PageGrid } from "./workspace/PageGrid";
 import { useWorkspaceHistory } from "./workspace/useWorkspaceHistory";
 import { exportWorkspacePdf } from "./workspace/exportWorkspacePdf";
@@ -61,6 +70,7 @@ const PAGE_BASED_TOOLS = new Set([
 
 export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
   const { locale, t } = useLocale();
+  const navigate = useNavigate();
   const inputRef = useRef<HTMLInputElement>(null);
   const [files, setFiles] = useState<File[]>([]);
   const [dragging, setDragging] = useState(false);
@@ -149,15 +159,41 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
 
   const mountedSlug = useRef(tool.slug);
   useEffect(() => {
-    if (mountedSlug.current === tool.slug) return;
-    mountedSlug.current = tool.slug;
-    setValues(defaults);
-    setFiles([]);
-    setOutputs([]);
-    setPhase("idle");
-    setMessage(null);
-    setNote(null);
-    resetWorkspace({ documents: {}, pages: [], selectedPageIds: [] });
+    // 1. Verificar si hay archivos transferidos desde una herramienta previa en el flujo de trabajo
+    const handoffFiles = consumePendingWorkflowFiles(tool.slug);
+
+    if (mountedSlug.current !== tool.slug) {
+      mountedSlug.current = tool.slug;
+      setValues(defaults);
+      setMessage(null);
+      setNote(null);
+      setOutputs([]);
+      if (handoffFiles && handoffFiles.length > 0) {
+        setFiles(handoffFiles);
+        trackFileSelected({ tool: tool.slug, language: locale, fileCount: handoffFiles.length });
+        if (isPageWorkspace) {
+          loadPagesForFiles(handoffFiles);
+        } else if (tool.autoProcess) {
+          run(handoffFiles, defaults);
+        }
+      } else {
+        setFiles([]);
+        setPhase("idle");
+        resetWorkspace({ documents: {}, pages: [], selectedPageIds: [] });
+      }
+    } else if (handoffFiles && handoffFiles.length > 0) {
+      // Misma herramienta recargada con nuevos archivos handoff
+      setFiles(handoffFiles);
+      setOutputs([]);
+      setMessage(null);
+      setNote(null);
+      trackFileSelected({ tool: tool.slug, language: locale, fileCount: handoffFiles.length });
+      if (isPageWorkspace) {
+        loadPagesForFiles(handoffFiles);
+      } else if (tool.autoProcess) {
+        run(handoffFiles, values);
+      }
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tool.slug]);
 
@@ -311,8 +347,11 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
     setProgress(0);
     setMessage(null);
     setNote(null);
-    setOutputs([]);
-    trackProcessingStarted({ tool: tool.slug, language: locale });
+    trackProcessingStarted({
+      tool: tool.slug,
+      language: locale,
+      ...(tool.slug === "comprimir-pdf" ? { compressionMode: String(targetOptions["level"] ?? "balanced") } : {}),
+    });
 
     try {
       if (isPageWorkspace && workspaceState.pages.length > 0) {
@@ -1142,6 +1181,56 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
             ))}
           </div>
 
+          {/* Siguiente acción sugerida (Continuidad de Workflow en 1-clic sin fricción) */}
+          {(() => {
+            const workflow = TOOL_WORKFLOW_MAP[tool.slug];
+            if (!workflow || outputs.length === 0) return null;
+
+            return (
+              <div className="mt-6 max-w-xl mx-auto rounded-2xl border border-amber-200/90 bg-gradient-to-r from-amber-50/70 via-orange-50/40 to-white p-4.5 sm:p-5 shadow-xs">
+                <div className="flex items-center justify-between gap-2 mb-2">
+                  <span className="inline-flex items-center gap-1.5 rounded-md bg-amber-100/80 px-2 py-0.5 text-[11px] font-bold tracking-wide uppercase text-amber-900">
+                    <ArrowRight className="size-3 text-amber-700" />
+                    <span>{workflow.badge[locale] ?? workflow.badge.es}</span>
+                  </span>
+                  <span className="text-[12px] font-semibold text-slate-500">Continuar sin descargar</span>
+                </div>
+                <h4 className="text-[15.5px] sm:text-[16.5px] font-black text-[#0F172A] tracking-tight">
+                  {workflow.title[locale] ?? workflow.title.es}
+                </h4>
+                <p className="mt-1 text-[13px] text-slate-600 leading-relaxed font-medium">
+                  {workflow.description[locale] ?? workflow.description.es}
+                </p>
+                <div className="mt-3.5 flex items-center justify-end">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      try {
+                        const filesToHandoff = outputs.map(
+                          (out) => new File([out.blob], out.name, { type: out.blob.type || "application/pdf" }),
+                        );
+                        setPendingWorkflowFiles(workflow.targetToolSlug, filesToHandoff);
+                        trackWorkflowNextClicked({
+                          fromTool: tool.slug,
+                          toTool: workflow.targetToolSlug,
+                          language: locale,
+                        });
+                        const targetPath = toolPath(locale, workflow.targetToolSlug);
+                        navigate({ to: targetPath });
+                      } catch (err) {
+                        console.error("Error transitioning to next tool in workflow", err);
+                      }
+                    }}
+                    className="inline-flex items-center gap-2 rounded-xl bg-[#0F172A] hover:bg-slate-800 text-white px-4 py-2.5 text-[13.5px] font-bold shadow-sm transition-all cursor-pointer hover:shadow hover:-translate-y-0.5"
+                  >
+                    <span>{workflow.cta[locale] ?? workflow.cta.es}</span>
+                    <ArrowRight className="size-4 text-amber-400" />
+                  </button>
+                </div>
+              </div>
+            );
+          })()}
+
           {/* Barra de acciones secundarias: procesar más archivos o volver a empezar */}
           <div className="mt-6 pt-5 border-t border-slate-200/80 flex flex-wrap items-center justify-between gap-3">
             <button
@@ -1186,6 +1275,18 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                   }}
                   className="rounded-lg border border-slate-300 bg-white px-2.5 py-1 text-[12.5px] font-bold text-slate-700 shadow-2xs hover:border-primary focus:border-primary focus:outline-hidden"
                 >
+                  <option value="balanced">
+                    {locale === "ca" ? "Equilibrat (recomanat)" : locale === "en" ? "Balanced (recommended)" : "Equilibrado (recomendado)"}
+                  </option>
+                  <option value="target_2mb">
+                    {locale === "ca" ? "Objectiu ≤ 2 MB (CV, portals)" : locale === "en" ? "Target ≤ 2 MB (Resume)" : "Objetivo ≤ 2 MB (CV, empleo)"}
+                  </option>
+                  <option value="target_5mb">
+                    {locale === "ca" ? "Objectiu ≤ 5 MB (Moodle)" : locale === "en" ? "Target ≤ 5 MB (Moodle)" : "Objetivo ≤ 5 MB (Moodle)"}
+                  </option>
+                  <option value="target_10mb">
+                    {locale === "ca" ? "Objectiu ≤ 10 MB (LexNET)" : locale === "en" ? "Target ≤ 10 MB (Legal)" : "Objetivo ≤ 10 MB (LexNET)"}
+                  </option>
                   <option value="lossless">
                     {locale === "ca"
                       ? "Sense pèrdua (estructural)"
@@ -1195,9 +1296,6 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                   </option>
                   <option value="light">
                     {locale === "ca" ? "Lleuger (alta qualitat)" : locale === "en" ? "Light (high quality)" : "Ligero (alta calidad)"}
-                  </option>
-                  <option value="balanced">
-                    {locale === "ca" ? "Equilibrat (recomanat)" : locale === "en" ? "Balanced (recommended)" : "Equilibrado (recomendado)"}
                   </option>
                   <option value="strong">
                     {locale === "ca" ? "Màxim (més reducció)" : locale === "en" ? "Maximum (highest reduction)" : "Máximo (más reducción)"}

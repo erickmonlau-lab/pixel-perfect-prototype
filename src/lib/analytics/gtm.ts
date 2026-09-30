@@ -50,10 +50,15 @@ export function trackFileSelected(params: { tool: string; language: string; file
 /**
  * Track when processing starts for a tool.
  */
-export function trackProcessingStarted(params: { tool: string; language: string }) {
+export function trackProcessingStarted(params: {
+  tool: string;
+  language: string;
+  compressionMode?: string;
+}) {
   pushGtmEvent("processing_started", {
     tool: params.tool,
     language: params.language,
+    ...(params.compressionMode ? { compression_mode: params.compressionMode } : {}),
   });
 }
 
@@ -78,6 +83,22 @@ export function trackProcessingCompleted(params: {
 export function trackDownloadClicked(params: { tool: string; language: string }) {
   pushGtmEvent("download_clicked", {
     tool: params.tool,
+    language: params.language,
+  });
+}
+
+/**
+  * Track when the user clicks the 1-click continuation workflow button to chain tools.
+  * Does NOT transmit file names, file contents or PII.
+  */
+export function trackWorkflowNextClicked(params: {
+  fromTool: string;
+  toTool: string;
+  language: string;
+}) {
+  pushGtmEvent("workflow_next_clicked", {
+    from_tool: params.fromTool,
+    to_tool: params.toTool,
     language: params.language,
   });
 }
