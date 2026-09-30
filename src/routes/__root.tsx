@@ -135,12 +135,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           href: "/fonts/inter-latin-500.woff2",
           crossOrigin: "anonymous",
         },
-        {
-          rel: "preload",
-          as: "image",
-          type: "image/webp",
-          href: "/brand/breadpdf-icon.webp",
-        },
         { rel: "icon", href: "/favicon.ico?v=3", sizes: "48x48 32x32 16x16" },
         { rel: "icon", href: "/favicon.svg?v=3", type: "image/svg+xml" },
         { rel: "icon", href: "/favicon-32x32.png?v=3", sizes: "32x32", type: "image/png" },
