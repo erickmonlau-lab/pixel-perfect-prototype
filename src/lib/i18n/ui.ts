@@ -229,6 +229,10 @@ const es = {
     pagesProcessed: (count: number) =>
       count === 1 ? "1 página procesada con éxito." : `${count} páginas procesadas con éxito.`,
     downloadNow: "Descargar ahora",
+    downloadAllZip: "Descargar todo en un ZIP",
+    splitTargetLabel: "¿Cómo quieres guardar las páginas seleccionadas?",
+    splitTargetCombined: "En 1 solo PDF (juntas)",
+    splitTargetIndividual: "En varios PDFs (1 por cada página)",
     loadingPages: "Generando vista previa de páginas...",
     addMoreFiles: "Añadir más archivos",
     addMoreFilesSubtitle: "Añade al menos otro archivo para poder combinarlos.",
@@ -577,6 +581,10 @@ const ca: Dict = {
     pagesProcessed: (count: number) =>
       count === 1 ? "1 pàgina processada amb èxit." : `${count} pàgines processades amb èxit.`,
     downloadNow: "Descarrega ara",
+    downloadAllZip: "Descarrega tot en un ZIP",
+    splitTargetLabel: "Com vols desar les pàgines seleccionades?",
+    splitTargetCombined: "En 1 sol PDF (juntes)",
+    splitTargetIndividual: "En diversos PDFs (1 per cada pàgina)",
     loadingPages: "Generant vista prèvia de pàgines...",
     addMoreFiles: "Afegeix més fitxers",
     addMoreFilesSubtitle: "Afegeix com a mínim un altre fitxer per poder combinar-los.",
@@ -921,6 +929,10 @@ const en: Dict = {
     pagesProcessed: (count: number) =>
       count === 1 ? "1 page processed successfully." : `${count} pages processed successfully.`,
     downloadNow: "Download now",
+    downloadAllZip: "Download all in a ZIP",
+    splitTargetLabel: "How would you like to save the selected pages?",
+    splitTargetCombined: "In 1 single PDF (merged)",
+    splitTargetIndividual: "In separate PDFs (1 per page)",
     loadingPages: "Generating pages preview...",
     addMoreFiles: "Add more files",
     addMoreFilesSubtitle: "Add at least one more file to merge them together.",

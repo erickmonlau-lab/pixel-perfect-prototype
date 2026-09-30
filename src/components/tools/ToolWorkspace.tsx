@@ -121,6 +121,7 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
   });
 
   const isPageWorkspace = PAGE_BASED_TOOLS.has(tool.slug);
+  const [splitTargetMode, setSplitTargetMode] = useState<"combined" | "individual">("combined");
 
   const {
     state: workspaceState,
@@ -321,24 +322,50 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
 
           if (selectedIndices.length > 0) {
             // El usuario seleccionó páginas concretas en la cuadrícula visual para dividir/separar
-            for (let i = 0; i < selectedIndices.length; i++) {
-              const pageIdx = selectedIndices[i];
+            if (splitTargetMode === "combined" || selectedIndices.length === 1) {
+              // Guardar todas las páginas seleccionadas juntas en 1 único PDF
               const doc = await PDFDocument.create();
-              const copied = await doc.copyPages(sourcePdf, [pageIdx]);
+              const copied = await doc.copyPages(sourcePdf, selectedIndices);
               copied.forEach((p) => doc.addPage(p));
               const outBytes = await doc.save({ useObjectStreams: true });
+              const outputFileName = localizeOutputName(locale, `${baseTitle}-separadas.pdf`);
               outItems.push({
-                name: localizeOutputName(locale, `${baseTitle}-pagina-${pageIdx + 1}.pdf`),
+                name: outputFileName,
                 blob: new Blob([outBytes as BlobPart], { type: "application/pdf" }),
               });
-              setProgress((i + 1) / selectedIndices.length);
+              setOutputs(outItems);
+              setNote(
+                selectedIndices.length === 1
+                  ? (locale === "ca" ? "1 pàgina extreta amb èxit." : locale === "en" ? "1 page extracted successfully." : "1 página extraída con éxito.")
+                  : (locale === "ca"
+                    ? `${selectedIndices.length} pàgines separades guardades en 1 sol PDF.`
+                    : locale === "en"
+                    ? `${selectedIndices.length} split pages saved together in 1 single PDF.`
+                    : `${selectedIndices.length} páginas separadas guardadas en 1 solo PDF.`)
+              );
+            } else {
+              // Guardar en archivos individuales (1 por cada página seleccionada)
+              for (let i = 0; i < selectedIndices.length; i++) {
+                const pageIdx = selectedIndices[i];
+                const doc = await PDFDocument.create();
+                const copied = await doc.copyPages(sourcePdf, [pageIdx]);
+                copied.forEach((p) => doc.addPage(p));
+                const outBytes = await doc.save({ useObjectStreams: true });
+                outItems.push({
+                  name: localizeOutputName(locale, `${baseTitle}-pagina-${pageIdx + 1}.pdf`),
+                  blob: new Blob([outBytes as BlobPart], { type: "application/pdf" }),
+                });
+                setProgress((i + 1) / selectedIndices.length);
+              }
+              setOutputs(outItems);
+              setNote(
+                locale === "ca"
+                  ? `${selectedIndices.length} pàgines separades en fitxers individuals.`
+                  : locale === "en"
+                  ? `${selectedIndices.length} pages split into individual files.`
+                  : `${selectedIndices.length} páginas separadas en archivos individuales.`
+              );
             }
-            setOutputs(outItems);
-            setNote(
-              selectedIndices.length === 1
-                ? (locale === "ca" ? "1 pàgina extreta amb èxit." : locale === "en" ? "1 page extracted successfully." : "1 página extraída con éxito.")
-                : (locale === "ca" ? `${selectedIndices.length} pàgines separades en fitxers individuals.` : locale === "en" ? `${selectedIndices.length} pages split into individual files.` : `${selectedIndices.length} páginas separadas en archivos individuales.`)
-            );
           } else {
             // Ninguna página seleccionada específicamente: usar los ajustes de "Modo" (una por archivo o intervalos)
             const splitMode = values.mode ?? "each";
@@ -688,36 +715,71 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
           {isPageWorkspace && viewMode === "visual" ? (
             <div className="mt-4 flex flex-col gap-3">
               {/* Ayuda visual amigable para seleccionar o dividir páginas */}
-              <div className="flex flex-wrap items-center justify-between gap-2 rounded-xl border border-primary/20 bg-primary/5 px-4 py-2.5 text-[13px] text-slate-700">
-                <div className="flex items-center gap-2">
-                  <span className="flex size-5 shrink-0 items-center justify-center rounded-full bg-primary text-[11px] font-bold text-white">
-                    ℹ
-                  </span>
-                  <span>
-                    {tool.slug === "dividir-pdf" ? (
-                      workspaceState.selectedPageIds.length > 0 ? (
-                        <>
-                          <strong className="font-semibold text-primary">
-                            {workspaceState.selectedPageIds.length} página(s) seleccionada(s) para separar.
-                          </strong>{" "}
-                          Haz clic en cualquier página para añadirla o quitarla de la selección.
-                        </>
+              <div className="flex flex-col gap-2.5 rounded-xl border border-primary/20 bg-primary/5 p-3.5 sm:px-4 sm:py-3 text-[13px] text-slate-700">
+                <div className="flex flex-wrap items-center justify-between gap-2">
+                  <div className="flex items-center gap-2">
+                    <span className="flex size-5 shrink-0 items-center justify-center rounded-full bg-primary text-[11px] font-bold text-white">
+                      ℹ
+                    </span>
+                    <span>
+                      {tool.slug === "dividir-pdf" ? (
+                        workspaceState.selectedPageIds.length > 0 ? (
+                          <>
+                            <strong className="font-semibold text-primary">
+                              {workspaceState.selectedPageIds.length} página(s) seleccionada(s).
+                            </strong>{" "}
+                            Haz clic en cualquier página para añadirla o quitarla.
+                          </>
+                        ) : (
+                          <>
+                            <strong>Haz clic en cualquier página</strong> para seleccionarla y separarla, o usa los ajustes inferiores para dividir por intervalos o todas a la vez.
+                          </>
+                        )
                       ) : (
                         <>
-                          <strong>Haz clic en cualquier página</strong> para seleccionarla y separarla, o usa los ajustes inferiores para dividir por intervalos o todas a la vez.
+                          <strong>Haz clic en cualquier página</strong> para seleccionarla, girarla o moverla a tu gusto.
                         </>
-                      )
-                    ) : (
-                      <>
-                        <strong>Haz clic en cualquier página</strong> para seleccionarla, girarla o moverla a tu gusto.
-                      </>
-                    )}
-                  </span>
+                      )}
+                    </span>
+                  </div>
+                  {workspaceState.selectedPageIds.length > 0 && (
+                    <span className="text-[12px] font-semibold text-primary bg-white border border-primary/20 px-2 py-0.5 rounded-md">
+                      {workspaceState.selectedPageIds.length} de {workspaceState.pages.length} páginas
+                    </span>
+                  )}
                 </div>
-                {workspaceState.selectedPageIds.length > 0 && (
-                  <span className="text-[12px] font-semibold text-primary bg-white border border-primary/20 px-2 py-0.5 rounded-md">
-                    {workspaceState.selectedPageIds.length} de {workspaceState.pages.length} páginas
-                  </span>
+
+                {/* Selector interactivo: ¿1 solo PDF con las páginas elegidas o archivos individuales? */}
+                {tool.slug === "dividir-pdf" && workspaceState.selectedPageIds.length > 1 && (
+                  <div className="mt-1 flex flex-wrap items-center gap-2 pt-2 border-t border-primary/10">
+                    <span className="text-[12.5px] font-semibold text-slate-800">
+                      {t.workspace.splitTargetLabel ?? "¿Cómo quieres guardar las páginas seleccionadas?"}
+                    </span>
+                    <div className="inline-flex rounded-lg border border-primary/20 bg-white p-0.5 shadow-2xs">
+                      <button
+                        type="button"
+                        onClick={() => setSplitTargetMode("combined")}
+                        className={`rounded-md px-2.5 py-1 text-[12px] font-semibold transition-all cursor-pointer ${
+                          splitTargetMode === "combined"
+                            ? "bg-primary text-white shadow-xs"
+                            : "text-slate-600 hover:text-slate-900"
+                        }`}
+                      >
+                        {t.workspace.splitTargetCombined ?? "En 1 solo PDF (juntas)"}
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setSplitTargetMode("individual")}
+                        className={`rounded-md px-2.5 py-1 text-[12px] font-semibold transition-all cursor-pointer ${
+                          splitTargetMode === "individual"
+                            ? "bg-primary text-white shadow-xs"
+                            : "text-slate-600 hover:text-slate-900"
+                        }`}
+                      >
+                        {t.workspace.splitTargetIndividual ?? "En varios PDFs (1 por cada página)"}
+                      </button>
+                    </div>
+                  </div>
                 )}
               </div>
 
@@ -961,6 +1023,38 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                 )}
               </div>
             </div>
+
+            {outputs.length > 1 && (
+              <button
+                type="button"
+                onClick={async () => {
+                  try {
+                    const JSZip = (await import("jszip")).default;
+                    const zip = new JSZip();
+                    outputs.forEach((out) => {
+                      zip.file(out.name, out.blob);
+                    });
+                    const zipBlob = await zip.generateAsync({ type: "blob" });
+                    const zipUrl = URL.createObjectURL(zipBlob);
+                    const baseTitle = files[0]?.name.replace(/\.[^/.]+$/, "") ?? BRAND_NAME.toLowerCase();
+                    const a = document.createElement("a");
+                    a.href = zipUrl;
+                    a.download = localizeOutputName(locale, `${baseTitle}-separadas.zip`);
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(zipUrl);
+                    trackDownloadClicked({ tool: tool.slug, language: locale });
+                  } catch (err) {
+                    console.error("Error creating ZIP", err);
+                  }
+                }}
+                className="inline-flex items-center gap-2 rounded-xl bg-primary px-4 py-2.5 text-[13.5px] font-bold text-white shadow-sm hover:bg-primary/90 transition-all cursor-pointer self-start sm:self-auto shrink-0"
+              >
+                <Download className="size-4" />
+                <span>{t.workspace.downloadAllZip ?? "Descargar todo en un ZIP"}</span>
+              </button>
+            )}
           </div>
           <div className="grid gap-3.5 sm:grid-cols-2" aria-label={t.workspace.downloads}>
             {outputs.map((output, index) => (

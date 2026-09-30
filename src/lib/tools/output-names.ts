@@ -13,6 +13,7 @@ const REPLACEMENTS: Record<Exclude<Locale, "es">, [string, string][]> = {
     ["-extraido", "-extret"],
     ["-sin-paginas", "-sense-pagines"],
     ["-comprimido", "-comprimit"],
+    ["-separadas", "-separades"],
   ],
   en: [
     ["breadpdf-documento-unido", "breadpdf-merged-document"],
@@ -22,6 +23,7 @@ const REPLACEMENTS: Record<Exclude<Locale, "es">, [string, string][]> = {
     ["-extraido", "-extracted"],
     ["-sin-paginas", "-pages-removed"],
     ["-comprimido", "-compressed"],
+    ["-separadas", "-split"],
   ],
 };
 
