@@ -1,6 +1,6 @@
 import { createFileRoute, notFound, Outlet, useRouter, useRouterState } from "@tanstack/react-router";
 import { isLocale } from "@/lib/i18n/config";
-import { use, useEffect, useRef } from "react";
+import { use, useEffect } from "react";
 import { loadLocaleText, localeTextPending } from "@/lib/tools/localize";
 import { LocaleProvider } from "@/lib/i18n/context";
 import { AuthProvider } from "@/lib/auth/auth-context";
@@ -16,17 +16,19 @@ export const Route = createFileRoute("/$lang")({
   component: LocaleLayout,
 });
 
+/** Set when render had to wait for locale copy (survives the suspended render). */
+let refreshAfterLoad = false;
+
 function LocaleLayout() {
   const { lang } = Route.useParams();
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const router = useRouter();
   const loading = isLocale(lang) ? localeTextPending(lang) : null;
-  const waited = useRef(false);
-  if (loading) waited.current = true;
+  if (loading) refreshAfterLoad = true;
   // Page titles were computed before the copy arrived: refresh them once it is in.
   useEffect(() => {
-    if (waited.current) {
-      waited.current = false;
+    if (refreshAfterLoad) {
+      refreshAfterLoad = false;
       void router.invalidate();
     }
   }, [router, lang]);
