@@ -389,3 +389,43 @@ export async function serverUpdateProfile(
 
   return sanitizeUser(user);
 }
+
+export async function serverUpdatePassword(
+  cookieHeader: string | null,
+  currentPassword?: string,
+  newPassword?: string
+): Promise<void> {
+  const sessionId = await extractSessionIdFromHeader(cookieHeader);
+  if (!sessionId) {
+    throw new Error("No autorizado. Sesión no válida o expirada.");
+  }
+
+  const session = serverAuthStore.getSession(sessionId);
+  if (!session) {
+    throw new Error("No autorizado. Sesión no encontrada.");
+  }
+
+  const user = serverAuthStore.findUserById(session.userId);
+  if (!user) {
+    throw new Error("Usuario no encontrado.");
+  }
+
+  if (!newPassword || newPassword.length < 8) {
+    throw new Error("La nueva contraseña debe tener al menos 8 caracteres.");
+  }
+
+  // Si el usuario ya tiene contraseña previa configurada, verificarla si se proporciona
+  if (user.passwordHash && user.passwordSalt && currentPassword) {
+    const isValid = await verifyPassword(currentPassword, user.passwordHash, user.passwordSalt);
+    if (!isValid) {
+      throw new Error("La contraseña actual no es correcta.");
+    }
+  }
+
+  const { hash, salt } = await hashPassword(newPassword);
+  user.passwordHash = hash;
+  user.passwordSalt = salt;
+  user.updatedAt = new Date().toISOString();
+  serverAuthStore.saveUser(user);
+}
+

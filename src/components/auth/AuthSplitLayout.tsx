@@ -52,6 +52,7 @@ const AUTH_COPY = {
     resendCooldown: "Podrás solicitar otro reenvío en",
     spamNotice: "¿No lo encuentras? Revisa tu carpeta de correo no deseado o spam.",
     emailLabel: "Correo electrónico",
+    rememberMe: "Recordar sesión",
     passwordLabel: "Contraseña",
     newPasswordLabel: "Nueva contraseña",
     confirmPasswordLabel: "Confirmar nueva contraseña",
@@ -112,6 +113,7 @@ const AUTH_COPY = {
     resendCooldown: "Podràs sol·licitar un altre reenviament en",
     spamNotice: "No el trobes? Revisa la carpeta de correu brossa o spam.",
     emailLabel: "Correu electrònic",
+    rememberMe: "Recorda la sessió",
     passwordLabel: "Contrasenya",
     newPasswordLabel: "Nova contrasenya",
     confirmPasswordLabel: "Confirmar nova contrasenya",
@@ -172,6 +174,7 @@ const AUTH_COPY = {
     resendCooldown: "You can request another link in",
     spamNotice: "Can't find it? Check your spam or junk folder.",
     emailLabel: "Email address",
+    rememberMe: "Remember me",
     passwordLabel: "Password",
     newPasswordLabel: "New password",
     confirmPasswordLabel: "Confirm new password",
@@ -226,6 +229,7 @@ export function AuthSplitLayout({ initialMode = "login" }: AuthSplitLayoutProps)
   // Form states
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
+  const [rememberMe, setRememberMe] = useState(true);
 
   const [regName, setRegName] = useState("");
   const [regEmail, setRegEmail] = useState("");
@@ -301,7 +305,7 @@ export function AuthSplitLayout({ initialMode = "login" }: AuthSplitLayoutProps)
     setUnconfirmedEmail(null);
     setIsSubmitting(true);
     try {
-      await login({ email: loginEmail, password: loginPassword });
+      await login({ email: loginEmail, password: loginPassword, rememberMe });
       navigate({ to: `/${locale}` });
     } catch (err: any) {
       if (err.isUnconfirmed || err.message?.toLowerCase().includes("email not confirmed")) {
@@ -641,6 +645,21 @@ export function AuthSplitLayout({ initialMode = "login" }: AuthSplitLayoutProps)
                         {showPassword ? <EyeOff className="size-4.5" /> : <Eye className="size-4.5" />}
                       </button>
                     </div>
+                  </div>
+
+                  {/* Casilla Recordar sesión */}
+                  <div className="flex items-center pt-0.5">
+                    <label className="flex items-center gap-2.5 cursor-pointer select-none group">
+                      <input
+                        type="checkbox"
+                        checked={rememberMe}
+                        onChange={(e) => setRememberMe(e.target.checked)}
+                        className="size-4.5 rounded-md border-slate-300 text-[#EC3C2D] focus:ring-[#EC3C2D]/30 accent-[#EC3C2D] cursor-pointer"
+                      />
+                      <span className="text-[13.5px] sm:text-[14px] font-medium text-slate-700 group-hover:text-slate-900 transition-colors">
+                        {copy.rememberMe}
+                      </span>
+                    </label>
                   </div>
 
                   <button
