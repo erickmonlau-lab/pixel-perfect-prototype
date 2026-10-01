@@ -13,6 +13,9 @@ import {
   Laptop,
   Globe,
   Sliders,
+  Lock,
+  Key,
+  AlertCircle,
   FileText,
 } from "lucide-react";
 import { PremiumCrownIcon } from "@/components/site/PremiumCrownIcon";
@@ -96,6 +99,16 @@ export function AccountDashboard() {
   const [newsletterSubscribed, setNewsletterSubscribed] = useState(user?.newsletterSubscribed ?? false);
   const [preferredLang, setPreferredLang] = useState(user?.preferredLocale ?? locale);
   const [localProcessingNotice, setLocalProcessingNotice] = useState(true);
+
+  // Estados para cambio directo de contraseña
+  const [currentPassword, setCurrentPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [passwordLoading, setPasswordLoading] = useState(false);
+  const [passwordSuccess, setPasswordSuccess] = useState<string | null>(null);
+  const [passwordError, setPasswordError] = useState<string | null>(null);
+  const [resetEmailSent, setResetEmailSent] = useState(false);
+  const [resetEmailLoading, setResetEmailLoading] = useState(false);
 
   // Redirigir a login si no hay sesión activa en servidor tras finalizar la carga
   useEffect(() => {
@@ -652,32 +665,156 @@ export function AccountDashboard() {
                   </div>
 
                   <div className="pt-4 border-t border-slate-100">
-                    <h3 className="text-[16px] font-bold text-slate-800">
-                      Cambiar contraseña
-                    </h3>
-                    <p className="text-[13.5px] text-slate-500 mt-1 mb-3">
-                      Enviaremos un enlace seguro a tu correo electrónico para que puedas definir una nueva contraseña de acceso.
+                    <div className="flex items-center gap-2 mb-1">
+                      <Lock className="size-4.5 text-[#0F172A]" />
+                      <h3 className="text-[17px] font-black text-[#0F172A]">
+                        Cambiar contraseña
+                      </h3>
+                    </div>
+                    <p className="text-[13.5px] text-slate-500 mb-5">
+                      Define una nueva contraseña para acceder a tu cuenta o solicita un enlace de restablecimiento.
                     </p>
 
-                    <div className="rounded-2xl border border-slate-200 bg-slate-50/70 p-4 space-y-3">
-                      <p className="text-[13px] text-slate-600 font-medium">
-                        Al pulsar el botón recibirás un enlace de restablecimiento con validez temporal en tu bandeja de entrada o spam.
+                    {passwordSuccess && (
+                      <div className="mb-4 rounded-xl border border-emerald-200 bg-emerald-50 p-3.5 text-[13.5px] font-bold text-emerald-800 flex items-center gap-2">
+                        <CheckCircle2 className="size-4.5 text-emerald-600 shrink-0" />
+                        <span>{passwordSuccess}</span>
+                      </div>
+                    )}
+
+                    {passwordError && (
+                      <div className="mb-4 rounded-xl border border-red-200 bg-red-50 p-3.5 text-[13.5px] font-bold text-red-700 flex items-center gap-2">
+                        <AlertCircle className="size-4.5 text-red-500 shrink-0" />
+                        <span>{passwordError}</span>
+                      </div>
+                    )}
+
+                    {/* FORMULARIO DIRECTO DE CAMBIO DE CONTRASEÑA */}
+                    <form
+                      onSubmit={async (e) => {
+                        e.preventDefault();
+                        setPasswordError(null);
+                        setPasswordSuccess(null);
+
+                        if (newPassword.length < 8) {
+                          setPasswordError("La nueva contraseña debe tener al menos 8 caracteres.");
+                          return;
+                        }
+
+                        if (newPassword !== confirmPassword) {
+                          setPasswordError("Las contraseñas no coinciden. Por favor, revísalas.");
+                          return;
+                        }
+
+                        setPasswordLoading(true);
+                        try {
+                          const { resetUserPassword } = await import("@/lib/auth/auth-store");
+                          await resetUserPassword(newPassword, currentPassword || undefined);
+                          setPasswordSuccess("¡Contraseña actualizada con éxito!");
+                          setCurrentPassword("");
+                          setNewPassword("");
+                          setConfirmPassword("");
+                          setTimeout(() => setPasswordSuccess(null), 4000);
+                        } catch (err: any) {
+                          setPasswordError(err.message || "Error al actualizar la contraseña.");
+                        } finally {
+                          setPasswordLoading(false);
+                        }
+                      }}
+                      className="rounded-2xl border border-slate-200 bg-white p-5 shadow-xs space-y-4"
+                    >
+                      <div>
+                        <label className="block text-[13px] font-bold text-slate-700 mb-1">
+                          Contraseña actual (opcional si es tu primer acceso)
+                        </label>
+                        <input
+                          type="password"
+                          value={currentPassword}
+                          onChange={(e) => setCurrentPassword(e.target.value)}
+                          placeholder="Tu contraseña actual"
+                          className="w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-[14.5px] text-slate-900 placeholder:text-slate-400 focus:border-[#0F172A] focus:outline-none"
+                        />
+                      </div>
+
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                        <div>
+                          <label className="block text-[13px] font-bold text-slate-700 mb-1">
+                            Nueva contraseña *
+                          </label>
+                          <input
+                            type="password"
+                            required
+                            minLength={8}
+                            value={newPassword}
+                            onChange={(e) => setNewPassword(e.target.value)}
+                            placeholder="Mínimo 8 caracteres"
+                            className="w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-[14.5px] text-slate-900 placeholder:text-slate-400 focus:border-[#0F172A] focus:outline-none"
+                          />
+                        </div>
+
+                        <div>
+                          <label className="block text-[13px] font-bold text-slate-700 mb-1">
+                            Confirmar nueva contraseña *
+                          </label>
+                          <input
+                            type="password"
+                            required
+                            minLength={8}
+                            value={confirmPassword}
+                            onChange={(e) => setConfirmPassword(e.target.value)}
+                            placeholder="Repite la contraseña"
+                            className="w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-[14.5px] text-slate-900 placeholder:text-slate-400 focus:border-[#0F172A] focus:outline-none"
+                          />
+                        </div>
+                      </div>
+
+                      <div className="pt-2 flex items-center justify-between">
+                        <button
+                          type="submit"
+                          disabled={passwordLoading}
+                          className="inline-flex items-center gap-2 rounded-xl bg-[#0F172A] hover:bg-slate-800 text-white px-5 py-2.5 text-[13.5px] font-bold shadow-xs transition-all cursor-pointer disabled:opacity-50"
+                        >
+                          <Key className="size-4" />
+                          <span>{passwordLoading ? "Actualizando..." : "Guardar nueva contraseña"}</span>
+                        </button>
+                      </div>
+                    </form>
+
+                    {/* VÍA ALTERNATIVA: ENLACE POR EMAIL */}
+                    <div className="mt-5 rounded-2xl border border-slate-200 bg-slate-50/70 p-4.5">
+                      <p className="text-[13px] font-bold text-slate-700">
+                        ¿Prefieres recibir un enlace en tu correo electrónico?
                       </p>
-                      <button
-                        type="button"
-                        onClick={async () => {
-                          try {
-                            const { requestPasswordReset } = await import("@/lib/auth/auth-store");
-                            await requestPasswordReset(user.email, locale);
-                            setSaveSuccess("Se ha enviado un enlace de restablecimiento seguro a tu correo electrónico.");
-                          } catch (err: any) {
-                            alert(err.message || "Error al solicitar el restablecimiento.");
-                          }
-                        }}
-                        className="inline-flex items-center justify-center rounded-xl bg-[#0F172A] px-5 py-2.5 text-[13.5px] font-bold text-white hover:bg-slate-800 transition-all cursor-pointer shadow-xs"
-                      >
-                        Enviar enlace para cambiar contraseña
-                      </button>
+                      <p className="text-[12.5px] text-slate-500 mt-0.5 mb-3">
+                        Te enviaremos un email seguro con un enlace para restablecer tu acceso.
+                      </p>
+
+                      {resetEmailSent ? (
+                        <div className="rounded-xl border border-emerald-200 bg-emerald-50 p-3 text-[13px] font-bold text-emerald-800 flex items-center gap-2">
+                          <CheckCircle2 className="size-4 text-emerald-600 shrink-0" />
+                          <span>Petición enviada. Revisa tu bandeja de entrada o spam.</span>
+                        </div>
+                      ) : (
+                        <button
+                          type="button"
+                          disabled={resetEmailLoading}
+                          onClick={async () => {
+                            setResetEmailLoading(true);
+                            try {
+                              const { requestPasswordReset } = await import("@/lib/auth/auth-store");
+                              await requestPasswordReset(user.email, locale);
+                              setResetEmailSent(true);
+                            } catch (err: any) {
+                              alert(err.message || "Error al solicitar el restablecimiento.");
+                            } finally {
+                              setResetEmailLoading(false);
+                            }
+                          }}
+                          className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 px-4 py-2 text-[13px] font-bold text-slate-700 shadow-2xs transition-all cursor-pointer disabled:opacity-50"
+                        >
+                          <span>{resetEmailLoading ? "Enviando..." : "Enviar enlace por correo"}</span>
+                        </button>
+                      )}
                     </div>
                   </div>
                 </div>

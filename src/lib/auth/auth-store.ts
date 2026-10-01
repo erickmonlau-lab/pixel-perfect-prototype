@@ -294,9 +294,9 @@ export async function requestPasswordReset(email: string, locale: string = "es")
 }
 
 /**
- * Actualiza la contraseña del usuario actualmente autenticado (en sesión de recuperación)
+ * Actualiza la contraseña del usuario actualmente autenticado (en sesión de recuperación o cuenta activa)
  */
-export async function resetUserPassword(newPassword: string): Promise<void> {
+export async function resetUserPassword(newPassword: string, currentPassword?: string): Promise<void> {
   if (newPassword.length < 8) {
     throw new AuthErrorWithCode("La nueva contraseña debe tener al menos 8 caracteres.");
   }
@@ -315,8 +315,20 @@ export async function resetUserPassword(newPassword: string): Promise<void> {
     }
   }
 
-  throw new AuthErrorWithCode("La actualización de contraseña requiere conexión con el servicio de autenticación.");
+  // Fallback a servidor HTTP seguro
+  const res = await fetch("/api/auth/password", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ currentPassword, newPassword }),
+    credentials: "same-origin",
+  });
+
+  const data = await res.json();
+  if (!res.ok || !data.success) {
+    throw new AuthErrorWithCode(data.error || "No se pudo actualizar la contraseña.");
+  }
 }
+
 
 export async function updateUserProfile(updates: Partial<User>): Promise<User> {
   if (isSupabaseConfigured) {

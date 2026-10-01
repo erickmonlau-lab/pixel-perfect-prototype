@@ -8,6 +8,7 @@ import {
   serverGetCurrentUser,
   serverLogout,
   serverUpdateProfile,
+  serverUpdatePassword,
   createSessionCookieHeader,
   createClearSessionCookieHeader,
 } from "./lib/auth/server-auth";
@@ -166,6 +167,17 @@ export default {
           return jsonResponse({ success: true, user: updatedUser }, 200);
         } catch (err: any) {
           return jsonResponse({ success: false, error: err.message || "Error al actualizar perfil" }, 400);
+        }
+      }
+
+      // POST /api/auth/password (Cambio directo de contraseña autenticado)
+      if (pathname === "/api/auth/password" && request.method === "POST") {
+        try {
+          const { currentPassword, newPassword } = await request.json();
+          await serverUpdatePassword(cookieHeader, currentPassword, newPassword);
+          return jsonResponse({ success: true, message: "Contraseña actualizada correctamente" }, 200);
+        } catch (err: any) {
+          return jsonResponse({ success: false, error: err.message || "Error al actualizar contraseña" }, 400);
         }
       }
 
