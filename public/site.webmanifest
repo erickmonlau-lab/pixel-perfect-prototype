@@ -1,0 +1,35 @@
+{
+  "name": "BreadPDF — Herramientas PDF Online",
+  "short_name": "BreadPDF",
+  "description": "Comprime, une, divide, convierte y edita documentos PDF directamente en tu navegador con total privacidad.",
+  "start_url": "/es?utm_source=pwa",
+  "display": "standalone",
+  "background_color": "#FFFDF8",
+  "theme_color": "#EC3C2D",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/brand/breadpdf-app-icon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/brand/breadpdf-logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

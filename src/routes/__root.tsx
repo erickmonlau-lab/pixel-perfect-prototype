@@ -126,6 +126,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         { rel: "icon", href: "/favicon-32x32.png?v=3", sizes: "32x32", type: "image/png" },
         { rel: "icon", href: "/favicon-16x16.png?v=3", sizes: "16x16", type: "image/png" },
         { rel: "apple-touch-icon", href: "/apple-touch-icon.png?v=3", sizes: "180x180" },
+        { rel: "manifest", href: "/site.webmanifest" },
       ],
       scripts: [
         {
@@ -169,10 +170,10 @@ function RootShell({ children }: { children: ReactNode }) {
         </noscript>
         {/* End Google Tag Manager (noscript) */}
         {children}
-        {/* Carga diferida de gtm.js: tras el evento load + idle, sin bloquear pintura ni hidratación */}
+        {/* Carga diferida de gtm.js y registro de service worker sin bloquear pintura ni hidratación */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){var load=function(){var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtm.js?id=${GTM_CONTAINER_ID}';document.body.appendChild(s);};var done=false;var go=function(){if(done)return;done=true;['pointerdown','keydown','scroll','touchstart'].forEach(function(e){removeEventListener(e,go)});load();};['pointerdown','keydown','scroll','touchstart'].forEach(function(e){addEventListener(e,go,{once:true,passive:true})});var later=function(){setTimeout(go,8000)};if(document.readyState==='complete'){later();}else{addEventListener('load',later,{once:true});}})();`,
+            __html: `(function(){var load=function(){var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtm.js?id=${GTM_CONTAINER_ID}';document.body.appendChild(s);if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js').catch(function(){});}};var done=false;var go=function(){if(done)return;done=true;['pointerdown','keydown','scroll','touchstart'].forEach(function(e){removeEventListener(e,go)});load();};['pointerdown','keydown','scroll','touchstart'].forEach(function(e){addEventListener(e,go,{once:true,passive:true})});var later=function(){setTimeout(go,8000)};if(document.readyState==='complete'){later();}else{addEventListener('load',later,{once:true});}})();`,
           }}
         />
         <Scripts />

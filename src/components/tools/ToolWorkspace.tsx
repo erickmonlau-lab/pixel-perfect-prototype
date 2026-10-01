@@ -43,7 +43,6 @@ import { useWorkspaceHistory } from "./workspace/useWorkspaceHistory";
 import { exportWorkspacePdf } from "./workspace/exportWorkspacePdf";
 import { OverlaySettingsPanel } from "./workspace/OverlaySettingsPanel";
 import { SignaturePadModal } from "./workspace/SignaturePadModal";
-import { BookmarkPrompt } from "@/components/site/BookmarkPrompt";
 import { CompareWorkspace } from "./compare/CompareWorkspace";
 import { FormFillWorkspace } from "./formfill/FormFillWorkspace";
 import type {
@@ -1262,11 +1261,6 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
               </div>
             );
           })()}
-
-          {/* Recordatorio para fijar BreadPDF en favoritos tras completar una tarea */}
-          <div className="mt-5 max-w-xl mx-auto">
-            <BookmarkPrompt variant="floating" />
-          </div>
 
           {/* Barra de acciones secundarias: procesar más archivos o volver a empezar */}
           <div className="mt-6 pt-5 border-t border-slate-200/80 flex flex-wrap items-center justify-between gap-3">
