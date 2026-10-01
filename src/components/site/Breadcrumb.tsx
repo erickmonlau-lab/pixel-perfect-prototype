@@ -1,4 +1,4 @@
-﻿import React from "react";
+import React from "react";
 import { Link } from "@tanstack/react-router";
 import { Home, ChevronRight } from "lucide-react";
 import { useLocale } from "@/lib/i18n/context";
@@ -27,7 +27,7 @@ export function Breadcrumb({ items, className = "", showHomeIcon = true }: Bread
   return (
     <nav
       aria-label="Breadcrumb"
-      className={`text-[13px] sm:text-[13.5px] font-medium text-slate-500 mb-4 sm:mb-6 ${className}`}
+      className={`text-[13px] sm:text-[13.5px] font-medium text-slate-500 mb-3 sm:mb-4 ${className}`}
     >
       <ol className="flex flex-wrap items-center gap-1.5 leading-none">
         {/* Link to Home */}

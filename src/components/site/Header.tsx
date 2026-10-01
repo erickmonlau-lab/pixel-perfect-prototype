@@ -27,6 +27,7 @@ import { Logo } from "./Logo";
 import { ToolIcon } from "./ToolIcon";
 import { getRichToolIcon } from "./RichToolIcon";
 import { LanguageSwitcher } from "./LanguageSwitcher";
+import { trackToolCatalogCategoryClicked, trackToolCatalogViewAllClicked } from "@/lib/analytics/gtm";
 import type { ToolCategory } from "@/lib/tools/types";
 
 export function Header() {
@@ -390,7 +391,10 @@ export function Header() {
                               <Link
                                 to={DETAIL_ROUTE}
                                 params={categoryParams(locale, cat.category)}
-                                onClick={() => setActiveDropdown(null)}
+                                onClick={() => {
+                                  trackToolCatalogCategoryClicked({ category: cat.category, source: "header_more", language: locale });
+                                  setActiveDropdown(null);
+                                }}
                                 className="inline-flex items-center gap-2.5 text-[14.5px] font-black uppercase tracking-wider text-slate-800 hover:text-primary transition-colors"
                               >
                                 <span
@@ -430,6 +434,28 @@ export function Header() {
                           </div>
                         );
                       })}
+                    </div>
+
+                    {/* PIE DEL DESPLEGABLE: ENLACE DESTACADO A TODO EL CATÁLOGO (DINÁMICO) */}
+                    <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between bg-slate-50/60 -mx-6 -mb-6 px-6 py-3.5 rounded-b-2xl">
+                      <div className="flex items-center gap-2">
+                        <span className="inline-flex size-2 rounded-full bg-[#059669]" />
+                        <span className="text-[13px] font-semibold text-slate-600">
+                          {tools.length} {locale === "ca" ? "eines operatives al navegador" : locale === "en" ? "browser-native PDF tools" : "herramientas disponibles en navegador"}
+                        </span>
+                      </div>
+                      <Link
+                        to={SECTION_ROUTE}
+                        params={catalogParams(locale)}
+                        onClick={() => {
+                          trackToolCatalogViewAllClicked({ source: "header_more_footer", language: locale });
+                          setActiveDropdown(null);
+                        }}
+                        className="inline-flex items-center gap-1.5 text-[14px] font-bold text-[#EC3C2D] hover:text-[#D93426] transition-colors group"
+                      >
+                        <span>{t.nav.megaFooter ?? "Ver todas las herramientas"}</span>
+                        <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -631,11 +657,16 @@ export function Header() {
             <Link
               to={SECTION_ROUTE}
               params={catalogParams(locale)}
-              onClick={() => setMobileOpen(false)}
-              className="rounded-xl bg-primary-soft/80 px-4 py-3 text-[15px] font-bold text-primary-dark flex items-center justify-between"
+              onClick={() => {
+                trackToolCatalogViewAllClicked({ source: "mobile_menu", language: locale });
+                setMobileOpen(false);
+              }}
+              className="rounded-xl bg-[#FEECEB] px-4 py-3 text-[15px] font-bold text-[#EC3C2D] flex items-center justify-between border border-[#FDCAC7]/60"
             >
-              <span>{t.nav.allTools}</span>
-              <span className="font-mono text-[12px] bg-primary/10 px-2 py-0.5 rounded-md font-semibold">
+              <span className="flex items-center gap-2">
+                <span>{t.nav.allTools}</span>
+              </span>
+              <span className="font-mono text-[12px] bg-[#EC3C2D]/10 text-[#EC3C2D] px-2 py-0.5 rounded-md font-bold">
                 {tools.length} {locale === "ca" ? "eines" : locale === "en" ? "tools" : "herramientas"}
               </span>
             </Link>

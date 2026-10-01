@@ -24,20 +24,21 @@ import { localizeOutputName } from "@/lib/tools/output-names";
 import { BRAND_NAME } from "@/lib/i18n/config";
 import { BRAND_ASSETS } from "@/lib/brand";
 import { Link, useNavigate } from "@tanstack/react-router";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Grid } from "lucide-react";
 import {
   trackFileSelected,
   trackProcessingStarted,
   trackProcessingCompleted,
   trackDownloadClicked,
   trackWorkflowNextClicked,
+  trackToolCatalogViewAllClicked,
 } from "@/lib/analytics/gtm";
 import { TOOL_WORKFLOW_MAP } from "@/lib/tools/workflow-definitions";
 import {
   setPendingWorkflowFiles,
   consumePendingWorkflowFiles,
 } from "@/lib/tools/workflow-handoff";
-import { toolPath } from "@/lib/i18n/routing";
+import { toolPath, catalogParams, SECTION_ROUTE } from "@/lib/i18n/routing";
 import { PageGrid } from "./workspace/PageGrid";
 import { useWorkspaceHistory } from "./workspace/useWorkspaceHistory";
 import { exportWorkspacePdf } from "./workspace/exportWorkspacePdf";
@@ -624,7 +625,7 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
             setDragging(false);
             addFiles(event.dataTransfer.files);
           }}
-          className={`transition-all m-3.5 sm:m-5 rounded-2xl border-2 border-dashed px-6 py-10 sm:py-14 text-center cursor-pointer ${
+          className={`transition-all m-3 sm:m-4 rounded-2xl border-2 border-dashed px-5 py-7 sm:py-9 text-center cursor-pointer ${
             dragging
               ? "border-[#EC3C2D] bg-[#FEECEB] scale-[1.004]"
               : "border-slate-300 bg-slate-50 hover:border-[#EC3C2D] hover:bg-white"
@@ -644,25 +645,25 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
           />
 
           {/* Icono de subida con presencia visual sólida en Rojo BreadPDF */}
-          <span className="mx-auto flex size-16 sm:size-18 items-center justify-center rounded-2xl bg-[#EC3C2D] text-white shadow-sm transition-transform hover:scale-105">
-            <Upload className="size-8 sm:size-9 text-white" strokeWidth={2.3} aria-hidden />
+          <span className="mx-auto flex size-14 sm:size-16 items-center justify-center rounded-2xl bg-[#EC3C2D] text-white shadow-sm transition-transform hover:scale-105">
+            <Upload className="size-7 sm:size-8 text-white" strokeWidth={2.3} aria-hidden />
           </span>
 
           {/* Título de acción principal */}
-          <h2 className="mt-5 text-xl sm:text-2xl lg:text-[1.75rem] font-black tracking-tight text-[#0F172A]">
+          <h2 className="mt-4 text-xl sm:text-2xl lg:text-[1.65rem] font-black tracking-tight text-[#0F172A]">
             {tool.multiple ? t.workspace.dropMany : t.workspace.dropOne}
           </h2>
 
           {/* Subtítulo aclaratorio */}
-          <p className="mt-2 text-[15.5px] sm:text-[16.5px] text-slate-600 max-w-md mx-auto leading-normal font-normal">
+          <p className="mt-1.5 text-[15px] sm:text-[16px] text-slate-600 max-w-md mx-auto leading-normal font-normal">
             {tool.multiple ? t.workspace.hint : t.workspace.hintOne}
           </p>
 
           {/* Botón protagonista "Seleccionar archivos" en Rojo BreadPDF sólido */}
-          <div className="mt-6 flex justify-center">
+          <div className="mt-5 flex justify-center">
             <Button
               size="lg"
-              className="h-13 sm:h-14 px-9 sm:px-11 text-[16px] sm:text-[17px] font-black rounded-xl sm:rounded-2xl bg-[#EC3C2D] text-white shadow-md hover:bg-[#D93426] transition-all hover:-translate-y-0.5"
+              className="h-12 sm:h-13 px-8 sm:px-10 text-[15.5px] sm:text-[16.5px] font-black rounded-xl sm:rounded-2xl bg-[#EC3C2D] text-white shadow-md hover:bg-[#D93426] transition-all hover:-translate-y-0.5"
               onClick={(e) => {
                 e.stopPropagation();
                 inputRef.current?.click();
@@ -676,7 +677,7 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
           {/* Selector de Ajuste / Preset de Compresión visible antes de subir */}
           {tool.options && tool.options.length > 0 && (
             <div
-              className="mt-6 inline-flex flex-wrap items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-white/90 px-4 py-2.5 shadow-2xs backdrop-blur-xs max-w-lg mx-auto"
+              className="mt-4.5 inline-flex flex-wrap items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-white/95 px-4 py-2 shadow-2xs backdrop-blur-xs max-w-lg mx-auto"
               onClick={(e) => e.stopPropagation()}
             >
               {tool.options.map((opt) => (
@@ -704,9 +705,9 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
           )}
 
           {/* Mensaje de privacidad sólido y nítido cerca de la acción */}
-          <div className="mt-5 flex justify-center">
-            <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-1.5 text-[13px] font-semibold text-[#0F172A] shadow-xs">
-              <ShieldCheck className="size-4.5 text-[#059669] shrink-0" />
+          <div className="mt-4 flex justify-center">
+            <div className="inline-flex items-center gap-2 rounded-full border border-slate-200/90 bg-white/90 px-3.5 py-1 text-[12.5px] sm:text-[13px] font-semibold text-slate-600 shadow-2xs">
+              <ShieldCheck className="size-4 text-[#059669] shrink-0" />
               <span>{t.workspace.privacyNote}</span>
             </div>
           </div>
@@ -1212,55 +1213,107 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
             ))}
           </div>
 
-          {/* Siguiente acción sugerida (Continuidad de Workflow en 1-clic sin fricción) */}
-          {(() => {
-            const workflow = TOOL_WORKFLOW_MAP[canonicalSlug] || TOOL_WORKFLOW_MAP[tool.slug];
-            if (!workflow || outputs.length === 0) return null;
+          {/* Siguiente acción sugerida y Descubrimiento del Catálogo Completo */}
+          <div className="mt-8 max-w-xl mx-auto space-y-4">
+            <div className="flex items-center justify-between border-b border-slate-200/80 pb-2">
+              <span className="text-[14px] font-bold text-[#0F172A] tracking-tight">
+                {locale === "ca"
+                  ? "Què necessites fer ara?"
+                  : locale === "en"
+                  ? "What do you need to do next?"
+                  : "¿Qué necesitas hacer ahora?"}
+              </span>
+              <span className="text-[12px] font-medium text-slate-500">
+                {locale === "ca" ? "Suite BreadPDF" : locale === "en" ? "BreadPDF Suite" : "Suite BreadPDF"}
+              </span>
+            </div>
 
-            return (
-              <div className="mt-6 max-w-xl mx-auto rounded-2xl border border-amber-200/90 bg-gradient-to-r from-amber-50/70 via-orange-50/40 to-white p-4.5 sm:p-5 shadow-xs">
-                <div className="flex items-center justify-between gap-2 mb-2">
-                  <span className="inline-flex items-center gap-1.5 rounded-md bg-amber-100/80 px-2 py-0.5 text-[11px] font-bold tracking-wide uppercase text-amber-900">
-                    <ArrowRight className="size-3 text-amber-700" />
-                    <span>{workflow.badge[locale] ?? workflow.badge.es}</span>
-                  </span>
-                  <span className="text-[12px] font-semibold text-slate-500">Continuar sin descargar</span>
+            {/* SECONDARY: Workflow next action (if available for this tool) */}
+            {(() => {
+              const workflow = TOOL_WORKFLOW_MAP[canonicalSlug] || TOOL_WORKFLOW_MAP[tool.slug];
+              if (!workflow || outputs.length === 0) return null;
+
+              return (
+                <div className="rounded-2xl border border-amber-200/90 bg-linear-to-r from-amber-50/70 via-orange-50/40 to-white p-4.5 sm:p-5 shadow-xs">
+                  <div className="flex items-center justify-between gap-2 mb-2">
+                    <span className="inline-flex items-center gap-1.5 rounded-md bg-amber-100/80 px-2 py-0.5 text-[11px] font-bold tracking-wide uppercase text-amber-900">
+                      <ArrowRight className="size-3 text-amber-700" />
+                      <span>{workflow.badge[locale] ?? workflow.badge.es}</span>
+                    </span>
+                    <span className="text-[12px] font-semibold text-slate-500">
+                      {locale === "ca" ? "Continuar sense descarregar" : locale === "en" ? "Continue directly" : "Continuar sin descargar"}
+                    </span>
+                  </div>
+                  <h4 className="text-[15.5px] sm:text-[16.5px] font-black text-[#0F172A] tracking-tight">
+                    {workflow.title[locale] ?? workflow.title.es}
+                  </h4>
+                  <p className="mt-1 text-[13px] text-slate-600 leading-relaxed font-medium">
+                    {workflow.description[locale] ?? workflow.description.es}
+                  </p>
+                  <div className="mt-3.5 flex items-center justify-end">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        try {
+                          const filesToHandoff = outputs.map(
+                            (out) => new File([out.blob], out.name, { type: out.blob.type || "application/pdf" }),
+                          );
+                          setPendingWorkflowFiles(workflow.targetToolSlug, filesToHandoff);
+                          trackWorkflowNextClicked({
+                            fromTool: canonicalSlug,
+                            toTool: workflow.targetToolSlug,
+                            language: locale,
+                          });
+                          const targetPath = toolPath(locale, workflow.targetToolSlug);
+                          navigate({ to: targetPath });
+                        } catch (err) {
+                          console.error("Error transitioning to next tool in workflow", err);
+                        }
+                      }}
+                      className="inline-flex items-center gap-2 rounded-xl bg-[#0F172A] hover:bg-slate-800 text-white px-4.5 py-2.5 text-[13.5px] font-bold shadow-sm transition-all cursor-pointer hover:shadow hover:-translate-y-0.5"
+                    >
+                      <span>{workflow.cta[locale] ?? workflow.cta.es}</span>
+                      <ArrowRight className="size-4 text-amber-400" />
+                    </button>
+                  </div>
                 </div>
-                <h4 className="text-[15.5px] sm:text-[16.5px] font-black text-[#0F172A] tracking-tight">
-                  {workflow.title[locale] ?? workflow.title.es}
-                </h4>
-                <p className="mt-1 text-[13px] text-slate-600 leading-relaxed font-medium">
-                  {workflow.description[locale] ?? workflow.description.es}
-                </p>
-                <div className="mt-3.5 flex items-center justify-end">
-                  <button
-                    type="button"
-                    onClick={() => {
-                      try {
-                        const filesToHandoff = outputs.map(
-                          (out) => new File([out.blob], out.name, { type: out.blob.type || "application/pdf" }),
-                        );
-                        setPendingWorkflowFiles(workflow.targetToolSlug, filesToHandoff);
-                        trackWorkflowNextClicked({
-                          fromTool: canonicalSlug,
-                          toTool: workflow.targetToolSlug,
-                          language: locale,
-                        });
-                        const targetPath = toolPath(locale, workflow.targetToolSlug);
-                        navigate({ to: targetPath });
-                      } catch (err) {
-                        console.error("Error transitioning to next tool in workflow", err);
-                      }
-                    }}
-                    className="inline-flex items-center gap-2 rounded-xl bg-[#0F172A] hover:bg-slate-800 text-white px-4 py-2.5 text-[13.5px] font-bold shadow-sm transition-all cursor-pointer hover:shadow hover:-translate-y-0.5"
-                  >
-                    <span>{workflow.cta[locale] ?? workflow.cta.es}</span>
-                    <ArrowRight className="size-4 text-amber-400" />
-                  </button>
+              );
+            })()}
+
+            {/* TERTIARY: All tools discoverability button */}
+            <div className="flex items-center justify-between rounded-2xl border border-slate-200/90 bg-white p-4 shadow-2xs">
+              <div className="flex items-center gap-3">
+                <span className="flex size-9 items-center justify-center rounded-xl bg-slate-100 text-[#0F172A]">
+                  <Grid className="size-4.5 text-slate-700" />
+                </span>
+                <div>
+                  <h5 className="text-[14px] font-bold text-[#0F172A]">
+                    {locale === "ca"
+                      ? "Descobreix la suite completa"
+                      : locale === "en"
+                      ? "Explore the full PDF suite"
+                      : "Descubre la suite completa"}
+                  </h5>
+                  <p className="text-[12.5px] text-slate-500">
+                    {locale === "ca"
+                      ? "50 eines per a conversió, organització i seguretat"
+                      : locale === "en"
+                      ? "50 tools for conversion, organizing and security"
+                      : "50 herramientas de conversión, organización y seguridad"}
+                  </p>
                 </div>
               </div>
-            );
-          })()}
+              <Link
+                to={SECTION_ROUTE}
+                params={catalogParams(locale)}
+                onClick={() => trackToolCatalogViewAllClicked({ source: "result_screen", language: locale })}
+                className="inline-flex items-center gap-1.5 rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2 text-[13px] font-bold text-slate-800 hover:bg-slate-100 hover:border-slate-300 transition-all shrink-0"
+              >
+                <span>{locale === "ca" ? "Totes les eines" : locale === "en" ? "All tools" : "Ver todas las herramientas"}</span>
+                <ArrowRight className="size-3.5 text-slate-600" />
+              </Link>
+            </div>
+          </div>
 
           {/* Barra de acciones secundarias: procesar más archivos o volver a empezar */}
           <div className="mt-6 pt-5 border-t border-slate-200/80 flex flex-wrap items-center justify-between gap-3">

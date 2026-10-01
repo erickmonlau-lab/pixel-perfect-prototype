@@ -22,6 +22,7 @@ import {
   toolPath,
 } from "@/lib/i18n/routing";
 import { UI } from "@/lib/i18n/ui";
+import { trackToolCatalogViewAllClicked } from "@/lib/analytics/gtm";
 import { FAMILY_ACCENTS } from "@/lib/tools/catalog";
 import { FAMILY_ICONS, TOOL_GRID } from "@/lib/tools/families";
 import { GuideMascot } from "@/components/guides/editorial/GuideEditorial";
@@ -367,7 +368,7 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
   const isFav = isFavorite(canonicalSlug);
 
   return (
-    <div className="mx-auto max-w-5xl px-4 sm:px-6 py-6 sm:py-8">
+    <div className="mx-auto max-w-5xl px-4 sm:px-6 py-5 sm:py-6.5">
       {/* 1. BREADCRUMB: Contextual, clear Home link with house icon, accessible */}
       <Breadcrumb
         items={[
@@ -382,8 +383,8 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
       />
 
       {/* 2. TOOL HEADER: Powerful H1, Solid Category Badge, and Contextual BreadPDF Mascot */}
-      <header className="mt-5 sm:mt-6">
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 lg:gap-8">
+      <header className="mt-4 sm:mt-5">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 md:gap-6 lg:gap-8">
           {/* Left Column: Category Badge + Search-Intent H1 + Tagline */}
           <div className="flex-1 min-w-0 max-w-3xl">
             {/* Category badge with 100% solid category background and white text */}
@@ -400,7 +401,7 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
               <button
                 type="button"
                 onClick={() => toggleFavorite(canonicalSlug)}
-                className={`inline-flex items-center gap-1.5 rounded-full px-3.5 py-1 text-[12.5px] font-bold border transition-all duration-150 cursor-pointer ${
+                className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[12px] font-bold border transition-all duration-150 cursor-pointer ${
                   isFav
                     ? "bg-[#F59E0B] border-[#F59E0B] text-white shadow-2xs hover:brightness-95"
                     : "bg-white border-slate-200 text-[#0F172A] hover:bg-[#F59E0B] hover:border-[#F59E0B] hover:text-white"
@@ -413,30 +414,30 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
             </div>
 
             {/* H1 — Search-intent driven, high-impact headline */}
-            <h1 className="text-display mt-3 text-[2.1rem] sm:text-[2.6rem] lg:text-[2.9rem] font-black tracking-[-0.02em] text-[#0F172A] leading-[1.12]">
+            <h1 className="text-display mt-2 sm:mt-2.5 text-[1.95rem] sm:text-[2.4rem] lg:text-[2.65rem] font-black tracking-[-0.02em] text-[#0F172A] leading-[1.12]">
               {tool.h1}
             </h1>
 
             {/* Description — Explains clearly what the tool does with strong readability */}
-            <p className="mt-3.5 text-[16.5px] sm:text-[18px] leading-relaxed text-slate-700 font-normal max-w-2xl">
+            <p className="mt-2 sm:mt-2.5 text-[15.5px] sm:text-[17px] leading-relaxed text-slate-700 font-normal max-w-2xl">
               {tool.tagline}
             </p>
           </div>
 
           {/* Right Column: Contextual Official BreadPDF Mascot (Hidden on mobile to ensure instant H1 LCP paint, visible on md+) */}
-          <div className="hidden md:flex shrink-0 items-center justify-end self-center select-none pointer-events-none py-2 md:py-0">
+          <div className="hidden md:flex shrink-0 items-center justify-end self-center select-none pointer-events-none py-1 md:py-0">
             <GuideMascot
               variant={mascotForTool(tool.category, tool.canonicalSlug)}
               priority={true}
               alt={`Mascota oficial de BreadPDF para ${tool.name}`}
-              className="w-auto h-[180px] md:h-[190px] lg:h-[220px] xl:h-[240px] object-contain drop-shadow-[0_10px_20px_rgba(0,0,0,0.12)] transition-transform hover:scale-105"
+              className="w-auto h-[140px] md:h-[155px] lg:h-[175px] object-contain drop-shadow-[0_8px_16px_rgba(0,0,0,0.10)] transition-transform hover:scale-105"
             />
           </div>
         </div>
       </header>
 
       {/* 3. WORKSPACE / UPLOADER: The centerpiece of action */}
-      <div className="mt-6 sm:mt-7">
+      <div className="mt-4 sm:mt-5">
         <ToolWorkspace tool={tool} />
       </div>
 
@@ -979,8 +980,48 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
         </aside>
       )}
 
+      {/* 7. FINAL CATALOG CTA: Clean, friendly invitation to explore the full suite of 50 tools */}
+      <section className="mt-14 mb-4 rounded-3xl border border-slate-200/90 bg-linear-to-b from-slate-50/80 to-white p-6 sm:p-8 text-center shadow-xs">
+        <div className="max-w-2xl mx-auto">
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-[#EC3C2D]/10 px-3.5 py-1 text-[12px] font-black uppercase tracking-wider text-[#EC3C2D]">
+            <span>{tools.length} {locale === "ca" ? "EINES DISPONIBLES" : locale === "en" ? "AVAILABLE TOOLS" : "HERRAMIENTAS DISPONIBLES"}</span>
+          </span>
+          <h2 className="mt-3 text-xl sm:text-2xl font-black text-[#0F172A] tracking-tight">
+            {locale === "ca"
+              ? "Explora totes les eines de BreadPDF"
+              : locale === "en"
+              ? "Explore all BreadPDF tools"
+              : "Explora todas las herramientas de BreadPDF"}
+          </h2>
+          <p className="mt-2 text-[15px] sm:text-[16px] text-slate-600 leading-relaxed max-w-lg mx-auto">
+            {locale === "ca"
+              ? "Troba la utilitat exacta per a cada tasca: conversió d'Office, extracció OCR, signatura, seguretat i molt més."
+              : locale === "en"
+              ? "Find the exact tool for every task: Office conversion, OCR extraction, signing, security, and more."
+              : "Encuentra la utilidad exacta para cada tarea: conversión de Office, extracción OCR, firma, seguridad y mucho más."}
+          </p>
+          <div className="mt-5 flex justify-center">
+            <Link
+              to={SECTION_ROUTE}
+              params={catalogParams(locale)}
+              onClick={() => trackToolCatalogViewAllClicked({ source: "tool_page_bottom_cta", language: locale })}
+              className="inline-flex items-center gap-2 rounded-xl bg-[#0F172A] hover:bg-slate-800 text-white px-6 py-3 text-[14.5px] font-bold shadow-sm transition-all hover:shadow hover:-translate-y-0.5 cursor-pointer"
+            >
+              <span>
+                {locale === "ca"
+                  ? `Veure les ${tools.length} eines`
+                  : locale === "en"
+                  ? `View all ${tools.length} tools`
+                  : `Ver las ${tools.length} herramientas`}
+              </span>
+              <span aria-hidden>→</span>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Espacio reservado para AdSense (Footer Banner no intrusivo, a más de 100px del workspace interactivo) */}
-      <div className="mt-14 pt-4">
+      <div className="mt-12 pt-2">
         <AdSlot slotType="footer_banner" />
       </div>
     </div>

@@ -286,13 +286,15 @@ export function CompareWorkspace() {
       {/* Selector dual de archivos */}
       {(!docA || !docB) && (
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-          <div className="flex flex-col items-center justify-center rounded-2xl border-2 border-dashed border-slate-300 bg-slate-50/50 p-8 text-center hover:border-primary/50 transition-colors">
-            <Upload className="size-8 text-slate-400 mb-2" />
-            <span className="text-[14px] font-bold text-slate-700">Documento original (Versión A)</span>
-            <span className="text-[12px] text-slate-500 mt-1 mb-4">
+          <div className="flex flex-col items-center justify-center rounded-2xl border-2 border-dashed border-slate-300 bg-slate-50/70 p-6 sm:p-7 text-center hover:border-[#EC3C2D] transition-colors">
+            <span className="flex size-12 items-center justify-center rounded-xl bg-slate-200 text-slate-700 mb-2.5">
+              <Upload className="size-6 text-slate-700" strokeWidth={2.3} />
+            </span>
+            <span className="text-[15px] font-bold text-[#0F172A]">Documento original (Versión A)</span>
+            <span className="text-[13px] text-slate-600 mt-1 mb-4 truncate max-w-[260px]">
               {fileA ? fileA.name : "Selecciona el primer archivo PDF"}
             </span>
-            <label className="cursor-pointer rounded-lg bg-white px-4 py-2 text-[13px] font-semibold text-slate-800 border border-slate-300 shadow-xs hover:bg-slate-50">
+            <label className="cursor-pointer rounded-xl bg-white px-5 py-2.5 text-[14px] font-bold text-[#0F172A] border border-slate-300 shadow-2xs hover:bg-slate-50 hover:border-slate-400 transition-all">
               <span>{fileA ? "Cambiar archivo A" : "Elegir PDF A"}</span>
               <input
                 type="file"
@@ -303,13 +305,15 @@ export function CompareWorkspace() {
             </label>
           </div>
 
-          <div className="flex flex-col items-center justify-center rounded-2xl border-2 border-dashed border-slate-300 bg-slate-50/50 p-8 text-center hover:border-primary/50 transition-colors">
-            <Upload className="size-8 text-slate-400 mb-2" />
-            <span className="text-[14px] font-bold text-slate-700">Documento nuevo (Versión B)</span>
-            <span className="text-[12px] text-slate-500 mt-1 mb-4">
+          <div className="flex flex-col items-center justify-center rounded-2xl border-2 border-dashed border-slate-300 bg-slate-50/70 p-6 sm:p-7 text-center hover:border-[#EC3C2D] transition-colors">
+            <span className="flex size-12 items-center justify-center rounded-xl bg-slate-200 text-slate-700 mb-2.5">
+              <Upload className="size-6 text-slate-700" strokeWidth={2.3} />
+            </span>
+            <span className="text-[15px] font-bold text-[#0F172A]">Documento nuevo (Versión B)</span>
+            <span className="text-[13px] text-slate-600 mt-1 mb-4 truncate max-w-[260px]">
               {fileB ? fileB.name : "Selecciona el segundo archivo PDF"}
             </span>
-            <label className="cursor-pointer rounded-lg bg-white px-4 py-2 text-[13px] font-semibold text-slate-800 border border-slate-300 shadow-xs hover:bg-slate-50">
+            <label className="cursor-pointer rounded-xl bg-white px-5 py-2.5 text-[14px] font-bold text-[#0F172A] border border-slate-300 shadow-2xs hover:bg-slate-50 hover:border-slate-400 transition-all">
               <span>{fileB ? "Cambiar archivo B" : "Elegir PDF B"}</span>
               <input
                 type="file"

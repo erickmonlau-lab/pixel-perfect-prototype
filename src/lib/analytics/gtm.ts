@@ -102,3 +102,34 @@ export function trackWorkflowNextClicked(params: {
     language: params.language,
   });
 }
+
+/**
+ * Track when the user opens the tool catalogue or header navigation dropdown.
+ */
+export function trackToolCatalogOpened(params: { source: "header" | "result_screen" | "footer" | "mobile_menu"; language: string }) {
+  pushGtmEvent("tool_catalog_opened", {
+    source: params.source,
+    language: params.language,
+  });
+}
+
+/**
+ * Track when a user clicks a specific category within the tools catalogue / navigation.
+ */
+export function trackToolCatalogCategoryClicked(params: { category: string; source: string; language: string }) {
+  pushGtmEvent("tool_catalog_category_clicked", {
+    category: params.category,
+    source: params.source,
+    language: params.language,
+  });
+}
+
+/**
+ * Track when the user clicks the "Ver todas las herramientas" / "All tools" call to action.
+ */
+export function trackToolCatalogViewAllClicked(params: { source: string; language: string }) {
+  pushGtmEvent("tool_catalog_view_all_clicked", {
+    source: params.source,
+    language: params.language,
+  });
+}

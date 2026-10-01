@@ -168,17 +168,17 @@ export function FormFillWorkspace() {
 
   if (phase === "idle" || phase === "error") {
     return (
-      <section className="surface-card overflow-hidden shadow-raised rounded-3xl border border-border/80" aria-label="Rellenar formulario PDF">
+      <section className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm" aria-label="Rellenar formulario PDF">
         <div onDragOver={(e) => { e.preventDefault(); setDragging(true); }} onDragLeave={() => setDragging(false)} onDrop={handleDrop} onClick={() => inputRef.current?.click()}
-          className={`transition-all m-3.5 sm:m-5 rounded-2xl border-2 border-dashed px-6 py-10 sm:py-14 text-center cursor-pointer ${dragging ? "border-primary bg-primary-soft/80 scale-[1.006]" : "border-slate-300/90 bg-slate-50/50 hover:border-primary/60 hover:bg-white"}`}>
+          className={`transition-all m-3 sm:m-4 rounded-2xl border-2 border-dashed px-5 py-7 sm:py-9 text-center cursor-pointer ${dragging ? "border-[#EC3C2D] bg-[#FEECEB] scale-[1.004]" : "border-slate-300 bg-slate-50 hover:border-[#EC3C2D] hover:bg-white"}`}>
           <input ref={inputRef} type="file" accept="application/pdf,.pdf" className="sr-only" onChange={(e) => addFromInput(e.target.files)} />
-          <span className="mx-auto flex size-16 sm:size-18 items-center justify-center rounded-2xl bg-primary text-primary-foreground shadow-[0_8px_20px_rgba(49,94,234,0.28)]"><Upload className="size-8 sm:size-9" strokeWidth={2.3} aria-hidden /></span>
-          <h2 className="mt-5 text-xl sm:text-2xl font-extrabold tracking-tight text-slate-900">Selecciona un PDF con formulario</h2>
-          <p className="mt-1.5 text-[15px] text-slate-500 max-w-md mx-auto">Solo archivos PDF con campos AcroForm (texto, casillas, desplegables)</p>
-          <div className="mt-6 flex justify-center"><Button size="lg" className="h-13 px-9 text-[16px] font-bold rounded-xl shadow-md" onClick={(e) => { e.stopPropagation(); inputRef.current?.click(); }} type="button">Seleccionar PDF</Button></div>
-          <div className="mt-5 flex justify-center"><div className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-slate-50 px-3.5 py-1 text-[13px] font-medium text-slate-600"><ShieldCheck className="size-4 text-slate-500 shrink-0" /><span>{t.workspace.privacyNote}</span></div></div>
+          <span className="mx-auto flex size-14 sm:size-16 items-center justify-center rounded-2xl bg-[#EC3C2D] text-white shadow-sm transition-transform hover:scale-105"><Upload className="size-7 sm:size-8 text-white" strokeWidth={2.3} aria-hidden /></span>
+          <h2 className="mt-4 text-xl sm:text-2xl lg:text-[1.65rem] font-black tracking-tight text-[#0F172A]">Selecciona un PDF con formulario</h2>
+          <p className="mt-1.5 text-[15px] sm:text-[16px] text-slate-600 max-w-md mx-auto leading-normal font-normal">Solo archivos PDF con campos AcroForm (texto, casillas, desplegables)</p>
+          <div className="mt-5 flex justify-center"><Button size="lg" className="h-12 sm:h-13 px-8 sm:px-10 text-[15.5px] sm:text-[16.5px] font-black rounded-xl sm:rounded-2xl bg-[#EC3C2D] text-white shadow-md hover:bg-[#D93426] transition-all hover:-translate-y-0.5" onClick={(e) => { e.stopPropagation(); inputRef.current?.click(); }} type="button">Seleccionar PDF</Button></div>
+          <div className="mt-4 flex justify-center"><div className="inline-flex items-center gap-2 rounded-full border border-slate-200/90 bg-white/90 px-3.5 py-1 text-[12.5px] sm:text-[13px] font-semibold text-slate-600 shadow-2xs"><ShieldCheck className="size-4 text-[#059669] shrink-0" /><span>{t.workspace.privacyNote}</span></div></div>
         </div>
-        {phase === "error" && message && (<div className="m-4 mt-0 flex items-start gap-3 rounded-xl bg-destructive-soft p-4 text-[14.5px] font-medium text-destructive"><AlertCircle className="size-5 shrink-0 mt-0.5" /><span>{message}</span></div>)}
+        {phase === "error" && message && (<div className="m-4 mt-0 flex items-start gap-3 rounded-2xl bg-[#FEECEB] p-4 text-[14.5px] font-medium text-[#EC3C2D] border border-red-200"><AlertCircle className="size-5 shrink-0 mt-0.5" /><span>{message}</span></div>)}
       </section>
     );
   }

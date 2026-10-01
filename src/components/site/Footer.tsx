@@ -7,12 +7,14 @@ import {
   HOME_ROUTE,
   SECTION_ROUTE,
   homeParams,
+  catalogParams,
   privacyParams,
   cookiesParams,
   termsParams,
   premiumParams,
   toolParams,
 } from "@/lib/i18n/routing";
+import { trackToolCatalogViewAllClicked } from "@/lib/analytics/gtm";
 import { BRAND_WORDMARK, BRAND_ASSETS, OFFICIAL_CONTACT_EMAIL } from "@/lib/brand";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { BreadPDFFooterMascot } from "./BreadPDFFooterMascot";
@@ -162,15 +164,21 @@ export function Footer() {
                   </li>
                 );
               })}
-              {/* "Ver las 50 herramientas →" lleva al catálogo central y actual de BreadPDF */}
+              {/* Enlace al catálogo central con conteo dinámico real de herramientas */}
               <li className="pt-1.5">
                 <Link
-                  to={HOME_ROUTE}
-                  params={homeParams(locale)}
-                  hash="catalogo"
+                  to={SECTION_ROUTE}
+                  params={catalogParams(locale)}
+                  onClick={() => trackToolCatalogViewAllClicked({ source: "footer", language: locale })}
                   className="group inline-flex items-center gap-1.5 text-[15px] font-bold text-[#EC3C2D] transition-colors hover:text-[#FF5A4D]"
                 >
-                  <span>{copy.viewAllTools}</span>
+                  <span>
+                    {locale === "ca"
+                      ? `Totes les ${tools.length} eines →`
+                      : locale === "en"
+                      ? `View all ${tools.length} tools →`
+                      : `Ver las ${tools.length} herramientas →`}
+                  </span>
                 </Link>
               </li>
             </ul>
