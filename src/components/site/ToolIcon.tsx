@@ -1,20 +1,28 @@
 import {
   Combine,
+  Droplets,
   FileOutput,
   FileType2,
+  Hash,
   Lock,
   Minimize2,
+  PenTool,
   Sparkles,
+  Type,
   type LucideIcon,
 } from "lucide-react";
 
 const ICONS: Record<string, LucideIcon> = {
   Combine,
+  Droplets,
   FileOutput,
   FileType2,
+  Hash,
   Lock,
   Minimize2,
+  PenTool,
   Sparkles,
+  Type,
 };
 
 import { getRichToolIcon } from "./RichToolIcon";

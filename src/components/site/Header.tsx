@@ -27,6 +27,7 @@ import { Logo } from "./Logo";
 import { ToolIcon } from "./ToolIcon";
 import { getRichToolIcon } from "./RichToolIcon";
 import { LanguageSwitcher } from "./LanguageSwitcher";
+import { BookmarkPrompt } from "./BookmarkPrompt";
 import type { ToolCategory } from "@/lib/tools/types";
 
 export function Header() {
@@ -599,6 +600,9 @@ export function Header() {
             </div>
           )}
 
+          {/* Botón rápido para añadir a la barra de marcadores en Chrome / Navegador */}
+          <BookmarkPrompt variant="header" />
+
           {/* Separador vertical sutil */}
           <div className="h-5 w-px bg-[#E2E8F0] shrink-0" aria-hidden="true" />
 
@@ -607,9 +611,10 @@ export function Header() {
         </div>
 
         {/* ============================================================
-            MÓVIL: TOGGLE + IDIOMA
+            MÓVIL: TOGGLE + IDIOMA + MARCADORES
             ============================================================ */}
-        <div className="ml-auto flex items-center gap-2.5 lg:hidden">
+        <div className="ml-auto flex items-center gap-2 lg:hidden">
+          <BookmarkPrompt variant="header" className="px-2 py-1" />
           <LanguageSwitcher />
           <button
             type="button"

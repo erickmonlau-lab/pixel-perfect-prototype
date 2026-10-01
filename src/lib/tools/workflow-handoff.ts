@@ -16,8 +16,12 @@ export function setPendingWorkflowFiles(targetToolSlug: string, files: File[]): 
   pendingWorkflowFiles = files;
 }
 
-export function consumePendingWorkflowFiles(currentToolSlug: string): File[] | null {
-  if (pendingTargetToolSlug === currentToolSlug && pendingWorkflowFiles) {
+export function consumePendingWorkflowFiles(currentToolSlug: string, canonicalSlug?: string): File[] | null {
+  const isMatch =
+    pendingTargetToolSlug === currentToolSlug ||
+    (canonicalSlug && pendingTargetToolSlug === canonicalSlug);
+
+  if (isMatch && pendingWorkflowFiles) {
     const files = pendingWorkflowFiles;
     pendingWorkflowFiles = null;
     pendingTargetToolSlug = null;

@@ -63,29 +63,29 @@ export function OverlayPreview({
           ) : (
             <div
               className={`w-full h-full flex p-2 ${
-                watermarkConfig.position.includes("top")
+                (watermarkConfig?.position ?? "center").includes("top")
                   ? "items-start"
-                  : watermarkConfig.position.includes("bottom")
+                  : (watermarkConfig?.position ?? "center").includes("bottom")
                   ? "items-end"
                   : "items-center"
               } ${
-                watermarkConfig.position.includes("left")
+                (watermarkConfig?.position ?? "center").includes("left")
                   ? "justify-start"
-                  : watermarkConfig.position.includes("right")
+                  : (watermarkConfig?.position ?? "center").includes("right")
                   ? "justify-end"
                   : "justify-center"
               }`}
             >
               <span
                 style={{
-                  opacity: watermarkConfig.opacity,
-                  transform: `rotate(${watermarkConfig.rotationAngle}deg)`,
-                  color: watermarkConfig.color,
-                  fontSize: `${Math.max(11, watermarkConfig.fontSize * 0.45)}px`,
+                  opacity: watermarkConfig?.opacity ?? 0.25,
+                  transform: `rotate(${watermarkConfig?.rotationAngle ?? 45}deg)`,
+                  color: watermarkConfig?.color ?? "#64748B",
+                  fontSize: `${Math.max(11, (watermarkConfig?.fontSize ?? 42) * 0.45)}px`,
                 }}
                 className="font-extrabold whitespace-nowrap tracking-wider"
               >
-                {watermarkConfig.text || "CONFIDENCIAL"}
+                {watermarkConfig?.text || "CONFIDENCIAL"}
               </span>
             </div>
           )}
@@ -96,15 +96,15 @@ export function OverlayPreview({
       {signatureConfig?.dataUrl && isSignatureTarget && (
         <div
           className={`absolute inset-0 flex p-3 pointer-events-none ${
-            signatureConfig.position.includes("top")
+            (signatureConfig?.position ?? "bottom-right").includes("top")
               ? "items-start"
-              : signatureConfig.position.includes("bottom")
+              : (signatureConfig?.position ?? "bottom-right").includes("bottom")
               ? "items-end"
               : "items-center"
           } ${
-            signatureConfig.position.includes("left")
+            (signatureConfig?.position ?? "bottom-right").includes("left")
               ? "justify-start"
-              : signatureConfig.position.includes("right")
+              : (signatureConfig?.position ?? "bottom-right").includes("right")
               ? "justify-end"
               : "justify-center"
           }`}
@@ -112,7 +112,7 @@ export function OverlayPreview({
           <img
             src={signatureConfig.dataUrl}
             alt="Firma"
-            style={{ width: `${Math.max(45, signatureConfig.scale * 120)}px` }}
+            style={{ width: `${Math.max(45, (signatureConfig?.scale ?? 0.35) * 120)}px` }}
             className="object-contain drop-shadow-xs"
           />
         </div>
@@ -122,11 +122,11 @@ export function OverlayPreview({
       {pageNumberConfig && (!pageNumberConfig.excludeCover || pageIndex > 0) && (
         <div
           className={`absolute inset-0 flex p-1.5 ${
-            pageNumberConfig.position.startsWith("top") ? "items-start" : "items-end"
+            (pageNumberConfig?.position ?? "bottom-center").startsWith("top") ? "items-start" : "items-end"
           } ${
-            pageNumberConfig.position.endsWith("left")
+            (pageNumberConfig?.position ?? "bottom-center").endsWith("left")
               ? "justify-start"
-              : pageNumberConfig.position.endsWith("right")
+              : (pageNumberConfig?.position ?? "bottom-center").endsWith("right")
               ? "justify-end"
               : "justify-center"
           }`}

@@ -43,6 +43,7 @@ import { useWorkspaceHistory } from "./workspace/useWorkspaceHistory";
 import { exportWorkspacePdf } from "./workspace/exportWorkspacePdf";
 import { OverlaySettingsPanel } from "./workspace/OverlaySettingsPanel";
 import { SignaturePadModal } from "./workspace/SignaturePadModal";
+import { BookmarkPrompt } from "@/components/site/BookmarkPrompt";
 import { CompareWorkspace } from "./compare/CompareWorkspace";
 import { FormFillWorkspace } from "./formfill/FormFillWorkspace";
 import type {
@@ -131,7 +132,8 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
     activeItemIndex: 0,
   });
 
-  const isPageWorkspace = PAGE_BASED_TOOLS.has(tool.slug);
+  const canonicalSlug = (tool as any).canonicalSlug || tool.slug;
+  const isPageWorkspace = PAGE_BASED_TOOLS.has(canonicalSlug);
   const [splitTargetMode, setSplitTargetMode] = useState<"combined" | "individual">("combined");
 
   const {
@@ -160,7 +162,7 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
   const mountedSlug = useRef(tool.slug);
   useEffect(() => {
     // 1. Verificar si hay archivos transferidos desde una herramienta previa en el flujo de trabajo
-    const handoffFiles = consumePendingWorkflowFiles(tool.slug);
+    const handoffFiles = consumePendingWorkflowFiles(tool.slug, canonicalSlug);
 
     if (mountedSlug.current !== tool.slug) {
       mountedSlug.current = tool.slug;
@@ -505,17 +507,17 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
           onProgress: (ratio) => setProgress(ratio),
         };
 
-        if (tool.slug === "marca-de-agua") {
+        if (canonicalSlug === "marca-de-agua") {
           exportOptions.watermarkConfig = watermarkConfig;
-        } else if (tool.slug === "numerar-paginas") {
+        } else if (canonicalSlug === "numerar-paginas") {
           exportOptions.pageNumberConfig = pageNumberConfig;
-        } else if (tool.slug === "firmar-pdf") {
+        } else if (canonicalSlug === "firmar-pdf") {
           if (!signatureConfig.dataUrl) {
             throw new Error(t.workspace.needSignature);
           }
           exportOptions.signatureConfig = signatureConfig;
           exportOptions.selectedPageIds = workspaceState.selectedPageIds;
-        } else if (tool.slug === "anadir-texto-pdf") {
+        } else if (canonicalSlug === "anadir-texto-pdf") {
           exportOptions.textOverlayConfig = textOverlayConfig;
           exportOptions.selectedPageIds = workspaceState.selectedPageIds;
         }
@@ -805,7 +807,7 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
 
           {/* Panel de ajustes específicos para Marca de Agua, Numeración, Firma y Añadir Texto */}
           <OverlaySettingsPanel
-            activeToolSlug={tool.slug}
+            activeToolSlug={canonicalSlug}
             watermarkConfig={watermarkConfig}
             setWatermarkConfig={setWatermarkConfig}
             pageNumberConfig={pageNumberConfig}
@@ -828,7 +830,7 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                       ℹ
                     </span>
                     <span>
-                      {tool.slug === "dividir-pdf" ? (
+                      {canonicalSlug === "dividir-pdf" ? (
                         workspaceState.selectedPageIds.length > 0 ? (
                           <>
                             <strong className="font-semibold text-primary">
@@ -856,7 +858,7 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                 </div>
 
                 {/* Selector interactivo: ¿1 solo PDF con las páginas elegidas o archivos individuales? */}
-                {tool.slug === "dividir-pdf" && workspaceState.selectedPageIds.length > 1 && (
+                {canonicalSlug === "dividir-pdf" && workspaceState.selectedPageIds.length > 1 && (
                   <div className="mt-1 flex flex-wrap items-center gap-2 pt-2 border-t border-primary/10">
                     <span className="text-[12.5px] font-semibold text-slate-800">
                       {t.workspace.splitTargetLabel ?? "¿Cómo quieres guardar las páginas seleccionadas?"}
@@ -893,12 +895,12 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                 documents={workspaceState.documents}
                 pages={workspaceState.pages}
                 selectedPageIds={workspaceState.selectedPageIds}
-                watermarkConfig={tool.slug === "marca-de-agua" ? watermarkConfig : null}
-                pageNumberConfig={tool.slug === "numerar-paginas" ? pageNumberConfig : null}
+                watermarkConfig={canonicalSlug === "marca-de-agua" ? watermarkConfig : null}
+                pageNumberConfig={canonicalSlug === "numerar-paginas" ? pageNumberConfig : null}
                 signatureConfig={
-                  tool.slug === "firmar-pdf" && signatureConfig.dataUrl ? signatureConfig : null
+                  canonicalSlug === "firmar-pdf" && signatureConfig.dataUrl ? signatureConfig : null
                 }
-                textOverlayConfig={tool.slug === "anadir-texto-pdf" ? textOverlayConfig : null}
+                textOverlayConfig={canonicalSlug === "anadir-texto-pdf" ? textOverlayConfig : null}
                 onDispatch={workspaceDispatch}
                 canUndo={canUndo}
                 canRedo={canRedo}
@@ -1213,7 +1215,7 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
 
           {/* Siguiente acción sugerida (Continuidad de Workflow en 1-clic sin fricción) */}
           {(() => {
-            const workflow = TOOL_WORKFLOW_MAP[tool.slug];
+            const workflow = TOOL_WORKFLOW_MAP[canonicalSlug] || TOOL_WORKFLOW_MAP[tool.slug];
             if (!workflow || outputs.length === 0) return null;
 
             return (
@@ -1241,7 +1243,7 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                         );
                         setPendingWorkflowFiles(workflow.targetToolSlug, filesToHandoff);
                         trackWorkflowNextClicked({
-                          fromTool: tool.slug,
+                          fromTool: canonicalSlug,
                           toTool: workflow.targetToolSlug,
                           language: locale,
                         });
@@ -1260,6 +1262,11 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
               </div>
             );
           })()}
+
+          {/* Recordatorio para fijar BreadPDF en favoritos tras completar una tarea */}
+          <div className="mt-5 max-w-xl mx-auto">
+            <BookmarkPrompt variant="floating" />
+          </div>
 
           {/* Barra de acciones secundarias: procesar más archivos o volver a empezar */}
           <div className="mt-6 pt-5 border-t border-slate-200/80 flex flex-wrap items-center justify-between gap-3">

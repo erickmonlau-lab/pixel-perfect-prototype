@@ -392,7 +392,7 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
                 to={categoryPath(locale, tool.category)}
                 className={`group inline-flex items-center gap-1.5 rounded-full px-3.5 py-1 text-[12px] font-black uppercase tracking-wider text-white shadow-xs transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/30 ${accent.iconBg}`}
               >
-                <ToolIcon name={tool.icon} className="size-3.5 text-white" />
+                <ToolIcon name={tool.icon} canonicalSlug={canonicalSlug} className="size-3.5 text-white" />
                 <span>{category.name}</span>
               </Link>
 
