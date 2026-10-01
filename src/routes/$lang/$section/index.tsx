@@ -79,6 +79,31 @@ export const Route = createFileRoute("/$lang/$section/")({
         links: alternateLinks(locale, { kind: "premium" }),
       };
     }
+    if (kind === "cookies") {
+      return {
+        meta: [
+          { title: t.cookies.seoTitle },
+          { name: "description", content: t.cookies.seoDescription },
+          { property: "og:title", content: t.cookies.seoTitle },
+          { property: "og:description", content: t.cookies.seoDescription },
+          { property: "og:type", content: "article" },
+          { name: "twitter:card", content: "summary_large_image" },
+        ],
+        links: alternateLinks(locale, { kind: "cookies" }),
+      };
+    }
+    if (kind === "terms") {
+      return {
+        meta: [
+          { title: t.terms.seoTitle },
+          { name: "description", content: t.terms.seoDescription },
+          { property: "og:title", content: t.terms.seoTitle },
+          { property: "og:description", content: t.terms.seoDescription },
+          { property: "og:type", content: "article" },
+        ],
+        links: alternateLinks(locale, { kind: "terms" }),
+      };
+    }
     if (kind === "privacy") {
       return {
         meta: [
@@ -114,6 +139,8 @@ function SectionPage() {
   if (kind === "forgotPassword") return <AuthSplitLayout initialMode="forgotPassword" />;
   if (kind === "account") return <AccountDashboard />;
   if (kind === "premium") return <PremiumPage />;
+  if (kind === "cookies") return <CookiesPage />;
+  if (kind === "terms") return <TermsPage />;
   return kind === "privacy" ? <PrivacyPage /> : <CatalogPage />;
 }
 
@@ -158,7 +185,55 @@ function PrivacyPage() {
       ))}
       {t.privacy.sections.map((section) => (
         <section key={section.title} className="mt-10">
-          <h2 className="text-2xl">{section.title}</h2>
+          <h2 className="text-2xl font-bold text-slate-900">{section.title}</h2>
+          <p className="mt-3 text-[17px] leading-relaxed text-muted-foreground">{section.body}</p>
+        </section>
+      ))}
+    </article>
+  );
+}
+
+function CookiesPage() {
+  const { t } = useLocale();
+
+  return (
+    <article className="mx-auto max-w-3xl px-5 py-10 sm:py-14">
+      <Breadcrumb items={[{ label: t.cookies.title }]} />
+
+      <p className="text-eyebrow">{t.cookies.eyebrow}</p>
+      <h1 className="text-display mt-3 text-4xl sm:text-[2.9rem]">{t.cookies.title}</h1>
+      {t.cookies.body.map((paragraph) => (
+        <p key={paragraph} className="mt-5 text-[17px] leading-relaxed text-muted-foreground">
+          {paragraph}
+        </p>
+      ))}
+      {t.cookies.sections.map((section) => (
+        <section key={section.title} className="mt-10">
+          <h2 className="text-2xl font-bold text-slate-900">{section.title}</h2>
+          <p className="mt-3 text-[17px] leading-relaxed text-muted-foreground">{section.body}</p>
+        </section>
+      ))}
+    </article>
+  );
+}
+
+function TermsPage() {
+  const { t } = useLocale();
+
+  return (
+    <article className="mx-auto max-w-3xl px-5 py-10 sm:py-14">
+      <Breadcrumb items={[{ label: t.terms.title }]} />
+
+      <p className="text-eyebrow">{t.terms.eyebrow}</p>
+      <h1 className="text-display mt-3 text-4xl sm:text-[2.9rem]">{t.terms.title}</h1>
+      {t.terms.body.map((paragraph) => (
+        <p key={paragraph} className="mt-5 text-[17px] leading-relaxed text-muted-foreground">
+          {paragraph}
+        </p>
+      ))}
+      {t.terms.sections.map((section) => (
+        <section key={section.title} className="mt-10">
+          <h2 className="text-2xl font-bold text-slate-900">{section.title}</h2>
           <p className="mt-3 text-[17px] leading-relaxed text-muted-foreground">{section.body}</p>
         </section>
       ))}
