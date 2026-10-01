@@ -512,11 +512,25 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
             {t.tool.related}
           </h2>
           <Link
-            to={categoryPath(locale, tool.category)}
-            className={`group inline-flex items-center gap-1.5 text-[14px] font-bold ${accent.text} transition-all hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/30 rounded-md py-1 px-1.5 -mr-1.5`}
-            aria-label={t.tool.viewMoreCategory(category.name)}
+            to={SECTION_ROUTE}
+            params={catalogParams(locale)}
+            onClick={() => trackToolCatalogViewAllClicked({ source: "related_tools_header", language: locale })}
+            className="group inline-flex items-center gap-1.5 text-[14px] font-bold text-[#EC3C2D] hover:text-[#D93426] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/30 rounded-md py-1 px-1.5 -mr-1.5"
+            aria-label={
+              locale === "ca"
+                ? "Veure el catàleg complet d'eines"
+                : locale === "en"
+                ? "View full tools catalog"
+                : "Ver el catálogo completo de herramientas"
+            }
           >
-            <span>{t.tool.viewMoreCategory(category.name)}</span>
+            <span>
+              {locale === "ca"
+                ? "Veure catàleg complet"
+                : locale === "en"
+                ? "View full catalog"
+                : "Ver catálogo completo"}
+            </span>
             <span
               aria-hidden
               className="inline-block translate-x-0 transition-transform duration-200 group-hover:translate-x-1"
@@ -980,41 +994,45 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
         </aside>
       )}
 
-      {/* 7. FINAL CATALOG CTA: Clean, friendly invitation to explore the full suite of 50 tools */}
-      <section className="mt-14 mb-4 rounded-3xl border border-slate-200/90 bg-linear-to-b from-slate-50/80 to-white p-6 sm:p-8 text-center shadow-xs">
-        <div className="max-w-2xl mx-auto">
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-[#EC3C2D]/10 px-3.5 py-1 text-[12px] font-black uppercase tracking-wider text-[#EC3C2D]">
+      {/* 7. FINAL CATALOG CTA: Clean, high-impact invitation with BreadPDF brand red background */}
+      <section className="mt-14 mb-4 rounded-3xl bg-linear-to-br from-[#EC3C2D] to-[#D93426] p-7 sm:p-10 text-center shadow-lg text-white relative overflow-hidden">
+        {/* Subtle decorative circles for depth without extra layout weight */}
+        <div className="absolute -top-12 -right-12 size-48 rounded-full bg-white/10 blur-2xl pointer-events-none" />
+        <div className="absolute -bottom-12 -left-12 size-48 rounded-full bg-black/10 blur-2xl pointer-events-none" />
+
+        <div className="relative max-w-2xl mx-auto z-10">
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-white/20 backdrop-blur-xs px-3.5 py-1 text-[12px] font-black uppercase tracking-wider text-white border border-white/25">
             <span>{tools.length} {locale === "ca" ? "EINES DISPONIBLES" : locale === "en" ? "AVAILABLE TOOLS" : "HERRAMIENTAS DISPONIBLES"}</span>
           </span>
-          <h2 className="mt-3 text-xl sm:text-2xl font-black text-[#0F172A] tracking-tight">
+          <h2 className="mt-3.5 text-2xl sm:text-3xl font-black text-white tracking-tight">
             {locale === "ca"
               ? "Explora totes les eines de BreadPDF"
               : locale === "en"
               ? "Explore all BreadPDF tools"
               : "Explora todas las herramientas de BreadPDF"}
           </h2>
-          <p className="mt-2 text-[15px] sm:text-[16px] text-slate-600 leading-relaxed max-w-lg mx-auto">
+          <p className="mt-2.5 text-[15.5px] sm:text-[16.5px] text-white/90 leading-relaxed max-w-lg mx-auto font-medium">
             {locale === "ca"
               ? "Troba la utilitat exacta per a cada tasca: conversió d'Office, extracció OCR, signatura, seguretat i molt més."
               : locale === "en"
               ? "Find the exact tool for every task: Office conversion, OCR extraction, signing, security, and more."
               : "Encuentra la utilidad exacta para cada tarea: conversión de Office, extracción OCR, firma, seguridad y mucho más."}
           </p>
-          <div className="mt-5 flex justify-center">
+          <div className="mt-6 flex justify-center">
             <Link
               to={SECTION_ROUTE}
               params={catalogParams(locale)}
               onClick={() => trackToolCatalogViewAllClicked({ source: "tool_page_bottom_cta", language: locale })}
-              className="inline-flex items-center gap-2 rounded-xl bg-[#0F172A] hover:bg-slate-800 text-white px-6 py-3 text-[14.5px] font-bold shadow-sm transition-all hover:shadow hover:-translate-y-0.5 cursor-pointer"
+              className="inline-flex items-center gap-2 rounded-xl bg-white hover:bg-slate-100 text-[#0F172A] px-7 py-3.5 text-[15px] font-black shadow-md transition-all hover:shadow-lg hover:-translate-y-0.5 cursor-pointer"
             >
               <span>
                 {locale === "ca"
-                  ? `Veure les ${tools.length} eines`
+                  ? `Veure el catàleg complet (${tools.length})`
                   : locale === "en"
-                  ? `View all ${tools.length} tools`
-                  : `Ver las ${tools.length} herramientas`}
+                  ? `View full catalog (${tools.length})`
+                  : `Ver catálogo completo (${tools.length})`}
               </span>
-              <span aria-hidden>→</span>
+              <span aria-hidden className="text-[#EC3C2D]">→</span>
             </Link>
           </div>
         </div>
