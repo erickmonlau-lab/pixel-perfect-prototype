@@ -21,6 +21,12 @@ export const BRAND_WORDMARK = {
 export const OFFICIAL_CONTACT_EMAIL = "breadpdfstudio@gmail.com" as const;
 export const OFFICIAL_CONTACT_MAILTO = `mailto:${OFFICIAL_CONTACT_EMAIL}` as const;
 
+/**
+ * Official Google AdSense publisher ID and account identifier.
+ */
+export const GOOGLE_ADSENSE_CLIENT_ID = "ca-pub-7477829897419785" as const;
+export const ADS_TXT_PUBLISHER_ID = "pub-7477829897419785" as const;
+
 export const BRAND_COLORS = {
   /** Deep warm brown for 'Bread' wordmark & character line-art */
   bread: "#592316",

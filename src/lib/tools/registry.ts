@@ -767,8 +767,24 @@ export const TOOLS: ToolDefinition[] = [
     ],
     faq: [
       {
-        q: "¿Se puede aplicar en mosaico?",
-        a: "Sí, puedes activar el modo mosaico para cubrir toda la página repetidamente.",
+        q: "¿Se puede aplicar la marca de agua en modo mosaico o repetición?",
+        a: "Sí. El panel interactivo permite activar el modo mosaico para estampar el texto de forma repetida diagonalmente sobre toda la superficie de cada página, impidiendo el recorte o reutilización no autorizada de secciones del documento.",
+      },
+      {
+        q: "¿Puedo personalizar el nivel de transparencia y la rotación?",
+        a: "Sí. Dispones de un control deslizante de opacidad (del 5% al 100%) para que la marca no oculte la legibilidad del texto principal, así como rotación angular libre (por ejemplo, inclinación clásica a 45 grados).",
+      },
+      {
+        q: "¿Se pueden añadir marcas de agua con imágenes o logotipos?",
+        a: "Sí. Además de marcas de texto personalizadas, puedes cargar archivos PNG con fondo transparente o logotipos corporativos en formato gráfico para estampar la identidad de tu empresa o estudio.",
+      },
+      {
+        q: "¿La marca de agua se superpone encima o detrás del texto del documento?",
+        a: "La herramienta estampa la marca de agua como una capa vectorial superior calibrada con opacidad, asegurando que quede visible sobre los elementos gráficos pero manteniendo la lectura del texto subyacente.",
+      },
+      {
+        q: "¿Los documentos marcados se transmiten a internet?",
+        a: "No. Toda la composición vectorial, inyección de capas y renderizado del documento resultante se procesa en el navegador de tu dispositivo de forma estrictamente privada.",
       },
     ],
   },
@@ -795,8 +811,24 @@ export const TOOLS: ToolDefinition[] = [
     ],
     faq: [
       {
-        q: "¿Puedo saltarme la portada?",
-        a: "Sí, activa la opción 'Excluir primera página' para no numerar la portada.",
+        q: "¿Puedo excluir la portada o las primeras hojas de la numeración?",
+        a: "Sí. Puedes activar la opción 'Excluir primera página' o especificar el número inicial de página para no estampar cifras en portadas, índices o páginas de cortesía de tesis, libros y memorias.",
+      },
+      {
+        q: "¿Qué formatos de numeración están disponibles?",
+        a: "Admite formatos estándar como número simple ('1', '2', '3'), formato completo ('Página 1 de 15' / '1/15') o numeración romana ('i, ii, iii') según los requisitos de tu trabajo académico o informe técnico.",
+      },
+      {
+        q: "¿En qué posiciones del documento se puede colocar el número?",
+        a: "Puedes elegir entre pie de página (inferior centrado, inferior derecho o inferior izquierdo) y encabezado superior con márgenes de seguridad para no invadir el texto del documento.",
+      },
+      {
+        q: "¿Se alteran las fuentes originales o la maquetación al paginar?",
+        a: "No. Los números se incrustan como una capa vectorial limpia e independiente utilizando fuentes estándar legibles, sin modificar ni mover las líneas de texto existentes en tus páginas.",
+      },
+      {
+        q: "¿El proceso de paginación es privado?",
+        a: "Sí. Toda la lectura, numeración e inyección tipográfica se procesa localmente en tu navegador sin enviar ninguna página a servidores externos.",
       },
     ],
   },
@@ -899,12 +931,20 @@ export const TOOLS: ToolDefinition[] = [
     ],
     faq: [
       {
-        q: "¿Qué errores soluciona esta herramienta?",
-        a: "Repara cabeceras truncadas, tablas de referencias cruzadas (XRef) dañadas y objetos desconectados.",
+        q: "¿Qué tipo de errores y corrupciones repara esta herramienta?",
+        a: "Aplica una doble estrategia de recuperación: primero repara cabeceras truncadas, tablas de referencias cruzadas (XRef) corruptas y reconstruye los flujos de objetos con pdf-lib; si el archivo presenta daños severos, activa un motor secundario con pdf.js que rescata y reensambla todas las páginas legibles de forma individual.",
       },
       {
-        q: "¿Es seguro para mis datos?",
-        a: "Totalmente. La reconstrucción estructural ocurre dentro de la memoria de tu navegador.",
+        q: "¿Qué sucede si algunas páginas están completamente irrecuperables?",
+        a: "La herramienta rescata e indexa todas las páginas válidas que el motor consiga interpretar y emite una notificación con el recuento exacto de páginas salvadas, evitando que pierdas la totalidad del documento.",
+      },
+      {
+        q: "¿Es seguro procesar contratos o documentos confidenciales dañados?",
+        a: "Totalmente. El diagnóstico binario y la reconstrucción estructural se ejecutan al 100% en la memoria de tu navegador mediante WebAssembly y JavaScript sin transferir tus archivos por internet.",
+      },
+      {
+        q: "¿Puede reparar un PDF protegido del cual no conozco la contraseña?",
+        a: "No. La corrupción estructural es diferente del cifrado criptográfico. Si el archivo está protegido por contraseña, no está dañado sino bloqueado; para ese caso debes utilizar la herramienta 'Desbloquear PDF'.",
       },
     ],
     run: repairPdf,
@@ -1078,12 +1118,20 @@ export const TOOLS: ToolDefinition[] = [
     ],
     faq: [
       {
-        q: "¿Se conservan las columnas y filas de mis tablas?",
-        a: "Sí. BreadPDF agrupa los textos según su disposición espacial y coordenadas geométricas X/Y para respetar la cuadrícula original de las tablas.",
+        q: "¿Cómo agrupa el conversor las celdas, columnas y filas de mis tablas?",
+        a: "El motor analiza la geometría espacial y las coordenadas X/Y de cada elemento textual mediante pdf.js, agrupando las palabras alineadas horizontalmente en filas y detectando las columnas según los márgenes de separación entre bloques para reconstruir la cuadrícula original con exactitud.",
       },
       {
-        q: "¿Se suben mis datos a algún servidor?",
-        a: "Absolutamente no. La extracción y creación del archivo Excel se realiza en la memoria de tu navegador de forma 100% privada.",
+        q: "¿Qué diferencia hay entre exportar en formato Excel (.xlsx) o CSV (.csv)?",
+        a: "El formato Excel (.xlsx) genera un libro completo donde cada página del PDF se convierte en una hoja o pestaña independiente numerada; el formato CSV (.csv) genera un archivo de texto plano delimitado ideal para importar bases de datos o abrir con cualquier versión de hoja de cálculo.",
+      },
+      {
+        q: "¿Funciona en PDFs que son imágenes o facturas escaneadas?",
+        a: "Para que las celdas se reconozcan mediante coordenadas, el PDF debe contener texto digital interactivo. Si tu documento es una fotografía o un escaneo sin capa tipográfica, debes pasar primero el archivo por 'OCR de PDF' antes de convertir a Excel.",
+      },
+      {
+        q: "¿Se suben mis datos contables o financieros a servidores externos?",
+        a: "Absolutamente no. La extracción espacial y la codificación del archivo .xlsx con la librería XLSX se ejecutan íntegramente en la memoria de tu navegador de forma 100% confidencial y privada.",
       },
     ],
     options: [
@@ -1167,8 +1215,24 @@ export const TOOLS: ToolDefinition[] = [
     ],
     faq: [
       {
-        q: "¿Es privado el resumen?",
-        a: "Sí. El algoritmo de puntuación sintáctica y frecuencia de términos corre 100% en tu navegador.",
+        q: "¿Cómo funciona técnicamente el algoritmo de resumen sin enviar datos a la nube?",
+        a: "Utiliza un motor extractivo de puntuación semántica basado en frecuencia de términos ponderada (TF/TextRank) adaptado al español e inglés. El analizador descarta palabras vacías ('stop words') y puntúa las oraciones con mayor densidad informativa directamente en JavaScript en tu dispositivo.",
+      },
+      {
+        q: "¿Qué formatos de resumen puedo elegir?",
+        a: "Puedes seleccionar entre tres modalidades: 'Puntos clave destacados (Viñetas)' para obtener viñetas ágiles, 'Resumen breve' (las 3 ideas fundamentales) y 'Resumen ejecutivo' (las 5 oraciones con mayor relevancia global).",
+      },
+      {
+        q: "¿Funciona en documentos escaneados o fotocopiados?",
+        a: "El sintetizador requiere texto digital nativo. Si tu archivo es una imagen o fotocopia escaneada, primero debes procesarlo con la herramienta 'OCR de PDF' de BreadPDF para generar la capa de texto seleccionable.",
+      },
+      {
+        q: "¿Hay límite en el número de páginas que se pueden resumir?",
+        a: "No existe limitación artificial de páginas. El documento se procesa en fragmentos según la memoria RAM disponible en tu navegador, siendo capaz de sintetizar informes de decenas de páginas en segundos.",
+      },
+      {
+        q: "¿Queda almacenado el texto de mi informe en algún servidor?",
+        a: "No. El análisis y la generación del texto resumen ocurren en el entorno local de tu navegador. Ningún fragmento de texto o dato privado se transfiere a APIs externas.",
       },
     ],
     options: [
@@ -1209,8 +1273,24 @@ export const TOOLS: ToolDefinition[] = [
     ],
     faq: [
       {
-        q: "¿Qué datos reconoce automáticamente?",
-        a: "Direcciones de email, números de teléfono, fechas en diversos formatos y cantidades monetarias (EUR, USD).",
+        q: "¿Qué tipos de datos detecta y extrae el analizador?",
+        a: "El motor aplica expresiones regulares y heurísticas para aislar correos electrónicos válidos, números de teléfono nacionales e internacionales, fechas en formatos estándar (DD/MM/AAAA) y cifras monetarias identificadas con símbolos de divisa (EUR, USD, €).",
+      },
+      {
+        q: "¿En qué formatos puedo descargar la información extraída?",
+        a: "Puedes elegir entre un archivo JSON estructurado (con arrays limpios de campos únicos, idóneo para automatizaciones y desarrolladores) o un archivo CSV delimitado por comas listo para importar directamente en Microsoft Excel, Google Sheets o LibreOffice Calc.",
+      },
+      {
+        q: "¿Se eliminan los registros duplicados?",
+        a: "Sí. El procesador desduplica automáticamente los correos electrónicos, teléfonos y fechas repetidas en las diferentes páginas, entregando una lista limpia y normalizada.",
+      },
+      {
+        q: "¿Funciona con PDFs protegidos por contraseña o escaneados?",
+        a: "En PDFs escaneados (imágenes sin texto digital) es necesario aplicar previamente 'OCR de PDF'. En documentos con contraseña de lectura, primero debes retirarla mediante la herramienta 'Desbloquear PDF'.",
+      },
+      {
+        q: "¿Se envían mis facturas o datos confidenciales a terceros?",
+        a: "No. Toda la búsqueda por expresiones regulares y estructuración de datos se ejecuta en la memoria local de tu navegador. Ningún teléfono, correo o importe se transmite por internet.",
       },
     ],
     options: [
@@ -1250,8 +1330,24 @@ export const TOOLS: ToolDefinition[] = [
     ],
     faq: [
       {
-        q: "¿Es compatible con PowerPoint y Google Slides?",
-        a: "Sí. Genera archivos estándar .pptx de Office Open XML con total compatibilidad.",
+        q: "¿El archivo .pptx resultante es compatible con Microsoft PowerPoint y Google Slides?",
+        a: "Sí. Genera presentaciones bajo el estándar Office Open XML (.pptx) con disposición panorámica 16:9, compatibles nativamente con Microsoft PowerPoint, Google Slides, Keynote y LibreOffice Impress.",
+      },
+      {
+        q: "¿Cómo se transfieren las páginas a las diapositivas?",
+        a: "Cada página de tu PDF se renderiza con un factor de escala de alta fidelidad (2.0x) y se ajusta automáticamente para llenar la diapositiva completa, preservando la proporción, colores y nitidez de diagramas, fotografías y tipografías.",
+      },
+      {
+        q: "¿Puedo añadir notas, formas o nuevas diapositivas en PowerPoint tras la conversión?",
+        a: "Sí. El archivo descargado es un documento de presentación estándar totalmente editable en tu software de presentaciones habitual, donde podrás agregar nuevas hojas, transiciones o animaciones.",
+      },
+      {
+        q: "¿Qué ocurre con PDFs en formato vertical (A4 vertical)?",
+        a: "Se centran en la diapositiva panorámica 16:9 manteniendo sus proporciones exactas para evitar deformaciones o estiramientos de imagen no deseados.",
+      },
+      {
+        q: "¿Se sube mi presentación a algún servidor en la nube?",
+        a: "No. La conversión de páginas a diapositivas se procesa 100% de forma local en tu navegador web mediante librerías de cliente. Tus diapositivas nunca salen de tu ordenador.",
       },
     ],
     run: pdfToPptx,
@@ -1473,8 +1569,24 @@ export const TOOLS: ToolDefinition[] = [
     ],
     faq: [
       {
-        q: "¿Se reduce el tamaño de letra?",
-        a: "No. El contenido conserva su escala vectorial original, únicamente se recorta el espacio en blanco perimetral.",
+        q: "¿Se reduce el tamaño de letra o la calidad tipográfica al recortar?",
+        a: "No. El contenido vectorial conserva su resolución y nitidez nativas; la herramienta únicamente ajusta la caja de recorte (CropBox) del estándar PDF para ocultar los bordes perimetrales sobrantes sin alterar las fuentes ni las imágenes internas.",
+      },
+      {
+        q: "¿Cómo se calcula el margen que se recorta?",
+        a: "El selector permite especificar el recorte en milímetros (entre 5 mm y 50 mm). Este valor se descuenta de forma uniforme en los cuatro bordes (superior, inferior, izquierdo y derecho) de cada página, garantizando una caja visible mínima de 50 puntos para evitar recortes accidentales totales.",
+      },
+      {
+        q: "¿Es adecuado para eliminar márgenes blancos antes de leer en un lector de libros electrónicos (e-reader)?",
+        a: "Sí. Es uno de sus usos más comunes: retirar entre 15 y 25 mm de márgenes vacíos permite que el texto ocupe un porcentaje mucho mayor de la pantalla de dispositivos como Kindle o Kobo sin necesidad de hacer zoom manual.",
+      },
+      {
+        q: "¿Se recortan todas las páginas del PDF por igual?",
+        a: "Sí. La dimensión de recorte elegida se aplica de forma automatizada y homogénea sobre cada una de las páginas que componen el documento.",
+      },
+      {
+        q: "¿Mis documentos se transfieren a servidores externos para realizar el recorte?",
+        a: "No. Toda la modificación del CropBox se ejecuta íntegramente en la memoria de tu navegador mediante pdf-lib y WebAssembly. Tu información confidencial nunca sale de tu equipo.",
       },
     ],
     options: [
@@ -1514,8 +1626,24 @@ export const TOOLS: ToolDefinition[] = [
     ],
     faq: [
       {
-        q: "¿Es ideal para alimentar prompts de IA?",
-        a: "Sí. Markdown es el formato óptimo para que ChatGPT, Claude o Gemini comprendan la estructura sin caracteres basura.",
+        q: "¿Cómo detecta el conversor los títulos, subtítulos y listas en Markdown?",
+        a: "El algoritmo analiza el tamaño de fuente y la separación vertical de cada fragmento de texto mediante pdf.js: tipografías de tamaño superior a 18pt se convierten automáticamente en encabezados ('### Encabezado'), y líneas precedidas por viñetas o guiones se formatean como listas no ordenadas ('* elemento').",
+      },
+      {
+        q: "¿Por qué Markdown es el formato ideal para ChatGPT, Claude o Notion?",
+        a: "A diferencia del PDF binario que introduce saltos de línea arbitrarios y caracteres invisibles, Markdown ofrece texto plano semántico limpio que maximiza el aprovechamiento de la ventana de contexto de los modelos de lenguaje (LLMs) y se pega limpiamente en bases de conocimiento como Obsidian o Notion.",
+      },
+      {
+        q: "¿Se conservan las divisiones por páginas en el archivo descargado?",
+        a: "Sí. El generador añade separadores comentados con el número de página ('## Página X') para que puedas localizar fácilmente la procedencia de cada cita o sección en el documento original.",
+      },
+      {
+        q: "¿Funciona en PDFs que contienen tablas complejas o gráficos?",
+        a: "El motor extrae los textos en el orden de lectura espacial (coordenadas X e Y). Para tablas con cuadrícula estructurada que requieran edición en celdas, se recomienda utilizar la herramienta especializada 'PDF a Excel' de BreadPDF.",
+      },
+      {
+        q: "¿Se transmiten mis apuntes o libros a servidores de inteligencia artificial?",
+        a: "No. La conversión a Markdown se procesa 100% en tu navegador. Tus textos nunca se envían a servidores de terceros ni se utilizan para entrenar modelos de IA.",
       },
     ],
     run: pdfToMarkdown,
@@ -1543,8 +1671,24 @@ export const TOOLS: ToolDefinition[] = [
     ],
     faq: [
       {
-        q: "¿Es válido para la Agencia Tributaria y sedes electrónicas?",
-        a: "Sí. Cumple con los requerimientos de formato cerrado y metadatos exigidos en las administraciones públicas.",
+        q: "¿Qué diferencia existe entre un archivo PDF estándar y un PDF/A?",
+        a: "PDF/A (ISO 19005-1) es un subconjunto estricto del formato PDF diseñado para la conservación y archivo digital a largo plazo. Prohíbe características no autónomas como scripts dinámicos de JavaScript, referencias a fuentes externas no incrustadas o cifrado dependiente de contraseñas.",
+      },
+      {
+        q: "¿Es válido para trámites telemáticos ante la Agencia Tributaria, sedes judiciales y universidades?",
+        a: "Sí. Las administraciones públicas exigen PDF/A para garantizar que el expediente pueda abrirse e interpretarse con total fidelidad visual dentro de 10, 20 o 50 años, independientemente del sistema operativo o visor utilizado.",
+      },
+      {
+        q: "¿Qué ajustes técnicos introduce BreadPDF en el documento?",
+        a: "Inyecta el esquema de metadatos XMP correspondiente a la norma ISO 19005-1 (PDF/A-1b), reestructura la tabla de objetos y guarda el documento desactivando flujos de compresión cruzada de objetos no soportados en visores arcaicos.",
+      },
+      {
+        q: "¿Se pierde calidad en las imágenes o el texto al estandarizar a PDF/A?",
+        a: "No. La estandarización no rasteriza ni comprime con pérdida el contenido existente; únicamente valida e integra las estructuras de metadatos requeridas por la norma internacional.",
+      },
+      {
+        q: "¿Mis documentos oficiales se suben a la nube?",
+        a: "No. Toda la inyección de metadatos y reensamblado conforme a ISO se ejecuta de forma local en tu navegador. Tus documentos oficiales y privados nunca salen de tu ordenador.",
       },
     ],
     run: pdfToPdfA,
@@ -1573,8 +1717,24 @@ export const TOOLS: ToolDefinition[] = [
     ],
     faq: [
       {
-        q: "¿Se conservan las diferentes pestañas del Excel?",
-        a: "Sí. Cada pestaña se renderiza con su respectivo título y estructura tabular.",
+        q: "¿Se conservan las diferentes pestañas u hojas del libro de Excel?",
+        a: "Sí. Cada pestaña con datos de tu archivo .xlsx o .xls genera una página independiente en el PDF final con su título de hoja destacado en la cabecera.",
+      },
+      {
+        q: "¿Por qué el PDF se genera en formato apaisado (horizontal)?",
+        a: "Las hojas de cálculo suelen incluir múltiples columnas que se cortarían en una página vertical; la disposición apaisada A4 (841 x 595 puntos) garantiza que las columnas se distribuyan proporcionalmente sin desbordar los márgenes de impresión.",
+      },
+      {
+        q: "¿Qué formatos de hoja de cálculo son compatibles?",
+        a: "Admite tanto el formato estándar moderno de Excel (.xlsx) como formatos clásicos (.xls) procesados mediante librerías especializadas sin requerir tener instalado Microsoft Office en tu equipo.",
+      },
+      {
+        q: "¿Se mantiene el formato de celdas y cabeceras?",
+        a: "La primera fila de cada hoja se identifica automáticamente como cabecera destacada con sombreado de contraste para facilitar la lectura de balances, inventarios y presupuestos.",
+      },
+      {
+        q: "¿Se suben mis datos contables o financieros a servidores externos?",
+        a: "No. Toda la lectura del binario de cálculo y la maquetación vectorial del PDF se ejecuta íntegramente en la memoria local de tu navegador. Tu información financiera permanece 100% privada.",
       },
     ],
     run: excelToPdf,

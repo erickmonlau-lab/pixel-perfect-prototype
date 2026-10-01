@@ -14,6 +14,7 @@
 
 import React, { useEffect } from 'react';
 import { useAuth } from '@/lib/auth/auth-context';
+import { GOOGLE_ADSENSE_CLIENT_ID } from '@/lib/brand';
 
 export interface AdSenseConfig {
   clientId: string;
@@ -24,7 +25,7 @@ export interface AdSenseConfig {
 export const ADSENSE_CONFIG: AdSenseConfig = {
   clientId:
     (typeof import.meta !== 'undefined' && import.meta.env?.["VITE_ADSENSE_CLIENT_ID"]) ||
-    'ca-pub-0000000000000000',
+    GOOGLE_ADSENSE_CLIENT_ID,
   isEnabled:
     (typeof import.meta !== 'undefined' && import.meta.env?.["VITE_ADSENSE_ENABLED"] === 'true') ||
     false,

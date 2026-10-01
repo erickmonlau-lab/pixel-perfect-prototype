@@ -253,8 +253,12 @@ const es = {
         body: "Algunas conversiones complejas, como PDF a Word o Word a PDF, requieren motores especializados de procesamiento en servidor. Cuando dichas herramientas se publiquen, esta política indicará con total transparencia el tiempo estricto de retención y su eliminación automatizada.",
       },
       {
-        title: "Cuentas de usuario y privacidad de tus archivos",
-        body: "Puedes utilizar las herramientas de BreadPDF de forma anónima y gratuita sin necesidad de registrarte. Si decides crear una cuenta para gestionar tus preferencias o suscripción Premium, tus datos de autenticación se protegen de forma cifrada mediante Supabase Auth. Los archivos que procesas en el navegador nunca se asocian a tu cuenta ni se almacenan en servidores.",
+        title: "Sobre el proyecto BreadPDF",
+        body: "BreadPDF es una suite independiente de herramientas documentales concebida bajo el principio de privacidad por diseño ('privacy by design'). Desarrollada con estándares web de última generación (WebAssembly, pdf-lib, pdf.js y React), nuestra misión es permitir que cualquier persona manipule, optimice, convierta y proteja sus archivos PDF directamente en su propio navegador sin ceder el control de sus documentos ni depender de servidores externos.",
+      },
+      {
+        title: "Contacto, soporte y titularidad del servicio",
+        body: "Para cualquier consulta técnica, sugerencia de nuevas funcionalidades, notificación de incidencias o ejercicio de derechos de privacidad, el canal oficial y directo de atención es breadpdfstudio@gmail.com. Atendemos todas las comunicaciones en español, catalán e inglés.",
       },
     ],
   },
@@ -275,7 +279,7 @@ const es = {
       },
       {
         title: "2. Preparación para Google AdSense y publicidad",
-        body: "BreadPDF está preparado para integrar publicidad de Google AdSense sujeta a plataformas de consentimiento certificadas (CMP / TCF v2.2). Cuando los anuncios estén activos, podrás aceptar o rechazar cookies de personalización en cualquier momento desde el panel de consentimiento.",
+        body: "BreadPDF está preparado para integrar publicidad de Google AdSense sujeta a plataformas de consentimiento certificadas por Google compatibles con los estándares vigentes de IAB (marco TCF v2.3). Cuando los anuncios estén activos, podrás aceptar, configurar o rechazar cookies de personalización en cualquier momento desde el panel de consentimiento.",
       },
       {
         title: "3. Cómo gestionar o desactivar cookies",
@@ -605,8 +609,12 @@ const ca: Dict = {
         body: "Algunes conversions complexes, com PDF a Word o Word a PDF, requereixen motors especialitzats de processament al servidor. Quan aquestes eines es publiquin, aquesta política indicarà amb total transparència el temps estricte de retenció i la seva eliminació automatitzada.",
       },
       {
-        title: "Comptes d'usuari i privadesa dels teus fitxers",
-        body: "Pots fer servir les eines de BreadPDF de forma anònima i gratuïta sense necessitat de registrar-te. Si decideixes crear un compte per gestionar les teves preferències o subscripció Premium, les teves dades d'autenticació es protegeixen de forma xifrada mitjançant Supabase Auth. Els fitxers que processis al navegador mai s'associen al teu compte ni s'emmagatzemen a servidors.",
+        title: "Sobre el projecte BreadPDF",
+        body: "BreadPDF és una suite independent d'eines documentals concebuda sota el principi de privadesa des del disseny ('privacy by design'). Desenvolupada amb estàndards web de darrera generació (WebAssembly, pdf-lib, pdf.js i React), la nostra missió és permetre que tothom pugui manipular, optimitzar, convertir i protegir fitxers PDF directament al seu navegador sense cedir el control dels seus documents.",
+      },
+      {
+        title: "Contacte, suport i titularitat del servei",
+        body: "Per a qualsevol consulta tècnica, suggeriment de noves funcionalitats, notificació d'incidències o exercici de drets de privadesa, el canal oficial i directe és breadpdfstudio@gmail.com. Atendrem totes les consultes en català, castellà i anglès.",
       },
     ],
   },
@@ -627,7 +635,7 @@ const ca: Dict = {
       },
       {
         title: "2. Preparació per a Google AdSense i publicitat",
-        body: "BreadPDF està preparat per integrar publicitat de Google AdSense subjecta a plataformes de consentiment certificades (CMP / TCF v2.2). Quan els anuncis estiguin actius, podràs acceptar o rebutjar cookies publicitàries des del panell de consentiment.",
+        body: "BreadPDF està preparat per integrar publicitat de Google AdSense subjecta a plataformes de consentiment certificades per Google compatibles amb els estàndards vigents de l'IAB (marc TCF v2.3). Quan els anuncis estiguin actius, podràs acceptar, configurar o rebutjar cookies publicitàries des del panell de consentiment.",
       },
       {
         title: "3. Com gestionar o desactivar cookies",
@@ -953,8 +961,12 @@ const en: Dict = {
         body: "Some complex conversions, such as PDF to Word or Word to PDF, require specialized server-side processing engines. When these tools launch, this policy will transparently describe the strict retention period and automated deletion process.",
       },
       {
-        title: "User accounts and the privacy of your files",
-        body: "You can use BreadPDF tools anonymously and free of charge without creating an account. If you choose to register an account to manage your preferences or Premium subscription, your authentication credentials are secure and encrypted via Supabase Auth. Documents processed inside your browser are never linked to your account and never stored on remote servers.",
+        title: "About the BreadPDF Project",
+        body: "BreadPDF is an independent document productivity suite engineered with a privacy-by-design ethos. Built with cutting-edge web technologies (WebAssembly, pdf-lib, pdf.js, and React), our core mission is empowering users to manipulate, optimize, convert, and protect PDF files directly inside their browser without surrendering ownership or transmitting sensitive data to cloud servers.",
+      },
+      {
+        title: "Contact, Support & Publisher Information",
+        body: "For technical inquiries, feature suggestions, bug reports, or data privacy requests, our official communication channel is breadpdfstudio@gmail.com. We answer all inquiries in English, Spanish, and Catalan.",
       },
     ],
   },
@@ -975,7 +987,7 @@ const en: Dict = {
       },
       {
         title: "2. Preparation for Google AdSense and advertising",
-        body: "BreadPDF is architected to integrate Google AdSense under certified Consent Management Platforms (CMP / TCF v2.2). When advertisements become active, you will be able to review, accept, or reject personalization cookies at any time.",
+        body: "BreadPDF is architected to integrate Google AdSense under Google-certified Consent Management Platforms compliant with current IAB standards (TCF v2.3 framework). When advertisements become active, you will be able to review, configure, accept, or reject personalization cookies at any time.",
       },
       {
         title: "3. How to manage or disable cookies",
