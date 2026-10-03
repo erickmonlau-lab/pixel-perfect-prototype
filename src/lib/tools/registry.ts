@@ -509,7 +509,7 @@ export const TOOLS: ToolDefinition[] = [
     multiple: false,
     minFiles: 1,
     ctaLabel: "Extraer páginas",
-    keywords: ["extraer páginas pdf", "separar páginas pdf"],
+    keywords: ["extraer páginas pdf", "separar páginas pdf", "sacar hojas de pdf", "copiar páginas pdf", "guardar páginas pdf"],
     howItWorks: ["Sube el PDF.", "Indica las páginas a conservar.", "Descarga el nuevo documento."],
     faq: [
       {
@@ -939,12 +939,20 @@ export const TOOLS: ToolDefinition[] = [
         a: "La herramienta rescata e indexa todas las páginas válidas que el motor consiga interpretar y emite una notificación con el recuento exacto de páginas salvadas, evitando que pierdas la totalidad del documento.",
       },
       {
+        q: "¿Qué mensajes de error comunes puede solucionar?",
+        a: "Puede intentar recuperar archivos que muestran mensajes como 'El archivo PDF está dañado y no se puede reparar', 'Error al leer el archivo', 'Failed to load PDF document' en el navegador, o documentos que se abren pero aparecen en blanco o con páginas mezcladas. Si el archivo es una descarga incompleta o se interrumpió la transferencia, también puede recuperar las páginas que llegaron completas.",
+      },
+      {
         q: "¿Es seguro procesar contratos o documentos confidenciales dañados?",
         a: "Totalmente. El diagnóstico binario y la reconstrucción estructural se ejecutan al 100% en la memoria de tu navegador mediante WebAssembly y JavaScript sin transferir tus archivos por internet.",
       },
       {
         q: "¿Puede reparar un PDF protegido del cual no conozco la contraseña?",
         a: "No. La corrupción estructural es diferente del cifrado criptográfico. Si el archivo está protegido por contraseña, no está dañado sino bloqueado; para ese caso debes utilizar la herramienta 'Desbloquear PDF'.",
+      },
+      {
+        q: "¿Qué ocurre si la herramienta no puede recuperar el documento?",
+        a: "Si el motor no encuentra ninguna página legible, lo informará claramente. En ese caso, el daño es demasiado extenso para una recuperación automatizada en el navegador. Para documentos críticos irrecuperables, existen servicios profesionales de recuperación de datos que actúan a nivel de bytes del sistema de archivos.",
       },
     ],
     run: repairPdf,
@@ -1093,6 +1101,18 @@ export const TOOLS: ToolDefinition[] = [
         q: "¿Qué validez legal tiene esta firma según la normativa eIDAS?",
         a: "Esta herramienta genera una Firma Electrónica Simple (rúbrica gráfica manuscrita estampada sobre el documento), plenamente admitida como prueba en procedimientos de común acuerdo (contratos de arrendamiento, autorizaciones, solicitudes cotidianas o recibís laborales). No es una Firma Cualificada con certificado digital de la FNMT/DNIe, requerida para trámites específicos con la Administración Pública española o LexNET.",
       },
+      {
+        q: "¿Para qué documentos es útil firmar un PDF de esta forma?",
+        a: "Es el método habitual para contratos de arrendamiento entre particulares, autorizaciones escolares, albaranes de entrega, documentos de aceptación de presupuesto, comunicaciones internas o cualquier acuerdo donde ambas partes consienten expresamente y guardan una copia firmada. No requiere ninguna aplicación adicional ni certificado digital.",
+      },
+      {
+        q: "¿Puedo subir una imagen de mi firma en lugar de dibujarla?",
+        a: "Sí. Además del lienzo interactivo para dibujar tu rúbrica con el ratón o el dedo en pantalla táctil, puedes cargar una imagen PNG o JPG de tu firma manuscrita real y posicionarla libremente sobre el documento.",
+      },
+      {
+        q: "¿Qué diferencia hay entre firmar un PDF y añadirle un sello o marca de agua?",
+        a: "Firmar implica colocar tu rúbrica personal en una posición concreta del documento, normalmente al pie de un contrato o formulario, con la intención de manifestar conformidad o autoría. Una marca de agua o sello, en cambio, se estampa de forma repetida o destacada sobre todas las páginas con un propósito de identificación o protección de la distribución.",
+      },
     ],
   },
   {
@@ -1126,8 +1146,16 @@ export const TOOLS: ToolDefinition[] = [
         a: "El formato Excel (.xlsx) genera un libro completo donde cada página del PDF se convierte en una hoja o pestaña independiente numerada; el formato CSV (.csv) genera un archivo de texto plano delimitado ideal para importar bases de datos o abrir con cualquier versión de hoja de cálculo.",
       },
       {
+        q: "¿Para qué documentos funciona mejor esta conversión?",
+        a: "Funciona mejor con facturas digitales con estructura de tabla, extractos bancarios, albaranes de pedido, inventarios de productos, informes financieros y presupuestos que contengan texto nativo seleccionable. El resultado es más preciso cuanto más regular es la cuadrícula del documento.",
+      },
+      {
         q: "¿Funciona en PDFs que son imágenes o facturas escaneadas?",
         a: "Para que las celdas se reconozcan mediante coordenadas, el PDF debe contener texto digital interactivo. Si tu documento es una fotografía o un escaneo sin capa tipográfica, debes pasar primero el archivo por 'OCR de PDF' antes de convertir a Excel.",
+      },
+      {
+        q: "¿En qué se diferencia de la herramienta 'Extraer datos'?",
+        a: "'PDF a Excel' convierte toda la estructura tabular de cada página en filas y columnas de hoja de cálculo, ideal para tablas completas. 'Extraer datos', en cambio, detecta y extrae campos específicos como correos electrónicos, teléfonos, fechas e importes monetarios en formato JSON o CSV, ideal para procesar facturas o formularios en lote.",
       },
       {
         q: "¿Se suben mis datos contables o financieros a servidores externos?",
@@ -1652,10 +1680,10 @@ export const TOOLS: ToolDefinition[] = [
     slug: "pdf-a-pdfa",
     name: "PDF a PDF/A",
     h1: "Convertir PDF a PDF/A para archivo a largo plazo",
-    tagline: "Estandariza tu PDF bajo la norma ISO 19005-1 para trámites legales y administraciones públicas.",
+    tagline: "Estandariza tu PDF bajo la norma ISO 19005-1 para trámites con Hacienda, juzgados y administraciones públicas.",
     seoTitle: "Convertir PDF a PDF/A online gratis | Norma ISO BreadPDF",
     seoDescription:
-      "Transforma tus documentos al formato PDF/A estándar de conservación a largo plazo, requerido por Hacienda, juzgados y administraciones públicas.",
+      "Transforma tus documentos al formato PDF/A estándar de conservación a largo plazo, requerido por Hacienda, juzgados, LexNET y administraciones públicas. Sin subir archivos.",
     category: "convertir",
     icon: "FileCheck",
     status: "live",
@@ -2085,8 +2113,16 @@ export const TOOLS: ToolDefinition[] = [
         a: "Puedes modificar los campos del diccionario estándar de información: Título, Autor, Asunto y Palabras clave.",
       },
       {
+        q: "¿Para qué situaciones es útil editar los metadatos de un PDF?",
+        a: "Es útil para corregir el autor en documentos generados automáticamente con el nombre de la licencia de software, para actualizar el título de un informe antes de distribuirlo, para añadir palabras clave que faciliten la búsqueda en sistemas de gestión documental, o para homogeneizar la información de metadatos en archivos corporativos.",
+      },
+      {
         q: "¿Se altera el contenido visual o las páginas del documento?",
         a: "No. El contenido visual, fuentes, imágenes y textos permanecen intactos. Solo se actualizan las propiedades del documento.",
+      },
+      {
+        q: "¿En qué se diferencia de 'Eliminar metadatos'?",
+        a: "'Editar metadatos' te permite escribir valores nuevos y correctos en los campos de título, autor, asunto y palabras clave. 'Eliminar metadatos' borra todos esos campos dejándolos vacíos, lo que es más útil cuando quieres compartir un documento sin revelar ninguna información de autoría.",
       },
       {
         q: "¿Se sube mi archivo a algún servidor externo?",
@@ -2154,6 +2190,14 @@ export const TOOLS: ToolDefinition[] = [
       {
         q: "¿Puedo cambiar el tamaño y el color del texto añadido?",
         a: "Sí. Tienes controles deslizantes para el tamaño tipográfico, posición en porcentaje sobre la página y selector de color.",
+      },
+      {
+        q: "¿Para qué situaciones es útil añadir texto a un PDF?",
+        a: "Es ideal para estampar una fecha de recepción, añadir un número de referencia o expediente en documentos que no incluyen ese campo, insertar la nota 'BORRADOR', 'CONFIDENCIAL' o 'COPIA' sobre páginas de un informe, o completar manualmente un campo que quedó en blanco en un formulario fijo.",
+      },
+      {
+        q: "¿Cuándo debo usar 'Añadir texto' y cuándo 'Rellenar formulario PDF'?",
+        a: "Usa 'Rellenar formulario PDF' si el documento tiene campos AcroForm interactivos (cuadros de texto, casillas, desplegables que se activan al hacer clic). Usa 'Añadir texto' si el PDF no tiene campos interactivos y quieres superponer texto libre en cualquier posición de la página.",
       },
       {
         q: "¿El texto añadido queda integrado en el documento final?",
@@ -2578,10 +2622,10 @@ export const TOOLS: ToolDefinition[] = [
     slug: "dividir-pdf-por-tamano",
     name: "Dividir PDF por tamaño",
     h1: "Dividir un PDF en partes por tamaño máximo en MB",
-    tagline: "Fragmenta documentos grandes respetando un límite de peso aproximado por parte.",
+    tagline: "Fragmenta documentos grandes respetando un límite de peso por parte, ideal para correo, Moodle o sedes electrónicas.",
     seoTitle: "Dividir PDF por tamaño en MB online gratis | BreadPDF",
     seoDescription:
-      "Divide un PDF grande en fragmentos con un límite de tamaño en MB por parte. Ideal para adjuntos de correo o plataformas con límites de peso. 100% en tu navegador.",
+      "Divide un PDF grande en fragmentos con un límite de tamaño en MB por parte. Perfecto para adjuntos de correo (25 MB), Moodle (5-10 MB) o LexNET. 100% en tu navegador.",
     category: "organizar",
     icon: "SplitSquareHorizontal",
     status: "live",
@@ -2697,10 +2741,10 @@ export const TOOLS: ToolDefinition[] = [
     slug: "imagen-a-webp",
     name: "Imagen a WebP",
     h1: "Convertir imágenes JPG y PNG a WebP",
-    tagline: "Reduce el peso de tus imágenes para web convirtiéndolas al formato WebP moderno y eficiente.",
+    tagline: "Reduce el peso de tus imágenes para web convirtiéndolas al formato WebP moderno: mejora el PageSpeed y las Core Web Vitals.",
     seoTitle: "Convertir imagen a WebP online gratis | JPG y PNG | BreadPDF",
     seoDescription:
-      "Convierte imágenes JPG y PNG al formato WebP para optimizar su peso para la web. Ajusta la calidad y descarga el resultado al instante en tu navegador.",
+      "Convierte imágenes JPG y PNG al formato WebP para optimizar su peso y mejorar el rendimiento web. Ideal para Core Web Vitals, PageSpeed Insights y SEO. Privado en tu navegador.",
     category: "optimizar",
     icon: "Zap",
     status: "live",
