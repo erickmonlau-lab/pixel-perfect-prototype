@@ -1615,7 +1615,7 @@ const tools: Record<string, ToolText> = {
     "name": "Signar PDF",
     "h1": "Signar PDF en línia gratis i a mà alçada",
     "tagline": "Dibuixa o puja la teva signatura electrònica i estampa-la a qualsevol pàgina del teu document.",
-    "seoTitle": "Signar PDF en línia gratis | Signatura digital BreadPDF",
+    "seoTitle": "Signar PDF en línia gratis amb la teva signatura manuscrita | BreadPDF",
     "seoDescription": "Afegeix la teva rúbrica o signatura gràfica al teu document PDF directament al navegador. 100% privat i sense servidors.",
     "ctaLabel": "Signar i descarregar PDF",
     "keywords": [

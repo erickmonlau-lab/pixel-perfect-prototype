@@ -1621,7 +1621,7 @@ const tools: Record<string, ToolText> = {
     "name": "Sign PDF",
     "h1": "Sign PDF Online for Free and Freehand",
     "tagline": "Draw or upload your electronic signature and place it on any page of your document.",
-    "seoTitle": "Sign PDF Online for Free | Digital Signature BreadPDF",
+    "seoTitle": "Sign PDF Online for Free with Your Handwritten Signature | BreadPDF",
     "seoDescription": "Add your graphic signature or mark to any PDF document right inside your browser. 100% private, no file uploads.",
     "ctaLabel": "Sign & Download PDF",
     "keywords": [

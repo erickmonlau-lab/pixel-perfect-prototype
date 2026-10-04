@@ -1072,7 +1072,7 @@ export const TOOLS: ToolDefinition[] = [
     name: "Firmar PDF",
     h1: "Firmar PDF online gratis y a mano alzada",
     tagline: "Dibuja o sube tu firma electrónica y estámpala en cualquier página de tu documento.",
-    seoTitle: "Firmar PDF online gratis | Firma digital BreadPDF",
+    seoTitle: "Firmar PDF online gratis con tu firma manuscrita | BreadPDF",
     seoDescription:
       "Añade tu rúbrica o firma gráfica a tu documento PDF directamente en el navegador. 100% privado, sin subir datos a ningún servidor.",
     category: "seguridad",
