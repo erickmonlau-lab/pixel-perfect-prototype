@@ -39,7 +39,7 @@ const tools: Record<string, ToolText> = {
       },
       {
         q: "Are my files uploaded to an external server?",
-        a: "No. All PDF compression and page processing runs locally in your browser memory via WebAssembly and JavaScript. Confidential documents never leave your computer or phone.",
+        a: "No. All PDF compression and page processing runs locally in your browser memory via JavaScript. Confidential documents never leave your computer or phone.",
       },
     ],
     options: {
@@ -96,7 +96,7 @@ const tools: Record<string, ToolText> = {
       },
       {
         q: "Are my documents uploaded to an external server?",
-        a: "No. Merging runs 100% locally in your browser using WebAssembly and JavaScript. Files are never transmitted over the internet nor stored in the cloud.",
+        a: "No. Merging runs 100% locally in your browser using JavaScript. Files are never transmitted over the internet nor stored in the cloud.",
       },
     ],
   },
@@ -230,7 +230,7 @@ const tools: Record<string, ToolText> = {
       },
       {
         q: "Are my photos uploaded to the cloud or external servers?",
-        a: "No. All image embedding and PDF generation runs 100% client-side in your browser via WebAssembly. Private photos never leave your device.",
+        a: "No. All image embedding and PDF generation runs 100% client-side in your browser via JavaScript. Private photos never leave your device.",
       },
     ],
     options: {
@@ -278,7 +278,7 @@ const tools: Record<string, ToolText> = {
       },
       {
         q: "Does rotation happen locally in my browser?",
-        a: "Yes. All processing executes 100% client-side on your device using WebAssembly. Your file is never uploaded to remote servers.",
+        a: "Yes. All processing executes 100% client-side on your device using JavaScript. Your file is never uploaded to remote servers.",
       },
     ],
     options: {
@@ -327,7 +327,7 @@ const tools: Record<string, ToolText> = {
       },
       {
         q: "Is the file processed privately inside my browser?",
-        a: "Yes. Extraction happens entirely inside your browser via WebAssembly. No files or personal data are ever uploaded to external servers.",
+        a: "Yes. Extraction happens entirely inside your browser via JavaScript. No files or personal data are ever uploaded to external servers.",
       },
     ],
     options: { pages: { label: "Pages to extract", help: "Example: 1, 4-6, 10" } },
@@ -530,7 +530,7 @@ const tools: Record<string, ToolText> = {
       },
       {
         q: "Is my Word file uploaded to any server for conversion?",
-        a: "No. File parsing and PDF compilation occur 100% locally in your browser via WebAssembly and client libraries. No text is ever transmitted over the network.",
+        a: "No. File parsing and PDF compilation occur 100% locally in your browser via client-side JavaScript libraries. No text is ever transmitted over the network.",
       },
     ],
   },
@@ -564,7 +564,7 @@ const tools: Record<string, ToolText> = {
       },
       {
         q: "Are my documents uploaded to a server to reorder them?",
-        a: "No. Page reordering executes 100% locally in your browser via WebAssembly. Your files stay strictly on your device.",
+        a: "No. Page reordering executes 100% locally in your browser via JavaScript. Your files stay strictly on your device.",
       },
       {
         q: "Is there a limit on how many pages I can reorder?",
@@ -818,7 +818,7 @@ const tools: Record<string, ToolText> = {
       },
       {
         q: "Are my documents uploaded to any server?",
-        a: "No. Everything runs locally in your browser memory via WebAssembly and client-side JavaScript.",
+        a: "No. Everything runs locally in your browser memory via client-side JavaScript.",
       },
     ],
     options: {
@@ -923,7 +923,7 @@ const tools: Record<string, ToolText> = {
       },
       {
         q: "Are my documents kept private?",
-        a: "Yes. Processing executes exclusively inside your local browser via WebAssembly without cloud uploads.",
+        a: "Yes. Processing executes exclusively inside your local browser via JavaScript without cloud uploads.",
       },
     ],
     options: {
@@ -1637,7 +1637,7 @@ const tools: Record<string, ToolText> = {
     "faq": [
       {
         "q": "Is my signature stored on your servers?",
-        "a": "No. Signing and rendering runs 100% in your browser using WebAssembly and Canvas."
+        "a": "No. Signing and rendering runs 100% in your browser using JavaScript and Canvas."
       }
     ]
   },

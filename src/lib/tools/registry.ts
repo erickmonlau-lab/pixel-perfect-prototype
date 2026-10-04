@@ -147,7 +147,7 @@ export const TOOLS: ToolDefinition[] = [
       },
       {
         q: "¿Se sube mi archivo a algún servidor externo?",
-        a: "No. Toda la compresión y análisis de páginas se procesa localmente en la memoria de tu navegador mediante JavaScript y WebAssembly. Tus documentos confidenciales nunca viajan por internet.",
+        a: "No. Toda la compresión y análisis de páginas se procesa localmente en la memoria de tu navegador mediante JavaScript. Tus documentos confidenciales nunca viajan por internet.",
       },
     ],
     options: [
@@ -222,7 +222,7 @@ export const TOOLS: ToolDefinition[] = [
       },
       {
         q: "¿Mis documentos se suben a algún servidor externo?",
-        a: "No. La unión de PDFs se realiza 100% de forma local en tu navegador mediante WebAssembly y JavaScript. Los archivos nunca viajan por internet ni quedan almacenados en la nube.",
+        a: "No. La unión de PDFs se realiza 100% de forma local en tu navegador mediante JavaScript. Los archivos nunca viajan por internet ni quedan almacenados en la nube.",
       },
     ],
     run: mergePdf,
@@ -411,7 +411,7 @@ export const TOOLS: ToolDefinition[] = [
       },
       {
         q: "¿Se suben mis fotografías a internet o a algún servidor?",
-        a: "No. El empaquetado de imágenes en PDF se realiza al 100% de manera local en tu navegador mediante WebAssembly. Tus fotos privadas nunca abandonan tu ordenador o teléfono.",
+        a: "No. El empaquetado de imágenes en PDF se realiza al 100% de manera local en tu navegador mediante JavaScript. Tus fotos privadas nunca abandonan tu ordenador o teléfono.",
       },
     ],
     options: [
@@ -468,7 +468,7 @@ export const TOOLS: ToolDefinition[] = [
       },
       {
         q: "¿El procesamiento de rotación se realiza en mi navegador?",
-        a: "Sí. Todo el proceso se ejecuta 100% de forma local en tu dispositivo mediante WebAssembly. Tu documento nunca se envía a la red ni a servidores de terceros.",
+        a: "Sí. Todo el proceso se ejecuta 100% de forma local en tu dispositivo mediante JavaScript. Tu documento nunca se envía a la red ni a servidores de terceros.",
       },
     ],
     options: [
@@ -534,7 +534,7 @@ export const TOOLS: ToolDefinition[] = [
       },
       {
         q: "¿Se procesa el archivo de forma privada en mi navegador?",
-        a: "Sí. La extracción ocurre íntegramente dentro de tu navegador con WebAssembly. Ningún documento viaja por la red ni se aloja en servidores externos.",
+        a: "Sí. La extracción ocurre íntegramente dentro de tu navegador con JavaScript. Ningún documento viaja por la red ni se aloja en servidores externos.",
       },
     ],
     options: [
@@ -739,7 +739,7 @@ export const TOOLS: ToolDefinition[] = [
       },
       {
         q: "¿Se sube mi archivo Word a algún servidor para la conversión?",
-        a: "No. El análisis del archivo .docx y la generación del PDF ocurren 100% de manera local en tu navegador mediante WebAssembly y librerías de cliente. Ningún texto viaja por la red.",
+        a: "No. El análisis del archivo .docx y la generación del PDF ocurren 100% de manera local en tu navegador mediante librerías JavaScript de cliente. Ningún texto viaja por la red.",
       },
     ],
     run: wordToPdf,
@@ -944,7 +944,7 @@ export const TOOLS: ToolDefinition[] = [
       },
       {
         q: "¿Es seguro procesar contratos o documentos confidenciales dañados?",
-        a: "Totalmente. El diagnóstico binario y la reconstrucción estructural se ejecutan al 100% en la memoria de tu navegador mediante WebAssembly y JavaScript sin transferir tus archivos por internet.",
+        a: "Totalmente. El diagnóstico binario y la reconstrucción estructural se ejecutan al 100% en la memoria de tu navegador mediante JavaScript sin transferir tus archivos por internet.",
       },
       {
         q: "¿Puede reparar un PDF protegido del cual no conozco la contraseña?",
@@ -1052,7 +1052,7 @@ export const TOOLS: ToolDefinition[] = [
       },
       {
         q: "¿Mi contraseña o mi documento se envían a internet?",
-        a: "No. Todo el desencriptado tiene lugar en la memoria de tu dispositivo mediante WebAssembly y JavaScript. Ningún dato ni contraseña se transmite a servidores externos.",
+        a: "No. Todo el desencriptado tiene lugar en la memoria de tu dispositivo mediante JavaScript. Ningún dato ni contraseña se transmite a servidores externos.",
       },
     ],
     options: [
@@ -1091,7 +1091,7 @@ export const TOOLS: ToolDefinition[] = [
     faq: [
       {
         q: "¿Mi firma se almacena en sus servidores?",
-        a: "No. El proceso de firma y renderizado se realiza 100% en tu navegador mediante WebAssembly y Canvas. Ni tu documento ni tu firma salen de tu equipo.",
+        a: "No. El proceso de firma y renderizado se realiza 100% en tu navegador mediante JavaScript y Canvas. Ni tu documento ni tu firma salen de tu equipo.",
       },
       {
         q: "¿Puedo colocar la firma en varias páginas?",
@@ -1614,7 +1614,7 @@ export const TOOLS: ToolDefinition[] = [
       },
       {
         q: "¿Mis documentos se transfieren a servidores externos para realizar el recorte?",
-        a: "No. Toda la modificación del CropBox se ejecuta íntegramente en la memoria de tu navegador mediante pdf-lib y WebAssembly. Tu información confidencial nunca sale de tu equipo.",
+        a: "No. Toda la modificación del CropBox se ejecuta íntegramente en la memoria de tu navegador mediante pdf-lib (JavaScript). Tu información confidencial nunca sale de tu equipo.",
       },
     ],
     options: [
@@ -1803,7 +1803,7 @@ export const TOOLS: ToolDefinition[] = [
       },
       {
         q: "¿Mis documentos se envían a algún servidor para reordenarlos?",
-        a: "No. La reordenación se ejecuta al 100% de forma local en tu navegador mediante WebAssembly. Tu información permanece privada en tu dispositivo.",
+        a: "No. La reordenación se ejecuta al 100% de forma local en tu navegador mediante JavaScript. Tu información permanece privada en tu dispositivo.",
       },
       {
         q: "¿Hay límite de páginas para reorganizar?",
@@ -2289,7 +2289,7 @@ export const TOOLS: ToolDefinition[] = [
       },
       {
         q: "¿Mis documentos se transfieren por internet?",
-        a: "No. La combinación e inserción de páginas ocurre estrictamente en el motor WebAssembly de tu navegador sin subidas a servidores.",
+        a: "No. La combinación e inserción de páginas ocurre estrictamente en tu navegador sin subidas a servidores.",
       },
     ],
     options: [

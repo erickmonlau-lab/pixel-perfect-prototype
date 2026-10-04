@@ -39,7 +39,7 @@ const tools: Record<string, ToolText> = {
       },
       {
         q: "El meu fitxer es puja a cap servidor extern?",
-        a: "No. Tota la compressió i anàlisi de pàgines es processa localment a la memòria del teu navegador mitjançant JavaScript i WebAssembly. Els teus documents confidencials mai no viatgen per internet.",
+        a: "No. Tota la compressió i anàlisi de pàgines es processa localment a la memòria del teu navegador mitjançant JavaScript. Els teus documents confidencials mai no viatgen per internet.",
       },
     ],
     options: {
@@ -96,7 +96,7 @@ const tools: Record<string, ToolText> = {
       },
       {
         q: "Els meus documents es pugen a cap servidor extern?",
-        a: "No. La unió de PDF es realitza 100% de manera local al teu navegador mitjançant WebAssembly i JavaScript. Els fitxers mai no viatgen per internet ni s'allotgen al núvol.",
+        a: "No. La unió de PDF es realitza 100% de manera local al teu navegador mitjançant JavaScript. Els fitxers mai no viatgen per internet ni s'allotgen al núvol.",
       },
     ],
   },
@@ -236,7 +236,7 @@ const tools: Record<string, ToolText> = {
       },
       {
         q: "Es pugen les meves fotografies a internet o a cap servidor?",
-        a: "No. L'empaquetament d'imatges a PDF es realitza al 100% de manera local al teu navegador mitjançant WebAssembly. Les teves fotos privades mai no abandonen el teu ordinador o telèfon.",
+        a: "No. L'empaquetament d'imatges a PDF es realitza al 100% de manera local al teu navegador mitjançant JavaScript. Les teves fotos privades mai no abandonen el teu ordinador o telèfon.",
       },
     ],
     options: {
@@ -280,7 +280,7 @@ const tools: Record<string, ToolText> = {
       },
       {
         q: "El processament de rotació es realitza al meu navegador?",
-        a: "Sí. Tot el procés s'executa 100% de manera local al teu dispositiu mitjançant WebAssembly. El teu document mai no s'envia a la xarxa ni a servidors de tercers.",
+        a: "Sí. Tot el procés s'executa 100% de manera local al teu dispositiu mitjançant JavaScript. El teu document mai no s'envia a la xarxa ni a servidors de tercers.",
       },
     ],
     options: {
@@ -329,7 +329,7 @@ const tools: Record<string, ToolText> = {
       },
       {
         q: "Es processa el fitxer de manera privada al meu navegador?",
-        a: "Sí. L'extracció té lloc íntegrament dins del teu navegador amb WebAssembly. Cap document viatja per la xarxa ni s'allotja a servidors externs.",
+        a: "Sí. L'extracció té lloc íntegrament dins del teu navegador amb JavaScript. Cap document viatja per la xarxa ni s'allotja a servidors externs.",
       },
     ],
     options: { pages: { label: "Pàgines a extreure", help: "Exemple: 1, 4-6, 10" } },
@@ -536,7 +536,7 @@ const tools: Record<string, ToolText> = {
       },
       {
         q: "Es puja el meu fitxer Word a cap servidor per a la conversió?",
-        a: "No. L'anàlisi del fitxer .docx i la generació del PDF tenen lloc 100% de manera local al teu navegador mitjançant WebAssembly i llibreries de client. Cap text viatja per la xarxa.",
+        a: "No. L'anàlisi del fitxer .docx i la generació del PDF tenen lloc 100% de manera local al teu navegador mitjançant llibreries JavaScript de client. Cap text viatja per la xarxa.",
       },
     ],
   },
@@ -570,7 +570,7 @@ const tools: Record<string, ToolText> = {
       },
       {
         q: "Els meus documents s'envien a algun servidor per reordenar-los?",
-        a: "No. La reordenació s'executa al 100% de manera local al teu navegador mitjançant WebAssembly. La teva informació roman privada al teu dispositiu.",
+        a: "No. La reordenació s'executa al 100% de manera local al teu navegador mitjançant JavaScript. La teva informació roman privada al teu dispositiu.",
       },
       {
         q: "Hi ha límit de pàgines per reorganitzar?",
@@ -929,7 +929,7 @@ const tools: Record<string, ToolText> = {
       },
       {
         q: "Els meus fitxers es transfereixen per internet?",
-        a: "No. La combinació i inserció de pàgines es produeix al motor WebAssembly del teu navegador sense pujades al núvol.",
+        a: "No. La combinació i inserció de pàgines es produeix al teu navegador sense pujades al núvol.",
       },
     ],
     options: {
