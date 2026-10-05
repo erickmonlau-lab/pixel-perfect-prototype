@@ -837,7 +837,7 @@ export const TOOLS: ToolDefinition[] = [
     name: "OCR de PDF",
     h1: "Reconocimiento óptico de caracteres (OCR) en PDF",
     tagline: "Convierte documentos escaneados en archivos con texto seleccionable y buscable.",
-    seoTitle: "OCR de PDF online gratis | Reconocimiento de texto BreadPDF",
+    seoTitle: "OCR de PDF online gratis: reconocer texto en escaneados | BreadPDF",
     seoDescription:
       "Aplica OCR a tus PDF escaneados o imágenes directamente en el navegador. Genera un PDF con texto buscable o extrae el contenido en formato .txt.",
     category: "inteligencia",
@@ -913,7 +913,7 @@ export const TOOLS: ToolDefinition[] = [
     name: "Reparar PDF",
     h1: "Reparar y recuperar archivos PDF dañados",
     tagline: "Recupera documentos corruptos reconstruyendo su estructura y tabla de referencias.",
-    seoTitle: "Reparar PDF online gratis | Recuperación de documentos BreadPDF",
+    seoTitle: "Reparar PDF dañado online gratis y recuperar el archivo | BreadPDF",
     seoDescription:
       "Repara archivos PDF que no abren, tienen la estructura rota o errores de XRef. Recupera páginas y descarga un PDF saneado en tu navegador.",
     category: "optimizar",
@@ -1120,7 +1120,7 @@ export const TOOLS: ToolDefinition[] = [
     name: "PDF a Excel",
     h1: "Convertir PDF a Excel y CSV online gratis",
     tagline: "Extrae tablas y datos estructurados de tu PDF a hojas de cálculo XLSX o CSV.",
-    seoTitle: "Convertir PDF a Excel online gratis | XLSX y CSV en BreadPDF",
+    seoTitle: "Convertir PDF a Excel online gratis (XLSX y CSV) | BreadPDF",
     seoDescription:
       "Convierte tablas y datos de tus archivos PDF a hojas de cálculo Excel (.xlsx) o CSV de forma rápida, exacta y sin subir archivos a servidores externos.",
     category: "convertir",
@@ -1283,7 +1283,7 @@ export const TOOLS: ToolDefinition[] = [
     name: "Extraer datos",
     h1: "Extraer datos estructurados de PDF",
     tagline: "Detecta y extrae correos, teléfonos, fechas e importes monetarios automáticamente.",
-    seoTitle: "Extraer datos de PDF online gratis | JSON y CSV en BreadPDF",
+    seoTitle: "Extraer datos de PDF online gratis a JSON y CSV | BreadPDF",
     seoDescription:
       "Extrae información sensible y estructurada como emails, importes, fechas y teléfonos directamente en formato JSON o CSV.",
     category: "inteligencia",
@@ -1579,7 +1579,7 @@ export const TOOLS: ToolDefinition[] = [
     name: "Recortar PDF",
     h1: "Recortar márgenes de páginas PDF",
     tagline: "Elimina los márgenes en blanco sobrantes y ajusta el encuadre de todas las páginas.",
-    seoTitle: "Recortar PDF online gratis | Ajustar márgenes BreadPDF",
+    seoTitle: "Recortar PDF online gratis: cortar márgenes de las páginas | BreadPDF",
     seoDescription:
       "Recorta márgenes vacíos y ajusta la caja de visualización de tus documentos PDF de forma precisa y 100% en tu navegador.",
     category: "editar",
@@ -1681,7 +1681,7 @@ export const TOOLS: ToolDefinition[] = [
     name: "PDF a PDF/A",
     h1: "Convertir PDF a PDF/A para archivo a largo plazo",
     tagline: "Estandariza tu PDF bajo la norma ISO 19005-1 para trámites con Hacienda, juzgados y administraciones públicas.",
-    seoTitle: "Convertir PDF a PDF/A online gratis | Norma ISO BreadPDF",
+    seoTitle: "Convertir PDF a PDF/A online gratis para archivo | BreadPDF",
     seoDescription:
       "Transforma tus documentos al formato PDF/A estándar de conservación a largo plazo, requerido por Hacienda, juzgados, LexNET y administraciones públicas. Sin subir archivos.",
     category: "convertir",
