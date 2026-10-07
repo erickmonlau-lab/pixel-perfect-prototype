@@ -184,7 +184,7 @@ export const TOOLS: ToolDefinition[] = [
     multiple: true,
     minFiles: 2,
     ctaLabel: "Unir PDF",
-    keywords: ["unir pdf", "juntar pdf", "combinar pdf"],
+    keywords: ["unir pdf", "juntar pdf", "combinar pdf", "unir varios pdf", "fusionar pdf", "unir archivos pdf"],
     howItWorks: [
       {
         title: "Añade tus PDF",
@@ -242,7 +242,7 @@ export const TOOLS: ToolDefinition[] = [
     multiple: false,
     minFiles: 1,
     ctaLabel: "Dividir PDF",
-    keywords: ["dividir pdf", "separar pdf", "cortar pdf"],
+    keywords: ["dividir pdf", "separar pdf", "cortar pdf", "partir pdf", "separar paginas pdf", "dividir pdf en partes"],
     howItWorks: [
       "Sube el PDF que quieres dividir.",
       "Elige separar cada página o escribe tus intervalos.",
@@ -311,7 +311,7 @@ export const TOOLS: ToolDefinition[] = [
     multiple: false,
     minFiles: 1,
     ctaLabel: "Convertir a JPG",
-    keywords: ["pdf a jpg", "pdf a imagen", "convertir pdf a jpg"],
+    keywords: ["pdf a jpg", "pdf a imagen", "convertir pdf a jpg", "pasar pdf a jpg", "exportar pdf a jpg", "extraer paginas pdf a jpg"],
     howItWorks: [
       "Sube tu PDF.",
       "Ajusta resolución y calidad si lo necesitas.",
@@ -382,7 +382,7 @@ export const TOOLS: ToolDefinition[] = [
     multiple: true,
     minFiles: 1,
     ctaLabel: "Crear PDF",
-    keywords: ["jpg a pdf", "imagen a pdf", "png a pdf"],
+    keywords: ["jpg a pdf", "imagen a pdf", "convertir foto a pdf", "fotos a pdf", "pasar fotos a pdf", "jpg a pdf online"],
     howItWorks: [
       "Añade tus imágenes JPG o PNG.",
       "Ordénalas y elige el tamaño de página.",
@@ -443,7 +443,7 @@ export const TOOLS: ToolDefinition[] = [
     multiple: false,
     minFiles: 1,
     ctaLabel: "Rotar PDF",
-    keywords: ["rotar pdf", "girar pdf", "voltear pdf"],
+    keywords: ["rotar pdf", "girar pdf", "voltear pdf", "cambiar orientacion pdf", "girar paginas pdf", "rotar pdf permanente"],
     howItWorks: ["Sube el PDF.", "Elige el giro y las páginas.", "Descarga el PDF ya rotado."],
     faq: [
       {
@@ -564,7 +564,7 @@ export const TOOLS: ToolDefinition[] = [
     multiple: false,
     minFiles: 1,
     ctaLabel: "Eliminar páginas",
-    keywords: ["eliminar páginas pdf", "borrar páginas pdf", "quitar hojas pdf"],
+    keywords: ["eliminar páginas pdf", "borrar páginas pdf", "quitar hojas pdf", "suprimir paginas pdf", "eliminar hojas de un pdf"],
     howItWorks: ["Sube el PDF.", "Indica las páginas a eliminar.", "Descarga el resultado."],
     faq: [
       {
@@ -619,7 +619,7 @@ export const TOOLS: ToolDefinition[] = [
     multiple: false,
     minFiles: 1,
     ctaLabel: "Extraer texto",
-    keywords: ["extraer texto pdf", "pdf a txt", "copiar texto pdf"],
+    keywords: ["extraer texto pdf", "pdf a txt", "copiar texto pdf", "sacar texto de un pdf", "convertir pdf a texto plano"],
     howItWorks: ["Sube el PDF.", "BreadPDF recorre las páginas.", "Descarga el archivo de texto."],
     faq: [
       {
@@ -759,7 +759,7 @@ export const TOOLS: ToolDefinition[] = [
     multiple: false,
     minFiles: 1,
     ctaLabel: "Aplicar marca de agua",
-    keywords: ["marca de agua pdf", "watermark pdf", "sello pdf"],
+    keywords: ["marca de agua pdf", "watermark pdf", "sello pdf", "poner marca de agua pdf", "sello confidencial pdf", "marca de agua en pdf"],
     howItWorks: [
       "Sube tu archivo PDF.",
       "Configura el texto, ángulo, tamaño, opacidad y posición.",
@@ -803,7 +803,7 @@ export const TOOLS: ToolDefinition[] = [
     multiple: false,
     minFiles: 1,
     ctaLabel: "Numerar páginas",
-    keywords: ["numerar pdf", "paginar pdf", "numeros de pagina pdf"],
+    keywords: ["numerar pdf", "paginar pdf", "numeros de pagina pdf", "numerar paginas pdf", "numerar pdf online", "numerar pdf tesis"],
     howItWorks: [
       "Sube tu documento PDF.",
       "Selecciona el formato ({n} de {total}) y la posición.",
@@ -1027,7 +1027,7 @@ export const TOOLS: ToolDefinition[] = [
     multiple: false,
     minFiles: 1,
     ctaLabel: "Desbloquear PDF",
-    keywords: ["desbloquear pdf", "quitar contraseña pdf", "eliminar clave pdf"],
+    keywords: ["desbloquear pdf", "quitar contraseña pdf", "eliminar clave pdf", "desproteger pdf", "quitar clave pdf"],
     howItWorks: [
       "Sube tu archivo PDF protegido.",
       "Introduce la contraseña actual del documento.",
@@ -1350,7 +1350,7 @@ export const TOOLS: ToolDefinition[] = [
     multiple: false,
     minFiles: 1,
     ctaLabel: "Convertir a PowerPoint",
-    keywords: ["pdf a powerpoint", "pdf a pptx", "convertir diapositivas pdf"],
+    keywords: ["pdf a powerpoint", "pdf a pptx", "convertir diapositivas pdf", "pasar pdf a powerpoint", "pdf a ppt"],
     howItWorks: [
       "Sube tu archivo PDF.",
       "El motor genera diapositivas vectoriales panorámicas de alta definición.",
@@ -1395,7 +1395,7 @@ export const TOOLS: ToolDefinition[] = [
     multiple: false,
     minFiles: 1,
     ctaLabel: "Convertir a WebP",
-    keywords: ["pdf a webp", "convertir pdf webp", "extraer imagenes webp pdf"],
+    keywords: ["pdf a webp", "convertir pdf webp", "extraer imagenes webp pdf", "pasar pdf a webp", "paginas pdf a webp"],
     howItWorks: [
       "Sube tu archivo PDF.",
       "Elige la resolución de renderizado.",
@@ -1737,7 +1737,7 @@ export const TOOLS: ToolDefinition[] = [
     multiple: false,
     minFiles: 1,
     ctaLabel: "Convertir a PDF",
-    keywords: ["excel a pdf", "convertir xlsx a pdf", "hoja de calculo a pdf"],
+    keywords: ["excel a pdf", "convertir xlsx a pdf", "hoja de calculo a pdf", "pasar excel a pdf", "guardar excel como pdf"],
     howItWorks: [
       "Sube tu libro de Excel (.xlsx o .xls).",
       "El motor procesa cada pestaña y ajusta las tablas en formato apaisado A4.",
@@ -1782,7 +1782,7 @@ export const TOOLS: ToolDefinition[] = [
     multiple: false,
     minFiles: 1,
     ctaLabel: "Guardar nuevo orden",
-    keywords: ["reordenar páginas pdf", "cambiar orden páginas pdf", "mover hojas pdf"],
+    keywords: ["reordenar páginas pdf", "cambiar orden páginas pdf", "mover hojas pdf", "organizar paginas pdf", "ordenar pdf visualmente"],
     howItWorks: [
       "Sube tu archivo PDF.",
       "Arrastra las miniaturas de las páginas para colocarlas en el orden exacto que desees.",
@@ -1882,7 +1882,7 @@ export const TOOLS: ToolDefinition[] = [
     multiple: false,
     minFiles: 1,
     ctaLabel: "Limpiar metadatos",
-    keywords: ["eliminar metadatos pdf", "limpiar propiedades pdf", "quitar autor pdf"],
+    keywords: ["eliminar metadatos pdf", "limpiar propiedades pdf", "quitar autor pdf", "borrar metadatos pdf", "anonimizar pdf"],
     howItWorks: [
       "Selecciona el PDF que deseas limpiar.",
       "El sistema purga los campos de autor, título, asunto, software creador y fechas.",
@@ -1927,7 +1927,7 @@ export const TOOLS: ToolDefinition[] = [
     multiple: false,
     minFiles: 1,
     ctaLabel: "Convertir a PNG",
-    keywords: ["pdf a png", "convertir pdf a png", "extraer imagenes png pdf"],
+    keywords: ["pdf a png", "convertir pdf a png", "extraer imagenes png pdf", "pasar pdf a png", "exportar pdf a png alta calidad"],
     howItWorks: [
       "Sube tu archivo PDF.",
       "Selecciona la resolución o escala deseada.",
@@ -1985,7 +1985,7 @@ export const TOOLS: ToolDefinition[] = [
     multiple: true,
     minFiles: 1,
     ctaLabel: "Convertir a PDF",
-    keywords: ["png a pdf", "convertir png a pdf", "unir png en pdf"],
+    keywords: ["png a pdf", "convertir png a pdf", "unir png en pdf", "pasar png a pdf", "combinar png a pdf"],
     howItWorks: [
       "Selecciona una o varias imágenes PNG de tu dispositivo.",
       "Elige si prefieres encajarlas en hoja A4 con márgenes o conservar el tamaño original.",
@@ -2042,7 +2042,7 @@ export const TOOLS: ToolDefinition[] = [
     multiple: false,
     minFiles: 1,
     ctaLabel: "Ajustar tamaño",
-    keywords: ["ajustar tamaño pdf", "cambiar tamaño pagina pdf", "pasar pdf a a4"],
+    keywords: ["ajustar tamaño pdf", "cambiar tamaño pagina pdf", "pasar pdf a a4", "redimensionar pdf", "estandarizar pdf a4"],
     howItWorks: [
       "Sube tu archivo PDF.",
       "Elige el formato de página objetivo (A4, Carta, Legal o A3).",
@@ -2692,7 +2692,7 @@ export const TOOLS: ToolDefinition[] = [
     multiple: false,
     minFiles: 1,
     ctaLabel: "Eliminar páginas en blanco",
-    keywords: ["eliminar páginas en blanco pdf", "quitar páginas vacías pdf", "borrar páginas blancas pdf"],
+    keywords: ["eliminar páginas en blanco pdf", "quitar páginas vacías pdf", "borrar páginas blancas pdf", "detectar paginas en blanco pdf", "limpiar hojas vacias pdf"],
     howItWorks: [
       "Sube el PDF con páginas en blanco o casi vacías.",
       "El analizador renderiza cada página en baja resolución y mide el ratio de píxeles blancos.",
