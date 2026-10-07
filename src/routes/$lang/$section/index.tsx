@@ -1,5 +1,6 @@
 import { createFileRoute, notFound } from "@tanstack/react-router";
 import { CatalogBrowser } from "@/components/site/CatalogBrowser";
+import { GuidesHubPage } from "@/components/site/GuidesHubPage";
 import { ToolSearch } from "@/components/site/ToolSearch";
 import { PremiumPage } from "@/components/premium/PremiumPage";
 import { AuthSplitLayout } from "@/components/auth/AuthSplitLayout";
@@ -117,6 +118,31 @@ export const Route = createFileRoute("/$lang/$section/")({
         links: alternateLinks(locale, { kind: "privacy" }),
       };
     }
+    if (kind === "guides") {
+      const titles = {
+        es: "Guías & Tutoriales de Edición y Optimización PDF | BreadPDF",
+        ca: "Guies & Tutorials d'Edició i Optimització PDF | BreadPDF",
+        en: "PDF Editing & Optimization Guides & Tutorials | BreadPDF",
+      };
+      const descs = {
+        es: "Manuales exhaustivos y mejores prácticas para comprimir, unir, organizar, convertir y proteger documentos PDF con total privacidad.",
+        ca: "Manuals exhaustius i millors pràctiques per comprimir, unir, organitzar, convertir i protegir documents PDF amb privadesa total.",
+        en: "In-depth guides and best practices to compress, merge, organize, convert, and protect PDF documents with complete local privacy.",
+      };
+      const title = titles[locale] || titles.es;
+      const description = descs[locale] || descs.es;
+      return {
+        meta: [
+          { title },
+          { name: "description", content: description },
+          { property: "og:title", content: title },
+          { property: "og:description", content: description },
+          { property: "og:type", content: "website" },
+          { name: "twitter:card", content: "summary_large_image" },
+        ],
+        links: alternateLinks(locale, { kind: "guidesHub" }),
+      };
+    }
     return {
       meta: [
         { title: t.meta.catalogTitle },
@@ -141,6 +167,7 @@ function SectionPage() {
   if (kind === "premium") return <PremiumPage />;
   if (kind === "cookies") return <CookiesPage />;
   if (kind === "terms") return <TermsPage />;
+  if (kind === "guides") return <GuidesHubPage />;
   return kind === "privacy" ? <PrivacyPage /> : <CatalogPage />;
 }
 

@@ -13,6 +13,7 @@ import {
   termsParams,
   premiumParams,
   toolParams,
+  guidesHubParams,
 } from "@/lib/i18n/routing";
 import { trackToolCatalogViewAllClicked } from "@/lib/analytics/gtm";
 import { BRAND_WORDMARK, BRAND_ASSETS, OFFICIAL_CONTACT_EMAIL } from "@/lib/brand";
@@ -240,16 +241,8 @@ export function Footer() {
               {/* Guías documentales */}
               <li>
                 <Link
-                  to={DETAIL_ROUTE}
-                  params={{
-                    lang: locale,
-                    section: locale === "ca" ? "guies" : locale === "en" ? "guides" : "guias",
-                    slug: locale === "ca"
-                      ? "reduir-pdf-limit-pujada-campus-virtual"
-                      : locale === "en"
-                        ? "reduce-pdf-file-size-for-virtual-campus-submission"
-                        : "reducir-pdf-limite-subida-campus-virtual",
-                  }}
+                  to={SECTION_ROUTE}
+                  params={guidesHubParams(locale)}
                   className="group inline-flex items-center gap-2.5 font-medium text-slate-300 transition-colors hover:text-[#EC3C2D]"
                 >
                   <BookOpen className="size-4 shrink-0 text-[#EC3C2D]" />

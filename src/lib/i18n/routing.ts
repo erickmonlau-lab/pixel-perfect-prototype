@@ -54,6 +54,10 @@ export function accountParams(locale: Locale) {
   return { lang: locale, section: SEGMENTS[locale].account };
 }
 
+export function guidesHubParams(locale: Locale) {
+  return { lang: locale, section: SEGMENTS[locale].guides };
+}
+
 export function toolParams(locale: Locale, canonicalSlug: string) {
   return {
     lang: locale,
@@ -77,6 +81,10 @@ export function homePath(locale: Locale) {
 
 export function catalogPath(locale: Locale) {
   return `/${locale}/${SEGMENTS[locale].tools}`;
+}
+
+export function guidesHubPath(locale: Locale) {
+  return `/${locale}/${SEGMENTS[locale].guides}`;
 }
 
 export function premiumPath(locale: Locale) {
@@ -126,6 +134,7 @@ export function guidePath(locale: Locale, canonicalSlug: string) {
 export type PageRef =
   | { kind: "home" }
   | { kind: "catalog" }
+  | { kind: "guidesHub" }
   | { kind: "privacy" }
   | { kind: "cookies" }
   | { kind: "terms" }
@@ -163,7 +172,8 @@ export function parsePath(pathname: string): { locale: Locale; page: PageRef } {
     const category = canonicalCategory(locale, slug);
     return { locale, page: category ? { kind: "category", category } : { kind: "unknown" } };
   }
-  if (kind === "guides" && slug) {
+  if (kind === "guides") {
+    if (!slug) return { locale, page: { kind: "guidesHub" } };
     const guide = findGuideBySlug(locale, slug);
     return { locale, page: guide ? { kind: "guide", canonicalSlug: guide.canonicalSlug } : { kind: "unknown" } };
   }
@@ -176,6 +186,8 @@ export function pathFor(locale: Locale, page: PageRef): string {
       return homePath(locale);
     case "catalog":
       return catalogPath(locale);
+    case "guidesHub":
+      return guidesHubPath(locale);
     case "privacy":
       return privacyPath(locale);
     case "cookies":

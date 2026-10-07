@@ -480,6 +480,59 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
         </ol>
       </section>
 
+      {/* 4.5. CONTEXTO EDITORIAL & CASOS DE USO TÉCNICOS (Capa editorial AdSense) */}
+      {t.category.details[tool.category]?.useCases && (
+        <section className="mt-12 sm:mt-14" aria-labelledby="editorial-context">
+          <div className="rounded-2xl border border-slate-200 bg-linear-to-br from-slate-50 via-white to-slate-50 p-6 sm:p-8 shadow-xs">
+            <div className="flex items-center gap-2.5 text-[12px] font-black uppercase tracking-wider text-[#EC3C2D]">
+              <Sparkles className="size-4" />
+              <span>
+                {locale === "ca"
+                  ? "Criteris tècnics & Aplicació documental"
+                  : locale === "en"
+                  ? "Technical Standards & Document Workflows"
+                  : "Criterios técnicos & Aplicación documental"}
+              </span>
+            </div>
+            <h2 id="editorial-context" className="mt-2 text-[20px] sm:text-[22px] font-black text-[#0F172A] tracking-tight">
+              {locale === "ca"
+                ? `Àmbit d'aplicació i recomanacions per a ${category.name}`
+                : locale === "en"
+                ? `Workflow Scenarios and Best Practices for ${category.name}`
+                : `Ámbito de aplicación y recomendaciones para ${category.name}`}
+            </h2>
+            <p className="mt-3 text-[15.5px] sm:text-[16px] leading-relaxed text-slate-700 font-normal">
+              {t.category.details[tool.category].useCases}
+            </p>
+            <div className="mt-5 pt-4 border-t border-slate-200/80 flex flex-wrap items-center justify-between gap-3 text-[13px] text-slate-500 font-medium">
+              <div className="flex items-center gap-2">
+                <span className="inline-flex size-2 rounded-full bg-emerald-500" />
+                <span>
+                  {locale === "ca"
+                    ? "Conforme a l'especificació ISO 32000-1 per a documents digitals"
+                    : locale === "en"
+                    ? "Fully compliant with ISO 32000-1 digital document standards"
+                    : "Conforme a la especificación ISO 32000-1 para documentos digitales"}
+                </span>
+              </div>
+              <Link
+                to={categoryPath(locale, tool.category)}
+                className="font-bold text-[#EC3C2D] hover:text-[#D93426] transition-colors inline-flex items-center gap-1 group"
+              >
+                <span>
+                  {locale === "ca"
+                    ? `Explorar més eines de ${category.name}`
+                    : locale === "en"
+                    ? `Explore all ${category.name} tools`
+                    : `Explorar más herramientas de ${category.name}`}
+                </span>
+                <span aria-hidden className="transition-transform group-hover:translate-x-0.5">→</span>
+              </Link>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* 5. PREGUNTAS FRECUENTES: Solid white cards with high-contrast type scale */}
       <section className="mt-12 sm:mt-14" aria-labelledby="faq">
         <h2 id="faq" className="text-2xl sm:text-[26px] font-black tracking-tight text-[#0F172A]">

@@ -14,6 +14,7 @@ import type { Locale } from "@/lib/i18n/config";
 import type { GuideDefinition, GuideFaqItem } from "@/lib/guides/registry";
 import { BRAND_ASSETS } from "@/lib/brand";
 import { Breadcrumb } from "@/components/site/Breadcrumb";
+import { SECTION_ROUTE, guidesHubParams } from "@/lib/i18n/routing";
 
 /* -------------------------------------------------------------------------- */
 /* 1. GUIDE HERO                                                              */
@@ -98,6 +99,8 @@ export function GuideHero({
         items={[
           {
             label: guidesLabel,
+            to: SECTION_ROUTE,
+            params: guidesHubParams(locale),
           },
           {
             label: guideTitle,

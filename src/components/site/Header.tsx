@@ -1,5 +1,5 @@
 import { Link, useRouterState, useNavigate } from "@tanstack/react-router";
-import { ChevronDown, Menu, X, ArrowRight, User, Star, Settings, Bell, Shield, LogOut } from "lucide-react";
+import { ChevronDown, Menu, X, ArrowRight, User, Star, Settings, Bell, Shield, LogOut, BookOpen } from "lucide-react";
 import { PremiumCrownIcon } from "./PremiumCrownIcon";
 import { useState, useRef, useEffect, useMemo } from "react";
 import { Button } from "@/components/ui/button";
@@ -21,6 +21,7 @@ import {
   registerParams,
   accountParams,
   toolParams,
+  guidesHubParams,
 } from "@/lib/i18n/routing";
 import { useAuth } from "@/lib/auth/auth-context";
 import { Logo } from "./Logo";
@@ -436,13 +437,25 @@ export function Header() {
                       })}
                     </div>
 
-                    {/* PIE DEL DESPLEGABLE: ENLACE DESTACADO A TODO EL CATÁLOGO (DINÁMICO) */}
+                    {/* PIE DEL DESPLEGABLE: ENLACES A CATÁLOGO Y A GUÍAS */}
                     <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between bg-slate-50/60 -mx-6 -mb-6 px-6 py-3.5 rounded-b-2xl">
-                      <div className="flex items-center gap-2">
-                        <span className="inline-flex size-2 rounded-full bg-[#059669]" />
-                        <span className="text-[13px] font-semibold text-slate-600">
-                          {tools.length} {locale === "ca" ? "eines operatives al navegador" : locale === "en" ? "browser-native PDF tools" : "herramientas disponibles en navegador"}
-                        </span>
+                      <div className="flex items-center gap-4">
+                        <div className="flex items-center gap-2">
+                          <span className="inline-flex size-2 rounded-full bg-[#059669]" />
+                          <span className="text-[13px] font-semibold text-slate-600">
+                            {tools.length} {locale === "ca" ? "eines operatives al navegador" : locale === "en" ? "browser-native PDF tools" : "herramientas disponibles en navegador"}
+                          </span>
+                        </div>
+                        <span className="text-slate-300">•</span>
+                        <Link
+                          to={SECTION_ROUTE}
+                          params={guidesHubParams(locale)}
+                          onClick={() => setActiveDropdown(null)}
+                          className="inline-flex items-center gap-1.5 text-[13px] font-bold text-slate-700 hover:text-[#EC3C2D] transition-colors"
+                        >
+                          <BookOpen className="size-3.5 text-[#EC3C2D]" />
+                          <span>{locale === "ca" ? "Guies & Tutorials" : locale === "en" ? "Guides & Tutorials" : "Guías & Tutoriales"}</span>
+                        </Link>
                       </div>
                       <Link
                         to={SECTION_ROUTE}
@@ -799,6 +812,17 @@ export function Header() {
                 </Link>
               </div>
             )}
+
+            {/* Guías & Tutoriales Link */}
+            <Link
+              to={SECTION_ROUTE}
+              params={guidesHubParams(locale)}
+              onClick={() => setMobileOpen(false)}
+              className="flex items-center gap-2.5 rounded-xl px-4 py-3 text-[14.5px] font-semibold text-slate-800 hover:bg-[#F5F7FA] hover:text-[#EC3C2D] transition-colors"
+            >
+              <BookOpen className="size-4 text-[#EC3C2D]" />
+              <span>{locale === "ca" ? "Guies & Tutorials" : locale === "en" ? "Guides & Tutorials" : "Guías & Tutoriales"}</span>
+            </Link>
 
             {/* Privacy Link */}
             <Link
