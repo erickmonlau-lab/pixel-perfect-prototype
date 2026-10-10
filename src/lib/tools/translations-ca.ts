@@ -1901,8 +1901,24 @@ const tools: Record<string, ToolText> = {
     ],
     "faq": [
       {
-        "q": "Es redueix la mida de lletra?",
-        "a": "No. El contingut conserva la seva escala vectorial original, només es retalla l'espai en blanc perimetral."
+        "q": "Es redueix la mida de lletra o la qualitat tipogràfica en retallar?",
+        "a": "No. El contingut vectorial conserva la seva nitidesa nativa. L'eina actualitza exclusivament la caixa de retall (CropBox) de l'estàndard PDF per ocultar l'espai buit perimetral sense comprimir ni rasteritzar fonts."
+      },
+      {
+        "q": "Com es calcula el marge de retall?",
+        "a": "El selector permet definir el retall en mil·límetres (de 5 mm fins a 50 mm). Aquest valor es resta uniformement dels quatre costats (superior, inferior, esquerre i dret) garantint un espai visible segur."
+      },
+      {
+        "q": "És una eina útil per preparar PDFs per a lectors de llibres electrònics (e-readers)?",
+        "a": "Sí. Retirar entre 15 i 25 mm de marges buits permet que el text ocupi un percentatge molt superior a la pantalla de dispositius Kindle o Kobo sense requerir zoom manual."
+      },
+      {
+        "q": "Es retallen totes les pàgines del PDF per igual?",
+        "a": "Sí. La mesura de retall triada s'aplica de forma automatitzada i homogènia a cadascuna de les pàgines del document."
+      },
+      {
+        "q": "Els meus fitxers es transfereixen a servidors externs?",
+        "a": "No. Tota la modificació del CropBox s'executa íntegrament a la memòria local del navegador amb WebAssembly/pdf-lib. La teva informació mai viatja per internet."
       }
     ],
     "options": {

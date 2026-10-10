@@ -1907,8 +1907,24 @@ const tools: Record<string, ToolText> = {
     ],
     "faq": [
       {
-        "q": "Does this shrink font sizes?",
-        "a": "No. Content retains its original vector dimensions; only empty boundary whitespace is cropped."
+        "q": "Does cropping reduce font size or visual resolution?",
+        "a": "No. The vector text and embedded images preserve their native crispness. The tool specifically updates the PDF standard CropBox boundary, concealing excess perimeter whitespace without compressing or rasterizing fonts."
+      },
+      {
+        "q": "How is the crop margin calculated?",
+        "a": "The slider lets you define the exact margin to trim in millimeters (from 5 mm up to 50 mm). This measurement is evenly subtracted from all four edges (top, bottom, left, and right) while maintaining a safe visible viewport."
+      },
+      {
+        "q": "Is this tool suited for optimizing PDFs for e-readers (Kindle, Kobo)?",
+        "a": "Yes. Trimming 15 mm to 25 mm of empty page borders is ideal for 6-inch and 7-inch e-ink screens, allowing body text to fill the display naturally without requiring manual zoom."
+      },
+      {
+        "q": "Are all pages in the PDF cropped uniformly?",
+        "a": "Yes. The selected margin boundary applies consistently across all pages in the document to produce an evenly framed, clean output."
+      },
+      {
+        "q": "Are my files uploaded to external cloud servers?",
+        "a": "No. All CropBox adjustments execute 100% locally in your browser memory via WebAssembly/pdf-lib. Your confidential documents never leave your computer."
       }
     ],
     "options": {
