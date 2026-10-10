@@ -42,8 +42,8 @@ export const GUIDES: GuideDefinition[] = [
       en: "How to Reduce a PDF Exceeding Virtual Campus Upload Limits",
     },
     seoTitle: {
-      es: "Cómo reducir un PDF para subirlo a Moodle y otros campus virtuales | BreadPDF",
-      ca: "Com reduir un PDF per pujar-lo a Moodle i altres campus virtuals | BreadPDF",
+      es: "Reducir PDF para Moodle y campus virtuales | BreadPDF",
+      ca: "Reduir PDF per a Moodle i campus virtuals | BreadPDF",
       en: "How to Reduce PDF Size for Moodle and Campus Submissions | BreadPDF",
     },
     seoDescription: {
@@ -1178,9 +1178,9 @@ export const GUIDES: GuideDefinition[] = [
       en: "How to Fix Large File Upload Issues in WordPress and WooCommerce",
     },
     seoTitle: {
-      es: "Cómo solucionar problemas al subir archivos grandes a WordPress y WooCommerce | BreadPDF",
-      ca: "Com solucionar problemes en pujar fitxers grans a WordPress i WooCommerce | BreadPDF",
-      en: "How to Fix Large File Upload Errors in WordPress & WooCommerce | BreadPDF",
+      es: "Subir archivos grandes a WordPress y WooCommerce | BreadPDF",
+      ca: "Pujar fitxers grans a WordPress i WooCommerce | BreadPDF",
+      en: "Upload Large Files to WordPress & WooCommerce | BreadPDF",
     },
     seoDescription: {
       es: "Descubre por qué WordPress puede rechazar archivos grandes, dónde comprobar el límite real y cómo reducir PDFs o imágenes antes de volver a subirlos.",

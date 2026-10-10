@@ -972,7 +972,7 @@ const en: Dict = {
   },
   cookies: {
     eyebrow: "Consent & Transparency",
-    title: "Cookie Policy | BreadPDF",
+    title: "Cookie Policy",
     seoTitle: "Cookie Policy | BreadPDF",
     seoDescription:
       "Detailed information about technical cookies, local storage preferences, and advertising consent preparation on BreadPDF.",
