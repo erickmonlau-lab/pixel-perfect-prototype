@@ -1160,11 +1160,11 @@ const tools: Record<string, ToolText> = {
     name: "Extract Images from PDF",
     h1: "Extract embedded images from a PDF",
     tagline: "Get the photographs and images embedded in your PDF as individual PNG files.",
-    seoTitle: "Extract images from PDF online free | BreadPDF",
+    seoTitle: "Extract Images from PDF Online Free: Separate Pictures & Photos | BreadPDF",
     seoDescription:
-      "Extract embedded images from your PDF document as individual PNG files directly in your browser, without uploading anything to any server.",
+      "Extract embedded pictures and photographs from your PDF at original quality. Separate images from PDF into individual PNG files or a ZIP archive 100% in your browser.",
     ctaLabel: "Extract images",
-    keywords: ["extract images from pdf", "get photos from pdf", "export pdf images", "pdf to images"],
+    keywords: ["extract images from pdf", "extract images from pdf online", "separate images from pdf", "extract image from pdf online free", "get photos from pdf", "export pdf images"],
     howItWorks: [
       "Upload the PDF you want to extract images from.",
       "The engine scans each page for embedded XObject image resources.",
@@ -1438,12 +1438,15 @@ const tools: Record<string, ToolText> = {
     "h1": "Number Pages in a PDF",
     "tagline": "Insert page numbers with configurable format, position, and margins.",
     "seoTitle": "Number PDF Pages Online for Free | BreadPDF",
-    "seoDescription": "Add clean page numbers to your PDF document in the header or footer, customizing layout, font, and margins.",
+    "seoDescription": "Add clean page numbers to your PDF document in the header or footer. Customize layout, font, numbering format, and exclude cover pages for thesis or reports.",
     "ctaLabel": "Number pages",
     "keywords": [
       "number pdf pages",
+      "number pdf pages online",
       "paginate pdf",
-      "page numbers pdf"
+      "page numbers pdf",
+      "add page numbers to pdf",
+      "number pdf pages free"
     ],
     "howItWorks": [
       "Upload your PDF document.",
@@ -1886,13 +1889,16 @@ const tools: Record<string, ToolText> = {
     "name": "Crop PDF",
     "h1": "Crop PDF Page Margins",
     "tagline": "Trim excess blank margins and adjust the viewport frame across all pages.",
-    "seoTitle": "Crop PDF Margins Online for Free | BreadPDF",
-    "seoDescription": "Trim unnecessary white margins and adjust the viewing crop box of your PDF documents with high accuracy in your browser.",
+    "seoTitle": "Crop PDF Online Free: Trim Margins & Cut Pages | BreadPDF",
+    "seoDescription": "Crop PDF pages online and trim white margins with millimeter precision. Adjust crop box for printing or e-readers with 100% private in-browser processing.",
     "ctaLabel": "Crop PDF",
     "keywords": [
       "crop pdf",
+      "crop pdf online",
       "trim pdf margins",
-      "remove white margins pdf"
+      "remove white margins pdf",
+      "cut pdf pages",
+      "crop pdf free"
     ],
     "howItWorks": [
       "Upload the PDF you want to crop.",

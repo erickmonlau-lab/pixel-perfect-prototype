@@ -795,7 +795,7 @@ export const TOOLS: ToolDefinition[] = [
     tagline: "Inserta numeración con formato, posición y márgenes configurables.",
     seoTitle: "Numerar páginas PDF online gratis | BreadPDF",
     seoDescription:
-      "Añade números de página a tu documento PDF, en el encabezado o pie, personalizando el formato y la tipografía.",
+      "Añade números de página y folia tus documentos PDF en el encabezado o pie. Personaliza formato, tipografía y excluye portadas o índices para tesis y memorias.",
     category: "editar",
     icon: "Hash",
     status: "live",
@@ -803,7 +803,7 @@ export const TOOLS: ToolDefinition[] = [
     multiple: false,
     minFiles: 1,
     ctaLabel: "Numerar páginas",
-    keywords: ["numerar pdf", "paginar pdf", "numeros de pagina pdf", "numerar paginas pdf", "numerar pdf online", "numerar pdf tesis"],
+    keywords: ["numerar pdf", "paginar pdf", "numeros de pagina pdf", "numerar paginas pdf", "numerar pdf online", "numerar pdf tesis", "foliar pdf"],
     howItWorks: [
       "Sube tu documento PDF.",
       "Selecciona el formato ({n} de {total}) y la posición.",
@@ -1579,9 +1579,9 @@ export const TOOLS: ToolDefinition[] = [
     name: "Recortar PDF",
     h1: "Recortar márgenes de páginas PDF",
     tagline: "Elimina los márgenes en blanco sobrantes y ajusta el encuadre de todas las páginas.",
-    seoTitle: "Recortar PDF online gratis: cortar márgenes de las páginas | BreadPDF",
+    seoTitle: "Recortar PDF online: ajustar márgenes y cortar páginas | BreadPDF",
     seoDescription:
-      "Recorta márgenes vacíos y ajusta la caja de visualización de tus documentos PDF de forma precisa y 100% en tu navegador.",
+      "Recorta páginas de un PDF online y ajusta los márgenes perimetrales con precisión milimétrica. Elimina bordes blancos para impresión o lectores e-reader 100% en tu navegador.",
     category: "editar",
     icon: "Crop",
     status: "live",
@@ -1589,7 +1589,7 @@ export const TOOLS: ToolDefinition[] = [
     multiple: false,
     minFiles: 1,
     ctaLabel: "Recortar PDF",
-    keywords: ["recortar pdf", "crop pdf", "ajustar margenes pdf", "quitar bordes blancos pdf"],
+    keywords: ["recortar pdf", "recortar pdf online", "crop pdf", "ajustar margenes pdf", "cortar paginas pdf", "quitar bordes blancos pdf"],
     howItWorks: [
       "Sube el PDF que deseas recortar.",
       "Selecciona los milímetros de margen que deseas retirar de los bordes.",
@@ -2576,9 +2576,9 @@ export const TOOLS: ToolDefinition[] = [
     name: "Extraer imágenes de PDF",
     h1: "Extraer imágenes embebidas de un PDF",
     tagline: "Obtén las fotografías e imágenes incrustadas en tu PDF como archivos PNG independientes.",
-    seoTitle: "Extraer imágenes de PDF online gratis | BreadPDF",
+    seoTitle: "Extraer imágenes de PDF online: guardar fotos en PNG o ZIP | BreadPDF",
     seoDescription:
-      "Extrae las imágenes embebidas en tu documento PDF como archivos PNG individuales directamente en tu navegador, sin subir nada a ningún servidor.",
+      "Extrae las imágenes incrustadas en tu archivo PDF con su resolución original y descárgalas en PNG o ZIP. Sin convertir páginas enteras y 100% en tu navegador.",
     category: "organizar",
     icon: "ImageDown",
     status: "live",
@@ -2586,7 +2586,7 @@ export const TOOLS: ToolDefinition[] = [
     multiple: false,
     minFiles: 1,
     ctaLabel: "Extraer imágenes",
-    keywords: ["extraer imágenes pdf", "sacar fotos pdf", "obtener imágenes pdf", "pdf a imágenes"],
+    keywords: ["extraer imágenes pdf", "extraer imagenes pdf online", "separar imagenes de pdf", "sacar fotos pdf", "descargar imagenes de pdf", "obtener imágenes pdf"],
     howItWorks: [
       "Sube el PDF del que quieres extraer imágenes.",
       "El motor analiza cada página en busca de objetos de imagen XObject embebidos.",

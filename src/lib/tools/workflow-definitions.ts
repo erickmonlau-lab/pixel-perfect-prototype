@@ -210,4 +210,54 @@ export const TOOL_WORKFLOW_MAP: Record<string, WorkflowSuggestion> = {
       en: "Add watermark",
     },
   },
+
+  // recortar-pdf -> numerar-paginas (Workflow encuadre + foliado)
+  "recortar-pdf": {
+    targetToolSlug: "numerar-paginas",
+    badge: {
+      es: "Maquetación final",
+      ca: "Maquetació final",
+      en: "Final formatting",
+    },
+    title: {
+      es: "¿Necesitas foliar las páginas recortadas?",
+      ca: "Necessites foliar les pàgines retallades?",
+      en: "Need to number your cropped pages?",
+    },
+    description: {
+      es: "Añade numeración de página limpia y homogénea en pie o cabecera con el formato que elijas.",
+      ca: "Afegeix numeració de pàgina neta i homogènia al peu o capçalera amb el format que triïs.",
+      en: "Add clean, uniform page numbering in headers or footers in your preferred format.",
+    },
+    cta: {
+      es: "Continuar a Numerar páginas",
+      ca: "Continuar a Numerar pàgines",
+      en: "Continue to Number pages",
+    },
+  },
+
+  // extraer-imagenes-pdf -> imagen-a-webp (Workflow optimización de fotos extraídas)
+  "extraer-imagenes-pdf": {
+    targetToolSlug: "imagen-a-webp",
+    badge: {
+      es: "Optimización web",
+      ca: "Optimització web",
+      en: "Web optimization",
+    },
+    title: {
+      es: "¿Optimizar las imágenes extraídas para web?",
+      ca: "Optimitzar les imatges extretes per a web?",
+      en: "Optimize extracted images for the web?",
+    },
+    description: {
+      es: "Convierte tus imágenes a WebP moderno para reducir hasta un 80% su peso en tiendas online y webs.",
+      ca: "Converteix les teves imatges a WebP modern per reduir fins a un 80% el seu pes en botigues en línia i webs.",
+      en: "Convert your images to modern WebP format to reduce up to 80% file size for websites and ecommerce.",
+    },
+    cta: {
+      es: "Optimizar a WebP",
+      ca: "Optimitzar a WebP",
+      en: "Optimize to WebP",
+    },
+  },
 };

@@ -1166,11 +1166,11 @@ const tools: Record<string, ToolText> = {
     name: "Extreure imatges de PDF",
     h1: "Extreure imatges incrustades d'un PDF",
     tagline: "Obtén les fotografies i imatges incrustades al teu PDF com a fitxers PNG independents.",
-    seoTitle: "Extreure imatges de PDF en línia gratis | BreadPDF",
+    seoTitle: "Extreure imatges de PDF en línia: desar fotos en PNG o ZIP | BreadPDF",
     seoDescription:
-      "Extreu les imatges incrustades al teu document PDF com a fitxers PNG individuals directament al teu navegador, sense pujar res a cap servidor.",
+      "Extreu les imatges incrustades al teu arxiu PDF amb la seva resolució original i descarrega-les en PNG o ZIP. Sense convertir pàgines senceres i 100% al navegador.",
     ctaLabel: "Extreu imatges",
-    keywords: ["extreure imatges pdf", "treure fotos pdf", "obtenir imatges pdf", "pdf a imatges"],
+    keywords: ["extreure imatges pdf", "extreure imatges pdf en linia", "separar imatges de pdf", "treure fotos pdf", "descarregar imatges de pdf", "obtenir imatges pdf"],
     howItWorks: [
       "Puja el PDF del qual vols extreure imatges.",
       "El motor analitza cada pàgina cercant objectes de tipus XObject de imatge incrustats.",
@@ -1432,12 +1432,15 @@ const tools: Record<string, ToolText> = {
     "h1": "Numerar pàgines d'un PDF",
     "tagline": "Insereix numeració amb format, posició i marges configurables.",
     "seoTitle": "Numerar pàgines PDF en línia gratis | BreadPDF",
-    "seoDescription": "Afegeix números de pàgina al teu document PDF, a la capçalera o al peu, personalitzant el format i la tipografia.",
+    "seoDescription": "Afegeix números de pàgina i folia documents PDF a la capçalera o al peu. Personalitza format, tipografia i exclou portades per a tesis i memòries.",
     "ctaLabel": "Numera les pàgines",
     "keywords": [
       "numerar pdf",
+      "numerar pdf en linia",
       "paginar pdf",
-      "numeros de pagina pdf"
+      "numeros de pagina pdf",
+      "foliar pdf",
+      "numerar pagines pdf"
     ],
     "howItWorks": [
       "Puja el teu document PDF.",
@@ -1880,13 +1883,15 @@ const tools: Record<string, ToolText> = {
     "name": "Retallar PDF",
     "h1": "Retallar marges de pàgines PDF",
     "tagline": "Elimina els marges en blanc sobrants i ajusta l'enquadrament de totes les pàgines.",
-    "seoTitle": "Retallar PDF en línia gratis | Ajustar marges BreadPDF",
-    "seoDescription": "Retalla marges buits i ajusta la caixa de visualització dels teus documents PDF de forma precisa i 100% al navegador.",
+    "seoTitle": "Retallar PDF en línia: ajustar marges i tallar pàgines | BreadPDF",
+    "seoDescription": "Retalla pàgines d'un PDF en línia i ajusta els marges perimetrals amb precisió mil·limètrica. Elimina vores blanques per a impressió o lectors e-reader 100% al navegador.",
     "ctaLabel": "Retallar PDF",
     "keywords": [
       "retallar pdf",
+      "retallar pdf en linia",
       "crop pdf",
       "ajustar marges pdf",
+      "tallar pagines pdf",
       "treure vores blanques pdf"
     ],
     "howItWorks": [
