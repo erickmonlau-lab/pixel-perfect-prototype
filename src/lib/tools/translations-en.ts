@@ -1456,7 +1456,27 @@ const tools: Record<string, ToolText> = {
     "faq": [
       {
         "q": "Can I skip numbering the cover page?",
-        "a": "Yes, enable 'Exclude first page' to keep the cover page unnumbered."
+        "a": "Yes, enable 'Exclude first page' to keep the cover page or introductory pages unnumbered."
+      },
+      {
+        "q": "What page number formats are supported?",
+        "a": "BreadPDF supports standard formats including simple numerals ('1, 2, 3'), total count formats ('Page {n} of {total}' / '1/15'), and roman numerals ('i, ii, iii') for academic theses and reports."
+      },
+      {
+        "q": "Where can page numbers be placed on the sheet?",
+        "a": "You can position numbers in footers (bottom-center, bottom-right, bottom-left) or headers (top-center, top-right, top-left) with safe margins preventing text overlap."
+      },
+      {
+        "q": "Can I use this tool to count how many pages my PDF has?",
+        "a": "Yes. When you load your file, BreadPDF instantly counts and displays the exact total number of pages in the thumbnail grid and format placeholder ({total}), letting you audit total pages before export."
+      },
+      {
+        "q": "Does numbering alter original vector text or formatting?",
+        "a": "No. Page numbers are stamped onto a separate, clean vector overlay using standard crisp fonts without modifying or shifting existing document content."
+      },
+      {
+        "q": "Are my documents processed securely?",
+        "a": "Yes. All page inspection, numbering, and rendering occur 100% locally in your browser memory via WebAssembly/pdf-lib. Your files are never uploaded to remote servers."
       }
     ]
   },

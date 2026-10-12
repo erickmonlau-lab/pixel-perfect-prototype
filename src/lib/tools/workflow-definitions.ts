@@ -260,4 +260,29 @@ export const TOOL_WORKFLOW_MAP: Record<string, WorkflowSuggestion> = {
       en: "Optimize to WebP",
     },
   },
+
+  // numerar-paginas -> aplanar-pdf (Workflow fijar foliado)
+  "numerar-paginas": {
+    targetToolSlug: "aplanar-pdf",
+    badge: {
+      es: "Seguridad y fijación",
+      ca: "Seguretat i fixació",
+      en: "Security & Flattening",
+    },
+    title: {
+      es: "¿Fijar la numeración de forma permanente?",
+      ca: "Vols fixar la numeració de manera permanent?",
+      en: "Permanently flatten page numbers?",
+    },
+    description: {
+      es: "Aplana el documento para consolidar los números de página como parte gráfica del PDF e impedir su edición.",
+      ca: "Aplana el document per consolidar els números de pàgina com a part gràfica del PDF i evitar-ne l'edició.",
+      en: "Flatten the document to merge page numbers permanently into the PDF background and prevent edits.",
+    },
+    cta: {
+      es: "Aplanar este documento",
+      ca: "Aplanar aquest document",
+      en: "Flatten this document",
+    },
+  },
 };

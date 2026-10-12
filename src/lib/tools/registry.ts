@@ -827,6 +827,10 @@ export const TOOLS: ToolDefinition[] = [
         a: "No. Los números se incrustan como una capa vectorial limpia e independiente utilizando fuentes estándar legibles, sin modificar ni mover las líneas de texto existentes en tus páginas.",
       },
       {
+        q: "¿Puedo usar esta herramienta para saber cuántas páginas o folios tiene mi PDF?",
+        a: "Sí. Al subir tu archivo a BreadPDF, el visor detecta y muestra inmediatamente el recuento exacto de páginas y hojas de tu documento tanto en el panel de miniaturas como en la variable del formato ({total}), permitiéndote verificar la extensión total antes de descargar."
+      },
+      {
         q: "¿El proceso de paginación es privado?",
         a: "Sí. Toda la lectura, numeración e inyección tipográfica se procesa localmente en tu navegador sin enviar ninguna página a servidores externos.",
       },

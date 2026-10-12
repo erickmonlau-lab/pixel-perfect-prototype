@@ -1449,8 +1449,28 @@ const tools: Record<string, ToolText> = {
     ],
     "faq": [
       {
-        "q": "Puc saltar-me la portada?",
-        "a": "Sí, activa l'opció 'Excloure primera pàgina' per no numerar la portada."
+        "q": "Puc saltar-me la portada o les primeres pàgines?",
+        "a": "Sí, activa l'opció 'Excloure primera pàgina' o indica el número inicial per no estampar xifres a portades, índexs o pàgines de cortesia."
+      },
+      {
+        "q": "Quins formats de numeració estan disponibles?",
+        "a": "Admet formats estàndard com xifra simple ('1, 2, 3'), format complet ('Pàgina {n} de {total}' / '1/15') o numeració romana ('i, ii, iii') per a memòries i treballs acadèmics."
+      },
+      {
+        "q": "A quina posició del full es pot col·locar el número?",
+        "a": "Pots triar peu de pàgina (inferior centrat, inferior dret o inferior esquerre) o capçalera superior amb marges de seguretat."
+      },
+      {
+        "q": "Puc utilitzar aquesta eina per saber quantes pàgines té el meu PDF?",
+        "a": "Sí. En carregar el fitxer, BreadPDF compta i mostra immediatament el recompte exacte de pàgines a la graella de miniatures i a la variable del format ({total}), permetent-te auditar l'extensió total abans de descarregar."
+      },
+      {
+        "q": "Es modifica el text original o la maquetació?",
+        "a": "No. Els números s'incrusten com una capa vectorial neta amb fonts estàndard legibles, sense moure ni alterar el contingut preexistent."
+      },
+      {
+        "q": "El procés és privat?",
+        "a": "Sí. Tota la numeració s'executa localment al teu navegador mitjançant WebAssembly/pdf-lib. Els documents no s'envien mai a servidors externs."
       }
     ]
   },
