@@ -1,5 +1,17 @@
 import { Link, useRouterState, useNavigate } from "@tanstack/react-router";
-import { ChevronDown, Menu, X, ArrowRight, User, Star, Settings, Bell, Shield, LogOut, BookOpen } from "lucide-react";
+import {
+  ChevronDown,
+  Menu,
+  X,
+  ArrowRight,
+  User,
+  Star,
+  Settings,
+  Bell,
+  Shield,
+  LogOut,
+  BookOpen,
+} from "lucide-react";
 import { PremiumCrownIcon } from "./PremiumCrownIcon";
 import { useState, useRef, useEffect, useMemo } from "react";
 import { Button } from "@/components/ui/button";
@@ -28,7 +40,10 @@ import { Logo } from "./Logo";
 import { ToolIcon } from "./ToolIcon";
 import { getRichToolIcon } from "./RichToolIcon";
 import { LanguageSwitcher } from "./LanguageSwitcher";
-import { trackToolCatalogCategoryClicked, trackToolCatalogViewAllClicked } from "@/lib/analytics/gtm";
+import {
+  trackToolCatalogCategoryClicked,
+  trackToolCatalogViewAllClicked,
+} from "@/lib/analytics/gtm";
 import type { ToolCategory } from "@/lib/tools/types";
 
 export function Header() {
@@ -153,328 +168,360 @@ export function Header() {
         >
           {/* 4 CATEGORÍAS PRINCIPALES CON MEGA MENÚ */}
           {mainCategories.map((category) => {
-              const accent = FAMILY_ACCENTS[category.category];
-              const catTools = tools.filter((tool) => tool.category === category.category);
-              const isOpen = activeDropdown === category.category;
-              // Page-active: this category belongs to the current page's URL
-              const isPageActive = currentPageCategory === category.category;
-              // "Interacting" = menu is open (takes priority over page-active visually)
-              // "Location" = page belongs here but no menu is open
+            const accent = FAMILY_ACCENTS[category.category];
+            const catTools = tools.filter((tool) => tool.category === category.category);
+            const isOpen = activeDropdown === category.category;
+            // Page-active: this category belongs to the current page's URL
+            const isPageActive = currentPageCategory === category.category;
+            // "Interacting" = menu is open (takes priority over page-active visually)
+            // "Location" = page belongs here but no menu is open
 
-              // Agrupación semántica contextual según las herramientas reales
-              let columns: { title: string; items: typeof catTools }[] = [];
-              let panelWidth = "w-[340px]"; // Ancho compacto por defecto para 1 columna (optimizar, organizar, editar)
-              let gridCols = "grid-cols-1";
+            // Agrupación semántica contextual según las herramientas reales
+            let columns: { title: string; items: typeof catTools }[] = [];
+            let panelWidth = "w-[340px]"; // Ancho compacto por defecto para 1 columna (optimizar, organizar, editar)
+            let gridCols = "grid-cols-1";
 
-              if (category.category === "convertir") {
-                // Orden lógico estipulado para "Convertir a PDF" (8 herramientas)
-                const toPdfOrder = [
-                  "jpg-a-pdf",
-                  "png-a-pdf",
-                  "webp-a-pdf",
-                  "word-a-pdf",
-                  "excel-a-pdf",
-                  "powerpoint-a-pdf",
-                  "markdown-a-pdf",
-                  "svg-a-pdf",
-                ];
-                const toPdf = toPdfOrder
-                  .map((slug) => catTools.find((t) => t.canonicalSlug === slug))
-                  .filter(Boolean) as typeof catTools;
+            if (category.category === "convertir") {
+              // Orden lógico estipulado para "Convertir a PDF" (8 herramientas)
+              const toPdfOrder = [
+                "jpg-a-pdf",
+                "png-a-pdf",
+                "webp-a-pdf",
+                "word-a-pdf",
+                "excel-a-pdf",
+                "powerpoint-a-pdf",
+                "markdown-a-pdf",
+                "svg-a-pdf",
+              ];
+              const toPdf = toPdfOrder
+                .map((slug) => catTools.find((t) => t.canonicalSlug === slug))
+                .filter(Boolean) as typeof catTools;
 
-                // Orden lógico estipulado para "Convertir desde PDF" (9 herramientas)
-                const fromPdfOrder = [
-                  "pdf-a-jpg",
-                  "pdf-a-png",
-                  "pdf-a-webp",
-                  "pdf-a-word",
-                  "pdf-a-excel",
-                  "pdf-a-pptx",
-                  "pdf-a-markdown",
-                  "extraer-texto-pdf",
-                  "pdf-a-pdfa",
-                ];
-                const fromPdf = fromPdfOrder
-                  .map((slug) => catTools.find((t) => t.canonicalSlug === slug))
-                  .filter(Boolean) as typeof catTools;
+              // Orden lógico estipulado para "Convertir desde PDF" (9 herramientas)
+              const fromPdfOrder = [
+                "pdf-a-jpg",
+                "pdf-a-png",
+                "pdf-a-webp",
+                "pdf-a-word",
+                "pdf-a-excel",
+                "pdf-a-pptx",
+                "pdf-a-markdown",
+                "extraer-texto-pdf",
+                "pdf-a-pdfa",
+              ];
+              const fromPdf = fromPdfOrder
+                .map((slug) => catTools.find((t) => t.canonicalSlug === slug))
+                .filter(Boolean) as typeof catTools;
 
-                columns = [
-                  {
-                    title: locale === "ca" ? "Convertir a PDF" : locale === "en" ? "Convert to PDF" : "Convertir a PDF",
-                    items: toPdf,
-                  },
-                  {
-                    title: locale === "ca" ? "Convertir des de PDF" : locale === "en" ? "Convert from PDF" : "Convertir desde PDF",
-                    items: fromPdf,
-                  },
-                ];
-                panelWidth = "w-[760px]";
-                gridCols = "grid-cols-2 gap-x-10";
-              } else {
-                // Optimizar (6), Organizar (7), Editar (4) -> Un único grupo natural y vertical
-                columns = [
-                  {
-                    title: category.name,
-                    items: catTools,
-                  },
-                ];
-                panelWidth = "w-[340px]";
-                gridCols = "grid-cols-1";
-              }
+              columns = [
+                {
+                  title:
+                    locale === "ca"
+                      ? "Convertir a PDF"
+                      : locale === "en"
+                        ? "Convert to PDF"
+                        : "Convertir a PDF",
+                  items: toPdf,
+                },
+                {
+                  title:
+                    locale === "ca"
+                      ? "Convertir des de PDF"
+                      : locale === "en"
+                        ? "Convert from PDF"
+                        : "Convertir desde PDF",
+                  items: fromPdf,
+                },
+              ];
+              panelWidth = "w-[760px]";
+              gridCols = "grid-cols-2 gap-x-10";
+            } else {
+              // Optimizar (6), Organizar (7), Editar (4) -> Un único grupo natural y vertical
+              columns = [
+                {
+                  title: category.name,
+                  items: catTools,
+                },
+              ];
+              panelWidth = "w-[340px]";
+              gridCols = "grid-cols-1";
+            }
 
-              // ─── BUTTON CLASSES — three exclusive states ───────────────────────
-              // Priority: open > page-active > normal
-              let buttonClass: string;
-              let chevronClass: string;
+            // ─── BUTTON CLASSES — three exclusive states ───────────────────────
+            // Priority: open > page-active > normal
+            let buttonClass: string;
+            let chevronClass: string;
 
-              if (isOpen || isPageActive) {
-                // State: ACTIVE OR MENU OPEN — full solid category color, white text, white chevron, matching border
-                buttonClass = `${accent.iconBg} text-white border border-transparent shadow-sm`;
-                chevronClass = `text-white ${isOpen ? "rotate-180" : ""}`;
-              } else {
-                // State: NORMAL — transparent background, dark text, dark chevron
-                buttonClass = "bg-transparent text-[#1E293B] border border-transparent hover:bg-[#F1F5F9] hover:text-[#0F172A]";
-                chevronClass = "text-[#0F172A]";
-              }
+            if (isOpen || isPageActive) {
+              // State: ACTIVE OR MENU OPEN — full solid category color, white text, white chevron, matching border
+              buttonClass = `${accent.iconBg} text-white border border-transparent shadow-sm`;
+              chevronClass = `text-white ${isOpen ? "rotate-180" : ""}`;
+            } else {
+              // State: NORMAL — transparent background, dark text, dark chevron
+              buttonClass =
+                "bg-transparent text-[#1E293B] border border-transparent hover:bg-[#F1F5F9] hover:text-[#0F172A]";
+              chevronClass = "text-[#0F172A]";
+            }
 
-              return (
+            return (
+              <div
+                key={category.category}
+                className="relative"
+                onMouseEnter={() => handleMouseEnter(category.category)}
+                onMouseLeave={handleMouseLeave}
+              >
+                <button
+                  type="button"
+                  onClick={() => setActiveDropdown(isOpen ? null : category.category)}
+                  aria-expanded={isOpen}
+                  aria-current={isPageActive && !activeDropdown ? "page" : undefined}
+                  aria-label={`Categoría ${category.name}`}
+                  className={`site-nav-btn group inline-flex items-center gap-2 cursor-pointer select-none uppercase whitespace-nowrap transition-all duration-150 ${buttonClass}`}
+                >
+                  <span>{category.name}</span>
+
+                  {/* Chevron: gira cuando el menú está abierto */}
+                  <ChevronDown
+                    className={`size-5 shrink-0 stroke-[3] transition-transform duration-200 ${chevronClass}`}
+                    aria-hidden
+                  />
+                </button>
+
+                {/* MEGA MENÚ DE CATEGORÍA — Always in DOM for SSR discovery, hidden when inactive */}
                 <div
-                  key={category.category}
-                  className="relative"
+                  className={`${isOpen ? "animate-fade" : "hidden"} absolute left-0 top-full z-50 pt-2.5 ${panelWidth} max-w-[calc(100vw-2rem)] font-sans`}
                   onMouseEnter={() => handleMouseEnter(category.category)}
                   onMouseLeave={handleMouseLeave}
-                >
-                  <button
-                    type="button"
-                    onClick={() => setActiveDropdown(isOpen ? null : category.category)}
-                    aria-expanded={isOpen}
-                    aria-current={isPageActive && !activeDropdown ? "page" : undefined}
-                    aria-label={`Categoría ${category.name}`}
-                    className={`site-nav-btn group inline-flex items-center gap-2 cursor-pointer select-none uppercase whitespace-nowrap transition-all duration-150 ${buttonClass}`}
-                  >
-                    <span>{category.name}</span>
-
-                    {/* Chevron: gira cuando el menú está abierto */}
-                    <ChevronDown
-                      className={`size-5 shrink-0 stroke-[3] transition-transform duration-200 ${chevronClass}`}
-                      aria-hidden
-                    />
-                  </button>
-
-                  {/* MEGA MENÚ DE CATEGORÍA */}
-                  {isOpen && (
-                    <div
-                      className={`animate-fade absolute left-0 top-full z-50 pt-2.5 ${panelWidth} max-w-[calc(100vw-2rem)] font-sans`}
-                      onMouseEnter={() => handleMouseEnter(category.category)}
-                      onMouseLeave={handleMouseLeave}
-                      role="region"
-                      aria-label={`Herramientas de ${category.name}`}
-                    >
-                      <div className="overflow-hidden rounded-2xl border border-slate-200/90 bg-white p-6 shadow-[0_24px_60px_rgba(15,23,42,0.14)]">
-                        <div className={`grid ${gridCols} gap-y-6`}>
-                          {columns.map((col, colIdx) => (
-                            <div key={colIdx} className="space-y-4">
-                              <h3 className="flex items-center gap-3 text-[15px] font-black uppercase tracking-wider text-slate-800 pb-3 border-b border-slate-100">
-                                <span
-                                  className={`inline-flex size-7 items-center justify-center rounded-lg ${accent.iconBg} ${accent.icon} shadow-xs`}
-                                >
-                                  <ToolIcon
-                                    name={FAMILY_ICONS[category.category]}
-                                    className="size-4"
-                                  />
-                                </span>
-                                <span>{col.title}</span>
-                              </h3>
-
-                              <ul className="space-y-1.5">
-                                {col.items.map((tool) => {
-                                  const RichIcon = getRichToolIcon(tool.canonicalSlug);
-                                  return (
-                                    <li key={tool.slug}>
-                                      <Link
-                                        to={DETAIL_ROUTE}
-                                        params={toolParams(locale, tool.canonicalSlug)}
-                                        onClick={() => setActiveDropdown(null)}
-                                        className="group flex items-center gap-3.5 rounded-xl px-3 py-2.5 transition-all hover:bg-slate-100/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/20"
-                                      >
-                                        {/* Icono de herramienta visual y nítido */}
-                                        <span
-                                          className={`inline-flex size-8 sm:size-8.5 shrink-0 items-center justify-center rounded-lg ${accent.iconBg} ${accent.icon} transition-transform duration-150 group-hover:scale-105 shadow-2xs`}
-                                        >
-                                          <ToolIcon name={tool.icon} canonicalSlug={tool.canonicalSlug} className="size-5 sm:size-5.5" />
-                                        </span>
-
-                                        <span className="truncate text-[15px] font-semibold text-slate-800 group-hover:text-primary transition-colors flex items-center">
-                                          {tool.name}
-                                          {tool.canonicalSlug === "pdf-a-pdfa" && (
-                                            <span className="ml-2 inline-flex items-center px-1.5 py-0.5 rounded text-[10.5px] font-black uppercase tracking-wider bg-slate-100 text-slate-600 border border-slate-200/80">
-                                              PDF/A
-                                            </span>
-                                          )}
-                                        </span>
-                                      </Link>
-                                    </li>
-                                  );
-                                })}
-                              </ul>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-
-            {/* MÁS HERRAMIENTAS: CATEGORÍAS SECUNDARIAS ORDENADAS (SEGURIDAD, PDF INTELLIGENCE, EDITAR) */}
-            <div
-              className="relative"
-              onMouseEnter={() => handleMouseEnter("more")}
-              onMouseLeave={handleMouseLeave}
-            >
-              {(() => {
-                const isMoreOpen = activeDropdown === "more";
-                const isMorePageActive =
-                  currentPageCategory !== null &&
-                  moreCategories.some((c) => c.category === currentPageCategory);
-
-                let moreButtonClass: string;
-                let moreChevronClass: string;
-
-                if (isMoreOpen || isMorePageActive) {
-                  // Estado ACTIVO/ABIERTO: Sólido NEUTRO OSCURO (slate-900 / navy) con texto y chevron blancos
-                  // Totalmente diferenciado de las categorías de color y coherente con el filtro neutro "Todas"
-                  moreButtonClass = "bg-[#0F172A] text-white border border-[#0F172A] shadow-sm";
-                  moreChevronClass = `text-white ${isMoreOpen ? "rotate-180" : ""}`;
-                } else {
-                  // Estado NORMAL: fondo transparente, texto oscuro, chevron oscuro
-                  moreButtonClass = "bg-transparent text-[#1E293B] border border-transparent hover:bg-[#F1F5F9] hover:text-[#0F172A]";
-                  moreChevronClass = "text-[#0F172A]";
-                }
-
-                return (
-                  <button
-                    type="button"
-                    onClick={() => setActiveDropdown(isMoreOpen ? null : "more")}
-                    aria-expanded={isMoreOpen}
-                    aria-current={isMorePageActive && !activeDropdown ? "page" : undefined}
-                    aria-label={t.nav.more}
-                    className={`site-nav-btn group inline-flex items-center gap-2 cursor-pointer select-none uppercase whitespace-nowrap transition-all duration-150 ${moreButtonClass}`}
-                  >
-                    <span>{t.nav.more}</span>
-                    <ChevronDown
-                      className={`size-5 shrink-0 stroke-[3] transition-transform duration-200 ${moreChevronClass}`}
-                      aria-hidden
-                    />
-                  </button>
-                );
-              })()}
-
-              {activeDropdown === "more" && (
-                <div
-                  className="animate-fade absolute left-0 top-full z-50 pt-2.5 w-[840px] max-w-[calc(100vw-2rem)] font-sans"
-                  onMouseEnter={() => handleMouseEnter("more")}
-                  onMouseLeave={handleMouseLeave}
                   role="region"
-                  aria-label="Más herramientas: Seguridad, PDF Intelligence y Editar"
+                  aria-label={`Herramientas de ${category.name}`}
                 >
                   <div className="overflow-hidden rounded-2xl border border-slate-200/90 bg-white p-6 shadow-[0_24px_60px_rgba(15,23,42,0.14)]">
-                    <div className="grid grid-cols-3 gap-x-8">
-                      {moreCategories.map((cat) => {
-                        const accent = FAMILY_ACCENTS[cat.category];
-                        const catTools = tools.filter((tool) => tool.category === cat.category);
+                    <div className={`grid ${gridCols} gap-y-6`}>
+                      {columns.map((col, colIdx) => (
+                        <div key={colIdx} className="space-y-4">
+                          <h3 className="flex items-center gap-3 text-[15px] font-black uppercase tracking-wider text-slate-800 pb-3 border-b border-slate-100">
+                            <span
+                              className={`inline-flex size-7 items-center justify-center rounded-lg ${accent.iconBg} ${accent.icon} shadow-xs`}
+                            >
+                              <ToolIcon name={FAMILY_ICONS[category.category]} className="size-4" />
+                            </span>
+                            <span>{col.title}</span>
+                          </h3>
 
-                        return (
-                          <div key={cat.category} className="space-y-4">
-                            {/* TÍTULO DE GRUPO: Con enlace a la categoría, icono y nombre en mayúsculas */}
-                            <h3 className="pb-3 border-b border-slate-100">
-                              <Link
-                                to={DETAIL_ROUTE}
-                                params={categoryParams(locale, cat.category)}
-                                onClick={() => {
-                                  trackToolCatalogCategoryClicked({ category: cat.category, source: "header_more", language: locale });
-                                  setActiveDropdown(null);
-                                }}
-                                className="inline-flex items-center gap-2.5 text-[14.5px] font-black uppercase tracking-wider text-slate-800 hover:text-primary transition-colors"
-                              >
-                                <span
-                                  className={`inline-flex size-7 items-center justify-center rounded-lg ${accent.iconBg} ${accent.icon} shadow-xs`}
-                                >
-                                  <ToolIcon name={FAMILY_ICONS[cat.category]} className="size-4" />
-                                </span>
-                                <span>{cat.name}</span>
-                              </Link>
-                            </h3>
-
-                            {/* LISTA DE HERRAMIENTAS: [ICONO] + NOMBRE */}
-                            <ul className="space-y-1.5">
-                              {catTools.map((tool) => {
-                                const RichIcon = getRichToolIcon(tool.canonicalSlug);
-                                return (
-                                  <li key={tool.slug}>
-                                    <Link
-                                      to={DETAIL_ROUTE}
-                                      params={toolParams(locale, tool.canonicalSlug)}
-                                      onClick={() => setActiveDropdown(null)}
-                                      className="group flex items-center gap-3 rounded-xl px-2.5 py-2.5 transition-all hover:bg-slate-100/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/20"
+                          <ul className="space-y-1.5">
+                            {col.items.map((tool) => {
+                              const RichIcon = getRichToolIcon(tool.canonicalSlug);
+                              return (
+                                <li key={tool.slug}>
+                                  <Link
+                                    to={DETAIL_ROUTE}
+                                    params={toolParams(locale, tool.canonicalSlug)}
+                                    onClick={() => setActiveDropdown(null)}
+                                    className="group flex items-center gap-3.5 rounded-xl px-3 py-2.5 transition-all hover:bg-slate-100/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/20"
+                                  >
+                                    {/* Icono de herramienta visual y nítido */}
+                                    <span
+                                      className={`inline-flex size-8 sm:size-8.5 shrink-0 items-center justify-center rounded-lg ${accent.iconBg} ${accent.icon} transition-transform duration-150 group-hover:scale-105 shadow-2xs`}
                                     >
-                                      <span
-                                        className={`inline-flex size-7.5 sm:size-8 shrink-0 items-center justify-center rounded-lg ${accent.iconBg} ${accent.icon} transition-transform duration-150 group-hover:scale-105 shadow-2xs`}
-                                      >
-                                        <ToolIcon name={tool.icon} canonicalSlug={tool.canonicalSlug} className="size-4.5 sm:size-5" />
-                                      </span>
-                                      <span className="truncate text-[14.5px] font-semibold text-slate-800 group-hover:text-primary transition-colors">
-                                        {tool.name}
-                                      </span>
-                                    </Link>
-                                  </li>
-                                );
-                              })}
-                            </ul>
-                          </div>
-                        );
-                      })}
-                    </div>
+                                      <ToolIcon
+                                        name={tool.icon}
+                                        canonicalSlug={tool.canonicalSlug}
+                                        className="size-5 sm:size-5.5"
+                                      />
+                                    </span>
 
-                    {/* PIE DEL DESPLEGABLE: ENLACES A CATÁLOGO Y A GUÍAS */}
-                    <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between bg-slate-50/60 -mx-6 -mb-6 px-6 py-3.5 rounded-b-2xl">
-                      <div className="flex items-center gap-4">
-                        <div className="flex items-center gap-2">
-                          <span className="inline-flex size-2 rounded-full bg-[#059669]" />
-                          <span className="text-[13px] font-semibold text-slate-600">
-                            {tools.length} {locale === "ca" ? "eines operatives al navegador" : locale === "en" ? "browser-native PDF tools" : "herramientas disponibles en navegador"}
-                          </span>
+                                    <span className="truncate text-[15px] font-semibold text-slate-800 group-hover:text-primary transition-colors flex items-center">
+                                      {tool.name}
+                                      {tool.canonicalSlug === "pdf-a-pdfa" && (
+                                        <span className="ml-2 inline-flex items-center px-1.5 py-0.5 rounded text-[10.5px] font-black uppercase tracking-wider bg-slate-100 text-slate-600 border border-slate-200/80">
+                                          PDF/A
+                                        </span>
+                                      )}
+                                    </span>
+                                  </Link>
+                                </li>
+                              );
+                            })}
+                          </ul>
                         </div>
-                        <span className="text-slate-300">•</span>
-                        <Link
-                          to={SECTION_ROUTE}
-                          params={guidesHubParams(locale)}
-                          onClick={() => setActiveDropdown(null)}
-                          className="inline-flex items-center gap-1.5 text-[13px] font-bold text-slate-700 hover:text-[#EC3C2D] transition-colors"
-                        >
-                          <BookOpen className="size-3.5 text-[#EC3C2D]" />
-                          <span>{locale === "ca" ? "Guies & Tutorials" : locale === "en" ? "Guides & Tutorials" : "Guías & Tutoriales"}</span>
-                        </Link>
-                      </div>
-                      <Link
-                        to={SECTION_ROUTE}
-                        params={catalogParams(locale)}
-                        onClick={() => {
-                          trackToolCatalogViewAllClicked({ source: "header_more_footer", language: locale });
-                          setActiveDropdown(null);
-                        }}
-                        className="inline-flex items-center gap-1.5 text-[14px] font-bold text-[#EC3C2D] hover:text-[#D93426] transition-colors group"
-                      >
-                        <span>{t.nav.megaFooter ?? "Ver todas las herramientas"}</span>
-                        <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
-                      </Link>
+                      ))}
                     </div>
                   </div>
                 </div>
-              )}
+              </div>
+            );
+          })}
+
+          {/* MÁS HERRAMIENTAS: CATEGORÍAS SECUNDARIAS ORDENADAS (SEGURIDAD, PDF INTELLIGENCE, EDITAR) */}
+          <div
+            className="relative"
+            onMouseEnter={() => handleMouseEnter("more")}
+            onMouseLeave={handleMouseLeave}
+          >
+            {(() => {
+              const isMoreOpen = activeDropdown === "more";
+              const isMorePageActive =
+                currentPageCategory !== null &&
+                moreCategories.some((c) => c.category === currentPageCategory);
+
+              let moreButtonClass: string;
+              let moreChevronClass: string;
+
+              if (isMoreOpen || isMorePageActive) {
+                // Estado ACTIVO/ABIERTO: Sólido NEUTRO OSCURO (slate-900 / navy) con texto y chevron blancos
+                // Totalmente diferenciado de las categorías de color y coherente con el filtro neutro "Todas"
+                moreButtonClass = "bg-[#0F172A] text-white border border-[#0F172A] shadow-sm";
+                moreChevronClass = `text-white ${isMoreOpen ? "rotate-180" : ""}`;
+              } else {
+                // Estado NORMAL: fondo transparente, texto oscuro, chevron oscuro
+                moreButtonClass =
+                  "bg-transparent text-[#1E293B] border border-transparent hover:bg-[#F1F5F9] hover:text-[#0F172A]";
+                moreChevronClass = "text-[#0F172A]";
+              }
+
+              return (
+                <button
+                  type="button"
+                  onClick={() => setActiveDropdown(isMoreOpen ? null : "more")}
+                  aria-expanded={isMoreOpen}
+                  aria-current={isMorePageActive && !activeDropdown ? "page" : undefined}
+                  aria-label={t.nav.more}
+                  className={`site-nav-btn group inline-flex items-center gap-2 cursor-pointer select-none uppercase whitespace-nowrap transition-all duration-150 ${moreButtonClass}`}
+                >
+                  <span>{t.nav.more}</span>
+                  <ChevronDown
+                    className={`size-5 shrink-0 stroke-[3] transition-transform duration-200 ${moreChevronClass}`}
+                    aria-hidden
+                  />
+                </button>
+              );
+            })()}
+
+            {/* DESPLEGABLE MÁS HERRAMIENTAS — Always in DOM for SSR discovery, hidden when inactive */}
+            <div
+              className={`${activeDropdown === "more" ? "animate-fade" : "hidden"} absolute left-0 top-full z-50 pt-2.5 w-[840px] max-w-[calc(100vw-2rem)] font-sans`}
+              onMouseEnter={() => handleMouseEnter("more")}
+              onMouseLeave={handleMouseLeave}
+              role="region"
+              aria-label="Más herramientas: Seguridad, PDF Intelligence y Editar"
+            >
+              <div className="overflow-hidden rounded-2xl border border-slate-200/90 bg-white p-6 shadow-[0_24px_60px_rgba(15,23,42,0.14)]">
+                <div className="grid grid-cols-3 gap-x-8">
+                  {moreCategories.map((cat) => {
+                    const accent = FAMILY_ACCENTS[cat.category];
+                    const catTools = tools.filter((tool) => tool.category === cat.category);
+
+                    return (
+                      <div key={cat.category} className="space-y-4">
+                        {/* TÍTULO DE GRUPO: Con enlace a la categoría, icono y nombre en mayúsculas */}
+                        <h3 className="pb-3 border-b border-slate-100">
+                          <Link
+                            to={DETAIL_ROUTE}
+                            params={categoryParams(locale, cat.category)}
+                            onClick={() => {
+                              trackToolCatalogCategoryClicked({
+                                category: cat.category,
+                                source: "header_more",
+                                language: locale,
+                              });
+                              setActiveDropdown(null);
+                            }}
+                            className="inline-flex items-center gap-2.5 text-[14.5px] font-black uppercase tracking-wider text-slate-800 hover:text-primary transition-colors"
+                          >
+                            <span
+                              className={`inline-flex size-7 items-center justify-center rounded-lg ${accent.iconBg} ${accent.icon} shadow-xs`}
+                            >
+                              <ToolIcon name={FAMILY_ICONS[cat.category]} className="size-4" />
+                            </span>
+                            <span>{cat.name}</span>
+                          </Link>
+                        </h3>
+
+                        {/* LISTA DE HERRAMIENTAS: [ICONO] + NOMBRE */}
+                        <ul className="space-y-1.5">
+                          {catTools.map((tool) => {
+                            const RichIcon = getRichToolIcon(tool.canonicalSlug);
+                            return (
+                              <li key={tool.slug}>
+                                <Link
+                                  to={DETAIL_ROUTE}
+                                  params={toolParams(locale, tool.canonicalSlug)}
+                                  onClick={() => setActiveDropdown(null)}
+                                  className="group flex items-center gap-3 rounded-xl px-2.5 py-2.5 transition-all hover:bg-slate-100/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/20"
+                                >
+                                  <span
+                                    className={`inline-flex size-7.5 sm:size-8 shrink-0 items-center justify-center rounded-lg ${accent.iconBg} ${accent.icon} transition-transform duration-150 group-hover:scale-105 shadow-2xs`}
+                                  >
+                                    <ToolIcon
+                                      name={tool.icon}
+                                      canonicalSlug={tool.canonicalSlug}
+                                      className="size-4.5 sm:size-5"
+                                    />
+                                  </span>
+                                  <span className="truncate text-[14.5px] font-semibold text-slate-800 group-hover:text-primary transition-colors">
+                                    {tool.name}
+                                  </span>
+                                </Link>
+                              </li>
+                            );
+                          })}
+                        </ul>
+                      </div>
+                    );
+                  })}
+                </div>
+
+                {/* PIE DEL DESPLEGABLE: ENLACES A CATÁLOGO Y A GUÍAS */}
+                <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between bg-slate-50/60 -mx-6 -mb-6 px-6 py-3.5 rounded-b-2xl">
+                  <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-2">
+                      <span className="inline-flex size-2 rounded-full bg-[#059669]" />
+                      <span className="text-[13px] font-semibold text-slate-600">
+                        {tools.length}{" "}
+                        {locale === "ca"
+                          ? "eines operatives al navegador"
+                          : locale === "en"
+                            ? "browser-native PDF tools"
+                            : "herramientas disponibles en navegador"}
+                      </span>
+                    </div>
+                    <span className="text-slate-300">•</span>
+                    <Link
+                      to={SECTION_ROUTE}
+                      params={guidesHubParams(locale)}
+                      onClick={() => setActiveDropdown(null)}
+                      className="inline-flex items-center gap-1.5 text-[13px] font-bold text-slate-700 hover:text-[#EC3C2D] transition-colors"
+                    >
+                      <BookOpen className="size-3.5 text-[#EC3C2D]" />
+                      <span>
+                        {locale === "ca"
+                          ? "Guies & Tutorials"
+                          : locale === "en"
+                            ? "Guides & Tutorials"
+                            : "Guías & Tutoriales"}
+                      </span>
+                    </Link>
+                  </div>
+                  <Link
+                    to={SECTION_ROUTE}
+                    params={catalogParams(locale)}
+                    onClick={() => {
+                      trackToolCatalogViewAllClicked({
+                        source: "header_more_footer",
+                        language: locale,
+                      });
+                      setActiveDropdown(null);
+                    }}
+                    className="inline-flex items-center gap-1.5 text-[14px] font-bold text-[#EC3C2D] hover:text-[#D93426] transition-colors group"
+                  >
+                    <span>{t.nav.megaFooter ?? "Ver todas las herramientas"}</span>
+                    <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+                  </Link>
+                </div>
+              </div>
             </div>
-          </nav>
+          </div>
+        </nav>
 
         {/* ESPACIO FLEXIBLE: Absorbe todo el espacio sobrante empujando los controles al extremo derecho */}
         <div className="flex-1 min-w-6 hidden lg:block" aria-hidden="true" />
@@ -506,7 +553,9 @@ export function Header() {
                   </span>
                 )}
                 <span className="max-w-[120px] truncate">{user.name}</span>
-                <ChevronDown className={`size-4 text-slate-500 transition-transform ${userMenuOpen ? "rotate-180" : ""}`} />
+                <ChevronDown
+                  className={`size-4 text-slate-500 transition-transform ${userMenuOpen ? "rotate-180" : ""}`}
+                />
               </button>
 
               {/* Menú Desplegable Usuario */}
@@ -680,7 +729,8 @@ export function Header() {
                 <span>{t.nav.allTools}</span>
               </span>
               <span className="font-mono text-[12px] bg-[#EC3C2D]/10 text-[#EC3C2D] px-2 py-0.5 rounded-md font-bold">
-                {tools.length} {locale === "ca" ? "eines" : locale === "en" ? "tools" : "herramientas"}
+                {tools.length}{" "}
+                {locale === "ca" ? "eines" : locale === "en" ? "tools" : "herramientas"}
               </span>
             </Link>
 
@@ -735,7 +785,11 @@ export function Header() {
                           <span
                             className={`inline-flex size-7 shrink-0 items-center justify-center rounded-lg ${accent.iconBg} ${accent.icon}`}
                           >
-                            <ToolIcon name={tool.icon} canonicalSlug={tool.canonicalSlug} className="size-4" />
+                            <ToolIcon
+                              name={tool.icon}
+                              canonicalSlug={tool.canonicalSlug}
+                              className="size-4"
+                            />
                           </span>
                           <span className="flex-1 truncate">{tool.name}</span>
                           <ArrowRight className="size-3.5 text-[#94A3B8]" />
@@ -821,7 +875,13 @@ export function Header() {
               className="flex items-center gap-2.5 rounded-xl px-4 py-3 text-[14.5px] font-semibold text-slate-800 hover:bg-[#F5F7FA] hover:text-[#EC3C2D] transition-colors"
             >
               <BookOpen className="size-4 text-[#EC3C2D]" />
-              <span>{locale === "ca" ? "Guies & Tutorials" : locale === "en" ? "Guides & Tutorials" : "Guías & Tutoriales"}</span>
+              <span>
+                {locale === "ca"
+                  ? "Guies & Tutorials"
+                  : locale === "en"
+                    ? "Guides & Tutorials"
+                    : "Guías & Tutoriales"}
+              </span>
             </Link>
 
             {/* Privacy Link */}
