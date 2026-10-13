@@ -34,13 +34,13 @@ export const HTML_LANG: Record<Locale, string> = {
   en: "en",
 };
 
-export type SectionKind = "tools" | "category" | "privacy" | "cookies" | "terms" | "guides" | "premium" | "login" | "register" | "forgotPassword" | "account";
+export type SectionKind = "tools" | "category" | "privacy" | "cookies" | "terms" | "about" | "guides" | "premium" | "login" | "register" | "forgotPassword" | "account";
 
 /** Localised URL segments. Keep them unique inside each locale. */
 export const SEGMENTS: Record<Locale, Record<SectionKind, string>> = {
-  es: { tools: "herramientas", category: "categoria", privacy: "privacidad", cookies: "cookies", terms: "terminos", guides: "guias", premium: "premium", login: "login", register: "registro", forgotPassword: "recuperar-password", account: "cuenta" },
-  ca: { tools: "eines", category: "categoria", privacy: "privacitat", cookies: "cookies", terms: "termes", guides: "guies", premium: "premium", login: "login", register: "registre", forgotPassword: "recuperar-contrasenya", account: "compte" },
-  en: { tools: "tools", category: "category", privacy: "privacy", cookies: "cookies", terms: "terms", guides: "guides", premium: "premium", login: "login", register: "register", forgotPassword: "forgot-password", account: "account" },
+  es: { tools: "herramientas", category: "categoria", privacy: "privacidad", cookies: "cookies", terms: "terminos", about: "sobre-nosotros", guides: "guias", premium: "premium", login: "login", register: "registro", forgotPassword: "recuperar-password", account: "cuenta" },
+  ca: { tools: "eines", category: "categoria", privacy: "privacitat", cookies: "cookies", terms: "termes", about: "sobre-nosaltres", guides: "guies", premium: "premium", login: "login", register: "registre", forgotPassword: "recuperar-contrasenya", account: "compte" },
+  en: { tools: "tools", category: "category", privacy: "privacy", cookies: "cookies", terms: "terms", about: "about", guides: "guides", premium: "premium", login: "login", register: "register", forgotPassword: "forgot-password", account: "account" },
 };
 
 export function isLocale(value: string): value is Locale {
@@ -54,6 +54,7 @@ export function sectionKind(locale: Locale, segment: string): SectionKind | unde
   if (segment === map.privacy) return "privacy";
   if (segment === map.cookies) return "cookies";
   if (segment === map.terms) return "terms";
+  if (segment === map.about) return "about";
   if (segment === map.guides) return "guides";
   if (segment === map.premium) return "premium";
   if (segment === map.login) return "login";

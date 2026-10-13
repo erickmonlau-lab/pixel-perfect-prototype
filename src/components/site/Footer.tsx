@@ -11,6 +11,7 @@ import {
   privacyParams,
   cookiesParams,
   termsParams,
+  aboutParams,
   premiumParams,
   toolParams,
   guidesHubParams,
@@ -191,11 +192,11 @@ export function Footer() {
               {copy.colInfo}
             </h3>
             <ul className="space-y-4 text-[15px] sm:text-[15.5px] text-slate-300">
-              {/* BreadPDF */}
+              {/* BreadPDF - Sobre nosotros */}
               <li>
                 <Link
-                  to={HOME_ROUTE}
-                  params={homeParams(locale)}
+                  to={SECTION_ROUTE}
+                  params={aboutParams(locale)}
                   className="group inline-flex items-center gap-2.5 font-medium text-slate-300 transition-colors hover:text-[#EC3C2D]"
                 >
                   <span className="size-2 rounded-full bg-[#EC3C2D] shrink-0 opacity-90 group-hover:opacity-100 transition-opacity" aria-hidden="true" />

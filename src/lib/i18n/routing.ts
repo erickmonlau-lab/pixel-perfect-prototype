@@ -38,6 +38,10 @@ export function termsParams(locale: Locale) {
   return { lang: locale, section: SEGMENTS[locale].terms };
 }
 
+export function aboutParams(locale: Locale) {
+  return { lang: locale, section: SEGMENTS[locale].about };
+}
+
 export function loginParams(locale: Locale) {
   return { lang: locale, section: SEGMENTS[locale].login };
 }
@@ -103,6 +107,10 @@ export function termsPath(locale: Locale) {
   return `/${locale}/${SEGMENTS[locale].terms}`;
 }
 
+export function aboutPath(locale: Locale) {
+  return `/${locale}/${SEGMENTS[locale].about}`;
+}
+
 export function loginPath(locale: Locale) {
   return `/${locale}/${SEGMENTS[locale].login}`;
 }
@@ -138,6 +146,7 @@ export type PageRef =
   | { kind: "privacy" }
   | { kind: "cookies" }
   | { kind: "terms" }
+  | { kind: "about" }
   | { kind: "premium" }
   | { kind: "login" }
   | { kind: "register" }
@@ -158,6 +167,7 @@ export function parsePath(pathname: string): { locale: Locale; page: PageRef } {
   if (kind === "privacy") return { locale, page: { kind: "privacy" } };
   if (kind === "cookies") return { locale, page: { kind: "cookies" } };
   if (kind === "terms") return { locale, page: { kind: "terms" } };
+  if (kind === "about") return { locale, page: { kind: "about" } };
   if (kind === "premium") return { locale, page: { kind: "premium" } };
   if (kind === "login") return { locale, page: { kind: "login" } };
   if (kind === "register") return { locale, page: { kind: "register" } };
@@ -194,6 +204,8 @@ export function pathFor(locale: Locale, page: PageRef): string {
       return cookiesPath(locale);
     case "terms":
       return termsPath(locale);
+    case "about":
+      return aboutPath(locale);
     case "premium":
       return premiumPath(locale);
     case "login":

@@ -108,6 +108,15 @@ export function generateSitemap(): string {
         { lang: "x-default", href: `${SITE_URL}/es/${SEGMENTS.es.terms}` },
       ],
     });
+    entries.push({
+      loc: `${SITE_URL}/${locale}/${SEGMENTS[locale].about}`,
+      priority: "0.6",
+      changefreq: "monthly",
+      alternates: [
+        ...LOCALES.map((l) => ({ lang: l, href: `${SITE_URL}/${l}/${SEGMENTS[l].about}` })),
+        { lang: "x-default", href: `${SITE_URL}/es/${SEGMENTS.es.about}` },
+      ],
+    });
 
     // 3. Live tool pages (50 herramientas)
     for (const tool of TOOLS.filter((t) => t.status === "live")) {

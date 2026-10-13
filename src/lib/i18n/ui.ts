@@ -312,6 +312,40 @@ const es = {
       },
     ],
   },
+  about: {
+    eyebrow: "Sobre el proyecto",
+    title: "La suite PDF construida para tu privacidad",
+    seoTitle: "Sobre BreadPDF · Misión, Tecnología y Transparencia Documental",
+    seoDescription:
+      "Conoce la historia y arquitectura de BreadPDF: procesamiento WebAssembly en el navegador, privacidad por diseño y herramientas documentales directas.",
+    missionTitle: "Nuestra misión",
+    missionBody:
+      "BreadPDF nació para resolver un problema recurrente en el manejo de documentos digitales: la mayoría de herramientas en línea exigen subir contratos, nóminas, expedientes o historiales médicos a servidores remotos desconocidos, con riesgos evidentes para la confidencialidad. Diseñamos BreadPDF para que el 100% de las operaciones habituales se resuelvan directamente en el navegador del usuario.",
+    architectureTitle: "Arquitectura técnica: privacidad en cliente",
+    architectureBody:
+      "A través de estándares web punteros como WebAssembly, pdf-lib, pdf.js y la API de Canvas, BreadPDF ejecuta algoritmos criptográficos, vectoriales y de maquetación directamente en el procesador y memoria de tu dispositivo. Ningún archivo sale de tu equipo, no existen colas en servidores ni riesgos de interceptación en tránsito.",
+    pillars: [
+      {
+        title: "Sin subida de archivos",
+        desc: "Las herramientas ejecutan el renderizado, corte, compresión y manipulación sin enviar el documento a la nube.",
+      },
+      {
+        title: "Cero retención de datos",
+        desc: "Al cerrar o recargar la pestaña del navegador, el contenido temporal desaparece sin dejar rastro en ningún servidor.",
+      },
+      {
+        title: "Estándar ISO 32000-1",
+        desc: "Generamos documentos totalmente compatibles con visores estándar, lectores oficiales y plataformas de firma.",
+      },
+      {
+        title: "Soporte y contacto directo",
+        desc: "Atención técnica directa y cercana para dudas y feedback mediante breadpdfstudio@gmail.com.",
+      },
+    ],
+    contactTitle: "Titularidad, soporte y contacto",
+    contactBody:
+      "BreadPDF es un proyecto independiente enfocado en la excelencia de software documental web. Si tienes preguntas técnicas, sugerencias para nuevas utilidades o necesitas resolver una duda sobre el tratamiento de tus datos, puedes escribirnos directamente a breadpdfstudio@gmail.com.",
+  },
   footer: {
     rights: (year: number, tools: number) => `© ${year} BreadPDF · ${tools} herramientas y creciendo`,
     language: "Idioma",
@@ -668,6 +702,40 @@ const ca: Dict = {
       },
     ],
   },
+  about: {
+    eyebrow: "Sobre el projecte",
+    title: "La suite PDF construïda per a la teva privadesa",
+    seoTitle: "Sobre BreadPDF · Missió, Tecnologia i Transparència Documental",
+    seoDescription:
+      "Descobreix la història i arquitectura de BreadPDF: processament WebAssembly al navegador, privadesa des del disseny i eines documentals directes.",
+    missionTitle: "La nostra missió",
+    missionBody:
+      "BreadPDF va néixer per resoldre un problema clau en el tractament de fitxers digitals: la majoria d'eines en línia demanen pujar documents privats a servidors desconeguts. Hem dissenyat BreadPDF perquè el 100% de les tasques quotidianes es resolguin directament al navegador del propi usuari.",
+    architectureTitle: "Arquitectura tècnica: privadesa al client",
+    architectureBody:
+      "Mitjançant estàndards web moderns com WebAssembly, pdf-lib, pdf.js i la Canvas API, BreadPDF executa les manipulacions directament a la memòria del teu dispositiu. Cap document no viatja a servidors externs, eliminant cues i riscos d'interceptació.",
+    pillars: [
+      {
+        title: "Sense pujada de fitxers",
+        desc: "Les eines executen renderitzat, tall, compressió i modificació sense enviar el document a cap núvol.",
+      },
+      {
+        title: "Zero retenció de dades",
+        desc: "En tancar o recarregar la pestanya, el contingut temporal s'elimina immediatament de la memòria local.",
+      },
+      {
+        title: "Estàndard ISO 32000-1",
+        desc: "Generem documents plenament compatibles amb visors estàndard, lectors oficials i administracions.",
+      },
+      {
+        title: "Suport i contacte directe",
+        desc: "Atenció tècnica personalitzada i resolució de dubtes mitjançant breadpdfstudio@gmail.com.",
+      },
+    ],
+    contactTitle: "Titularitat, suport i contacte",
+    contactBody:
+      "BreadPDF és un projecte independent compromès amb la privadesa documental web. Si tens dubtes tècnics, suggeriments o consultes sobre dades, escriu-nos directament a breadpdfstudio@gmail.com.",
+  },
   footer: {
     rights: (year: number, tools: number) => `© ${year} BreadPDF · ${tools} eines i creixent`,
     language: "Idioma",
@@ -1019,6 +1087,40 @@ const en: Dict = {
         body: "Premium subscriptions unlock enhanced capabilities (priority speed, ad-free environment). Payments are processed securely via certified payment gateways (Stripe) without BreadPDF ever storing payment card details.",
       },
     ],
+  },
+  about: {
+    eyebrow: "About the Project",
+    title: "The PDF suite engineered for your privacy",
+    seoTitle: "About BreadPDF · Mission, Technology & Privacy Architecture",
+    seoDescription:
+      "Learn about BreadPDF's history and architecture: client-side WebAssembly execution, privacy by design, and transparent document tools.",
+    missionTitle: "Our Mission",
+    missionBody:
+      "BreadPDF was created to solve a critical flaw in digital document workflows: most online PDF converters require uploading private agreements, payslips, medical records, or legal filings to obscure remote servers. We architected BreadPDF so that 100% of standard operations run entirely inside the user's web browser.",
+    architectureTitle: "Technical Architecture: Browser-Native Processing",
+    architectureBody:
+      "Leveraging modern web technologies including WebAssembly, pdf-lib, pdf.js, and the Canvas API, BreadPDF executes cryptographic, vector, and layout operations directly within your local device's memory. No document is transmitted across the network, eliminating queue bottlenecks and intercept risks.",
+    pillars: [
+      {
+        title: "No Server Uploads",
+        desc: "Tools execute page extraction, splitting, compression, and rendering without transmitting files to any cloud backend.",
+      },
+      {
+        title: "Zero Data Retention",
+        desc: "Closing or reloading your browser tab clears all transient file buffers immediately with no server-side footprint.",
+      },
+      {
+        title: "ISO 32000-1 Standards",
+        desc: "We output fully compliant documents compatible with Adobe Acrobat, system print drivers, and certified viewers.",
+      },
+      {
+        title: "Direct Engineering Support",
+        desc: "Responsive technical assistance, bug reports, and feature requests via breadpdfstudio@gmail.com.",
+      },
+    ],
+    contactTitle: "Ownership, Support & Inquiries",
+    contactBody:
+      "BreadPDF is an independent software project dedicated to document utility excellence. For technical inquiries, partnership queries, or privacy questions, reach us directly at breadpdfstudio@gmail.com.",
   },
   footer: {
     rights: (year: number, tools: number) => `© ${year} BreadPDF · ${tools} tools and growing`,
