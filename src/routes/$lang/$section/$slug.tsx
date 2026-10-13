@@ -37,6 +37,7 @@ import {
   localizedToolsByCategory,
 } from "@/lib/tools/localize";
 import type { ToolCategory } from "@/lib/tools/types";
+import { TOOL_PRACTICAL_PROFILES } from "@/lib/tools/workflow-definitions";
 
 import { AdSlot } from "@/lib/monetization/adsense";
 import { findGuideBySlug, guideSlugFor } from "@/lib/guides/registry";
@@ -480,58 +481,148 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
         </ol>
       </section>
 
-      {/* 4.5. CONTEXTO EDITORIAL & CASOS DE USO TÉCNICOS (Capa editorial AdSense) */}
-      {t.category.details[tool.category]?.useCases && (
-        <section className="mt-12 sm:mt-14" aria-labelledby="editorial-context">
-          <div className="rounded-2xl border border-slate-200 bg-linear-to-br from-slate-50 via-white to-slate-50 p-6 sm:p-8 shadow-xs">
-            <div className="flex items-center gap-2.5 text-[12px] font-black uppercase tracking-wider text-[#EC3C2D]">
-              <Sparkles className="size-4" />
-              <span>
-                {locale === "ca"
-                  ? "Criteris tècnics & Aplicació documental"
-                  : locale === "en"
-                  ? "Technical Standards & Document Workflows"
-                  : "Criterios técnicos & Aplicación documental"}
-              </span>
-            </div>
-            <h2 id="editorial-context" className="mt-2 text-[20px] sm:text-[22px] font-black text-[#0F172A] tracking-tight">
-              {locale === "ca"
-                ? `Àmbit d'aplicació i recomanacions per a ${category.name}`
-                : locale === "en"
-                ? `Workflow Scenarios and Best Practices for ${category.name}`
-                : `Ámbito de aplicación y recomendaciones para ${category.name}`}
-            </h2>
-            <p className="mt-3 text-[15.5px] sm:text-[16px] leading-relaxed text-slate-700 font-normal">
-              {t.category.details[tool.category].useCases}
-            </p>
-            <div className="mt-5 pt-4 border-t border-slate-200/80 flex flex-wrap items-center justify-between gap-3 text-[13px] text-slate-500 font-medium">
-              <div className="flex items-center gap-2">
-                <span className="inline-flex size-2 rounded-full bg-emerald-500" />
+      {/* 4.5. CONTEXTO EDITORIAL & CASOS DE USO TÉCNICOS (Capa editorial específica por herramienta) */}
+      {(() => {
+        const practical = TOOL_PRACTICAL_PROFILES[tool.canonicalSlug];
+        if (practical) {
+          const eyebrow = practical.eyebrow[locale] || practical.eyebrow.es;
+          const title = practical.title[locale] || practical.title.es;
+          const engineDesc = practical.engineDescription[locale] || practical.engineDescription.es;
+          const bestFor = practical.bestFor[locale] || practical.bestFor.es;
+          const limitations = practical.limitations[locale] || practical.limitations.es;
+          const proTip = practical.proTip[locale] || practical.proTip.es;
+
+          return (
+            <section className="mt-12 sm:mt-14" aria-labelledby="editorial-context">
+              <div className="rounded-3xl border border-slate-200 bg-linear-to-br from-slate-50 via-white to-slate-50 p-6 sm:p-9 shadow-xs">
+                <div className="flex items-center gap-2.5 text-[12px] font-black uppercase tracking-wider text-[#EC3C2D]">
+                  <Sparkles className="size-4" />
+                  <span>{eyebrow}</span>
+                </div>
+                <h2 id="editorial-context" className="mt-2 text-[21px] sm:text-[23px] font-black text-[#0F172A] tracking-tight">
+                  {title}
+                </h2>
+                <p className="mt-3 text-[15.5px] sm:text-[16px] leading-relaxed text-slate-700 font-normal">
+                  {engineDesc}
+                </p>
+
+                <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-5 pt-5 border-t border-slate-200">
+                  <div className="rounded-2xl border border-emerald-100 bg-emerald-50/50 p-5">
+                    <h3 className="text-[15.5px] font-bold text-emerald-900 flex items-center gap-2">
+                      <span className="size-2 rounded-full bg-emerald-600 inline-block" />
+                      {locale === "ca" ? "Casos d'ús recomanats" : locale === "en" ? "Recommended use cases" : "Casos de uso recomendados"}
+                    </h3>
+                    <ul className="mt-2.5 space-y-2 text-[14px] text-emerald-950 leading-relaxed list-disc pl-5">
+                      {bestFor.map((item, idx) => (
+                        <li key={idx}>{item}</li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div className="rounded-2xl border border-amber-100 bg-amber-50/50 p-5">
+                    <h3 className="text-[15.5px] font-bold text-amber-900 flex items-center gap-2">
+                      <span className="size-2 rounded-full bg-amber-600 inline-block" />
+                      {locale === "ca" ? "Limitacions tècniques a considerar" : locale === "en" ? "Technical constraints & trade-offs" : "Limitaciones técnicas a considerar"}
+                    </h3>
+                    <ul className="mt-2.5 space-y-2 text-[14px] text-amber-950 leading-relaxed list-disc pl-5">
+                      {limitations.map((item, idx) => (
+                        <li key={idx}>{item}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="mt-5 rounded-xl border border-slate-200 bg-white p-4 text-[14px] text-slate-700 flex items-start gap-3">
+                  <strong className="text-[#EC3C2D] font-black shrink-0">
+                    {locale === "ca" ? "Consell pràctic:" : locale === "en" ? "Pro Tip:" : "Consejo práctico:"}
+                  </strong>
+                  <span>{proTip}</span>
+                </div>
+
+                <div className="mt-6 pt-4 border-t border-slate-200/80 flex flex-wrap items-center justify-between gap-3 text-[13px] text-slate-500 font-medium">
+                  <div className="flex items-center gap-2">
+                    <span className="inline-flex size-2 rounded-full bg-emerald-500" />
+                    <span>
+                      {locale === "ca"
+                        ? "Processament privat al navegador sense transmissió a servidors"
+                        : locale === "en"
+                        ? "Private in-browser processing with zero remote network upload"
+                        : "Procesamiento privado en navegador sin transmisión a servidores"}
+                    </span>
+                  </div>
+                  <Link
+                    to={categoryPath(locale, tool.category)}
+                    className="font-bold text-[#EC3C2D] hover:text-[#D93426] transition-colors inline-flex items-center gap-1 group"
+                  >
+                    <span>
+                      {locale === "ca"
+                        ? `Explorar més eines de ${category.name}`
+                        : locale === "en"
+                        ? `Explore all ${category.name} tools`
+                        : `Explorar más herramientas de ${category.name}`}
+                    </span>
+                    <span aria-hidden className="transition-transform group-hover:translate-x-0.5">→</span>
+                  </Link>
+                </div>
+              </div>
+            </section>
+          );
+        }
+
+        if (!t.category.details[tool.category]?.useCases) return null;
+
+        return (
+          <section className="mt-12 sm:mt-14" aria-labelledby="editorial-context">
+            <div className="rounded-2xl border border-slate-200 bg-linear-to-br from-slate-50 via-white to-slate-50 p-6 sm:p-8 shadow-xs">
+              <div className="flex items-center gap-2.5 text-[12px] font-black uppercase tracking-wider text-[#EC3C2D]">
+                <Sparkles className="size-4" />
                 <span>
                   {locale === "ca"
-                    ? "Conforme a l'especificació ISO 32000-1 per a documents digitals"
+                    ? "Criteris tècnics & Aplicació documental"
                     : locale === "en"
-                    ? "Fully compliant with ISO 32000-1 digital document standards"
-                    : "Conforme a la especificación ISO 32000-1 para documentos digitales"}
+                    ? "Technical Standards & Document Workflows"
+                    : "Criterios técnicos & Aplicación documental"}
                 </span>
               </div>
-              <Link
-                to={categoryPath(locale, tool.category)}
-                className="font-bold text-[#EC3C2D] hover:text-[#D93426] transition-colors inline-flex items-center gap-1 group"
-              >
-                <span>
-                  {locale === "ca"
-                    ? `Explorar més eines de ${category.name}`
-                    : locale === "en"
-                    ? `Explore all ${category.name} tools`
-                    : `Explorar más herramientas de ${category.name}`}
-                </span>
-                <span aria-hidden className="transition-transform group-hover:translate-x-0.5">→</span>
-              </Link>
+              <h2 id="editorial-context" className="mt-2 text-[20px] sm:text-[22px] font-black text-[#0F172A] tracking-tight">
+                {locale === "ca"
+                  ? `Àmbit d'aplicació i recomanacions per a ${category.name}`
+                  : locale === "en"
+                  ? `Workflow Scenarios and Best Practices for ${category.name}`
+                  : `Ámbito de aplicación y recomendaciones para ${category.name}`}
+              </h2>
+              <p className="mt-3 text-[15.5px] sm:text-[16px] leading-relaxed text-slate-700 font-normal">
+                {t.category.details[tool.category].useCases}
+              </p>
+              <div className="mt-5 pt-4 border-t border-slate-200/80 flex flex-wrap items-center justify-between gap-3 text-[13px] text-slate-500 font-medium">
+                <div className="flex items-center gap-2">
+                  <span className="inline-flex size-2 rounded-full bg-emerald-500" />
+                  <span>
+                    {locale === "ca"
+                      ? "Processament en memòria local en el navegador del dispositiu"
+                      : locale === "en"
+                      ? "Client-side volatile memory processing in browser"
+                      : "Procesamiento en memoria local en el navegador del dispositivo"}
+                  </span>
+                </div>
+                <Link
+                  to={categoryPath(locale, tool.category)}
+                  className="font-bold text-[#EC3C2D] hover:text-[#D93426] transition-colors inline-flex items-center gap-1 group"
+                >
+                  <span>
+                    {locale === "ca"
+                      ? `Explorar més eines de ${category.name}`
+                      : locale === "en"
+                      ? `Explore all ${category.name} tools`
+                      : `Explorar más herramientas de ${category.name}`}
+                  </span>
+                  <span aria-hidden className="transition-transform group-hover:translate-x-0.5">→</span>
+                </Link>
+              </div>
             </div>
-          </div>
-        </section>
-      )}
+          </section>
+        );
+      })()}
 
       {/* 5. PREGUNTAS FRECUENTES: Solid white cards with high-contrast type scale */}
       <section className="mt-12 sm:mt-14" aria-labelledby="faq">

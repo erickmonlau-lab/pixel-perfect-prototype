@@ -321,25 +321,25 @@ const es = {
     missionTitle: "Nuestra misión",
     missionBody:
       "BreadPDF nació para resolver un problema recurrente en el manejo de documentos digitales: la mayoría de herramientas en línea exigen subir contratos, nóminas, expedientes o historiales médicos a servidores remotos desconocidos, con riesgos evidentes para la confidencialidad. Diseñamos BreadPDF para que el 100% de las operaciones habituales se resuelvan directamente en el navegador del usuario.",
-    architectureTitle: "Arquitectura técnica: privacidad en cliente",
+    architectureTitle: "Arquitectura técnica: procesamiento en el navegador",
     architectureBody:
-      "A través de estándares web punteros como WebAssembly, pdf-lib, pdf.js y la API de Canvas, BreadPDF ejecuta algoritmos criptográficos, vectoriales y de maquetación directamente en el procesador y memoria de tu dispositivo. Ningún archivo sale de tu equipo, no existen colas en servidores ni riesgos de interceptación en tránsito.",
+      "BreadPDF ejecuta sus utilidades directamente en el entorno de ejecución de tu navegador mediante bibliotecas especializadas de JavaScript y TypeScript (como pdf-lib para manipulación de estructura PDF, pdf.js y la API de Canvas para rasterizado y renderizado, y módulos WebAssembly / Web Workers para tareas intensivas como OCR con Tesseract.js). Las operaciones se procesan en la memoria volátil de tu dispositivo y los archivos seleccionados no se suben a servidores remotos.",
     pillars: [
       {
         title: "Sin subida de archivos",
-        desc: "Las herramientas ejecutan el renderizado, corte, compresión y manipulación sin enviar el documento a la nube.",
+        desc: "Las herramientas interactivas procesan, extraen, reordenan y transforman tus archivos localmente en el cliente.",
       },
       {
-        title: "Cero retención de datos",
-        desc: "Al cerrar o recargar la pestaña del navegador, el contenido temporal desaparece sin dejar rastro en ningún servidor.",
+        title: "Tratamiento en memoria volátil",
+        desc: "Los datos residen en la memoria temporal de la sesión del navegador y se liberan al cerrar o recargar la pestaña.",
       },
       {
-        title: "Estándar ISO 32000-1",
-        desc: "Generamos documentos totalmente compatibles con visores estándar, lectores oficiales y plataformas de firma.",
+        title: "Compatibilidad estándar PDF",
+        desc: "Los documentos generados respetan la estructura estándar de archivos PDF para garantizar que se abran en visores estándar como Adobe Acrobat, navegadores y plataformas de firma.",
       },
       {
         title: "Soporte y contacto directo",
-        desc: "Atención técnica directa y cercana para dudas y feedback mediante breadpdfstudio@gmail.com.",
+        desc: "Atención técnica directa y canal de resolución de dudas a través de breadpdfstudio@gmail.com.",
       },
     ],
     contactTitle: "Titularidad, soporte y contacto",
@@ -711,25 +711,25 @@ const ca: Dict = {
     missionTitle: "La nostra missió",
     missionBody:
       "BreadPDF va néixer per resoldre un problema clau en el tractament de fitxers digitals: la majoria d'eines en línia demanen pujar documents privats a servidors desconeguts. Hem dissenyat BreadPDF perquè el 100% de les tasques quotidianes es resolguin directament al navegador del propi usuari.",
-    architectureTitle: "Arquitectura tècnica: privadesa al client",
+    architectureTitle: "Arquitectura tècnica: processament al navegador",
     architectureBody:
-      "Mitjançant estàndards web moderns com WebAssembly, pdf-lib, pdf.js i la Canvas API, BreadPDF executa les manipulacions directament a la memòria del teu dispositiu. Cap document no viatja a servidors externs, eliminant cues i riscos d'interceptació.",
+      "BreadPDF executa les seves eines directament a l'entorn del teu navegador mitjançant llibreries especialitzades de JavaScript i TypeScript (com pdf-lib per a manipulació d'estructura PDF, pdf.js i l'API Canvas per a rasterització, i mòduls WebAssembly / Web Workers per a tasques intensives com l'OCR amb Tesseract.js). Les operacions es processen a la memòria volàtil del teu dispositiu i els fitxers no es pugen a servidors remots.",
     pillars: [
       {
         title: "Sense pujada de fitxers",
-        desc: "Les eines executen renderitzat, tall, compressió i modificació sense enviar el document a cap núvol.",
+        desc: "Les eines interactives processen, extreuen, reordenen i transformen els teus documents directament al client.",
       },
       {
-        title: "Zero retenció de dades",
-        desc: "En tancar o recarregar la pestanya, el contingut temporal s'elimina immediatament de la memòria local.",
+        title: "Tractament en memòria volàtil",
+        desc: "Les dades resideixen a la memòria temporal de la sessió del navegador i s'alliberen en tancar o recarregar la pestanya.",
       },
       {
-        title: "Estàndard ISO 32000-1",
-        desc: "Generem documents plenament compatibles amb visors estàndard, lectors oficials i administracions.",
+        title: "Compatibilitat estàndard PDF",
+        desc: "Els documents generats respecten l'estructura estàndard de fitxers PDF per garantir que s'obrin en visors habituals com Adobe Acrobat, navegadors i plataformes de signatura.",
       },
       {
         title: "Suport i contacte directe",
-        desc: "Atenció tècnica personalitzada i resolució de dubtes mitjançant breadpdfstudio@gmail.com.",
+        desc: "Atenció tècnica directa i resolució de dubtes a través de breadpdfstudio@gmail.com.",
       },
     ],
     contactTitle: "Titularitat, suport i contacte",
@@ -1097,25 +1097,25 @@ const en: Dict = {
     missionTitle: "Our Mission",
     missionBody:
       "BreadPDF was created to solve a critical flaw in digital document workflows: most online PDF converters require uploading private agreements, payslips, medical records, or legal filings to obscure remote servers. We architected BreadPDF so that 100% of standard operations run entirely inside the user's web browser.",
-    architectureTitle: "Technical Architecture: Browser-Native Processing",
+    architectureTitle: "Technical Architecture: Browser-Native Execution",
     architectureBody:
-      "Leveraging modern web technologies including WebAssembly, pdf-lib, pdf.js, and the Canvas API, BreadPDF executes cryptographic, vector, and layout operations directly within your local device's memory. No document is transmitted across the network, eliminating queue bottlenecks and intercept risks.",
+      "BreadPDF executes its document operations directly inside your web browser using dedicated JavaScript and TypeScript engines (including pdf-lib for binary PDF structure modifications, pdf.js and the HTML5 Canvas API for vector rendering, and WebAssembly / Web Workers for compute-intensive tasks such as client-side OCR with Tesseract.js). All operations are processed in the volatile memory of your local device, and selected files are never uploaded to remote servers.",
     pillars: [
       {
         title: "No Server Uploads",
-        desc: "Tools execute page extraction, splitting, compression, and rendering without transmitting files to any cloud backend.",
+        desc: "Interactive tools inspect, reorder, compress, and transform documents locally within your client session.",
       },
       {
-        title: "Zero Data Retention",
-        desc: "Closing or reloading your browser tab clears all transient file buffers immediately with no server-side footprint.",
+        title: "Volatile Memory Handling",
+        desc: "Document data resides strictly in temporary browser memory and is discarded as soon as the tab is closed or reloaded.",
       },
       {
-        title: "ISO 32000-1 Standards",
-        desc: "We output fully compliant documents compatible with Adobe Acrobat, system print drivers, and certified viewers.",
+        title: "Standard PDF Compatibility",
+        desc: "Generated documents conform to standard PDF file structures, ensuring seamless rendering across Adobe Acrobat, modern browsers, and certified viewers.",
       },
       {
         title: "Direct Engineering Support",
-        desc: "Responsive technical assistance, bug reports, and feature requests via breadpdfstudio@gmail.com.",
+        desc: "Direct support and technical inquiries handled openly via breadpdfstudio@gmail.com.",
       },
     ],
     contactTitle: "Ownership, Support & Inquiries",
