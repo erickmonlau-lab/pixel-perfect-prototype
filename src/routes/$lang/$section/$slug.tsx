@@ -384,7 +384,7 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
       />
 
       {/* 2. TOOL HEADER: Powerful H1, Solid Category Badge, and Contextual BreadPDF Mascot */}
-      <header className="mt-4 sm:mt-5">
+      <header className="mt-4 sm:mt-5 animate-fade-in">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 md:gap-6 lg:gap-8">
           {/* Left Column: Category Badge + Search-Intent H1 + Tagline */}
           <div className="flex-1 min-w-0 max-w-3xl">
@@ -438,7 +438,7 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
       </header>
 
       {/* 3. WORKSPACE / UPLOADER: The centerpiece of action */}
-      <div className="mt-5 sm:mt-6">
+      <div className="mt-5 sm:mt-6 animate-fade-in [animation-delay:60ms]">
         <ToolWorkspace tool={tool} />
       </div>
 
@@ -511,10 +511,10 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
                   {engineDesc}
                 </p>
 
-                {/* Tarjetas de Casos de Uso y Limitaciones — Fondos sólidos basados en la paleta corporativa BreadPDF */}
-                <div className="mt-7 grid grid-cols-1 md:grid-cols-2 gap-6 pt-6 border-t border-slate-100">
-                  {/* Tarjeta Casos de uso recomendados: Borde azul corporativo / Fondo blanco y slate suave */}
-                  <div className="rounded-2xl border border-blue-200 bg-slate-50/70 p-6 flex flex-col justify-start">
+                {/* Tarjetas de Casos de Uso y Limitaciones — Fondos 100% sólidos blancos sin transparencias */}
+                <div className="mt-7 grid grid-cols-1 md:grid-cols-2 gap-6 pt-6 border-t border-slate-200">
+                  {/* Tarjeta Casos de uso recomendados: Borde azul corporativo / Fondo 100% blanco sólido */}
+                  <div className="rounded-2xl border-2 border-blue-200 bg-white p-6 shadow-xs flex flex-col justify-start">
                     <h3 className="text-[17px] sm:text-[18px] font-bold text-[#0F172A] flex items-center gap-2.5">
                       <span className="size-2.5 rounded-full bg-[#2563EB] inline-block shrink-0" />
                       {locale === "ca" ? "Casos d'ús recomanats" : locale === "en" ? "Recommended use cases" : "Casos de uso recomendados"}
@@ -526,8 +526,8 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
                     </ul>
                   </div>
 
-                  {/* Tarjeta Limitaciones técnicas: Borde rojo corporativo / Fondo blanco y slate suave */}
-                  <div className="rounded-2xl border border-red-200 bg-slate-50/70 p-6 flex flex-col justify-start">
+                  {/* Tarjeta Limitaciones técnicas: Borde rojo corporativo / Fondo 100% blanco sólido */}
+                  <div className="rounded-2xl border-2 border-red-200 bg-white p-6 shadow-xs flex flex-col justify-start">
                     <h3 className="text-[17px] sm:text-[18px] font-bold text-[#0F172A] flex items-center gap-2.5">
                       <span className="size-2.5 rounded-full bg-[#EC3C2D] inline-block shrink-0" />
                       {locale === "ca" ? "Limitacions tècniques a considerar" : locale === "en" ? "Technical constraints & trade-offs" : "Limitaciones técnicas a considerar"}
@@ -540,8 +540,8 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
                   </div>
                 </div>
 
-                {/* Consejo práctico destacado */}
-                <div className="mt-6 rounded-2xl border border-slate-200 bg-slate-50 p-5 sm:p-6 text-[15px] sm:text-[16px] text-slate-800 flex items-start gap-3.5">
+                {/* Consejo práctico destacado: Fondo 100% blanco sólido con borde nítido */}
+                <div className="mt-6 rounded-2xl border border-slate-200 bg-white p-5 sm:p-6 text-[15px] sm:text-[16px] text-slate-800 flex items-start gap-3.5 shadow-xs">
                   <span className="inline-flex items-center justify-center rounded-lg bg-[#EC3C2D] px-2.5 py-1 text-[13px] font-black uppercase text-white shrink-0 tracking-wide">
                     {locale === "ca" ? "Consell" : locale === "en" ? "Pro Tip" : "Consejo"}
                   </span>
@@ -563,7 +563,7 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
                   </div>
                   <Link
                     to={categoryPath(locale, tool.category)}
-                    className="font-bold text-[#EC3C2D] hover:text-[#D93426] transition-colors inline-flex items-center gap-1.5 group text-[14.5px]"
+                    className="group inline-flex items-center gap-2 rounded-xl bg-slate-100 hover:bg-[#EC3C2D] hover:text-white px-4 py-2 text-[14px] font-bold text-slate-700 transition-all shadow-2xs hover:shadow-xs"
                   >
                     <span>
                       {locale === "ca"
@@ -572,7 +572,7 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
                         ? `Explore all ${category.name} tools`
                         : `Explorar más herramientas de ${category.name}`}
                     </span>
-                    <span aria-hidden className="transition-transform group-hover:translate-x-0.5 font-bold">→</span>
+                    <span aria-hidden className="transition-transform group-hover:translate-x-1 font-black">→</span>
                   </Link>
                 </div>
               </div>
@@ -618,7 +618,7 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
                 </div>
                 <Link
                   to={categoryPath(locale, tool.category)}
-                  className="font-bold text-[#EC3C2D] hover:text-[#D93426] transition-colors inline-flex items-center gap-1.5 group text-[14.5px]"
+                  className="group inline-flex items-center gap-2 rounded-xl bg-slate-100 hover:bg-[#EC3C2D] hover:text-white px-4 py-2 text-[14px] font-bold text-slate-700 transition-all shadow-2xs hover:shadow-xs"
                 >
                   <span>
                     {locale === "ca"
@@ -627,7 +627,7 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
                       ? `Explore all ${category.name} tools`
                       : `Explorar más herramientas de ${category.name}`}
                   </span>
-                  <span aria-hidden className="transition-transform group-hover:translate-x-0.5 font-bold">→</span>
+                  <span aria-hidden className="transition-transform group-hover:translate-x-1 font-black">→</span>
                 </Link>
               </div>
             </div>
@@ -670,7 +670,7 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
             to={SECTION_ROUTE}
             params={catalogParams(locale)}
             onClick={() => trackToolCatalogViewAllClicked({ source: "related_tools_header", language: locale })}
-            className="group inline-flex items-center gap-1.5 text-[15px] font-bold text-[#EC3C2D] hover:text-[#D93426] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/30 rounded-md py-1 px-1.5 -mr-1.5"
+            className="group inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2 text-[14.5px] font-bold text-[#0F172A] hover:border-[#EC3C2D] hover:bg-[#EC3C2D] hover:text-white transition-all shadow-xs hover:shadow-sm"
             aria-label={
               locale === "ca"
                 ? "Veure el catàleg complet d'eines"
@@ -688,7 +688,7 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
             </span>
             <span
               aria-hidden
-              className="inline-block translate-x-0 transition-transform duration-200 group-hover:translate-x-1"
+              className="inline-block translate-x-0 transition-transform duration-200 group-hover:translate-x-1 font-bold"
             >
               →
             </span>

@@ -13,6 +13,9 @@ import {
   List,
   Plus,
   PlusCircle,
+  SlidersHorizontal,
+  ChevronDown,
+  ChevronUp,
 } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -82,6 +85,22 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
   const [outputs, setOutputs] = useState<ToolOutput[]>([]);
   const [urls, setUrls] = useState<string[]>([]);
   const [viewMode, setViewMode] = useState<"visual" | "list">("visual");
+  const [showInitialSettings, setShowInitialSettings] = useState(false);
+  const [filePreviews, setFilePreviews] = useState<Map<string, string>>(new Map());
+
+  // Generar miniaturas ligeras para imágenes cargadas y limpiar memoria
+  useEffect(() => {
+    const newPreviews = new Map<string, string>();
+    files.forEach((file) => {
+      if (file.type.startsWith("image/")) {
+        newPreviews.set(`${file.name}-${file.size}-${file.lastModified}`, URL.createObjectURL(file));
+      }
+    });
+    setFilePreviews(newPreviews);
+    return () => {
+      newPreviews.forEach((url) => URL.revokeObjectURL(url));
+    };
+  }, [files]);
 
   // Configuración de Marca de agua con valores iniciales limpios
   const [watermarkConfig, setWatermarkConfig] = useState<WatermarkConfig>({
@@ -613,8 +632,8 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
       className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm"
       aria-label={t.workspace.aria(tool.name)}
     >
-      {/* Zona de Subida / Dropzone principal: visible si no estamos procesando ni terminados en modo auto */}
-      {(!isAutoFlow || (phase !== "uploading" && phase !== "processing" && phase !== "done")) && (
+      {/* Zona de Subida / Dropzone principal: visible SOLO si files.length === 0 y no estamos procesando ni terminados en modo auto */}
+      {files.length === 0 && (!isAutoFlow || (phase !== "uploading" && phase !== "processing" && phase !== "done")) && (
         <div
           onDragOver={(event) => {
             event.preventDefault();
@@ -626,10 +645,10 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
             setDragging(false);
             addFiles(event.dataTransfer.files);
           }}
-          className={`transition-all m-3 sm:m-4 rounded-2xl border-2 border-dashed px-5 py-7 sm:py-9 text-center cursor-pointer ${
+          className={`transition-all duration-200 m-3 sm:m-4 rounded-2xl border px-5 py-8 sm:py-10 text-center cursor-pointer shadow-xs ${
             dragging
-              ? "border-[#EC3C2D] bg-[#FEECEB] scale-[1.004]"
-              : "border-slate-300 bg-slate-50 hover:border-[#EC3C2D] hover:bg-white"
+              ? "border-[#EC3C2D] bg-[#FEECEB] scale-[1.004] ring-2 ring-[#EC3C2D]/30"
+              : "border-slate-200 bg-white hover:border-slate-300 hover:shadow-sm"
           }`}
           onClick={() => inputRef.current?.click()}
         >
@@ -676,67 +695,90 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
             </Button>
           </div>
 
-          {/* Selector de Ajuste / Preset de Compresión visible antes de subir */}
+          {/* Opción compacta "Ajustes de imagen" / configuración previa opcional */}
           {tool.options && tool.options.length > 0 && (
-            <div
-              className="mt-6 flex flex-col gap-4 rounded-2xl border border-slate-200 bg-white p-5 sm:p-6 shadow-sm max-w-xl mx-auto w-full text-left"
-              onClick={(e) => e.stopPropagation()}
-            >
-              {tool.options.map((opt) => (
-                <div key={opt.key} className="flex flex-col gap-1.5">
-                  <div className="flex items-center justify-between">
-                    <label htmlFor={`preset-${opt.key}`} className="text-[14.5px] sm:text-[15px] font-bold text-slate-800">
-                      {opt.label}
-                    </label>
-                    {opt.type === "range" && values[opt.key] != null && (
-                      <span className="text-[14px] font-mono font-bold text-[#EC3C2D] bg-red-50 border border-red-100 rounded-md px-2 py-0.5">
-                        {values[opt.key]}{opt.unit ?? ""}
-                      </span>
-                    )}
+            <div className="mt-6 max-w-xl mx-auto w-full" onClick={(e) => e.stopPropagation()}>
+              <button
+                type="button"
+                onClick={() => setShowInitialSettings((prev) => !prev)}
+                className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-slate-50 hover:bg-slate-100 hover:border-slate-300 px-4 py-2 text-[13.5px] sm:text-[14px] font-bold text-slate-700 transition-all cursor-pointer shadow-2xs"
+              >
+                <SlidersHorizontal className="size-4 text-[#2563EB]" />
+                <span>
+                  {locale === "ca"
+                    ? "Ajustos de la configuració"
+                    : locale === "en"
+                    ? "Tool settings"
+                    : "Ajustes de imagen"}
+                </span>
+                {showInitialSettings ? (
+                  <ChevronUp className="size-4 text-slate-500" />
+                ) : (
+                  <ChevronDown className="size-4 text-slate-500" />
+                )}
+              </button>
+
+              {showInitialSettings && (
+                <div className="mt-3 text-left rounded-2xl border border-slate-200 bg-white p-5 sm:p-6 shadow-sm animate-fade-in">
+                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                    {tool.options.map((opt) => (
+                      <div key={opt.key} className="flex flex-col gap-1.5">
+                        <div className="flex items-center justify-between">
+                          <label htmlFor={`init-preset-${opt.key}`} className="text-[13.5px] font-bold text-slate-800">
+                            {opt.label}
+                          </label>
+                          {opt.type === "range" && values[opt.key] != null && (
+                            <span className="text-[13px] font-mono font-bold text-[#EC3C2D] bg-red-50 border border-red-100 rounded-md px-2 py-0.5">
+                              {values[opt.key]}{opt.unit ?? ""}
+                            </span>
+                          )}
+                        </div>
+                        {opt.type === "select" && (
+                          <select
+                            id={`init-preset-${opt.key}`}
+                            value={values[opt.key] ?? opt.default}
+                            onChange={(e) => setValues((v) => ({ ...v, [opt.key]: e.target.value }))}
+                            className="rounded-xl border border-slate-300 bg-white px-3 py-2 text-[14px] font-semibold text-[#0F172A] shadow-2xs transition-all hover:border-slate-400 focus:border-[#2563EB] focus:outline-hidden"
+                          >
+                            {opt.options.map((o) => (
+                              <option key={o.value} value={o.value}>
+                                {o.label}
+                              </option>
+                            ))}
+                          </select>
+                        )}
+                        {opt.type === "range" && (
+                          <div className="flex items-center gap-3 pt-1">
+                            <input
+                              id={`init-preset-${opt.key}`}
+                              type="range"
+                              min={opt.min}
+                              max={opt.max}
+                              step={opt.step}
+                              value={Number(values[opt.key] ?? opt.default)}
+                              onChange={(e) => setValues((v) => ({ ...v, [opt.key]: Number(e.target.value) }))}
+                              className="h-2 flex-1 cursor-pointer appearance-none rounded-full bg-slate-200 accent-[#EC3C2D] [&::-webkit-slider-thumb]:size-4.5 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-[#EC3C2D] [&::-webkit-slider-thumb]:shadow-md hover:[&::-webkit-slider-thumb]:scale-110 transition-transform"
+                            />
+                          </div>
+                        )}
+                        {opt.type === "text" && (
+                          <input
+                            id={`init-preset-${opt.key}`}
+                            type="text"
+                            value={String(values[opt.key] ?? opt.default)}
+                            placeholder={(opt as any).placeholder}
+                            onChange={(e) => setValues((v) => ({ ...v, [opt.key]: e.target.value }))}
+                            className="rounded-xl border border-slate-300 bg-white px-3 py-2 text-[14px] font-medium text-[#0F172A] shadow-2xs transition-all hover:border-slate-400 focus:border-[#2563EB] focus:outline-hidden"
+                          />
+                        )}
+                        {opt.help && (
+                          <span className="text-[12px] text-slate-500 leading-normal">{opt.help}</span>
+                        )}
+                      </div>
+                    ))}
                   </div>
-                  {opt.type === "select" && (
-                    <select
-                      id={`preset-${opt.key}`}
-                      value={values[opt.key] ?? opt.default}
-                      onChange={(e) => setValues((v) => ({ ...v, [opt.key]: e.target.value }))}
-                      className="rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-[15px] font-semibold text-[#0F172A] shadow-2xs transition-all hover:border-slate-400 focus:border-[#2563EB] focus:outline-hidden"
-                    >
-                      {opt.options.map((o) => (
-                        <option key={o.value} value={o.value}>
-                          {o.label}
-                        </option>
-                      ))}
-                    </select>
-                  )}
-                  {opt.type === "range" && (
-                    <div className="flex items-center gap-3 pt-1">
-                      <input
-                        id={`preset-${opt.key}`}
-                        type="range"
-                        min={opt.min}
-                        max={opt.max}
-                        step={opt.step}
-                        value={Number(values[opt.key] ?? opt.default)}
-                        onChange={(e) => setValues((v) => ({ ...v, [opt.key]: Number(e.target.value) }))}
-                        className="h-2.5 flex-1 cursor-pointer appearance-none rounded-full bg-slate-200 accent-[#EC3C2D] [&::-webkit-slider-thumb]:size-5 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-[#EC3C2D] [&::-webkit-slider-thumb]:shadow-md hover:[&::-webkit-slider-thumb]:scale-110 transition-transform"
-                      />
-                    </div>
-                  )}
-                  {opt.type === "text" && (
-                    <input
-                      id={`preset-${opt.key}`}
-                      type="text"
-                      value={String(values[opt.key] ?? opt.default)}
-                      placeholder={(opt as any).placeholder}
-                      onChange={(e) => setValues((v) => ({ ...v, [opt.key]: e.target.value }))}
-                      className="rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-[15px] font-medium text-[#0F172A] shadow-2xs transition-all hover:border-slate-400 focus:border-[#2563EB] focus:outline-hidden"
-                    />
-                  )}
-                  {opt.help && (
-                    <span className="text-[13.5px] text-slate-500 leading-normal">{opt.help}</span>
-                  )}
                 </div>
-              ))}
+              )}
             </div>
           )}
 
@@ -748,9 +790,9 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
             </div>
           )}
 
-          {/* Mensaje de privacidad sólido y nítido cerca de la acción — Azul corporativo sin verde */}
+          {/* Mensaje de privacidad 100% sólido y nítido cerca de la acción — Azul corporativo sin verde */}
           <div className="mt-5 flex justify-center">
-            <div className="inline-flex items-center gap-2.5 rounded-full border border-blue-200 bg-blue-50/80 px-4 py-1.5 text-[13.5px] sm:text-[14.5px] font-semibold text-[#0F172A] shadow-2xs">
+            <div className="inline-flex items-center gap-2.5 rounded-full border border-slate-200 bg-white px-4 py-1.5 text-[13.5px] sm:text-[14.5px] font-bold text-[#0F172A] shadow-xs">
               <ShieldCheck className="size-4.5 text-[#2563EB] shrink-0" />
               <span>{t.workspace.privacyNote}</span>
             </div>
@@ -955,81 +997,103 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
             </div>
           ) : (
             <div className="mt-4 space-y-3">
-              <ul className="divide-y divide-border overflow-hidden rounded-xl border border-border bg-background/50">
-                {files.map((file, index) => (
-                  <li
-                    key={`${file.name}-${index}`}
-                    className="flex items-center gap-3 p-3.5 transition-colors hover:bg-surface"
-                  >
-                    <div className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-primary-soft text-primary">
-                      <FileText className="size-5" />
-                    </div>
-                    <span className="min-w-0 flex-1">
-                      <span className="block truncate text-[14.5px] font-semibold text-foreground">
-                        {file.name}
-                      </span>
-                      <span className="text-[13px] text-muted-foreground">
-                        {formatBytes(file.size)}
-                      </span>
-                    </span>
-                    {tool.multiple && files.length > 1 && (
-                      <span className="flex gap-1.5">
-                        <button
-                          type="button"
-                          onClick={() => move(index, -1)}
-                          disabled={index === 0}
-                          aria-label={t.workspace.moveUp(file.name)}
-                          className="transition-standard rounded-lg border border-border p-2 text-muted-foreground hover:text-primary disabled:opacity-40"
-                        >
-                          <ArrowUp className="size-4" />
-                        </button>
-                        <button
-                          type="button"
-                          onClick={() => move(index, 1)}
-                          disabled={index === files.length - 1}
-                          aria-label={t.workspace.moveDown(file.name)}
-                          className="transition-standard rounded-lg border border-border p-2 text-muted-foreground hover:text-primary disabled:opacity-40"
-                        >
-                          <ArrowDown className="size-4" />
-                        </button>
-                      </span>
-                    )}
-                    <button
-                      type="button"
-                      onClick={() => {
-                        const remaining = files.filter((_, i) => i !== index);
-                        setFiles(remaining);
-                        if (isPageWorkspace) loadPagesForFiles(remaining);
-                      }}
-                      aria-label={t.workspace.remove(file.name)}
-                      className="transition-standard rounded-lg border border-border p-2 text-muted-foreground hover:border-destructive/40 hover:text-destructive"
+              <ul className="divide-y divide-border overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xs">
+                {files.map((file, index) => {
+                  const previewUrl = filePreviews.get(`${file.name}-${file.size}-${file.lastModified}`);
+                  return (
+                    <li
+                      key={`${file.name}-${index}`}
+                      className="animate-file-enter flex items-center gap-3.5 p-3.5 transition-colors hover:bg-slate-50"
                     >
-                      <Trash2 className="size-4" />
-                    </button>
-                  </li>
-                ))}
+                      {previewUrl ? (
+                        <div className="relative size-12 shrink-0 overflow-hidden rounded-xl border border-slate-200 bg-slate-100 shadow-2xs">
+                          <img
+                            src={previewUrl}
+                            alt={file.name}
+                            className="size-full object-cover"
+                          />
+                        </div>
+                      ) : (
+                        <div className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-red-50 text-[#EC3C2D] border border-red-100">
+                          <FileText className="size-5.5" />
+                        </div>
+                      )}
+                      <span className="min-w-0 flex-1">
+                        <span className="block truncate text-[14.5px] sm:text-[15px] font-bold text-[#0F172A]">
+                          {file.name}
+                        </span>
+                        <span className="text-[13px] text-slate-500 font-medium">
+                          {formatBytes(file.size)}
+                        </span>
+                      </span>
+                      {tool.multiple && files.length > 1 && (
+                        <span className="flex gap-1.5">
+                          <button
+                            type="button"
+                            onClick={() => move(index, -1)}
+                            disabled={index === 0}
+                            aria-label={t.workspace.moveUp(file.name)}
+                            className="transition-all rounded-lg border border-slate-200 p-2 text-slate-500 hover:text-primary hover:border-slate-300 disabled:opacity-30 cursor-pointer"
+                          >
+                            <ArrowUp className="size-4" />
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => move(index, 1)}
+                            disabled={index === files.length - 1}
+                            aria-label={t.workspace.moveDown(file.name)}
+                            className="transition-all rounded-lg border border-slate-200 p-2 text-slate-500 hover:text-primary hover:border-slate-300 disabled:opacity-30 cursor-pointer"
+                          >
+                            <ArrowDown className="size-4" />
+                          </button>
+                        </span>
+                      )}
+                      <button
+                        type="button"
+                        onClick={() => {
+                          const remaining = files.filter((_, i) => i !== index);
+                          setFiles(remaining);
+                          if (isPageWorkspace) loadPagesForFiles(remaining);
+                        }}
+                        aria-label={t.workspace.remove(file.name)}
+                        className="transition-all rounded-lg border border-slate-200 p-2 text-slate-400 hover:border-red-200 hover:bg-[#FEECEB] hover:text-[#EC3C2D] cursor-pointer"
+                      >
+                        <Trash2 className="size-4" />
+                      </button>
+                    </li>
+                  );
+                })}
               </ul>
 
               {tool.multiple && (
                 <button
                   type="button"
                   onClick={() => inputRef.current?.click()}
-                  className="w-full flex items-center justify-center gap-2 rounded-xl border border-dashed border-slate-300 bg-slate-50/70 p-3 text-[13px] font-bold text-slate-600 hover:border-primary hover:bg-[#FEECEB]/40 hover:text-primary transition-all cursor-pointer"
+                  className="w-full flex items-center justify-center gap-2 rounded-xl border border-dashed border-slate-300 bg-white p-3.5 text-[13.5px] font-bold text-slate-700 hover:border-[#EC3C2D] hover:bg-[#FEECEB]/30 hover:text-[#EC3C2D] transition-all cursor-pointer shadow-2xs"
                 >
-                  <Plus className="size-4" />
+                  <Plus className="size-4.5 text-[#EC3C2D]" />
                   <span>{t.workspace.addMoreFiles ?? "Añadir más archivos"}</span>
                 </button>
               )}
             </div>
           )}
 
-          {/* Opciones configurables de la herramienta (si existen) */}
+          {/* Opciones configurables de la herramienta (panel único y compacto) */}
           {tool.options &&
             tool.options.length > 0 &&
             !(tool.slug === "dividir-pdf" && workspaceState.selectedPageIds.length > 0) && (
-              <div className="mt-6 rounded-xl border border-slate-200 bg-slate-50/70 p-5 shadow-xs">
-                <h4 className="text-[14.5px] font-bold text-slate-800 mb-4">Ajustes de la herramienta</h4>
-                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+              <div className="mt-6 rounded-2xl border border-slate-200 bg-white p-5 sm:p-6 shadow-xs animate-fade-in">
+                <div className="flex items-center gap-2 mb-4 pb-3 border-b border-slate-100">
+                  <SlidersHorizontal className="size-4.5 text-[#2563EB]" />
+                  <h4 className="text-[15.5px] font-bold text-[#0F172A] m-0">
+                    {locale === "ca"
+                      ? "Ajustos de la configuració"
+                      : locale === "en"
+                      ? "Configuration settings"
+                      : "Ajustes de la herramienta"}
+                  </h4>
+                </div>
+                <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
                   {tool.options
                     .filter((opt) => {
                       // En dividir-pdf, solo mostrar el campo de texto "ranges" si el modo es "ranges"
@@ -1039,11 +1103,13 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                       return true;
                     })
                     .map((opt) => (
-                      <div key={opt.key} className="flex flex-col gap-1.5">
+                      <div key={opt.key} className="flex flex-col gap-2">
                         <div className="flex items-center justify-between">
-                          <label className="text-[13px] font-semibold text-slate-700">{opt.label}</label>
+                          <label htmlFor={`opt-${opt.key}`} className="text-[14px] font-bold text-slate-800">
+                            {opt.label}
+                          </label>
                           {opt.type === "range" && (
-                            <span className="text-[12px] font-mono text-slate-500 font-bold">
+                            <span className="text-[13px] font-mono font-bold text-[#EC3C2D] bg-red-50 border border-red-100 rounded-md px-2 py-0.5">
                               {values[opt.key]}
                               {opt.unit ?? ""}
                             </span>
@@ -1051,9 +1117,10 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                         </div>
                         {opt.type === "select" && (
                           <select
+                            id={`opt-${opt.key}`}
                             value={values[opt.key] ?? opt.default}
                             onChange={(e) => setValues((v) => ({ ...v, [opt.key]: e.target.value }))}
-                            className="rounded-lg border border-slate-300 bg-white px-3 py-2 text-[13.5px] font-medium text-slate-800 shadow-2xs transition-all focus:border-primary focus:outline-hidden focus:ring-2 focus:ring-primary/20"
+                            className="rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-[14.5px] font-semibold text-[#0F172A] shadow-2xs transition-all hover:border-slate-400 focus:border-[#2563EB] focus:outline-hidden"
                           >
                             {opt.options.map((o) => (
                               <option key={o.value} value={o.value}>
@@ -1064,27 +1131,31 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                         )}
                         {opt.type === "text" && (
                           <input
+                            id={`opt-${opt.key}`}
                             type="text"
                             value={values[opt.key] ?? opt.default}
                             placeholder={opt.placeholder}
                             onChange={(e) => setValues((v) => ({ ...v, [opt.key]: e.target.value }))}
-                            className="rounded-lg border border-slate-300 bg-white px-3 py-2 text-[13.5px] font-medium text-slate-800 placeholder:text-slate-400 shadow-2xs transition-all focus:border-primary focus:outline-hidden focus:ring-2 focus:ring-primary/20"
+                            className="rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-[14.5px] font-medium text-[#0F172A] placeholder:text-slate-400 shadow-2xs transition-all hover:border-slate-400 focus:border-[#2563EB] focus:outline-hidden"
                           />
                         )}
                         {opt.type === "range" && (
-                          <input
-                            type="range"
-                            min={opt.min}
-                            max={opt.max}
-                            step={opt.step}
-                            value={values[opt.key] ?? opt.default}
-                            onChange={(e) =>
-                              setValues((v) => ({ ...v, [opt.key]: parseFloat(e.target.value) }))
-                            }
-                            className="w-full accent-primary mt-1 cursor-pointer"
-                          />
+                          <div className="flex items-center gap-3 pt-1">
+                            <input
+                              id={`opt-${opt.key}`}
+                              type="range"
+                              min={opt.min}
+                              max={opt.max}
+                              step={opt.step}
+                              value={Number(values[opt.key] ?? opt.default)}
+                              onChange={(e) =>
+                                setValues((v) => ({ ...v, [opt.key]: parseFloat(e.target.value) }))
+                              }
+                              className="h-2 flex-1 cursor-pointer appearance-none rounded-full bg-slate-200 accent-[#EC3C2D] [&::-webkit-slider-thumb]:size-5 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-[#EC3C2D] [&::-webkit-slider-thumb]:shadow-md hover:[&::-webkit-slider-thumb]:scale-110 transition-transform"
+                            />
+                          </div>
                         )}
-                        {opt.help && <span className="text-[12px] text-slate-500">{opt.help}</span>}
+                        {opt.help && <span className="text-[12.5px] text-slate-500 leading-normal">{opt.help}</span>}
                       </div>
                     ))}
                 </div>
@@ -1098,12 +1169,12 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                   size="lg"
                   type="button"
                   onClick={() => inputRef.current?.click()}
-                  className="h-12 px-7 text-[15px] font-bold shadow-md bg-primary hover:bg-primary/90 text-white gap-2"
+                  className="h-13 px-8 text-[16px] font-black rounded-xl sm:rounded-2xl shadow-md bg-[#EC3C2D] hover:bg-[#D93426] text-white gap-2 transition-all hover:-translate-y-0.5 cursor-pointer"
                 >
-                  <Plus className="size-4.5" />
+                  <Plus className="size-5" />
                   <span>{t.workspace.addMoreFiles ?? "Añadir más archivos"}</span>
                 </Button>
-                <span className="text-[13.5px] font-medium text-slate-500 bg-slate-100/80 rounded-lg px-3.5 py-2 border border-slate-200">
+                <span className="text-[14px] font-medium text-slate-600 bg-white rounded-xl px-4 py-2 border border-slate-200 shadow-2xs">
                   {t.workspace.addMoreFilesSubtitle ?? t.workspace.minFiles(tool.minFiles)}
                 </span>
               </div>
@@ -1112,9 +1183,9 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                 size="lg"
                 onClick={() => run()}
                 disabled={phase === "processing"}
-                className="h-12 px-7 text-[15px] font-bold shadow-md"
+                className="h-13 sm:h-14 px-9 sm:px-11 text-[16.5px] sm:text-[17.5px] font-black rounded-xl sm:rounded-2xl bg-[#EC3C2D] text-white shadow-md hover:bg-[#D93426] transition-all hover:-translate-y-0.5 cursor-pointer disabled:opacity-60 disabled:hover:translate-y-0"
               >
-                {phase === "processing" && <Loader2 className="mr-2 size-4 animate-spin" />}
+                {phase === "processing" && <Loader2 className="mr-2.5 size-5 animate-spin" />}
                 {phase === "processing"
                   ? t.workspace.processing
                   : tool.slug === "dividir-pdf" && workspaceState.selectedPageIds.length > 0
