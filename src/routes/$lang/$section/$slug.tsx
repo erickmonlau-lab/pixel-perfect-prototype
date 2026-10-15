@@ -1156,7 +1156,7 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
         <div className="absolute -bottom-12 -left-12 size-48 rounded-full bg-black/10 blur-2xl pointer-events-none" />
 
         <div className="relative max-w-2xl mx-auto z-10">
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-white/20 backdrop-blur-xs px-3.5 py-1 text-[12px] font-black uppercase tracking-wider text-white border border-white/25">
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-white px-4 py-1.5 text-[13px] font-black uppercase tracking-wider text-[#EC3C2D] shadow-sm">
             <span>{tools.length} {locale === "ca" ? "EINES DISPONIBLES" : locale === "en" ? "AVAILABLE TOOLS" : "HERRAMIENTAS DISPONIBLES"}</span>
           </span>
           <h2 className="mt-3.5 text-2xl sm:text-3xl font-black text-white tracking-tight">
