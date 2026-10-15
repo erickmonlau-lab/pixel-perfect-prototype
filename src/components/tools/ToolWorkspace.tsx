@@ -1238,13 +1238,19 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                     <span className="inline-flex items-center gap-1.5 mt-0.5 text-[13.5px] font-semibold text-white/90">
                       <span>{formatBytes(output.blob.size)}</span>
                       <span>•</span>
-                      <span className="underline decoration-white/50 underline-offset-2">Descargar PDF gratis</span>
+                      <span className="underline decoration-white/50 underline-offset-2">
+                        {output.name.endsWith(".zip")
+                          ? (locale === "ca" ? "Descarregar ZIP gratis" : locale === "en" ? "Download ZIP free" : "Descargar ZIP gratis")
+                          : output.name.match(/\.(png|jpe?g|webp|bmp)$/i)
+                          ? (locale === "ca" ? "Descarregar imatge gratis" : locale === "en" ? "Download image free" : "Descargar imagen gratis")
+                          : (locale === "ca" ? "Descarregar PDF gratis" : locale === "en" ? "Download PDF free" : "Descargar PDF gratis")}
+                      </span>
                     </span>
                   </div>
                 </div>
 
                 <span className="hidden sm:inline-flex items-center justify-center rounded-xl bg-white px-4 py-2.5 text-[14px] font-black text-[#EC3C2D] shadow-xs shrink-0 group-hover:bg-[#FFF5F4] transition-colors">
-                  Descargar
+                  {locale === "ca" ? "Descarregar" : locale === "en" ? "Download" : "Descargar"}
                 </span>
               </a>
             ))}
@@ -1368,15 +1374,13 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
             >
               <PlusCircle className="size-4 text-primary" />
               <span>
-                {locale === "ca"
-                  ? "Comprimir altres arxius"
-                  : locale === "en"
-                  ? "Compress other files"
-                  : "Comprimir otros archivos"}
+                {tool.slug === "comprimir-pdf"
+                  ? (locale === "ca" ? "Comprimir altres arxius" : locale === "en" ? "Compress other files" : "Comprimir otros archivos")
+                  : (locale === "ca" ? "Processar altres arxius" : locale === "en" ? "Process other files" : "Procesar otros archivos")}
               </span>
             </button>
 
-            {tool.options && tool.options.length > 0 && (
+            {tool.slug === "comprimir-pdf" && tool.options && tool.options.length > 0 && (
               <div className="flex items-center gap-2">
                 <span className="text-[12.5px] text-slate-500 font-medium">
                   {locale === "ca"

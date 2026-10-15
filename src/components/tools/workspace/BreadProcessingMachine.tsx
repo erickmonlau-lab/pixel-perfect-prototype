@@ -41,7 +41,7 @@ export function BreadProcessingMachine({
 
         {/* Título de estado */}
         <h3 className="text-xl sm:text-2xl font-black text-[#0F172A] tracking-tight">
-          {statusMessage || (phase === "uploading" ? "Preparando tu PDF..." : "Comprimiendo PDF...")}
+          {statusMessage || (phase === "uploading" ? "Preparando tus archivos..." : "Procesando archivos...")}
         </h3>
 
         {/* Nombre del archivo actual y peso */}
