@@ -550,10 +550,10 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
                   </p>
                 </div>
 
-                <div className="mt-7 pt-5 border-t border-slate-100 flex flex-wrap items-center justify-between gap-3 text-[14px] text-slate-500 font-medium">
-                  <div className="flex items-center gap-2">
-                    <span className="inline-flex size-2.5 rounded-full bg-[#2563EB]" />
-                    <span className="text-slate-600 font-semibold">
+                <div className="mt-7 pt-5 border-t border-slate-100 flex flex-wrap items-center justify-between gap-4 text-slate-700 font-medium">
+                  <div className="flex items-center gap-2.5">
+                    <span className={`inline-flex size-3 rounded-full ${accent.iconBg} shrink-0 shadow-2xs`} />
+                    <span className="text-[15.5px] sm:text-[16.5px] font-bold text-[#0F172A] leading-snug">
                       {locale === "ca"
                         ? "Processament privat al navegador sense transmissió a servidors"
                         : locale === "en"
@@ -563,7 +563,7 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
                   </div>
                   <Link
                     to={categoryPath(locale, tool.category)}
-                    className="group inline-flex items-center gap-2 rounded-xl bg-slate-100 hover:bg-[#EC3C2D] hover:text-white px-4 py-2 text-[14px] font-bold text-slate-700 transition-all shadow-2xs hover:shadow-xs"
+                    className={`group inline-flex items-center gap-2 rounded-xl ${accent.iconBg} hover:opacity-90 text-white px-5 py-2.5 text-[15px] sm:text-[15.5px] font-bold transition-all shadow-xs hover:shadow-md cursor-pointer`}
                   >
                     <span>
                       {locale === "ca"
@@ -572,7 +572,7 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
                         ? `Explore all ${category.name} tools`
                         : `Explorar más herramientas de ${category.name}`}
                     </span>
-                    <span aria-hidden className="transition-transform group-hover:translate-x-1 font-black">→</span>
+                    <span aria-hidden className="transition-transform group-hover:translate-x-1 font-black text-white">→</span>
                   </Link>
                 </div>
               </div>
@@ -605,10 +605,10 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
               <p className="mt-3.5 text-[16.5px] sm:text-[17.5px] leading-relaxed text-slate-700 font-normal">
                 {t.category.details[tool.category].useCases}
               </p>
-              <div className="mt-6 pt-5 border-t border-slate-100 flex flex-wrap items-center justify-between gap-3 text-[14px] text-slate-500 font-medium">
-                <div className="flex items-center gap-2">
-                  <span className="inline-flex size-2.5 rounded-full bg-[#2563EB]" />
-                  <span className="text-slate-600 font-semibold">
+              <div className="mt-6 pt-5 border-t border-slate-100 flex flex-wrap items-center justify-between gap-4 text-slate-700 font-medium">
+                <div className="flex items-center gap-2.5">
+                  <span className={`inline-flex size-3 rounded-full ${accent.iconBg} shrink-0 shadow-2xs`} />
+                  <span className="text-[15.5px] sm:text-[16.5px] font-bold text-[#0F172A] leading-snug">
                     {locale === "ca"
                       ? "Processament en memòria local en el navegador del dispositiu"
                       : locale === "en"
@@ -618,7 +618,7 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
                 </div>
                 <Link
                   to={categoryPath(locale, tool.category)}
-                  className="group inline-flex items-center gap-2 rounded-xl bg-slate-100 hover:bg-[#EC3C2D] hover:text-white px-4 py-2 text-[14px] font-bold text-slate-700 transition-all shadow-2xs hover:shadow-xs"
+                  className={`group inline-flex items-center gap-2 rounded-xl ${accent.iconBg} hover:opacity-90 text-white px-5 py-2.5 text-[15px] sm:text-[15.5px] font-bold transition-all shadow-xs hover:shadow-md cursor-pointer`}
                 >
                   <span>
                     {locale === "ca"
@@ -627,7 +627,7 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
                       ? `Explore all ${category.name} tools`
                       : `Explorar más herramientas de ${category.name}`}
                   </span>
-                  <span aria-hidden className="transition-transform group-hover:translate-x-1 font-black">→</span>
+                  <span aria-hidden className="transition-transform group-hover:translate-x-1 font-black text-white">→</span>
                 </Link>
               </div>
             </div>
@@ -635,7 +635,7 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
         );
       })()}
 
-      {/* 5. PREGUNTAS FRECUENTES: Solid white cards with high-contrast type scale */}
+      {/* 5. PREGUNTAS FRECUENTES: Solid white cards with solid category arrow */}
       <section className="mt-14 sm:mt-16" aria-labelledby="faq">
         <h2 id="faq" className="text-[26px] sm:text-[30px] font-black tracking-tight text-[#0F172A]">
           {t.tool.faq}
@@ -648,8 +648,8 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
             >
               <summary className="flex cursor-pointer items-center justify-between text-[17.5px] sm:text-[18.5px] font-bold text-[#0F172A] select-none list-none [&::-webkit-details-marker]:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EC3C2D]/40 rounded-lg">
                 <span className="pr-4 leading-snug">{item.q}</span>
-                <span className="shrink-0 rounded-full p-2 bg-slate-100 text-slate-700 group-hover:bg-slate-200 group-hover:text-slate-900 transition-transform duration-200 group-open:rotate-180 shadow-xs">
-                  <ChevronRight className="size-4.5 rotate-90" strokeWidth={2.3} />
+                <span className={`shrink-0 rounded-full p-2.5 ${accent.iconBg} text-white shadow-xs transition-transform duration-200 group-open:rotate-180`}>
+                  <ChevronRight className="size-4.5 rotate-90 text-white" strokeWidth={2.8} />
                 </span>
               </summary>
               <div className="mt-4 border-t border-slate-100 pt-4 text-[16px] sm:text-[16.5px] leading-relaxed text-slate-700 font-normal">
