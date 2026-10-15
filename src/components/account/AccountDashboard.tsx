@@ -397,7 +397,7 @@ export function AccountDashboard() {
                         params={catalogParams(locale)}
                         className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4.5 py-2.5 text-[14px] font-bold text-slate-700 hover:bg-slate-50"
                       >
-                        <span>Explorar las 50 herramientas</span>
+                        <span>Explorar las 51 herramientas</span>
                         <ArrowRight className="size-4" />
                       </Link>
                     </div>
@@ -841,7 +841,7 @@ export function AccountDashboard() {
                       Potencia tu trabajo con BreadPDF Premium
                     </h2>
                     <p className="mt-2 text-[15px] text-slate-600 max-w-xl leading-relaxed">
-                      El plan gratuito incluye las 50 herramientas sin límites de documentos. Con Premium desbloqueas procesamiento en lote masivo, alta velocidad sin esperas y cero publicidad.
+                      El plan gratuito incluye las 51 herramientas sin límites de documentos. Con Premium desbloqueas procesamiento en lote masivo, alta velocidad sin esperas y cero publicidad.
                     </p>
                   </div>
 
@@ -856,7 +856,7 @@ export function AccountDashboard() {
                     <div className="rounded-xl bg-white p-4 border border-slate-200">
                       <span className="text-[13px] font-black uppercase text-slate-500">Plan Gratis</span>
                       <ul className="mt-3 space-y-2 text-[13.5px] text-slate-600">
-                        <li className="flex items-center gap-2">✓ Las 50 herramientas PDF disponibles</li>
+                        <li className="flex items-center gap-2">✓ Las 51 herramientas PDF disponibles</li>
                         <li className="flex items-center gap-2">✓ Procesamiento 100% privado en navegador</li>
                         <li className="flex items-center gap-2">✓ Sin registro obligatorio</li>
                       </ul>

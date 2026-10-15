@@ -118,7 +118,7 @@ export function generateSitemap(): string {
       ],
     });
 
-    // 3. Live tool pages (50 herramientas)
+    // 3. Live tool pages (51 herramientas)
     for (const tool of TOOLS.filter((t) => t.status === "live")) {
       entries.push({
         loc: `${SITE_URL}${buildToolPath(locale, tool.slug)}`,

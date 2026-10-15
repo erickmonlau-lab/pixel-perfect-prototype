@@ -647,25 +647,25 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
           />
 
           {/* Icono de subida con presencia visual sólida en Rojo BreadPDF */}
-          <span className="mx-auto flex size-14 sm:size-16 items-center justify-center rounded-2xl bg-[#EC3C2D] text-white shadow-sm transition-transform hover:scale-105">
-            <Upload className="size-7 sm:size-8 text-white" strokeWidth={2.3} aria-hidden />
+          <span className="mx-auto flex size-16 sm:size-20 items-center justify-center rounded-2xl sm:rounded-3xl bg-[#EC3C2D] text-white shadow-md transition-transform hover:scale-105">
+            <Upload className="size-8 sm:size-10 text-white" strokeWidth={2.4} aria-hidden />
           </span>
 
           {/* Título de acción principal */}
-          <h2 className="mt-4 text-xl sm:text-2xl lg:text-[1.65rem] font-black tracking-tight text-[#0F172A]">
+          <h2 className="mt-5 text-2xl sm:text-3xl lg:text-[2rem] font-black tracking-tight text-[#0F172A] leading-tight">
             {tool.multiple ? t.workspace.dropMany : t.workspace.dropOne}
           </h2>
 
           {/* Subtítulo aclaratorio */}
-          <p className="mt-1.5 text-[15px] sm:text-[16px] text-slate-600 max-w-md mx-auto leading-normal font-normal">
+          <p className="mt-2 text-[16px] sm:text-[17px] text-slate-600 max-w-lg mx-auto leading-normal font-normal">
             {tool.multiple ? t.workspace.hint : t.workspace.hintOne}
           </p>
 
           {/* Botón protagonista "Seleccionar archivos" en Rojo BreadPDF sólido */}
-          <div className="mt-5 flex justify-center">
+          <div className="mt-6 flex justify-center">
             <Button
               size="lg"
-              className="h-12 sm:h-13 px-8 sm:px-10 text-[15.5px] sm:text-[16.5px] font-black rounded-xl sm:rounded-2xl bg-[#EC3C2D] text-white shadow-md hover:bg-[#D93426] transition-all hover:-translate-y-0.5"
+              className="h-13 sm:h-14 px-9 sm:px-11 text-[16.5px] sm:text-[17.5px] font-black rounded-xl sm:rounded-2xl bg-[#EC3C2D] text-white shadow-md hover:bg-[#D93426] transition-all hover:-translate-y-0.5 cursor-pointer"
               onClick={(e) => {
                 e.stopPropagation();
                 inputRef.current?.click();
@@ -679,20 +679,27 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
           {/* Selector de Ajuste / Preset de Compresión visible antes de subir */}
           {tool.options && tool.options.length > 0 && (
             <div
-              className="mt-4.5 flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white/95 px-5 py-4 shadow-2xs backdrop-blur-xs max-w-lg mx-auto"
+              className="mt-6 flex flex-col gap-4 rounded-2xl border border-slate-200 bg-white p-5 sm:p-6 shadow-sm max-w-xl mx-auto w-full text-left"
               onClick={(e) => e.stopPropagation()}
             >
               {tool.options.map((opt) => (
-                <div key={opt.key} className="flex flex-col gap-1 text-left">
-                  <label htmlFor={`preset-${opt.key}`} className="text-[13px] font-bold text-slate-700">
-                    {opt.label}{opt.type === "range" && values[opt.key] != null ? `: ${values[opt.key]}${opt.unit ?? ""}` : ""}
-                  </label>
+                <div key={opt.key} className="flex flex-col gap-1.5">
+                  <div className="flex items-center justify-between">
+                    <label htmlFor={`preset-${opt.key}`} className="text-[14.5px] sm:text-[15px] font-bold text-slate-800">
+                      {opt.label}
+                    </label>
+                    {opt.type === "range" && values[opt.key] != null && (
+                      <span className="text-[14px] font-mono font-bold text-[#EC3C2D] bg-red-50 border border-red-100 rounded-md px-2 py-0.5">
+                        {values[opt.key]}{opt.unit ?? ""}
+                      </span>
+                    )}
+                  </div>
                   {opt.type === "select" && (
                     <select
                       id={`preset-${opt.key}`}
                       value={values[opt.key] ?? opt.default}
                       onChange={(e) => setValues((v) => ({ ...v, [opt.key]: e.target.value }))}
-                      className="rounded-xl border border-slate-300 bg-white px-3 py-1.5 text-[13px] font-bold text-[#0F172A] shadow-2xs transition-all hover:border-primary focus:border-primary focus:outline-hidden"
+                      className="rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-[15px] font-semibold text-[#0F172A] shadow-2xs transition-all hover:border-slate-400 focus:border-[#2563EB] focus:outline-hidden"
                     >
                       {opt.options.map((o) => (
                         <option key={o.value} value={o.value}>
@@ -702,7 +709,7 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                     </select>
                   )}
                   {opt.type === "range" && (
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-3 pt-1">
                       <input
                         id={`preset-${opt.key}`}
                         type="range"
@@ -711,7 +718,7 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                         step={opt.step}
                         value={Number(values[opt.key] ?? opt.default)}
                         onChange={(e) => setValues((v) => ({ ...v, [opt.key]: Number(e.target.value) }))}
-                        className="h-2 flex-1 cursor-pointer appearance-none rounded-full bg-slate-200 accent-[#EC3C2D] [&::-webkit-slider-thumb]:size-4 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-[#EC3C2D] [&::-webkit-slider-thumb]:shadow-sm"
+                        className="h-2.5 flex-1 cursor-pointer appearance-none rounded-full bg-slate-200 accent-[#EC3C2D] [&::-webkit-slider-thumb]:size-5 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-[#EC3C2D] [&::-webkit-slider-thumb]:shadow-md hover:[&::-webkit-slider-thumb]:scale-110 transition-transform"
                       />
                     </div>
                   )}
@@ -722,11 +729,11 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                       value={String(values[opt.key] ?? opt.default)}
                       placeholder={(opt as any).placeholder}
                       onChange={(e) => setValues((v) => ({ ...v, [opt.key]: e.target.value }))}
-                      className="rounded-xl border border-slate-300 bg-white px-3 py-1.5 text-[13px] font-medium text-[#0F172A] shadow-2xs transition-all hover:border-primary focus:border-primary focus:outline-hidden"
+                      className="rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-[15px] font-medium text-[#0F172A] shadow-2xs transition-all hover:border-slate-400 focus:border-[#2563EB] focus:outline-hidden"
                     />
                   )}
                   {opt.help && (
-                    <span className="text-[11.5px] text-slate-500">{opt.help}</span>
+                    <span className="text-[13.5px] text-slate-500 leading-normal">{opt.help}</span>
                   )}
                 </div>
               ))}
@@ -735,16 +742,16 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
 
           {/* Error al intentar añadir archivos (ej: formato no válido) */}
           {phase === "error" && message && files.length === 0 && (
-            <div className="mt-4 inline-flex items-center gap-2 rounded-xl border border-red-200 bg-[#FEECEB] px-4 py-2.5 text-[13px] font-semibold text-[#EC3C2D]">
-              <AlertCircle className="size-4 shrink-0" />
+            <div className="mt-5 inline-flex items-center gap-2 rounded-xl border border-red-200 bg-[#FEECEB] px-4 py-2.5 text-[14px] font-semibold text-[#EC3C2D]">
+              <AlertCircle className="size-4.5 shrink-0" />
               <span>{message}</span>
             </div>
           )}
 
-          {/* Mensaje de privacidad sólido y nítido cerca de la acción */}
-          <div className="mt-4 flex justify-center">
-            <div className="inline-flex items-center gap-2 rounded-full border border-slate-200/90 bg-white/90 px-3.5 py-1 text-[12.5px] sm:text-[13px] font-semibold text-slate-600 shadow-2xs">
-              <ShieldCheck className="size-4 text-[#059669] shrink-0" />
+          {/* Mensaje de privacidad sólido y nítido cerca de la acción — Azul corporativo sin verde */}
+          <div className="mt-5 flex justify-center">
+            <div className="inline-flex items-center gap-2.5 rounded-full border border-blue-200 bg-blue-50/80 px-4 py-1.5 text-[13.5px] sm:text-[14.5px] font-semibold text-[#0F172A] shadow-2xs">
+              <ShieldCheck className="size-4.5 text-[#2563EB] shrink-0" />
               <span>{t.workspace.privacyNote}</span>
             </div>
           </div>
@@ -1337,12 +1344,12 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                       ? "Explore the full PDF suite"
                       : "Descubre la suite completa"}
                   </h5>
-                  <p className="text-[12.5px] text-slate-500">
+                  <p className="text-[13px] text-slate-500">
                     {locale === "ca"
-                      ? "50 eines per a conversió, organització i seguretat"
+                      ? "51 eines per a conversió, organització i seguretat"
                       : locale === "en"
-                      ? "50 tools for conversion, organizing and security"
-                      : "50 herramientas de conversión, organización y seguridad"}
+                      ? "51 tools for conversion, organizing and security"
+                      : "51 herramientas de conversión, organización y seguridad"}
                   </p>
                 </div>
               </div>

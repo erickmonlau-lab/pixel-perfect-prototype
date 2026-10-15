@@ -13,9 +13,9 @@ export const BREADPDF_PLANS: PlanDefinition[] = [
     features: [
       {
         label: {
-          es: 'Acceso a las 50 herramientas PDF',
-          ca: 'Accés a les 50 eines PDF',
-          en: 'Access to all 50 PDF tools',
+          es: 'Acceso a las 51 herramientas PDF',
+          ca: 'Accés a les 51 eines PDF',
+          en: 'Access to all 51 PDF tools',
         },
         included: true,
       },
@@ -80,9 +80,9 @@ export const BREADPDF_PLANS: PlanDefinition[] = [
     features: [
       {
         label: {
-          es: 'Acceso a las 50 herramientas PDF',
-          ca: 'Accés a les 50 eines PDF',
-          en: 'Access to all 50 PDF tools',
+          es: 'Acceso a las 51 herramientas PDF',
+          ca: 'Accés a les 51 eines PDF',
+          en: 'Access to all 51 PDF tools',
         },
         included: true,
       },

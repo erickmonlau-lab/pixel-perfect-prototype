@@ -1,5 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { Archive, BookOpen, ChevronRight, ClipboardEdit, FileSearch, FileSpreadsheet, GraduationCap, ScanText, Server, ShieldCheck, Sparkles, Star } from "lucide-react";
+import { Archive, BookOpen, ChevronRight, ClipboardEdit, FileSearch, FileSpreadsheet, GraduationCap, ScanText, Server, ShieldCheck, SlidersHorizontal, Star } from "lucide-react";
 import { useFavorites } from "@/lib/auth/favorites-store";
 import { CategoryTiles } from "@/components/site/CategoryTiles";
 import { ToolCatalogCard } from "@/components/site/ToolCatalogCard";
@@ -415,12 +415,12 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
             </div>
 
             {/* H1 — Search-intent driven, high-impact headline */}
-            <h1 className="text-display mt-2 sm:mt-2.5 text-[1.95rem] sm:text-[2.4rem] lg:text-[2.65rem] font-black tracking-[-0.02em] text-[#0F172A] leading-[1.12]">
+            <h1 className="text-display mt-2.5 sm:mt-3 text-[2.2rem] sm:text-[2.65rem] lg:text-[2.95rem] font-black tracking-[-0.025em] text-[#0F172A] leading-[1.1]">
               {tool.h1}
             </h1>
 
             {/* Description — Explains clearly what the tool does with strong readability */}
-            <p className="mt-2 sm:mt-2.5 text-[15.5px] sm:text-[17px] leading-relaxed text-slate-700 font-normal max-w-2xl">
+            <p className="mt-3 sm:mt-3.5 text-[16.5px] sm:text-[18px] leading-relaxed text-slate-700 font-normal max-w-2xl">
               {tool.tagline}
             </p>
           </div>
@@ -431,23 +431,23 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
               variant={mascotForTool(tool.category, tool.canonicalSlug)}
               priority={true}
               alt={`Mascota oficial de BreadPDF para ${tool.name}`}
-              className="w-auto h-[140px] md:h-[155px] lg:h-[175px] object-contain drop-shadow-[0_8px_16px_rgba(0,0,0,0.10)] transition-transform hover:scale-105"
+              className="w-auto h-[145px] md:h-[165px] lg:h-[185px] object-contain drop-shadow-[0_8px_16px_rgba(0,0,0,0.10)] transition-transform hover:scale-105"
             />
           </div>
         </div>
       </header>
 
       {/* 3. WORKSPACE / UPLOADER: The centerpiece of action */}
-      <div className="mt-4 sm:mt-5">
+      <div className="mt-5 sm:mt-6">
         <ToolWorkspace tool={tool} />
       </div>
 
       {/* 4. CÓMO FUNCIONA: 3 clear, sequential steps with solid surfaces and category numbering */}
-      <section className="mt-12 sm:mt-14" aria-labelledby="how">
-        <h2 id="how" className="text-2xl sm:text-[26px] font-black tracking-tight text-[#0F172A]">
+      <section className="mt-14 sm:mt-16" aria-labelledby="how">
+        <h2 id="how" className="text-[26px] sm:text-[30px] font-black tracking-tight text-[#0F172A]">
           {t.tool.howItWorks}
         </h2>
-        <ol className="mt-5 grid gap-4 sm:grid-cols-3 list-none pl-0">
+        <ol className="mt-6 grid gap-5 sm:grid-cols-3 list-none pl-0">
           {tool.howItWorks.map((step, index) => {
             const isObject = typeof step === "object" && step !== null;
             const title = isObject
@@ -462,17 +462,17 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
             return (
               <li
                 key={index}
-                className="rounded-2xl border border-slate-200 bg-white p-6 sm:p-7 shadow-sm flex flex-col justify-start"
+                className="rounded-2xl border border-slate-200 bg-white p-6 sm:p-8 shadow-sm flex flex-col justify-start"
               >
                 <span
-                  className={`flex size-9 items-center justify-center rounded-full text-white text-[15px] font-black shadow-xs ${accent.iconBg}`}
+                  className={`flex size-10 items-center justify-center rounded-full text-white text-[16px] font-black shadow-xs ${accent.iconBg}`}
                 >
                   0{index + 1}
                 </span>
-                <h3 className="mt-3.5 text-[18px] sm:text-[19px] font-bold text-[#0F172A] leading-snug">
+                <h3 className="mt-4 text-[19px] sm:text-[20px] font-bold text-[#0F172A] leading-snug">
                   {title}
                 </h3>
-                <p className="mt-2 text-[15px] sm:text-[15.5px] leading-relaxed text-slate-600 m-0 font-normal">
+                <p className="mt-2.5 text-[16px] sm:text-[16.5px] leading-relaxed text-slate-600 m-0 font-normal">
                   {desc}
                 </p>
               </li>
@@ -481,7 +481,7 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
         </ol>
       </section>
 
-      {/* 4.5. CONTEXTO EDITORIAL & CASOS DE USO TÉCNICOS (Capa editorial específica por herramienta) */}
+      {/* 4.5. CONTEXTO EDITORIAL & CASOS DE USO TÉCNICOS (Capa editorial destacada de alta legibilidad) */}
       {(() => {
         const practical = TOOL_PRACTICAL_PROFILES[tool.canonicalSlug];
         if (practical) {
@@ -493,38 +493,46 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
           const proTip = practical.proTip[locale] || practical.proTip.es;
 
           return (
-            <section className="mt-12 sm:mt-14" aria-labelledby="editorial-context">
-              <div className="rounded-3xl border border-slate-200 bg-linear-to-br from-slate-50 via-white to-slate-50 p-6 sm:p-9 shadow-xs">
-                <div className="flex items-center gap-2.5 text-[12px] font-black uppercase tracking-wider text-[#EC3C2D]">
-                  <Sparkles className="size-4" />
+            <section className="mt-14 sm:mt-16" aria-labelledby="editorial-context">
+              <div className="rounded-3xl border border-slate-200 bg-white p-7 sm:p-10 shadow-sm">
+                {/* Etiqueta superior prominente con icono técnico de ajuste */}
+                <div className="flex items-center gap-2.5 text-[14px] sm:text-[15px] font-black uppercase tracking-wide text-[#EC3C2D]">
+                  <SlidersHorizontal className="size-5" />
                   <span>{eyebrow}</span>
                 </div>
-                <h2 id="editorial-context" className="mt-2 text-[21px] sm:text-[23px] font-black text-[#0F172A] tracking-tight">
+
+                {/* Título de sección editorial grande y jerarquizado */}
+                <h2 id="editorial-context" className="mt-3 text-[26px] sm:text-[30px] font-black text-[#0F172A] tracking-tight leading-tight">
                   {title}
                 </h2>
-                <p className="mt-3 text-[15.5px] sm:text-[16px] leading-relaxed text-slate-700 font-normal">
+
+                {/* Explicación técnica legible */}
+                <p className="mt-3.5 text-[16.5px] sm:text-[17.5px] leading-relaxed text-slate-700 font-normal">
                   {engineDesc}
                 </p>
 
-                <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-5 pt-5 border-t border-slate-200">
-                  <div className="rounded-2xl border border-emerald-100 bg-emerald-50/50 p-5">
-                    <h3 className="text-[15.5px] font-bold text-emerald-900 flex items-center gap-2">
-                      <span className="size-2 rounded-full bg-emerald-600 inline-block" />
+                {/* Tarjetas de Casos de Uso y Limitaciones — Fondos sólidos basados en la paleta corporativa BreadPDF */}
+                <div className="mt-7 grid grid-cols-1 md:grid-cols-2 gap-6 pt-6 border-t border-slate-100">
+                  {/* Tarjeta Casos de uso recomendados: Borde azul corporativo / Fondo blanco y slate suave */}
+                  <div className="rounded-2xl border border-blue-200 bg-slate-50/70 p-6 flex flex-col justify-start">
+                    <h3 className="text-[17px] sm:text-[18px] font-bold text-[#0F172A] flex items-center gap-2.5">
+                      <span className="size-2.5 rounded-full bg-[#2563EB] inline-block shrink-0" />
                       {locale === "ca" ? "Casos d'ús recomanats" : locale === "en" ? "Recommended use cases" : "Casos de uso recomendados"}
                     </h3>
-                    <ul className="mt-2.5 space-y-2 text-[14px] text-emerald-950 leading-relaxed list-disc pl-5">
+                    <ul className="mt-3.5 space-y-2.5 text-[15px] sm:text-[15.5px] text-slate-700 leading-relaxed list-disc pl-5">
                       {bestFor.map((item, idx) => (
                         <li key={idx}>{item}</li>
                       ))}
                     </ul>
                   </div>
 
-                  <div className="rounded-2xl border border-amber-100 bg-amber-50/50 p-5">
-                    <h3 className="text-[15.5px] font-bold text-amber-900 flex items-center gap-2">
-                      <span className="size-2 rounded-full bg-amber-600 inline-block" />
+                  {/* Tarjeta Limitaciones técnicas: Borde rojo corporativo / Fondo blanco y slate suave */}
+                  <div className="rounded-2xl border border-red-200 bg-slate-50/70 p-6 flex flex-col justify-start">
+                    <h3 className="text-[17px] sm:text-[18px] font-bold text-[#0F172A] flex items-center gap-2.5">
+                      <span className="size-2.5 rounded-full bg-[#EC3C2D] inline-block shrink-0" />
                       {locale === "ca" ? "Limitacions tècniques a considerar" : locale === "en" ? "Technical constraints & trade-offs" : "Limitaciones técnicas a considerar"}
                     </h3>
-                    <ul className="mt-2.5 space-y-2 text-[14px] text-amber-950 leading-relaxed list-disc pl-5">
+                    <ul className="mt-3.5 space-y-2.5 text-[15px] sm:text-[15.5px] text-slate-700 leading-relaxed list-disc pl-5">
                       {limitations.map((item, idx) => (
                         <li key={idx}>{item}</li>
                       ))}
@@ -532,17 +540,20 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
                   </div>
                 </div>
 
-                <div className="mt-5 rounded-xl border border-slate-200 bg-white p-4 text-[14px] text-slate-700 flex items-start gap-3">
-                  <strong className="text-[#EC3C2D] font-black shrink-0">
-                    {locale === "ca" ? "Consell pràctic:" : locale === "en" ? "Pro Tip:" : "Consejo práctico:"}
-                  </strong>
-                  <span>{proTip}</span>
+                {/* Consejo práctico destacado */}
+                <div className="mt-6 rounded-2xl border border-slate-200 bg-slate-50 p-5 sm:p-6 text-[15px] sm:text-[16px] text-slate-800 flex items-start gap-3.5">
+                  <span className="inline-flex items-center justify-center rounded-lg bg-[#EC3C2D] px-2.5 py-1 text-[13px] font-black uppercase text-white shrink-0 tracking-wide">
+                    {locale === "ca" ? "Consell" : locale === "en" ? "Pro Tip" : "Consejo"}
+                  </span>
+                  <p className="m-0 leading-relaxed text-slate-700">
+                    {proTip}
+                  </p>
                 </div>
 
-                <div className="mt-6 pt-4 border-t border-slate-200/80 flex flex-wrap items-center justify-between gap-3 text-[13px] text-slate-500 font-medium">
+                <div className="mt-7 pt-5 border-t border-slate-100 flex flex-wrap items-center justify-between gap-3 text-[14px] text-slate-500 font-medium">
                   <div className="flex items-center gap-2">
-                    <span className="inline-flex size-2 rounded-full bg-emerald-500" />
-                    <span>
+                    <span className="inline-flex size-2.5 rounded-full bg-[#2563EB]" />
+                    <span className="text-slate-600 font-semibold">
                       {locale === "ca"
                         ? "Processament privat al navegador sense transmissió a servidors"
                         : locale === "en"
@@ -552,7 +563,7 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
                   </div>
                   <Link
                     to={categoryPath(locale, tool.category)}
-                    className="font-bold text-[#EC3C2D] hover:text-[#D93426] transition-colors inline-flex items-center gap-1 group"
+                    className="font-bold text-[#EC3C2D] hover:text-[#D93426] transition-colors inline-flex items-center gap-1.5 group text-[14.5px]"
                   >
                     <span>
                       {locale === "ca"
@@ -561,7 +572,7 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
                         ? `Explore all ${category.name} tools`
                         : `Explorar más herramientas de ${category.name}`}
                     </span>
-                    <span aria-hidden className="transition-transform group-hover:translate-x-0.5">→</span>
+                    <span aria-hidden className="transition-transform group-hover:translate-x-0.5 font-bold">→</span>
                   </Link>
                 </div>
               </div>
@@ -572,10 +583,10 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
         if (!t.category.details[tool.category]?.useCases) return null;
 
         return (
-          <section className="mt-12 sm:mt-14" aria-labelledby="editorial-context">
-            <div className="rounded-2xl border border-slate-200 bg-linear-to-br from-slate-50 via-white to-slate-50 p-6 sm:p-8 shadow-xs">
-              <div className="flex items-center gap-2.5 text-[12px] font-black uppercase tracking-wider text-[#EC3C2D]">
-                <Sparkles className="size-4" />
+          <section className="mt-14 sm:mt-16" aria-labelledby="editorial-context">
+            <div className="rounded-3xl border border-slate-200 bg-white p-7 sm:p-9 shadow-sm">
+              <div className="flex items-center gap-2.5 text-[14px] font-black uppercase tracking-wide text-[#EC3C2D]">
+                <SlidersHorizontal className="size-5" />
                 <span>
                   {locale === "ca"
                     ? "Criteris tècnics & Aplicació documental"
@@ -584,20 +595,20 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
                     : "Criterios técnicos & Aplicación documental"}
                 </span>
               </div>
-              <h2 id="editorial-context" className="mt-2 text-[20px] sm:text-[22px] font-black text-[#0F172A] tracking-tight">
+              <h2 id="editorial-context" className="mt-3 text-[24px] sm:text-[28px] font-black text-[#0F172A] tracking-tight">
                 {locale === "ca"
                   ? `Àmbit d'aplicació i recomanacions per a ${category.name}`
                   : locale === "en"
                   ? `Workflow Scenarios and Best Practices for ${category.name}`
                   : `Ámbito de aplicación y recomendaciones para ${category.name}`}
               </h2>
-              <p className="mt-3 text-[15.5px] sm:text-[16px] leading-relaxed text-slate-700 font-normal">
+              <p className="mt-3.5 text-[16.5px] sm:text-[17.5px] leading-relaxed text-slate-700 font-normal">
                 {t.category.details[tool.category].useCases}
               </p>
-              <div className="mt-5 pt-4 border-t border-slate-200/80 flex flex-wrap items-center justify-between gap-3 text-[13px] text-slate-500 font-medium">
+              <div className="mt-6 pt-5 border-t border-slate-100 flex flex-wrap items-center justify-between gap-3 text-[14px] text-slate-500 font-medium">
                 <div className="flex items-center gap-2">
-                  <span className="inline-flex size-2 rounded-full bg-emerald-500" />
-                  <span>
+                  <span className="inline-flex size-2.5 rounded-full bg-[#2563EB]" />
+                  <span className="text-slate-600 font-semibold">
                     {locale === "ca"
                       ? "Processament en memòria local en el navegador del dispositiu"
                       : locale === "en"
@@ -607,7 +618,7 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
                 </div>
                 <Link
                   to={categoryPath(locale, tool.category)}
-                  className="font-bold text-[#EC3C2D] hover:text-[#D93426] transition-colors inline-flex items-center gap-1 group"
+                  className="font-bold text-[#EC3C2D] hover:text-[#D93426] transition-colors inline-flex items-center gap-1.5 group text-[14.5px]"
                 >
                   <span>
                     {locale === "ca"
@@ -616,7 +627,7 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
                       ? `Explore all ${category.name} tools`
                       : `Explorar más herramientas de ${category.name}`}
                   </span>
-                  <span aria-hidden className="transition-transform group-hover:translate-x-0.5">→</span>
+                  <span aria-hidden className="transition-transform group-hover:translate-x-0.5 font-bold">→</span>
                 </Link>
               </div>
             </div>
@@ -625,23 +636,23 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
       })()}
 
       {/* 5. PREGUNTAS FRECUENTES: Solid white cards with high-contrast type scale */}
-      <section className="mt-12 sm:mt-14" aria-labelledby="faq">
-        <h2 id="faq" className="text-2xl sm:text-[26px] font-black tracking-tight text-[#0F172A]">
+      <section className="mt-14 sm:mt-16" aria-labelledby="faq">
+        <h2 id="faq" className="text-[26px] sm:text-[30px] font-black tracking-tight text-[#0F172A]">
           {t.tool.faq}
         </h2>
-        <div className="mt-5 space-y-3.5">
+        <div className="mt-6 space-y-4">
           {tool.faq.map((item) => (
             <details
               key={item.q}
-              className="group rounded-2xl border border-slate-200 bg-white p-5 sm:p-6 shadow-sm transition-colors hover:border-slate-300"
+              className="group rounded-2xl border border-slate-200 bg-white p-6 sm:p-7 shadow-xs transition-colors hover:border-slate-300"
             >
-              <summary className="flex cursor-pointer items-center justify-between text-[16.5px] sm:text-[17.5px] font-bold text-[#0F172A] select-none list-none [&::-webkit-details-marker]:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EC3C2D]/40 rounded-lg">
-                <span className="pr-4">{item.q}</span>
-                <span className="shrink-0 rounded-full p-1.5 bg-slate-100 text-slate-600 group-hover:text-slate-900 transition-transform duration-200 group-open:rotate-180 shadow-xs">
-                  <ChevronRight className="size-4 rotate-90" />
+              <summary className="flex cursor-pointer items-center justify-between text-[17.5px] sm:text-[18.5px] font-bold text-[#0F172A] select-none list-none [&::-webkit-details-marker]:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EC3C2D]/40 rounded-lg">
+                <span className="pr-4 leading-snug">{item.q}</span>
+                <span className="shrink-0 rounded-full p-2 bg-slate-100 text-slate-700 group-hover:bg-slate-200 group-hover:text-slate-900 transition-transform duration-200 group-open:rotate-180 shadow-xs">
+                  <ChevronRight className="size-4.5 rotate-90" strokeWidth={2.3} />
                 </span>
               </summary>
-              <div className="mt-3.5 border-t border-slate-100 pt-3.5 text-[15px] sm:text-[15.5px] leading-relaxed text-slate-700 font-normal">
+              <div className="mt-4 border-t border-slate-100 pt-4 text-[16px] sm:text-[16.5px] leading-relaxed text-slate-700 font-normal">
                 {item.a}
               </div>
             </details>
@@ -650,16 +661,16 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
       </section>
 
       {/* 6. HERRAMIENTAS RELACIONADAS: 4 curated complementary tools */}
-      <section className="mt-11 sm:mt-13 mb-4" aria-labelledby="related">
+      <section className="mt-14 sm:mt-16 mb-6" aria-labelledby="related">
         <div className="flex items-center justify-between">
-          <h2 id="related" className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900">
+          <h2 id="related" className="text-[24px] sm:text-[28px] font-black tracking-tight text-[#0F172A]">
             {t.tool.related}
           </h2>
           <Link
             to={SECTION_ROUTE}
             params={catalogParams(locale)}
             onClick={() => trackToolCatalogViewAllClicked({ source: "related_tools_header", language: locale })}
-            className="group inline-flex items-center gap-1.5 text-[14px] font-bold text-[#EC3C2D] hover:text-[#D93426] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/30 rounded-md py-1 px-1.5 -mr-1.5"
+            className="group inline-flex items-center gap-1.5 text-[15px] font-bold text-[#EC3C2D] hover:text-[#D93426] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/30 rounded-md py-1 px-1.5 -mr-1.5"
             aria-label={
               locale === "ca"
                 ? "Veure el catàleg complet d'eines"

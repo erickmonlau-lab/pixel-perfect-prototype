@@ -86,7 +86,7 @@ const AUTH_COPY = {
     mascotCaptionRegister: "¡Bienvenido al equipo BreadPDF!",
     mascotCaptionVerify: "Comprobando tu correo seguro",
     mascotCaptionUpdate: "Protegiendo tu cuenta BreadPDF",
-    bottomNote: "Las 50 herramientas siguen disponibles sin cuenta.",
+    bottomNote: "Las 51 herramientas siguen disponibles sin cuenta.",
     viewTools: "Ver herramientas →",
   },
   ca: {
@@ -147,7 +147,7 @@ const AUTH_COPY = {
     mascotCaptionRegister: "Benvingut a l'equip BreadPDF!",
     mascotCaptionVerify: "Comprovant el teu correu segur",
     mascotCaptionUpdate: "Protegint el teu compte BreadPDF",
-    bottomNote: "Les 50 eines continuen disponibles sense compte.",
+    bottomNote: "Les 51 eines continuen disponibles sense compte.",
     viewTools: "Veure eines →",
   },
   en: {
@@ -208,7 +208,7 @@ const AUTH_COPY = {
     mascotCaptionRegister: "Welcome to the BreadPDF team!",
     mascotCaptionVerify: "Verifying your secure email",
     mascotCaptionUpdate: "Securing your BreadPDF account",
-    bottomNote: "All 50 tools remain accessible without an account.",
+    bottomNote: "All 51 tools remain accessible without an account.",
     viewTools: "Explore tools →",
   },
 } as const;

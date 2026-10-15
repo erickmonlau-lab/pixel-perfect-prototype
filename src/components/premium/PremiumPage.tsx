@@ -91,7 +91,7 @@ export function PremiumPage() {
       ctaPrimary: 'Ver planes',
       ctaSecondary: 'Ver qué incluye',
       heroTrustPill:
-        '50 herramientas · Sin tarjeta obligatoria · Procesamiento local cuando la herramienta lo permite',
+        '51 herramientas · Sin tarjeta obligatoria · Procesamiento local cuando la herramienta lo permite',
       heroPillAds: 'Sin anuncios',
       heroPillBatch: 'Procesamiento por lotes',
 
@@ -212,9 +212,9 @@ export function PremiumPage() {
       plans: {
         free: {
           name: 'Free',
-          tagline: '50 herramientas esenciales para uso cotidiano.',
+          tagline: '51 herramientas esenciales para uso cotidiano.',
           features: [
-            { text: '50 herramientas PDF completas', included: true },
+            { text: '51 herramientas PDF completas', included: true },
             { text: 'Uso gratuito sin tarjeta obligatoria', included: true },
             { text: 'Procesamiento local cuando la herramienta lo permite', included: true },
             { text: 'Cuenta opcional y favoritos guardados', included: true },
@@ -257,7 +257,7 @@ export function PremiumPage() {
       faqs: [
         {
           q: '¿BreadPDF seguirá siendo gratuito?',
-          a: 'Sí. Las 50 herramientas actuales siguen y seguirán siendo gratuitas. Nuestra filosofía es que las funciones esenciales nunca se ocultan detrás de un paywall.',
+          a: 'Sí. Las 51 herramientas actuales siguen y seguirán siendo gratuitas. Nuestra filosofía es que las funciones esenciales nunca se ocultan detrás de un paywall.',
         },
         {
           q: '¿Qué incluye Premium?',
@@ -304,7 +304,7 @@ export function PremiumPage() {
       ctaPrimary: 'Veure plans',
       ctaSecondary: 'Veure què inclou',
       heroTrustPill:
-        '50 eines · Sense targeta obligatòria · Processament local quan l’eina ho permet',
+        '51 eines · Sense targeta obligatòria · Processament local quan l’eina ho permet',
       heroPillAds: 'Sense anuncis',
       heroPillBatch: 'Processament per lots',
 
@@ -421,9 +421,9 @@ export function PremiumPage() {
       plans: {
         free: {
           name: 'Free',
-          tagline: '50 eines essencials per a l’ús quotidià.',
+          tagline: '51 eines essencials per a l’ús quotidià.',
           features: [
-            { text: '50 eines PDF completes', included: true },
+            { text: '51 eines PDF completes', included: true },
             { text: 'Ús gratuït sense targeta obligatòria', included: true },
             { text: 'Processament local quan l’eina ho permet', included: true },
             { text: 'Compte opcional i favorits desats', included: true },
@@ -465,7 +465,7 @@ export function PremiumPage() {
       faqs: [
         {
           q: 'BreadPDF continuarà sent gratuït?',
-          a: 'Sí. Totes les 50 eines actuals continuen i continuaran sent gratuïtes. La nostra filosofia és no amagar les funcions essencials darrere cap paywall.',
+          a: 'Sí. Totes les 51 eines actuals continuen i continuaran sent gratuïtes. La nostra filosofia és no amagar les funcions essencials darrere cap paywall.',
         },
         {
           q: 'Què inclou Premium?',
@@ -511,7 +511,7 @@ export function PremiumPage() {
       ctaPrimary: 'View plans',
       ctaSecondary: 'See what is included',
       heroTrustPill:
-        '50 tools · No credit card required · In-browser processing whenever possible',
+        '51 tools · No credit card required · In-browser processing whenever possible',
       heroPillAds: 'Ad-free',
       heroPillBatch: 'Batch processing',
 
@@ -628,9 +628,9 @@ export function PremiumPage() {
       plans: {
         free: {
           name: 'Free',
-          tagline: '50 essential PDF tools for everyday tasks.',
+          tagline: '51 essential PDF tools for everyday tasks.',
           features: [
-            { text: '50 complete PDF tools', included: true },
+            { text: '51 complete PDF tools', included: true },
             { text: 'Free forever with no card required', included: true },
             { text: 'In-browser processing whenever possible', included: true },
             { text: 'Optional account with saved favorites', included: true },
@@ -672,7 +672,7 @@ export function PremiumPage() {
       faqs: [
         {
           q: 'Will BreadPDF remain free to use?',
-          a: 'Yes. All 50 existing tools are and will remain free. Our core philosophy is that essential utilities are never gated behind a paywall.',
+          a: 'Yes. All 51 existing tools are and will remain free. Our core philosophy is that essential utilities are never gated behind a paywall.',
         },
         {
           q: 'What does BreadPDF Premium offer?',
@@ -684,7 +684,7 @@ export function PremiumPage() {
         },
         {
           q: 'Are there ads in Premium?',
-          a: 'None. Once you log in with a Premium account, advertising is disabled across all 50 tools.',
+          a: 'None. Once you log in with a Premium account, advertising is disabled across all 51 tools.',
         },
         {
           q: 'Can I process multiple files at once?',
