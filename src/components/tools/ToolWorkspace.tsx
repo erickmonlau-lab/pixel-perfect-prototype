@@ -283,7 +283,8 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
       const valid = rawFiles.filter(
         (file) =>
           accepted.includes(file.type) ||
-          accepted.some((type) => type.startsWith(".") && file.name.toLowerCase().endsWith(type)),
+          accepted.some((type) => type.startsWith(".") && file.name.toLowerCase().endsWith(type)) ||
+          accepted.some((type) => type.endsWith("/*") && file.type.startsWith(type.replace("/*", "/"))),
       );
       if (valid.length === 0) {
         setPhase("error");
@@ -677,13 +678,13 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
           {/* Selector de Ajuste / Preset de Compresión visible antes de subir */}
           {tool.options && tool.options.length > 0 && (
             <div
-              className="mt-4.5 inline-flex flex-wrap items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-white/95 px-4 py-2 shadow-2xs backdrop-blur-xs max-w-lg mx-auto"
+              className="mt-4.5 flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white/95 px-5 py-4 shadow-2xs backdrop-blur-xs max-w-lg mx-auto"
               onClick={(e) => e.stopPropagation()}
             >
               {tool.options.map((opt) => (
-                <div key={opt.key} className="flex flex-wrap items-center justify-center gap-2 text-left">
+                <div key={opt.key} className="flex flex-col gap-1 text-left">
                   <label htmlFor={`preset-${opt.key}`} className="text-[13px] font-bold text-slate-700">
-                    {opt.label}:
+                    {opt.label}{opt.type === "range" && values[opt.key] != null ? `: ${values[opt.key]}${opt.unit ?? ""}` : ""}
                   </label>
                   {opt.type === "select" && (
                     <select
@@ -698,6 +699,33 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                         </option>
                       ))}
                     </select>
+                  )}
+                  {opt.type === "range" && (
+                    <div className="flex items-center gap-3">
+                      <input
+                        id={`preset-${opt.key}`}
+                        type="range"
+                        min={opt.min}
+                        max={opt.max}
+                        step={opt.step}
+                        value={Number(values[opt.key] ?? opt.default)}
+                        onChange={(e) => setValues((v) => ({ ...v, [opt.key]: Number(e.target.value) }))}
+                        className="h-2 flex-1 cursor-pointer appearance-none rounded-full bg-slate-200 accent-[#EC3C2D] [&::-webkit-slider-thumb]:size-4 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-[#EC3C2D] [&::-webkit-slider-thumb]:shadow-sm"
+                      />
+                    </div>
+                  )}
+                  {opt.type === "text" && (
+                    <input
+                      id={`preset-${opt.key}`}
+                      type="text"
+                      value={String(values[opt.key] ?? opt.default)}
+                      placeholder={(opt as any).placeholder}
+                      onChange={(e) => setValues((v) => ({ ...v, [opt.key]: e.target.value }))}
+                      className="rounded-xl border border-slate-300 bg-white px-3 py-1.5 text-[13px] font-medium text-[#0F172A] shadow-2xs transition-all hover:border-primary focus:border-primary focus:outline-hidden"
+                    />
+                  )}
+                  {opt.help && (
+                    <span className="text-[11.5px] text-slate-500">{opt.help}</span>
                   )}
                 </div>
               ))}
