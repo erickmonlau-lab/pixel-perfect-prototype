@@ -701,9 +701,9 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
               <button
                 type="button"
                 onClick={() => setShowInitialSettings((prev) => !prev)}
-                className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-slate-50 hover:bg-slate-100 hover:border-slate-300 px-4 py-2 text-[13.5px] sm:text-[14px] font-bold text-slate-700 transition-all cursor-pointer shadow-2xs"
+                className="inline-flex items-center gap-2 rounded-xl bg-[#2563EB] hover:bg-[#1D4ED8] px-4.5 py-2.5 text-[14px] sm:text-[14.5px] font-bold text-white transition-all cursor-pointer shadow-xs hover:shadow-md"
               >
-                <SlidersHorizontal className="size-4 text-[#2563EB]" />
+                <SlidersHorizontal className="size-4 text-white" />
                 <span>
                   {locale === "ca"
                     ? "Ajustos de la configuració"
@@ -712,9 +712,9 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                     : "Ajustes de imagen"}
                 </span>
                 {showInitialSettings ? (
-                  <ChevronUp className="size-4 text-slate-500" />
+                  <ChevronUp className="size-4 text-white" />
                 ) : (
-                  <ChevronDown className="size-4 text-slate-500" />
+                  <ChevronDown className="size-4 text-white" />
                 )}
               </button>
 
