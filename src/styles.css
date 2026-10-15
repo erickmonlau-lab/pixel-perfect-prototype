@@ -140,7 +140,7 @@
   --motion-slow: 360ms;
   --motion-emphasis: 450ms;
 
-  --background: oklch(0.976 0.004 265);
+  --background: #F4F7FB;
   --foreground: oklch(0.21 0.029 265);
   --surface: oklch(1 0 0);
   --card: oklch(1 0 0);

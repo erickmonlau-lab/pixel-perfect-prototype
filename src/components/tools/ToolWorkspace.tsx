@@ -997,16 +997,16 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
             </div>
           ) : (
             <div className="mt-4 space-y-3">
-              <ul className="divide-y divide-border overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xs">
+              <ul className="divide-y divide-slate-100 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xs">
                 {files.map((file, index) => {
                   const previewUrl = filePreviews.get(`${file.name}-${file.size}-${file.lastModified}`);
                   return (
                     <li
                       key={`${file.name}-${index}`}
-                      className="animate-file-enter flex items-center gap-3.5 p-3.5 transition-colors hover:bg-slate-50"
+                      className="animate-file-enter flex items-center gap-3.5 p-3.5 sm:p-4 bg-white transition-colors hover:bg-slate-50"
                     >
                       {previewUrl ? (
-                        <div className="relative size-12 shrink-0 overflow-hidden rounded-xl border border-slate-200 bg-slate-100 shadow-2xs">
+                        <div className="relative size-12 sm:size-13 shrink-0 overflow-hidden rounded-xl border border-slate-200 bg-slate-100 shadow-2xs">
                           <img
                             src={previewUrl}
                             alt={file.name}
@@ -1014,12 +1014,12 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                           />
                         </div>
                       ) : (
-                        <div className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-red-50 text-[#EC3C2D] border border-red-100">
+                        <div className="flex size-11 sm:size-12 shrink-0 items-center justify-center rounded-xl bg-slate-100 text-[#EC3C2D] border border-slate-200">
                           <FileText className="size-5.5" />
                         </div>
                       )}
                       <span className="min-w-0 flex-1">
-                        <span className="block truncate text-[14.5px] sm:text-[15px] font-bold text-[#0F172A]">
+                        <span className="block truncate text-[15px] sm:text-[15.5px] font-bold text-[#0F172A]">
                           {file.name}
                         </span>
                         <span className="text-[13px] text-slate-500 font-medium">
@@ -1027,13 +1027,13 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                         </span>
                       </span>
                       {tool.multiple && files.length > 1 && (
-                        <span className="flex gap-1.5">
+                        <span className="flex gap-1.5 shrink-0">
                           <button
                             type="button"
                             onClick={() => move(index, -1)}
                             disabled={index === 0}
                             aria-label={t.workspace.moveUp(file.name)}
-                            className="transition-all rounded-lg border border-slate-200 p-2 text-slate-500 hover:text-primary hover:border-slate-300 disabled:opacity-30 cursor-pointer"
+                            className="transition-all rounded-lg border border-slate-200 bg-white p-2 text-slate-600 hover:text-primary hover:border-slate-300 disabled:opacity-30 cursor-pointer shadow-2xs"
                           >
                             <ArrowUp className="size-4" />
                           </button>
@@ -1042,7 +1042,7 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                             onClick={() => move(index, 1)}
                             disabled={index === files.length - 1}
                             aria-label={t.workspace.moveDown(file.name)}
-                            className="transition-all rounded-lg border border-slate-200 p-2 text-slate-500 hover:text-primary hover:border-slate-300 disabled:opacity-30 cursor-pointer"
+                            className="transition-all rounded-lg border border-slate-200 bg-white p-2 text-slate-600 hover:text-primary hover:border-slate-300 disabled:opacity-30 cursor-pointer shadow-2xs"
                           >
                             <ArrowDown className="size-4" />
                           </button>
@@ -1056,9 +1056,9 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                           if (isPageWorkspace) loadPagesForFiles(remaining);
                         }}
                         aria-label={t.workspace.remove(file.name)}
-                        className="transition-all rounded-lg border border-slate-200 p-2 text-slate-400 hover:border-red-200 hover:bg-[#FEECEB] hover:text-[#EC3C2D] cursor-pointer"
+                        className="shrink-0 transition-all rounded-xl border border-slate-200 bg-white p-2 text-slate-400 hover:border-red-200 hover:bg-[#FEECEB] hover:text-[#EC3C2D] cursor-pointer shadow-2xs"
                       >
-                        <Trash2 className="size-4" />
+                        <Trash2 className="size-4.5" />
                       </button>
                     </li>
                   );
@@ -1069,23 +1069,23 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                 <button
                   type="button"
                   onClick={() => inputRef.current?.click()}
-                  className="w-full flex items-center justify-center gap-2 rounded-xl border border-dashed border-slate-300 bg-white p-3.5 text-[13.5px] font-bold text-slate-700 hover:border-[#EC3C2D] hover:bg-[#FEECEB]/30 hover:text-[#EC3C2D] transition-all cursor-pointer shadow-2xs"
+                  className="w-full flex items-center justify-center gap-2.5 rounded-xl border border-slate-200 bg-[#F1F5FA] hover:bg-[#E4ECF5] p-3 text-[14px] font-bold text-[#0F172A] transition-all cursor-pointer shadow-2xs"
                 >
-                  <Plus className="size-4.5 text-[#EC3C2D]" />
+                  <Plus className="size-4.5 text-[#2563EB]" />
                   <span>{t.workspace.addMoreFiles ?? "Añadir más archivos"}</span>
                 </button>
               )}
             </div>
           )}
 
-          {/* Opciones configurables de la herramienta (panel único y compacto) */}
+          {/* Opciones configurables de la herramienta: Fondo sólido diferenciado #F1F5FA sin marcos excesivos */}
           {tool.options &&
             tool.options.length > 0 &&
             !(tool.slug === "dividir-pdf" && workspaceState.selectedPageIds.length > 0) && (
-              <div className="mt-6 rounded-2xl border border-slate-200 bg-white p-5 sm:p-6 shadow-xs animate-fade-in">
-                <div className="flex items-center gap-2 mb-4 pb-3 border-b border-slate-100">
-                  <SlidersHorizontal className="size-4.5 text-[#2563EB]" />
-                  <h4 className="text-[15.5px] font-bold text-[#0F172A] m-0">
+              <div className="mt-6 rounded-2xl bg-[#F1F5FA] p-5 sm:p-7 shadow-xs animate-fade-in border border-slate-200/80">
+                <div className="flex items-center gap-2.5 mb-5 pb-3 border-b border-slate-200">
+                  <SlidersHorizontal className="size-5 text-[#2563EB]" />
+                  <h4 className="text-[16px] sm:text-[17px] font-black text-[#0F172A] m-0 tracking-tight">
                     {locale === "ca"
                       ? "Ajustos de la configuració"
                       : locale === "en"
@@ -1105,11 +1105,11 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                     .map((opt) => (
                       <div key={opt.key} className="flex flex-col gap-2">
                         <div className="flex items-center justify-between">
-                          <label htmlFor={`opt-${opt.key}`} className="text-[14px] font-bold text-slate-800">
+                          <label htmlFor={`opt-${opt.key}`} className="text-[14.5px] font-bold text-slate-800">
                             {opt.label}
                           </label>
                           {opt.type === "range" && (
-                            <span className="text-[13px] font-mono font-bold text-[#EC3C2D] bg-red-50 border border-red-100 rounded-md px-2 py-0.5">
+                            <span className="text-[13px] font-mono font-bold text-[#EC3C2D] bg-white border border-slate-200 rounded-md px-2.5 py-0.5 shadow-2xs">
                               {values[opt.key]}
                               {opt.unit ?? ""}
                             </span>
@@ -1151,18 +1151,18 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                               onChange={(e) =>
                                 setValues((v) => ({ ...v, [opt.key]: parseFloat(e.target.value) }))
                               }
-                              className="h-2 flex-1 cursor-pointer appearance-none rounded-full bg-slate-200 accent-[#EC3C2D] [&::-webkit-slider-thumb]:size-5 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-[#EC3C2D] [&::-webkit-slider-thumb]:shadow-md hover:[&::-webkit-slider-thumb]:scale-110 transition-transform"
+                              className="h-2.5 flex-1 cursor-pointer appearance-none rounded-full bg-slate-300 accent-[#EC3C2D] [&::-webkit-slider-thumb]:size-5 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-[#EC3C2D] [&::-webkit-slider-thumb]:shadow-md hover:[&::-webkit-slider-thumb]:scale-110 transition-transform"
                             />
                           </div>
                         )}
-                        {opt.help && <span className="text-[12.5px] text-slate-500 leading-normal">{opt.help}</span>}
+                        {opt.help && <span className="text-[13px] text-slate-500 leading-normal">{opt.help}</span>}
                       </div>
                     ))}
                 </div>
               </div>
             )}
 
-          <div className="mt-7 flex flex-wrap items-center gap-3">
+          <div className="mt-7 flex flex-wrap items-center gap-3.5">
             {files.length < tool.minFiles ? (
               <div className="flex flex-wrap items-center gap-3">
                 <Button
@@ -1174,7 +1174,7 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                   <Plus className="size-5" />
                   <span>{t.workspace.addMoreFiles ?? "Añadir más archivos"}</span>
                 </Button>
-                <span className="text-[14px] font-medium text-slate-600 bg-white rounded-xl px-4 py-2 border border-slate-200 shadow-2xs">
+                <span className="text-[14px] font-medium text-slate-700 bg-[#F1F5FA] rounded-xl px-4 py-2.5 border border-slate-200">
                   {t.workspace.addMoreFilesSubtitle ?? t.workspace.minFiles(tool.minFiles)}
                 </span>
               </div>
