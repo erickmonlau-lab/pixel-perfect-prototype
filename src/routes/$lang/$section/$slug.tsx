@@ -511,10 +511,10 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
                   {engineDesc}
                 </p>
 
-                {/* Tarjetas de Casos de Uso y Limitaciones — Fondos 100% sólidos blancos sin transparencias */}
+                {/* Tarjetas de Casos de Uso y Limitaciones — Fondos 100% sólidos según especificación */}
                 <div className="mt-7 grid grid-cols-1 md:grid-cols-2 gap-6 pt-6 border-t border-slate-200">
-                  {/* Tarjeta Casos de uso recomendados: Borde azul corporativo / Fondo 100% blanco sólido */}
-                  <div className="rounded-2xl border-2 border-blue-200 bg-white p-6 shadow-xs flex flex-col justify-start">
+                  {/* Tarjeta Casos de uso recomendados: Borde azul / Fondo azul claro sólido #EAF2FF */}
+                  <div className="rounded-2xl border-2 border-blue-200 bg-[#EAF2FF] p-6 shadow-xs flex flex-col justify-start">
                     <h3 className="text-[17px] sm:text-[18px] font-bold text-[#0F172A] flex items-center gap-2.5">
                       <span className="size-2.5 rounded-full bg-[#2563EB] inline-block shrink-0" />
                       {locale === "ca" ? "Casos d'ús recomanats" : locale === "en" ? "Recommended use cases" : "Casos de uso recomendados"}
@@ -526,8 +526,8 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
                     </ul>
                   </div>
 
-                  {/* Tarjeta Limitaciones técnicas: Borde rojo corporativo / Fondo 100% blanco sólido */}
-                  <div className="rounded-2xl border-2 border-red-200 bg-white p-6 shadow-xs flex flex-col justify-start">
+                  {/* Tarjeta Limitaciones técnicas: Borde rojo / Fondo rojo claro sólido #FFF0EE */}
+                  <div className="rounded-2xl border-2 border-red-200 bg-[#FFF0EE] p-6 shadow-xs flex flex-col justify-start">
                     <h3 className="text-[17px] sm:text-[18px] font-bold text-[#0F172A] flex items-center gap-2.5">
                       <span className="size-2.5 rounded-full bg-[#EC3C2D] inline-block shrink-0" />
                       {locale === "ca" ? "Limitacions tècniques a considerar" : locale === "en" ? "Technical constraints & trade-offs" : "Limitaciones técnicas a considerar"}
@@ -540,8 +540,8 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
                   </div>
                 </div>
 
-                {/* Consejo práctico destacado: Fondo 100% blanco sólido con borde nítido */}
-                <div className="mt-6 rounded-2xl border border-slate-200 bg-white p-5 sm:p-6 text-[15px] sm:text-[16px] text-slate-800 flex items-start gap-3.5 shadow-xs">
+                {/* Consejo práctico destacado: Fondo azul claro sólido #F0F5FF con borde nítido */}
+                <div className="mt-6 rounded-2xl border border-blue-200 bg-[#F0F5FF] p-5 sm:p-6 text-[15px] sm:text-[16px] text-slate-800 flex items-start gap-3.5 shadow-xs">
                   <span className="inline-flex items-center justify-center rounded-lg bg-[#EC3C2D] px-2.5 py-1 text-[13px] font-black uppercase text-white shrink-0 tracking-wide">
                     {locale === "ca" ? "Consell" : locale === "en" ? "Pro Tip" : "Consejo"}
                   </span>
