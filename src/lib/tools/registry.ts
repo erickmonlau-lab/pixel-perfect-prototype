@@ -45,6 +45,7 @@ import {
   removeBlankPagesPdf,
   imageToWebp,
   sanitizePdf,
+  enhanceImage,
 } from "./runners";
 
 export const CATEGORIES: Record<
@@ -2900,6 +2901,117 @@ export const TOOLS: ToolDefinition[] = [
         a: "No. La detección de campos se realiza con pdf.js y el guardado de valores con pdf-lib, ambos ejecutándose íntegramente en la memoria de tu navegador. Los datos del formulario no salen de tu dispositivo.",
       },
     ],
+  },
+  {
+    slug: "mejorar-imagenes",
+    name: "Mejorar imágenes",
+    h1: "Mejorar la calidad de imágenes online",
+    tagline: "Aumenta la nitidez, ajusta el contraste y mejora la resolución de tus fotos y documentos directamente en tu navegador.",
+    seoTitle: "Mejorar calidad de imágenes online gratis y nítido | BreadPDF",
+    seoDescription:
+      "Mejora la calidad, nitidez y resolución de imágenes JPG, PNG y WebP en tu navegador. Enfoque adaptativo y realce de documentos sin subir archivos.",
+    category: "optimizar",
+    icon: "Sparkles",
+    status: "live",
+    accept: "image/*",
+    multiple: true,
+    minFiles: 1,
+    ctaLabel: "Mejorar calidad",
+    keywords: [
+      "mejorar calidad de imagen",
+      "mejorar imagen online",
+      "aumentar nitidez foto",
+      "mejorar resolucion imagen",
+      "realzar documento escaneado",
+      "claridad imagen",
+    ],
+    howItWorks: [
+      {
+        title: "Sube tus imágenes",
+        desc: "Selecciona una o varias fotos o documentos en formato JPG, PNG o WebP.",
+      },
+      {
+        title: "Ajusta la nitidez y el modo",
+        desc: "Elige entre modo automático, realce de documentos o fotografía, y define el nivel de escala.",
+      },
+      {
+        title: "Descarga las imágenes mejoradas",
+        desc: "Obtén tus archivos optimizados con bordes nítidos y contraste equilibrado al instante.",
+      },
+    ],
+    faq: [
+      {
+        q: "¿Cómo funciona la mejora de calidad de imágenes?",
+        a: "El algoritmo analiza la matriz de píxeles mediante un filtro espacial adaptativo (máscara de enfoque laplaciana) que acentúa los bordes y texturas sin introducir ruido excesivo. Además, ecualiza el rango dinámico de contraste y brillo para recuperar detalles en zonas oscuras.",
+      },
+      {
+        q: "¿Qué diferencia hay entre el modo fotografía y el modo documento?",
+        a: "El modo 'Fotografía' prioriza gradaciones suaves de color y tonos de piel equilibrados. El modo 'Documento' acentúa selectivamente los negros del texto y aclara los fondos grisáceos o amarillentos para hacer más legibles recibos, facturas y apuntes escaneados.",
+      },
+      {
+        q: "¿Se puede aumentar la resolución de la imagen?",
+        a: "Sí. Puedes seleccionar multiplicadores de escala (1.5x o 2x) que reescalan la matriz de píxeles con interpolación bicúbica de alta precisión antes de aplicar el filtro de enfoque para ganar definición visual.",
+      },
+      {
+        q: "¿Qué formatos de imagen son compatibles?",
+        a: "Puedes subir imágenes en formatos JPG, PNG, WebP y BMP. Los archivos PNG conservan su canal alfa de transparencia durante el proceso.",
+      },
+      {
+        q: "¿Se suben mis fotos a algún servidor o servicio en la nube?",
+        a: "No. Todo el procesado de píxeles se ejecuta íntegramente en la memoria de tu navegador mediante HTML5 Canvas. Tus fotos y documentos personales nunca se transfieren a internet.",
+      },
+      {
+        q: "¿Puedo procesar varias imágenes al mismo tiempo?",
+        a: "Sí. Puedes seleccionar múltiples fotos simultáneamente. Si subes más de una imagen, BreadPDF las procesa en secuencia y genera un archivo ZIP descargable con todas las imágenes optimizadas.",
+      },
+    ],
+    options: [
+      {
+        key: "mode",
+        type: "select",
+        label: "Modo de realce",
+        default: "auto",
+        options: [
+          { value: "auto", label: "Automático equilibrado" },
+          { value: "document", label: "Texto / Documento escaneado" },
+          { value: "photo", label: "Fotografía / Retrato" },
+        ],
+      },
+      {
+        key: "upscale",
+        type: "select",
+        label: "Escala / Resolución",
+        default: "1.5",
+        options: [
+          { value: "1", label: "Resolución original (1x)" },
+          { value: "1.5", label: "Realce moderado (1.5x)" },
+          { value: "2", label: "Mayor definición (2x)" },
+        ],
+      },
+      {
+        key: "sharpness",
+        type: "range",
+        label: "Nivel de nitidez y enfoque",
+        help: "Controla la intensidad del realce de bordes (25% recomendado)",
+        default: 25,
+        min: 0,
+        max: 80,
+        step: 5,
+        unit: "%",
+      },
+      {
+        key: "contrast",
+        type: "range",
+        label: "Ajuste de contraste",
+        help: "Aumenta la diferenciación entre luces y sombras",
+        default: 15,
+        min: -30,
+        max: 50,
+        step: 5,
+        unit: "%",
+      },
+    ],
+    run: enhanceImage,
   },
 ];
 

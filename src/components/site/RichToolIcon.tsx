@@ -603,6 +603,10 @@ export function getRichToolIcon(canonicalSlug: string): FC<IconProps> | null {
     case "emplenar-formulari-pdf":
     case "fill-pdf-form":
       return NumberPagesIcon;
+    case "mejorar-imagenes":
+    case "millorar-imatges":
+    case "enhance-image":
+      return RepairDocIcon;
 
     default:
       return null;

@@ -3003,3 +3003,178 @@ export const sanitizePdf: ToolRunner = async (files, _opts, { onProgress }) => {
   };
 };
 
+// ─── MEJORAR IMÁGENES / CALIDAD ──────────────────────────────────────────────
+export const enhanceImage: ToolRunner = async (files, options, { onProgress }) => {
+  if (!files.length) throw new Error("Añade al menos una imagen para continuar.");
+
+  const mode = str(options, "mode", "auto"); // "auto" | "document" | "photo"
+  const sharpness = num(options, "sharpness", 25) / 100; // 0 a 1
+  const contrastFactor = (num(options, "contrast", 15) + 100) / 100; // factor
+  const brightnessOffset = num(options, "brightness", 5); // -100 a +100
+  const upscale = str(options, "upscale", "1.5"); // "1" | "1.5" | "2"
+  const scale = Number(upscale) || 1;
+
+  const outputs: { name: string; blob: Blob }[] = [];
+
+  for (let i = 0; i < files.length; i++) {
+    onProgress(i / files.length);
+    const f = files[i]!;
+    if (!f.type.startsWith("image/") && !f.name.match(/\.(jpe?g|png|webp|bmp)$/i)) {
+      throw new Error(`"${f.name}" no es un formato de imagen compatible. Sube archivos JPG, PNG o WebP.`);
+    }
+
+    const blob = await new Promise<Blob>((resolve, reject) => {
+      const img = new Image();
+      const url = URL.createObjectURL(f);
+      img.onload = () => {
+        URL.revokeObjectURL(url);
+        if (img.naturalWidth === 0 || img.naturalHeight === 0) {
+          reject(new Error(`La imagen "${f.name}" no tiene dimensiones válidas.`));
+          return;
+        }
+
+        const origW = img.naturalWidth;
+        const origH = img.naturalHeight;
+        const targetW = Math.round(origW * scale);
+        const targetH = Math.round(origH * scale);
+
+        const canvas = document.createElement("canvas");
+        canvas.width = targetW;
+        canvas.height = targetH;
+        const ctx = canvas.getContext("2d", { willReadFrequently: true });
+        if (!ctx) {
+          reject(new Error("No se pudo inicializar el contexto de imagen 2D."));
+          return;
+        }
+
+        ctx.imageSmoothingEnabled = true;
+        ctx.imageSmoothingQuality = "high";
+        ctx.drawImage(img, 0, 0, targetW, targetH);
+
+        const imgData = ctx.getImageData(0, 0, targetW, targetH);
+        const data = imgData.data;
+        const len = data.length;
+
+        // 1. Ajuste de Contraste y Brillo
+        const factor = contrastFactor;
+        const offset = brightnessOffset;
+        for (let idx = 0; idx < len; idx += 4) {
+          // R
+          let r = data[idx]!;
+          r = factor * (r - 128) + 128 + offset;
+          data[idx] = r < 0 ? 0 : r > 255 ? 255 : r;
+
+          // G
+          let g = data[idx + 1]!;
+          g = factor * (g - 128) + 128 + offset;
+          data[idx + 1] = g < 0 ? 0 : g > 255 ? 255 : g;
+
+          // B
+          let b = data[idx + 2]!;
+          b = factor * (b - 128) + 128 + offset;
+          data[idx + 2] = b < 0 ? 0 : b > 255 ? 255 : b;
+
+          // Modo documento: acentúa negros y aclara fondos grisáceos
+          if (mode === "document") {
+            const lum = 0.299 * data[idx]! + 0.587 * data[idx + 1]! + 0.114 * data[idx + 2]!;
+            if (lum > 210) {
+              data[idx] = Math.min(255, data[idx]! + 25);
+              data[idx + 1] = Math.min(255, data[idx + 1]! + 25);
+              data[idx + 2] = Math.min(255, data[idx + 2]! + 25);
+            } else if (lum < 90) {
+              data[idx] = Math.max(0, data[idx]! - 20);
+              data[idx + 1] = Math.max(0, data[idx + 1]! - 20);
+              data[idx + 2] = Math.max(0, data[idx + 2]! - 20);
+            }
+          }
+        }
+        ctx.putImageData(imgData, 0, 0);
+
+        // 2. Filtro Unsharp Mask / Enfoque Adaptativo
+        if (sharpness > 0) {
+          const srcData = ctx.getImageData(0, 0, targetW, targetH);
+          const src = srcData.data;
+          const sharpImgData = ctx.createImageData(targetW, targetH);
+          const dst = sharpImgData.data;
+
+          const amount = sharpness * 1.5;
+          const w = targetW;
+          const h = targetH;
+
+          for (let y = 0; y < h; y++) {
+            for (let x = 0; x < w; x++) {
+              const p = (y * w + x) * 4;
+
+              if (x === 0 || x === w - 1 || y === 0 || y === h - 1) {
+                dst[p] = src[p]!;
+                dst[p + 1] = src[p + 1]!;
+                dst[p + 2] = src[p + 2]!;
+                dst[p + 3] = src[p + 3]!;
+                continue;
+              }
+
+              // Matriz Laplaciana de nitidez
+              const pUp = ((y - 1) * w + x) * 4;
+              const pDown = ((y + 1) * w + x) * 4;
+              const pLeft = (y * w + (x - 1)) * 4;
+              const pRight = (y * w + (x + 1)) * 4;
+
+              for (let c = 0; c < 3; c++) {
+                const center = src[p + c]!;
+                const neighbors = (src[pUp + c]! + src[pDown + c]! + src[pLeft + c]! + src[pRight + c]!) * 0.25;
+                const edge = center - neighbors;
+                const val = center + edge * amount;
+                dst[p + c] = val < 0 ? 0 : val > 255 ? 255 : val;
+              }
+              dst[p + 3] = src[p + 3]!;
+            }
+          }
+          ctx.putImageData(sharpImgData, 0, 0);
+        }
+
+        // Determinar formato de salida conservando tipo si es PNG
+        const outMime = f.type === "image/png" ? "image/png" : "image/jpeg";
+        const ext = f.type === "image/png" ? ".png" : ".jpg";
+
+        canvas.toBlob(
+          (b) => {
+            if (b) resolve(b);
+            else reject(new Error(`No se pudo procesar la imagen "${f.name}".`));
+          },
+          outMime,
+          0.92,
+        );
+      };
+      img.onerror = () => {
+        URL.revokeObjectURL(url);
+        reject(new Error(`No se pudo cargar "${f.name}". Verifica que el archivo de imagen sea legible.`));
+      };
+      img.src = url;
+    });
+
+    const ext = f.type === "image/png" ? ".png" : ".jpg";
+    outputs.push({ name: `${baseName(f.name)}-mejorada${ext}`, blob });
+  }
+
+  onProgress(0.95);
+
+  if (outputs.length === 1) {
+    onProgress(1);
+    return {
+      outputs,
+      note: `Calidad mejorada con éxito. Resolución: ${scale !== 1 ? `${scale}x escala` : "original"} · Tamaño resultante: ${formatBytes(outputs[0]!.blob.size)}.`,
+    };
+  }
+
+  const JSZip = (await import("jszip")).default;
+  const zip = new JSZip();
+  for (const out of outputs) zip.file(out.name, out.blob);
+  const zipBlob = await zip.generateAsync({ type: "blob", compression: "STORE" });
+
+  onProgress(1);
+  return {
+    outputs: [{ name: "imagenes-mejoradas.zip", blob: zipBlob }],
+    note: `${outputs.length} imágenes mejoradas en calidad descargables en archivo ZIP.`,
+  };
+};
+

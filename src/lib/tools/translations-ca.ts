@@ -2028,8 +2028,80 @@ const tools: Record<string, ToolText> = {
     ]
   },
 
+  "mejorar-imagenes": {
+    slug: "millorar-imatges",
+    name: "Millorar imatges",
+    h1: "Millorar la qualitat d'imatges en línia gratis",
+    tagline: "Augmenta la nitidesa, resolució i contrast de les teves fotos i documents escanejats al navegador.",
+    seoTitle: "Millorar qualitat d'imatges en línia gratis | BreadPDF",
+    seoDescription: "Augmenta la resolució i nitidesa de fotos, documents i rebuts escanejats amb màscara d'enfocament i escalat bicúbic 100% al navegador.",
+    ctaLabel: "Millora la imatge",
+    keywords: [
+      "millorar imatges",
+      "millorar qualitat imatge",
+      "augmentar resolucio imatge",
+      "enfocar imatge en linia",
+      "nitidesa foto",
+      "millorar fotos borroses"
+    ],
+    howItWorks: [
+      "Puja una o diverses imatges (JPG, PNG, WebP o BMP).",
+      "Tria el mode de realç (automàtic, document o fotografia), l'escala i el nivell d'enfocament.",
+      "Descarrega les imatges millorades a l'instant o en un fitxer ZIP."
+    ],
+    faq: [
+      {
+        q: "Com funciona la millora de qualitat d'imatges?",
+        a: "L'algorisme analitza la matriu de píxels mitjançant un filtre espacial adaptatiu (màscara d'enfocament laplaciana) que accentua vores i textures sense soroll excessiu. A més, ecualitza el rang dinàmic de contrast i brillantor per recuperar detalls en zones fosques.",
+      },
+      {
+        q: "Quina diferència hi ha entre el mode fotografia i el mode document?",
+        a: "El mode 'Fotografia' prioritza gradacions suaus de color i tons de pell equilibrats. El mode 'Document' accentua selectivament els negres del text i aclareix fons grisencs o groguencs per fer més llegibles rebuts, factures i apunts escanejats.",
+      },
+      {
+        q: "Es pot augmentar la resolució de la imatge?",
+        a: "Sí. Pots seleccionar multiplicadors d'escala (1.5x o 2x) que reescalen la matriu de píxels amb interpolació bicúbica d'alta precisió abans d'aplicar el filtre d'enfocament per guanyar definició visual.",
+      },
+      {
+        q: "Quins formats d'imatge són compatibles?",
+        a: "Pots pujar imatges en formats JPG, PNG, WebP i BMP. Els fitxers PNG conserven el seu canal alfa de transparència durant el procés.",
+      },
+      {
+        q: "Es pugen les meves fotos a algun servidor extern?",
+        a: "No. Tot el processament de píxels s'executa íntegrament a la memòria del teu navegador mitjançant HTML5 Canvas. Les teves fotos i documents privats mai no surten del teu dispositiu.",
+      },
+      {
+        q: "Puc processar diverses imatges alhora?",
+        a: "Sí. Pots seleccionar múltiples imatges alhora. Si en puges més d'una, BreadPDF les processa en seqüència i genera un fitxer ZIP descarregable amb totes les imatges millorades.",
+      },
+    ],
+    options: {
+      mode: {
+        label: "Mode de realç",
+        choices: {
+          auto: "Automàtic equilibrat",
+          document: "Text / Document escanejat",
+          photo: "Fotografia / Retrat",
+        },
+      },
+      upscale: {
+        label: "Escala / Resolució",
+        choices: {
+          "1": "Resolució original (1x)",
+          "1.5": "Realç moderat (1.5x)",
+          "2": "Més definició (2x)",
+        },
+      },
+      sharpness: {
+        label: "Nivell de nitidesa i enfocament",
+        help: "Controla la intensitat del realç de vores (25% recomanat)",
+      },
+      contrast: {
+        label: "Ajust de contrast",
+        help: "Augmenta la diferenciació entre llums i ombres",
+      },
+    },
+  },
 };
-
-
 
 export default tools;

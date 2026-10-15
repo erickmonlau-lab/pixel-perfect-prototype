@@ -2034,7 +2034,80 @@ const tools: Record<string, ToolText> = {
     ]
   },
 
+  "mejorar-imagenes": {
+    slug: "enhance-image",
+    name: "Enhance Images",
+    h1: "Enhance Image Quality Online for Free",
+    tagline: "Increase sharpness, resolution, and contrast of your photos and scanned documents directly in your browser.",
+    seoTitle: "Enhance Image Quality Online for Free | BreadPDF",
+    seoDescription: "Boost image resolution and crispness for photos, documents, and receipts using unsharp masking and bicubic upscaling. 100% private in-browser tool.",
+    ctaLabel: "Enhance Image",
+    keywords: [
+      "enhance image",
+      "improve image quality",
+      "upscale image online",
+      "sharpen image",
+      "fix blurry photos",
+      "photo enhancer"
+    ],
+    howItWorks: [
+      "Upload one or multiple images (JPG, PNG, WebP, or BMP).",
+      "Select your enhancement mode (auto, document, or photo), scale multiplier, and sharpness level.",
+      "Download your crisp, enhanced images instantly or packed in a ZIP file."
+    ],
+    faq: [
+      {
+        q: "How does the image quality enhancement algorithm work?",
+        a: "The engine evaluates pixel spatial frequencies using an adaptive Laplacian unsharp mask that sharpens contours, borders, and textures without introducing excessive grain. It also balances contrast and brightness to recover lost shadow and highlight details.",
+      },
+      {
+        q: "What is the difference between Photo Mode and Document Mode?",
+        a: "Photo mode prioritizes smooth color gradients, balanced skin tones, and subtle edge definition. Document mode actively darkens text ink while whitening grayish or yellowed backgrounds to make invoices, receipts, and notes razor-sharp.",
+      },
+      {
+        q: "Can I increase the image resolution?",
+        a: "Yes. You can select 1.5x or 2x upscale factors, which resample pixels using high-precision bicubic interpolation before running the sharpening filter.",
+      },
+      {
+        q: "Which image formats are supported?",
+        a: "You can enhance JPG, PNG, WebP, and BMP files. PNG transparency channels (alpha masks) are preserved throughout the process.",
+      },
+      {
+        q: "Are my photos uploaded to any external server or AI cloud?",
+        a: "No. All pixel operations execute locally within your web browser memory using HTML5 Canvas. Your private photos and documents are never uploaded to the internet.",
+      },
+      {
+        q: "Can I enhance multiple pictures at once?",
+        a: "Yes. You can select multiple images simultaneously. BreadPDF processes them sequentially and packages them into a convenient ZIP archive for download.",
+      },
+    ],
+    options: {
+      mode: {
+        label: "Enhancement Mode",
+        choices: {
+          auto: "Balanced Auto",
+          document: "Text / Scanned Document",
+          photo: "Photo / Portrait",
+        },
+      },
+      upscale: {
+        label: "Resolution Scale",
+        choices: {
+          "1": "Original Resolution (1x)",
+          "1.5": "Moderate Upscale (1.5x)",
+          "2": "High Definition (2x)",
+        },
+      },
+      sharpness: {
+        label: "Sharpness & Clarity",
+        help: "Controls edge enhancement intensity (25% recommended)",
+      },
+      contrast: {
+        label: "Contrast Adjustment",
+        help: "Enhances differentiation between shadows and highlights",
+      },
+    },
+  },
 };
-
 
 export default tools;

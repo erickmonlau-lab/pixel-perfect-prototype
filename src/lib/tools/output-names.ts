@@ -14,6 +14,8 @@ const REPLACEMENTS: Record<Exclude<Locale, "es">, [string, string][]> = {
     ["-sin-paginas", "-sense-pagines"],
     ["-comprimido", "-comprimit"],
     ["-separadas", "-separades"],
+    ["-mejorada", "-millorada"],
+    ["breadpdf-imagenes-mejoradas", "breadpdf-imatges-millorades"],
   ],
   en: [
     ["breadpdf-documento-unido", "breadpdf-merged-document"],
@@ -24,6 +26,8 @@ const REPLACEMENTS: Record<Exclude<Locale, "es">, [string, string][]> = {
     ["-sin-paginas", "-pages-removed"],
     ["-comprimido", "-compressed"],
     ["-separadas", "-split"],
+    ["-mejorada", "-enhanced"],
+    ["breadpdf-imagenes-mejoradas", "breadpdf-enhanced-images"],
   ],
 };
 

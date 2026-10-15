@@ -50,7 +50,8 @@ export const TOOL_SLUGS: Record<"ca" | "en", Record<string, string>> = {
     "recortar-pdf": "retallar-pdf",
     "pdf-a-markdown": "pdf-a-markdown",
     "pdf-a-pdfa": "pdf-a-pdfa",
-    "excel-a-pdf": "excel-a-pdf"
+    "excel-a-pdf": "excel-a-pdf",
+    "mejorar-imagenes": "millorar-imatges"
   },
   "en": {
     "comprimir-pdf": "compress-pdf",
@@ -102,6 +103,7 @@ export const TOOL_SLUGS: Record<"ca" | "en", Record<string, string>> = {
     "recortar-pdf": "crop-pdf",
     "pdf-a-markdown": "pdf-to-markdown",
     "pdf-a-pdfa": "pdf-to-pdfa",
-    "excel-a-pdf": "excel-to-pdf"
+    "excel-a-pdf": "excel-to-pdf",
+    "mejorar-imagenes": "enhance-image"
   }
 };

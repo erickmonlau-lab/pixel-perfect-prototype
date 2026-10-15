@@ -340,6 +340,60 @@ export const TOOL_PRACTICAL_PROFILES: Record<string, ToolPracticalGuide> = {
       en: "Target specific sheets using comma ranges (e.g. '2, 4, 7-9') to orient horizontal tables without touching the rest of your report.",
     },
   },
+
+  "mejorar-imagenes": {
+    eyebrow: {
+      es: "Procesado digital de señal e imagen",
+      ca: "Processament digital de senyal i imatge",
+      en: "Digital signal & image processing",
+    },
+    title: {
+      es: "Algoritmos de convolución espacial y calibración dinámica",
+      ca: "Algorismes de convolució espacial i calibratge dinàmic",
+      en: "Spatial convolution and dynamic calibration algorithms",
+    },
+    engineDescription: {
+      es: "El motor ejecuta un filtro espacial laplaciano de alta frecuencia (unsharp masking) sobre la matriz RGB de píxeles sin interpolar artefactos de compresión. En modo Documento, aplica un umbral adaptativo que intensifica la tinta de los caracteres alfanuméricos y elimina el ruido de fondo amarillo o gris de escaneos y fotografías móviles.",
+      ca: "El motor executa un filtre espacial laplacià d'alta freqüència (unsharp masking) sobre la matriu RGB de píxels sense interpolar artefactes de compressió. En mode Document, aplica un llindar adaptatiu que intensifica la tinta dels caràcters alfanumèrics i elimina el soroll de fons groc o gris d'escanejats i fotografies mòbils.",
+      en: "The engine runs a high-frequency Laplacian spatial unsharp mask across the RGB pixel matrix without introducing artificial compression ringing. In Document mode, it applies adaptive thresholding to darken typographic strokes while clearing yellowed or uneven background illumination from camera captures.",
+    },
+    bestFor: {
+      es: [
+        "Aclarar y enfocar fotografías de facturas, albaranes, recibos y apuntes tomadas con el móvil.",
+        "Aumentar la nitidez de capturas de pantalla borrosas o de baja resolución para presentaciones.",
+        "Restaurar el contraste y la definición de fotos antiguas o descoloridas sin subir archivos a internet.",
+      ],
+      ca: [
+        "Aclarir i enfocar fotografies de factures, albarans, rebuts i apunts preses amb el mòbil.",
+        "Augmentar la nitidesa de captures de pantalla borroses o de baixa resolució per a presentacions.",
+        "Restaurar el contrast i la definició de fotos antigues o descolorides sense pujar fitxers a internet.",
+      ],
+      en: [
+        "Sharpening mobile camera captures of receipts, handwritten notes, and paper documents.",
+        "Clarifying blurry low-resolution screenshots for technical slide decks.",
+        "Restoring contrast and edge fidelity in faded or compressed images with 100% in-browser privacy.",
+      ],
+    },
+    limitations: {
+      es: [
+        "Si una imagen tiene desenfoque extremo o motion blur grave de lente, la máscara de enfoque resaltará los bordes existentes pero no puede inventar detalles destruidos por completo.",
+        "El reescalado 2x aumenta el número de píxeles mediante interpolación bicúbica; para imágenes gigantes de más de 30 megapíxeles se recomienda 1x o 1.5x para optimizar la memoria del navegador.",
+      ],
+      ca: [
+        "Si una imatge té desenfocament extrem o motion blur greu de lent, la màscara d'enfocament ressaltarà les vores existents però no pot inventar detalls destruïts per complet.",
+        "El reescalat 2x augmenta el nombre de píxels mitjançant interpolació bicúbica; per a imatges gegants de més de 30 megapíxels es recomana 1x o 1.5x per optimitzar la memòria del navegador.",
+      ],
+      en: [
+        "Severe optical lens motion blur or extreme out-of-focus captures cannot synthesize completely missing microscopic details.",
+        "2x upscaling resamples the canvas bicubically; for ultra-large files (>30 megapixels), 1x or 1.5x is recommended to conserve browser RAM.",
+      ],
+    },
+    proTip: {
+      es: "Para documentos escaneados o recibos con sombras, selecciona el modo 'Texto / Documento escaneado' con nitidez al 30%: blanqueará el papel y hará que las letras destaquen con total legibilidad.",
+      ca: "Per a documents escanejats o rebuts amb ombres, selecciona el mode 'Text / Document escanejat' amb nitidesa al 30%: blanquejarà el paper i farà que les lletres destaquin amb total llegibilitat.",
+      en: "For photographed paper receipts with shadows, select 'Text / Scanned Document' with 30% sharpness: it will purify background paper tones and make typography punchy and readable.",
+    },
+  },
 };
 
 /**
@@ -617,6 +671,31 @@ export const TOOL_WORKFLOW_MAP: Record<string, WorkflowSuggestion> = {
       es: "Aplanar este documento",
       ca: "Aplanar aquest document",
       en: "Flatten this document",
+    },
+  },
+
+  // mejorar-imagenes -> jpg-a-pdf (Workflow empaquetar imágenes a PDF)
+  "mejorar-imagenes": {
+    targetToolSlug: "jpg-a-pdf",
+    badge: {
+      es: "Conversión a documento",
+      ca: "Conversió a document",
+      en: "Document conversion",
+    },
+    title: {
+      es: "¿Reunir tus imágenes mejoradas en un único PDF?",
+      ca: "Vols reunir les imatges millorades en un sol PDF?",
+      en: "Combine your enhanced images into a single PDF?",
+    },
+    description: {
+      es: "Convierte tus fotos, facturas o recibos ya nítidos en un documento PDF organizado y listo para enviar.",
+      ca: "Converteix les teves fotos, factures o rebuts ja nítids en un document PDF organitzat i a punt per enviar.",
+      en: "Convert your sharpened photos, invoices or receipts into a consolidated PDF ready to share.",
+    },
+    cta: {
+      es: "Convertir a PDF",
+      ca: "Convertir a PDF",
+      en: "Convert to PDF",
     },
   },
 };
