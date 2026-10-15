@@ -639,6 +639,7 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
             accept={tool.accept}
             multiple={tool.multiple}
             className="sr-only"
+            onClick={(e) => e.stopPropagation()}
             onChange={(event) => {
               addFiles(event.target.files);
               event.target.value = "";
@@ -729,6 +730,14 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                   )}
                 </div>
               ))}
+            </div>
+          )}
+
+          {/* Error al intentar añadir archivos (ej: formato no válido) */}
+          {phase === "error" && message && files.length === 0 && (
+            <div className="mt-4 inline-flex items-center gap-2 rounded-xl border border-red-200 bg-[#FEECEB] px-4 py-2.5 text-[13px] font-semibold text-[#EC3C2D]">
+              <AlertCircle className="size-4 shrink-0" />
+              <span>{message}</span>
             </div>
           )}
 

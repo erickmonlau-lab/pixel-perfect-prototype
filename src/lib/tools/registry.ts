@@ -2913,7 +2913,7 @@ export const TOOLS: ToolDefinition[] = [
     category: "optimizar",
     icon: "Sparkles",
     status: "live",
-    accept: "image/*",
+    accept: "image/jpeg,image/png,image/webp,image/jpg,.jpg,.jpeg,.png,.webp,.bmp",
     multiple: true,
     minFiles: 1,
     ctaLabel: "Mejorar calidad",
