@@ -34,6 +34,7 @@ import {
   accountParams,
   toolParams,
   guidesHubParams,
+  aboutParams,
 } from "@/lib/i18n/routing";
 import { useAuth } from "@/lib/auth/auth-context";
 import { Logo } from "./Logo";
