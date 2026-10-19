@@ -4,6 +4,6 @@ import { DEFAULT_LOCALE } from "@/lib/i18n/config";
 /** Root sends visitors to the default language; the locale layout refines it client-side. */
 export const Route = createFileRoute("/")({
   beforeLoad: () => {
-    throw redirect({ href: `/${DEFAULT_LOCALE}`, statusCode: 302 });
+    throw redirect({ href: `/${DEFAULT_LOCALE}`, statusCode: 301 });
   },
 });

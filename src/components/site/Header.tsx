@@ -528,164 +528,37 @@ export function Header() {
 
         {/* ============================================================
             ZONA DERECHA (ALINEADA AL EXTREMO DERECHO):
-            [👤 Mi Cuenta ▼] o [👤 Acceder]  [Registrarse]  |  [ ES CA EN ]
+            [ Guías & Tutoriales ]  [ Sobre BreadPDF ]  |  [ ES CA EN ]
             ============================================================ */}
         <div className="hidden shrink-0 items-center gap-4 xl:gap-5 lg:flex">
-          {/* Bloque de Cuenta */}
-          {user ? (
-            <div className="relative" ref={userMenuRef}>
-              <button
-                type="button"
-                onClick={() => setUserMenuOpen(!userMenuOpen)}
-                className="inline-flex items-center gap-2.5 rounded-xl border border-slate-200 bg-white px-3 py-1.5 text-[14px] font-bold text-slate-800 hover:bg-slate-50 transition-all shadow-2xs cursor-pointer"
-                aria-expanded={userMenuOpen}
-                aria-label="Menú de usuario"
-              >
-                {user.avatarUrl ? (
-                  <img
-                    src={user.avatarUrl}
-                    alt={user.name}
-                    className="size-7 rounded-full object-cover border border-slate-200"
-                  />
-                ) : (
-                  <span className="flex size-7 items-center justify-center rounded-full bg-[#0F172A] text-white">
-                    <User className="size-3.5 text-white" />
-                  </span>
-                )}
-                <span className="max-w-[120px] truncate">{user.name}</span>
-                <ChevronDown
-                  className={`size-4 text-slate-500 transition-transform ${userMenuOpen ? "rotate-180" : ""}`}
-                />
-              </button>
+          <Link
+            to={SECTION_ROUTE}
+            params={guidesHubParams(locale)}
+            className="inline-flex items-center gap-1.5 text-[15px] font-bold text-slate-700 hover:text-[#EC3C2D] transition-colors"
+          >
+            <BookOpen className="size-4 text-[#EC3C2D]" />
+            <span>
+              {locale === "ca"
+                ? "Guies"
+                : locale === "en"
+                  ? "Guides"
+                  : "Guías"}
+            </span>
+          </Link>
 
-              {/* Menú Desplegable Usuario */}
-              {userMenuOpen && (
-                <div className="animate-fade absolute right-0 top-full mt-2 w-60 rounded-2xl border border-slate-200 bg-white p-1.5 shadow-[0_16px_36px_rgba(15,23,42,0.12)] z-50 font-sans">
-                  <div className="px-3 py-2 border-b border-slate-100 mb-1">
-                    <div className="flex items-center justify-between gap-2">
-                      <p className="text-[14px] font-black text-[#0F172A] truncate">{user.name}</p>
-                      {user.isPremium ? (
-                        <span className="rounded-full bg-[#EC3C2D] text-white px-2 py-0.5 text-[10px] font-black uppercase tracking-wider animate-premium-badge">
-                          {t.nav.premiumPlan}
-                        </span>
-                      ) : (
-                        <span className="rounded-full bg-slate-100 border border-slate-200 px-2 py-0.5 text-[10px] font-extrabold uppercase text-[#0F172A]">
-                          {t.nav.freePlan}
-                        </span>
-                      )}
-                    </div>
-                    <p className="text-[12px] text-slate-500 truncate">{user.email}</p>
-                  </div>
-
-                  <Link
-                    to={SECTION_ROUTE}
-                    params={accountParams(locale)}
-                    search={{ tab: "resumen" }}
-                    onClick={() => setUserMenuOpen(false)}
-                    className="flex items-center gap-2.5 rounded-xl px-3 py-2 text-[13.5px] font-semibold text-slate-700 hover:bg-slate-100 transition-colors"
-                  >
-                    <User className="size-4 text-slate-500" />
-                    <span>{t.nav.myAccount}</span>
-                  </Link>
-
-                  <Link
-                    to={SECTION_ROUTE}
-                    params={accountParams(locale)}
-                    search={{ tab: "favoritos" }}
-                    onClick={() => setUserMenuOpen(false)}
-                    className="flex items-center gap-2.5 rounded-xl px-3 py-2 text-[13.5px] font-semibold text-slate-700 hover:bg-slate-100 transition-colors"
-                  >
-                    <span className="flex size-4.5 items-center justify-center rounded-full bg-[#F59E0B] text-white">
-                      <Star className="size-2.5 fill-white text-white" />
-                    </span>
-                    <span>{t.nav.myFavorites}</span>
-                  </Link>
-
-                  <Link
-                    to={SECTION_ROUTE}
-                    params={accountParams(locale)}
-                    search={{ tab: "preferencias" }}
-                    onClick={() => setUserMenuOpen(false)}
-                    className="flex items-center gap-2.5 rounded-xl px-3 py-2 text-[13.5px] font-semibold text-slate-700 hover:bg-slate-100 transition-colors"
-                  >
-                    <Settings className="size-4 text-slate-500" />
-                    <span>{t.nav.preferences}</span>
-                  </Link>
-
-                  <Link
-                    to={SECTION_ROUTE}
-                    params={accountParams(locale)}
-                    search={{ tab: "comunicaciones" }}
-                    onClick={() => setUserMenuOpen(false)}
-                    className="flex items-center gap-2.5 rounded-xl px-3 py-2 text-[13.5px] font-semibold text-slate-700 hover:bg-slate-100 transition-colors"
-                  >
-                    <Bell className="size-4 text-slate-500" />
-                    <span>{t.nav.communications}</span>
-                  </Link>
-
-                  <Link
-                    to={SECTION_ROUTE}
-                    params={accountParams(locale)}
-                    search={{ tab: "seguridad" }}
-                    onClick={() => setUserMenuOpen(false)}
-                    className="flex items-center gap-2.5 rounded-xl px-3 py-2 text-[13.5px] font-semibold text-slate-700 hover:bg-slate-100 transition-colors"
-                  >
-                    <Shield className="size-4 text-slate-500" />
-                    <span>{t.nav.security}</span>
-                  </Link>
-
-                  <Link
-                    to={SECTION_ROUTE}
-                    params={accountParams(locale)}
-                    search={{ tab: "premium" }}
-                    onClick={() => setUserMenuOpen(false)}
-                    className="flex items-center gap-2.5 rounded-xl px-3 py-2 text-[13.5px] font-bold text-[#EC3C2D] hover:bg-red-50 transition-colors"
-                  >
-                    <PremiumCrownIcon className="size-4 text-[#EC3C2D]" />
-                    <span>{t.nav.premiumStatus}</span>
-                  </Link>
-
-                  <div className="my-1 border-t border-slate-100" />
-
-                  <button
-                    type="button"
-                    onClick={async () => {
-                      setUserMenuOpen(false);
-                      await logout();
-                      navigate({ to: `/${locale}` });
-                    }}
-                    className="w-full flex items-center gap-2.5 rounded-xl px-3 py-2 text-[13.5px] font-bold text-red-600 hover:bg-red-50 transition-colors cursor-pointer text-left"
-                  >
-                    <LogOut className="size-4 text-red-500" />
-                    <span>{t.nav.logout}</span>
-                  </button>
-                </div>
-              )}
-            </div>
-          ) : (
-            <div className="flex items-center gap-2 xl:gap-3">
-              {/* 1. Acceder */}
-              <Link
-                to={SECTION_ROUTE}
-                params={loginParams(locale)}
-                className="site-auth-login inline-flex items-center gap-1.5 text-[#334155] hover:text-[#0F172A] rounded-xl hover:bg-[#F1F5F9] transition-all"
-                aria-label={t.nav.login || "Acceder"}
-              >
-                <User className="size-4 text-[#64748B] stroke-[2.2]" />
-                <span>{t.nav.login || "Acceder"}</span>
-              </Link>
-
-              {/* 2. Registrarse (CTA en Rojo BreadPDF Accesible) */}
-              <Link
-                to={SECTION_ROUTE}
-                params={registerParams(locale)}
-                className="site-auth-register inline-flex items-center justify-center bg-[#C53024] text-white hover:bg-[#B91C1C] transition-all shadow-xs hover:shadow-sm whitespace-nowrap"
-                aria-label={t.nav.register || "Registrarse"}
-              >
-                <span>{t.nav.register || "Registrarse"}</span>
-              </Link>
-            </div>
-          )}
+          <Link
+            to={SECTION_ROUTE}
+            params={aboutParams(locale)}
+            className="inline-flex items-center gap-1.5 text-[15px] font-bold text-slate-700 hover:text-[#EC3C2D] transition-colors"
+          >
+            <span>
+              {locale === "ca"
+                ? "Sobre BreadPDF"
+                : locale === "en"
+                  ? "About"
+                  : "Sobre BreadPDF"}
+            </span>
+          </Link>
 
           {/* Separador vertical sutil */}
           <div className="h-5 w-px bg-[#E2E8F0] shrink-0" aria-hidden="true" />
@@ -801,71 +674,21 @@ export function Header() {
               );
             })}
 
-            {/* Mobile Auth Links */}
-            {user ? (
-              <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4 space-y-3">
-                <div className="flex items-center gap-3">
-                  {user.avatarUrl ? (
-                    <img
-                      src={user.avatarUrl}
-                      alt={user.name}
-                      className="size-9 rounded-full object-cover border border-slate-200"
-                    />
-                  ) : (
-                    <div className="flex size-9 items-center justify-center rounded-full bg-[#0F172A] text-white">
-                      <User className="size-4.5 text-white" />
-                    </div>
-                  )}
-                  <div className="min-w-0 flex-1">
-                    <p className="text-[14px] font-black text-[#0F172A] truncate">{user.name}</p>
-                    <p className="text-[12px] text-slate-500 truncate">{user.email}</p>
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-2 gap-2 pt-1">
-                  <Link
-                    to={SECTION_ROUTE}
-                    params={accountParams(locale)}
-                    onClick={() => setMobileOpen(false)}
-                    className="flex items-center justify-center gap-1.5 rounded-xl bg-white border border-slate-200 py-2.5 text-[13.5px] font-bold text-slate-800 shadow-2xs"
-                  >
-                    <span>{t.nav.myAccount}</span>
-                  </Link>
-
-                  <button
-                    type="button"
-                    onClick={async () => {
-                      setMobileOpen(false);
-                      await logout();
-                      navigate({ to: `/${locale}` });
-                    }}
-                    className="flex items-center justify-center gap-1.5 rounded-xl bg-white border border-slate-200 py-2.5 text-[13.5px] font-bold text-red-600 shadow-2xs cursor-pointer"
-                  >
-                    <span>{t.nav.exit}</span>
-                  </button>
-                </div>
-              </div>
-            ) : (
-              <div className="grid grid-cols-2 gap-2.5 py-2">
-                <Link
-                  to={SECTION_ROUTE}
-                  params={loginParams(locale)}
-                  onClick={() => setMobileOpen(false)}
-                  className="flex items-center justify-center gap-2 rounded-xl border border-slate-200 py-3 text-[14.5px] font-semibold text-[#334155] hover:bg-slate-50"
-                >
-                  <User className="size-4 text-[#64748B]" />
-                  <span>{t.nav.login || "Acceder"}</span>
-                </Link>
-                <Link
-                  to={SECTION_ROUTE}
-                  params={registerParams(locale)}
-                  onClick={() => setMobileOpen(false)}
-                  className="flex items-center justify-center rounded-xl bg-[#C53024] py-3 text-[14.5px] font-bold text-white hover:bg-[#B91C1C] shadow-xs"
-                >
-                  <span>{t.nav.register || "Registrarse"}</span>
-                </Link>
-              </div>
-            )}
+            {/* Sobre BreadPDF en Móvil */}
+            <Link
+              to={SECTION_ROUTE}
+              params={aboutParams(locale)}
+              onClick={() => setMobileOpen(false)}
+              className="flex items-center gap-2.5 rounded-xl px-4 py-3 text-[14.5px] font-semibold text-slate-800 hover:bg-[#F5F7FA] hover:text-[#EC3C2D] transition-colors"
+            >
+              <span>
+                {locale === "ca"
+                  ? "Sobre BreadPDF"
+                  : locale === "en"
+                    ? "About BreadPDF"
+                    : "Sobre BreadPDF"}
+              </span>
+            </Link>
 
             {/* Guías & Tutoriales Link */}
             <Link

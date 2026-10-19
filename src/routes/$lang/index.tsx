@@ -1,9 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { CatalogBrowser } from "@/components/site/CatalogBrowser";
-import { FloatingIcons } from "@/components/site/FloatingIcons";
 import { TrustBanner } from "@/components/site/TrustBanner";
-import { HomePremiumBlock } from "@/components/site/HomePremiumBlock";
-import { Cpu, UserCheck, ArrowLeftRight } from "lucide-react";
+import { Cpu, UserCheck, ArrowLeftRight, BookOpen, Clock, ArrowRight } from "lucide-react";
+import { Link } from "@tanstack/react-router";
+import { ALL_GUIDES } from "@/lib/guides/registry";
+import { guidePath, SECTION_ROUTE, guidesHubParams } from "@/lib/i18n/routing";
 
 import { ToolSearch } from "@/components/site/ToolSearch";
 import { DEFAULT_LOCALE, isLocale } from "@/lib/i18n/config";
@@ -46,16 +47,12 @@ function Home() {
   const { locale, t } = useLocale();
   const headline = headlineLines(t.home.h1);
 
-
   return (
     <>
       {/* ============================================================
           HERO: Compact, Direct & Functional Product Header
           ============================================================ */}
       <section className="hero-canvas relative z-20 border-b border-[#E5E7EB] pt-8 pb-8 sm:pt-10 sm:pb-9 lg:pt-11 lg:pb-10">
-        {/* Floating decorative tool icons — positioned symmetrically around the hero */}
-        <FloatingIcons />
-
         {/* Central content column */}
         <div className="relative z-30 mx-auto max-w-[800px] px-5 text-center">
           <div>
@@ -196,9 +193,93 @@ function Home() {
       </section>
 
       {/* ============================================================
-          SECTION — BREADPDF PREMIUM BLOCK: Real value proposition & route
+          SECTION — EDITORIAL GUIDES: Practical Solutions & In-depth Guides
           ============================================================ */}
-      <HomePremiumBlock />
+      <section className="border-t border-[#E2E8F0] bg-[#F8FAFC] py-14 sm:py-20" aria-labelledby="home-guides-title">
+        <div className="mx-auto max-w-[1360px] px-6 sm:px-8">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
+            <div>
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-blue-200 bg-blue-50 px-3.5 py-1 text-[12px] font-bold tracking-widest text-blue-700 uppercase">
+                <BookOpen className="size-3.5 text-blue-600" />
+                <span>{locale === "ca" ? "GUIA & TUTORIALS" : locale === "en" ? "GUIDES & TUTORIALS" : "GUÍAS Y TUTORIALES"}</span>
+              </span>
+              <h2 id="home-guides-title" className="mt-3 text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#0F172A] tracking-tight">
+                {locale === "ca"
+                  ? "Solucions pas a pas i bones pràctiques per a PDF"
+                  : locale === "en"
+                  ? "Step-by-step PDF workflows and best practices"
+                  : "Soluciones paso a paso y buenas prácticas para PDF"}
+              </h2>
+              <p className="mt-2 text-base sm:text-lg text-slate-600 max-w-2xl">
+                {locale === "ca"
+                  ? "Manuals pràctics basats en estàndards tècnics per optimitzar, unificar i preparar documents oficials amb privadesa total."
+                  : locale === "en"
+                  ? "Practical in-depth manuals based on ISO standards to compress, merge, and protect sensitive documents locally."
+                  : "Manuales prácticos basados en estándares técnicos para optimizar, unificar y preparar documentos oficiales con total privacidad."}
+              </p>
+            </div>
+
+            <Link
+              to={SECTION_ROUTE}
+              params={guidesHubParams(locale)}
+              className="group inline-flex items-center gap-2 self-start md:self-auto rounded-xl border border-slate-200 bg-white px-5 py-2.5 text-sm font-bold text-slate-800 transition-all hover:border-[#EC3C2D] hover:bg-[#EC3C2D] hover:text-white shadow-xs"
+            >
+              <span>{locale === "ca" ? "Totes les guies" : locale === "en" ? "All guides" : "Todas las guías"}</span>
+              <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+            </Link>
+          </div>
+
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {ALL_GUIDES.slice(0, 6).map((guide) => {
+              const guideTitle = guide.title[locale] || guide.title.es;
+              const guideDesc = guide.seoDescription[locale] || guide.seoDescription.es;
+              const guideUrl = guidePath(locale, guide.canonicalSlug);
+
+              return (
+                <article
+                  key={guide.canonicalSlug}
+                  className="group relative flex flex-col justify-between rounded-2xl border border-slate-200 bg-white p-6 shadow-xs transition-all duration-200 hover:-translate-y-1 hover:border-slate-300 hover:shadow-md"
+                >
+                  <div>
+                    <div className="flex items-center justify-between text-xs font-semibold text-slate-500 mb-3">
+                      <span className="uppercase tracking-wider text-[#EC3C2D] font-bold">
+                        {guide.category}
+                      </span>
+                      <span className="flex items-center gap-1">
+                        <Clock className="size-3.5" />
+                        <span>{guide.readingTimeMinutes} min</span>
+                      </span>
+                    </div>
+
+                    <h3 className="text-[18px] sm:text-[19px] font-bold text-[#0F172A] leading-snug group-hover:text-[#EC3C2D] transition-colors">
+                      <Link to={guideUrl}>
+                        {guideTitle}
+                      </Link>
+                    </h3>
+
+                    <p className="mt-2.5 text-[14.5px] leading-relaxed text-slate-600 line-clamp-3">
+                      {guideDesc}
+                    </p>
+                  </div>
+
+                  <div className="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between">
+                    <span className="text-xs text-slate-500 font-medium">
+                      {guide.author.name}
+                    </span>
+                    <Link
+                      to={guideUrl}
+                      className="inline-flex items-center gap-1 text-[13.5px] font-bold text-[#EC3C2D] group-hover:underline"
+                    >
+                      <span>{locale === "ca" ? "Llegir" : locale === "en" ? "Read" : "Leer"}</span>
+                      <span aria-hidden>→</span>
+                    </Link>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+        </div>
+      </section>
     </>
   );
 }

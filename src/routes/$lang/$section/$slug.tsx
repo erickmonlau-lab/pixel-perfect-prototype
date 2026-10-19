@@ -97,6 +97,7 @@ export const Route = createFileRoute("/$lang/$section/$slug")({
         meta: [
           { title: catMeta.title },
           { name: "description", content: catMeta.desc },
+          { name: "robots", content: "noindex, follow" },
           { property: "og:title", content: catMeta.title },
           { property: "og:description", content: catMeta.desc },
           { property: "og:type", content: "website" },
@@ -255,8 +256,8 @@ export const Route = createFileRoute("/$lang/$section/$slug")({
                   {
                     "@type": "ListItem",
                     position: 2,
-                    name: category.name,
-                    item: `${SITE_URL}${categoryPath(locale, tool.category)}`,
+                    name: t.nav.tools,
+                    item: `${SITE_URL}/${locale}/${SEGMENTS[locale].tools}`,
                   },
                   {
                     "@type": "ListItem",
@@ -641,9 +642,10 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
           {t.tool.faq}
         </h2>
         <div className="mt-6 space-y-4">
-          {tool.faq.map((item) => (
+          {tool.faq.map((item, idx) => (
             <details
               key={item.q}
+              open={idx < 2}
               className="group rounded-2xl border border-slate-200 bg-white p-6 sm:p-7 shadow-xs transition-colors hover:border-slate-300"
             >
               <summary className="flex cursor-pointer items-center justify-between text-[17.5px] sm:text-[18.5px] font-bold text-[#0F172A] select-none list-none [&::-webkit-details-marker]:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EC3C2D]/40 rounded-lg">

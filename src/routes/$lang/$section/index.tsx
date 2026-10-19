@@ -3,6 +3,7 @@ import { CatalogBrowser } from "@/components/site/CatalogBrowser";
 import { GuidesHubPage } from "@/components/site/GuidesHubPage";
 import { ToolSearch } from "@/components/site/ToolSearch";
 import { PremiumPage } from "@/components/premium/PremiumPage";
+import { AboutPage } from "@/components/site/AboutPage";
 import { AuthSplitLayout } from "@/components/auth/AuthSplitLayout";
 import { AccountDashboard } from "@/components/account/AccountDashboard";
 import { Breadcrumb } from "@/components/site/Breadcrumb";
@@ -57,27 +58,50 @@ export const Route = createFileRoute("/$lang/$section/")({
 
     if (kind === "premium") {
       const titles = {
-        es: "BreadPDF Premium · Más velocidad y funciones avanzadas sin anuncios",
-        ca: "BreadPDF Premium · Més velocitat i funcions avançades sense anuncis",
-        en: "BreadPDF Premium · Higher speed and advanced tools ad-free",
-      };
-      const descs = {
-        es: "Trabaja más rápido con una suite PDF profesional: sin publicidad, procesamiento por lotes, IA avanzada y máxima privacidad.",
-        ca: "Treballa més ràpid amb una suite PDF professional: sense publicitat, processament per lots, IA avançada i màxima privadesa.",
-        en: "Work faster with a professional PDF suite: ad-free, batch multi-processing, advanced AI and total local privacy.",
+        es: "BreadPDF · Más velocidad y funciones avanzadas",
+        ca: "BreadPDF · Més velocitat i funcions avançades",
+        en: "BreadPDF · Higher speed and advanced tools",
       };
       const title = titles[locale] || titles.es;
-      const description = descs[locale] || descs.es;
       return {
         meta: [
           { title },
-          { name: "description", content: description },
-          { property: "og:title", content: title },
-          { property: "og:description", content: description },
+          { name: "robots", content: "noindex, nofollow" },
+        ],
+        links: alternateLinks(locale, { kind: "premium" }),
+      };
+    }
+    if (kind === "about") {
+      const aboutCopy = t.about;
+      return {
+        meta: [
+          { title: aboutCopy.seoTitle },
+          { name: "description", content: aboutCopy.seoDescription },
+          { property: "og:title", content: aboutCopy.seoTitle },
+          { property: "og:description", content: aboutCopy.seoDescription },
           { property: "og:type", content: "website" },
           { name: "twitter:card", content: "summary_large_image" },
         ],
-        links: alternateLinks(locale, { kind: "premium" }),
+        links: alternateLinks(locale, { kind: "about" }),
+        scripts: [
+          {
+            type: "application/ld+json",
+            children: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "AboutPage",
+              name: aboutCopy.seoTitle,
+              description: aboutCopy.seoDescription,
+              inLanguage: locale,
+              mainEntity: {
+                "@type": "Organization",
+                name: "BreadPDF",
+                url: "https://breadpdf.com",
+                email: "breadpdfstudio@gmail.com",
+                description: aboutCopy.missionBody,
+              },
+            }),
+          },
+        ],
       };
     }
     if (kind === "cookies") {
@@ -165,6 +189,7 @@ function SectionPage() {
   if (kind === "forgotPassword") return <AuthSplitLayout initialMode="forgotPassword" />;
   if (kind === "account") return <AccountDashboard />;
   if (kind === "premium") return <PremiumPage />;
+  if (kind === "about") return <AboutPage />;
   if (kind === "cookies") return <CookiesPage />;
   if (kind === "terms") return <TermsPage />;
   if (kind === "guides") return <GuidesHubPage />;

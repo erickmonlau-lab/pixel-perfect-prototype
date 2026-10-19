@@ -69,21 +69,19 @@ export function generateSitemap(): string {
       ],
     });
 
-    // 2.1 Premium Landing
+    // 2.1 Institutional & Legal pages (About, Privacy, Cookies, Terms)
     entries.push({
-      loc: `${SITE_URL}/${locale}/${SEGMENTS[locale].premium}`,
-      priority: "0.8",
+      loc: `${SITE_URL}/${locale}/${SEGMENTS[locale].about}`,
+      priority: "0.7",
       changefreq: "monthly",
       alternates: [
-        ...LOCALES.map((l) => ({ lang: l, href: `${SITE_URL}/${l}/${SEGMENTS[l].premium}` })),
-        { lang: "x-default", href: `${SITE_URL}/es/${SEGMENTS.es.premium}` },
+        ...LOCALES.map((l) => ({ lang: l, href: `${SITE_URL}/${l}/${SEGMENTS[l].about}` })),
+        { lang: "x-default", href: `${SITE_URL}/es/${SEGMENTS.es.about}` },
       ],
     });
-
-    // 2.2 Legal pages (Privacy, Cookies, Terms)
     entries.push({
       loc: `${SITE_URL}/${locale}/${SEGMENTS[locale].privacy}`,
-      priority: "0.5",
+      priority: "0.4",
       changefreq: "monthly",
       alternates: [
         ...LOCALES.map((l) => ({ lang: l, href: `${SITE_URL}/${l}/${SEGMENTS[l].privacy}` })),
@@ -92,7 +90,7 @@ export function generateSitemap(): string {
     });
     entries.push({
       loc: `${SITE_URL}/${locale}/${SEGMENTS[locale].cookies}`,
-      priority: "0.5",
+      priority: "0.4",
       changefreq: "monthly",
       alternates: [
         ...LOCALES.map((l) => ({ lang: l, href: `${SITE_URL}/${l}/${SEGMENTS[l].cookies}` })),
@@ -101,20 +99,11 @@ export function generateSitemap(): string {
     });
     entries.push({
       loc: `${SITE_URL}/${locale}/${SEGMENTS[locale].terms}`,
-      priority: "0.5",
+      priority: "0.4",
       changefreq: "monthly",
       alternates: [
         ...LOCALES.map((l) => ({ lang: l, href: `${SITE_URL}/${l}/${SEGMENTS[l].terms}` })),
         { lang: "x-default", href: `${SITE_URL}/es/${SEGMENTS.es.terms}` },
-      ],
-    });
-    entries.push({
-      loc: `${SITE_URL}/${locale}/${SEGMENTS[locale].about}`,
-      priority: "0.6",
-      changefreq: "monthly",
-      alternates: [
-        ...LOCALES.map((l) => ({ lang: l, href: `${SITE_URL}/${l}/${SEGMENTS[l].about}` })),
-        { lang: "x-default", href: `${SITE_URL}/es/${SEGMENTS.es.about}` },
       ],
     });
 
@@ -127,19 +116,6 @@ export function generateSitemap(): string {
         alternates: [
           ...LOCALES.map((l) => ({ lang: l, href: `${SITE_URL}${buildToolPath(l, tool.slug)}` })),
           { lang: "x-default", href: `${SITE_URL}${buildToolPath("es", tool.slug)}` },
-        ],
-      });
-    }
-
-    // 4. Category pages (6 categorías)
-    for (const catKey of Object.keys(CATEGORIES) as ToolCategory[]) {
-      entries.push({
-        loc: `${SITE_URL}${buildCategoryPath(locale, catKey)}`,
-        priority: "0.7",
-        changefreq: "monthly",
-        alternates: [
-          ...LOCALES.map((l) => ({ lang: l, href: `${SITE_URL}${buildCategoryPath(l, catKey)}` })),
-          { lang: "x-default", href: `${SITE_URL}${buildCategoryPath("es", catKey)}` },
         ],
       });
     }

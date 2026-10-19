@@ -1457,6 +1457,8 @@ export const GUIDES: GuideDefinition[] = [
   },
 ];
 
+export const ALL_GUIDES = GUIDES;
+
 export function findGuideBySlug(locale: Locale, slug: string): GuideDefinition | undefined {
   return GUIDES.find((g) => g.slugs[locale] === slug || g.canonicalSlug === slug);
 }

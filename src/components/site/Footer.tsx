@@ -204,41 +204,6 @@ export function Footer() {
                 </Link>
               </li>
 
-              {/* BreadPDF Premium en Rojo */}
-              <li>
-                <Link
-                  to={SECTION_ROUTE}
-                  params={premiumParams(locale)}
-                  className="group inline-flex items-center gap-2 font-bold text-[#EC3C2D] transition-colors hover:text-[#FF5A4D]"
-                >
-                  <PremiumCrownIcon className="size-4 shrink-0 text-[#EC3C2D]" />
-                  <span>{copy.premium}</span>
-                </Link>
-              </li>
-
-              {/* Privacidad independiente */}
-              <li>
-                <Link
-                  to={SECTION_ROUTE}
-                  params={privacyParams(locale)}
-                  className="group inline-flex items-center gap-2.5 font-medium text-slate-300 transition-colors hover:text-[#EC3C2D]"
-                >
-                  <ShieldCheck className="size-4 shrink-0 text-[#EC3C2D]" />
-                  <span>{copy.privacy}</span>
-                </Link>
-              </li>
-
-              {/* Soporte independiente */}
-              <li>
-                <a
-                  href={`mailto:${copy.contactEmail}`}
-                  className="group inline-flex items-center gap-2.5 font-medium text-slate-300 transition-colors hover:text-[#EC3C2D]"
-                >
-                  <MessageSquare className="size-4 shrink-0 text-[#EC3C2D]" />
-                  <span>{copy.support} ({copy.supportDesc})</span>
-                </a>
-              </li>
-
               {/* Guías documentales */}
               <li>
                 <Link
@@ -250,8 +215,38 @@ export function Footer() {
                   <span>{copy.guides}</span>
                 </Link>
               </li>
+
+              {/* Catálogo de herramientas */}
+              <li>
+                <Link
+                  to={SECTION_ROUTE}
+                  params={catalogParams(locale)}
+                  className="group inline-flex items-center gap-2.5 font-medium text-slate-300 transition-colors hover:text-[#EC3C2D]"
+                >
+                  <span className="size-2 rounded-full bg-[#EC3C2D] shrink-0 opacity-90 group-hover:opacity-100 transition-opacity" aria-hidden="true" />
+                  <span>
+                    {locale === "ca"
+                      ? "Catàleg complet d'eines"
+                      : locale === "en"
+                      ? "Full Tools Catalog"
+                      : "Catálogo completo de herramientas"}
+                  </span>
+                </Link>
+              </li>
+
+              {/* Soporte y contacto */}
+              <li>
+                <a
+                  href={`mailto:${copy.contactEmail}`}
+                  className="group inline-flex items-center gap-2.5 font-medium text-slate-300 transition-colors hover:text-[#EC3C2D]"
+                >
+                  <MessageSquare className="size-4 shrink-0 text-[#EC3C2D]" />
+                  <span>{copy.support} ({copy.supportDesc})</span>
+                </a>
+              </li>
             </ul>
           </div>
+
 
           {/* COL 4: LEGAL (lg:col-span-2) */}
           <div className="lg:col-span-2">
@@ -307,10 +302,10 @@ export function Footer() {
           <div className="flex flex-wrap items-center gap-6 sm:gap-8">
             <Link
               to={SECTION_ROUTE}
-              params={premiumParams(locale)}
-              className="font-bold text-[#EC3C2D] transition-colors hover:text-[#FF5A4D]"
+              params={aboutParams(locale)}
+              className="transition-colors hover:text-white"
             >
-              Premium
+              {copy.about}
             </Link>
             <Link
               to={SECTION_ROUTE}

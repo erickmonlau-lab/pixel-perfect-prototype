@@ -111,15 +111,15 @@ export const TOOL_PRACTICAL_PROFILES: Record<string, ToolPracticalGuide> = {
     limitations: {
       es: [
         "Documentos cifrados con contraseña de apertura deben desbloquearse previamente antes de ser incorporados.",
-        "Formularios dinámicos interactivos complejos (XFA de Adobe) pueden requerir aplanado previo para evitar conflictos de nombres de campo entre archivos distintos.",
+        "Si combinas formularios AcroForm interactivos que comparten nombres de campo idénticos, te recomendamos aplanar primero cada formulario con nuestra herramienta Aplanar PDF para evitar que los valores se sobrescriban.",
       ],
       ca: [
         "Documents xifrats amb contrasenya d'obertura han de desbloquejar-se abans de poder-los combinar.",
-        "Formularis dinàmics complexos (XFA d'Adobe) poden necessitar aplanat previ per evitar conflictes de camps entre fitxers diferents.",
+        "Si combines formularis AcroForm interactius que comparteixen noms de camp idèntics, et recomanem aplanar primer cada formulari amb la nostra eina Aplanar PDF per evitar que els valors es sobreescriguin.",
       ],
       en: [
         "Password-encrypted files must be decrypted prior to assembly.",
-        "Dynamic interactive forms (Adobe XFA) should be flattened beforehand to prevent duplicate form field collisions across documents.",
+        "If you merge interactive AcroForms sharing identical field identifiers, we recommend flattening each form first with our Flatten PDF tool to prevent values from colliding or overwriting each other.",
       ],
     },
     proTip: {
