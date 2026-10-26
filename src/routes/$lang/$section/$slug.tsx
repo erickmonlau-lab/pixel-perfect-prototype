@@ -26,7 +26,7 @@ import { trackToolCatalogViewAllClicked } from "@/lib/analytics/gtm";
 import { FAMILY_ACCENTS } from "@/lib/tools/catalog";
 import { FAMILY_ICONS, TOOL_GRID } from "@/lib/tools/families";
 import { GuideMascot } from "@/components/guides/editorial/GuideEditorial";
-import { mascotForTool, SITE_URL } from "@/lib/brand";
+import { BRAND_ASSETS, mascotForTool, SITE_URL } from "@/lib/brand";
 import {
   findCategoryBySlug,
   findToolBySlug,
