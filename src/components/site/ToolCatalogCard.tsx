@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Star } from "lucide-react";
+import { Star, ArrowUpRight } from "lucide-react";
 import type { RoadmapTool } from "@/lib/tools/catalog";
 import type { LocalizedTool } from "@/lib/tools/localize";
 import { useLocale } from "@/lib/i18n/context";
@@ -38,11 +38,11 @@ export function ToolCatalogCard({
   const iconSize = compact ? "size-11 sm:size-12" : "size-13 sm:size-14";
   const iconInner = compact ? "size-7 sm:size-8" : "size-8 sm:size-9";
   const titleSize = compact
-    ? "text-[18px] sm:text-[19px] font-black"
-    : "text-[20px] sm:text-[22px] font-black";
+    ? "text-[19px] sm:text-[20px] font-black"
+    : "text-[21px] sm:text-[23px] font-black";
   const descSize = compact
-    ? "text-[13.5px] sm:text-[14px] leading-normal"
-    : "text-[14.5px] sm:text-[15px] leading-snug";
+    ? "text-[14px] sm:text-[14.5px] leading-normal"
+    : "text-[15px] sm:text-[15.5px] leading-relaxed";
   const mtTitle = compact ? "mt-3" : "mt-4";
 
   const { isFavorite, toggleFavorite } = useFavorites();
@@ -51,12 +51,16 @@ export function ToolCatalogCard({
   const cardContent = (
     <div
       style={{ animationDelay: `${Math.min(index, 29) * 12}ms` }}
-      className={`group relative flex h-full ${cardMinH} flex-col justify-start rounded-2xl border-2 border-[#0F0F12] ${cardPad} transition-all duration-150 select-none ${
+      className={`group relative flex h-full ${cardMinH} flex-col justify-start rounded-2xl border-2 border-[#0F0F12] ${cardPad} pt-7 transition-all duration-150 select-none overflow-hidden ${
         isPending
           ? "border-dashed bg-white/70 opacity-75 shadow-none"
           : `bg-white shadow-[4px_4px_0_#0F0F12] ${colorTheme.shadowHover} ${colorTheme.tintBg} hover:-translate-y-1.5 active:translate-y-0 active:shadow-[2px_2px_0_#0F0F12]`
       }`}
     >
+      {/* 1. Franja superior vibrante con el color de la herramienta */}
+      {!isPending && (
+        <div className={`absolute top-0 inset-x-0 h-2 ${colorTheme.bg} border-b-2 border-[#0F0F12]`} />
+      )}
       <div>
         <div className="flex items-start justify-between gap-3">
           {/* Neo-brutalist Vivid Icon Container: Solid tool color + 2px border + 2px shadow + hover micro-rotation */}
@@ -104,9 +108,18 @@ export function ToolCatalogCard({
           >
             {tool.name}
           </h3>
-          <p className={`mt-1.5 ${descSize} text-[#334155] font-medium line-clamp-3`}>{tool.tagline}</p>
+          <p className={`mt-1.5 ${descSize} text-slate-600 font-medium line-clamp-3 pr-8`}>{tool.tagline}</p>
         </div>
       </div>
+
+      {/* 2. Botón circular con flecha diagonal ↗ interactivo en la esquina inferior derecha */}
+      {!isPending && (
+        <div className="absolute bottom-4 right-4 flex items-center justify-center">
+          <span className={`flex size-8 items-center justify-center rounded-full border-2 border-[#0F0F12] bg-[#EDEDF0] text-[#0F0F12] shadow-[2px_2px_0_#0F0F12] transition-all duration-150 group-hover:${colorTheme.bg} group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5`}>
+            <ArrowUpRight className="size-4 stroke-[2.8]" />
+          </span>
+        </div>
+      )}
     </div>
   );
 
