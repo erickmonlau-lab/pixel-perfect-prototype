@@ -88,7 +88,7 @@ export function GuidesHubPage() {
   const readGuideText = isCa ? "Llegir guia" : isEn ? "Read guide" : "Leer guía";
 
   return (
-    <div className="mx-auto max-w-[1400px] px-5 pb-20 pt-8 sm:pt-10">
+    <div className="mx-auto max-w-[1440px] px-4 sm:px-8 lg:px-12 pb-24 pt-8 sm:pt-12">
       <Breadcrumb
         items={[
           {
@@ -97,24 +97,24 @@ export function GuidesHubPage() {
         ]}
       />
 
-      {/* Header Banner */}
-      <section className="animate-rise rounded-3xl border border-slate-200 bg-white px-6 py-10 shadow-sm sm:px-12 sm:py-14">
-        <div className="flex items-center gap-2 text-[12.5px] font-bold uppercase tracking-wider text-[#EC3C2D]">
-          <BookOpen className="size-4" />
+      {/* Header Banner Editorial Contundente */}
+      <section className="mt-6 rounded-3xl border-2 border-[#0F0F12] bg-[#EDEDF0] p-8 sm:p-12 lg:p-16 shadow-[6px_6px_0_#0F0F12]">
+        <div className="flex items-center gap-2 text-xs font-black uppercase tracking-wider text-white bg-[#0F0F12] border-2 border-[#0F0F12] px-3.5 py-1.5 rounded-lg shadow-[2px_2px_0_#0F0F12] w-fit">
+          <BookOpen className="size-4 text-[#EC3C2D]" />
           <span>{hubEyebrow}</span>
         </div>
-        <h1 className="text-display mt-3 max-w-4xl text-[2.2rem] font-black tracking-tight text-[#0F172A] sm:text-5xl">
+        <h1 className="text-display mt-5 max-w-5xl text-[2.6rem] sm:text-[3.5rem] lg:text-[4.2rem] font-black tracking-[-0.035em] text-[#0F0F12] leading-[1.05]">
           {hubTitle}
         </h1>
-        <p className="mt-4 max-w-3xl text-[18px] leading-relaxed text-slate-600 font-normal">
+        <p className="mt-4 max-w-4xl text-[18px] sm:text-[20px] leading-relaxed text-slate-800 font-medium">
           {hubDesc}
         </p>
-        <div className="mt-6 flex flex-wrap items-center gap-4 text-[13.5px] text-slate-500 font-medium">
-          <span className="inline-flex items-center gap-1.5 bg-slate-100 rounded-lg px-3 py-1 font-semibold text-slate-700">
-            <Sparkles className="size-3.5 text-[#EC3C2D]" />
-            {GUIDES.length} {isCa ? "manuals exhaustius" : isEn ? "in-depth guides" : "manuales exhaustivos"}
+        <div className="mt-8 flex flex-wrap items-center gap-4 text-[13.5px] text-slate-700 font-bold">
+          <span className="inline-flex items-center gap-2 bg-white border-2 border-[#0F0F12] rounded-xl px-4 py-2 shadow-[2px_2px_0_#0F0F12]">
+            <Sparkles className="size-4 text-[#EC3C2D]" />
+            <span>{GUIDES.length} {isCa ? "manuals exhaustius" : isEn ? "in-depth guides" : "manuales exhaustivos"}</span>
           </span>
-          <span>•</span>
+          <span className="text-slate-400">•</span>
           <span>
             {isCa
               ? "Revisió editorial: Setembre 2026"
@@ -122,7 +122,7 @@ export function GuidesHubPage() {
               ? "Editorial review: September 2026"
               : "Revisión editorial: Septiembre 2026"}
           </span>
-          <span>•</span>
+          <span className="text-slate-400">•</span>
           <span>
             {isCa
               ? "ISO 32000 & W3C Standards"
@@ -133,14 +133,11 @@ export function GuidesHubPage() {
         </div>
       </section>
 
-      {/* Guides Grid */}
-      <section className="mt-12 space-y-6" aria-label="Llista de guies">
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {/* Guides Grid 3 columnas amplias en escritorio */}
+      <section className="mt-14 space-y-8" aria-label="Llista de guies">
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {GUIDES.map((guide, idx) => {
-            const catCfg =
-              CATEGORY_CONFIG[guide.category as keyof typeof CATEGORY_CONFIG] ||
-              CATEGORY_CONFIG.educacion;
-            const CatIcon = catCfg.icon;
+            const isBlackCard = idx % 3 === 1; // Alternancia elegante de tarjetas
             const title = guide.title[locale] || guide.title.es;
             const desc = guide.seoDescription[locale] || guide.seoDescription.es;
             const targetPath = guidePath(locale, guide.canonicalSlug);
@@ -148,51 +145,63 @@ export function GuidesHubPage() {
             return (
               <article
                 key={guide.canonicalSlug}
-                style={{ animationDelay: `${idx * 40}ms` }}
-                className={`animate-rise flex flex-col justify-between rounded-2xl border bg-white p-6 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-md ${catCfg.borderColor}`}
+                className={`flex flex-col justify-between rounded-2xl border-2 border-[#0F0F12] p-8 shadow-[4px_4px_0_#0F0F12] transition-all duration-200 hover:-translate-y-1 hover:shadow-[6px_6px_0_#0F0F12] ${
+                  isBlackCard ? "bg-[#0F0F12] text-white" : "bg-white text-[#0F0F12]"
+                }`}
               >
                 <div>
                   {/* Category & Read Time */}
-                  <div className="flex items-center justify-between gap-2">
+                  <div className="flex items-center justify-between gap-3 mb-6">
                     <span
-                      className={`inline-flex items-center gap-1.5 rounded-full px-3 py-0.5 text-[11.5px] font-black uppercase tracking-wider ${catCfg.badgeBg}`}
+                      className={`inline-block rounded-lg border-2 border-[#0F0F12] px-3.5 py-1 text-xs font-black uppercase tracking-wider whitespace-nowrap shadow-[2px_2px_0_#0F0F12] ${
+                        isBlackCard ? "bg-white text-[#0F0F12]" : "bg-[#0F0F12] text-white"
+                      }`}
                     >
-                      <CatIcon className="size-3 text-white" />
-                      <span>{catCfg.label[locale] || catCfg.label.es}</span>
+                      {guide.category}
                     </span>
-                    <span className="inline-flex items-center gap-1 text-[12.5px] font-semibold text-slate-500">
-                      <Clock className="size-3.5 text-slate-400" />
+                    <span className={`inline-flex items-center gap-1.5 text-xs font-bold shrink-0 ${
+                      isBlackCard ? "text-slate-300" : "text-slate-600"
+                    }`}>
+                      <Clock className="size-3.5" />
                       {readingTimeText(guide.readingTimeMinutes)}
                     </span>
                   </div>
 
-                  {/* Title */}
-                  <h2 className="mt-4 text-[19px] font-bold leading-snug text-[#0F172A] line-clamp-2">
+                  {/* Title: 24-28px con peso fuerte */}
+                  <h2 className={`text-[22px] sm:text-[25px] font-black leading-snug tracking-tight transition-colors ${
+                    isBlackCard ? "text-white group-hover:text-[#EC3C2D]" : "text-[#0F0F12] hover:text-[#EC3C2D]"
+                  }`}>
                     <Link
                       to={targetPath as any}
-                      className="hover:text-[#EC3C2D] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EC3C2D]/30 rounded-md"
+                      className="focus-visible:outline-none"
                     >
                       {title}
                     </Link>
                   </h2>
 
-                  {/* Description */}
-                  <p className="mt-3 text-[14.5px] leading-relaxed text-slate-600 line-clamp-3 font-normal">
+                  {/* Description: 16-17px */}
+                  <p className={`mt-4 text-[16px] sm:text-[17px] leading-relaxed font-normal ${
+                    isBlackCard ? "text-slate-300" : "text-slate-700"
+                  }`}>
                     {desc}
                   </p>
                 </div>
 
-                {/* Footer Link */}
-                <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
-                  <span className="text-[12px] text-slate-400 font-medium">
+                {/* Footer Link con autor y botón rojo */}
+                <div className={`mt-8 pt-5 border-t-2 flex items-center justify-between gap-3 ${
+                  isBlackCard ? "border-white/15" : "border-[#0F0F12]/10"
+                }`}>
+                  <span className={`text-[13px] font-bold leading-tight max-w-[150px] ${
+                    isBlackCard ? "text-slate-400" : "text-slate-700"
+                  }`}>
                     {guide.author.name}
                   </span>
                   <Link
                     to={targetPath as any}
-                    className="inline-flex items-center gap-1.5 text-[14px] font-bold text-[#EC3C2D] hover:text-[#D93426] transition-colors group"
+                    className="inline-flex items-center gap-2 rounded-xl border-2 border-[#0F0F12] bg-[#EC3C2D] hover:bg-[#D93426] text-white px-5 py-2.5 text-[15px] font-black shadow-[3px_3px_0_#0F0F12] transition-all hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0_#0F0F12] shrink-0"
                   >
                     <span>{readGuideText}</span>
-                    <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+                    <ArrowRight className="size-4.5" />
                   </Link>
                 </div>
               </article>
