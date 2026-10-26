@@ -154,11 +154,11 @@ export function AboutPage() {
             </Link>
             <span>•</span>
             <Link to={SECTION_ROUTE} params={cookiesParams(locale)} className="hover:text-[#EC3C2D] transition-colors">
-              {t.nav.cookies || "Cookies"}
+              {(t.nav as Record<string, string>)["cookies"] || "Cookies"}
             </Link>
             <span>•</span>
             <Link to={SECTION_ROUTE} params={termsParams(locale)} className="hover:text-[#EC3C2D] transition-colors">
-              {t.nav.terms || "Términos"}
+              {(t.nav as Record<string, string>)["terms"] || "Términos"}
             </Link>
           </div>
         </div>

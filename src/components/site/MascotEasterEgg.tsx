@@ -27,6 +27,7 @@ export function MascotEasterEgg({ size = "md" }: { size?: "md" | "lg" }) {
       }, 3500);
       return () => clearTimeout(timer);
     }
+    return undefined;
   }, [clicks]);
 
   const isLarge = size === "lg";

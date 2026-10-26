@@ -49,7 +49,7 @@ export function GlobalDropzone() {
       setIsDragging(false);
 
       if (e.dataTransfer && e.dataTransfer.files.length > 0) {
-        const file = e.dataTransfer.files[0];
+        const file = e.dataTransfer.files[0] ?? null;
         setDroppedFile(file);
       }
     };

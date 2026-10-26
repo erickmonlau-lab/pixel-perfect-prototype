@@ -50,6 +50,9 @@ export function ToolSearch({ size = "md" }: { size?: "md" | "lg" }) {
 
   const [placeholderIndex, setPlaceholderIndex] = useState(0);
 
+  // Search across all 50 real tools
+  const results = useMemo(() => searchLocalizedTools(locale, query).slice(0, 10), [locale, query]);
+
   useEffect(() => {
     if (focused) return;
     const interval = setInterval(() => {
