@@ -1,4 +1,15 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, Link } from '@tanstack/react-router'
+import { ArrowRight, BookOpen, Clock } from 'lucide-react'
+import { DEFAULT_LOCALE, isLocale } from "@/lib/i18n/config";
+import { useLocale } from "@/lib/i18n/context";
+import {
+  SECTION_ROUTE,
+  alternateLinks,
+  guidesHubParams,
+  guidePath,
+} from "@/lib/i18n/routing";
+import { UI } from "@/lib/i18n/ui";
+import { ALL_GUIDES } from "@/lib/guides/registry";
 import {
   CompressDocIcon,
   WordFileIcon,
