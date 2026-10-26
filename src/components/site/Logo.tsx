@@ -10,13 +10,13 @@ export function Logo({ tone = "dark", size = "md", showWordmark = true }: LogoPr
   // Dimension scales: prominent presence in header
   const iconSizes = {
     sm: "h-8 w-auto",
-    md: "h-11 sm:h-[50px] w-auto",
+    md: "h-12 sm:h-[56px] w-auto",
     lg: "h-14 w-auto",
   };
 
   const textSizes = {
     sm: "text-[20px]",
-    md: "text-[26px] sm:text-[29px]",
+    md: "text-[28px] sm:text-[33px] font-black",
     lg: "text-[32px]",
   };
 

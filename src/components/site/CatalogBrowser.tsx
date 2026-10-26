@@ -59,11 +59,7 @@ export function CatalogBrowser() {
           // Compute active & hover styles
           let activeClass = "";
           if (isActive) {
-            if (item.id === "all") {
-              activeClass = "bg-[#0F0F12] text-white shadow-[3px_3px_0_#EC3C2D] translate-x-[1px] translate-y-[1px]";
-            } else if (catColor) {
-              activeClass = `${catColor.bg} ${catColor.text} shadow-[3px_3px_0_#0F0F12] translate-x-[1px] translate-y-[1px]`;
-            }
+            activeClass = "bg-[#EC3C2D] text-white shadow-[3px_3px_0_#0F0F12] translate-x-[1px] translate-y-[1px]";
           } else {
             activeClass = "bg-white text-[#0F0F12] shadow-[3px_3px_0_#0F0F12] hover:bg-[#F8FAFC] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0_#0F0F12]";
           }
@@ -81,9 +77,7 @@ export function CatalogBrowser() {
               <span
                 className={`inline-flex items-center justify-center min-w-[22px] h-[20px] px-1.5 rounded-md text-[12px] font-black tracking-normal tabular-nums leading-none border border-[#0F0F12] ${
                   isActive
-                    ? item.id === "all"
-                      ? "bg-[#EC3C2D] text-white"
-                      : "bg-[#0F0F12] text-white"
+                    ? "bg-[#0F0F12] text-white"
                     : "bg-[#EDEDF0] text-[#0F0F12]"
                 }`}
               >

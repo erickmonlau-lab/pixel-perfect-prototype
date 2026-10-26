@@ -114,44 +114,25 @@ function Home() {
              en blanco y rojo oficial con bordes 2px y sombras duras.
           Zero cintas amarillas distractoras antes del catálogo.
           ============================================================ */}
-      <section className="relative z-20 border-b-2 border-[#0F0F12] bg-[#EDEDF0] py-12 md:py-16 lg:py-20 overflow-hidden">
+      <section className="relative z-20 border-b-2 border-[#0F0F12] bg-[#EDEDF0] py-6 sm:py-8 md:py-10 overflow-hidden">
         
         {/* Canvas contenedor principal max-w-[1520px] */}
-        <div className="relative w-full max-w-[1520px] mx-auto px-4 sm:px-6 lg:px-8 z-20 flex flex-col items-center justify-center min-h-[520px] lg:min-h-[580px]">
+        <div className="relative w-full max-w-[1520px] mx-auto px-4 sm:px-6 lg:px-8 z-20 flex flex-col items-center justify-center min-h-[460px] lg:min-h-[500px]">
 
           {/* ============================================================
-              ZONA 1 (LATERAL IZQUIERDO): LA MASCOTA ORIGINAL BREADPDF
-              Presencia grande, pose dinámica, equilibrando el hero sin tapar el título.
-              Acompañada de un documento PDF rojo sólido oficial.
+              ZONA 1 (LATERAL IZQUIERDO): MASCOTA DINÁMICA OFICIAL DE LA REFERENCIA
+              Mascota pan corriendo con documento PDF rojo y líneas de movimiento
               ============================================================ */}
-          <div className="hidden xl:flex flex-col items-center absolute left-[2%] 2xl:left-[3.5%] top-1/2 -translate-y-1/2 z-25 select-none pointer-events-auto">
-            <div className="relative group">
-              {/* Documento PDF rojo sólido de apoyo detrás de la mascota */}
-              <div className="absolute -top-6 -left-6 size-20 2xl:size-24 rounded-2xl border-2 border-[#0F0F12] bg-[#EC3C2D] text-white shadow-[4px_4px_0_#0F0F12] transform -rotate-12 flex flex-col items-center justify-center -z-10 transition-transform group-hover:-rotate-16">
-                <span className="text-[10px] 2xl:text-xs font-black uppercase tracking-wider">PDF</span>
-                <span className="text-xl 2xl:text-2xl font-black">📄</span>
-              </div>
-
-              {/* Ilustración oficial de la mascota BreadPDF en pose dinámica grande */}
-              <div className="relative p-2 transition-transform duration-300 hover:scale-105 cursor-pointer" title="¡Hola! Soy la mascota artesanal de BreadPDF">
-                <img
-                  src={BRAND_ASSETS.mascotPng}
-                  alt="BreadPDF Mascot"
-                  width={240}
-                  height={240}
-                  className="w-44 h-44 2xl:w-56 2xl:h-56 object-contain drop-shadow-[5px_5px_0_#0F0F12]"
-                  loading="eager"
-                />
-              </div>
-
-              {/* Placa identificativa sólida de la mascota */}
-              <div className="mt-2 text-center">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-white border-2 border-[#0F0F12] shadow-[2px_2px_0_#0F0F12] text-xs font-black uppercase text-[#0F0F12]">
-                  <span className="size-2 rounded-full bg-[#EC3C2D]" />
-                  <span>100% Local en RAM</span>
-                </span>
-              </div>
-            </div>
+          <div className="hidden xl:block absolute left-[1%] 2xl:left-[3%] top-1/2 -translate-y-1/2 z-25 select-none pointer-events-none transition-transform hover:scale-105 duration-300">
+            <img
+              src="/brand/hero-mascot-perfect.png"
+              alt="Mascota BreadPDF"
+              width={260}
+              height={270}
+              className="w-52 h-auto 2xl:w-64 drop-shadow-[5px_5px_0_#0F0F12] object-contain"
+              loading="eager"
+              fetchPriority="high"
+            />
           </div>
 
 
@@ -161,42 +142,35 @@ function Home() {
           <div className="relative z-25 w-full max-w-4xl 2xl:max-w-5xl text-center my-auto px-4 py-2 sm:py-4">
             
             {/* INSIGNIA SUPERIOR: Sólida, veraz, 51 herramientas en tu navegador */}
-            <div className="inline-flex items-center justify-center mb-6 select-none max-w-full">
+            <div className="inline-flex items-center justify-center mb-4 select-none max-w-full">
               <a
                 href="#catalogo"
-                className="group inline-flex items-center gap-2.5 px-4 sm:px-5 py-2 rounded-xl bg-[#0F0F12] border-2 border-[#0F0F12] shadow-[3px_3px_0_#0F0F12] hover:shadow-[4px_4px_0_#EC3C2D] text-white transition-all cursor-pointer"
+                className="group inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 rounded-full bg-[#FEF08A] border-2 border-[#0F0F12] shadow-[3px_3px_0_#0F0F12] hover:shadow-[4px_4px_0_#0F0F12] hover:bg-[#FDE047] text-[#0F0F12] transition-all cursor-pointer"
                 title="Ver las 51 herramientas en el catálogo"
               >
-                <span className="flex size-6 items-center justify-center rounded-lg bg-[#EC3C2D] text-white text-xs font-black border border-white/20">
-                  51
+                <img src={BRAND_ASSETS.iconWebp} alt="" className="size-5 object-contain" aria-hidden="true" />
+                <span className="text-xs sm:text-[13px] font-black uppercase tracking-wide">
+                  {locale === "ca" ? "51 Eines PDF · 100% Gratuït · Al teu Navegador" : locale === "en" ? "51 PDF Tools · 100% Free · In your Browser" : "51 Herramientas PDF · 100% Gratis · En tu Navegador"}
                 </span>
-                <span className="text-xs sm:text-sm font-black uppercase tracking-wider">
-                  Herramientas PDF · En tu Navegador
-                </span>
-                <span className="text-xs font-bold text-[#EC3C2D] group-hover:translate-x-0.5 transition-transform">↓</span>
               </a>
             </div>
 
             {/* H1 PROTAGONISTA ABSOLUTO: Display condensada masiva */}
-            <h1 className="text-display mx-auto max-w-4xl text-3xl sm:text-5xl md:text-6xl lg:text-[72px] xl:text-[80px] font-black leading-[1.04] tracking-[-0.035em] text-[#0F0F12] uppercase [text-wrap:balance]">
-              <span className="block">{heroCopy.line1}</span>
-              <span className="inline-flex items-center justify-center flex-wrap gap-2.5 sm:gap-4 mt-2 sm:mt-3">
-                {/* Pieza «PDF» roja sólida con borde negro 2.5px y sombra dura */}
-                <span className="inline-block transform -rotate-2 rounded-2xl border-2 sm:border-3 border-[#0F0F12] bg-[#EC3C2D] text-white px-4 sm:px-6 py-1 sm:py-1.5 shadow-[4px_4px_0_#0F0F12] select-none text-[0.85em]">
+            <h1 className="text-display mx-auto max-w-5xl text-3xl sm:text-5xl md:text-[58px] lg:text-[66px] xl:text-[72px] font-black leading-[1.05] tracking-[-0.03em] text-[#0F0F12] uppercase [text-wrap:balance]">
+              <span className="inline-flex items-center justify-center flex-wrap gap-x-3 gap-y-1">
+                <span>{heroCopy.line1}</span>
+                <span className="inline-block transform -rotate-2 rounded-xl sm:rounded-2xl border-2 sm:border-3 border-[#0F0F12] bg-[#EC3C2D] text-white px-3 sm:px-4 py-0.5 shadow-[3px_3px_0_#0F0F12] select-none text-[0.88em]">
                   PDF.
                 </span>
-
-                {/* «EN UN SOLO LUGAR.» con línea de subrayado roja bien separada abajo sin cruzar letras */}
-                <span className="relative inline-block pb-3">
-                  <span className="relative z-10">{heroCopy.line2}</span>
-                  {/* Línea roja sólida corporativa bien despegada del texto */}
-                  <span className="absolute inset-x-0 bottom-0 h-1.5 bg-[#EC3C2D] rounded-full" />
-                </span>
+              </span>
+              <span className="relative inline-block mt-1 sm:mt-1.5 pb-2.5 sm:pb-3">
+                <span className="relative z-10">{heroCopy.line2}</span>
+                <span className="absolute inset-x-0 bottom-0 h-1 sm:h-1.5 bg-[#EC3C2D] rounded-full" />
               </span>
             </h1>
 
             {/* DESCRIPCIÓN BREVE Y LEGIBLE */}
-            <p className="mx-auto mt-5 mb-8 max-w-2xl text-base sm:text-lg lg:text-xl font-medium text-slate-800 leading-relaxed">
+            <p className="mx-auto mt-3.5 mb-6 max-w-2xl text-base sm:text-lg lg:text-xl font-medium text-slate-800 leading-relaxed">
               Comprime, convierte, une, divide y edita tus documentos online. Rápido, claro y sin complicaciones.
             </p>
 
@@ -209,58 +183,19 @@ function Home() {
 
 
           {/* ============================================================
-              ZONA 3 (LATERAL DERECHO): 4 HERRAMIENTAS COHERENTES
-              Cuatro operaciones reales: Comprimir, Unir, Convertir (Word) y Dividir.
-              Superficies sólidas blancas y rojas, bordes 2px, sombras duras 4px, iconos monocromos.
+              ZONA 3 (LATERAL DERECHO): 4 TARJETAS INCLINADAS DE LA REFERENCIA
+              Comprimir, Unir, Convertir, Dividir con sombras duras e iconos exactos
               ============================================================ */}
-          <div className="hidden xl:grid grid-cols-2 gap-4 absolute right-[2%] 2xl:right-[3.5%] top-1/2 -translate-y-1/2 z-25 select-none w-[220px] 2xl:w-[240px]">
-            
-            {/* 1. Comprimir PDF (Rojo corporativo oficial) */}
-            <Link
-              to={DETAIL_ROUTE}
-              params={toolParams(locale, "comprimir-pdf")}
-              className="group flex flex-col items-center justify-center p-3.5 h-28 rounded-2xl border-2 border-[#0F0F12] bg-[#EC3C2D] text-white shadow-[4px_4px_0_#0F0F12] hover:-translate-y-1 hover:shadow-[6px_6px_0_#0F0F12] transition-all cursor-pointer transform -rotate-2"
-              title="Comprimir PDF"
-            >
-              <CompressDocIcon className="size-9 text-white mb-2" />
-              <span className="text-xs font-black text-center leading-tight">Comprimir</span>
-            </Link>
-
-            {/* 2. Unir PDF (Blanco sólido con icono oscuro) */}
-            <Link
-              to={DETAIL_ROUTE}
-              params={toolParams(locale, "unir-pdf")}
-              className="group flex flex-col items-center justify-center p-3.5 h-28 rounded-2xl border-2 border-[#0F0F12] bg-white text-[#0F0F12] shadow-[4px_4px_0_#0F0F12] hover:-translate-y-1 hover:shadow-[6px_6px_0_#0F0F12] transition-all cursor-pointer transform rotate-2"
-              title="Unir PDF"
-            >
-              <MergeDocIcon className="size-9 text-[#0F0F12] stroke-[2.8] mb-2" />
-              <span className="text-xs font-black text-center leading-tight">Unir</span>
-            </Link>
-
-            {/* 3. Convertir (PDF a Word) (Blanco sólido con icono oscuro) */}
-            <Link
-              to={DETAIL_ROUTE}
-              params={toolParams(locale, "pdf-a-word")}
-              className="group flex flex-col items-center justify-center p-3.5 h-28 rounded-2xl border-2 border-[#0F0F12] bg-white text-[#0F0F12] shadow-[4px_4px_0_#0F0F12] hover:-translate-y-1 hover:shadow-[6px_6px_0_#0F0F12] transition-all cursor-pointer transform rotate-1"
-              title="PDF a Word"
-            >
-              <WordFileIcon className="size-9 text-[#0F0F12] mb-2" />
-              <span className="text-xs font-black text-center leading-tight">Convertir</span>
-            </Link>
-
-            {/* 4. Dividir PDF (Blanco sólido con acento rojo) */}
-            <Link
-              to={DETAIL_ROUTE}
-              params={toolParams(locale, "dividir-pdf")}
-              className="group flex flex-col items-center justify-center p-3.5 h-28 rounded-2xl border-2 border-[#0F0F12] bg-white text-[#0F0F12] shadow-[4px_4px_0_#0F0F12] hover:-translate-y-1 hover:shadow-[6px_6px_0_#0F0F12] transition-all cursor-pointer transform -rotate-2"
-              title="Dividir PDF"
-            >
-              <SplitDocIcon className="size-9 text-[#0F0F12] mb-2" />
-              <span className="text-xs font-black text-center leading-tight">Dividir</span>
-            </Link>
-
+          <div className="hidden xl:block absolute right-[1%] 2xl:right-[3%] top-1/2 -translate-y-1/2 z-25 select-none pointer-events-none transition-transform hover:scale-105 duration-300">
+            <img
+              src="/brand/hero-tools-perfect.png"
+              alt="Herramientas PDF principales"
+              width={250}
+              height={290}
+              className="w-52 h-auto 2xl:w-64 drop-shadow-[5px_5px_0_#0F0F12] object-contain"
+              loading="eager"
+            />
           </div>
-
         </div>
 
         {/* Adaptación responsive (< xl): Mascota compacta y accesos rápidos */}
@@ -360,7 +295,7 @@ function Home() {
       {/* ============================================================
           SECTION — FULL CATALOG: Direct Product Entry via Filters
           ============================================================ */}
-      <section className="border-b-2 border-[#0F0F12] bg-[#FFFFFF] pt-6 pb-16 sm:pt-8 sm:pb-20" id="catalogo">
+      <section className="border-b-2 border-[#0F0F12] bg-[#FFFFFF] pt-4 pb-12 sm:pt-6 sm:pb-16" id="catalogo">
         <div className="mx-auto max-w-[1520px] px-5">
           <h2 className="sr-only">{t.catalog.h1}</h2>
           <div>

@@ -112,10 +112,10 @@ export function ToolSearch({ size = "md" }: { size?: "md" | "lg" }) {
     <div ref={containerRef} className="relative z-40 w-full">
       {/* Search Input Bar */}
       <div
-        className={`transition-all duration-200 flex items-center gap-3 sm:gap-4 rounded-2xl border-[3px] border-[#0F0F12] bg-white shadow-[7px_7px_0_#0F0F12] focus-within:shadow-[8px_8px_0_#EC3C2D] focus-within:ring-4 focus-within:ring-[#EC3C2D]/20 focus-within:-translate-y-0.5 ${open ? "rounded-b-none" : ""} ${large ? "h-[74px] sm:h-20 pl-3.5 pr-4 sm:pl-4 sm:pr-5" : "h-14 px-4"}`}
+        className={`transition-all duration-200 flex items-center gap-3 sm:gap-4 rounded-2xl border-2 sm:border-[2.5px] border-[#0F0F12] bg-white shadow-[6px_6px_0_#0F0F12] focus-within:shadow-[8px_8px_0_#EC3C2D] focus-within:ring-4 focus-within:ring-[#EC3C2D]/20 focus-within:-translate-y-0.5 ${open ? "rounded-b-none" : ""} ${large ? "h-[68px] sm:h-[72px] pl-3.5 pr-4 sm:pl-4 sm:pr-5" : "h-14 px-4"}`}
       >
-        {/* Botón de lupa en rojo corporativo oficial con borde negro 2.5px */}
-        <span className="flex size-12 sm:size-[52px] shrink-0 items-center justify-center rounded-xl border-2 sm:border-[2.5px] border-[#0F0F12] bg-[#EC3C2D] text-white shadow-[2px_2px_0_#0F0F12] select-none">
+        {/* Botón de lupa en rojo corporativo oficial con borde negro 2px */}
+        <span className="flex size-11 sm:size-12 shrink-0 items-center justify-center rounded-xl border-2 border-[#0F0F12] bg-[#EC3C2D] text-white shadow-[2px_2px_0_#0F0F12] select-none">
           <Search className="size-6 text-white stroke-[2.8]" aria-hidden="true" />
         </span>
 
@@ -155,10 +155,10 @@ export function ToolSearch({ size = "md" }: { size?: "md" | "lg" }) {
           aria-haspopup="listbox"
           aria-autocomplete="list"
           aria-controls="tool-search-results"
-          placeholder={focused ? t.search.placeholder : (rotatingPlaceholders[placeholderIndex] || t.search.placeholder)}
+          placeholder={focused ? t.search.placeholder : (rotatingPlaceholders[placeholderIndex] || "¿Qué quieres hacer con tu PDF?")}
           aria-label={t.search.placeholder}
           className={`w-full bg-transparent outline-none text-[#0F0F12] placeholder:text-slate-500 font-bold transition-all duration-300 ${
-            large ? "text-lg sm:text-xl" : "text-[15px] sm:text-[16px]"
+            large ? "text-[18px] sm:text-[20px]" : "text-[15px] sm:text-[16px]"
           }`}
         />
 
@@ -307,16 +307,16 @@ export function ToolSearch({ size = "md" }: { size?: "md" | "lg" }) {
       {/* ============================================================
           POPULAR TOOLS BLOCK: COHERENTE, EDITORIAL Y DE ALTO CONTRASTE
           Accesos de 44-48px de altura, tipografía 15-16px, borde 2px, sombra dura 3px,
-          fondo blanco y un solo acento en rojo corporativo para el más relevante (comprimir-pdf).
+          fondo rojo en Comprimir PDF y blanco en los demás, iconos limpios y legibles.
           ============================================================ */}
-      <div className="mt-8 flex flex-wrap items-center justify-center gap-3 w-full max-w-4xl mx-auto">
+      <div className="mt-6 flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 w-full max-w-4xl mx-auto">
         {/* Encabezado POPULARES */}
-        <span className="shrink-0 text-[14px] sm:text-[15px] font-black uppercase tracking-wider text-[#0F0F12] mr-2">
+        <span className="shrink-0 text-[14px] sm:text-[15px] font-black uppercase tracking-wider text-[#0F0F12] mr-1.5">
           {t.search.popular}:
         </span>
 
         {/* Accesos populares monocromos/rojo sin etiquetas aleatorias */}
-        {suggestions.map((tool, idx) => {
+        {suggestions.map((tool) => {
           // Destacamos como máximo una acción principal con fondo rojo oficial de BreadPDF
           const isFeatured = tool.canonicalSlug === "comprimir-pdf";
 
@@ -325,7 +325,7 @@ export function ToolSearch({ size = "md" }: { size?: "md" | "lg" }) {
               key={tool.slug}
               to={DETAIL_ROUTE}
               params={toolParams(locale, tool.canonicalSlug)}
-              className={`group/pill inline-flex items-center gap-2.5 h-[46px] sm:h-[48px] px-4 sm:px-5 text-[15px] sm:text-[16px] font-bold rounded-xl border-2 border-[#0F0F12] shadow-[3px_3px_0_#0F0F12] whitespace-nowrap transition-all duration-150 cursor-pointer hover:-translate-y-0.5 hover:shadow-[4px_4px_0_#0F0F12] active:translate-y-0 active:shadow-[1px_1px_0_#0F0F12] ${
+              className={`group/pill inline-flex items-center gap-2.5 h-[46px] sm:h-[48px] px-4 sm:px-5 text-[15px] sm:text-[16px] font-black rounded-xl border-2 border-[#0F0F12] shadow-[3px_3px_0_#0F0F12] whitespace-nowrap transition-all duration-150 cursor-pointer hover:-translate-y-0.5 hover:shadow-[4px_4px_0_#0F0F12] active:translate-y-0 active:shadow-[1px_1px_0_#0F0F12] ${
                 isFeatured
                   ? "bg-[#EC3C2D] text-white hover:bg-[#D43426]"
                   : "bg-white text-[#0F0F12] hover:bg-[#EDEDF0]"
