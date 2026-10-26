@@ -84,34 +84,28 @@ export function HowItWorksSection() {
 
   const c = copy[locale as "es" | "ca" | "en"] ?? copy.es;
 
-  // Alternancia intencionada de superficies de alto contraste:
-  // Card 01: Blanca
-  // Card 02: Negra (#0F0F12) con texto blanco sólido
-  // Card 03: Blanca con número e icono destacados en rojo (#F23636)
-  const CARD_STYLES = [
+  // Sistema de color coordinado con las herramientas de BreadPDF:
+  // Paso 01 (Sube): Rojo corporativo BreadPDF (#EC3C2D / #EF4444)
+  // Paso 02 (Ajusta): Azul corporativo / Word / Documentos (#2563EB)
+  // Paso 03 (Descarga): Morado vibrante / Herramientas de extracción (#8B5CF6 / #7C3AED)
+  const STEP_THEMES = [
     {
-      bg: "bg-[#FFFFFF] text-[#0F0F12]",
-      numColor: "text-[#0F0F12]",
-      titleColor: "text-[#0F0F12]",
-      descColor: "text-[#0F0F12]",
-      iconBg: "bg-[#0F0F12] text-white",
-      hoverBorder: "hover:border-[#F23636]",
+      topBorder: "border-t-[6px] border-t-[#EC3C2D]",
+      iconBg: "bg-[#EC3C2D] text-white",
+      numColor: "text-[#EC3C2D]",
+      hoverShadow: "hover:shadow-[7px_7px_0_#EC3C2D]",
     },
     {
-      bg: "bg-[#0F0F12] text-white",
-      numColor: "text-white",
-      titleColor: "text-white",
-      descColor: "text-slate-100",
-      iconBg: "bg-[#F23636] text-white",
-      hoverBorder: "hover:border-[#F23636]",
+      topBorder: "border-t-[6px] border-t-[#2563EB]",
+      iconBg: "bg-[#2563EB] text-white",
+      numColor: "text-[#2563EB]",
+      hoverShadow: "hover:shadow-[7px_7px_0_#2563EB]",
     },
     {
-      bg: "bg-[#FFFFFF] text-[#0F0F12]",
-      numColor: "text-[#F23636]",
-      titleColor: "text-[#0F0F12]",
-      descColor: "text-[#0F0F12]",
-      iconBg: "bg-[#F23636] text-white",
-      hoverBorder: "hover:border-[#F23636]",
+      topBorder: "border-t-[6px] border-t-[#8B5CF6]",
+      iconBg: "bg-[#8B5CF6] text-white",
+      numColor: "text-[#8B5CF6]",
+      hoverShadow: "hover:shadow-[7px_7px_0_#8B5CF6]",
     },
   ];
 
@@ -121,7 +115,7 @@ export function HowItWorksSection() {
         
         {/* Cabecera de la sección: Jerarquía rotunda con etiqueta roja y textos claros */}
         <div className="mx-auto max-w-3xl text-center mb-10 sm:mb-12">
-          <span className="inline-flex items-center rounded-lg border-2 border-[#0F0F12] bg-[#F23636] px-4 py-1.5 text-[13px] sm:text-[14px] font-black uppercase tracking-wider text-white shadow-[3px_3px_0_#0F0F12]">
+          <span className="inline-flex items-center rounded-lg border-2 border-[#0F0F12] bg-[#EC3C2D] px-4 py-1.5 text-[13px] sm:text-[14px] font-black uppercase tracking-wider text-white shadow-[3px_3px_0_#0F0F12]">
             {c.eyebrow}
           </span>
           
@@ -134,33 +128,33 @@ export function HowItWorksSection() {
           </p>
         </div>
 
-        {/* 3 Tarjetas de Pasos: Proporción ágil, superficies alternas y números contundentes */}
+        {/* 3 Tarjetas de Pasos: Superficies blancas sólidas con franja superior e iconos en colores del catálogo */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto">
           {c.steps.map((step, idx) => {
             const Icon = step.icon;
-            const style = CARD_STYLES[idx] ?? CARD_STYLES[0];
+            const theme = STEP_THEMES[idx] ?? STEP_THEMES[0];
 
             return (
               <div
                 key={step.num}
-                className={`group relative flex flex-col justify-between rounded-2xl border-2 border-[#0F0F12] ${style.bg} p-7 sm:p-8 shadow-[5px_5px_0_#0F0F12] hover:-translate-y-1 hover:shadow-[7px_7px_0_#F23636] transition-all`}
+                className={`group relative flex flex-col justify-between rounded-2xl border-2 border-[#0F0F12] ${theme.topBorder} bg-[#FFFFFF] p-7 sm:p-8 shadow-[5px_5px_0_#0F0F12] hover:-translate-y-1 ${theme.hoverShadow} transition-all`}
               >
                 <div>
-                  {/* Parte Superior: Icono de 46px + Número contundente de 48px */}
+                  {/* Parte Superior: Bloque de icono cuadrado sólido de 48px + Número contundente de 46px */}
                   <div className="flex items-center justify-between mb-6">
-                    <span className={`flex size-12 shrink-0 items-center justify-center rounded-xl border-2 border-[#0F0F12] ${style.iconBg} shadow-[2.5px_2.5px_0_#0F0F12] group-hover:scale-105 transition-transform`}>
+                    <span className={`flex size-12 shrink-0 items-center justify-center rounded-xl border-2 border-[#0F0F12] ${theme.iconBg} shadow-[2.5px_2.5px_0_#0F0F12] group-hover:scale-105 transition-transform`}>
                       <Icon className="size-6 stroke-[2.5]" />
                     </span>
-                    <span className={`text-4xl sm:text-[44px] font-black ${style.numColor} tracking-tighter select-none tabular-nums`}>
+                    <span className={`text-4xl sm:text-[46px] font-black ${theme.numColor} tracking-tighter select-none tabular-nums`}>
                       {step.num}
                     </span>
                   </div>
 
                   {/* Contenido: Título H3 22-24px y Descripción legible 16-17px */}
-                  <h3 className={`text-[22px] sm:text-[23px] font-black ${style.titleColor} tracking-tight mb-2.5 leading-snug`}>
+                  <h3 className="text-[22px] sm:text-[23px] font-black text-[#0F0F12] tracking-tight mb-2.5 leading-snug">
                     {step.title}
                   </h3>
-                  <p className={`text-[16px] sm:text-[16.5px] font-medium ${style.descColor} leading-[1.5]`}>
+                  <p className="text-[16px] sm:text-[16.5px] font-medium text-[#0F0F12] leading-[1.5]">
                     {step.desc}
                   </p>
                 </div>

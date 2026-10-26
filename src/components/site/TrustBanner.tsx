@@ -41,21 +41,30 @@ export function TrustBanner() {
           tag: "PRIVACIDAD LOCAL",
           title: "Procesamiento en tu navegador",
           desc: "Tus archivos se procesan en la memoria local de tu dispositivo mediante librerías del cliente. Sin subidas obligatorias a la nube ni registros.",
-          isHighlighted: false,
+          colorBg: "bg-[#06B6D4]", // Turquesa / Cian corporativo
+          topBorder: "border-t-[6px] border-t-[#06B6D4]",
+          hoverShadow: "hover:shadow-[7px_7px_0_#06B6D4]",
+          isDark: false,
         },
         {
           Icon: FastExecutionIcon,
           tag: "SIN ESPERAS",
           title: "Velocidad inmediata",
           desc: "Ejecuta conversiones, compresiones y recortes al momento. Cero colas de servidor y descarga directa sin pasos intermedios innecesarios.",
-          isHighlighted: true, // Bloque oscuro/rojo de alto contraste
+          colorBg: "bg-[#EC3C2D]", // Rojo de marca BreadPDF
+          topBorder: "border-t-[6px] border-t-[#EC3C2D]",
+          hoverShadow: "hover:shadow-[7px_7px_0_#EC3C2D]",
+          isDark: true, // Tarjeta negra destacada de alto contraste
         },
         {
           Icon: AllInOneIcon,
           tag: "SUITE UNIFICADA",
           title: "Todo en un solo lugar",
           desc: "51 herramientas PDF organizadas por categorías con el mismo diseño claro: comprimir, unir, dividir, firmar, editar y convertir.",
-          isHighlighted: false,
+          colorBg: "bg-[#8B5CF6]", // Morado corporativo
+          topBorder: "border-t-[6px] border-t-[#8B5CF6]",
+          hoverShadow: "hover:shadow-[7px_7px_0_#8B5CF6]",
+          isDark: false,
         },
       ],
     },
@@ -69,21 +78,30 @@ export function TrustBanner() {
           tag: "PRIVADESA LOCAL",
           title: "Processament al teu navegador",
           desc: "Els teus fitxers es processen a la memòria local del dispositiu mitjançant llibreries de client. Sense càrregues al núvol ni registres.",
-          isHighlighted: false,
+          colorBg: "bg-[#06B6D4]", // Cian / Seguretat local
+          topBorder: "border-t-[6px] border-t-[#06B6D4]",
+          hoverShadow: "hover:shadow-[7px_7px_0_#06B6D4]",
+          isDark: false,
         },
         {
           Icon: FastExecutionIcon,
           tag: "SENSE ESPERES",
           title: "Velocitat immediata",
           desc: "Executa conversions, compressions i talls a l'instant. Zero cues de servidor i descàrrega directa sense passos intermedis.",
-          isHighlighted: true,
+          colorBg: "bg-[#EC3C2D]", // Vermell corporatiu
+          topBorder: "border-t-[6px] border-t-[#EC3C2D]",
+          hoverShadow: "hover:shadow-[7px_7px_0_#EC3C2D]",
+          isDark: true,
         },
         {
           Icon: AllInOneIcon,
           tag: "SUITE UNIFICADA",
           title: "Tot en un sol lloc",
           desc: "51 eines PDF organitzades per categories amb el mateix disseny clar: comprimir, unir, dividir, signar, editar i convertir.",
-          isHighlighted: false,
+          colorBg: "bg-[#8B5CF6]", // Morat corporatiu
+          topBorder: "border-t-[6px] border-t-[#8B5CF6]",
+          hoverShadow: "hover:shadow-[7px_7px_0_#8B5CF6]",
+          isDark: false,
         },
       ],
     },
@@ -97,21 +115,30 @@ export function TrustBanner() {
           tag: "LOCAL PRIVACY",
           title: "In-browser processing",
           desc: "Your files are processed in local device memory using client-side libraries. No mandatory cloud uploads or sign-up walls.",
-          isHighlighted: false,
+          colorBg: "bg-[#06B6D4]", // Cyan / Local privacy
+          topBorder: "border-t-[6px] border-t-[#06B6D4]",
+          hoverShadow: "hover:shadow-[7px_7px_0_#06B6D4]",
+          isDark: false,
         },
         {
           Icon: FastExecutionIcon,
           tag: "ZERO WAIT",
           title: "Immediate execution",
           desc: "Compress, convert, and split instantly. Zero server queues and immediate downloads without unnecessary intermediate steps.",
-          isHighlighted: true,
+          colorBg: "bg-[#EC3C2D]", // Corporate red
+          topBorder: "border-t-[6px] border-t-[#EC3C2D]",
+          hoverShadow: "hover:shadow-[7px_7px_0_#EC3C2D]",
+          isDark: true,
         },
         {
           Icon: AllInOneIcon,
           tag: "UNIFIED SUITE",
           title: "Everything in one place",
           desc: "51 PDF tools organized by categories sharing the same clean design: compress, merge, split, sign, edit, and convert.",
-          isHighlighted: false,
+          colorBg: "bg-[#8B5CF6]", // Purple corporate
+          topBorder: "border-t-[6px] border-t-[#8B5CF6]",
+          hoverShadow: "hover:shadow-[7px_7px_0_#8B5CF6]",
+          isDark: false,
         },
       ],
     },
@@ -125,7 +152,7 @@ export function TrustBanner() {
         
         {/* Cabecera coordinada con la identidad visual */}
         <div className="mx-auto max-w-3xl text-center mb-10 sm:mb-12">
-          <span className="inline-flex items-center rounded-lg border-2 border-[#0F0F12] bg-[#F23636] px-4 py-1.5 text-[13px] sm:text-[14px] font-black tracking-widest text-white uppercase shadow-[3px_3px_0_#0F0F12]">
+          <span className="inline-flex items-center rounded-lg border-2 border-[#0F0F12] bg-[#EC3C2D] px-4 py-1.5 text-[13px] sm:text-[14px] font-black tracking-widest text-white uppercase shadow-[3px_3px_0_#0F0F12]">
             {current.eyebrow}
           </span>
           
@@ -138,31 +165,35 @@ export function TrustBanner() {
           </p>
         </div>
 
-        {/* 3 Bloques visuales limpios: Blanco / Negro / Blanco, superficies sólidas 2px border + 5px shadow */}
+        {/* 3 Bloques visuales con paleta del catálogo: Cian / Rojo (destacado oscuro) / Morado */}
         <div className="grid gap-6 lg:gap-8 max-w-6xl mx-auto md:grid-cols-3">
           {current.items.map((item, idx) => {
             const Icon = item.Icon;
-            const isDark = item.isHighlighted;
+            const isDark = item.isDark;
 
             return (
               <div
                 key={idx}
                 className={`group relative flex flex-col justify-start rounded-2xl border-2 border-[#0F0F12] ${
+                  item.topBorder
+                } ${
                   isDark ? "bg-[#0F0F12] text-white" : "bg-[#FFFFFF] text-[#0F0F12]"
-                } p-7 sm:p-8 shadow-[5px_5px_0_#0F0F12] transition-all hover:-translate-y-1 hover:shadow-[7px_7px_0_#F23636]`}
+                } p-7 sm:p-8 shadow-[5px_5px_0_#0F0F12] transition-all hover:-translate-y-1 ${
+                  item.hoverShadow
+                }`}
               >
                 <div className="flex items-center justify-between gap-4 mb-6">
                   <span
                     className={`inline-flex size-12 shrink-0 items-center justify-center rounded-xl border-2 border-[#0F0F12] ${
-                      isDark ? "bg-[#F23636] text-white" : "bg-[#0F0F12] text-white"
-                    } shadow-[2.5px_2.5px_0_#0F0F12] transition-transform group-hover:scale-105`}
+                      item.colorBg
+                    } text-white shadow-[2.5px_2.5px_0_#0F0F12] transition-transform group-hover:scale-105`}
                   >
                     <Icon className="size-6 stroke-[2.4]" />
                   </span>
                   
                   <span className={`inline-block rounded-md border border-[#0F0F12] ${
-                    isDark ? "bg-[#F23636] text-white" : "bg-[#F23636] text-white"
-                  } text-[11px] font-black tracking-wider uppercase px-2.5 py-1 shadow-[2px_2px_0_#0F0F12]`}>
+                    item.colorBg
+                  } text-white text-[11px] font-black tracking-wider uppercase px-2.5 py-1 shadow-[2px_2px_0_#0F0F12]`}>
                     {item.tag}
                   </span>
                 </div>
