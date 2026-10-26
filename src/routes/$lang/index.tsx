@@ -179,34 +179,34 @@ function Home() {
               </div>
 
               {/* Línea 3: EN TU NAVEGADOR + Flecha roja contorneada con curva orgánica hacia la mascota */}
-              <div className="relative mt-2.5 ml-2.5 flex items-start">
+              <div className="relative mt-2.5 ml-1 flex items-start">
                 
                 {/* Flecha roja gruesa con contorno negro sólido apuntando directamente a la mascota */}
-                <div className="absolute -left-7 -bottom-6 pointer-events-none z-20">
+                <div className="absolute -left-10 -bottom-8 pointer-events-none z-20">
                   <svg
-                    viewBox="0 0 54 64"
+                    viewBox="0 0 60 70"
                     fill="none"
-                    className="animate-claim-arrow w-11 h-13 2xl:w-13 2xl:h-15 overflow-visible drop-shadow-[1.5px_1.5px_0_#0F0F12]"
+                    className="animate-claim-arrow w-14 h-16 2xl:w-16 2xl:h-18 overflow-visible"
                     aria-hidden="true"
                   >
                     {/* Trazos de energía cinética en rojo sólido */}
-                    <g className="animate-energy-spark" stroke="#EC3C2D" strokeWidth="2.5" strokeLinecap="round">
-                      <line x1="8" y1="12" x2="3" y2="8" />
-                      <line x1="12" y1="6" x2="10" y2="1" />
+                    <g className="animate-energy-spark" stroke="#EC3C2D" strokeWidth="3" strokeLinecap="round">
+                      <line x1="10" y1="14" x2="3" y2="8" />
+                      <line x1="16" y1="7" x2="14" y2="1" />
                     </g>
 
                     {/* Contorno negro exterior de la flecha */}
                     <path
-                      d="M 32 4 C 14 12, 5 28, 14 50"
+                      d="M 38 6 C 16 16, 6 34, 18 56"
                       stroke="#0F0F12"
-                      strokeWidth="7"
+                      strokeWidth="8"
                       strokeLinecap="round"
                       fill="none"
                     />
                     <path
-                      d="M 2 40 L 14 51 L 27 42"
+                      d="M 4 45 L 18 58 L 32 47"
                       stroke="#0F0F12"
-                      strokeWidth="7"
+                      strokeWidth="8"
                       strokeLinecap="round"
                       strokeLinejoin="round"
                       fill="none"
@@ -214,16 +214,16 @@ function Home() {
 
                     {/* Núcleo rojo vivo interior de la flecha */}
                     <path
-                      d="M 32 4 C 14 12, 5 28, 14 50"
+                      d="M 38 6 C 16 16, 6 34, 18 56"
                       stroke="#EC3C2D"
-                      strokeWidth="4"
+                      strokeWidth="4.5"
                       strokeLinecap="round"
                       fill="none"
                     />
                     <path
-                      d="M 2 40 L 14 51 L 27 42"
+                      d="M 4 45 L 18 58 L 32 47"
                       stroke="#EC3C2D"
-                      strokeWidth="4"
+                      strokeWidth="4.5"
                       strokeLinecap="round"
                       strokeLinejoin="round"
                       fill="none"
@@ -232,7 +232,7 @@ function Home() {
                 </div>
 
                 {/* Texto EN TU NAVEGADOR inclinado a -5° */}
-                <div className="animate-claim-3 relative inline-block text-xs 2xl:text-[14px] font-black uppercase tracking-widest text-[#0F0F12] pl-6 origin-bottom-left transform -rotate-[5deg]">
+                <div className="animate-claim-3 relative inline-block text-xs 2xl:text-[14px] font-black uppercase tracking-widest text-[#0F0F12] pl-7 origin-bottom-left transform -rotate-[5deg]">
                   <span className="relative z-10 block select-none">
                     {locale === "ca" ? "AL TEU NAVEGADOR" : locale === "en" ? "IN YOUR BROWSER" : "EN TU NAVEGADOR"}
                   </span>
@@ -322,7 +322,7 @@ function Home() {
               ZONA 3 (LATERAL DERECHO): 4 TARJETAS CON EL MISMO LENGUAJE VISUAL DEL CATÁLOGO
               Empujada al margen exterior derecho (right-0 xl:right-2 2xl:right-5)
               ============================================================ */}
-          <div className="hidden xl:flex flex-col gap-3.5 absolute right-0 xl:right-2 2xl:right-5 top-1/2 -translate-y-1/2 z-25 select-none w-[232px] 2xl:w-[252px]">
+          <div className="hidden xl:flex flex-col gap-3.5 absolute right-0 xl:right-2 2xl:right-5 top-1/2 -translate-y-1/2 z-25 select-none w-[246px] 2xl:w-[268px]">
             
             {/* 1. COMPRIMIR PDF (Familia Optimizar - Azul corporativo) */}
             <Link
@@ -338,7 +338,7 @@ function Home() {
                   {locale === "ca" ? "Comprimir PDF" : locale === "en" ? "Compress PDF" : "Comprimir PDF"}
                 </span>
                 <span className="block text-[13px] font-medium text-slate-600 truncate mt-0.5 leading-snug">
-                  {locale === "ca" ? "Optimitza i redueix mida" : locale === "en" ? "Reduce file size" : "Reduce el tamaño del archivo"}
+                  {locale === "ca" ? "Redueix la mida del fitxer" : locale === "en" ? "Reduce file size" : "Reduce el tamaño del archivo"}
                 </span>
               </div>
             </Link>
@@ -357,7 +357,7 @@ function Home() {
                   {locale === "ca" ? "Unir PDF" : locale === "en" ? "Merge PDF" : "Unir PDF"}
                 </span>
                 <span className="block text-[13px] font-medium text-slate-600 truncate mt-0.5 leading-snug">
-                  {locale === "ca" ? "Combina múltiples arxius" : locale === "en" ? "Combine multiple files" : "Combina múltiples archivos"}
+                  {locale === "ca" ? "Combina múltiples documents" : locale === "en" ? "Combine multiple documents" : "Combina múltiples documentos"}
                 </span>
               </div>
             </Link>
@@ -395,7 +395,7 @@ function Home() {
                   {locale === "ca" ? "Dividir PDF" : locale === "en" ? "Split PDF" : "Dividir PDF"}
                 </span>
                 <span className="block text-[13px] font-medium text-slate-600 truncate mt-0.5 leading-snug">
-                  {locale === "ca" ? "Separa per pàgines o rangs" : locale === "en" ? "Separate by pages or ranges" : "Separa por páginas o rangos"}
+                  {locale === "ca" ? "Extreu pàgines o intervals" : locale === "en" ? "Extract pages or ranges" : "Extrae páginas o intervalos"}
                 </span>
               </div>
             </Link>
