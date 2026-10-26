@@ -181,37 +181,37 @@ function Home() {
               ============================================================ */}
           <div className="relative z-25 w-full max-w-3xl xl:max-w-[760px] 2xl:max-w-4xl text-center my-auto px-2 sm:px-4 py-1">
             
-            {/* INSIGNIA GRÁFICA DE MARCA EN BLANCO SÓLIDO CON RECUSO ROJO VERIFICADO Y MENSAJE LEGIBLE */}
+            {/* TARJETA EDITORIAL DE MARCA (2 NIVELES, ESTRUCTURA COMPACTA, ESQUINAS 14PX) */}
             <div className="inline-flex items-center justify-center mb-3 sm:mb-4 select-none max-w-full">
               <a
                 href="#catalogo"
-                className="group inline-flex items-center rounded-2xl bg-white border-2 border-[#0F0F12] shadow-[3.5px_3.5px_0_#0F0F12] hover:shadow-[5px_5px_0_#EC3C2D] hover:-translate-y-0.5 transition-all cursor-pointer overflow-hidden p-1 sm:p-1.5 pr-4 sm:pr-5 gap-2.5 sm:gap-3"
+                className="group inline-flex items-stretch rounded-2xl bg-white border-2 border-[#0F0F12] shadow-[4px_4px_0_#0F0F12] hover:shadow-[5px_5px_0_#EC3C2D] hover:-translate-y-0.5 transition-all cursor-pointer overflow-hidden text-left"
                 title="Explorar el catálogo completo de 51 herramientas"
               >
-                {/* Bloque rojo sólido destacado con el número real */}
-                <div className="flex items-center justify-center px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-xl bg-[#EC3C2D] text-white border-1.5 border-[#0F0F12] shadow-[1.5px_1.5px_0_#0F0F12]">
-                  <span className="text-sm sm:text-base font-black tracking-tight tabular-nums">
+                {/* LADO IZQUIERDO: BLOQUE ROJO SÓLIDO RECTANGULAR CON NÚMERO GRANDE Y PESADO */}
+                <div className="flex items-center justify-center px-4 sm:px-5 py-2 sm:py-2.5 bg-[#EC3C2D] text-white border-r-2 border-[#0F0F12] shrink-0">
+                  <span className="text-xl sm:text-2xl font-black tracking-tight tabular-nums">
                     {totalToolsCount}
                   </span>
                 </div>
 
-                {/* Texto principal en negro, grande y pesado */}
-                <div className="flex items-center gap-1.5">
-                  <span className="text-xs sm:text-[14px] font-black uppercase tracking-wider text-[#0F0F12]">
-                    {locale === "ca" ? "EINES PDF" : locale === "en" ? "PDF TOOLS" : "HERRAMIENTAS PDF"}
-                  </span>
+                {/* LADO DERECHO: DOS NIVELES CLAROS (TÍTULO + BENEFICIO) */}
+                <div className="flex flex-col justify-center px-3.5 sm:px-4 py-1.5 sm:py-2 bg-white min-w-0">
+                  {/* Nivel 1: Título en negro, negrita y claramente legible */}
+                  <div className="flex items-center gap-1.5">
+                    <span className="text-xs sm:text-[14px] font-black uppercase tracking-wider text-[#0F0F12] leading-tight">
+                      {locale === "ca" ? "EINES PDF" : locale === "en" ? "PDF TOOLS" : "HERRAMIENTAS PDF"}
+                    </span>
+                    <span className="text-xs font-black text-[#EC3C2D] group-hover:translate-x-1 transition-transform" aria-hidden="true">
+                      →
+                    </span>
+                  </div>
+
+                  {/* Nivel 2: Subtítulo con alto contraste y 14px legible */}
+                  <div className="text-[12px] sm:text-[13.5px] font-bold uppercase tracking-wider text-slate-600 group-hover:text-[#0F0F12] transition-colors leading-tight mt-0.5">
+                    {locale === "ca" ? "GRATIS EN EL TEU NAVEGADOR" : locale === "en" ? "FREE IN YOUR BROWSER" : "GRATIS EN TU NAVEGADOR"}
+                  </div>
                 </div>
-
-                <span className="w-1.5 h-1.5 rounded-full bg-[#0F0F12]/30" aria-hidden="true" />
-
-                {/* Mensaje de beneficio con alto contraste y texto visible */}
-                <span className="text-xs sm:text-[13px] font-black uppercase tracking-wider text-[#0F0F12] group-hover:text-[#EC3C2D] transition-colors">
-                  {locale === "ca" ? "GRATIS · AL TEU NAVEGADOR" : locale === "en" ? "FREE · IN YOUR BROWSER" : "GRATIS · EN TU NAVEGADOR"}
-                </span>
-
-                <span className="text-xs font-black text-[#EC3C2D] group-hover:translate-x-1 transition-transform" aria-hidden="true">
-                  →
-                </span>
               </a>
             </div>
 
