@@ -114,10 +114,10 @@ function Home() {
              en blanco y rojo oficial con bordes 2px y sombras duras.
           Zero cintas amarillas distractoras antes del catálogo.
           ============================================================ */}
-      <section className="relative z-20 border-b-2 border-[#0F0F12] bg-[#EDEDF0] py-6 sm:py-8 md:py-10 overflow-hidden">
+      <section className="relative z-20 border-b-2 border-[#0F0F12] bg-[#EDEDF0] py-4 sm:py-6 md:py-8 overflow-hidden">
         
         {/* Canvas contenedor principal max-w-[1520px] */}
-        <div className="relative w-full max-w-[1520px] mx-auto px-4 sm:px-6 lg:px-8 z-20 flex flex-col items-center justify-center min-h-[460px] lg:min-h-[500px]">
+        <div className="relative w-full max-w-[1520px] mx-auto px-4 sm:px-6 lg:px-8 z-20 flex flex-col items-center justify-center min-h-[420px] lg:min-h-[460px]">
 
           {/* ============================================================
               ZONA 1 (LATERAL IZQUIERDO): MASCOTA DINÁMICA OFICIAL DE LA REFERENCIA
@@ -156,7 +156,7 @@ function Home() {
             </div>
 
             {/* H1 PROTAGONISTA ABSOLUTO: Display condensada masiva */}
-            <h1 className="text-display mx-auto max-w-5xl text-3xl sm:text-5xl md:text-[58px] lg:text-[66px] xl:text-[72px] font-black leading-[1.05] tracking-[-0.03em] text-[#0F0F12] uppercase [text-wrap:balance]">
+            <h1 className="text-display mx-auto max-w-6xl text-3xl sm:text-4xl md:text-5xl lg:text-[54px] xl:text-[62px] font-black leading-[1.08] tracking-[-0.03em] text-[#0F0F12] uppercase">
               <span className="inline-flex items-center justify-center flex-wrap gap-x-3 gap-y-1">
                 <span>{heroCopy.line1}</span>
                 <span className="inline-block transform -rotate-2 rounded-xl sm:rounded-2xl border-2 sm:border-3 border-[#0F0F12] bg-[#EC3C2D] text-white px-3 sm:px-4 py-0.5 shadow-[3px_3px_0_#0F0F12] select-none text-[0.88em]">
@@ -170,7 +170,7 @@ function Home() {
             </h1>
 
             {/* DESCRIPCIÓN BREVE Y LEGIBLE */}
-            <p className="mx-auto mt-3.5 mb-6 max-w-2xl text-base sm:text-lg lg:text-xl font-medium text-slate-800 leading-relaxed">
+            <p className="mx-auto mt-2.5 mb-4 max-w-2xl text-sm sm:text-base lg:text-lg font-medium text-slate-800 leading-normal">
               Comprime, convierte, une, divide y edita tus documentos online. Rápido, claro y sin complicaciones.
             </p>
 
