@@ -12,6 +12,16 @@ import { useLocale } from "@/lib/i18n/context";
 import { alternateLinks } from "@/lib/i18n/routing";
 import { UI } from "@/lib/i18n/ui";
 import { BRAND_ASSETS } from "@/lib/brand";
+import {
+  CompressDocIcon,
+  WordFileIcon,
+  RotateDocIcon,
+  OcrFileIcon,
+  MergeDocIcon,
+  JpgFileIcon,
+  ProtectDocIcon,
+  ExcelFileIcon,
+} from "@/components/site/RichToolIcon";
 
 export const Route = createFileRoute("/$lang/")({
   head: ({ params }) => {
@@ -92,12 +102,11 @@ function Home() {
   return (
     <>
       {/* ============================================================
-          HERO: Neo-Brutalist, Color-Alive Header with Floating Asymmetric Widgets
+          SECTION — HERO: Neo-Brutalist Interactive Tool Constellation
+          8 interactive tool icons with magnetic hover, SVG connector curves,
+          peeking bread mascot, and bottom trust badges row.
           ============================================================ */}
-      {/* ============================================================
-          SECTION — HERO: Neo-Brutalist High-Impact with Mini-UI Floating Widgets
-          ============================================================ */}
-      <section className="relative z-20 border-b-2 border-[#0F0F12] bg-[#EDEDF0] bg-neo-dots pt-10 pb-12 sm:pt-14 sm:pb-16 lg:pt-16 lg:pb-20 overflow-hidden">
+      <section className="relative z-20 border-b-2 border-[#0F0F12] bg-[#EDEDF0] bg-neo-dots pt-12 pb-14 sm:pt-16 sm:pb-18 lg:pt-20 lg:pb-24 overflow-hidden">
         
         {/* Sutil viñeta radial exterior para enmarcar el fondo de puntos */}
         <div className="pointer-events-none absolute inset-0 [background:radial-gradient(ellipse_at_center,transparent_45%,rgba(15,15,18,0.06)_100%)] z-10" />
@@ -129,228 +138,240 @@ function Home() {
         {/* Contenedor relativo principal */}
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 z-20">
           
-          {/* Wrapper central de la tarjeta blanca (max-w-[740px]) para anclaje geométrico exacto a 32px */}
-          <div className="relative mx-auto max-w-[740px]">
+          {/* Wrapper central de la tarjeta blanca (max-w-[760px]) para anclaje geométrico exacto de los 8 iconos */}
+          <div className="relative mx-auto max-w-[760px]">
 
             {/* ============================================================
-                WIDGETS LATERALES DESKTOP (Mini-UI de herramientas de BreadPDF)
-                Situadas 100% fuera de la tarjeta central con 32px de separación garantizada
+                TRAZOS DECORATIVOS SVG DE FONDO (Curvas discontinuas sutiles z-0)
+                ============================================================ */}
+            <svg
+              className="hidden xl:block pointer-events-none absolute -inset-x-60 -inset-y-16 w-[calc(100%+480px)] h-[calc(100%+128px)] z-0"
+              viewBox="0 0 1240 600"
+              fill="none"
+            >
+              {/* Conector curvo izquierdo hacia Comprimir y PDF a Word */}
+              <path
+                d="M 280 120 C 340 180, 420 220, 490 250"
+                stroke="#CBD5E1"
+                strokeWidth="2.5"
+                strokeDasharray="6 6"
+              />
+              <path
+                d="M 210 280 C 310 290, 410 300, 490 320"
+                stroke="#CBD5E1"
+                strokeWidth="2.5"
+                strokeDasharray="6 6"
+              />
+              {/* Conector curvo derecho hacia Unir y PDF a JPG */}
+              <path
+                d="M 750 250 C 820 220, 900 180, 960 130"
+                stroke="#CBD5E1"
+                strokeWidth="2.5"
+                strokeDasharray="6 6"
+              />
+              <path
+                d="M 750 320 C 830 300, 930 290, 1030 270"
+                stroke="#CBD5E1"
+                strokeWidth="2.5"
+                strokeDasharray="6 6"
+              />
+            </svg>
+
+            {/* ============================================================
+                CONSTELACIÓN DE ICONOS FLOTANTES — LADO IZQUIERDO (4 Iconos)
+                Anclados respecto al contenedor central para que NUNCA lo pisen
                 ============================================================ */}
 
-            {/* Widget 1 Izquierda Superior: Mini-UI Herramienta COMPRIMIR PDF */}
+            {/* 1. Comprimir PDF: Rojo #EF4444 con flechas hacia adentro + píldora -80% */}
             <Link
               to={DETAIL_ROUTE}
               params={toolParams(locale, "comprimir-pdf")}
-              style={{ right: "calc(100% + 32px)", top: "8%" }}
-              className="hidden xl:block absolute z-20 w-[260px] select-none transform -rotate-4 transition-all duration-300 hover:rotate-0 hover:scale-105 hover:z-40 cursor-pointer text-left"
+              style={{ right: "calc(100% + 70px)", top: "8%" }}
+              className="group hidden xl:block absolute z-30 select-none animate-neo-float-a transform -rotate-8 hover:rotate-0 hover:scale-110 hover:z-50 transition-all duration-200 cursor-pointer"
+              title="Comprimir PDF"
             >
-              <div className="rounded-2xl border-2 border-[#0F0F12] bg-white p-4 shadow-[4px_4px_0_#0F0F12] hover:shadow-[6px_6px_0_#EF4444] transition-shadow">
-                {/* Cabecera del widget */}
-                <div className="flex items-center justify-between gap-2 border-b border-slate-100 pb-2.5">
-                  <div className="flex items-center gap-2">
-                    <span className="flex size-7 items-center justify-center rounded-lg border border-[#0F0F12] bg-[#EF4444] text-white shadow-[1px_1px_0_#0F0F12]">
-                      <ArrowRightLeft className="size-3.5 rotate-90" />
-                    </span>
-                    <span className="text-[13px] font-black text-[#0F0F12] tracking-tight">
-                      Comprimir PDF
-                    </span>
-                  </div>
-                  <span className="inline-block rounded-md bg-[#10B981] text-white text-[10px] font-black uppercase px-2 py-0.5 border border-[#0F0F12] shadow-[1px_1px_0_#0F0F12] whitespace-nowrap">
-                    -80% PESO
+              <div className="relative size-16 rounded-2xl border-2 border-[#0F0F12] bg-[#EF4444] text-white flex items-center justify-center shadow-[4px_4px_0_#0F0F12] group-hover:shadow-[6px_6px_0_#0F0F12] transition-shadow">
+                <CompressDocIcon className="size-9 text-white stroke-[2.8]" />
+                {/* Píldora flotante -80% */}
+                <span className="absolute -top-2.5 -right-4 rounded-full border-2 border-[#0F0F12] bg-white px-2 py-0.5 text-[10px] font-black text-[#0F0F12] shadow-[2px_2px_0_#0F0F12] whitespace-nowrap">
+                  -80%
+                </span>
+                {/* Tooltip Neobrutalista */}
+                <div className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2.5 opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap z-50">
+                  <span className="inline-block rounded-lg border-2 border-[#0F0F12] bg-[#0F0F12] text-white text-xs font-black px-3 py-1 shadow-[2px_2px_0_#FFFFFF]">
+                    {locale === "ca" ? "Comprimir PDF →" : locale === "en" ? "Compress PDF →" : "Comprimir PDF →"}
                   </span>
-                </div>
-
-                {/* Gráfica Antes / Después + Mascota celebrando */}
-                <div className="mt-3 flex items-center justify-between gap-2">
-                  <div className="flex items-center gap-2">
-                    <span className="rounded-md border border-slate-300 bg-slate-100 px-2 py-1 text-[12px] font-bold text-slate-500 line-through">
-                      24.5 MB
-                    </span>
-                    <span className="text-[#0F0F12] font-black text-xs">→</span>
-                    <span className="rounded-md border-2 border-[#0F0F12] bg-[#ECFDF5] px-2 py-1 text-[13px] font-black text-[#059669] shadow-[1px_1px_0_#059669]">
-                      3.2 MB
-                    </span>
-                  </div>
-                  <img
-                    src={BRAND_ASSETS.mascots.celebrate}
-                    alt="BreadPDF Compress"
-                    width={40}
-                    height={40}
-                    className="size-10 object-contain shrink-0 drop-shadow-xs"
-                  />
-                </div>
-
-                {/* Barra de progreso al 100% */}
-                <div className="mt-3">
-                  <div className="flex justify-between text-[11px] font-bold text-slate-600 mb-1">
-                    <span>Optimización completada</span>
-                    <span className="text-[#059669] font-black">100%</span>
-                  </div>
-                  <div className="h-2 w-full rounded-full border border-[#0F0F12] bg-slate-100 overflow-hidden">
-                    <div className="h-full w-full bg-[#10B981] rounded-full" />
-                  </div>
                 </div>
               </div>
             </Link>
 
-            {/* Widget 2 Izquierda Inferior: Mini-UI Herramienta PDF A WORD / CONVERSIÓN */}
+            {/* 2. PDF a Word: Azul #2563EB con icono Word "W" */}
             <Link
               to={DETAIL_ROUTE}
               params={toolParams(locale, "pdf-a-word")}
-              style={{ right: "calc(100% + 32px)", bottom: "12%" }}
-              className="hidden xl:block absolute z-20 w-[260px] select-none transform rotate-3 transition-all duration-300 hover:rotate-0 hover:scale-105 hover:z-40 cursor-pointer text-left"
+              style={{ right: "calc(100% + 160px)", top: "42%" }}
+              className="group hidden xl:block absolute z-30 select-none animate-neo-float-b transform rotate-6 hover:rotate-0 hover:scale-110 hover:z-50 transition-all duration-200 cursor-pointer"
+              title="PDF a Word"
             >
-              <div className="rounded-2xl border-2 border-[#0F0F12] bg-white p-4 shadow-[4px_4px_0_#0F0F12] hover:shadow-[6px_6px_0_#2563EB] transition-shadow">
-                {/* Cabecera del widget */}
-                <div className="flex items-center justify-between gap-2 border-b border-slate-100 pb-2.5">
-                  <span className="text-[13px] font-black text-[#0F0F12] tracking-tight">
-                    Convertir Formato
+              <div className="relative size-14 rounded-2xl border-2 border-[#0F0F12] bg-[#2563EB] text-white flex items-center justify-center shadow-[4px_4px_0_#0F0F12] group-hover:shadow-[6px_6px_0_#0F0F12] transition-shadow">
+                <WordFileIcon className="size-8 text-white" />
+                {/* Tooltip Neobrutalista */}
+                <div className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2.5 opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap z-50">
+                  <span className="inline-block rounded-lg border-2 border-[#0F0F12] bg-[#0F0F12] text-white text-xs font-black px-3 py-1 shadow-[2px_2px_0_#FFFFFF]">
+                    {locale === "ca" ? "PDF a Word →" : locale === "en" ? "PDF to Word →" : "PDF a Word →"}
                   </span>
-                  <span className="inline-block rounded-md bg-[#DBEAFE] text-[#1E40AF] text-[10px] font-black uppercase px-2 py-0.5 border border-[#2563EB]/40 shadow-[1px_1px_0_#2563EB]/40 whitespace-nowrap">
-                    ALTA FIDELIDAD
-                  </span>
-                </div>
-
-                {/* Transformación visual de documentos: Mini PDF -> Mini DOCX */}
-                <div className="mt-3 flex items-center justify-around gap-2 bg-slate-50 rounded-xl border border-slate-200 p-2.5">
-                  {/* Documento PDF rojo */}
-                  <div className="flex flex-col items-center">
-                    <div className="size-9 rounded-lg border-2 border-[#0F0F12] bg-[#EF4444] text-white flex flex-col items-center justify-center shadow-[1px_1px_0_#0F0F12]">
-                      <span className="text-[10px] font-black leading-none">PDF</span>
-                      <div className="w-4 h-0.5 bg-white/70 rounded-full mt-0.5" />
-                    </div>
-                    <span className="text-[10px] font-bold text-slate-500 mt-1">Vectorial</span>
-                  </div>
-
-                  {/* Flecha conectora */}
-                  <div className="flex size-7 items-center justify-center rounded-full border border-[#0F0F12] bg-[#0F0F12] text-white shadow-[1px_1px_0_#0F0F12] shrink-0">
-                    <ArrowRightLeft className="size-3.5 text-white" />
-                  </div>
-
-                  {/* Documento DOCX azul */}
-                  <div className="flex flex-col items-center">
-                    <div className="size-9 rounded-lg border-2 border-[#0F0F12] bg-[#2563EB] text-white flex flex-col items-center justify-center shadow-[1px_1px_0_#0F0F12]">
-                      <span className="text-[9px] font-black leading-none">DOCX</span>
-                      <div className="w-4 h-0.5 bg-white/70 rounded-full mt-0.5" />
-                    </div>
-                    <span className="text-[10px] font-bold text-slate-500 mt-1">Editable</span>
-                  </div>
-                </div>
-
-                {/* Esqueleto simulación documento conservando tablas */}
-                <div className="mt-2.5 space-y-1 px-1">
-                  <div className="h-1.5 w-3/4 rounded-full bg-slate-200" />
-                  <div className="h-1.5 w-full rounded-full bg-slate-200" />
-                  <div className="h-1.5 w-5/6 rounded-full bg-slate-200" />
                 </div>
               </div>
             </Link>
 
-            {/* Widget 3 Derecha Superior: Mini-UI Herramienta UNIR Y EXTRAER PDF */}
+            {/* 3. Rotar / Extraer Páginas: Cian/Turquesa #06B6D4 */}
+            <Link
+              to={DETAIL_ROUTE}
+              params={toolParams(locale, "rotar-pdf")}
+              style={{ right: "calc(100% + 55px)", bottom: "14%" }}
+              className="group hidden xl:block absolute z-30 select-none animate-neo-float-c transform -rotate-5 hover:rotate-0 hover:scale-110 hover:z-50 transition-all duration-200 cursor-pointer"
+              title="Rotar PDF"
+            >
+              <div className="relative size-14 rounded-2xl border-2 border-[#0F0F12] bg-[#06B6D4] text-white flex items-center justify-center shadow-[4px_4px_0_#0F0F12] group-hover:shadow-[6px_6px_0_#0F0F12] transition-shadow">
+                <RotateDocIcon className="size-8 text-white stroke-[2.8]" />
+                {/* Tooltip Neobrutalista */}
+                <div className="pointer-events-none absolute top-full left-1/2 -translate-x-1/2 mt-2.5 opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap z-50">
+                  <span className="inline-block rounded-lg border-2 border-[#0F0F12] bg-[#0F0F12] text-white text-xs font-black px-3 py-1 shadow-[2px_2px_0_#FFFFFF]">
+                    {locale === "ca" ? "Rotar PDF →" : locale === "en" ? "Rotate PDF →" : "Rotar PDF →"}
+                  </span>
+                </div>
+              </div>
+            </Link>
+
+            {/* 4. OCR de PDF: Rosa #EC4899 de escaneo */}
+            <Link
+              to={DETAIL_ROUTE}
+              params={toolParams(locale, "ocr-pdf")}
+              style={{ right: "calc(100% + 190px)", bottom: "22%" }}
+              className="group hidden xl:block absolute z-30 select-none animate-neo-float-a transform rotate-10 hover:rotate-0 hover:scale-110 hover:z-50 transition-all duration-200 cursor-pointer"
+              title="OCR de PDF"
+            >
+              <div className="relative size-12 rounded-xl border-2 border-[#0F0F12] bg-[#EC4899] text-white flex items-center justify-center shadow-[4px_4px_0_#0F0F12] group-hover:shadow-[6px_6px_0_#0F0F12] transition-shadow">
+                <OcrFileIcon className="size-7 text-white stroke-[2.6]" />
+                {/* Tooltip Neobrutalista */}
+                <div className="pointer-events-none absolute top-full left-1/2 -translate-x-1/2 mt-2.5 opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap z-50">
+                  <span className="inline-block rounded-lg border-2 border-[#0F0F12] bg-[#0F0F12] text-white text-xs font-black px-3 py-1 shadow-[2px_2px_0_#FFFFFF]">
+                    {locale === "ca" ? "OCR PDF →" : locale === "en" ? "OCR PDF →" : "OCR de PDF →"}
+                  </span>
+                </div>
+              </div>
+            </Link>
+
+            {/* ============================================================
+                CONSTELACIÓN DE ICONOS FLOTANTES — LADO DERECHO (4 Iconos)
+                ============================================================ */}
+
+            {/* 5. Unir PDF: Rojo #EF4444 de páginas superpuestas */}
             <Link
               to={DETAIL_ROUTE}
               params={toolParams(locale, "unir-pdf")}
-              style={{ left: "calc(100% + 32px)", top: "10%" }}
-              className="hidden xl:block absolute z-20 w-[260px] select-none transform rotate-4 transition-all duration-300 hover:rotate-0 hover:scale-105 hover:z-40 cursor-pointer text-left"
+              style={{ left: "calc(100% + 65px)", top: "10%" }}
+              className="group hidden xl:block absolute z-30 select-none animate-neo-float-b transform rotate-7 hover:rotate-0 hover:scale-110 hover:z-50 transition-all duration-200 cursor-pointer"
+              title="Unir PDF"
             >
-              <div className="rounded-2xl border-2 border-[#0F0F12] bg-white p-4 shadow-[4px_4px_0_#0F0F12] hover:shadow-[6px_6px_0_#8B5CF6] transition-shadow">
-                {/* Cabecera del widget */}
-                <div className="flex items-center justify-between gap-2 border-b border-slate-100 pb-2.5">
-                  <div className="flex items-center gap-2">
-                    <span className="flex size-7 items-center justify-center rounded-lg border border-[#0F0F12] bg-[#8B5CF6] text-white shadow-[1px_1px_0_#0F0F12]">
-                      <span className="text-xs font-black">2+</span>
-                    </span>
-                    <span className="text-[13px] font-black text-[#0F0F12] tracking-tight">
-                      Unir y Extraer
-                    </span>
-                  </div>
-                  <span className="inline-block rounded-md bg-[#EDE9FE] text-[#5B21B6] text-[10px] font-black uppercase px-2 py-0.5 border border-[#8B5CF6]/40 shadow-[1px_1px_0_#8B5CF6]/40 whitespace-nowrap">
-                    PÁGINAS
+              <div className="relative size-16 rounded-2xl border-2 border-[#0F0F12] bg-[#EF4444] text-white flex items-center justify-center shadow-[4px_4px_0_#0F0F12] group-hover:shadow-[6px_6px_0_#0F0F12] transition-shadow">
+                <MergeDocIcon className="size-9 text-white stroke-[2.8]" />
+                {/* Píldora flotante Popular */}
+                <span className="absolute -top-2.5 -left-3 rounded-full border-2 border-[#0F0F12] bg-[#FEF08A] px-2 py-0.5 text-[10px] font-black text-[#0F0F12] shadow-[2px_2px_0_#0F0F12] whitespace-nowrap">
+                  Top 1
+                </span>
+                {/* Tooltip Neobrutalista */}
+                <div className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2.5 opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap z-50">
+                  <span className="inline-block rounded-lg border-2 border-[#0F0F12] bg-[#0F0F12] text-white text-xs font-black px-3 py-1 shadow-[2px_2px_0_#FFFFFF]">
+                    {locale === "ca" ? "Unir PDF →" : locale === "en" ? "Merge PDF →" : "Unir PDF →"}
                   </span>
                 </div>
-
-                {/* Miniaturas de 3 páginas uniéndose en 1 archivo final */}
-                <div className="mt-3 flex items-center justify-between gap-1 bg-slate-50 rounded-xl border border-slate-200 p-2.5">
-                  {/* Página 1 */}
-                  <div className="w-8 h-11 rounded-md border border-[#0F0F12] bg-white p-1 flex flex-col justify-between shadow-[1px_1px_0_#0F0F12]">
-                    <div className="space-y-0.5">
-                      <div className="h-0.5 w-full bg-slate-300 rounded" />
-                      <div className="h-0.5 w-3/4 bg-slate-300 rounded" />
-                    </div>
-                    <span className="text-[8px] font-bold text-slate-500 text-center">1</span>
-                  </div>
-
-                  <span className="text-xs font-black text-slate-400">+</span>
-
-                  {/* Página 2 */}
-                  <div className="w-8 h-11 rounded-md border border-[#0F0F12] bg-white p-1 flex flex-col justify-between shadow-[1px_1px_0_#0F0F12]">
-                    <div className="space-y-0.5">
-                      <div className="h-0.5 w-full bg-slate-300 rounded" />
-                      <div className="h-0.5 w-3/4 bg-slate-300 rounded" />
-                    </div>
-                    <span className="text-[8px] font-bold text-slate-500 text-center">2</span>
-                  </div>
-
-                  <span className="text-xs font-black text-slate-400">=</span>
-
-                  {/* Documento unificado final con check verde */}
-                  <div className="w-10 h-12 rounded-lg border-2 border-[#0F0F12] bg-[#FEF08A] p-1 flex flex-col items-center justify-between shadow-[2px_2px_0_#0F0F12]">
-                    <span className="size-3.5 rounded-full bg-[#10B981] text-white flex items-center justify-center text-[8px] font-black">✓</span>
-                    <span className="text-[9px] font-black text-[#0F0F12]">UNIDO</span>
-                  </div>
-                </div>
-
-                <p className="mt-2 text-[11px] font-bold text-slate-600 text-center">
-                  Reordena, divide y fusiona sin límites
-                </p>
               </div>
             </Link>
 
-            {/* Widget 4 Derecha Inferior: Mini-UI PRIVACIDAD Y WASM LOCAL */}
-            <div 
-              style={{ left: "calc(100% + 32px)", bottom: "14%" }}
-              className="hidden xl:block absolute z-20 w-[260px] select-none transform -rotate-3 transition-all duration-300 hover:rotate-0 hover:scale-105 hover:z-40 cursor-default text-left"
+            {/* 6. PDF a JPG: Morado #8B5CF6 de imagen */}
+            <Link
+              to={DETAIL_ROUTE}
+              params={toolParams(locale, "pdf-a-jpg")}
+              style={{ left: "calc(100% + 165px)", top: "38%" }}
+              className="group hidden xl:block absolute z-30 select-none animate-neo-float-c transform -rotate-9 hover:rotate-0 hover:scale-110 hover:z-50 transition-all duration-200 cursor-pointer"
+              title="PDF a JPG"
             >
-              <div className="rounded-2xl border-2 border-[#0F0F12] bg-[#F59E0B] p-4 shadow-[4px_4px_0_#0F0F12] hover:shadow-[6px_6px_0_#0F0F12] transition-shadow text-[#0F0F12]">
-                <div className="flex items-center justify-between gap-2 border-b border-[#0F0F12]/20 pb-2">
-                  <div className="flex items-center gap-2">
-                    <span className="flex size-7 items-center justify-center rounded-lg border-2 border-[#0F0F12] bg-white p-1 shadow-[1px_1px_0_#0F0F12]">
-                      <ShieldCheck className="size-4 text-[#0F0F12]" />
-                    </span>
-                    <span className="text-[14px] font-black text-[#0F0F12] tracking-tight">
-                      100% en tu Navegador
-                    </span>
-                  </div>
-                  <span className="inline-block rounded-md bg-white text-[#0F0F12] text-[10px] font-black uppercase px-2 py-0.5 border border-[#0F0F12] shadow-[1px_1px_0_#0F0F12] whitespace-nowrap">
-                    WASM LOCAL
+              <div className="relative size-14 rounded-2xl border-2 border-[#0F0F12] bg-[#8B5CF6] text-white flex items-center justify-center shadow-[4px_4px_0_#0F0F12] group-hover:shadow-[6px_6px_0_#0F0F12] transition-shadow">
+                <JpgFileIcon className="size-8 text-white stroke-[2.8]" />
+                {/* Tooltip Neobrutalista */}
+                <div className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2.5 opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap z-50">
+                  <span className="inline-block rounded-lg border-2 border-[#0F0F12] bg-[#0F0F12] text-white text-xs font-black px-3 py-1 shadow-[2px_2px_0_#FFFFFF]">
+                    {locale === "ca" ? "PDF a JPG →" : locale === "en" ? "PDF to JPG →" : "PDF a JPG →"}
                   </span>
                 </div>
+              </div>
+            </Link>
 
-                {/* Indicador de privacidad en vivo con punto verde parpadeante */}
-                <div className="mt-3 rounded-xl border border-[#0F0F12] bg-white/90 p-2.5 shadow-[1px_1px_0_#0F0F12]">
-                  <div className="flex items-center gap-2">
-                    <span className="relative flex size-2.5 shrink-0">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#10B981] opacity-75" />
-                      <span className="relative inline-flex rounded-full size-2.5 bg-[#10B981]" />
-                    </span>
-                    <span className="text-[11.5px] font-black text-[#0F0F12] leading-tight">
-                      Zero Uploads a Servidor
-                    </span>
-                  </div>
-                  <p className="mt-1 text-[11px] font-semibold text-slate-700 leading-snug">
-                    Tus archivos nunca se suben a ningún servidor. Procesamiento 100% en memoria RAM local.
-                  </p>
+            {/* 7. Proteger / Desbloquear PDF: Amarillo/Ámbar #F59E0B con candado + píldora AES-256 */}
+            <Link
+              to={DETAIL_ROUTE}
+              params={toolParams(locale, "proteger-pdf")}
+              style={{ left: "calc(100% + 60px)", bottom: "12%" }}
+              className="group hidden xl:block absolute z-30 select-none animate-neo-float-a transform rotate-5 hover:rotate-0 hover:scale-110 hover:z-50 transition-all duration-200 cursor-pointer"
+              title="Proteger PDF"
+            >
+              <div className="relative size-15 rounded-2xl border-2 border-[#0F0F12] bg-[#F59E0B] text-white flex items-center justify-center shadow-[4px_4px_0_#0F0F12] group-hover:shadow-[6px_6px_0_#0F0F12] transition-shadow">
+                <ProtectDocIcon className="size-8.5 text-white" />
+                {/* Micro-píldora AES-256 verde */}
+                <span className="absolute -bottom-2.5 -left-3 rounded-full border-2 border-[#0F0F12] bg-[#10B981] px-2 py-0.5 text-[10px] font-black text-white shadow-[2px_2px_0_#0F0F12] whitespace-nowrap">
+                  AES-256
+                </span>
+                {/* Tooltip Neobrutalista */}
+                <div className="pointer-events-none absolute top-full left-1/2 -translate-x-1/2 mt-2.5 opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap z-50">
+                  <span className="inline-block rounded-lg border-2 border-[#0F0F12] bg-[#0F0F12] text-white text-xs font-black px-3 py-1 shadow-[2px_2px_0_#FFFFFF]">
+                    {locale === "ca" ? "Protegir PDF →" : locale === "en" ? "Protect PDF →" : "Proteger PDF →"}
+                  </span>
                 </div>
               </div>
-            </div>
+            </Link>
+
+            {/* 8. PDF a Excel: Verde #10B981 con "X" */}
+            <Link
+              to={DETAIL_ROUTE}
+              params={toolParams(locale, "pdf-a-excel")}
+              style={{ left: "calc(100% + 185px)", top: "16%" }}
+              className="group hidden xl:block absolute z-30 select-none animate-neo-float-b transform -rotate-6 hover:rotate-0 hover:scale-110 hover:z-50 transition-all duration-200 cursor-pointer"
+              title="PDF a Excel"
+            >
+              <div className="relative size-12 rounded-xl border-2 border-[#0F0F12] bg-[#10B981] text-white flex items-center justify-center shadow-[4px_4px_0_#0F0F12] group-hover:shadow-[6px_6px_0_#0F0F12] transition-shadow">
+                <ExcelFileIcon className="size-7 text-white" />
+                {/* Tooltip Neobrutalista */}
+                <div className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2.5 opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap z-50">
+                  <span className="inline-block rounded-lg border-2 border-[#0F0F12] bg-[#0F0F12] text-white text-xs font-black px-3 py-1 shadow-[2px_2px_0_#FFFFFF]">
+                    {locale === "ca" ? "PDF a Excel →" : locale === "en" ? "PDF to Excel →" : "PDF a Excel →"}
+                  </span>
+                </div>
+              </div>
+            </Link>
 
             {/* ============================================================
-                TARJETA CENTRAL BLANCA PROTEGIDA
-                Ancho generoso max-w-[740px], padding amplio px-8 md:px-12 py-10 md:py-12
+                TARJETA CENTRAL BLANCA PROTEGIDA CON MASCOTA ASOMÁNDOSE
+                Ancho generoso max-w-[760px], padding amplio px-8 md:px-12 py-10 md:py-12
                 ============================================================ */}
             <div className="relative z-25 w-full rounded-3xl border-2 border-[#0F0F12] bg-white px-6 py-9 sm:px-8 sm:py-11 md:px-12 md:py-12 shadow-[6px_6px_0_#0F0F12] text-center">
               
-              {/* H1 — Jerarquía potente con line-height 1.1 y margen vertical holgado en badge PDF */}
+              {/* Mascota BreadPDF asomándose simpática en la esquina superior derecha */}
+              <div className="absolute -top-7 sm:-top-8 -right-3 sm:-right-4 z-40 transform rotate-12 transition-transform duration-300 hover:rotate-0 hover:scale-110 select-none pointer-events-auto">
+                <div className="relative flex items-center justify-center size-14 sm:size-16 rounded-2xl border-2 border-[#0F0F12] bg-[#FEF08A] shadow-[3px_3px_0_#0F0F12]">
+                  <img
+                    src={BRAND_ASSETS.mascotPng}
+                    alt="BreadPDF Mascot"
+                    width={52}
+                    height={52}
+                    className="size-11 sm:size-12 object-contain drop-shadow-xs"
+                  />
+                  {/* Micro-destello */}
+                  <span className="absolute -top-1.5 -left-1.5 text-xs">✨</span>
+                </div>
+              </div>
+
+              {/* H1 — Jerarquía potente con line-height 1.1 y badge PDF destacado */}
               <h1 className="text-display mx-auto max-w-[660px] text-[2.6rem] sm:text-[3.3rem] lg:text-[3.8rem] font-black leading-[1.1] tracking-[-0.035em] text-[#0F0F12] uppercase">
                 <span className="block">{heroCopy.line1}</span>
                 <span className="inline-flex items-center justify-center flex-wrap gap-2.5 my-2 sm:my-2.5">
@@ -370,99 +391,62 @@ function Home() {
               <div className="mx-auto mt-6 w-full max-w-[660px] text-left [&_.flex-wrap]:justify-center sm:mt-7">
                 <ToolSearch size="lg" />
               </div>
+
+              {/* ============================================================
+                  FILA DE TRUST BADGES COMPACTOS (WASM, Privacidad Total, Sin Registros)
+                  Reubicados limpiamente debajo de Populares sin ensuciar los laterales
+                  ============================================================ */}
+              <div className="mt-8 pt-5 border-t border-slate-200/80 flex flex-wrap items-center justify-center gap-y-2 gap-x-6 text-[12.5px] sm:text-[13px] font-bold text-slate-700">
+                <div className="inline-flex items-center gap-1.5">
+                  <span className="text-amber-500 font-black text-sm">⚡</span>
+                  <span>{locale === "ca" ? "Processament 100% Local (WASM)" : locale === "en" ? "100% Client-Side Processing (WASM)" : "Procesamiento 100% Local (WASM)"}</span>
+                </div>
+                <div className="inline-flex items-center gap-1.5">
+                  <span className="text-emerald-600 font-black text-sm">🔒</span>
+                  <span>{locale === "ca" ? "Privadesa Total (Zero pujades)" : locale === "en" ? "Total Privacy (Zero server uploads)" : "Privacidad Total (Cero subidas a servidor)"}</span>
+                </div>
+                <div className="inline-flex items-center gap-1.5">
+                  <span className="text-rose-500 font-black text-sm">✨</span>
+                  <span>{locale === "ca" ? "Sense registres ni marques d'aigua" : locale === "en" ? "No sign-up or watermarks" : "Sin registros ni marcas de agua"}</span>
+                </div>
+              </div>
+
             </div>
 
           </div>
 
           {/* ============================================================
               COMPORTAMIENTO RESPONSIVE (Mobile / Tablet < xl)
-              En pantallas < 1280px las tarjetas laterales se muestran debajo en un grid limpio 2x2
+              Constelación compacta horizontal de accesos directos
               ============================================================ */}
-          <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4 xl:hidden max-w-[740px] mx-auto">
-            {/* Mobile Card 1: Comprimir PDF */}
-            <Link
-              to={DETAIL_ROUTE}
-              params={toolParams(locale, "comprimir-pdf")}
-              className="rounded-2xl border-2 border-[#0F0F12] bg-white p-4 shadow-[3px_3px_0_#0F0F12] flex items-center justify-between gap-3 cursor-pointer hover:bg-slate-50 text-left"
-            >
-              <div>
-                <div className="flex items-center gap-1.5">
-                  <span className="rounded-md border border-[#0F0F12] bg-[#EF4444] text-white text-[10px] font-black px-1.5 py-0.5">
-                    -80% PESO
-                  </span>
-                  <span className="text-[13px] font-black text-[#0F0F12]">Comprimir PDF</span>
-                </div>
-                <div className="mt-1 flex items-baseline gap-2">
-                  <span className="text-[12px] font-bold text-slate-400 line-through">24.5 MB</span>
-                  <span className="text-[14px] font-black text-[#059669]">3.2 MB</span>
-                </div>
-              </div>
-              <img
-                src={BRAND_ASSETS.mascots.celebrate}
-                alt="BreadPDF Compress"
-                width={40}
-                height={40}
-                className="size-10 object-contain shrink-0"
-              />
-            </Link>
-
-            {/* Mobile Card 2: Convertir PDF */}
-            <Link
-              to={DETAIL_ROUTE}
-              params={toolParams(locale, "pdf-a-word")}
-              className="rounded-2xl border-2 border-[#0F0F12] bg-white p-4 shadow-[3px_3px_0_#0F0F12] flex items-center justify-between gap-3 cursor-pointer hover:bg-slate-50 text-left"
-            >
-              <div>
-                <div className="flex items-center gap-1.5">
-                  <span className="rounded-md border border-[#2563EB] bg-[#DBEAFE] text-[#1E40AF] text-[10px] font-black px-1.5 py-0.5">
-                    ALTA FIDELIDAD
-                  </span>
-                  <span className="text-[13px] font-black text-[#0F0F12]">Convertir PDF</span>
-                </div>
-                <div className="mt-1 flex items-center gap-1.5">
-                  <span className="text-[11px] font-black text-white bg-[#EF4444] px-1.5 py-0.5 rounded">PDF</span>
-                  <span className="text-xs font-bold text-slate-400">→</span>
-                  <span className="text-[11px] font-black text-white bg-[#2563EB] px-1.5 py-0.5 rounded">WORD</span>
-                </div>
-              </div>
-              <ArrowRightLeft className="size-5 text-[#0F0F12] shrink-0" />
-            </Link>
-
-            {/* Mobile Card 3: Unir y Extraer */}
-            <Link
-              to={DETAIL_ROUTE}
-              params={toolParams(locale, "unir-pdf")}
-              className="rounded-2xl border-2 border-[#0F0F12] bg-white p-4 shadow-[3px_3px_0_#0F0F12] flex items-center justify-between gap-3 cursor-pointer hover:bg-slate-50 text-left"
-            >
-              <div>
-                <div className="flex items-center gap-1.5">
-                  <span className="rounded-md border border-[#8B5CF6] bg-[#EDE9FE] text-[#5B21B6] text-[10px] font-black px-1.5 py-0.5">
-                    PÁGINAS
-                  </span>
-                  <span className="text-[13px] font-black text-[#0F0F12]">Unir y Extraer</span>
-                </div>
-                <p className="mt-1 text-[11.5px] font-bold text-slate-600">
-                  Combina múltiples archivos PDF
-                </p>
-              </div>
-              <div className="size-8 rounded-lg border-2 border-[#0F0F12] bg-[#FEF08A] text-[#0F0F12] font-black flex items-center justify-center text-xs shadow-[1px_1px_0_#0F0F12]">
-                1+2
-              </div>
-            </Link>
-
-            {/* Mobile Card 4: Privacidad WASM */}
-            <div className="rounded-2xl border-2 border-[#0F0F12] bg-[#F59E0B] p-4 shadow-[3px_3px_0_#0F0F12] text-[#0F0F12] flex items-center gap-3 text-left">
-              <span className="rounded-xl border-2 border-[#0F0F12] bg-white p-1.5 shadow-[1px_1px_0_#0F0F12] shrink-0">
-                <ShieldCheck className="size-5 text-[#0F0F12]" />
-              </span>
-              <div>
-                <span className="text-[13px] font-black tracking-tight leading-none block">
-                  100% en tu Navegador
-                </span>
-                <p className="mt-0.5 text-[11px] font-bold text-[#0F0F12]/90 leading-tight">
-                  Tus archivos nunca viajan a servidores
-                </p>
-              </div>
+          <div className="mt-8 xl:hidden max-w-[760px] mx-auto">
+            <p className="text-center text-xs font-black uppercase tracking-wider text-slate-600 mb-3">
+              {locale === "ca" ? "Eines destacades" : locale === "en" ? "Featured Tools" : "Herramientas destacadas"}
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-2.5">
+              {[
+                { name: "Comprimir PDF", slug: "comprimir-pdf", bg: "bg-[#EF4444]", icon: CompressDocIcon },
+                { name: "Unir PDF", slug: "unir-pdf", bg: "bg-[#EF4444]", icon: MergeDocIcon },
+                { name: "PDF a Word", slug: "pdf-a-word", bg: "bg-[#2563EB]", icon: WordFileIcon },
+                { name: "PDF a JPG", slug: "pdf-a-jpg", bg: "bg-[#8B5CF6]", icon: JpgFileIcon },
+                { name: "Proteger PDF", slug: "proteger-pdf", bg: "bg-[#F59E0B]", icon: ProtectDocIcon },
+                { name: "OCR PDF", slug: "ocr-pdf", bg: "bg-[#EC4899]", icon: OcrFileIcon },
+              ].map((item) => {
+                const IconComponent = item.icon;
+                return (
+                  <Link
+                    key={item.slug}
+                    to={DETAIL_ROUTE}
+                    params={toolParams(locale, item.slug)}
+                    className="inline-flex items-center gap-2 rounded-xl border-2 border-[#0F0F12] bg-white px-3.5 py-2 text-xs font-black text-[#0F0F12] shadow-[2px_2px_0_#0F0F12] hover:bg-slate-50 transition-colors"
+                  >
+                    <span className={`flex size-6 items-center justify-center rounded-lg border border-[#0F0F12] ${item.bg} text-white shrink-0`}>
+                      <IconComponent className="size-4" />
+                    </span>
+                    <span>{item.name}</span>
+                  </Link>
+                );
+              })}
             </div>
           </div>
 
