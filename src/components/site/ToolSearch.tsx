@@ -176,15 +176,6 @@ export function ToolSearch({ size = "md" }: { size?: "md" | "lg" }) {
             <X className="size-4.5" strokeWidth={2.8} />
           </button>
         )}
-
-        {/* Badge Teclado Atajo Ctrl+K */}
-        <div className="hidden sm:inline-flex items-center gap-1.5 shrink-0 select-none">
-          <kbd className="inline-flex items-center gap-1 rounded-xl border-2 border-[#0F0F12] bg-[#EDEDF0] px-3.5 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-extrabold text-[#0F0F12] shadow-[2px_2px_0_#0F0F12]">
-            <span>Ctrl</span>
-            <span>+</span>
-            <span>K</span>
-          </kbd>
-        </div>
       </div>
 
       {/* Real-time Results Dropdown */}
@@ -305,43 +296,44 @@ export function ToolSearch({ size = "md" }: { size?: "md" | "lg" }) {
       )}
 
       {/* ============================================================
-          POPULAR TOOLS BLOCK: COHERENTE, EDITORIAL Y DE ALTO CONTRASTE
-          Accesos de 44-48px de altura, tipografía 15-16px, borde 2px, sombra dura 3px,
-          fondo rojo en Comprimir PDF y blanco en los demás, iconos limpios y legibles.
+          POPULAR TOOLS BLOCK: RECTA, HORIZONTAL, COMPACTA Y EN UNA SOLA FILA
+          En escritorio: fila única horizontal sin romper en 2 líneas.
+          Botones compactos 44px, tipografía nítida 14-15px, borde 2px, sombra 2.5px.
           ============================================================ */}
-      <div className="mt-6 flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 w-full max-w-4xl mx-auto">
+      <div className="mt-4 sm:mt-5 flex flex-wrap xl:flex-nowrap items-center justify-center gap-2 sm:gap-2.5 w-full max-w-5xl mx-auto">
         {/* Encabezado POPULARES */}
-        <span className="shrink-0 text-[14px] sm:text-[15px] font-black uppercase tracking-wider text-[#0F0F12] mr-1.5">
+        <span className="shrink-0 text-[13px] sm:text-[14px] font-black uppercase tracking-wider text-[#0F0F12] mr-1">
           {t.search.popular}:
         </span>
 
-        {/* Accesos populares monocromos/rojo sin etiquetas aleatorias */}
-        {suggestions.map((tool) => {
-          // Destacamos como máximo una acción principal con fondo rojo oficial de BreadPDF
-          const isFeatured = tool.canonicalSlug === "comprimir-pdf";
+        {/* Accesos populares en una sola fila en desktop */}
+        <div className="flex flex-wrap xl:flex-nowrap items-center justify-center gap-2 sm:gap-2.5">
+          {suggestions.map((tool) => {
+            const isFeatured = tool.canonicalSlug === "comprimir-pdf";
 
-          return (
-            <Link
-              key={tool.slug}
-              to={DETAIL_ROUTE}
-              params={toolParams(locale, tool.canonicalSlug)}
-              className={`group/pill inline-flex items-center gap-2.5 h-[46px] sm:h-[48px] px-4 sm:px-5 text-[15px] sm:text-[16px] font-black rounded-xl border-2 border-[#0F0F12] shadow-[3px_3px_0_#0F0F12] whitespace-nowrap transition-all duration-150 cursor-pointer hover:-translate-y-0.5 hover:shadow-[4px_4px_0_#0F0F12] active:translate-y-0 active:shadow-[1px_1px_0_#0F0F12] ${
-                isFeatured
-                  ? "bg-[#EC3C2D] text-white hover:bg-[#D43426]"
-                  : "bg-white text-[#0F0F12] hover:bg-[#EDEDF0]"
-              }`}
-            >
-              <span
-                className={`flex size-6 shrink-0 items-center justify-center rounded-lg border border-[#0F0F12] ${
-                  isFeatured ? "bg-white text-[#EC3C2D]" : "bg-[#0F0F12] text-white"
+            return (
+              <Link
+                key={tool.slug}
+                to={DETAIL_ROUTE}
+                params={toolParams(locale, tool.canonicalSlug)}
+                className={`group/pill inline-flex items-center gap-2 h-10 sm:h-11 px-3.5 sm:px-4 text-[13.5px] sm:text-[14px] font-black rounded-xl border-2 border-[#0F0F12] shadow-[2.5px_2.5px_0_#0F0F12] whitespace-nowrap transition-all duration-120 cursor-pointer hover:-translate-y-0.5 hover:shadow-[3.5px_3.5px_0_#0F0F12] active:translate-y-0 active:shadow-[1px_1px_0_#0F0F12] ${
+                  isFeatured
+                    ? "bg-[#EC3C2D] text-white hover:bg-[#D43426]"
+                    : "bg-white text-[#0F0F12] hover:bg-[#F8FAFC]"
                 }`}
               >
-                <ToolIcon name={tool.icon} canonicalSlug={tool.canonicalSlug} className="size-3.5" />
-              </span>
-              <span className="tracking-tight">{tool.name}</span>
-            </Link>
-          );
-        })}
+                <span
+                  className={`flex size-5 sm:size-5.5 shrink-0 items-center justify-center rounded-lg border border-[#0F0F12] ${
+                    isFeatured ? "bg-white text-[#EC3C2D]" : "bg-[#0F0F12] text-white"
+                  }`}
+                >
+                  <ToolIcon name={tool.icon} canonicalSlug={tool.canonicalSlug} className="size-3.5" />
+                </span>
+                <span className="tracking-tight">{tool.name}</span>
+              </Link>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

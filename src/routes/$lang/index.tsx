@@ -46,7 +46,8 @@ export const Route = createFileRoute("/$lang/")({
 });
 
 function Home() {
-  const { locale, t } = useLocale();
+  const { locale, t, tools, roadmap } = useLocale();
+  const totalToolsCount = tools.length + roadmap.length;
 
   const heroCopy = {
     es: {
@@ -141,25 +142,45 @@ function Home() {
               ============================================================ */}
           <div className="relative z-25 w-full max-w-4xl 2xl:max-w-5xl text-center my-auto px-4 py-2 sm:py-4">
             
-            {/* INSIGNIA SUPERIOR: Sólida, veraz, 51 herramientas en tu navegador */}
+            {/* INSIGNIA SUPERIOR: RECONOCIBLE, POTENTE Y DINÁMICA */}
             <div className="inline-flex items-center justify-center mb-4 select-none max-w-full">
               <a
                 href="#catalogo"
-                className="group inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 rounded-full bg-[#FEF08A] border-2 border-[#0F0F12] shadow-[3px_3px_0_#0F0F12] hover:shadow-[4px_4px_0_#0F0F12] hover:bg-[#FDE047] text-[#0F0F12] transition-all cursor-pointer"
-                title="Ver las 51 herramientas en el catálogo"
+                className="group inline-flex items-center gap-2.5 sm:gap-3 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-2xl bg-[#FEF08A] border-2 border-[#0F0F12] shadow-[3.5px_3.5px_0_#0F0F12] hover:shadow-[5px_5px_0_#0F0F12] hover:bg-[#FDE047] text-[#0F0F12] transition-all cursor-pointer"
+                title="Explorar las herramientas en el catálogo"
               >
-                <img src={BRAND_ASSETS.iconWebp} alt="" className="size-5 object-contain" aria-hidden="true" />
-                <span className="text-xs sm:text-[13px] font-black uppercase tracking-wide">
-                  {locale === "ca" ? "51 Eines PDF · 100% Gratuït · Al teu Navegador" : locale === "en" ? "51 PDF Tools · 100% Free · In your Browser" : "51 Herramientas PDF · 100% Gratis · En tu Navegador"}
+                {/* Mascota oficial en tamaño visible */}
+                <img
+                  src={BRAND_ASSETS.iconWebp}
+                  alt=""
+                  width={28}
+                  height={28}
+                  className="size-6 sm:size-7 object-contain drop-shadow-xs group-hover:scale-105 transition-transform"
+                  aria-hidden="true"
+                />
+
+                <div className="flex items-baseline gap-1.5 leading-none">
+                  <span className="text-sm sm:text-base font-black tracking-tight text-[#0F0F12]">
+                    {totalToolsCount}
+                  </span>
+                  <span className="text-xs sm:text-[13.5px] font-black uppercase tracking-wide text-[#0F0F12]">
+                    {locale === "ca" ? "Eines PDF" : locale === "en" ? "PDF Tools" : "Herramientas PDF"}
+                  </span>
+                </div>
+
+                <span className="w-1.5 h-1.5 rounded-full bg-[#0F0F12]/30" aria-hidden="true" />
+
+                <span className="text-[11px] sm:text-xs font-extrabold uppercase tracking-wider text-slate-800">
+                  {locale === "ca" ? "Gratis al teu Navegador" : locale === "en" ? "Free in your Browser" : "Gratis en tu Navegador"}
                 </span>
               </a>
             </div>
 
-            {/* H1 PROTAGONISTA ABSOLUTO: Display condensada masiva */}
-            <h1 className="text-display mx-auto max-w-6xl text-3xl sm:text-4xl md:text-5xl lg:text-[54px] xl:text-[62px] font-black leading-[1.08] tracking-[-0.03em] text-[#0F0F12] uppercase">
-              <span className="inline-flex items-center justify-center flex-wrap gap-x-3 gap-y-1">
-                <span>{heroCopy.line1}</span>
-                <span className="inline-block transform -rotate-2 rounded-xl sm:rounded-2xl border-2 sm:border-3 border-[#0F0F12] bg-[#EC3C2D] text-white px-3 sm:px-4 py-0.5 shadow-[3px_3px_0_#0F0F12] select-none text-[0.88em]">
+            {/* H1 PROTAGONISTA ABSOLUTO: Display condensada con separación limpia */}
+            <h1 className="text-display mx-auto max-w-6xl text-3xl sm:text-4xl md:text-5xl lg:text-[54px] xl:text-[60px] font-black leading-[1.08] tracking-[-0.03em] text-[#0F0F12] uppercase">
+              <span className="inline-flex items-center justify-center flex-wrap">
+                <span className="tracking-tight">{heroCopy.line1}</span>
+                <span className="inline-block ml-3 sm:ml-4 lg:ml-5 transform -rotate-2 rounded-xl sm:rounded-2xl border-2 sm:border-3 border-[#0F0F12] bg-[#EC3C2D] text-white px-3 sm:px-4 py-0.5 shadow-[3.5px_3.5px_0_#0F0F12] select-none text-[0.88em]">
                   PDF.
                 </span>
               </span>
@@ -281,7 +302,7 @@ function Home() {
             </span>
             <div>
               <p className="text-[15px] sm:text-[16px] font-black uppercase tracking-wide text-white leading-tight">
-                {locale === "ca" ? "51 Eines en un Sol Lloc" : locale === "en" ? "51 Tools in One Place" : "51 Herramientas en un Solo Lugar"}
+                {`${totalToolsCount} ${locale === "ca" ? "Eines en un Sol Lloc" : locale === "en" ? "Tools in One Place" : "Herramientas en un Solo Lugar"}`}
               </p>
               <p className="text-xs sm:text-[13px] text-slate-300 font-medium">
                 {locale === "ca" ? "Comprimeix, uneix, converteix i edita" : locale === "en" ? "Compress, merge, convert and edit" : "Comprime, une, convierte y edita"}
