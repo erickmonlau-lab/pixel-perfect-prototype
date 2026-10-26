@@ -390,10 +390,10 @@ function Home() {
       <TrustBanner />
 
       {/* ============================================================
-          SECTION — EDITORIAL BENTO: Neo-brutalist 4 feature pillars
+          SECTION — EDITORIAL BENTO: Neo-brutalist 4 feature pillars (Clean white cards, max-w-6xl)
           ============================================================ */}
-      <section className="border-b-2 border-[#0F0F12] bg-[#EDEDF0] bg-neo-dots py-16 sm:py-24">
-        <div className="mx-auto max-w-[1360px] px-6 sm:px-8">
+      <section className="border-b-2 border-[#0F0F12] bg-[#F4F4F5] bg-neo-dots py-16 sm:py-24">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center">
             <span className="inline-flex items-center gap-2 rounded-lg border-2 border-[#0F0F12] bg-[#EC3C2D] px-4 py-1.5 text-[13px] sm:text-[14px] font-black tracking-widest text-white uppercase shadow-[3px_3px_0_#0F0F12]">
               <span className="size-2 rounded-full bg-white shrink-0" />
@@ -402,12 +402,12 @@ function Home() {
             <h2 className="mt-4 text-[2.4rem] sm:text-[2.9rem] lg:text-[3.4rem] font-black tracking-[-0.03em] leading-[1.08] text-[#0F0F12]">
               {t.home.editorial.title}
             </h2>
-            <p className="mx-auto mt-3.5 max-w-[720px] text-[18px] sm:text-[20px] leading-relaxed text-slate-800 font-semibold">
+            <p className="mx-auto mt-3.5 max-w-2xl text-[18px] sm:text-[19px] leading-relaxed text-gray-600 font-medium">
               {t.home.editorial.sub}
             </p>
           </div>
 
-          {/* Bento Grid con acentos de color vivos por tarjeta */}
+          {/* Bento Grid con 4 tarjetas 100% BLANCAS, borde-t-4 de color, ancho max-w-6xl y layout amplio */}
           <div className="mt-12 sm:mt-14 grid gap-6 sm:grid-cols-2">
             {t.home.editorial.articles.map((article, idx) => {
               function DocumentOptimizeIcon({ className = "size-6" }: { className?: string }) {
@@ -424,39 +424,35 @@ function Home() {
               const BENTO_THEMES = [
                 {
                   icon: Cpu,
-                  bg: "bg-[#2563EB]",       // Azul eléctrico
-                  text: "text-white",
-                  topBorder: "border-t-8 border-t-[#2563EB]",
+                  iconBg: "bg-[#2563EB]",       // Azul eléctrico
+                  topBorder: "border-t-4 border-t-[#2563EB]",
                   shadow: "hover:shadow-[6px_6px_0_#2563EB]",
-                  tint: "bg-[#EFF6FF]/60 hover:bg-[#EFF6FF]",
                   tag: "MOTOR WASM",
+                  badgeStyle: "bg-[#DBEAFE] text-[#1E40AF] border border-[#2563EB]/40",
                 },
                 {
                   icon: UserCheck,
-                  bg: "bg-[#10B981]",       // Verde esmeralda
-                  text: "text-white",
-                  topBorder: "border-t-8 border-t-[#10B981]",
+                  iconBg: "bg-[#10B981]",       // Verde esmeralda
+                  topBorder: "border-t-4 border-t-[#10B981]",
                   shadow: "hover:shadow-[6px_6px_0_#10B981]",
-                  tint: "bg-[#ECFDF5]/60 hover:bg-[#ECFDF5]",
                   tag: "SIN REGISTROS",
+                  badgeStyle: "bg-[#D1FAE5] text-[#065F46] border border-[#10B981]/40",
                 },
                 {
                   icon: ArrowLeftRight,
-                  bg: "bg-[#8B5CF6]",       // Púrpura / Violeta
-                  text: "text-white",
-                  topBorder: "border-t-8 border-t-[#8B5CF6]",
+                  iconBg: "bg-[#8B5CF6]",       // Púrpura / Violeta
+                  topBorder: "border-t-4 border-t-[#8B5CF6]",
                   shadow: "hover:shadow-[6px_6px_0_#8B5CF6]",
-                  tint: "bg-[#F5F3FF]/60 hover:bg-[#F5F3FF]",
                   tag: "FORMATOS NATIVOS",
+                  badgeStyle: "bg-[#EDE9FE] text-[#5B21B6] border border-[#8B5CF6]/40",
                 },
                 {
                   icon: DocumentOptimizeIcon,
-                  bg: "bg-[#F97316]",       // Naranja energético
-                  text: "text-white",
-                  topBorder: "border-t-8 border-t-[#F97316]",
+                  iconBg: "bg-[#F97316]",       // Naranja energético
+                  topBorder: "border-t-4 border-t-[#F97316]",
                   shadow: "hover:shadow-[6px_6px_0_#F97316]",
-                  tint: "bg-[#FFF7ED]/60 hover:bg-[#FFF7ED]",
                   tag: "ALTA FIDELIDAD",
+                  badgeStyle: "bg-[#FFEDD5] text-[#9A3412] border border-[#F97316]/40",
                 },
               ];
               const theme = BENTO_THEMES[idx % BENTO_THEMES.length]!;
@@ -465,25 +461,30 @@ function Home() {
               return (
                 <article
                   key={article.title}
-                  className={`group relative flex flex-col justify-start rounded-2xl border-2 border-[#0F0F12] ${theme.topBorder} ${theme.tint} p-7 sm:p-9 shadow-[4px_4px_0_#0F0F12] transition-all duration-150 hover:-translate-y-1.5 ${theme.shadow}`}
+                  className={`group relative flex flex-col justify-start rounded-2xl border-2 border-[#0F0F12] bg-white ${theme.topBorder} p-7 sm:p-8 shadow-[4px_4px_0_#0F0F12] transition-all duration-200 hover:-translate-y-1 ${theme.shadow}`}
                 >
-                  <div className="flex items-start justify-between gap-4">
-                    <div className="flex items-center gap-4">
-                      <span
-                        className={`inline-flex size-[54px] sm:size-[58px] shrink-0 items-center justify-center rounded-xl border-2 border-[#0F0F12] ${theme.bg} ${theme.text} shadow-[3px_3px_0_#0F0F12] transition-transform duration-200 group-hover:scale-110 group-hover:rotate-6`}
-                      >
-                        <Icon className="size-6 stroke-[2.4]" />
-                      </span>
-                      <h3 className="text-[20px] sm:text-[22px] font-black tracking-tight text-[#0F0F12] leading-snug">
-                        {article.title}
-                      </h3>
-                    </div>
-                    <span className={`hidden sm:inline-block rounded-md border border-[#0F0F12] ${theme.bg} ${theme.text} text-[11px] font-black tracking-wider uppercase px-2.5 py-1 shadow-[2px_2px_0_#0F0F12]`}>
+                  {/* Fila superior: Icono cuadrado a la izquierda y Badge de estado a la derecha */}
+                  <div className="flex items-center justify-between gap-4 mb-5">
+                    <span
+                      className={`inline-flex size-[52px] sm:size-[56px] shrink-0 items-center justify-center rounded-xl border-2 border-[#0F0F12] ${theme.iconBg} text-white shadow-[2px_2px_0_#0F0F12] transition-transform duration-200 group-hover:scale-105 group-hover:rotate-3`}
+                    >
+                      <Icon className="size-6 text-white stroke-[2.4]" />
+                    </span>
+
+                    {/* Badge tipo píldora elegante, sin romper líneas (whitespace-nowrap) */}
+                    <span className={`inline-flex items-center rounded-full px-3.5 py-1 text-xs font-bold uppercase tracking-wider whitespace-nowrap ${theme.badgeStyle}`}>
                       {theme.tag}
                     </span>
                   </div>
-                  <p className="mt-4 text-[16px] sm:text-[17px] leading-relaxed text-slate-700 font-medium">
-                    {article.desc}
+
+                  {/* Título h3 ocupando todo el ancho debajo de la fila icono+badge */}
+                  <h3 className="text-xl sm:text-[22px] font-bold text-[#111827] tracking-tight leading-snug">
+                    {article.title}
+                  </h3>
+
+                  {/* Cuerpo de texto con tamaño 15-16px, gris oscuro profundo y interlineado relaxed */}
+                  <p className="mt-3 text-base text-gray-700 leading-relaxed font-normal">
+                    {article.body}
                   </p>
                 </article>
               );
@@ -493,15 +494,17 @@ function Home() {
       </section>
 
       {/* ============================================================
-          SECTION — EDITORIAL GUIDES: Step-by-Step with category color badges
+          SECTION — EDITORIAL GUIDES: Real step-by-step PDF manuals (Clean white cards, pt-20)
           ============================================================ */}
-      <section className="border-b-2 border-[#0F0F12] bg-[#FFFFFF] py-16 sm:py-24" aria-labelledby="home-guides-title">
-        <div className="mx-auto max-w-[1360px] px-6 sm:px-8">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12">
+      <section className="border-b-2 border-[#0F0F12] bg-[#FFFFFF] pt-20 pb-16 sm:pt-24 sm:pb-24">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          
+          {/* Header con margen superior holgado (sin solapamiento de badge) */}
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
             <div>
-              <span className="inline-flex items-center gap-2 rounded-lg border-2 border-[#0F0F12] bg-[#2563EB] px-4 py-1.5 text-[13px] font-black tracking-widest text-white uppercase shadow-[2px_2px_0_#0F0F12]">
-                <BookOpen className="size-4 text-white" />
-                <span>{locale === "ca" ? "GUIA & TUTORIALS" : locale === "en" ? "GUIDES & TUTORIALS" : "GUÍAS Y TUTORIALES"}</span>
+              <span className="inline-flex items-center gap-2 rounded-lg border-2 border-[#0F0F12] bg-[#2563EB] px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider text-white shadow-[2px_2px_0_#0F0F12] whitespace-nowrap">
+                <BookOpen className="size-3.5" />
+                <span>{locale === "ca" ? "GUIES I TUTORIALS" : locale === "en" ? "GUIDES & TUTORIALS" : "GUÍAS Y TUTORIALES"}</span>
               </span>
               <h2 id="home-guides-title" className="mt-4 text-2xl sm:text-3xl lg:text-4xl font-black text-[#0F0F12] tracking-tight">
                 {locale === "ca"
@@ -510,7 +513,7 @@ function Home() {
                   ? "Step-by-step PDF workflows and best practices"
                   : "Soluciones paso a paso y buenas prácticas para PDF"}
               </h2>
-              <p className="mt-2.5 text-base sm:text-lg text-slate-700 max-w-2xl font-medium">
+              <p className="mt-2.5 text-lg text-gray-600 max-w-2xl font-medium leading-relaxed">
                 {locale === "ca"
                   ? "Manuals pràctics basats en estàndards tècnics per optimitzar, unificar i preparar documents oficials amb privadesa total."
                   : locale === "en"
@@ -519,16 +522,18 @@ function Home() {
               </p>
             </div>
 
+            {/* Botón rectangular neobrutalista rojo con sombra sólida negra perfecta shadow-[4px_4px_0_#0F0F12] */}
             <Link
               to={SECTION_ROUTE}
               params={guidesHubParams(locale)}
-              className="group inline-flex items-center gap-2 self-start md:self-auto rounded-xl border-2 border-[#0F0F12] bg-[#0F0F12] px-6 py-3 text-[15px] font-black text-white transition-all shadow-[4px_4px_0_#EC3C2D] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0_#EC3C2D]"
+              className="group inline-flex items-center gap-2.5 self-start md:self-auto rounded-xl border-2 border-[#0F0F12] bg-[#EC3C2D] px-6 py-3.5 text-[15px] font-bold text-white transition-all shadow-[4px_4px_0_#0F0F12] hover:-translate-y-0.5 hover:shadow-[6px_6px_0_#0F0F12] cursor-pointer shrink-0"
             >
               <span>{locale === "ca" ? "Totes les guies" : locale === "en" ? "All guides" : "Todas las guías"}</span>
-              <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+              <ArrowRight className="size-4.5 transition-transform duration-200 group-hover:translate-x-1" />
             </Link>
           </div>
 
+          {/* Grid de 6 tarjetas: 100% BLANCAS, tipografía nítida y pie de tarjeta alineado */}
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {ALL_GUIDES.slice(0, 6).map((guide) => {
               const guideTitle = guide.title[locale] || guide.title.es;
@@ -537,49 +542,55 @@ function Home() {
 
               const catBadgeStyle = (() => {
                 const c = guide.category?.toLowerCase() || "";
-                if (c.includes("optimi") || c.includes("comprim")) return "bg-[#EF4444] text-white";
-                if (c.includes("conver") || c.includes("word") || c.includes("excel")) return "bg-[#2563EB] text-white";
-                if (c.includes("segur") || c.includes("priva")) return "bg-[#F59E0B] text-[#0F0F12]";
-                if (c.includes("ocr") || c.includes("intel")) return "bg-[#EC4899] text-white";
-                return "bg-[#8B5CF6] text-white";
+                if (c.includes("optimi") || c.includes("comprim")) return "bg-[#FEE2E2] text-[#991B1B] border-[#EF4444]/30";
+                if (c.includes("conver") || c.includes("word") || c.includes("excel")) return "bg-[#DBEAFE] text-[#1E40AF] border-[#2563EB]/30";
+                if (c.includes("segur") || c.includes("priva")) return "bg-[#FEF3C7] text-[#92400E] border-[#F59E0B]/30";
+                if (c.includes("ocr") || c.includes("intel")) return "bg-[#FCE7F3] text-[#9D174D] border-[#EC4899]/30";
+                if (c.includes("tfg") || c.includes("tfm") || c.includes("educa")) return "bg-[#D1FAE5] text-[#065F46] border-[#10B981]/30";
+                return "bg-[#EDE9FE] text-[#5B21B6] border-[#8B5CF6]/30";
               })();
 
               return (
                 <article
                   key={guide.canonicalSlug}
-                  className="group relative flex flex-col justify-between rounded-2xl border-2 border-[#0F0F12] bg-[#EDEDF0] p-6 sm:p-7 shadow-[4px_4px_0_#0F0F12] transition-all duration-150 hover:-translate-y-1.5 hover:shadow-[6px_6px_0_#0F0F12] hover:bg-white"
+                  className="group relative flex flex-col justify-between h-full rounded-2xl border-2 border-[#0F0F12] bg-white p-7 shadow-[4px_4px_0_#0F0F12] transition-all duration-200 hover:-translate-y-1 hover:shadow-[6px_6px_0_#0F0F12]"
                 >
                   <div>
-                    <div className="flex items-center justify-between text-xs font-semibold mb-3">
-                      <span className={`inline-block rounded-md border border-[#0F0F12] px-3 py-1 text-[12px] font-black uppercase tracking-wider ${catBadgeStyle} shadow-[2px_2px_0_#0F0F12]`}>
+                    {/* Fila superior: Badge de categoría pastel (sin rotura de línea) y tiempo de lectura */}
+                    <div className="flex items-center justify-between text-xs font-semibold mb-4">
+                      <span className={`inline-block rounded-md border px-3 py-1 text-xs font-bold uppercase tracking-wider whitespace-nowrap ${catBadgeStyle}`}>
                         {guide.category}
                       </span>
-                      <span className="flex items-center gap-1 font-bold text-slate-700 text-[13px]">
-                        <Clock className="size-3.5" />
+                      <span className="flex items-center gap-1.5 font-bold text-gray-500 text-xs">
+                        <Clock className="size-3.5 text-gray-400" />
                         <span>{guide.readingTimeMinutes} min</span>
                       </span>
                     </div>
 
-                    <h3 className="text-[19px] sm:text-[21px] font-black text-[#0F0F12] leading-snug group-hover:text-[#EC3C2D] transition-colors">
+                    {/* Título de la guía h3 */}
+                    <h3 className="text-xl font-bold text-[#111827] leading-snug tracking-tight group-hover:text-[#EC3C2D] transition-colors">
                       <Link to={guideUrl}>
                         {guideTitle}
                       </Link>
                     </h3>
 
-                    <p className="mt-3 text-[15px] sm:text-[15.5px] leading-relaxed text-slate-700 font-medium line-clamp-3">
+                    {/* Descripción con texto nítido de 15px/16px y leading-relaxed */}
+                    <p className="mt-3 text-[15px] sm:text-base leading-relaxed text-gray-700 font-normal line-clamp-3">
                       {guideDesc}
                     </p>
                   </div>
 
-                  <div className="mt-6 pt-4 border-t border-slate-200 flex items-center justify-between">
-                    <span className="text-[13px] text-slate-600 font-bold">
+                  {/* Pie de tarjeta con línea divisoria sutil y botón neobrutalista interactivo */}
+                  <div className="mt-6 pt-4 border-t border-gray-200 flex items-center justify-between gap-3">
+                    <span className="text-xs text-gray-500 font-medium truncate">
                       {guide.author.name}
                     </span>
                     <Link
                       to={guideUrl}
-                      className="inline-flex items-center gap-1.5 text-[14px] font-black text-white bg-[#0F0F12] hover:bg-[#EC3C2D] border-2 border-[#0F0F12] rounded-lg px-4 py-1.5 shadow-[2px_2px_0_#0F0F12] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0_#0F0F12] transition-all"
+                      className="group/btn inline-flex items-center gap-1.5 text-sm font-bold text-[#0F0F12] bg-[#FEF08A] hover:bg-[#0F0F12] hover:text-white border-2 border-[#0F0F12] rounded-lg px-4 py-2 shadow-[2px_2px_0_#0F0F12] transition-all hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0_#0F0F12] shrink-0"
                     >
-                      <span>{locale === "ca" ? "Llegir la guia →" : locale === "en" ? "Read guide →" : "Leer la guía →"}</span>
+                      <span>{locale === "ca" ? "Llegir la guia" : locale === "en" ? "Read guide" : "Leer la guía"}</span>
+                      <span className="transition-transform duration-200 group-hover/btn:translate-x-1">→</span>
                     </Link>
                   </div>
                 </article>
