@@ -1,150 +1,166 @@
 import { useLocale } from "@/lib/i18n/context";
-import { Upload, SlidersHorizontal, Download, Sparkles } from "lucide-react";
+import { Upload, SlidersHorizontal, Download } from "lucide-react";
 
 export function HowItWorksSection() {
   const { locale } = useLocale();
 
   const copy = {
     es: {
-      eyebrow: "SIMPLE, DIRECTO Y POTENTE",
-      title: "¿Cómo funciona BreadPDF?",
+      eyebrow: "ASÍ DE FÁCIL",
+      title: "¿CÓMO FUNCIONA BREADPDF?",
       sub: "Sin esperas en cola de servidor, sin instalar aplicaciones pesadas y sin marcas de agua.",
       steps: [
         {
           num: "01",
           title: "Sube tu archivo",
-          desc: "Arrastra tu documento o selecciónalo. Se abre al instante en la memoria de tu dispositivo.",
+          desc: "Arrastra tu documento o selecciónalo desde tu dispositivo. Se carga al instante en la memoria de tu navegador.",
           icon: Upload,
-          tag: "ENTRADA",
-          color: "bg-[#EF4444]",
         },
         {
           num: "02",
           title: "Ajusta y procesa",
-          desc: "Elige la compresión, las páginas a unir o el formato destino. El motor WASM lo procesa en milisegundos.",
+          desc: "Elige la compresión, las páginas o los parámetros requeridos. Las operaciones se resuelven en segundos sin esperas.",
           icon: SlidersHorizontal,
-          tag: "HORNEADO",
-          color: "bg-[#F59E0B]",
         },
         {
           num: "03",
           title: "Descarga al momento",
-          desc: "Obtén tu PDF limpio y optimizado. Nada se guarda en la nube: privacidad técnica absoluta.",
+          desc: "Guarda tu PDF optimizado de forma inmediata. Tus archivos permanecen protegidos y bajo tu control total.",
           icon: Download,
-          tag: "LISTO",
-          color: "bg-[#10B981]",
         },
       ],
     },
     ca: {
-      eyebrow: "SIMPLE, DIRECTE I POTENT",
-      title: "¿Com funciona BreadPDF?",
+      eyebrow: "AIXÍ DE FÀCIL",
+      title: "¿COM FUNCIONA BREADPDF?",
       sub: "Sense cues de servidor, sense instal·lar programari pesant i sense marques d'aigua.",
       steps: [
         {
           num: "01",
           title: "Puja el teu fitxer",
-          desc: "Arrossega el teu document o tria'l. S'obre a l'instant a la memòria del teu dispositiu.",
+          desc: "Arrossega el teu document o selecciona'l des del teu dispositiu. Es carrega a l'instant a la memòria del navegador.",
           icon: Upload,
-          tag: "ENTRADA",
-          color: "bg-[#EF4444]",
         },
         {
           num: "02",
           title: "Ajusta i processa",
-          desc: "Tria la compressió, les pàgines a unir o el format. El motor WASM ho resol en mil·lisegons.",
+          desc: "Tria el nivell de compressió, pàgines o paràmetres necessaris. Les operacions es completen en segons.",
           icon: SlidersHorizontal,
-          tag: "ENFORNAT",
-          color: "bg-[#F59E0B]",
         },
         {
           num: "03",
           title: "Descarrega a l'instant",
-          desc: "Obtén el teu PDF optimitzat. Res es guarda al núvol: privadesa tècnica garantida.",
+          desc: "Desa el teu PDF optimitzat immediatament. Els teus fitxers es mantenen protegits i sota el teu control.",
           icon: Download,
-          tag: "LLEST",
-          color: "bg-[#10B981]",
         },
       ],
     },
     en: {
-      eyebrow: "SIMPLE, DIRECT & POWERFUL",
-      title: "How does BreadPDF work?",
+      eyebrow: "AS SIMPLE AS THAT",
+      title: "HOW DOES BREADPDF WORK?",
       sub: "No server queues, no bloated software installs, and zero watermarks.",
       steps: [
         {
           num: "01",
-          title: "Drop your file",
-          desc: "Drag your document or pick it. It opens immediately in local client memory.",
+          title: "Upload your file",
+          desc: "Drag and drop your document or pick it from your device. It loads right away into local browser memory.",
           icon: Upload,
-          tag: "INPUT",
-          color: "bg-[#EF4444]",
         },
         {
           num: "02",
-          title: "Configure & bake",
-          desc: "Select compression, merge sequence, or target format. The WASM engine finishes in milliseconds.",
+          title: "Configure & process",
+          desc: "Choose compression options, page ranges or desired parameters. Everything runs swiftly in seconds.",
           icon: SlidersHorizontal,
-          tag: "BAKE",
-          color: "bg-[#F59E0B]",
         },
         {
           num: "03",
-          title: "Instant download",
-          desc: "Save your clean, optimized PDF right away. Zero telemetry, 100% private.",
+          title: "Download instantly",
+          desc: "Save your clean, optimized PDF immediately. Your documents remain strictly protected and under your control.",
           icon: Download,
-          tag: "READY",
-          color: "bg-[#10B981]",
         },
       ],
     },
   };
 
-  const c = copy[locale] || copy.es;
+  const c = copy[locale as "es" | "ca" | "en"] ?? copy.es;
+
+  // Alternancia intencionada de superficies de alto contraste:
+  // Card 01: Blanca
+  // Card 02: Negra (#0F0F12) con texto blanco sólido
+  // Card 03: Blanca con número e icono destacados en rojo (#F23636)
+  const CARD_STYLES = [
+    {
+      bg: "bg-[#FFFFFF] text-[#0F0F12]",
+      numColor: "text-[#0F0F12]",
+      titleColor: "text-[#0F0F12]",
+      descColor: "text-[#0F0F12]",
+      iconBg: "bg-[#0F0F12] text-white",
+      hoverBorder: "hover:border-[#F23636]",
+    },
+    {
+      bg: "bg-[#0F0F12] text-white",
+      numColor: "text-white",
+      titleColor: "text-white",
+      descColor: "text-slate-100",
+      iconBg: "bg-[#F23636] text-white",
+      hoverBorder: "hover:border-[#F23636]",
+    },
+    {
+      bg: "bg-[#FFFFFF] text-[#0F0F12]",
+      numColor: "text-[#F23636]",
+      titleColor: "text-[#0F0F12]",
+      descColor: "text-[#0F0F12]",
+      iconBg: "bg-[#F23636] text-white",
+      hoverBorder: "hover:border-[#F23636]",
+    },
+  ];
 
   return (
-    <section className="relative z-20 border-b-2 border-[#0F0F12] bg-[#FFFDF9] py-16 sm:py-24 overflow-hidden">
-      <div className="mx-auto max-w-[1440px] px-4 sm:px-8 lg:px-12">
-        {/* Header */}
-        <div className="mx-auto max-w-3xl text-center mb-16">
-          <span className="inline-flex items-center gap-2 rounded-lg border-2 border-[#0F0F12] bg-[#FEF08A] px-4 py-1.5 text-xs font-black uppercase tracking-wider text-[#0F0F12] shadow-[2px_2px_0_#0F0F12]">
-            <Sparkles className="size-3.5 text-[#E8372C]" />
-            <span>{c.eyebrow}</span>
+    <section className="relative z-20 border-b-2 border-[#0F0F12] bg-[#F1F1F4] py-16 sm:py-20 lg:py-24 overflow-hidden">
+      <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8">
+        
+        {/* Cabecera de la sección: Jerarquía rotunda con etiqueta roja y textos claros */}
+        <div className="mx-auto max-w-3xl text-center mb-10 sm:mb-12">
+          <span className="inline-flex items-center rounded-lg border-2 border-[#0F0F12] bg-[#F23636] px-4 py-1.5 text-[13px] sm:text-[14px] font-black uppercase tracking-wider text-white shadow-[3px_3px_0_#0F0F12]">
+            {c.eyebrow}
           </span>
-          <h2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-black text-[#0F0F12] tracking-tight uppercase">
+          
+          <h2 className="mt-4 text-3xl sm:text-4xl lg:text-[44px] font-black text-[#0F0F12] tracking-tight leading-[1.08] uppercase">
             {c.title}
           </h2>
-          <p className="mt-3 text-base sm:text-lg font-medium text-slate-700 max-w-2xl mx-auto">
+          
+          <p className="mt-3.5 text-[17px] sm:text-[18px] font-medium text-[#0F0F12] leading-[1.5] max-w-2xl mx-auto">
             {c.sub}
           </p>
         </div>
 
-        {/* 3 Step Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+        {/* 3 Tarjetas de Pasos: Proporción ágil, superficies alternas y números contundentes */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto">
           {c.steps.map((step, idx) => {
             const Icon = step.icon;
+            const style = CARD_STYLES[idx] ?? CARD_STYLES[0];
+
             return (
               <div
                 key={step.num}
-                className="group relative flex flex-col justify-between rounded-3xl border-3 border-[#0F0F12] bg-white p-8 sm:p-10 shadow-[6px_6px_0_#0F0F12] hover:-translate-y-1 hover:shadow-[8px_8px_0_#0F0F12] transition-all"
+                className={`group relative flex flex-col justify-between rounded-2xl border-2 border-[#0F0F12] ${style.bg} p-7 sm:p-8 shadow-[5px_5px_0_#0F0F12] hover:-translate-y-1 hover:shadow-[7px_7px_0_#F23636] transition-all`}
               >
                 <div>
-                  <div className="flex items-center justify-between mb-8">
-                    <span className={`flex size-14 items-center justify-center rounded-2xl border-2 border-[#0F0F12] ${step.color} text-white shadow-[3px_3px_0_#0F0F12] group-hover:scale-110 transition-transform`}>
-                      <Icon className="size-7 stroke-[2.6]" />
+                  {/* Parte Superior: Icono de 46px + Número contundente de 48px */}
+                  <div className="flex items-center justify-between mb-6">
+                    <span className={`flex size-12 shrink-0 items-center justify-center rounded-xl border-2 border-[#0F0F12] ${style.iconBg} shadow-[2.5px_2.5px_0_#0F0F12] group-hover:scale-105 transition-transform`}>
+                      <Icon className="size-6 stroke-[2.5]" />
                     </span>
-                    <span className="inline-flex items-center rounded-lg border-2 border-[#0F0F12] bg-[#0F0F12] px-3 py-1 text-xs font-black text-white shadow-[2px_2px_0_#0F0F12]">
-                      {step.tag}
+                    <span className={`text-4xl sm:text-[44px] font-black ${style.numColor} tracking-tighter select-none tabular-nums`}>
+                      {step.num}
                     </span>
                   </div>
 
-                  <span className="block text-4xl sm:text-5xl font-black text-slate-200 group-hover:text-[#E8372C] transition-colors mb-2">
-                    {step.num}
-                  </span>
-                  <h3 className="text-xl sm:text-2xl font-black text-[#0F0F12] tracking-tight mb-3">
+                  {/* Contenido: Título H3 22-24px y Descripción legible 16-17px */}
+                  <h3 className={`text-[22px] sm:text-[23px] font-black ${style.titleColor} tracking-tight mb-2.5 leading-snug`}>
                     {step.title}
                   </h3>
-                  <p className="text-sm sm:text-base font-medium text-slate-600 leading-relaxed">
+                  <p className={`text-[16px] sm:text-[16.5px] font-medium ${style.descColor} leading-[1.5]`}>
                     {step.desc}
                   </p>
                 </div>
@@ -152,6 +168,7 @@ export function HowItWorksSection() {
             );
           })}
         </div>
+
       </div>
     </section>
   );

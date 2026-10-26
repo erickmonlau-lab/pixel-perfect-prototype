@@ -33,112 +33,85 @@ export function TrustBanner() {
   const copy = {
     es: {
       eyebrow: "DISEÑADO PARA SER SIMPLE",
-      title: "Tus documentos, bajo tu control",
-      subtitle: "Privacidad garantizada, velocidad inmediata y una experiencia directa sin fricciones.",
+      title: "TUS DOCUMENTOS, BAJO TU CONTROL",
+      subtitle: "Privacidad verificable, velocidad directa y una experiencia clara sin fricciones.",
       items: [
         {
           Icon: LocalPrivacyIcon,
-          bg: "bg-[#06B6D4]", // Cian / Azul cielo
-          tag: "PRIVACIDAD 100%",
-          topBorder: "border-t-8 border-t-[#06B6D4]",
-          hoverShadow: "hover:shadow-[6px_6px_0_#06B6D4]",
-          tint: "bg-[#ECFEFF]/60 hover:bg-[#ECFEFF]",
-          title: "Privacidad local",
-          desc: "Tus archivos se procesan en tu propio dispositivo siempre que la tecnología lo permite. Sin intermediarios ni almacenamiento en servidores externos.",
+          tag: "PRIVACIDAD LOCAL",
+          title: "Procesamiento en tu navegador",
+          desc: "Tus archivos se procesan en la memoria local de tu dispositivo mediante librerías del cliente. Sin subidas obligatorias a la nube ni registros.",
+          isHighlighted: false,
         },
         {
           Icon: FastExecutionIcon,
-          bg: "bg-[#F59E0B]", // Amarillo mostaza cálido
-          tag: "ZERO WAIT TIME",
-          topBorder: "border-t-8 border-t-[#F59E0B]",
-          hoverShadow: "hover:shadow-[6px_6px_0_#F59E0B]",
-          tint: "bg-[#FFFBEB]/60 hover:bg-[#FFFBEB]",
-          title: "Sin esperas innecesarias",
-          desc: "Empieza a trabajar con tus documentos al instante desde el navegador, sin colas de conversión remotas ni registros obligatorios.",
+          tag: "SIN ESPERAS",
+          title: "Velocidad inmediata",
+          desc: "Ejecuta conversiones, compresiones y recortes al momento. Cero colas de servidor y descarga directa sin pasos intermedios innecesarios.",
+          isHighlighted: true, // Bloque oscuro/rojo de alto contraste
         },
         {
           Icon: AllInOneIcon,
-          bg: "bg-[#EC4899]", // Rosa / Magenta vivo
-          tag: "SUITE COMPLETA",
-          topBorder: "border-t-8 border-t-[#EC4899]",
-          hoverShadow: "hover:shadow-[6px_6px_0_#EC4899]",
-          tint: "bg-[#FDF2F8]/60 hover:bg-[#FDF2F8]",
+          tag: "SUITE UNIFICADA",
           title: "Todo en un solo lugar",
-          desc: "Un conjunto completo y unificado de utilidades para comprimir, organizar, convertir, editar y proteger tus archivos PDF.",
+          desc: "51 herramientas PDF organizadas por categorías con el mismo diseño claro: comprimir, unir, dividir, firmar, editar y convertir.",
+          isHighlighted: false,
         },
       ],
     },
     ca: {
       eyebrow: "DISSENYAT PER SER SIMPLE",
-      title: "Els teus documents, sota el teu control",
-      subtitle: "Privadesa garantida, velocitat immediata i una experiència directa sense friccions.",
+      title: "ELS TEUS DOCUMENTS, SOTA EL TEU CONTROL",
+      subtitle: "Privadesa verificable, velocitat directa i una experiència clara sense friccions.",
       items: [
         {
           Icon: LocalPrivacyIcon,
-          bg: "bg-[#06B6D4]",
-          tag: "PRIVADESA 100%",
-          topBorder: "border-t-8 border-t-[#06B6D4]",
-          hoverShadow: "hover:shadow-[6px_6px_0_#06B6D4]",
-          tint: "bg-[#ECFEFF]/60 hover:bg-[#ECFEFF]",
-          title: "Privadesa local",
-          desc: "Els teus fitxers es processen al teu propi dispositiu quan la tecnologia ho permet. Sense intermediaris ni servidors externs.",
+          tag: "PRIVADESA LOCAL",
+          title: "Processament al teu navegador",
+          desc: "Els teus fitxers es processen a la memòria local del dispositiu mitjançant llibreries de client. Sense càrregues al núvol ni registres.",
+          isHighlighted: false,
         },
         {
           Icon: FastExecutionIcon,
-          bg: "bg-[#F59E0B]",
-          tag: "ZERO WAIT TIME",
-          topBorder: "border-t-8 border-t-[#F59E0B]",
-          hoverShadow: "hover:shadow-[6px_6px_0_#F59E0B]",
-          tint: "bg-[#FFFBEB]/60 hover:bg-[#FFFBEB]",
-          title: "Sense esperes innecessàries",
-          desc: "Comença a treballar a l'instant des del navegador, sense cues de conversió remotes ni registres obligatoris.",
+          tag: "SENSE ESPERES",
+          title: "Velocitat immediata",
+          desc: "Executa conversions, compressions i talls a l'instant. Zero cues de servidor i descàrrega directa sense passos intermedis.",
+          isHighlighted: true,
         },
         {
           Icon: AllInOneIcon,
-          bg: "bg-[#EC4899]",
-          tag: "SUITE COMPLETA",
-          topBorder: "border-t-8 border-t-[#EC4899]",
-          hoverShadow: "hover:shadow-[6px_6px_0_#EC4899]",
-          tint: "bg-[#FDF2F8]/60 hover:bg-[#FDF2F8]",
+          tag: "SUITE UNIFICADA",
           title: "Tot en un sol lloc",
-          desc: "Un conjunt complet i unificat d'utilitats per comprimir, organitzar, convertir, editar i protegir els teus PDF.",
+          desc: "51 eines PDF organitzades per categories amb el mateix disseny clar: comprimir, unir, dividir, signar, editar i convertir.",
+          isHighlighted: false,
         },
       ],
     },
     en: {
       eyebrow: "DESIGNED TO BE SIMPLE",
-      title: "Your documents, under your control",
-      subtitle: "Guaranteed privacy, instant speed, and a direct friction-free experience.",
+      title: "YOUR DOCUMENTS, UNDER YOUR CONTROL",
+      subtitle: "Verifiable privacy, instant speed, and a direct friction-free experience.",
       items: [
         {
           Icon: LocalPrivacyIcon,
-          bg: "bg-[#06B6D4]",
-          tag: "100% PRIVACY",
-          topBorder: "border-t-8 border-t-[#06B6D4]",
-          hoverShadow: "hover:shadow-[6px_6px_0_#06B6D4]",
-          tint: "bg-[#ECFEFF]/60 hover:bg-[#ECFEFF]",
-          title: "Local privacy",
-          desc: "Files are processed directly on your own device whenever technically supported. Never stored or retained on remote servers.",
+          tag: "LOCAL PRIVACY",
+          title: "In-browser processing",
+          desc: "Your files are processed in local device memory using client-side libraries. No mandatory cloud uploads or sign-up walls.",
+          isHighlighted: false,
         },
         {
           Icon: FastExecutionIcon,
-          bg: "bg-[#F59E0B]",
-          tag: "ZERO WAIT TIME",
-          topBorder: "border-t-8 border-t-[#F59E0B]",
-          hoverShadow: "hover:shadow-[6px_6px_0_#F59E0B]",
-          tint: "bg-[#FFFBEB]/60 hover:bg-[#FFFBEB]",
-          title: "No unnecessary waiting",
-          desc: "Start processing documents instantly straight inside your browser, with zero remote queues and no sign-up barriers.",
+          tag: "ZERO WAIT",
+          title: "Immediate execution",
+          desc: "Compress, convert, and split instantly. Zero server queues and immediate downloads without unnecessary intermediate steps.",
+          isHighlighted: true,
         },
         {
           Icon: AllInOneIcon,
-          bg: "bg-[#EC4899]",
-          tag: "COMPLETE SUITE",
-          topBorder: "border-t-8 border-t-[#EC4899]",
-          hoverShadow: "hover:shadow-[6px_6px_0_#EC4899]",
-          tint: "bg-[#FDF2F8]/60 hover:bg-[#FDF2F8]",
+          tag: "UNIFIED SUITE",
           title: "Everything in one place",
-          desc: "A cohesive, complete suite of focused utilities to compress, organize, convert, edit, and secure your PDF documents.",
+          desc: "51 PDF tools organized by categories sharing the same clean design: compress, merge, split, sign, edit, and convert.",
+          isHighlighted: false,
         },
       ],
     },
@@ -147,52 +120,69 @@ export function TrustBanner() {
   const current = copy[locale as "es" | "ca" | "en"] ?? copy.es;
 
   return (
-    <section className="border-b-2 border-[#0F0F12] bg-[#FFFFFF] py-16 sm:py-24">
-      <div className="mx-auto max-w-[1440px] px-6 sm:px-8">
-        <div className="mx-auto max-w-3xl text-center">
-          <span className="inline-flex items-center gap-2 rounded-lg border-2 border-[#0F0F12] bg-[#0F0F12] px-4 py-1.5 text-[13px] sm:text-[14px] font-black tracking-widest text-white uppercase shadow-[3px_3px_0_#EC3C2D]">
-            <span className="size-2 rounded-full bg-white shrink-0" />
+    <section className="border-b-2 border-[#0F0F12] bg-[#FFFFFF] py-16 sm:py-20 lg:py-24">
+      <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8">
+        
+        {/* Cabecera coordinada con la identidad visual */}
+        <div className="mx-auto max-w-3xl text-center mb-10 sm:mb-12">
+          <span className="inline-flex items-center rounded-lg border-2 border-[#0F0F12] bg-[#F23636] px-4 py-1.5 text-[13px] sm:text-[14px] font-black tracking-widest text-white uppercase shadow-[3px_3px_0_#0F0F12]">
             {current.eyebrow}
           </span>
-          <h2 className="mt-5 text-[2.5rem] sm:text-[3rem] lg:text-[3.5rem] font-black tracking-[-0.035em] leading-[1.05] text-[#0F0F12]">
+          
+          <h2 className="mt-4 text-3xl sm:text-4xl lg:text-[44px] font-black tracking-[-0.03em] leading-[1.08] text-[#0F0F12] uppercase">
             {current.title}
           </h2>
-          <p className="mx-auto mt-4 max-w-[760px] text-[18px] sm:text-[20px] leading-relaxed text-slate-800 font-semibold">
+          
+          <p className="mx-auto mt-3.5 max-w-[680px] text-[17px] sm:text-[18px] leading-[1.5] text-[#0F0F12] font-medium">
             {current.subtitle}
           </p>
         </div>
 
-        <div className="mt-14 sm:mt-18 grid gap-7 md:gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        {/* 3 Bloques visuales limpios: Blanco / Negro / Blanco, superficies sólidas 2px border + 5px shadow */}
+        <div className="grid gap-6 lg:gap-8 max-w-6xl mx-auto md:grid-cols-3">
           {current.items.map((item, idx) => {
             const Icon = item.Icon;
+            const isDark = item.isHighlighted;
 
             return (
               <div
                 key={idx}
-                className={`group relative flex flex-col justify-start rounded-2xl border-2 border-[#0F0F12] ${item.topBorder} ${item.tint} p-8 sm:p-9 shadow-[4px_4px_0_#0F0F12] transition-all duration-150 hover:-translate-y-1.5 ${item.hoverShadow}`}
+                className={`group relative flex flex-col justify-start rounded-2xl border-2 border-[#0F0F12] ${
+                  isDark ? "bg-[#0F0F12] text-white" : "bg-[#FFFFFF] text-[#0F0F12]"
+                } p-7 sm:p-8 shadow-[5px_5px_0_#0F0F12] transition-all hover:-translate-y-1 hover:shadow-[7px_7px_0_#F23636]`}
               >
-                <div className="flex items-start justify-between gap-4">
+                <div className="flex items-center justify-between gap-4 mb-6">
                   <span
-                    className={`inline-flex size-[56px] sm:size-[60px] shrink-0 items-center justify-center rounded-xl border-2 border-[#0F0F12] ${item.bg} text-white shadow-[3px_3px_0_#0F0F12] transition-transform duration-200 group-hover:scale-110 group-hover:rotate-6`}
+                    className={`inline-flex size-12 shrink-0 items-center justify-center rounded-xl border-2 border-[#0F0F12] ${
+                      isDark ? "bg-[#F23636] text-white" : "bg-[#0F0F12] text-white"
+                    } shadow-[2.5px_2.5px_0_#0F0F12] transition-transform group-hover:scale-105`}
                   >
-                    <Icon className="size-7 stroke-[2.4]" />
+                    <Icon className="size-6 stroke-[2.4]" />
                   </span>
-                  <span className={`inline-block rounded-md border border-[#0F0F12] ${item.bg} text-white text-[11px] font-black tracking-wider uppercase px-2.5 py-1 shadow-[2px_2px_0_#0F0F12]`}>
+                  
+                  <span className={`inline-block rounded-md border border-[#0F0F12] ${
+                    isDark ? "bg-[#F23636] text-white" : "bg-[#F23636] text-white"
+                  } text-[11px] font-black tracking-wider uppercase px-2.5 py-1 shadow-[2px_2px_0_#0F0F12]`}>
                     {item.tag}
                   </span>
                 </div>
 
-                <h3 className="mt-5 text-[22px] sm:text-[24px] font-black tracking-tight leading-snug text-[#0F0F12]">
+                <h3 className={`text-[21px] sm:text-[23px] font-black tracking-tight leading-snug ${
+                  isDark ? "text-white" : "text-[#0F0F12]"
+                }`}>
                   {item.title}
                 </h3>
 
-                <p className="mt-3 text-[16px] sm:text-[17px] leading-relaxed font-medium text-slate-700">
+                <p className={`mt-2.5 text-[16px] sm:text-[16.5px] leading-[1.5] font-medium ${
+                  isDark ? "text-slate-100" : "text-[#0F0F12]"
+                }`}>
                   {item.desc}
                 </p>
               </div>
             );
           })}
         </div>
+
       </div>
     </section>
   );
