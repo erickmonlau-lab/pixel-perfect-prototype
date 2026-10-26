@@ -178,44 +178,43 @@ function Home() {
               ============================================================ */}
           <div className="relative z-25 w-full max-w-3xl xl:max-w-[760px] 2xl:max-w-4xl text-center my-auto px-2 sm:px-4 py-1 sm:py-3">
             
-            {/* INSIGNIA DE MARCA POTENTE: PIEZA SÓLIDA NEGRA CON SILUETA ÚNICA Y NÚMERO ROJO */}
+            {/* INSIGNIA GRÁFICA DE MARCA NEO-BRUTALISTA CON 3 ZONAS CLARAS */}
             <div className="inline-flex items-center justify-center mb-3 sm:mb-4 select-none max-w-full">
               <a
                 href="#catalogo"
-                className="group inline-flex items-center gap-2.5 sm:gap-3 pl-1.5 pr-4 sm:pr-5 py-1.5 rounded-2xl bg-[#0F0F12] border-2 border-[#0F0F12] text-white shadow-[4px_4px_0_#EC3C2D] hover:shadow-[5px_5px_0_#EC3C2D] hover:-translate-y-0.5 transition-all cursor-pointer"
+                className="group inline-flex items-stretch rounded-2xl bg-white border-2 border-[#0F0F12] shadow-[4px_4px_0_#0F0F12] hover:shadow-[5px_5px_0_#EC3C2D] hover:-translate-y-0.5 transition-all cursor-pointer overflow-hidden"
                 title="Explorar el catálogo completo de 51 herramientas"
               >
-                {/* Miniatura mascota integrada a la izquierda */}
-                <span className="flex size-7 sm:size-8 shrink-0 items-center justify-center rounded-xl bg-white/10 border border-white/20 overflow-hidden">
+                {/* ZONA 1: NÚMERO PROTAGONISTA EN BLOQUE ROJO SÓLIDO (#EC3C2D) */}
+                <div className="flex items-center justify-center px-3.5 sm:px-4 py-2 bg-[#EC3C2D] text-white border-r-2 border-[#0F0F12]">
+                  <span className="text-base sm:text-lg font-black tracking-tight tabular-nums">
+                    {totalToolsCount}
+                  </span>
+                </div>
+
+                {/* ZONA 2: IDENTIDAD DEL PRODUCTO (HERRAMIENTAS PDF + MINI MASCOTA) */}
+                <div className="flex items-center gap-2 px-3 sm:px-3.5 py-1.5 bg-white border-r-2 border-[#0F0F12]">
                   <img
                     src={BRAND_ASSETS.mascotPng}
                     alt="BreadPDF"
-                    width={24}
-                    height={24}
-                    className="size-5 sm:size-6 object-contain"
+                    width={22}
+                    height={22}
+                    className="size-5 object-contain"
                   />
-                </span>
+                  <span className="text-xs sm:text-[13.5px] font-black uppercase tracking-wider text-[#0F0F12]">
+                    {locale === "ca" ? "EINES PDF" : locale === "en" ? "PDF TOOLS" : "HERRAMIENTAS PDF"}
+                  </span>
+                </div>
 
-                {/* Pieza roja sólida destacada con el número 51 */}
-                <span className="flex items-center justify-center h-6 sm:h-7 px-2.5 rounded-lg bg-[#EC3C2D] text-white text-xs sm:text-[13.5px] font-black border border-white/20 tabular-nums shadow-[1.5px_1.5px_0_rgba(0,0,0,0.4)]">
-                  {totalToolsCount}
-                </span>
-
-                {/* Texto blanco grande y pesado */}
-                <span className="text-xs sm:text-[14px] font-black uppercase tracking-wider text-white">
-                  {locale === "ca" ? "EINES PDF" : locale === "en" ? "PDF TOOLS" : "HERRAMIENTAS PDF"}
-                </span>
-
-                <span className="w-1.5 h-1.5 rounded-full bg-white/40" aria-hidden="true" />
-
-                {/* Mensaje secundario en segundo nivel legible */}
-                <span className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-slate-300 group-hover:text-white transition-colors">
-                  {locale === "ca" ? "GRATIS · AL TEU NAVEGADOR" : locale === "en" ? "FREE · IN YOUR BROWSER" : "GRATIS · EN TU NAVEGADOR"}
-                </span>
-
-                <span className="text-xs font-black text-[#EC3C2D] group-hover:translate-x-1 transition-transform" aria-hidden="true">
-                  →
-                </span>
+                {/* ZONA 3: BENEFICIO CLARO Y LEGIBLE (GRATIS · EN TU NAVEGADOR) */}
+                <div className="flex items-center gap-2 px-3 sm:px-3.5 py-1.5 bg-[#F8FAFC]">
+                  <span className="text-[11px] sm:text-xs font-black uppercase tracking-wider text-slate-600 group-hover:text-[#0F0F12] transition-colors">
+                    {locale === "ca" ? "GRATIS · AL TEU NAVEGADOR" : locale === "en" ? "FREE · IN YOUR BROWSER" : "GRATIS · EN TU NAVEGADOR"}
+                  </span>
+                  <span className="text-xs font-black text-[#EC3C2D] group-hover:translate-x-1 transition-transform" aria-hidden="true">
+                    →
+                  </span>
+                </div>
               </a>
             </div>
 
