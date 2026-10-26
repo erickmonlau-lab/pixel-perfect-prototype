@@ -120,7 +120,22 @@ function Home() {
              en blanco y rojo oficial con bordes 2px y sombras duras.
           Zero cintas amarillas distractoras antes del catálogo.
           ============================================================ */}
-      <section className="relative z-20 border-b-2 border-[#0F0F12] bg-[#EDEDF0] py-5 sm:py-7 lg:py-8 overflow-hidden">
+      <section className="relative z-20 border-b-2 border-[#0F0F12] bg-[#F7F7F8] py-5 sm:py-7 lg:py-8 overflow-hidden">
+        
+        {/* Iluminación ambiental cálida de fondo:
+            - Izquierda: Cálida pan/tostada/crema/naranja suave (detrás de la mascota)
+            - Derecha: Coral/rojo corporativo suave (detrás de las tarjetas de herramientas)
+            - Centro: Neutro, limpio y claro para máximo contraste del titular */}
+        <div
+          className="absolute inset-0 pointer-events-none z-0 hidden xl:block"
+          style={{
+            backgroundImage: `
+              radial-gradient(circle 380px at 10% 50%, rgba(254, 215, 170, 0.45), rgba(255, 237, 213, 0.25) 45%, transparent 75%),
+              radial-gradient(circle 360px at 90% 50%, rgba(254, 202, 202, 0.40), rgba(254, 226, 226, 0.20) 45%, transparent 75%)
+            `
+          }}
+          aria-hidden="true"
+        />
         
         {/* Canvas contenedor ultra-ancho max-w-[1760px] para máxima separación lateral */}
         <div className="relative w-full max-w-[1760px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 z-20 flex flex-col items-center justify-center min-h-[430px] lg:min-h-[460px]">
@@ -231,8 +246,8 @@ function Home() {
                   </svg>
                 </div>
 
-                {/* Texto EN TU NAVEGADOR inclinado a -5° */}
-                <div className="animate-claim-3 relative inline-block text-xs 2xl:text-[14px] font-black uppercase tracking-widest text-[#0F0F12] pl-7 origin-bottom-left transform -rotate-[5deg]">
+                {/* Texto EN TU NAVEGADOR inclinado a -5° con mayor tamaño (15.5-17px) y peso rotundo */}
+                <div className="animate-claim-3 relative inline-block text-[15.5px] 2xl:text-[17px] font-black uppercase tracking-wider text-[#0F0F12] pl-8 origin-bottom-left transform -rotate-[5deg]">
                   <span className="relative z-10 block select-none">
                     {locale === "ca" ? "AL TEU NAVEGADOR" : locale === "en" ? "IN YOUR BROWSER" : "EN TU NAVEGADOR"}
                   </span>
