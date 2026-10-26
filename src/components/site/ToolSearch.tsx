@@ -93,11 +93,11 @@ export function ToolSearch({ size = "md" }: { size?: "md" | "lg" }) {
     <div ref={containerRef} className="relative z-40 w-full">
       {/* Search Input Bar */}
       <div
-        className={`transition-all duration-200 flex items-center gap-3 sm:gap-4 rounded-2xl border-2 border-[#0F0F12] bg-white shadow-[5px_5px_0_#0F0F12] focus-within:shadow-[6px_6px_0_#0F0F12] focus-within:-translate-y-0.5 ${open ? "rounded-b-none" : ""} ${large ? "h-[68px] sm:h-[74px] pl-3.5 pr-4 sm:pl-4 sm:pr-5" : "h-14 px-4"}`}
+        className={`transition-all duration-200 flex items-center gap-3 sm:gap-4 rounded-2xl border-[3px] border-[#0F0F12] bg-white shadow-[7px_7px_0_#0F0F12] focus-within:shadow-[8px_8px_0_#EC3C2D] focus-within:-translate-y-0.5 ${open ? "rounded-b-none" : ""} ${large ? "h-[74px] sm:h-20 pl-3.5 pr-4 sm:pl-4 sm:pr-5" : "h-14 px-4"}`}
       >
-        {/* Botón de lupa en rojo corporativo oficial con borde negro 2px */}
-        <span className="flex size-11 sm:size-12 shrink-0 items-center justify-center rounded-xl border-2 border-[#0F0F12] bg-[#EC3C2D] text-white shadow-[2px_2px_0_#0F0F12] select-none">
-          <Search className="size-5 sm:size-6 text-white stroke-[2.8]" aria-hidden="true" />
+        {/* Botón de lupa en rojo corporativo oficial con borde negro 2.5px */}
+        <span className="flex size-12 sm:size-[52px] shrink-0 items-center justify-center rounded-xl border-2 sm:border-[2.5px] border-[#0F0F12] bg-[#EC3C2D] text-white shadow-[2px_2px_0_#0F0F12] select-none">
+          <Search className="size-6 text-white stroke-[2.8]" aria-hidden="true" />
         </span>
 
         <input
@@ -138,8 +138,8 @@ export function ToolSearch({ size = "md" }: { size?: "md" | "lg" }) {
           aria-controls="tool-search-results"
           placeholder={t.search.placeholder}
           aria-label={t.search.placeholder}
-          className={`w-full bg-transparent outline-none text-[#0F0F12] placeholder:text-slate-400 font-bold ${
-            large ? "text-[17px] sm:text-[19px]" : "text-[15px] sm:text-[16px]"
+          className={`w-full bg-transparent outline-none text-[#0F0F12] placeholder:text-slate-500 font-bold ${
+            large ? "text-lg sm:text-xl" : "text-[15px] sm:text-[16px]"
           }`}
         />
 
@@ -151,16 +151,16 @@ export function ToolSearch({ size = "md" }: { size?: "md" | "lg" }) {
               setQuery("");
               inputRef.current?.focus();
             }}
-            className="flex size-8 shrink-0 items-center justify-center rounded-xl border-2 border-[#0F0F12] bg-[#EDEDF0] text-[#0F0F12] hover:bg-[#FEF08A] transition-colors cursor-pointer mr-1"
+            className="flex size-9 shrink-0 items-center justify-center rounded-xl border-2 border-[#0F0F12] bg-[#EDEDF0] text-[#0F0F12] hover:bg-[#FEF08A] transition-colors cursor-pointer mr-1"
             aria-label="Limpiar búsqueda"
           >
-            <X className="size-4" strokeWidth={2.8} />
+            <X className="size-4.5" strokeWidth={2.8} />
           </button>
         )}
 
         {/* Badge Teclado Atajo Ctrl+K */}
         <div className="hidden sm:inline-flex items-center gap-1.5 shrink-0 select-none">
-          <kbd className="inline-flex items-center gap-1 rounded-lg border-2 border-[#0F0F12] bg-[#EDEDF0] px-2.5 py-1 text-xs font-black text-[#0F0F12] shadow-[2px_2px_0_#0F0F12]">
+          <kbd className="inline-flex items-center gap-1 rounded-xl border-2 border-[#0F0F12] bg-[#EDEDF0] px-3.5 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-extrabold text-[#0F0F12] shadow-[2px_2px_0_#0F0F12]">
             <span>Ctrl</span>
             <span>+</span>
             <span>K</span>
@@ -286,24 +286,38 @@ export function ToolSearch({ size = "md" }: { size?: "md" | "lg" }) {
       )}
 
       {/* ============================================================
-          POPULAR TOOLS BLOCK (Full width, flex-wrap centered, zero overflow)
+          POPULAR TOOLS BLOCK (Full width, flex-wrap centered, single line on desktop)
           ============================================================ */}
-      <div className="mt-5 flex flex-wrap items-center justify-center gap-2.5 w-full">
+      <div className="mt-6 flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 w-full max-w-5xl mx-auto">
         {/* "Populares:" label */}
-        <span className="shrink-0 text-[13px] font-black tracking-wider uppercase text-[#0F0F12] mr-1">
+        <span className="shrink-0 text-xs sm:text-sm font-black uppercase tracking-wider text-slate-900 mr-1.5">
           {t.search.popular}:
         </span>
 
-        {/* Fast Tool Pills con superficie sólida, alto contraste y hover contundente */}
+        {/* Fast Tool Pills con botones grandes, legibles, borde de 2.5px y hover coloreado */}
         {suggestions.map((tool) => {
+          const pillColors: Record<string, { dot: string; hoverBg: string; hoverText: string }> = {
+            "comprimir-pdf": { dot: "bg-[#EF4444]", hoverBg: "hover:bg-[#FEE2E2]", hoverText: "hover:text-[#991B1B]" },
+            "unir-pdf": { dot: "bg-[#DC2626]", hoverBg: "hover:bg-[#FEE2E2]", hoverText: "hover:text-[#991B1B]" },
+            "dividir-pdf": { dot: "bg-[#EA580C]", hoverBg: "hover:bg-[#FFEDD5]", hoverText: "hover:text-[#9A3412]" },
+            "pdf-a-jpg": { dot: "bg-[#8B5CF6]", hoverBg: "hover:bg-[#EDE9FE]", hoverText: "hover:text-[#5B21B6]" },
+            "extraer-paginas-pdf": { dot: "bg-[#06B6D4]", hoverBg: "hover:bg-[#CFFAFE]", hoverText: "hover:text-[#155E75]" },
+          };
+
+          const style = pillColors[tool.canonicalSlug] || {
+            dot: "bg-[#EC3C2D]",
+            hoverBg: "hover:bg-[#FEE2E2]",
+            hoverText: "hover:text-[#0F0F12]",
+          };
+
           return (
             <Link
               key={tool.slug}
               to={DETAIL_ROUTE}
               params={toolParams(locale, tool.canonicalSlug)}
-              className="group/pill inline-flex items-center gap-2 min-h-[44px] rounded-xl border-2 border-[#0F0F12] bg-white px-4 py-2.5 text-[14px] font-black text-[#0F0F12] whitespace-nowrap shadow-[3px_3px_0_#0F0F12] transition-all duration-150 cursor-pointer hover:-translate-y-0.5 hover:bg-[#0F0F12] hover:text-white hover:shadow-[4px_4px_0_#EC3C2D]"
+              className={`group/pill inline-flex items-center gap-2 px-3.5 sm:px-4 py-2 sm:py-2.5 text-xs sm:text-sm lg:text-[14.5px] font-extrabold rounded-full bg-white border-2 sm:border-[2.5px] border-[#0F0F12] shadow-[3px_3px_0_#0F0F12] sm:shadow-[4px_4px_0_#0F0F12] text-[#0F0F12] whitespace-nowrap transition-all duration-150 cursor-pointer hover:-translate-y-0.5 hover:shadow-[5px_5px_0_#0F0F12] ${style.hoverBg} ${style.hoverText}`}
             >
-              <span className="size-2 rounded-full border border-[#0F0F12] bg-[#EC3C2D] shrink-0 transition-transform group-hover/pill:scale-125 group-hover/pill:bg-white" />
+              <span className={`size-3 sm:size-3.5 rounded-full border border-[#0F0F12] ${style.dot} shrink-0 transition-transform group-hover/pill:scale-125`} />
               <span>{tool.name}</span>
             </Link>
           );

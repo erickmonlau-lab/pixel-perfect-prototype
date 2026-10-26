@@ -37,11 +37,11 @@ export function ConfidenceMarquee() {
   const repeated = [...list, ...list];
 
   return (
-    <div className="relative z-20 w-full overflow-hidden border-b-2 border-[#0F0F12] bg-[#FEF08A] py-3 select-none">
+    <div className="relative z-20 w-full overflow-hidden border-b-2 border-[#0F0F12] bg-[#FEF08A] py-3.5 select-none">
       <div className="flex w-max animate-marquee hover:[animation-play-state:paused] items-center gap-8">
         {repeated.map((msg, i) => (
           <div key={i} className="flex items-center gap-8">
-            <span className="text-[14px] sm:text-[15px] font-black uppercase tracking-wider text-[#0F0F12] whitespace-nowrap">
+            <span className="text-sm sm:text-base font-black uppercase tracking-wide text-[#0F0F12] whitespace-nowrap">
               {msg}
             </span>
             <span className="size-2 rounded-full bg-[#E8372C] border border-[#0F0F12]" />

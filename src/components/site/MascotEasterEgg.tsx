@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { BRAND_ASSETS } from "@/lib/brand";
 
-export function MascotEasterEgg() {
+export function MascotEasterEgg({ size = "md" }: { size?: "md" | "lg" }) {
   const [clicks, setClicks] = useState(0);
   const [isToasted, setIsToasted] = useState(false);
   const [crumbs, setCrumbs] = useState<{ id: number; x: number; y: number; r: number; color: string }[]>([]);
@@ -13,8 +13,8 @@ export function MascotEasterEgg() {
       const colors = ["#E8372C", "#F59E0B", "#FEF08A", "#DE834C", "#0F0F12"];
       const newCrumbs = Array.from({ length: 35 }).map((_, i) => ({
         id: i,
-        x: (Math.random() - 0.5) * 220,
-        y: (Math.random() - 0.5) * 180,
+        x: (Math.random() - 0.5) * 260,
+        y: (Math.random() - 0.5) * 200,
         r: Math.random() * 360,
         color: colors[i % colors.length]!,
       }));
@@ -29,11 +29,15 @@ export function MascotEasterEgg() {
     }
   }, [clicks]);
 
+  const isLarge = size === "lg";
+
   return (
-    <div className="relative inline-flex items-center justify-center">
+    <div className="relative inline-flex items-center justify-center shrink-0">
       <div
         onClick={() => setClicks((c) => c + 1)}
-        className={`relative flex items-center justify-center size-10 -my-2 rounded-full border-2 border-[#0F0F12] shadow-[2px_2px_0_#0F0F12] overflow-hidden shrink-0 cursor-pointer select-none transition-all duration-200 active:scale-95 ${
+        className={`relative flex items-center justify-center rounded-full border-2 sm:border-[2.5px] border-[#0F0F12] shadow-[3px_3px_0_#0F0F12] overflow-hidden shrink-0 cursor-pointer select-none transition-all duration-200 active:scale-95 ${
+          isLarge ? "size-11 sm:size-12 -my-2.5" : "size-10 -my-2"
+        } ${
           isToasted ? "bg-[#78350F] rotate-180 scale-125 shadow-[4px_4px_0_#0F0F12]" : "bg-white hover:scale-110"
         }`}
         title={isToasted ? "¡Tostada crujiente horneada!" : "¡Toca 5 veces a la mascota para tostarla!"}
@@ -41,14 +45,14 @@ export function MascotEasterEgg() {
         <img
           src={BRAND_ASSETS.mascotPng}
           alt="BreadPDF Mascot"
-          width={36}
-          height={36}
-          className={`size-8 object-contain transition-all duration-300 ${
+          width={48}
+          height={48}
+          className={`${isLarge ? "size-9 sm:size-10" : "size-8"} object-contain transition-all duration-300 ${
             isToasted ? "sepia brightness-75 contrast-150" : ""
           }`}
         />
         {clicks > 0 && clicks < 5 && (
-          <span className="absolute bottom-0 right-0 size-3.5 bg-[#E8372C] text-white rounded-full text-[9px] font-black flex items-center justify-center border border-black animate-ping">
+          <span className="absolute bottom-0 right-0 size-4 bg-[#E8372C] text-white rounded-full text-[10px] font-black flex items-center justify-center border border-black animate-ping">
             {clicks}
           </span>
         )}
