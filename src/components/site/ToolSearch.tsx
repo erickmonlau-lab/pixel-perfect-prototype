@@ -39,8 +39,24 @@ export function ToolSearch({ size = "md" }: { size?: "md" | "lg" }) {
   const listRef = useRef<HTMLUListElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Search across all 50 real tools
-  const results = useMemo(() => searchLocalizedTools(locale, query).slice(0, 10), [locale, query]);
+  // Rotating placeholder cues
+  const rotatingPlaceholders = useMemo(() => {
+    return {
+      es: ["Comprimir un PDF...", "Unir dos o más archivos...", "Pasar PDF a Word...", "Proteger con contraseña...", "Dividir o extraer páginas..."],
+      ca: ["Comprimir un PDF...", "Unir dos o més arxius...", "Passar PDF a Word...", "Protegir amb contrasenya...", "Dividir o extreure pàgines..."],
+      en: ["Compress a PDF...", "Merge multiple files...", "Convert PDF to Word...", "Protect with password...", "Split or extract pages..."],
+    }[locale as "es" | "ca" | "en"] ?? ["Comprimir un PDF...", "Unir dos o más archivos...", "Pasar PDF a Word...", "Proteger con contraseña..."];
+  }, [locale]);
+
+  const [placeholderIndex, setPlaceholderIndex] = useState(0);
+
+  useEffect(() => {
+    if (focused) return;
+    const interval = setInterval(() => {
+      setPlaceholderIndex((prev) => (prev + 1) % rotatingPlaceholders.length);
+    }, 3200);
+    return () => clearInterval(interval);
+  }, [focused, rotatingPlaceholders.length]);
   const suggestions = useMemo(() => localizedPopular(locale).slice(0, 5), [locale]);
   const open = focused && query.trim().length > 0;
   const large = size === "lg";
@@ -93,7 +109,7 @@ export function ToolSearch({ size = "md" }: { size?: "md" | "lg" }) {
     <div ref={containerRef} className="relative z-40 w-full">
       {/* Search Input Bar */}
       <div
-        className={`transition-all duration-200 flex items-center gap-3 sm:gap-4 rounded-2xl border-[3px] border-[#0F0F12] bg-white shadow-[7px_7px_0_#0F0F12] focus-within:shadow-[8px_8px_0_#EC3C2D] focus-within:-translate-y-0.5 ${open ? "rounded-b-none" : ""} ${large ? "h-[74px] sm:h-20 pl-3.5 pr-4 sm:pl-4 sm:pr-5" : "h-14 px-4"}`}
+        className={`transition-all duration-200 flex items-center gap-3 sm:gap-4 rounded-2xl border-[3px] border-[#0F0F12] bg-white shadow-[7px_7px_0_#0F0F12] focus-within:shadow-[8px_8px_0_#EC3C2D] focus-within:ring-4 focus-within:ring-[#EC3C2D]/20 focus-within:-translate-y-0.5 ${open ? "rounded-b-none" : ""} ${large ? "h-[74px] sm:h-20 pl-3.5 pr-4 sm:pl-4 sm:pr-5" : "h-14 px-4"}`}
       >
         {/* Botón de lupa en rojo corporativo oficial con borde negro 2.5px */}
         <span className="flex size-12 sm:size-[52px] shrink-0 items-center justify-center rounded-xl border-2 sm:border-[2.5px] border-[#0F0F12] bg-[#EC3C2D] text-white shadow-[2px_2px_0_#0F0F12] select-none">
@@ -136,9 +152,9 @@ export function ToolSearch({ size = "md" }: { size?: "md" | "lg" }) {
           aria-haspopup="listbox"
           aria-autocomplete="list"
           aria-controls="tool-search-results"
-          placeholder={t.search.placeholder}
+          placeholder={focused ? t.search.placeholder : (rotatingPlaceholders[placeholderIndex] || t.search.placeholder)}
           aria-label={t.search.placeholder}
-          className={`w-full bg-transparent outline-none text-[#0F0F12] placeholder:text-slate-500 font-bold ${
+          className={`w-full bg-transparent outline-none text-[#0F0F12] placeholder:text-slate-500 font-bold transition-all duration-300 ${
             large ? "text-lg sm:text-xl" : "text-[15px] sm:text-[16px]"
           }`}
         />
@@ -288,26 +304,35 @@ export function ToolSearch({ size = "md" }: { size?: "md" | "lg" }) {
       {/* ============================================================
           POPULAR TOOLS BLOCK (Full width, flex-wrap centered, single line on desktop)
           ============================================================ */}
-      <div className="mt-6 flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 w-full max-w-5xl mx-auto">
-        {/* "Populares:" label */}
-        <span className="shrink-0 text-xs sm:text-sm font-black uppercase tracking-wider text-slate-900 mr-1.5">
-          {t.search.popular}:
-        </span>
+      <div className="mt-7 flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 w-full max-w-5xl mx-auto">
+        {/* Encabezado con icono animado y flecha indicadora */}
+        <div className="inline-flex items-center gap-1.5 shrink-0 select-none mr-1">
+          <span className="flex size-7 items-center justify-center rounded-lg bg-[#FEF08A] border-2 border-[#0F0F12] shadow-[2px_2px_0_#0F0F12] text-xs">
+            🔥
+          </span>
+          <span className="text-sm font-black uppercase tracking-wider text-[#0F0F12]">
+            {t.search.popular}
+          </span>
+          <span className="text-[#EC3C2D] font-black text-sm hidden sm:inline">↴</span>
+        </div>
 
-        {/* Fast Tool Pills con botones grandes, legibles, borde de 2.5px y hover coloreado */}
-        {suggestions.map((tool) => {
-          const pillColors: Record<string, { dot: string; hoverBg: string; hoverText: string }> = {
-            "comprimir-pdf": { dot: "bg-[#EF4444]", hoverBg: "hover:bg-[#FEE2E2]", hoverText: "hover:text-[#991B1B]" },
-            "unir-pdf": { dot: "bg-[#DC2626]", hoverBg: "hover:bg-[#FEE2E2]", hoverText: "hover:text-[#991B1B]" },
-            "dividir-pdf": { dot: "bg-[#EA580C]", hoverBg: "hover:bg-[#FFEDD5]", hoverText: "hover:text-[#9A3412]" },
-            "pdf-a-jpg": { dot: "bg-[#8B5CF6]", hoverBg: "hover:bg-[#EDE9FE]", hoverText: "hover:text-[#5B21B6]" },
-            "extraer-paginas-pdf": { dot: "bg-[#06B6D4]", hoverBg: "hover:bg-[#CFFAFE]", hoverText: "hover:text-[#155E75]" },
+        {/* Fast Tool Pills con cuadradito sticker, micro-etiquetas y rotación alterna */}
+        {suggestions.map((tool, idx) => {
+          const pillConfigs: Record<string, { bg: string; border: string; shadow: string; tag: string; tagBg: string; rot: string }> = {
+            "comprimir-pdf": { bg: "hover:bg-[#FFF1F2]", border: "border-[#0F0F12]", shadow: "hover:shadow-[5px_5px_0_#EC3C2D]", tag: "Más usado", tagBg: "bg-[#EC3C2D] text-white", rot: "-rotate-1" },
+            "unir-pdf": { bg: "hover:bg-[#FEF2F2]", border: "border-[#0F0F12]", shadow: "hover:shadow-[5px_5px_0_#DC2626]", tag: "Rápido", tagBg: "bg-[#DC2626] text-white", rot: "rotate-1" },
+            "dividir-pdf": { bg: "hover:bg-[#FFF7ED]", border: "border-[#0F0F12]", shadow: "hover:shadow-[5px_5px_0_#EA580C]", tag: "Popular", tagBg: "bg-[#EA580C] text-white", rot: "-rotate-1" },
+            "pdf-a-jpg": { bg: "hover:bg-[#F5F3FF]", border: "border-[#0F0F12]", shadow: "hover:shadow-[5px_5px_0_#8B5CF6]", tag: "HD", tagBg: "bg-[#8B5CF6] text-white", rot: "rotate-1" },
+            "extraer-paginas-pdf": { bg: "hover:bg-[#ECFEFF]", border: "border-[#0F0F12]", shadow: "hover:shadow-[5px_5px_0_#06B6D4]", tag: "Útil", tagBg: "bg-[#06B6D4] text-white", rot: "-rotate-0.5" },
           };
 
-          const style = pillColors[tool.canonicalSlug] || {
-            dot: "bg-[#EC3C2D]",
-            hoverBg: "hover:bg-[#FEE2E2]",
-            hoverText: "hover:text-[#0F0F12]",
+          const config = pillConfigs[tool.canonicalSlug] || {
+            bg: "hover:bg-slate-50",
+            border: "border-[#0F0F12]",
+            shadow: "hover:shadow-[5px_5px_0_#0F0F12]",
+            tag: "PDF",
+            tagBg: "bg-[#0F0F12] text-white",
+            rot: "rotate-0",
           };
 
           return (
@@ -315,10 +340,15 @@ export function ToolSearch({ size = "md" }: { size?: "md" | "lg" }) {
               key={tool.slug}
               to={DETAIL_ROUTE}
               params={toolParams(locale, tool.canonicalSlug)}
-              className={`group/pill inline-flex items-center gap-2 px-3.5 sm:px-4 py-2 sm:py-2.5 text-xs sm:text-sm lg:text-[14.5px] font-extrabold rounded-full bg-white border-2 sm:border-[2.5px] border-[#0F0F12] shadow-[3px_3px_0_#0F0F12] sm:shadow-[4px_4px_0_#0F0F12] text-[#0F0F12] whitespace-nowrap transition-all duration-150 cursor-pointer hover:-translate-y-0.5 hover:shadow-[5px_5px_0_#0F0F12] ${style.hoverBg} ${style.hoverText}`}
+              className={`group/pill inline-flex items-center gap-2.5 h-[46px] px-3.5 sm:px-4 text-xs sm:text-[14px] font-extrabold rounded-2xl bg-white border-2 sm:border-[2.5px] border-[#0F0F12] shadow-[3px_3px_0_#0F0F12] text-[#0F0F12] whitespace-nowrap transition-all duration-150 cursor-pointer hover:-translate-y-1 hover:rotate-0 active:translate-y-0.5 ${config.rot} ${config.bg} ${config.shadow}`}
             >
-              <span className={`size-3 sm:size-3.5 rounded-full border border-[#0F0F12] ${style.dot} shrink-0 transition-transform group-hover/pill:scale-125`} />
-              <span>{tool.name}</span>
+              <span className="flex size-6 shrink-0 items-center justify-center rounded-lg border border-[#0F0F12] bg-[#0F0F12] text-white group-hover/pill:bg-[#EC3C2D] transition-colors">
+                <ToolIcon name={tool.icon} canonicalSlug={tool.canonicalSlug} className="size-3.5 text-white" />
+              </span>
+              <span className="tracking-tight">{tool.name}</span>
+              <span className={`text-[10px] font-black uppercase px-1.5 py-0.5 rounded-md border border-[#0F0F12] ${config.tagBg} shadow-[1px_1px_0_#0F0F12]`}>
+                {config.tag}
+              </span>
             </Link>
           );
         })}

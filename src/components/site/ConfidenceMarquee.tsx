@@ -35,16 +35,30 @@ export function ConfidenceMarquee() {
 
   const list = messages[locale] || messages.es;
   const repeated = [...list, ...list];
+  const reversedList = [...list].reverse();
+  const reversedRepeated = [...reversedList, ...reversedList];
 
   return (
-    <div className="relative z-20 w-full overflow-hidden border-b-2 border-[#0F0F12] bg-[#FEF08A] py-3.5 select-none">
-      <div className="flex w-max animate-marquee hover:[animation-play-state:paused] items-center gap-8">
+    <div className="relative z-20 w-full overflow-hidden border-b-2 border-[#0F0F12] bg-[#FEF08A] select-none py-2.5">
+      {/* Primera fila principal */}
+      <div className="flex w-max animate-marquee hover:[animation-play-state:paused] items-center gap-8 py-1">
         {repeated.map((msg, i) => (
           <div key={i} className="flex items-center gap-8">
             <span className="text-sm sm:text-base font-black uppercase tracking-wide text-[#0F0F12] whitespace-nowrap">
               {msg}
             </span>
-            <span className="size-2 rounded-full bg-[#E8372C] border border-[#0F0F12]" />
+            <span className="size-2.5 rounded-full bg-[#E8372C] border border-[#0F0F12]" />
+          </div>
+        ))}
+      </div>
+      {/* Segunda fila en sentido inverso más sutil */}
+      <div className="hidden sm:flex w-max animate-marquee-reverse hover:[animation-play-state:paused] items-center gap-8 pt-1 border-t border-[#0F0F12]/15 opacity-75">
+        {reversedRepeated.map((msg, i) => (
+          <div key={i} className="flex items-center gap-8">
+            <span className="text-xs sm:text-sm font-extrabold uppercase tracking-wider text-[#0F0F12] whitespace-nowrap">
+              {msg}
+            </span>
+            <span className="size-1.5 rounded-full bg-[#0F0F12]" />
           </div>
         ))}
       </div>
