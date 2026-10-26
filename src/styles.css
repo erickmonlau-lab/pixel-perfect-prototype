@@ -1156,3 +1156,6 @@
     transform: none !important;
   }
 }
+
+/* cache-bust 2026-10-26b: fresh asset hash after a cached 404 on previous hash */
+.bp-cachebust{--bp-v:2}
