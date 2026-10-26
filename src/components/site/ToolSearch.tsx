@@ -11,24 +11,12 @@ import type { ToolCategory } from "@/lib/tools/types";
 
 /** Category styling with solid backgrounds, crisp white text and smooth interactive hover */
 const POPULAR_TOOL_STYLES: Record<ToolCategory, { pill: string }> = {
-  optimizar: {
-    pill: "bg-[#2563EB] text-white hover:bg-[#1D4ED8] shadow-[0_1px_2px_rgba(37,99,235,0.25)]",
-  },
-  organizar: {
-    pill: "bg-[#7C3AED] text-white hover:bg-[#6D28D9] shadow-[0_1px_2px_rgba(124,58,237,0.25)]",
-  },
-  convertir: {
-    pill: "bg-[#047857] text-white hover:bg-[#065F46] shadow-[0_1px_2px_rgba(4,120,87,0.25)]",
-  },
-  editar: {
-    pill: "bg-[#EA580C] text-white hover:bg-[#C2410C] shadow-[0_1px_2px_rgba(234,88,12,0.25)]",
-  },
-  seguridad: {
-    pill: "bg-[#0284C7] text-white hover:bg-[#0369A1] shadow-[0_1px_2px_rgba(2,132,199,0.25)]",
-  },
-  inteligencia: {
-    pill: "bg-[#9333EA] text-white hover:bg-[#7E22CE] shadow-[0_1px_2px_rgba(147,51,234,0.25)]",
-  },
+  optimizar: { pill: "bg-white text-[#0F0F12] border-2 border-[#0F0F12] shadow-[2px_2px_0_#0F0F12] hover:bg-[#EC3C2D] hover:text-white hover:translate-x-[1px] hover:translate-y-[1px]" },
+  organizar: { pill: "bg-white text-[#0F0F12] border-2 border-[#0F0F12] shadow-[2px_2px_0_#0F0F12] hover:bg-[#EC3C2D] hover:text-white hover:translate-x-[1px] hover:translate-y-[1px]" },
+  convertir: { pill: "bg-white text-[#0F0F12] border-2 border-[#0F0F12] shadow-[2px_2px_0_#0F0F12] hover:bg-[#EC3C2D] hover:text-white hover:translate-x-[1px] hover:translate-y-[1px]" },
+  editar: { pill: "bg-white text-[#0F0F12] border-2 border-[#0F0F12] shadow-[2px_2px_0_#0F0F12] hover:bg-[#EC3C2D] hover:text-white hover:translate-x-[1px] hover:translate-y-[1px]" },
+  seguridad: { pill: "bg-white text-[#0F0F12] border-2 border-[#0F0F12] shadow-[2px_2px_0_#0F0F12] hover:bg-[#EC3C2D] hover:text-white hover:translate-x-[1px] hover:translate-y-[1px]" },
+  inteligencia: { pill: "bg-white text-[#0F0F12] border-2 border-[#0F0F12] shadow-[2px_2px_0_#0F0F12] hover:bg-[#EC3C2D] hover:text-white hover:translate-x-[1px] hover:translate-y-[1px]" },
 };
 
 const CATEGORY_NAMES: Record<ToolCategory, { es: string; ca: string; en: string }> = {
@@ -105,11 +93,7 @@ export function ToolSearch({ size = "md" }: { size?: "md" | "lg" }) {
     <div ref={containerRef} className="relative z-40 w-full">
       {/* Search Input Bar */}
       <div
-        className={`transition-all duration-200 flex items-center gap-3.5 rounded-2xl border bg-white shadow-[0_2px_8px_rgba(15,23,42,0.06),0_12px_28px_rgba(15,23,42,0.05)] ${
-          open
-            ? "border-brand-pdf ring-4 ring-[#EC3C2D]/12 rounded-b-none shadow-[0_16px_36px_rgba(236,60,45,0.08)]"
-            : "border-slate-300 hover:border-slate-400 focus-within:border-brand-pdf focus-within:ring-4 focus-within:ring-[#EC3C2D]/12"
-        } ${large ? "h-[56px] px-5 sm:h-[60px] sm:px-6" : "h-12 px-4"}`}
+        className={`transition-all duration-150 flex items-center gap-3.5 rounded-2xl border-2 border-[#0F0F12] bg-white shadow-[4px_4px_0_#0F0F12] ${open ? "rounded-b-none" : "focus-within:translate-x-[1px] focus-within:translate-y-[1px] focus-within:shadow-[3px_3px_0_#EC3C2D]"} ${large ? "h-[58px] px-5 sm:h-[62px] sm:px-6" : "h-12 px-4"}`}
       >
         <Search
           className={`shrink-0 text-brand-pdf ${large ? "size-6 sm:size-7" : "size-5"}`}
