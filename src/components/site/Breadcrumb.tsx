@@ -19,7 +19,7 @@ export interface BreadcrumbProps {
 
 /**
  * Reusable contextual breadcrumb navigation for BreadPDF.
- * Clean, compact, accessible and fully localized.
+ * Neo-Brutalist, crisp, accessible and fully localized.
  */
 export function Breadcrumb({ items, className = "", showHomeIcon = true }: BreadcrumbProps) {
   const { locale, t } = useLocale();
@@ -27,21 +27,21 @@ export function Breadcrumb({ items, className = "", showHomeIcon = true }: Bread
   return (
     <nav
       aria-label="Breadcrumb"
-      className={`text-[13px] sm:text-[13.5px] font-medium text-slate-500 mb-3 sm:mb-4 ${className}`}
+      className={`text-[14px] sm:text-[14.5px] font-bold text-slate-700 mb-3 sm:mb-4 ${className}`}
     >
-      <ol className="flex flex-wrap items-center gap-1.5 leading-none">
+      <ol className="flex flex-wrap items-center gap-2 leading-none">
         {/* Link to Home */}
         <li className="inline-flex items-center">
           <Link
             to={HOME_ROUTE}
             params={homeParams(locale)}
-            className="group inline-flex items-center gap-1 text-slate-500 hover:text-[#0F172A] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EC3C2D]/30 rounded-md py-0.5 px-1 -mx-1"
+            className="group inline-flex items-center gap-1.5 rounded-lg border-2 border-[#0F0F12] bg-white px-2.5 py-1 text-slate-800 shadow-[2px_2px_0_#0F0F12] hover:bg-[#FEF08A] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0F0F12]"
             aria-label={`${t.nav.home} · BreadPDF`}
           >
             {showHomeIcon && (
-              <Home className="size-3.5 text-slate-400 group-hover:text-[#EC3C2D] transition-colors shrink-0" />
+              <Home className="size-3.5 text-[#0F0F12] shrink-0" />
             )}
-            <span className="font-semibold text-slate-600 group-hover:text-[#0F172A] transition-colors">
+            <span className="font-black text-[#0F0F12]">
               {t.nav.home}
             </span>
           </Link>
@@ -53,13 +53,13 @@ export function Breadcrumb({ items, className = "", showHomeIcon = true }: Bread
 
           return (
             <React.Fragment key={index}>
-              <li className="inline-flex items-center text-slate-300 mx-0.5 select-none" aria-hidden="true">
-                <ChevronRight className="size-3.5" />
+              <li className="inline-flex items-center text-slate-400 select-none font-black" aria-hidden="true">
+                <ChevronRight className="size-4 stroke-[3] text-[#0F0F12]" />
               </li>
               <li className="inline-flex items-center">
                 {isLast || !item.to ? (
                   <span
-                    className="font-bold text-[#0F172A] truncate max-w-[240px] sm:max-w-md"
+                    className="inline-flex items-center rounded-lg border-2 border-[#0F0F12] bg-[#F4F4F6] px-2.5 py-1 font-black text-[#0F0F12] shadow-[2px_2px_0_#0F0F12] truncate max-w-[240px] sm:max-w-md"
                     aria-current="page"
                   >
                     {item.label}
@@ -69,7 +69,7 @@ export function Breadcrumb({ items, className = "", showHomeIcon = true }: Bread
                     to={item.to as any}
                     params={item.params as any}
                     search={item.search as any}
-                    className="text-slate-500 hover:text-[#0F172A] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EC3C2D]/30 rounded-md py-0.5 px-1 -mx-1 font-medium"
+                    className="inline-flex items-center rounded-lg border-2 border-[#0F0F12] bg-white px-2.5 py-1 font-black text-[#0F0F12] shadow-[2px_2px_0_#0F0F12] hover:bg-[#FEF08A] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0F0F12]"
                   >
                     {item.label}
                   </Link>
