@@ -43,15 +43,15 @@ export function LanguageSwitcher({ variant = "menu" }: { variant?: "menu" | "inl
     );
   }
 
-  /* ── Menu / Header — compact clean capsule [ ES  CA  EN ] ────────────────────── */
+  /* ── Menu / Header — compact clean neo-brutalist capsule [ ES  CA  EN ] ────────────────────── */
   return (
     <div
-      className="inline-flex items-center rounded-xl border border-[#E2E8F0] bg-white p-1 shadow-[0_1px_3px_rgba(0,0,0,0.04)]"
+      className="inline-flex items-center rounded-xl border-2 border-[#0F0F12] bg-white p-1 shadow-[2px_2px_0_#0F0F12]"
       role="group"
       aria-label={t.nav.languageAria}
     >
-      {/* Locale switch links — Real Links for SEO & accessibility */}
-      <div className="flex items-center gap-0.5">
+      {/* Locale switch links — Real Links for SEO & accessibility with animated sliding pill effect */}
+      <div className="flex items-center gap-1">
         {LOCALES.map((item) => {
           const isActive = item === locale;
           return (
@@ -61,10 +61,10 @@ export function LanguageSwitcher({ variant = "menu" }: { variant?: "menu" | "inl
               onClick={() => rememberLocale(item)}
               aria-current={isActive ? "true" : undefined}
               title={LOCALE_LABEL[item]}
-              className={`site-lang-btn flex items-center justify-center rounded-lg tracking-[0.04em] uppercase transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-pdf/40 ${
+              className={`site-lang-btn px-2.5 py-1 text-xs font-black tracking-wider uppercase rounded-lg transition-all duration-150 select-none ${
                 isActive
-                  ? "bg-[#B91C1C] text-white shadow-xs font-black"
-                  : "text-[#475569] hover:bg-[#F1F5F9] hover:text-[#0F172A]"
+                  ? "bg-[#E8372C] text-white shadow-[1px_1px_0_#0F0F12]"
+                  : "text-[#0F0F12] hover:bg-[#FEF08A] hover:text-[#0F0F12]"
               }`}
             >
               {LOCALE_SHORT[item]}

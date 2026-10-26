@@ -7,6 +7,9 @@ import { AuthProvider } from "@/lib/auth/auth-context";
 import { parsePath } from "@/lib/i18n/routing";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
+import { ThemeProvider } from "@/lib/theme/theme-context";
+import { GlobalDropzone } from "@/components/site/GlobalDropzone";
+import { CommandPalette } from "@/components/site/CommandPalette";
 
 export const Route = createFileRoute("/$lang")({
   beforeLoad: async ({ params }) => {
@@ -39,6 +42,7 @@ function LocaleLayout() {
   const isAuthPage = page.kind === "login" || page.kind === "register" || page.kind === "forgotPassword";
 
   return (
+    <ThemeProvider>
     <LocaleProvider locale={lang}>
       <AuthProvider>
         <div className="flex min-h-screen flex-col bg-[#F8FAFC]">
@@ -49,6 +53,9 @@ function LocaleLayout() {
           {!isAuthPage && <Footer />}
         </div>
       </AuthProvider>
+        <GlobalDropzone />
+      <CommandPalette />
     </LocaleProvider>
+  </ThemeProvider>
   );
 }

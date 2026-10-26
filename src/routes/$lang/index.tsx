@@ -1,6 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { CatalogBrowser } from "@/components/site/CatalogBrowser";
 import { TrustBanner } from "@/components/site/TrustBanner";
+import { ConfidenceMarquee } from "@/components/site/ConfidenceMarquee";
+import { HowItWorksSection } from "@/components/site/HowItWorksSection";
+import { MascotEasterEgg } from "@/components/site/MascotEasterEgg";
 import { Cpu, UserCheck, ArrowLeftRight, BookOpen, Clock, ArrowRight, Sparkles, ShieldCheck, Zap } from "lucide-react";
 import { ALL_GUIDES } from "@/lib/guides/registry";
 import { guidePath, SECTION_ROUTE, guidesHubParams, DETAIL_ROUTE, toolParams, alternateLinks } from "@/lib/i18n/routing";
@@ -281,15 +284,7 @@ function Home() {
             <div className="inline-flex items-center justify-center mb-5 select-none">
               <div className="group inline-flex items-center gap-3 px-5 py-2 rounded-full bg-[#FEF08A] border-2 border-[#0F0F12] shadow-[4px_4px_0_#0F0F12] transition-all duration-150 hover:-translate-y-0.5 hover:shadow-[5px_5px_0_#0F0F12] cursor-default">
                 {/* Mascota grande asomándose */}
-                <div className="relative flex items-center justify-center size-9 -my-2.5 rounded-full bg-white border-2 border-[#0F0F12] shadow-[1px_1px_0_#0F0F12] overflow-hidden shrink-0">
-                  <img
-                    src={BRAND_ASSETS.mascotPng}
-                    alt="BreadPDF Mascot"
-                    width={36}
-                    height={36}
-                    className="size-8 object-contain transform group-hover:scale-110 transition-transform"
-                  />
-                </div>
+                <MascotEasterEgg />
                 <span className="text-[13px] sm:text-[14px] font-black text-[#0F0F12] tracking-wide">
                   ✨ 51 Herramientas PDF · <span className="underline decoration-2 decoration-[#EC3C2D]">100% Gratis</span> y en tu Navegador
                 </span>
@@ -297,7 +292,7 @@ function Home() {
             </div>
 
             {/* H1 — Jerarquía editorial potente con tracking-tight, PDF. con Sticker 3D y subrayado marcador */}
-            <h1 className="text-display mx-auto max-w-[760px] text-[2.7rem] sm:text-[3.4rem] lg:text-[4rem] font-black leading-[1.05] tracking-[-0.04em] text-[#0F0F12] uppercase">
+            <h1 className="text-display mx-auto max-w-[760px] text-[2.7rem] sm:text-[3.4rem] lg:text-[4rem] font-black leading-[1.08] tracking-[-0.025em] text-[#0F0F12] uppercase [text-wrap:balance]">
               <span className="block">{heroCopy.line1}</span>
               <span className="inline-flex items-center justify-center flex-wrap gap-3 my-2 sm:my-2.5">
                 {/* Sticker 3D "PDF." inclinado con destello brillante */}
@@ -465,6 +460,9 @@ function Home() {
 
       </section>
 
+      {/* MARQUEE DE CONFIANZA INFINITO BREADPDF */}
+      <ConfidenceMarquee />
+
       {/* ============================================================
           SECTION — FULL CATALOG: Direct Product Entry via Filters
           ============================================================ */}
@@ -476,6 +474,9 @@ function Home() {
           </div>
         </div>
       </section>
+
+      {/* SECCIÓN "CÓMO FUNCIONA": Sube -> Hornea -> Descarga */}
+      <HowItWorksSection />
 
       {/* Trust & Transparency Banner (3 clear core pillars with vibrant colors) */}
       <TrustBanner />

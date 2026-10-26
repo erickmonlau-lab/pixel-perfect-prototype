@@ -42,6 +42,7 @@ import { ToolIcon } from "./ToolIcon";
 import { getRichToolIcon } from "./RichToolIcon";
 import { getToolColorTheme } from "@/lib/tools/color-system";
 import { LanguageSwitcher } from "./LanguageSwitcher";
+import { ThemeToggle } from "./ThemeToggle";
 import {
   trackToolCatalogCategoryClicked,
   trackToolCatalogViewAllClicked,
@@ -567,12 +568,16 @@ export function Header() {
 
           {/* Selector de idioma compacto en cápsula [ ES CA EN ] */}
           <LanguageSwitcher />
+
+          {/* Toggle Modo Oscuro / Horno de Noche */}
+          <ThemeToggle />
         </div>
 
         {/* ============================================================
             MÓVIL: TOGGLE + IDIOMA
             ============================================================ */}
-        <div className="ml-auto flex items-center gap-2.5 lg:hidden">
+        <div className="ml-auto flex items-center gap-2 lg:hidden">
+          <ThemeToggle />
           <LanguageSwitcher />
           <button
             type="button"
