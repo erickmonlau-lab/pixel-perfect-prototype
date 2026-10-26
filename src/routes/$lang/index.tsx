@@ -121,21 +121,34 @@ function Home() {
         <div className="relative w-full max-w-[1520px] mx-auto px-4 sm:px-6 lg:px-8 z-20 flex flex-col items-center justify-center min-h-[420px] lg:min-h-[460px]">
 
           {/* ============================================================
-              ZONA 1 (LATERAL IZQUIERDO): MASCOTA DINÁMICA OFICIAL DE LA REFERENCIA
-              Mascota pan corriendo con documento PDF rojo y líneas de movimiento
+              ZONA 1 (LATERAL IZQUIERDO): MASCOTA + FRASE DE MARCA ANIMADA
+              Posición exterior izquierda, escala prominente y microanimación conectada
               ============================================================ */}
-          <div className="hidden xl:block absolute left-0 xl:left-[-1%] 2xl:left-[0.5%] top-1/2 -translate-y-1/2 z-25 select-none pointer-events-none transition-transform hover:scale-105 duration-300">
-            <img
-              src="/brand/hero-mascot-perfect.png"
-              alt="Mascota BreadPDF"
-              width={260}
-              height={270}
-              className="w-56 h-auto 2xl:w-68 drop-shadow-[5px_5px_0_#0F0F12] object-contain"
-              loading="eager"
-              fetchPriority="high"
-            />
-          </div>
+          <div className="hidden xl:flex flex-col items-center absolute left-[-0.5%] 2xl:left-[0.5%] top-1/2 -translate-y-1/2 z-25 select-none pointer-events-none">
+            <div className="relative transition-transform hover:scale-105 duration-300">
+              <img
+                src="/brand/hero-mascot-perfect.png"
+                alt="Mascota BreadPDF"
+                width={280}
+                height={290}
+                className="w-58 h-auto 2xl:w-68 drop-shadow-[5px_5px_0_#0F0F12] object-contain"
+                loading="eager"
+                fetchPriority="high"
+              />
+            </div>
 
+            {/* Micro-bloque de marca junto a la mascota (Sin marquesina de ancho completo) */}
+            <div className="mt-2 flex flex-col items-center bg-white px-3.5 py-1.5 rounded-xl border-2 border-[#0F0F12] shadow-[3px_3px_0_#0F0F12] text-center">
+              <div className="flex items-center gap-1.5 text-[11.5px] 2xl:text-xs font-black uppercase tracking-wider text-[#0F0F12]">
+                <span className="text-[#EC3C2D]">MÁS RÁPIDO</span>
+                <span>·</span>
+                <span className="text-[#EC3C2D]">MÁS FÁCIL</span>
+              </div>
+              <div className="text-[11px] 2xl:text-[11.5px] font-black uppercase tracking-widest text-[#0F0F12] mt-0.5">
+                EN TU NAVEGADOR
+              </div>
+            </div>
+          </div>
 
           {/* ============================================================
               ZONA 2 (CENTRO): MENSAJE PRINCIPAL, BUSCADOR Y POPULARES
@@ -201,7 +214,7 @@ function Home() {
               ZONA 3 (LATERAL DERECHO): 4 TARJETAS INCLINADAS DE LA REFERENCIA
               Comprimir, Unir, Convertir, Dividir con sombras duras e iconos exactos
               ============================================================ */}
-          <div className="hidden xl:block absolute right-0 xl:right-[-1%] 2xl:right-[0.5%] top-1/2 -translate-y-1/2 z-25 select-none pointer-events-none transition-transform hover:scale-105 duration-300">
+          <div className="hidden xl:block absolute right-[-0.5%] 2xl:right-[0.5%] top-1/2 -translate-y-1/2 z-25 select-none pointer-events-none transition-transform hover:scale-105 duration-300">
             <img
               src="/brand/hero-tools-perfect.png"
               alt="Herramientas PDF principales"
@@ -231,8 +244,6 @@ function Home() {
 
       </section>
 
-      {/* Micro-ticker animado de marca: MÁS RÁPIDO · MÁS FÁCIL · EN TU NAVEGADOR */}
-      <ConfidenceMarquee />
 
       {/* ============================================================
           FRANJA HORIZONTAL NEGRA SÓLIDA DE 3 BENEFICIOS REALES
@@ -242,54 +253,54 @@ function Home() {
           2. Procesamiento local en el navegador (WASM / RAM)
           3. 51 Herramientas integradas en un solo catálogo
           ============================================================ */}
-      <aside aria-label="Beneficios principales" className="relative z-20 border-b-2 border-[#0F0F12] bg-[#0F0F12] text-white py-4 px-4 sm:px-6">
+      <aside aria-label="Beneficios principales" className="relative z-20 border-b-2 border-[#0F0F12] bg-white text-[#0F0F12] py-4 px-4 sm:px-6">
         <div className="mx-auto max-w-[1520px] flex flex-col sm:flex-row items-center justify-around gap-4 sm:gap-6 text-center sm:text-left">
           
           {/* Beneficio 1: Gratuito */}
           <div className="flex items-center gap-3">
-            <span className="flex size-9 sm:size-10 shrink-0 items-center justify-center rounded-xl bg-white border border-white/20 text-[#EC3C2D] shadow-[2px_2px_0_#EC3C2D]">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round" className="size-5">
+            <span className="flex size-10 sm:size-11 shrink-0 items-center justify-center rounded-xl bg-white border-2 border-[#0F0F12] text-[#EC3C2D] shadow-[2.5px_2.5px_0_#0F0F12]">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round" className="size-5.5">
                 <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
               </svg>
             </span>
             <div>
-              <p className="text-[15px] sm:text-[16px] font-black uppercase tracking-wide text-white leading-tight">
-                {locale === "ca" ? "Ús 100% Gratuït" : locale === "en" ? "100% Free to Use" : "Uso 100% Gratuito"}
+              <p className="text-[16px] sm:text-[17px] font-black uppercase tracking-wide text-[#0F0F12] leading-tight">
+                {locale === "ca" ? "100% Gratuït" : locale === "en" ? "100% Free" : "100% Gratuito"}
               </p>
-              <p className="text-xs sm:text-[13px] text-slate-300 font-medium">
-                {locale === "ca" ? "Sense quotes ocultes ni subscripció" : locale === "en" ? "No hidden fees or subscriptions" : "Sin tarifas ocultas ni suscripciones"}
+              <p className="text-xs sm:text-[13.5px] text-slate-600 font-medium mt-0.5">
+                {locale === "ca" ? "Sense quotes ocultes ni subscripció" : locale === "en" ? "No hidden fees or subscriptions" : "Sin suscripción ni pagos obligatorios"}
               </p>
             </div>
           </div>
 
           {/* Separador vertical escritorio */}
-          <span className="hidden lg:block w-px h-8 bg-white/20" />
+          <span className="hidden lg:block w-px h-9 bg-[#0F0F12]/15" />
 
           {/* Beneficio 2: Local en RAM */}
           <div className="flex items-center gap-3">
-            <span className="flex size-9 sm:size-10 shrink-0 items-center justify-center rounded-xl bg-white border border-white/20 text-[#EC3C2D] shadow-[2px_2px_0_#EC3C2D]">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round" className="size-5">
+            <span className="flex size-10 sm:size-11 shrink-0 items-center justify-center rounded-xl bg-white border-2 border-[#0F0F12] text-[#EC3C2D] shadow-[2.5px_2.5px_0_#0F0F12]">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round" className="size-5.5">
                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
                 <path d="M9.5 11.5l2 2 3.5-3.5" />
               </svg>
             </span>
             <div>
-              <p className="text-[15px] sm:text-[16px] font-black uppercase tracking-wide text-white leading-tight">
-                {locale === "ca" ? "Processament Local al Navegador" : locale === "en" ? "Browser Local Processing" : "Procesamiento Local en Navegador"}
+              <p className="text-[16px] sm:text-[17px] font-black uppercase tracking-wide text-[#0F0F12] leading-tight">
+                {locale === "ca" ? "Processament Local" : locale === "en" ? "Local Processing" : "Procesamiento Local"}
               </p>
-              <p className="text-xs sm:text-[13px] text-slate-300 font-medium">
-                {locale === "ca" ? "Execució en RAM per a màxima privadesa" : locale === "en" ? "RAM execution for total privacy" : "Ejecución en RAM para máxima privacidad"}
+              <p className="text-xs sm:text-[13.5px] text-slate-600 font-medium mt-0.5">
+                {locale === "ca" ? "Execució al navegador per a màxima privadesa" : locale === "en" ? "In-browser execution for real privacy" : "En tu navegador para máxima privacidad"}
               </p>
             </div>
           </div>
 
           {/* Separador vertical escritorio */}
-          <span className="hidden lg:block w-px h-8 bg-white/20" />
+          <span className="hidden lg:block w-px h-9 bg-[#0F0F12]/15" />
 
           {/* Beneficio 3: Catálogo Completo */}
           <div className="flex items-center gap-3">
-            <span className="flex size-9 sm:size-10 shrink-0 items-center justify-center rounded-xl bg-white border border-white/20 text-[#EC3C2D] shadow-[2px_2px_0_#EC3C2D]">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round" className="size-5">
+            <span className="flex size-10 sm:size-11 shrink-0 items-center justify-center rounded-xl bg-white border-2 border-[#0F0F12] text-[#EC3C2D] shadow-[2.5px_2.5px_0_#0F0F12]">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round" className="size-5.5">
                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
                 <polyline points="14 2 14 8 20 8" />
                 <line x1="16" y1="13" x2="8" y2="13" />
@@ -298,10 +309,10 @@ function Home() {
               </svg>
             </span>
             <div>
-              <p className="text-[15px] sm:text-[16px] font-black uppercase tracking-wide text-white leading-tight">
-                {`${totalToolsCount} ${locale === "ca" ? "Eines en un Sol Lloc" : locale === "en" ? "Tools in One Place" : "Herramientas en un Solo Lugar"}`}
+              <p className="text-[16px] sm:text-[17px] font-black uppercase tracking-wide text-[#0F0F12] leading-tight">
+                {`${totalToolsCount} ${locale === "ca" ? "Eines PDF" : locale === "en" ? "PDF Tools" : "Herramientas PDF"}`}
               </p>
-              <p className="text-xs sm:text-[13px] text-slate-300 font-medium">
+              <p className="text-xs sm:text-[13.5px] text-slate-600 font-medium mt-0.5">
                 {locale === "ca" ? "Comprimeix, uneix, converteix i edita" : locale === "en" ? "Compress, merge, convert and edit" : "Comprime, une, convierte y edita"}
               </p>
             </div>

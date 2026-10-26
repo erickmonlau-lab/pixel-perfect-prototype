@@ -164,15 +164,7 @@ export function ToolSearch({ size = "md" }: { size?: "md" | "lg" }) {
         />
 
         {/* Clear input button */}
-        {/* Discreto indicador de atajo Ctrl+K en escritorio */}
-        {!query.trim() && (
-          <div className="hidden lg:flex items-center shrink-0 mr-1 select-none pointer-events-none">
-            <kbd className="inline-flex items-center gap-0.5 rounded-lg border border-slate-300 bg-slate-100/80 px-2 py-0.5 text-[11px] font-bold text-slate-500 shadow-2xs">
-              <span>Ctrl</span>
-              <span>K</span>
-            </kbd>
-          </div>
-        )}
+        
 
         {query.trim().length > 0 && (
           <button
@@ -307,18 +299,18 @@ export function ToolSearch({ size = "md" }: { size?: "md" | "lg" }) {
       )}
 
       {/* ============================================================
-          POPULAR TOOLS BLOCK: RECTA, HORIZONTAL, VISUAL, ORDENADA Y CON ICONOS AUTÉNTICOS
-          Alineación recta, sin amontonamientos, iconos auténticos del catálogo con colores de identidad
+          POPULAR TOOLS BLOCK: FILA EDITORIAL LIMPIA, HORIZONTAL, RECTA Y EQUILIBRADA
+          POPULARES | Comprimir PDF | Unir PDF | Dividir PDF | PDF a JPG | Extraer páginas
           ============================================================ */}
       <div className="mt-4 sm:mt-5 flex flex-wrap xl:flex-nowrap items-center justify-center gap-2 sm:gap-2.5 w-full max-w-5xl mx-auto">
-        {/* Rótulo POPULARES nítido y alineado */}
-        <span className="shrink-0 text-[13px] sm:text-[14px] font-black uppercase tracking-wider text-[#0F0F12] mr-1 select-none">
+        {/* Rótulo POPULARES alineado */}
+        <span className="shrink-0 text-[14px] sm:text-[15px] font-black uppercase tracking-wider text-[#0F0F12] mr-1 select-none">
           {t.search.popular}
         </span>
 
-        <span className="hidden xl:inline-block w-px h-5 bg-[#0F0F12]/20 mr-1" aria-hidden="true" />
+        <span className="hidden xl:inline-block w-px h-6 bg-[#0F0F12]/20 mr-1.5" aria-hidden="true" />
 
-        {/* Fila única de accesos populares con iconos auténticos del catálogo */}
+        {/* Fila horizontal recta en escritorio */}
         <div className="flex flex-wrap xl:flex-nowrap items-center justify-center gap-2 sm:gap-2.5">
           {suggestions.map((tool) => {
             const isFeatured = tool.canonicalSlug === "comprimir-pdf";
@@ -335,7 +327,7 @@ export function ToolSearch({ size = "md" }: { size?: "md" | "lg" }) {
                     : "bg-white text-[#0F0F12] hover:bg-[#F8FAFC]"
                 }`}
               >
-                {/* Contenedor del icono con el color auténtico de la herramienta del catálogo */}
+                {/* Icono auténtico de la herramienta del catálogo */}
                 <span
                   className={`flex size-6 sm:size-7 shrink-0 items-center justify-center rounded-lg border-1.5 border-[#0F0F12] shadow-[1.5px_1.5px_0_#0F0F12] group-hover/pill:scale-105 transition-transform ${
                     isFeatured
@@ -343,7 +335,11 @@ export function ToolSearch({ size = "md" }: { size?: "md" | "lg" }) {
                       : `${theme.bg} ${theme.text}`
                   }`}
                 >
-                  <ToolIcon name={tool.icon} canonicalSlug={tool.canonicalSlug} className="size-4" />
+                  <ToolIcon
+                    name={tool.icon}
+                    canonicalSlug={tool.canonicalSlug}
+                    className={`size-4 ${isFeatured ? "text-[#EC3C2D]" : ""}`}
+                  />
                 </span>
                 <span className="text-[14px] sm:text-[15px] font-black tracking-tight">{tool.name}</span>
               </Link>
