@@ -6,13 +6,15 @@ import { useLocale } from "@/lib/i18n/context";
 import { useFavorites } from "@/lib/auth/favorites-store";
 import { DETAIL_ROUTE, toolParams } from "@/lib/i18n/routing";
 import { ToolIcon } from "./ToolIcon";
+import { getToolColorTheme } from "@/lib/tools/color-system";
 
 /**
- * Neo-Brutalist Tool Catalog Card for BreadPDF:
- * - Solid White Card with 2px Solid Black Border
+ * Neo-Brutalist Color-Rich Tool Catalog Card for BreadPDF:
+ * - Solid White Card with 2px Solid Black Border (#0F0F12)
  * - Hard Offset Shadow: 4px 4px 0 #0F0F12
- * - Punchy Black Display Title + Crisp Clean Description
- * - Brand Red or Black hover dynamics with shadow compression
+ * - Dynamic category/tool color block for icon with 2px border and hard shadow
+ * - Interactive hover: subtle tool color tint (e.g. bg-blue-50/50), card elevation (-translate-y-1),
+ *   icon micro-rotation & scale (rotate-6 scale-110), and vivid tool-colored shadow!
  */
 export function ToolCatalogCard({
   tool,
@@ -28,6 +30,8 @@ export function ToolCatalogCard({
   const { locale, t } = useLocale();
   const canonicalSlug = (tool as LocalizedTool).canonicalSlug;
   const isPending = isRoadmap || (tool as LocalizedTool).status === "pending";
+
+  const colorTheme = getToolColorTheme(canonicalSlug, tool.category);
 
   const cardPad = compact ? "p-4 sm:p-5" : "p-5 sm:p-6";
   const cardMinH = compact ? "min-h-[170px]" : "min-h-[210px]";
@@ -50,14 +54,14 @@ export function ToolCatalogCard({
       className={`group relative flex h-full ${cardMinH} flex-col justify-start rounded-2xl border-2 border-[#0F0F12] ${cardPad} transition-all duration-150 select-none ${
         isPending
           ? "border-dashed bg-white/70 opacity-75 shadow-none"
-          : "bg-white shadow-[4px_4px_0_#0F0F12] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0_#0F0F12] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none"
+          : `bg-white shadow-[4px_4px_0_#0F0F12] ${colorTheme.shadowHover} ${colorTheme.tintBg} hover:-translate-y-1.5 active:translate-y-0 active:shadow-[2px_2px_0_#0F0F12]`
       }`}
     >
       <div>
         <div className="flex items-start justify-between gap-3">
-          {/* Neo-brutalist Icon container: Solid Black with 2px border or Solid Red */}
+          {/* Neo-brutalist Vivid Icon Container: Solid tool color + 2px border + 2px shadow + hover micro-rotation */}
           <span
-            className={`inline-flex ${iconSize} shrink-0 items-center justify-center rounded-xl border-2 border-[#0F0F12] bg-[#0F0F12] text-white shadow-[2px_2px_0_#0F0F12] transition-transform duration-150 group-hover:scale-105 group-hover:bg-[#EC3C2D]`}
+            className={`inline-flex ${iconSize} shrink-0 items-center justify-center rounded-xl border-2 border-[#0F0F12] ${colorTheme.bg} ${colorTheme.text} shadow-[2px_2px_0_#0F0F12] transition-transform duration-200 group-hover:scale-110 group-hover:rotate-6`}
           >
             <ToolIcon name={tool.icon} canonicalSlug={canonicalSlug} className={iconInner} />
           </span>
@@ -96,7 +100,7 @@ export function ToolCatalogCard({
         {/* Title & Tagline in bold neo-brutalist hierarchy */}
         <div className={mtTitle}>
           <h3
-            className={`${titleSize} tracking-tight text-[#0F0F12] transition-colors group-hover:text-[#EC3C2D]`}
+            className={`${titleSize} tracking-tight text-[#0F0F12] transition-colors group-hover:text-[#0F0F12]`}
           >
             {tool.name}
           </h3>

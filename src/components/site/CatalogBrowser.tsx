@@ -3,6 +3,7 @@ import { ROADMAP_TOOLS } from "@/lib/tools/catalog";
 import { useLocale } from "@/lib/i18n/context";
 import type { ToolCategory } from "@/lib/tools/types";
 import { ToolCatalogCard } from "./ToolCatalogCard";
+import { CATEGORY_COLORS } from "@/lib/tools/color-system";
 
 type Filter = ToolCategory | "all";
 
@@ -45,7 +46,7 @@ export function CatalogBrowser() {
 
   return (
     <div className="w-full">
-      {/* Category Filter Pills — Neo-Brutalist Solid Blocks */}
+      {/* Category Filter Pills — Neo-Brutalist Vivid Colored Pills */}
       <div
         className="scrollbar-none -mx-4 flex items-center justify-start gap-2.5 overflow-x-auto px-4 pb-3 pt-1 sm:mx-0 sm:flex-wrap sm:justify-center sm:px-0"
         role="tablist"
@@ -53,6 +54,19 @@ export function CatalogBrowser() {
       >
         {filters.map((item) => {
           const isActive = filter === item.id;
+          const catColor = item.id !== "all" ? CATEGORY_COLORS[item.id] : null;
+
+          // Compute active & hover styles
+          let activeClass = "";
+          if (isActive) {
+            if (item.id === "all") {
+              activeClass = "bg-[#0F0F12] text-white shadow-[3px_3px_0_#EC3C2D] translate-x-[1px] translate-y-[1px]";
+            } else if (catColor) {
+              activeClass = `${catColor.bg} ${catColor.text} shadow-[3px_3px_0_#0F0F12] translate-x-[1px] translate-y-[1px]`;
+            }
+          } else {
+            activeClass = "bg-white text-[#0F0F12] shadow-[3px_3px_0_#0F0F12] hover:bg-[#F8FAFC] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0_#0F0F12]";
+          }
 
           return (
             <button
@@ -61,17 +75,15 @@ export function CatalogBrowser() {
               role="tab"
               aria-selected={isActive}
               onClick={() => setFilter(item.id)}
-              className={`transition-all duration-120 inline-flex shrink-0 items-center justify-center gap-2 rounded-xl px-4 py-2 sm:px-5 sm:py-2.5 text-[15px] sm:text-[16px] font-black cursor-pointer select-none leading-none border-2 border-[#0F0F12] ${
-                isActive
-                  ? "bg-[#0F0F12] text-white shadow-[3px_3px_0_#EC3C2D] translate-x-[1px] translate-y-[1px]"
-                  : "bg-white text-[#0F0F12] shadow-[3px_3px_0_#0F0F12] hover:bg-[#F4F4F6] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0_#0F0F12] active:translate-x-[3px] active:translate-y-[3px] active:shadow-none"
-              }`}
+              className={`transition-all duration-120 inline-flex shrink-0 items-center justify-center gap-2 rounded-xl px-4 py-2 sm:px-5 sm:py-2.5 text-[15px] sm:text-[16px] font-black cursor-pointer select-none leading-none border-2 border-[#0F0F12] ${activeClass} active:translate-x-[3px] active:translate-y-[3px] active:shadow-none`}
             >
               <span className="tracking-tight leading-none pt-[1px] uppercase">{item.label}</span>
               <span
                 className={`inline-flex items-center justify-center min-w-[22px] h-[20px] px-1.5 rounded-md text-[12px] font-black tracking-normal tabular-nums leading-none border border-[#0F0F12] ${
                   isActive
-                    ? "bg-[#EC3C2D] text-white"
+                    ? item.id === "all"
+                      ? "bg-[#EC3C2D] text-white"
+                      : "bg-[#0F0F12] text-white"
                     : "bg-[#EDEDF0] text-[#0F0F12]"
                 }`}
               >

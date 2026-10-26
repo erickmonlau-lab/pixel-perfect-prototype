@@ -40,6 +40,7 @@ import type { ToolCategory } from "@/lib/tools/types";
 import { TOOL_PRACTICAL_PROFILES } from "@/lib/tools/workflow-definitions";
 
 import { AdSlot } from "@/lib/monetization/adsense";
+import { getToolColorTheme } from "@/lib/tools/color-system";
 import { findGuideBySlug, guideSlugFor } from "@/lib/guides/registry";
 import { CampusUploadGuide } from "@/components/guides/CampusUploadGuide";
 import { EcommerceWebpGuide } from "@/components/guides/EcommerceWebpGuide";
@@ -463,7 +464,7 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
             return (
               <li
                 key={index}
-                className="rounded-2xl border-2 border-[#0F0F12] bg-white p-6 sm:p-8 shadow-[4px_4px_0_#0F0F12] flex flex-col justify-start transition-all hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0_#0F0F12]"
+                className={`group rounded-2xl border-2 border-[#0F0F12] bg-white p-6 sm:p-8 shadow-[4px_4px_0_#0F0F12] ${getToolColorTheme(tool.canonicalSlug, tool.category).shadowHover} flex flex-col justify-start transition-all duration-150 hover:-translate-y-1`}
               >
                 <span
                   className="flex size-11 items-center justify-center rounded-xl border-2 border-[#0F0F12] bg-[#EC3C2D] text-white text-[17px] font-black shadow-[2px_2px_0_#0F0F12]"

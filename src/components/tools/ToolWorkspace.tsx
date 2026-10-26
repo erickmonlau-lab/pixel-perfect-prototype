@@ -25,7 +25,8 @@ import type { OptionValues, ToolDefinition, ToolOutput } from "@/lib/tools/types
 import { useLocale } from "@/lib/i18n/context";
 import { localizeOutputName } from "@/lib/tools/output-names";
 import { BRAND_NAME } from "@/lib/i18n/config";
-import { BRAND_ASSETS } from "@/lib/brand";
+import { BRAND_ASSETS, mascotForTool } from "@/lib/brand";
+import { getToolColorTheme } from "@/lib/tools/color-system";
 import { Link, useNavigate } from "@tanstack/react-router";
 import { ArrowRight, ArrowUpRight, Grid } from "lucide-react";
 import {
@@ -645,10 +646,10 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
             setDragging(false);
             addFiles(event.dataTransfer.files);
           }}
-          className={`transition-all duration-120 m-4 sm:m-6 rounded-2xl border-2 border-[#0F0F12] px-6 py-10 sm:py-14 text-center cursor-pointer ${
+          className={`transition-all duration-150 m-4 sm:m-6 rounded-3xl border-3 border-dashed border-[#0F0F12] px-6 py-10 sm:py-14 text-center cursor-pointer select-none ${
     dragging
-      ? "bg-[#FEECEB] scale-[1.005] shadow-[6px_6px_0_#EC3C2D]"
-      : "bg-[#EDEDF0] shadow-[4px_4px_0_#0F0F12] hover:bg-white hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0_#0F0F12]"
+      ? "bg-[#FEECEB] scale-[1.01] shadow-[8px_8px_0_#EC3C2D]"
+      : "bg-white shadow-[6px_6px_0_#0F0F12] hover:shadow-[8px_8px_0_#0F0F12] hover:bg-slate-50/80"
   }`}
           onClick={() => inputRef.current?.click()}
         >

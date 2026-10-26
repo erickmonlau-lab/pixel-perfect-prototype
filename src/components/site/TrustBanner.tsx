@@ -38,19 +38,28 @@ export function TrustBanner() {
       items: [
         {
           Icon: LocalPrivacyIcon,
-          theme: "white",
+          bg: "bg-[#06B6D4]", // Cian / Azul cielo
+          tag: "PRIVACIDAD 100%",
+          hoverShadow: "hover:shadow-[6px_6px_0_#06B6D4]",
+          tint: "hover:bg-cyan-50/50",
           title: "Privacidad local",
           desc: "Tus archivos se procesan en tu propio dispositivo siempre que la tecnología lo permite. Sin intermediarios ni almacenamiento en servidores externos.",
         },
         {
           Icon: FastExecutionIcon,
-          theme: "black",
+          bg: "bg-[#F59E0B]", // Amarillo mostaza cálido
+          tag: "ZERO WAIT TIME",
+          hoverShadow: "hover:shadow-[6px_6px_0_#F59E0B]",
+          tint: "hover:bg-amber-50/50",
           title: "Sin esperas innecesarias",
           desc: "Empieza a trabajar con tus documentos al instante desde el navegador, sin colas de conversión remotas ni registros obligatorios.",
         },
         {
           Icon: AllInOneIcon,
-          theme: "white",
+          bg: "bg-[#EC4899]", // Rosa / Magenta vivo
+          tag: "SUITE COMPLETA",
+          hoverShadow: "hover:shadow-[6px_6px_0_#EC4899]",
+          tint: "hover:bg-pink-50/50",
           title: "Todo en un solo lugar",
           desc: "Un conjunto completo y unificado de utilidades para comprimir, organizar, convertir, editar y proteger tus archivos PDF.",
         },
@@ -63,19 +72,28 @@ export function TrustBanner() {
       items: [
         {
           Icon: LocalPrivacyIcon,
-          theme: "white",
+          bg: "bg-[#06B6D4]",
+          tag: "PRIVADESA 100%",
+          hoverShadow: "hover:shadow-[6px_6px_0_#06B6D4]",
+          tint: "hover:bg-cyan-50/50",
           title: "Privadesa local",
           desc: "Els teus fitxers es processen al teu propi dispositiu quan la tecnologia ho permet. Sense intermediaris ni servidors externs.",
         },
         {
           Icon: FastExecutionIcon,
-          theme: "black",
+          bg: "bg-[#F59E0B]",
+          tag: "ZERO WAIT TIME",
+          hoverShadow: "hover:shadow-[6px_6px_0_#F59E0B]",
+          tint: "hover:bg-amber-50/50",
           title: "Sense esperes innecessàries",
           desc: "Comença a treballar a l'instant des del navegador, sense cues de conversió remotes ni registres obligatoris.",
         },
         {
           Icon: AllInOneIcon,
-          theme: "white",
+          bg: "bg-[#EC4899]",
+          tag: "SUITE COMPLETA",
+          hoverShadow: "hover:shadow-[6px_6px_0_#EC4899]",
+          tint: "hover:bg-pink-50/50",
           title: "Tot en un sol lloc",
           desc: "Un conjunt complet i unificat d'utilitats per comprimir, organitzar, convertir, editar i protegir els teus PDF.",
         },
@@ -88,19 +106,28 @@ export function TrustBanner() {
       items: [
         {
           Icon: LocalPrivacyIcon,
-          theme: "white",
+          bg: "bg-[#06B6D4]",
+          tag: "100% PRIVACY",
+          hoverShadow: "hover:shadow-[6px_6px_0_#06B6D4]",
+          tint: "hover:bg-cyan-50/50",
           title: "Local privacy",
           desc: "Files are processed directly on your own device whenever technically supported. Never stored or retained on remote servers.",
         },
         {
           Icon: FastExecutionIcon,
-          theme: "black",
+          bg: "bg-[#F59E0B]",
+          tag: "ZERO WAIT TIME",
+          hoverShadow: "hover:shadow-[6px_6px_0_#F59E0B]",
+          tint: "hover:bg-amber-50/50",
           title: "No unnecessary waiting",
           desc: "Start processing documents instantly straight inside your browser, with zero remote queues and no sign-up barriers.",
         },
         {
           Icon: AllInOneIcon,
-          theme: "white",
+          bg: "bg-[#EC4899]",
+          tag: "COMPLETE SUITE",
+          hoverShadow: "hover:shadow-[6px_6px_0_#EC4899]",
+          tint: "hover:bg-pink-50/50",
           title: "Everything in one place",
           desc: "A cohesive, complete suite of focused utilities to compress, organize, convert, edit, and secure your PDF documents.",
         },
@@ -111,11 +138,11 @@ export function TrustBanner() {
   const current = copy[locale as "es" | "ca" | "en"] ?? copy.es;
 
   return (
-    <section className="border-b-2 border-[#0F0F12] bg-[#EDEDF0] py-16 sm:py-24">
+    <section className="border-b-2 border-[#0F0F12] bg-[#FFFFFF] py-16 sm:py-24">
       <div className="mx-auto max-w-[1440px] px-6 sm:px-8">
         {/* Encabezado Neo-Brutalista con tipografía Display contundente */}
         <div className="mx-auto max-w-3xl text-center">
-          <span className="inline-flex items-center gap-2 rounded-lg border-2 border-[#0F0F12] bg-[#EC3C2D] px-4 py-1.5 text-[13px] sm:text-[14px] font-black tracking-widest text-white uppercase shadow-[3px_3px_0_#0F0F12]">
+          <span className="inline-flex items-center gap-2 rounded-lg border-2 border-[#0F0F12] bg-[#0F0F12] px-4 py-1.5 text-[13px] sm:text-[14px] font-black tracking-widest text-white uppercase shadow-[3px_3px_0_#EC3C2D]">
             <span className="size-2 rounded-full bg-white shrink-0" />
             {current.eyebrow}
           </span>
@@ -127,32 +154,33 @@ export function TrustBanner() {
           </p>
         </div>
 
-        {/* 3 Tarjetas con alternancia de blanco y negro, bordes negros 2px y sombras duras */}
+        {/* 3 Tarjetas con colores distintivos por tarjeta (Cian, Ámbar, Rosa), bordes negros 2px y sombras duras */}
         <div className="mt-14 sm:mt-18 grid gap-7 md:gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {current.items.map((item, idx) => {
             const Icon = item.Icon;
-            const isBlack = item.theme === "black";
 
             return (
               <div
                 key={idx}
-                className={`group relative flex flex-col justify-start rounded-2xl border-2 border-[#0F0F12] p-8 sm:p-9 shadow-[4px_4px_0_#0F0F12] transition-all duration-150 hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0_#0F0F12] ${
-                  isBlack ? "bg-[#0F0F12] text-white" : "bg-white text-[#0F0F12]"
-                }`}
+                className={`group relative flex flex-col justify-start rounded-2xl border-2 border-[#0F0F12] bg-white p-8 sm:p-9 shadow-[4px_4px_0_#0F0F12] transition-all duration-150 hover:-translate-y-1.5 ${item.hoverShadow} ${item.tint}`}
               >
-                {/* Icon Container: solid red box with hard shadow */}
-                <div className="flex items-center gap-4">
+                <div className="flex items-start justify-between gap-4">
+                  {/* Icon container with distinct solid color and micro-rotation */}
                   <span
-                    className={`inline-flex size-[54px] sm:size-[58px] shrink-0 items-center justify-center rounded-xl border-2 border-[#0F0F12] bg-[#EC3C2D] text-white shadow-[3px_3px_0_#0F0F12]`}
+                    className={`inline-flex size-[56px] sm:size-[60px] shrink-0 items-center justify-center rounded-xl border-2 border-[#0F0F12] ${item.bg} text-white shadow-[3px_3px_0_#0F0F12] transition-transform duration-200 group-hover:scale-110 group-hover:rotate-6`}
                   >
                     <Icon className="size-7 stroke-[2.4]" />
                   </span>
-                  <h3 className={`text-[20px] sm:text-[22px] font-black tracking-tight leading-snug ${isBlack ? "text-white" : "text-[#0F0F12]"}`}>
-                    {item.title}
-                  </h3>
+                  <span className={`inline-block rounded-md border border-[#0F0F12] ${item.bg} text-white text-[10.5px] font-black tracking-wider uppercase px-2.5 py-0.5 shadow-[1.5px_1.5px_0_#0F0F12]`}>
+                    {item.tag}
+                  </span>
                 </div>
 
-                <p className={`mt-5 text-[15.5px] sm:text-[16.5px] leading-relaxed font-medium ${isBlack ? "text-slate-300" : "text-[#475569]"}`}>
+                <h3 className="mt-5 text-[21px] sm:text-[23px] font-black tracking-tight leading-snug text-[#0F0F12]">
+                  {item.title}
+                </h3>
+
+                <p className="mt-3 text-[15.5px] sm:text-[16.5px] leading-relaxed font-medium text-[#475569]">
                   {item.desc}
                 </p>
               </div>

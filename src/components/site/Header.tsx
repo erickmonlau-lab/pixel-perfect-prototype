@@ -40,6 +40,7 @@ import { useAuth } from "@/lib/auth/auth-context";
 import { Logo } from "./Logo";
 import { ToolIcon } from "./ToolIcon";
 import { getRichToolIcon } from "./RichToolIcon";
+import { getToolColorTheme } from "@/lib/tools/color-system";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import {
   trackToolCatalogCategoryClicked,
@@ -322,7 +323,7 @@ export function Header() {
                                   >
                                     {/* Icono de herramienta visual y nítido */}
                                     <span
-                                      className={`inline-flex size-8 sm:size-8.5 shrink-0 items-center justify-center rounded-lg ${accent.iconBg} ${accent.icon} transition-transform duration-150 group-hover:scale-105 shadow-2xs`}
+                                      className={`inline-flex size-8 sm:size-8.5 shrink-0 items-center justify-center rounded-lg border border-[#0F0F12] ${getToolColorTheme(tool.canonicalSlug, category.category).bg} ${getToolColorTheme(tool.canonicalSlug, category.category).text} transition-transform duration-150 group-hover:scale-110 group-hover:rotate-6 shadow-[1.5px_1.5px_0_#0F0F12]`}
                                     >
                                       <ToolIcon
                                         name={tool.icon}
@@ -451,7 +452,7 @@ export function Header() {
                                   className="group flex items-center gap-3 rounded-xl px-2.5 py-2.5 transition-all hover:bg-slate-100/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/20"
                                 >
                                   <span
-                                    className={`inline-flex size-7.5 sm:size-8 shrink-0 items-center justify-center rounded-lg ${accent.iconBg} ${accent.icon} transition-transform duration-150 group-hover:scale-105 shadow-2xs`}
+                                    className={`inline-flex size-7.5 sm:size-8 shrink-0 items-center justify-center rounded-lg border border-[#0F0F12] ${getToolColorTheme(tool.canonicalSlug, cat.category).bg} ${getToolColorTheme(tool.canonicalSlug, cat.category).text} transition-transform duration-150 group-hover:scale-110 group-hover:rotate-6 shadow-[1.5px_1.5px_0_#0F0F12]`}
                                   >
                                     <ToolIcon
                                       name={tool.icon}
