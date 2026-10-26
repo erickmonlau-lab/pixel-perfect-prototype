@@ -416,12 +416,12 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
             </div>
 
             {/* H1 — Search-intent driven, high-impact headline */}
-            <h1 className="text-display mt-2.5 sm:mt-3 text-[2.2rem] sm:text-[2.65rem] lg:text-[2.95rem] font-black tracking-[-0.025em] text-[#0F172A] leading-[1.1]">
+            <h1 className="text-display mt-2.5 sm:mt-3 text-[2.5rem] sm:text-[2.95rem] lg:text-[3.35rem] font-black tracking-[-0.03em] text-[#0F172A] leading-[1.08]">
               {tool.h1}
             </h1>
 
             {/* Description — Explains clearly what the tool does with strong readability */}
-            <p className="mt-3 sm:mt-3.5 text-[16.5px] sm:text-[18px] leading-relaxed text-slate-700 font-normal max-w-2xl">
+            <p className="mt-3 sm:mt-3.5 text-[17px] sm:text-[18.5px] leading-relaxed text-slate-600 font-medium max-w-2xl">
               {tool.tagline}
             </p>
           </div>

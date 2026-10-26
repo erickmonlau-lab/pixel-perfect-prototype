@@ -57,7 +57,7 @@ export function ToolCatalogCard({
       className={`group relative flex h-full ${cardMinH} flex-col justify-start rounded-2xl border ${cardPad} transition-all duration-200 ${
         isPending
           ? "border-dashed border-[#E2E8F0] bg-white hover:border-slate-300"
-          : `border-[#E5E7EB] bg-white shadow-[0_1px_3px_rgba(0,0,0,0.03)] hover:-translate-y-1 ${accent.hoverBorder} hover:shadow-[0_12px_28px_rgba(0,0,0,0.06)]`
+          : `border-[#E5E7EB] bg-white shadow-[0_2px_8px_rgba(15,23,42,0.04)] hover:-translate-y-1.5 ${accent.hoverBorder} hover:shadow-[0_14px_30px_rgba(15,23,42,0.08)]`
       }`}
     >
       <div>

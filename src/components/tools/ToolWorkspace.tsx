@@ -648,7 +648,7 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
           className={`transition-all duration-200 m-3 sm:m-4 rounded-2xl border px-5 py-8 sm:py-10 text-center cursor-pointer shadow-xs ${
             dragging
               ? "border-[#EC3C2D] bg-[#FEECEB] scale-[1.004] ring-2 ring-[#EC3C2D]/30"
-              : "border-slate-200 bg-white hover:border-slate-300 hover:shadow-sm"
+              : "border-slate-300 bg-[#FAFCFF] hover:border-slate-400 hover:bg-white hover:shadow-md"
           }`}
           onClick={() => inputRef.current?.click()}
         >
@@ -684,7 +684,7 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
           <div className="mt-6 flex justify-center">
             <Button
               size="lg"
-              className="h-13 sm:h-14 px-9 sm:px-11 text-[16.5px] sm:text-[17.5px] font-black rounded-xl sm:rounded-2xl bg-[#EC3C2D] text-white shadow-md hover:bg-[#D93426] transition-all hover:-translate-y-0.5 cursor-pointer"
+              className="h-13 sm:h-14 px-9 sm:px-11 text-[16.5px] sm:text-[17.5px] font-black rounded-xl sm:rounded-2xl bg-[#EC3C2D] text-white shadow-[0_6px_20px_rgba(236,60,45,0.30)] hover:bg-[#D93426] hover:shadow-[0_8px_25px_rgba(236,60,45,0.40)] transition-all hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
               onClick={(e) => {
                 e.stopPropagation();
                 inputRef.current?.click();

@@ -26,7 +26,7 @@ export function CategoryTiles({ exclude }: { exclude?: ToolCategory }) {
             to={DETAIL_ROUTE}
             params={categoryParams(locale, item.category)}
             style={{ animationDelay: `${Math.min(index, 8) * 30}ms` }}
-            className="animate-rise transition-standard group surface-card flex flex-col gap-4 p-7 hover:-translate-y-1 hover:shadow-raised"
+            className="animate-rise transition-standard group surface-card-solid surface-card-solid-hover flex flex-col gap-4 p-7 sm:p-8"
           >
             <div className="flex items-center gap-3">
               <span

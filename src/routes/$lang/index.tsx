@@ -57,7 +57,7 @@ function Home() {
         <div className="relative z-30 mx-auto max-w-[800px] px-5 text-center">
           <div>
             {/* H1 — Large, horizontal and commanding */}
-            <h1 className="text-display mx-auto max-w-[860px] text-[2.4rem] font-extrabold leading-[1.08] tracking-[-0.035em] text-[#0F172A] sm:text-[3rem] lg:text-[3.25rem]">
+            <h1 className="text-display mx-auto max-w-[860px] text-[2.65rem] font-black leading-[1.06] tracking-[-0.035em] text-[#0F172A] sm:text-[3.25rem] lg:text-[3.75rem]">
               {headline.map((line, index) => (
                 <span
                   key={line.before + line.after}
@@ -71,7 +71,7 @@ function Home() {
             </h1>
 
             {/* Subtitle — Brief, human, exactly 1-2 lines */}
-            <p className="mx-auto mt-2.5 max-w-[560px] text-[16px] leading-relaxed text-[#475569] sm:text-[17.5px]">
+            <p className="mx-auto mt-3.5 max-w-[640px] text-[17px] leading-relaxed text-[#475569] sm:text-[19px] font-medium">
               {t.home.sub}
             </p>
 
