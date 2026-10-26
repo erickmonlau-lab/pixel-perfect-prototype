@@ -4,7 +4,7 @@ import { TrustBanner } from "@/components/site/TrustBanner";
 import { ConfidenceMarquee } from "@/components/site/ConfidenceMarquee";
 import { HowItWorksSection } from "@/components/site/HowItWorksSection";
 import { MascotEasterEgg } from "@/components/site/MascotEasterEgg";
-import { Cpu, UserCheck, ArrowLeftRight, BookOpen, Clock, ArrowRight, Sparkles, ShieldCheck, Zap } from "lucide-react";
+import { Cpu, UserCheck, ArrowLeftRight, BookOpen, Clock, ArrowRight, Sparkles, ShieldCheck, Zap, GraduationCap, ShoppingBag, Layers } from "lucide-react";
 import { ALL_GUIDES } from "@/lib/guides/registry";
 import { guidePath, SECTION_ROUTE, guidesHubParams, DETAIL_ROUTE, toolParams, alternateLinks } from "@/lib/i18n/routing";
 import { ToolSearch } from "@/components/site/ToolSearch";
@@ -560,26 +560,32 @@ function Home() {
       </section>
 
       {/* ============================================================
-          SECTION — EDITORIAL GUIDES: Compact, simplified & visual (3 cards per row)
+          SECTION — EDITORIAL GUIDES: Rediseño definitivo y visual (1.150–1.250px)
+          - Header reforzado: Tag rojo sólido, Título 44-48px, botón a la derecha centrado
+          - 3 Tarjetas visuales en escritorio con franjas superiores del catálogo
+          - Parte superior: Icono temático 40-44px, Categoría 13-14px, Tiempo visible "X MIN DE LECTURA"
+          - Título: 21-23px, peso 750-800
+          - Descripción: 16-17px, color #0F0F12
+          - Pie: Botón "Leer la guía" rojo de ancho completo sin flechas y SIN "Equipo Editorial"
           ============================================================ */}
-      <section className="border-b-2 border-[#0F0F12] bg-[#FFFFFF] py-14 sm:py-18">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <section className="border-b-2 border-[#0F0F12] bg-[#FFFFFF] py-16 sm:py-20 lg:py-24">
+        <div className="mx-auto max-w-[1240px] px-4 sm:px-6 lg:px-8">
           
-          {/* Header compacto con botón alineado a la derecha en escritorio */}
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10">
-            <div className="max-w-2xl">
-              <span className="inline-flex items-center gap-2 rounded-lg border-2 border-[#0F0F12] bg-[#EC3C2D] px-3.5 py-1 text-xs font-black uppercase tracking-wider text-white shadow-[2px_2px_0_#0F0F12] whitespace-nowrap mb-3">
-                <BookOpen className="size-3.5" />
+          {/* Header amplio con botón alineado a la derecha en escritorio y centrado verticalmente */}
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-12 sm:mb-14">
+            <div className="max-w-3xl">
+              <span className="inline-flex items-center gap-2 rounded-lg border-2 border-[#0F0F12] bg-[#EC3C2D] px-4 py-1.5 text-[13px] sm:text-[14px] font-black uppercase tracking-wider text-white shadow-[3px_3px_0_#0F0F12] whitespace-nowrap mb-3.5">
+                <BookOpen className="size-4 stroke-[2.5]" />
                 <span>{locale === "ca" ? "GUIES I TUTORIALS" : locale === "en" ? "GUIDES AND TUTORIALS" : "GUÍAS Y TUTORIALES"}</span>
               </span>
-              <h2 id="home-guides-title" className="text-3xl sm:text-4xl lg:text-[44px] font-black text-[#0F0F12] leading-[1.1] tracking-tight">
+              <h2 id="home-guides-title" className="text-3xl sm:text-4xl lg:text-[46px] font-black text-[#0F0F12] leading-[1.1] tracking-tight">
                 {locale === "ca"
                   ? "Solucions pas a pas i bones pràctiques per a PDF"
                   : locale === "en"
                   ? "Step-by-step PDF workflows and best practices"
                   : "Soluciones paso a paso y buenas prácticas para PDF"}
               </h2>
-              <p className="mt-2.5 text-[16px] sm:text-[17px] text-[#0F0F12] font-medium leading-normal">
+              <p className="mt-3 text-[17px] sm:text-[18px] text-[#0F0F12] font-medium leading-[1.5]">
                 {locale === "ca"
                   ? "Manuals pràctics basats en estàndards tècnics per optimitzar, unificar i preparar documents oficials amb privadesa total."
                   : locale === "en"
@@ -588,73 +594,103 @@ function Home() {
               </p>
             </div>
 
-            {/* Botón «Todas las guías» con fondo rojo sólido, borde negro y sombra dura */}
+            {/* Botón «Todas las guías» con fondo rojo sólido, texto blanco, borde negro y sombra dura */}
             <Link
               to={SECTION_ROUTE}
               params={guidesHubParams(locale)}
-              className="group inline-flex items-center gap-2 self-start md:self-auto rounded-xl border-2 border-[#0F0F12] bg-[#EC3C2D] px-6 py-3 text-[15px] font-black text-white transition-all shadow-[4px_4px_0_#0F0F12] hover:-translate-y-0.5 hover:shadow-[6px_6px_0_#0F0F12] cursor-pointer shrink-0"
+              className="group inline-flex items-center justify-center gap-2 self-start md:self-auto rounded-xl border-2 border-[#0F0F12] bg-[#EC3C2D] px-7 py-3.5 text-[15px] sm:text-[16px] font-black text-white transition-all shadow-[4px_4px_0_#0F0F12] hover:-translate-y-0.5 hover:shadow-[6px_6px_0_#0F0F12] cursor-pointer shrink-0"
             >
               <span>{locale === "ca" ? "Totes les guies" : locale === "en" ? "All guides" : "Todas las guías"}</span>
-              <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-1" />
+              <ArrowRight className="size-4 stroke-[2.5] transition-transform duration-200 group-hover:translate-x-1" />
             </Link>
           </div>
 
-          {/* Grid de 3 tarjetas compactas en 1 fila (escritorio): Tratamiento editorial claro, sin altura excesiva */}
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {/* Grid de 3 tarjetas visuales (escritorio): Separación 20-24px, flex-col con botón ancho completo */}
+          <div className="grid gap-6 md:gap-7 sm:grid-cols-2 lg:grid-cols-3">
             {ALL_GUIDES.slice(0, 3).map((guide, gIdx) => {
               const guideTitle = guide.title[locale] || guide.title.es;
               const guideDesc = guide.seoDescription[locale] || guide.seoDescription.es;
               const guideUrl = guidePath(locale, guide.canonicalSlug);
 
-              // Colores y acentos editoriales coordinados
+              // Sistema visual multicolor por guía:
+              // 0 (Campus/Educación): Rojo corporativo (#EC3C2D), icono GraduationCap
+              // 1 (Ecommerce/WebP): Azul (#2563EB), icono ShoppingBag
+              // 2 (Unificar TFG/TFM): Morado (#8B5CF6), icono Layers
               const GUIDE_THEMES = [
-                { border: "border-t-[5px] border-t-[#EC3C2D]", badgeBg: "bg-[#EC3C2D]", iconBg: "bg-[#EC3C2D]/10 text-[#EC3C2D]" },
-                { border: "border-t-[5px] border-t-[#2563EB]", badgeBg: "bg-[#2563EB]", iconBg: "bg-[#2563EB]/10 text-[#2563EB]" },
-                { border: "border-t-[5px] border-t-[#8B5CF6]", badgeBg: "bg-[#8B5CF6]", iconBg: "bg-[#8B5CF6]/10 text-[#8B5CF6]" },
+                {
+                  border: "border-t-[6px] border-t-[#EC3C2D]",
+                  badgeBg: "bg-[#EC3C2D]",
+                  iconBoxBg: "bg-[#EC3C2D] text-white",
+                  hoverShadow: "hover:shadow-[7px_7px_0_#EC3C2D]",
+                  Icon: GraduationCap,
+                },
+                {
+                  border: "border-t-[6px] border-t-[#2563EB]",
+                  badgeBg: "bg-[#2563EB]",
+                  iconBoxBg: "bg-[#2563EB] text-white",
+                  hoverShadow: "hover:shadow-[7px_7px_0_#2563EB]",
+                  Icon: ShoppingBag,
+                },
+                {
+                  border: "border-t-[6px] border-t-[#8B5CF6]",
+                  badgeBg: "bg-[#8B5CF6]",
+                  iconBoxBg: "bg-[#8B5CF6] text-white",
+                  hoverShadow: "hover:shadow-[7px_7px_0_#8B5CF6]",
+                  Icon: Layers,
+                },
               ];
               const gTheme = GUIDE_THEMES[gIdx % GUIDE_THEMES.length]!;
+              const GuideIcon = gTheme.Icon;
+
+              // Etiqueta de tiempo visible: "5 MIN DE LECTURA" / "5 MIN READING" / "5 MIN DE LECTURA"
+              const readingLabel = locale === "en"
+                ? `${guide.readingTimeMinutes} MIN READ`
+                : `${guide.readingTimeMinutes} MIN DE LECTURA`;
 
               return (
                 <article
                   key={guide.canonicalSlug}
-                  className={`group relative flex flex-col justify-between rounded-xl border-2 border-[#0F0F12] ${gTheme.border} bg-[#FFFFFF] p-6 shadow-[4px_4px_0_#0F0F12] transition-all duration-200 hover:-translate-y-1 hover:shadow-[6px_6px_0_#0F0F12]`}
+                  className={`group relative flex flex-col justify-between rounded-2xl border-2 border-[#0F0F12] ${gTheme.border} bg-[#FFFFFF] p-6 sm:p-7 shadow-[5px_5px_0_#0F0F12] transition-all duration-200 hover:-translate-y-1 ${gTheme.hoverShadow}`}
                 >
-                  <div>
-                    {/* Fila superior: Categoría + Tiempo de lectura */}
-                    <div className="flex items-center justify-between gap-3 mb-4">
-                      <span className={`inline-block rounded-md border border-[#0F0F12] ${gTheme.badgeBg} text-white px-2.5 py-1 text-[11px] font-black uppercase tracking-wider shadow-[2px_2px_0_#0F0F12]`}>
-                        {guide.category}
-                      </span>
-                      <span className="flex items-center gap-1.5 font-bold text-slate-600 text-xs shrink-0">
-                        <Clock className="size-3.5 text-slate-500" />
-                        <span>{guide.readingTimeMinutes} min</span>
+                  <div className="flex flex-col">
+                    {/* Fila superior: Icono temático de 42px + Categoría (13-14px) + Tiempo de lectura visible */}
+                    <div className="flex items-center justify-between gap-3 mb-5">
+                      <div className="flex items-center gap-3">
+                        <span className={`inline-flex size-[42px] shrink-0 items-center justify-center rounded-xl border-2 border-[#0F0F12] ${gTheme.iconBoxBg} shadow-[2px_2px_0_#0F0F12]`}>
+                          <GuideIcon className="size-5 stroke-[2.4]" />
+                        </span>
+                        <span className={`inline-block rounded-md border border-[#0F0F12] ${gTheme.badgeBg} text-white px-3 py-1 text-[12px] sm:text-[13px] font-black uppercase tracking-wider shadow-[2px_2px_0_#0F0F12]`}>
+                          {guide.category}
+                        </span>
+                      </div>
+
+                      {/* Tiempo de lectura con superficie sólida clara, borde definido y alto contraste */}
+                      <span className="inline-flex items-center gap-1.5 rounded-md border border-[#0F0F12] bg-[#F1F1F4] px-2.5 py-1 text-[11px] sm:text-[12px] font-black text-[#0F0F12] uppercase tracking-wider shadow-[1.5px_1.5px_0_#0F0F12] shrink-0">
+                        <Clock className="size-3.5 text-[#0F0F12] stroke-[2.5]" />
+                        <span>{readingLabel}</span>
                       </span>
                     </div>
 
-                    {/* Título de la guía: 19–21px, peso 700–800 */}
-                    <h3 className="text-[19px] sm:text-[20px] font-black text-[#0F0F12] leading-snug tracking-tight group-hover:text-[#EC3C2D] transition-colors">
+                    {/* Título de la guía: 21–23px, peso 750–800, color negro sólido */}
+                    <h3 className="text-[21px] sm:text-[23px] font-black text-[#0F0F12] leading-[1.25] tracking-tight group-hover:text-[#EC3C2D] transition-colors mb-3">
                       <Link to={guideUrl}>
                         {guideTitle}
                       </Link>
                     </h3>
 
-                    {/* Descripción concisa: 15–16px */}
-                    <p className="mt-2.5 text-[15px] leading-relaxed text-[#0F0F12]/80 font-medium">
+                    {/* Descripción: 16–17px, peso 500, color #0F0F12, interlineado cómodo */}
+                    <p className="text-[16px] sm:text-[16.5px] leading-[1.5] text-[#0F0F12] font-medium">
                       {guideDesc}
                     </p>
                   </div>
 
-                  {/* Pie de tarjeta compacto: Autor + Botón «Leer la guía» rojo */}
-                  <div className="mt-5 pt-3.5 border-t border-[#0F0F12]/15 flex items-center justify-between gap-3">
-                    <span className="text-[12px] text-slate-700 font-bold leading-tight">
-                      {guide.author.name}
-                    </span>
+                  {/* Pie de tarjeta: Botón rojo sólido de ancho completo SIN FLECHAS ni firma editorial */}
+                  <div className="mt-7 pt-2">
                     <Link
                       to={guideUrl}
-                      className="group/btn inline-flex items-center gap-1.5 text-[14px] font-black text-white bg-[#EC3C2D] hover:bg-[#D93426] border-2 border-[#0F0F12] rounded-lg px-4 py-2 shadow-[2.5px_2.5px_0_#0F0F12] transition-all hover:translate-x-[1px] hover:translate-y-[1px] shrink-0"
+                      className="inline-flex w-full items-center justify-center text-[15px] sm:text-[16px] font-black text-white bg-[#EC3C2D] hover:bg-[#D93426] border-2 border-[#0F0F12] rounded-xl h-12 shadow-[3px_3px_0_#0F0F12] transition-all hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0_#0F0F12]"
                     >
-                      <span>{locale === "ca" ? "Llegir la guia" : locale === "en" ? "Read guide" : "Leer la guía"}</span>
-                      <span className="transition-transform duration-200 group-hover/btn:translate-x-0.5">→</span>
+                      {locale === "ca" ? "Llegir la guia" : locale === "en" ? "Read guide" : "Leer la guía"}
                     </Link>
                   </div>
                 </article>
