@@ -495,7 +495,7 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
 
           return (
             <section className="mt-14 sm:mt-16" aria-labelledby="editorial-context">
-              <div className="rounded-3xl border border-slate-200 bg-white p-7 sm:p-10 shadow-sm">
+              <div className="rounded-3xl border-2 border-slate-200 bg-white p-8 sm:p-12 shadow-[0_4px_24px_rgba(15,23,42,0.06)]">
                 {/* Etiqueta superior prominente con icono técnico de ajuste */}
                 <div className="flex items-center gap-2.5 text-[14px] sm:text-[15px] font-black uppercase tracking-wide text-[#EC3C2D]">
                   <SlidersHorizontal className="size-5" />
@@ -503,24 +503,24 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
                 </div>
 
                 {/* Título de sección editorial grande y jerarquizado */}
-                <h2 id="editorial-context" className="mt-3 text-[26px] sm:text-[30px] font-black text-[#0F172A] tracking-tight leading-tight">
+                <h2 id="editorial-context" className="mt-3 text-[28px] sm:text-[34px] font-black text-[#0F172A] tracking-tight leading-snug">
                   {title}
                 </h2>
 
                 {/* Explicación técnica legible */}
-                <p className="mt-3.5 text-[16.5px] sm:text-[17.5px] leading-relaxed text-slate-700 font-normal">
+                <p className="mt-4 text-[17.5px] sm:text-[19px] leading-relaxed text-slate-800 font-medium">
                   {engineDesc}
                 </p>
 
                 {/* Tarjetas de Casos de Uso y Limitaciones — Fondos 100% sólidos según especificación */}
                 <div className="mt-7 grid grid-cols-1 md:grid-cols-2 gap-6 pt-6 border-t border-slate-200">
                   {/* Tarjeta Casos de uso recomendados: Borde azul / Fondo azul claro sólido #EAF2FF */}
-                  <div className="rounded-2xl border-2 border-blue-200 bg-[#EAF2FF] p-6 shadow-xs flex flex-col justify-start">
-                    <h3 className="text-[17px] sm:text-[18px] font-bold text-[#0F172A] flex items-center gap-2.5">
+                  <div className="rounded-2xl border-2 border-[#93C5FD] bg-[#DBEAFE] p-7 shadow-sm flex flex-col justify-start">
+                    <h3 className="text-[20px] sm:text-[21px] font-extrabold text-[#1E3A8A] flex items-center gap-3">
                       <span className="size-2.5 rounded-full bg-[#2563EB] inline-block shrink-0" />
                       {locale === "ca" ? "Casos d'ús recomanats" : locale === "en" ? "Recommended use cases" : "Casos de uso recomendados"}
                     </h3>
-                    <ul className="mt-3.5 space-y-2.5 text-[15px] sm:text-[15.5px] text-slate-700 leading-relaxed list-disc pl-5">
+                    <ul className="mt-4 space-y-3 text-[16px] sm:text-[17px] text-[#1E293B] font-medium leading-relaxed list-disc pl-6">
                       {bestFor.map((item, idx) => (
                         <li key={idx}>{item}</li>
                       ))}
@@ -528,12 +528,12 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
                   </div>
 
                   {/* Tarjeta Limitaciones técnicas: Borde rojo / Fondo rojo claro sólido #FFF0EE */}
-                  <div className="rounded-2xl border-2 border-red-200 bg-[#FFF0EE] p-6 shadow-xs flex flex-col justify-start">
-                    <h3 className="text-[17px] sm:text-[18px] font-bold text-[#0F172A] flex items-center gap-2.5">
+                  <div className="rounded-2xl border-2 border-[#FCA5A5] bg-[#FEE2E2] p-7 shadow-sm flex flex-col justify-start">
+                    <h3 className="text-[20px] sm:text-[21px] font-extrabold text-[#1E3A8A] flex items-center gap-3">
                       <span className="size-2.5 rounded-full bg-[#EC3C2D] inline-block shrink-0" />
                       {locale === "ca" ? "Limitacions tècniques a considerar" : locale === "en" ? "Technical constraints & trade-offs" : "Limitaciones técnicas a considerar"}
                     </h3>
-                    <ul className="mt-3.5 space-y-2.5 text-[15px] sm:text-[15.5px] text-slate-700 leading-relaxed list-disc pl-5">
+                    <ul className="mt-4 space-y-3 text-[16px] sm:text-[17px] text-[#1E293B] font-medium leading-relaxed list-disc pl-6">
                       {limitations.map((item, idx) => (
                         <li key={idx}>{item}</li>
                       ))}
@@ -542,7 +542,7 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
                 </div>
 
                 {/* Consejo práctico destacado: Fondo azul claro sólido #F0F5FF con borde nítido */}
-                <div className="mt-6 rounded-2xl border border-blue-200 bg-[#F0F5FF] p-5 sm:p-6 text-[15px] sm:text-[16px] text-slate-800 flex items-start gap-3.5 shadow-xs">
+                <div className="mt-6 rounded-2xl border-2 border-[#BFDBFE] bg-[#EFF6FF] p-6 sm:p-7 text-[16.5px] sm:text-[17.5px] text-[#0F172A] flex items-start gap-4 shadow-sm">
                   <span className="inline-flex items-center justify-center rounded-lg bg-[#EC3C2D] px-2.5 py-1 text-[13px] font-black uppercase text-white shrink-0 tracking-wide">
                     {locale === "ca" ? "Consell" : locale === "en" ? "Pro Tip" : "Consejo"}
                   </span>
@@ -603,7 +603,7 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
                   ? `Workflow Scenarios and Best Practices for ${category.name}`
                   : `Ámbito de aplicación y recomendaciones para ${category.name}`}
               </h2>
-              <p className="mt-3.5 text-[16.5px] sm:text-[17.5px] leading-relaxed text-slate-700 font-normal">
+              <p className="mt-4 text-[17.5px] sm:text-[19px] leading-relaxed text-slate-800 font-medium">
                 {t.category.details[tool.category].useCases}
               </p>
               <div className="mt-6 pt-5 border-t border-slate-100 flex flex-wrap items-center justify-between gap-4 text-slate-700 font-medium">
