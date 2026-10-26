@@ -455,28 +455,27 @@ function Home() {
       <TrustBanner />
 
       {/* ============================================================
-          SECTION — EDITORIAL BENTO: Neo-brutalist 4 feature pillars (GYMVITY style)
-          Strict Neo-Brutalist Surfaces: 2px border #0F0F12, 4px shadow #0F0F12, 0 pastel colors
+          SECTION — EDITORIAL BENTO: Neo-brutalist 4 feature pillars
+          Strict Neo-Brutalist Surfaces: 2px border #0F0F12, 4-5px shadow, 100% white cards, top color strips
           ============================================================ */}
-      <section className="border-b-2 border-[#0F0F12] bg-[#EDEDF0] py-20 sm:py-28">
+      <section className="border-b-2 border-[#0F0F12] bg-[#F1F1F4] py-16 sm:py-24">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-3xl text-center">
-            <span className="inline-flex items-center gap-2 rounded-lg border-2 border-[#0F0F12] bg-[#0F0F12] px-4 py-1.5 text-[13px] sm:text-[14px] font-black tracking-widest text-white uppercase shadow-[3px_3px_0_#0F0F12]">
-              <span className="size-2 rounded-full bg-[#EC3C2D] shrink-0" />
+          <div className="mx-auto max-w-4xl text-center">
+            <span className="inline-flex items-center gap-2 rounded-lg border-2 border-[#0F0F12] bg-[#EC3C2D] px-4 py-1.5 text-[13px] sm:text-[14px] font-black tracking-widest text-white uppercase shadow-[3px_3px_0_#0F0F12]">
               {t.home.editorial.eyebrow}
             </span>
-            <h2 className="mt-5 text-[2.6rem] sm:text-[3.2rem] lg:text-[4rem] font-black tracking-tight leading-[1.05] text-[#0F0F12]">
+            <h2 className="mt-5 text-3xl sm:text-4xl lg:text-[48px] font-black tracking-[-0.03em] leading-[1.08] text-[#0F0F12] max-w-3xl mx-auto">
               {t.home.editorial.title}
             </h2>
-            <p className="mx-auto mt-4 max-w-2xl text-[17px] sm:text-[19px] leading-relaxed text-slate-800 font-medium">
+            <p className="mx-auto mt-4 max-w-2xl text-[17px] sm:text-[18px] leading-[1.5] text-[#0F0F12] font-medium">
               {t.home.editorial.sub}
             </p>
           </div>
 
-          {/* Bento Grid con 4 tarjetas alternas alto impacto (Blanco / Negro / Rojo) */}
-          <div className="mt-14 sm:mt-16 grid gap-6 sm:grid-cols-2">
+          {/* Grid con 4 tarjetas de beneficios: Todas sobre blanco sólido con iconos de 52px en cajas de color y franjas superiores */}
+          <div className="mt-12 sm:mt-16 grid gap-6 sm:grid-cols-2">
             {t.home.editorial.articles.map((article, idx) => {
-              function DocumentOptimizeIcon({ className = "size-6" }: { className?: string }) {
+              function DocumentOptimizeIcon({ className = "size-7" }: { className?: string }) {
                 return (
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" className={className}>
                     <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
@@ -487,43 +486,43 @@ function Home() {
                 );
               }
 
-              // Estricto sistema cromático: #0F0F12, #FFFFFF, #EC3C2D (CERO pastel/arcoíris)
+              // 4 Colores sólidos del catálogo:
+              // 0: Turquesa/Cian (#06B6D4) - Privacidad / Procesamiento local
+              // 1: Rojo (#EC3C2D) - Sin registros / Acceso directo
+              // 2: Azul (#2563EB) - Conversión fiel
+              // 3: Naranja (#EA580C) - Optimización y preparación para envíos
               const BENTO_THEMES = [
                 {
                   icon: Cpu,
-                  cardBg: "bg-white text-[#0F0F12]",
-                  iconBg: "bg-[#0F0F12] text-white",
-                  iconColor: "text-white",
-                  tagBg: "bg-[#0F0F12] text-white",
-                  bodyColor: "text-slate-700",
-                  tag: "MOTOR WASM",
+                  topBorder: "border-t-[6px] border-t-[#06B6D4]",
+                  iconBg: "bg-[#06B6D4] text-white",
+                  hoverShadow: "hover:shadow-[7px_7px_0_#06B6D4]",
+                  tag: locale === "ca" ? "PROCESSAMENT LOCAL" : locale === "en" ? "LOCAL PROCESSING" : "PROCESAMIENTO LOCAL",
+                  tagBg: "bg-[#06B6D4] text-white",
                 },
                 {
                   icon: UserCheck,
-                  cardBg: "bg-[#0F0F12] text-white",
-                  iconBg: "bg-white text-[#0F0F12]",
-                  iconColor: "text-[#0F0F12]",
+                  topBorder: "border-t-[6px] border-t-[#EC3C2D]",
+                  iconBg: "bg-[#EC3C2D] text-white",
+                  hoverShadow: "hover:shadow-[7px_7px_0_#EC3C2D]",
+                  tag: locale === "ca" ? "SENSE REGISTRES" : locale === "en" ? "NO SIGN-UP REQUIRED" : "SIN REGISTROS",
                   tagBg: "bg-[#EC3C2D] text-white",
-                  bodyColor: "text-slate-300",
-                  tag: "SIN REGISTROS",
                 },
                 {
                   icon: ArrowLeftRight,
-                  cardBg: "bg-[#0F0F12] text-white",
-                  iconBg: "bg-white text-[#0F0F12]",
-                  iconColor: "text-[#0F0F12]",
-                  tagBg: "bg-white text-[#0F0F12]",
-                  bodyColor: "text-slate-300",
-                  tag: "FORMATOS NATIVOS",
+                  topBorder: "border-t-[6px] border-t-[#2563EB]",
+                  iconBg: "bg-[#2563EB] text-white",
+                  hoverShadow: "hover:shadow-[7px_7px_0_#2563EB]",
+                  tag: locale === "ca" ? "ALTA FIDELITAT" : locale === "en" ? "HIGH ACCURACY" : "ALTA FIDELIDAD",
+                  tagBg: "bg-[#2563EB] text-white",
                 },
                 {
                   icon: DocumentOptimizeIcon,
-                  cardBg: "bg-white text-[#0F0F12]",
-                  iconBg: "bg-[#0F0F12] text-white",
-                  iconColor: "text-white",
-                  tagBg: "bg-[#0F0F12] text-white",
-                  bodyColor: "text-slate-700",
-                  tag: "ALTA FIDELIDAD",
+                  topBorder: "border-t-[6px] border-t-[#EA580C]",
+                  iconBg: "bg-[#EA580C] text-white",
+                  hoverShadow: "hover:shadow-[7px_7px_0_#EA580C]",
+                  tag: locale === "ca" ? "MÀXIMA NITIDESA" : locale === "en" ? "MAX SHARPNESS" : "MÁXIMA NITIDEZ",
+                  tagBg: "bg-[#EA580C] text-white",
                 },
               ];
               const theme = BENTO_THEMES[idx % BENTO_THEMES.length]!;
@@ -532,31 +531,28 @@ function Home() {
               return (
                 <article
                   key={article.title}
-                  className={`group relative flex flex-col justify-start rounded-2xl border-2 border-[#0F0F12] ${theme.cardBg} p-8 sm:p-9 shadow-[4px_4px_0_#0F0F12] transition-all duration-200 hover:-translate-y-1 hover:shadow-[6px_6px_0_#0F0F12]`}
+                  className={`group relative flex flex-col justify-start rounded-2xl border-2 border-[#0F0F12] ${theme.topBorder} bg-[#FFFFFF] p-8 sm:p-9 shadow-[5px_5px_0_#0F0F12] transition-all duration-200 hover:-translate-y-1 ${theme.hoverShadow}`}
                 >
-                  {/* Fila superior: Icono cuadrado y Tag contundente */}
+                  {/* Fila superior: Icono cuadrado 52-56px en bloque sólido de color y etiqueta útil */}
                   <div className="flex items-center justify-between gap-4 mb-6">
                     <span
-                      className={`inline-flex size-[54px] sm:size-[58px] shrink-0 items-center justify-center rounded-xl border-2 border-[#0F0F12] ${theme.iconBg} shadow-[2px_2px_0_#0F0F12] transition-transform duration-200 group-hover:scale-105`}
+                      className={`inline-flex size-[52px] sm:size-[56px] shrink-0 items-center justify-center rounded-xl border-2 border-[#0F0F12] ${theme.iconBg} shadow-[3px_3px_0_#0F0F12] transition-transform duration-200 group-hover:scale-105`}
                     >
-                      <Icon className={`size-6 ${theme.iconColor} stroke-[2.5]`} />
+                      <Icon className="size-7 stroke-[2.4]" />
                     </span>
 
-                    {/* Tag de estado en alto contraste sin colores pastel */}
-                    <span className={`inline-flex items-center rounded-lg border-2 border-[#0F0F12] px-3.5 py-1.5 text-xs font-black tracking-wider uppercase whitespace-nowrap shadow-[2px_2px_0_#0F0F12] ${theme.tagBg}`}>
+                    <span className={`inline-flex items-center rounded-md border border-[#0F0F12] px-3 py-1 text-[11px] sm:text-xs font-black tracking-wider uppercase whitespace-nowrap shadow-[2px_2px_0_#0F0F12] ${theme.tagBg}`}>
                       {theme.tag}
                     </span>
                   </div>
 
-                  {/* Título de la tarjeta con color explícito para alto contraste */}
-                  <h3 className={`text-[22px] sm:text-[24px] font-black tracking-tight leading-snug ${
-                    theme.cardBg.includes("text-white") ? "text-white" : "text-[#0F0F12]"
-                  }`}>
+                  {/* Título de la tarjeta 22-25px, negro y sin truncar */}
+                  <h3 className="text-[22px] sm:text-[24px] font-black tracking-tight leading-snug text-[#0F0F12]">
                     {article.title}
                   </h3>
 
-                  {/* Párrafo explicativo */}
-                  <p className={`mt-3 text-[16px] sm:text-[17px] leading-relaxed font-normal ${theme.bodyColor}`}>
+                  {/* Párrafo explicativo 16-18px con interlineado cómodo */}
+                  <p className="mt-3.5 text-[16px] sm:text-[17px] leading-[1.5] font-medium text-[#0F0F12]">
                     {article.desc}
                   </p>
                 </article>
@@ -567,27 +563,26 @@ function Home() {
       </section>
 
       {/* ============================================================
-          SECTION — EDITORIAL GUIDES: Real step-by-step PDF manuals (GYMVITY style)
-          Strict surfaces: 100% white cards, red CTAs, zero rainbow tags, full author name
+          SECTION — EDITORIAL GUIDES: Compact, simplified & visual (3 cards per row)
           ============================================================ */}
-      <section className="border-b-2 border-[#0F0F12] bg-[#FFFFFF] pt-20 pb-20 sm:pt-28 sm:pb-28">
+      <section className="border-b-2 border-[#0F0F12] bg-[#FFFFFF] py-14 sm:py-18">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           
-          {/* Header con tipografía display contundente */}
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-14">
-            <div className="max-w-3xl">
-              <span className="inline-flex items-center gap-2 rounded-lg border-2 border-[#0F0F12] bg-[#0F0F12] px-3.5 py-1.5 text-xs font-black uppercase tracking-wider text-white shadow-[2px_2px_0_#0F0F12] whitespace-nowrap">
-                <BookOpen className="size-4" />
+          {/* Header compacto con botón alineado a la derecha en escritorio */}
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10">
+            <div className="max-w-2xl">
+              <span className="inline-flex items-center gap-2 rounded-lg border-2 border-[#0F0F12] bg-[#EC3C2D] px-3.5 py-1 text-xs font-black uppercase tracking-wider text-white shadow-[2px_2px_0_#0F0F12] whitespace-nowrap mb-3">
+                <BookOpen className="size-3.5" />
                 <span>{locale === "ca" ? "GUIES I TUTORIALS" : locale === "en" ? "GUIDES AND TUTORIALS" : "GUÍAS Y TUTORIALES"}</span>
               </span>
-              <h2 id="home-guides-title" className="mt-4 text-[2.5rem] sm:text-[3.2rem] lg:text-[3.8rem] font-black text-[#0F0F12] leading-[1.08] tracking-tight">
+              <h2 id="home-guides-title" className="text-3xl sm:text-4xl lg:text-[44px] font-black text-[#0F0F12] leading-[1.1] tracking-tight">
                 {locale === "ca"
                   ? "Solucions pas a pas i bones pràctiques per a PDF"
                   : locale === "en"
                   ? "Step-by-step PDF workflows and best practices"
                   : "Soluciones paso a paso y buenas prácticas para PDF"}
               </h2>
-              <p className="mt-3.5 text-[17px] sm:text-[19px] text-slate-700 max-w-2xl font-medium leading-relaxed">
+              <p className="mt-2.5 text-[16px] sm:text-[17px] text-[#0F0F12] font-medium leading-normal">
                 {locale === "ca"
                   ? "Manuals pràctics basats en estàndards tècnics per optimitzar, unificar i preparar documents oficials amb privadesa total."
                   : locale === "en"
@@ -596,33 +591,41 @@ function Home() {
               </p>
             </div>
 
-            {/* Botón rectangular neobrutalista rojo con sombra sólida negra perfecta shadow-[4px_4px_0_#0F0F12] */}
+            {/* Botón «Todas las guías» con fondo rojo sólido, borde negro y sombra dura */}
             <Link
               to={SECTION_ROUTE}
               params={guidesHubParams(locale)}
-              className="group inline-flex items-center gap-2.5 self-start md:self-auto rounded-xl border-2 border-[#0F0F12] bg-[#EC3C2D] px-7 py-4 text-[16px] font-black text-white transition-all shadow-[4px_4px_0_#0F0F12] hover:-translate-y-0.5 hover:shadow-[6px_6px_0_#0F0F12] cursor-pointer shrink-0"
+              className="group inline-flex items-center gap-2 self-start md:self-auto rounded-xl border-2 border-[#0F0F12] bg-[#EC3C2D] px-6 py-3 text-[15px] font-black text-white transition-all shadow-[4px_4px_0_#0F0F12] hover:-translate-y-0.5 hover:shadow-[6px_6px_0_#0F0F12] cursor-pointer shrink-0"
             >
               <span>{locale === "ca" ? "Totes les guies" : locale === "en" ? "All guides" : "Todas las guías"}</span>
-              <ArrowRight className="size-5 transition-transform duration-200 group-hover:translate-x-1" />
+              <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-1" />
             </Link>
           </div>
 
-          {/* Grid de 6 tarjetas: 100% BLANCAS, etiquetas monocromáticas, botón uniforme rojo */}
-          <div className="grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
-            {ALL_GUIDES.slice(0, 6).map((guide) => {
+          {/* Grid de 3 tarjetas compactas en 1 fila (escritorio): Tratamiento editorial claro, sin altura excesiva */}
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {ALL_GUIDES.slice(0, 3).map((guide, gIdx) => {
               const guideTitle = guide.title[locale] || guide.title.es;
               const guideDesc = guide.seoDescription[locale] || guide.seoDescription.es;
               const guideUrl = guidePath(locale, guide.canonicalSlug);
 
+              // Colores y acentos editoriales coordinados
+              const GUIDE_THEMES = [
+                { border: "border-t-[5px] border-t-[#EC3C2D]", badgeBg: "bg-[#EC3C2D]", iconBg: "bg-[#EC3C2D]/10 text-[#EC3C2D]" },
+                { border: "border-t-[5px] border-t-[#2563EB]", badgeBg: "bg-[#2563EB]", iconBg: "bg-[#2563EB]/10 text-[#2563EB]" },
+                { border: "border-t-[5px] border-t-[#8B5CF6]", badgeBg: "bg-[#8B5CF6]", iconBg: "bg-[#8B5CF6]/10 text-[#8B5CF6]" },
+              ];
+              const gTheme = GUIDE_THEMES[gIdx % GUIDE_THEMES.length]!;
+
               return (
                 <article
                   key={guide.canonicalSlug}
-                  className="group relative flex flex-col justify-between h-full rounded-2xl border-2 border-[#0F0F12] bg-white p-7 sm:p-8 shadow-[4px_4px_0_#0F0F12] transition-all duration-200 hover:-translate-y-1 hover:shadow-[6px_6px_0_#0F0F12]"
+                  className={`group relative flex flex-col justify-between rounded-xl border-2 border-[#0F0F12] ${gTheme.border} bg-[#FFFFFF] p-6 shadow-[4px_4px_0_#0F0F12] transition-all duration-200 hover:-translate-y-1 hover:shadow-[6px_6px_0_#0F0F12]`}
                 >
                   <div>
-                    {/* Fila superior: Badge negro de categoría (cero colores arcoíris) y tiempo de lectura */}
-                    <div className="flex items-center justify-between gap-3 mb-5">
-                      <span className="inline-block rounded-lg border-2 border-[#0F0F12] bg-[#0F0F12] text-white px-3 py-1 text-xs font-black uppercase tracking-wider whitespace-nowrap shadow-[2px_2px_0_#0F0F12]">
+                    {/* Fila superior: Categoría + Tiempo de lectura */}
+                    <div className="flex items-center justify-between gap-3 mb-4">
+                      <span className={`inline-block rounded-md border border-[#0F0F12] ${gTheme.badgeBg} text-white px-2.5 py-1 text-[11px] font-black uppercase tracking-wider shadow-[2px_2px_0_#0F0F12]`}>
                         {guide.category}
                       </span>
                       <span className="flex items-center gap-1.5 font-bold text-slate-600 text-xs shrink-0">
@@ -631,30 +634,30 @@ function Home() {
                       </span>
                     </div>
 
-                    {/* Título de la guía h3 */}
-                    <h3 className="text-[21px] sm:text-[23px] font-black text-[#0F0F12] leading-snug tracking-tight group-hover:text-[#EC3C2D] transition-colors">
+                    {/* Título de la guía: 19–21px, peso 700–800 */}
+                    <h3 className="text-[19px] sm:text-[20px] font-black text-[#0F0F12] leading-snug tracking-tight group-hover:text-[#EC3C2D] transition-colors">
                       <Link to={guideUrl}>
                         {guideTitle}
                       </Link>
                     </h3>
 
-                    {/* Descripción con texto nítido de 16px/17px y leading-relaxed sin recortes extraños */}
-                    <p className="mt-3.5 text-[16px] sm:text-[16.5px] leading-relaxed text-slate-700 font-normal">
+                    {/* Descripción concisa: 15–16px */}
+                    <p className="mt-2.5 text-[15px] leading-relaxed text-[#0F0F12]/80 font-medium">
                       {guideDesc}
                     </p>
                   </div>
 
-                  {/* Pie de tarjeta con línea divisoria, nombre completo de autor sin truncar y botón rojo oficial */}
-                  <div className="mt-7 pt-4 border-t-2 border-[#0F0F12]/10 flex items-center justify-between gap-3">
-                    <span className="text-[13px] text-slate-800 font-bold leading-tight max-w-[150px]">
+                  {/* Pie de tarjeta compacto: Autor + Botón «Leer la guía» rojo */}
+                  <div className="mt-5 pt-3.5 border-t border-[#0F0F12]/15 flex items-center justify-between gap-3">
+                    <span className="text-[12px] text-slate-700 font-bold leading-tight">
                       {guide.author.name}
                     </span>
                     <Link
                       to={guideUrl}
-                      className="group/btn inline-flex items-center gap-2 text-[15px] font-black text-white bg-[#EC3C2D] hover:bg-[#D93426] border-2 border-[#0F0F12] rounded-xl px-5 py-2.5 min-h-[46px] shadow-[3px_3px_0_#0F0F12] transition-all hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0_#0F0F12] shrink-0"
+                      className="group/btn inline-flex items-center gap-1.5 text-[14px] font-black text-white bg-[#EC3C2D] hover:bg-[#D93426] border-2 border-[#0F0F12] rounded-lg px-4 py-2 shadow-[2.5px_2.5px_0_#0F0F12] transition-all hover:translate-x-[1px] hover:translate-y-[1px] shrink-0"
                     >
                       <span>{locale === "ca" ? "Llegir la guia" : locale === "en" ? "Read guide" : "Leer la guía"}</span>
-                      <span className="transition-transform duration-200 group-hover/btn:translate-x-1">→</span>
+                      <span className="transition-transform duration-200 group-hover/btn:translate-x-0.5">→</span>
                     </Link>
                   </div>
                 </article>

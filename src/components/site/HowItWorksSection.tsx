@@ -85,9 +85,9 @@ export function HowItWorksSection() {
   const c = copy[locale as "es" | "ca" | "en"] ?? copy.es;
 
   // Sistema de color coordinado con las herramientas de BreadPDF:
-  // Paso 01 (Sube): Rojo corporativo BreadPDF (#EC3C2D / #EF4444)
-  // Paso 02 (Ajusta): Azul corporativo / Word / Documentos (#2563EB)
-  // Paso 03 (Descarga): Morado vibrante / Herramientas de extracción (#8B5CF6 / #7C3AED)
+  // Paso 01 (Sube): Rojo corporativo BreadPDF (#EC3C2D)
+  // Paso 02 (Ajusta): Azul corporativo (#2563EB)
+  // Paso 03 (Descarga): Morado corporativo (#8B5CF6)
   const STEP_THEMES = [
     {
       topBorder: "border-t-[6px] border-t-[#EC3C2D]",
@@ -113,13 +113,13 @@ export function HowItWorksSection() {
     <section className="relative z-20 border-b-2 border-[#0F0F12] bg-[#F1F1F4] py-16 sm:py-20 lg:py-24 overflow-hidden">
       <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8">
         
-        {/* Cabecera de la sección: Jerarquía rotunda con etiqueta roja y textos claros */}
-        <div className="mx-auto max-w-3xl text-center mb-10 sm:mb-12">
+        {/* Cabecera de la sección: Jerarquía rotunda con etiqueta roja y textos claros (42–48px) */}
+        <div className="mx-auto max-w-3xl text-center mb-12 sm:mb-14">
           <span className="inline-flex items-center rounded-lg border-2 border-[#0F0F12] bg-[#EC3C2D] px-4 py-1.5 text-[13px] sm:text-[14px] font-black uppercase tracking-wider text-white shadow-[3px_3px_0_#0F0F12]">
             {c.eyebrow}
           </span>
           
-          <h2 className="mt-4 text-3xl sm:text-4xl lg:text-[44px] font-black text-[#0F0F12] tracking-tight leading-[1.08] uppercase">
+          <h2 className="mt-4 text-3xl sm:text-4xl lg:text-[46px] font-black text-[#0F0F12] tracking-tight leading-[1.08] uppercase">
             {c.title}
           </h2>
           
@@ -128,7 +128,7 @@ export function HowItWorksSection() {
           </p>
         </div>
 
-        {/* 3 Tarjetas de Pasos: Superficies blancas sólidas con franja superior e iconos en colores del catálogo */}
+        {/* 3 Tarjetas de Pasos: Superficies blancas sólidas con iconos 48-56px, números 48px peso 800, títulos 22-25px, desc 16-18px */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto">
           {c.steps.map((step, idx) => {
             const Icon = step.icon;
@@ -137,27 +137,25 @@ export function HowItWorksSection() {
             return (
               <div
                 key={step.num}
-                className={`group relative flex flex-col justify-between rounded-2xl border-2 border-[#0F0F12] ${theme.topBorder} bg-[#FFFFFF] p-7 sm:p-8 shadow-[5px_5px_0_#0F0F12] hover:-translate-y-1 ${theme.hoverShadow} transition-all`}
+                className={`group relative flex flex-col justify-start rounded-2xl border-2 border-[#0F0F12] ${theme.topBorder} bg-[#FFFFFF] p-8 sm:p-9 shadow-[5px_5px_0_#0F0F12] hover:-translate-y-1 ${theme.hoverShadow} transition-all`}
               >
-                <div>
-                  {/* Parte Superior: Bloque de icono cuadrado sólido de 48px + Número contundente de 46px */}
-                  <div className="flex items-center justify-between mb-6">
-                    <span className={`flex size-12 shrink-0 items-center justify-center rounded-xl border-2 border-[#0F0F12] ${theme.iconBg} shadow-[2.5px_2.5px_0_#0F0F12] group-hover:scale-105 transition-transform`}>
-                      <Icon className="size-6 stroke-[2.5]" />
-                    </span>
-                    <span className={`text-4xl sm:text-[46px] font-black ${theme.numColor} tracking-tighter select-none tabular-nums`}>
-                      {step.num}
-                    </span>
-                  </div>
-
-                  {/* Contenido: Título H3 22-24px y Descripción legible 16-17px */}
-                  <h3 className="text-[22px] sm:text-[23px] font-black text-[#0F0F12] tracking-tight mb-2.5 leading-snug">
-                    {step.title}
-                  </h3>
-                  <p className="text-[16px] sm:text-[16.5px] font-medium text-[#0F0F12] leading-[1.5]">
-                    {step.desc}
-                  </p>
+                {/* Parte Superior: Bloque de icono cuadrado sólido de 52px + Número contundente de 48px */}
+                <div className="flex items-center justify-between mb-6">
+                  <span className={`flex size-[52px] sm:size-[56px] shrink-0 items-center justify-center rounded-xl border-2 border-[#0F0F12] ${theme.iconBg} shadow-[3px_3px_0_#0F0F12] group-hover:scale-105 transition-transform`}>
+                    <Icon className="size-7 stroke-[2.5]" />
+                  </span>
+                  <span className={`text-[44px] sm:text-[50px] font-black ${theme.numColor} tracking-tighter select-none tabular-nums leading-none`}>
+                    {step.num}
+                  </span>
                 </div>
+
+                {/* Contenido: Título H3 23-25px y Descripción legible 16.5-17.5px */}
+                <h3 className="text-[23px] sm:text-[25px] font-black text-[#0F0F12] tracking-tight mb-3 leading-snug">
+                  {step.title}
+                </h3>
+                <p className="text-[16px] sm:text-[17px] font-medium text-[#0F0F12] leading-[1.5]">
+                  {step.desc}
+                </p>
               </div>
             );
           })}
