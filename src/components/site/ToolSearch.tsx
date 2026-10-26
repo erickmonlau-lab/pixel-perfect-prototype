@@ -93,10 +93,10 @@ export function ToolSearch({ size = "md" }: { size?: "md" | "lg" }) {
     <div ref={containerRef} className="relative z-40 w-full">
       {/* Search Input Bar */}
       <div
-        className={`transition-all duration-200 flex items-center gap-3 rounded-2xl border-3 border-[#0F0F12] bg-white shadow-[6px_6px_0_#0F0F12] focus-within:shadow-[8px_8px_0_#FF3B30] focus-within:-translate-y-0.5 ${open ? "rounded-b-none" : ""} ${large ? "h-[64px] sm:h-[68px] pl-3 pr-4 sm:pl-3.5 sm:pr-5" : "h-14 px-4"}`}
+        className={`transition-all duration-200 flex items-center gap-3 sm:gap-4 rounded-2xl border-2 border-[#0F0F12] bg-white shadow-[5px_5px_0_#0F0F12] focus-within:shadow-[6px_6px_0_#0F0F12] focus-within:-translate-y-0.5 ${open ? "rounded-b-none" : ""} ${large ? "h-[68px] sm:h-[74px] pl-3.5 pr-4 sm:pl-4 sm:pr-5" : "h-14 px-4"}`}
       >
-        {/* Lupa dentro de un cuadrado rojo neobrutalista con borde negro */}
-        <span className="flex size-11 sm:size-12 shrink-0 items-center justify-center rounded-xl border-2 border-[#0F0F12] bg-[#EF4444] text-white shadow-[2px_2px_0_#0F0F12] select-none">
+        {/* Botón de lupa en rojo corporativo oficial con borde negro 2px */}
+        <span className="flex size-11 sm:size-12 shrink-0 items-center justify-center rounded-xl border-2 border-[#0F0F12] bg-[#EC3C2D] text-white shadow-[2px_2px_0_#0F0F12] select-none">
           <Search className="size-5 sm:size-6 text-white stroke-[2.8]" aria-hidden="true" />
         </span>
 
@@ -158,7 +158,7 @@ export function ToolSearch({ size = "md" }: { size?: "md" | "lg" }) {
           </button>
         )}
 
-        {/* Badge Teclado Atajo ⌘K / Explorar */}
+        {/* Badge Teclado Atajo Ctrl+K */}
         <div className="hidden sm:inline-flex items-center gap-1.5 shrink-0 select-none">
           <kbd className="inline-flex items-center gap-1 rounded-lg border-2 border-[#0F0F12] bg-[#EDEDF0] px-2.5 py-1 text-xs font-black text-[#0F0F12] shadow-[2px_2px_0_#0F0F12]">
             <span>Ctrl</span>
@@ -288,35 +288,22 @@ export function ToolSearch({ size = "md" }: { size?: "md" | "lg" }) {
       {/* ============================================================
           POPULAR TOOLS BLOCK (Full width, flex-wrap centered, zero overflow)
           ============================================================ */}
-      <div className="mt-4 flex flex-wrap items-center justify-center gap-2 w-full">
+      <div className="mt-5 flex flex-wrap items-center justify-center gap-2.5 w-full">
         {/* "Populares:" label */}
         <span className="shrink-0 text-[13px] font-black tracking-wider uppercase text-[#0F0F12] mr-1">
           {t.search.popular}:
         </span>
 
-        {/* Fast Tool Pills con punto de color y hover lleno */}
+        {/* Fast Tool Pills con superficie sólida, alto contraste y hover contundente */}
         {suggestions.map((tool) => {
-          const colorMap: Record<string, { dot: string; hoverClass: string }> = {
-            "comprimir-pdf": { dot: "bg-[#EF4444]", hoverClass: "hover:bg-[#EF4444] hover:text-white hover:shadow-[3px_3px_0_#0F0F12]" },
-            "unir-pdf": { dot: "bg-[#EF4444]", hoverClass: "hover:bg-[#EF4444] hover:text-white hover:shadow-[3px_3px_0_#0F0F12]" },
-            "dividir-pdf": { dot: "bg-[#EF4444]", hoverClass: "hover:bg-[#EF4444] hover:text-white hover:shadow-[3px_3px_0_#0F0F12]" },
-            "pdf-a-jpg": { dot: "bg-[#8B5CF6]", hoverClass: "hover:bg-[#8B5CF6] hover:text-white hover:shadow-[3px_3px_0_#0F0F12]" },
-            "extraer-paginas-pdf": { dot: "bg-[#06B6D4]", hoverClass: "hover:bg-[#06B6D4] hover:text-white hover:shadow-[3px_3px_0_#0F0F12]" },
-          };
-
-          const itemColor = colorMap[tool.canonicalSlug] || {
-            dot: "bg-[#EC3C2D]",
-            hoverClass: "hover:bg-[#EC3C2D] hover:text-white hover:shadow-[3px_3px_0_#0F0F12]",
-          };
-
           return (
             <Link
               key={tool.slug}
               to={DETAIL_ROUTE}
               params={toolParams(locale, tool.canonicalSlug)}
-              className={`group/pill inline-flex items-center gap-1.5 rounded-xl border-2 border-[#0F0F12] bg-white px-3.5 py-1.5 text-xs font-black text-[#0F0F12] whitespace-nowrap shadow-[2px_2px_0_#0F0F12] transition-all duration-150 cursor-pointer hover:-translate-y-0.5 ${itemColor.hoverClass}`}
+              className="group/pill inline-flex items-center gap-2 min-h-[44px] rounded-xl border-2 border-[#0F0F12] bg-white px-4 py-2.5 text-[14px] font-black text-[#0F0F12] whitespace-nowrap shadow-[3px_3px_0_#0F0F12] transition-all duration-150 cursor-pointer hover:-translate-y-0.5 hover:bg-[#0F0F12] hover:text-white hover:shadow-[4px_4px_0_#EC3C2D]"
             >
-              <span className={`size-2.5 rounded-full border border-[#0F0F12] ${itemColor.dot} shrink-0 transition-transform group-hover/pill:scale-125`} />
+              <span className="size-2 rounded-full border border-[#0F0F12] bg-[#EC3C2D] shrink-0 transition-transform group-hover/pill:scale-125 group-hover/pill:bg-white" />
               <span>{tool.name}</span>
             </Link>
           );
