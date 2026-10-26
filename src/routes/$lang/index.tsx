@@ -197,10 +197,6 @@ function Home() {
                 <span className="text-sm sm:text-[15.5px] font-black uppercase tracking-wider text-[#0F0F12]">
                   {locale === "ca" ? "EINES PDF" : locale === "en" ? "PDF TOOLS" : "HERRAMIENTAS PDF"}
                 </span>
-
-                <span className="text-xs font-black text-[#EC3C2D] group-hover:translate-x-0.5 transition-transform" aria-hidden="true">
-                  →
-                </span>
               </a>
             </div>
 
