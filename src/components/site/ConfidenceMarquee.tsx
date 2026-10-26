@@ -1,67 +1,71 @@
 import { useLocale } from "@/lib/i18n/context";
 
-export function ConfidenceMarquee() {
+/**
+ * Animated Brand Micro-Ticker for BreadPDF Hero:
+ * "MÁS RÁPIDO · MÁS FÁCIL · EN TU NAVEGADOR"
+ * - High-contrast solid black bar (#0F0F12) with crisp white display typography
+ * - Brand red (#EC3C2D) solid bullet separators
+ * - Smooth continuous hardware-accelerated ticker motion
+ * - Respects prefers-reduced-motion (switches to clean centered static text)
+ * - Zero yellow backgrounds, zero gradients, zero layout shifting
+ */
+export function AnimatedBrandTicker() {
   const { locale } = useLocale();
 
-  const messages = {
-    es: [
-      "⚡ 100% Gratis sin suscripción",
-      "🔒 Archivos nunca salen de tu navegador",
-      "🥖 Panadería artesanal de documentos",
-      "🚀 Procesamiento instantáneo en RAM (WASM)",
-      "✨ Sin marcas de agua ni límites diarios",
-      "📂 51 Herramientas PDF profesionales",
-      "🛡️ Privacidad absoluta según RGPD",
-    ],
-    ca: [
-      "⚡ 100% Gratuït sense subscripció",
-      "🔒 Els arxius mai surten del teu navegador",
-      "🥖 Forn artesanal de documents",
-      "🚀 Processament instantani a la RAM (WASM)",
-      "✨ Sense marques d'aigua ni límits diaris",
-      "📂 51 Eines PDF professionals",
-      "🛡️ Privadesa absoluta segons RGPD",
-    ],
-    en: [
-      "⚡ 100% Free with no subscription",
-      "🔒 Files never leave your browser",
-      "🥖 Handcrafted document bakery",
-      "🚀 Instant RAM execution via WASM",
-      "✨ No watermarks or daily limits",
-      "📂 51 Professional PDF tools",
-      "🛡️ Full privacy & zero telemetry",
-    ],
+  const phrase = {
+    es: {
+      p1: "MÁS RÁPIDO",
+      p2: "MÁS FÁCIL",
+      p3: "EN TU NAVEGADOR",
+    },
+    ca: {
+      p1: "MÉS RÀPID",
+      p2: "MÉS FÀCIL",
+      p3: "AL TEU NAVEGADOR",
+    },
+    en: {
+      p1: "FASTER",
+      p2: "EASIER",
+      p3: "IN YOUR BROWSER",
+    },
+  }[locale as "es" | "ca" | "en"] ?? {
+    p1: "MÁS RÁPIDO",
+    p2: "MÁS FÁCIL",
+    p3: "EN TU NAVEGADOR",
   };
 
-  const list = messages[locale] || messages.es;
-  const repeated = [...list, ...list];
-  const reversedList = [...list].reverse();
-  const reversedRepeated = [...reversedList, ...reversedList];
+  // Repeated items for seamless smooth horizontal loop
+  const items = Array.from({ length: 8 }, (_, idx) => idx);
 
   return (
-    <div className="relative z-20 w-full overflow-hidden border-b-2 border-[#0F0F12] bg-[#FEF08A] select-none py-2.5">
-      {/* Primera fila principal */}
-      <div className="flex w-max animate-marquee hover:[animation-play-state:paused] items-center gap-8 py-1">
-        {repeated.map((msg, i) => (
-          <div key={i} className="flex items-center gap-8">
-            <span className="text-sm sm:text-base font-black uppercase tracking-wide text-[#0F0F12] whitespace-nowrap">
-              {msg}
+    <div
+      aria-label={`${phrase.p1} · ${phrase.p2} · ${phrase.p3}`}
+      className="relative z-20 w-full overflow-hidden border-b-2 border-[#0F0F12] bg-[#0F0F12] text-white py-2 select-none"
+    >
+      {/* Ticker animation track */}
+      <div className="flex w-max animate-ticker items-center motion-reduce:animate-none motion-reduce:mx-auto motion-reduce:w-auto">
+        {items.map((i) => (
+          <div key={i} className="flex items-center gap-4 sm:gap-6 px-3 sm:px-4 shrink-0">
+            <span className="text-xs sm:text-[13px] font-black tracking-widest uppercase text-white">
+              {phrase.p1}
             </span>
-            <span className="size-2.5 rounded-full bg-[#E8372C] border border-[#0F0F12]" />
-          </div>
-        ))}
-      </div>
-      {/* Segunda fila en sentido inverso más sutil */}
-      <div className="hidden sm:flex w-max animate-marquee-reverse hover:[animation-play-state:paused] items-center gap-8 pt-1 border-t border-[#0F0F12]/15 opacity-75">
-        {reversedRepeated.map((msg, i) => (
-          <div key={i} className="flex items-center gap-8">
-            <span className="text-xs sm:text-sm font-extrabold uppercase tracking-wider text-[#0F0F12] whitespace-nowrap">
-              {msg}
+            <span className="size-1.5 rounded-full bg-[#EC3C2D]" aria-hidden="true" />
+
+            <span className="text-xs sm:text-[13px] font-black tracking-widest uppercase text-white">
+              {phrase.p2}
             </span>
-            <span className="size-1.5 rounded-full bg-[#0F0F12]" />
+            <span className="size-1.5 rounded-full bg-[#EC3C2D]" aria-hidden="true" />
+
+            <span className="text-xs sm:text-[13px] font-black tracking-widest uppercase text-white">
+              {phrase.p3}
+            </span>
+            <span className="size-1.5 rounded-full bg-[#EC3C2D]" aria-hidden="true" />
           </div>
         ))}
       </div>
     </div>
   );
 }
+
+// Keep export alias for any legacy imports
+export const ConfidenceMarquee = AnimatedBrandTicker;

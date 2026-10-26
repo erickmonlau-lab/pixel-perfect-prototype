@@ -6,6 +6,7 @@ import { localizedPopular, searchLocalizedTools } from "@/lib/tools/localize";
 import { useLocale } from "@/lib/i18n/context";
 import { DETAIL_ROUTE, toolParams } from "@/lib/i18n/routing";
 import { ToolIcon } from "./ToolIcon";
+import { getToolColorTheme } from "@/lib/tools/color-system";
 import { getRichToolIcon } from "./RichToolIcon";
 import type { ToolCategory } from "@/lib/tools/types";
 
@@ -163,6 +164,16 @@ export function ToolSearch({ size = "md" }: { size?: "md" | "lg" }) {
         />
 
         {/* Clear input button */}
+        {/* Discreto indicador de atajo Ctrl+K en escritorio */}
+        {!query.trim() && (
+          <div className="hidden lg:flex items-center shrink-0 mr-1 select-none pointer-events-none">
+            <kbd className="inline-flex items-center gap-0.5 rounded-lg border border-slate-300 bg-slate-100/80 px-2 py-0.5 text-[11px] font-bold text-slate-500 shadow-2xs">
+              <span>Ctrl</span>
+              <span>K</span>
+            </kbd>
+          </div>
+        )}
+
         {query.trim().length > 0 && (
           <button
             type="button"
@@ -296,40 +307,45 @@ export function ToolSearch({ size = "md" }: { size?: "md" | "lg" }) {
       )}
 
       {/* ============================================================
-          POPULAR TOOLS BLOCK: RECTA, HORIZONTAL, COMPACTA Y EN UNA SOLA FILA
-          En escritorio: fila única horizontal sin romper en 2 líneas.
-          Botones compactos 44px, tipografía nítida 14-15px, borde 2px, sombra 2.5px.
+          POPULAR TOOLS BLOCK: RECTA, HORIZONTAL, VISUAL, ORDENADA Y CON ICONOS AUTÉNTICOS
+          Alineación recta, sin amontonamientos, iconos auténticos del catálogo con colores de identidad
           ============================================================ */}
       <div className="mt-4 sm:mt-5 flex flex-wrap xl:flex-nowrap items-center justify-center gap-2 sm:gap-2.5 w-full max-w-5xl mx-auto">
-        {/* Encabezado POPULARES */}
-        <span className="shrink-0 text-[13px] sm:text-[14px] font-black uppercase tracking-wider text-[#0F0F12] mr-1">
-          {t.search.popular}:
+        {/* Rótulo POPULARES nítido y alineado */}
+        <span className="shrink-0 text-[13px] sm:text-[14px] font-black uppercase tracking-wider text-[#0F0F12] mr-1 select-none">
+          {t.search.popular}
         </span>
 
-        {/* Accesos populares en una sola fila en desktop */}
+        <span className="hidden xl:inline-block w-px h-5 bg-[#0F0F12]/20 mr-1" aria-hidden="true" />
+
+        {/* Fila única de accesos populares con iconos auténticos del catálogo */}
         <div className="flex flex-wrap xl:flex-nowrap items-center justify-center gap-2 sm:gap-2.5">
           {suggestions.map((tool) => {
             const isFeatured = tool.canonicalSlug === "comprimir-pdf";
+            const theme = getToolColorTheme(tool.canonicalSlug, tool.category);
 
             return (
               <Link
                 key={tool.slug}
                 to={DETAIL_ROUTE}
                 params={toolParams(locale, tool.canonicalSlug)}
-                className={`group/pill inline-flex items-center gap-2 h-10 sm:h-11 px-3.5 sm:px-4 text-[13.5px] sm:text-[14px] font-black rounded-xl border-2 border-[#0F0F12] shadow-[2.5px_2.5px_0_#0F0F12] whitespace-nowrap transition-all duration-120 cursor-pointer hover:-translate-y-0.5 hover:shadow-[3.5px_3.5px_0_#0F0F12] active:translate-y-0 active:shadow-[1px_1px_0_#0F0F12] ${
+                className={`group/pill inline-flex items-center gap-2.5 h-11 sm:h-12 px-3.5 sm:px-4 rounded-xl border-2 border-[#0F0F12] shadow-[3px_3px_0_#0F0F12] whitespace-nowrap transition-all duration-120 cursor-pointer hover:-translate-y-0.5 hover:shadow-[4px_4px_0_#0F0F12] active:translate-y-0 active:shadow-[1px_1px_0_#0F0F12] ${
                   isFeatured
                     ? "bg-[#EC3C2D] text-white hover:bg-[#D43426]"
                     : "bg-white text-[#0F0F12] hover:bg-[#F8FAFC]"
                 }`}
               >
+                {/* Contenedor del icono con el color auténtico de la herramienta del catálogo */}
                 <span
-                  className={`flex size-5 sm:size-5.5 shrink-0 items-center justify-center rounded-lg border border-[#0F0F12] ${
-                    isFeatured ? "bg-white text-[#EC3C2D]" : "bg-[#0F0F12] text-white"
+                  className={`flex size-6 sm:size-7 shrink-0 items-center justify-center rounded-lg border-1.5 border-[#0F0F12] shadow-[1.5px_1.5px_0_#0F0F12] group-hover/pill:scale-105 transition-transform ${
+                    isFeatured
+                      ? "bg-white text-[#EC3C2D]"
+                      : `${theme.bg} ${theme.text}`
                   }`}
                 >
-                  <ToolIcon name={tool.icon} canonicalSlug={tool.canonicalSlug} className="size-3.5" />
+                  <ToolIcon name={tool.icon} canonicalSlug={tool.canonicalSlug} className="size-4" />
                 </span>
-                <span className="tracking-tight">{tool.name}</span>
+                <span className="text-[14px] sm:text-[15px] font-black tracking-tight">{tool.name}</span>
               </Link>
             );
           })}

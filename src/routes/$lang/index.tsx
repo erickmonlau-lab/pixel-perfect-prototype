@@ -124,13 +124,13 @@ function Home() {
               ZONA 1 (LATERAL IZQUIERDO): MASCOTA DINÁMICA OFICIAL DE LA REFERENCIA
               Mascota pan corriendo con documento PDF rojo y líneas de movimiento
               ============================================================ */}
-          <div className="hidden xl:block absolute left-[1%] 2xl:left-[3%] top-1/2 -translate-y-1/2 z-25 select-none pointer-events-none transition-transform hover:scale-105 duration-300">
+          <div className="hidden xl:block absolute left-0 xl:left-[-1%] 2xl:left-[0.5%] top-1/2 -translate-y-1/2 z-25 select-none pointer-events-none transition-transform hover:scale-105 duration-300">
             <img
               src="/brand/hero-mascot-perfect.png"
               alt="Mascota BreadPDF"
               width={260}
               height={270}
-              className="w-52 h-auto 2xl:w-64 drop-shadow-[5px_5px_0_#0F0F12] object-contain"
+              className="w-56 h-auto 2xl:w-68 drop-shadow-[5px_5px_0_#0F0F12] object-contain"
               loading="eager"
               fetchPriority="high"
             />
@@ -142,36 +142,30 @@ function Home() {
               ============================================================ */}
           <div className="relative z-25 w-full max-w-4xl 2xl:max-w-5xl text-center my-auto px-4 py-2 sm:py-4">
             
-            {/* INSIGNIA SUPERIOR: RECONOCIBLE, POTENTE Y DINÁMICA */}
-            <div className="inline-flex items-center justify-center mb-4 select-none max-w-full">
+            {/* INSIGNIA SUPERIOR: ELEGANTE, PROFESIONAL Y SÓLIDA EN NEGRO (#0F0F12) */}
+            <div className="inline-flex items-center justify-center mb-3 sm:mb-4 select-none max-w-full">
               <a
                 href="#catalogo"
-                className="group inline-flex items-center gap-2.5 sm:gap-3 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-2xl bg-[#FEF08A] border-2 border-[#0F0F12] shadow-[3.5px_3.5px_0_#0F0F12] hover:shadow-[5px_5px_0_#0F0F12] hover:bg-[#FDE047] text-[#0F0F12] transition-all cursor-pointer"
-                title="Explorar las herramientas en el catálogo"
+                className="group inline-flex items-center gap-2.5 sm:gap-3 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-2xl bg-[#0F0F12] border-2 border-[#0F0F12] text-white shadow-[3.5px_3.5px_0_#EC3C2D] hover:shadow-[5px_5px_0_#EC3C2D] transition-all cursor-pointer"
+                title="Explorar el catálogo completo"
               >
-                {/* Mascota oficial en tamaño visible */}
-                <img
-                  src={BRAND_ASSETS.iconWebp}
-                  alt=""
-                  width={28}
-                  height={28}
-                  className="size-6 sm:size-7 object-contain drop-shadow-xs group-hover:scale-105 transition-transform"
-                  aria-hidden="true"
-                />
+                {/* Badge rojo con el número real */}
+                <span className="flex items-center justify-center h-6 sm:h-6.5 px-2 rounded-lg bg-[#EC3C2D] text-white text-xs sm:text-[13px] font-black border border-white/20 tabular-nums">
+                  {totalToolsCount}
+                </span>
 
-                <div className="flex items-baseline gap-1.5 leading-none">
-                  <span className="text-sm sm:text-base font-black tracking-tight text-[#0F0F12]">
-                    {totalToolsCount}
-                  </span>
-                  <span className="text-xs sm:text-[13.5px] font-black uppercase tracking-wide text-[#0F0F12]">
-                    {locale === "ca" ? "Eines PDF" : locale === "en" ? "PDF Tools" : "Herramientas PDF"}
-                  </span>
-                </div>
+                <span className="text-xs sm:text-[13.5px] font-black uppercase tracking-wider text-white">
+                  {locale === "ca" ? "Eines PDF" : locale === "en" ? "PDF Tools" : "Herramientas PDF"}
+                </span>
 
-                <span className="w-1.5 h-1.5 rounded-full bg-[#0F0F12]/30" aria-hidden="true" />
+                <span className="w-1.5 h-1.5 rounded-full bg-white/30" aria-hidden="true" />
 
-                <span className="text-[11px] sm:text-xs font-extrabold uppercase tracking-wider text-slate-800">
-                  {locale === "ca" ? "Gratis al teu Navegador" : locale === "en" ? "Free in your Browser" : "Gratis en tu Navegador"}
+                <span className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-slate-300 group-hover:text-white transition-colors">
+                  {locale === "ca" ? "Gratis · Al teu Navegador" : locale === "en" ? "Free · In your Browser" : "Gratis · En tu Navegador"}
+                </span>
+
+                <span className="text-xs font-bold text-[#EC3C2D] group-hover:translate-x-0.5 transition-transform" aria-hidden="true">
+                  →
                 </span>
               </a>
             </div>
@@ -207,13 +201,13 @@ function Home() {
               ZONA 3 (LATERAL DERECHO): 4 TARJETAS INCLINADAS DE LA REFERENCIA
               Comprimir, Unir, Convertir, Dividir con sombras duras e iconos exactos
               ============================================================ */}
-          <div className="hidden xl:block absolute right-[1%] 2xl:right-[3%] top-1/2 -translate-y-1/2 z-25 select-none pointer-events-none transition-transform hover:scale-105 duration-300">
+          <div className="hidden xl:block absolute right-0 xl:right-[-1%] 2xl:right-[0.5%] top-1/2 -translate-y-1/2 z-25 select-none pointer-events-none transition-transform hover:scale-105 duration-300">
             <img
               src="/brand/hero-tools-perfect.png"
               alt="Herramientas PDF principales"
               width={250}
               height={290}
-              className="w-52 h-auto 2xl:w-64 drop-shadow-[5px_5px_0_#0F0F12] object-contain"
+              className="w-56 h-auto 2xl:w-68 drop-shadow-[5px_5px_0_#0F0F12] object-contain"
               loading="eager"
             />
           </div>
@@ -236,6 +230,9 @@ function Home() {
         </div>
 
       </section>
+
+      {/* Micro-ticker animado de marca: MÁS RÁPIDO · MÁS FÁCIL · EN TU NAVEGADOR */}
+      <ConfidenceMarquee />
 
       {/* ============================================================
           FRANJA HORIZONTAL NEGRA SÓLIDA DE 3 BENEFICIOS REALES
