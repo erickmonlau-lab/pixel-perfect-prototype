@@ -456,24 +456,26 @@ function Home() {
 
       {/* ============================================================
           SECTION — EDITORIAL BENTO: Neo-brutalist 4 feature pillars
-          Compact, balanced and high density: tighter padding, 4px shadow, clean spacing
+          Compact section with large, highly legible typography:
+          Header: Tag 13-14px, Title 40-44px, Sub 17-18px
+          Cards 2x2: Title 21-23px, Body 16-17px, Icons 40-44px, Padding 22-26px, Gap 16-20px
           ============================================================ */}
-      <section className="border-b-2 border-[#0F0F12] bg-[#F1F1F4] py-12 sm:py-16">
+      <section className="border-b-2 border-[#0F0F12] bg-[#F1F1F4] py-14 sm:py-18">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center">
-            <span className="inline-flex items-center gap-1.5 rounded-lg border-2 border-[#0F0F12] bg-[#EC3C2D] px-3.5 py-1 text-xs font-black tracking-wider text-white uppercase shadow-[2.5px_2.5px_0_#0F0F12]">
+            <span className="inline-flex items-center gap-1.5 rounded-lg border-2 border-[#0F0F12] bg-[#EC3C2D] px-4 py-1.5 text-[13px] sm:text-[14px] font-black tracking-wider text-white uppercase shadow-[3px_3px_0_#0F0F12]">
               {t.home.editorial.eyebrow}
             </span>
-            <h2 className="mt-3.5 text-2xl sm:text-3xl lg:text-[38px] font-black tracking-tight leading-[1.12] text-[#0F0F12]">
+            <h2 className="mt-4 text-3xl sm:text-4xl lg:text-[42px] font-black tracking-[-0.025em] leading-[1.1] text-[#0F0F12]">
               {t.home.editorial.title}
             </h2>
-            <p className="mx-auto mt-2.5 max-w-2xl text-[15px] sm:text-[16px] leading-relaxed text-[#0F0F12]/85 font-medium">
+            <p className="mx-auto mt-3 max-w-2xl text-[17px] sm:text-[18px] leading-[1.5] text-[#0F0F12] font-medium">
               {t.home.editorial.sub}
             </p>
           </div>
 
-          {/* Grid con 4 tarjetas de beneficios compactas */}
-          <div className="mt-8 sm:mt-10 grid gap-5 sm:grid-cols-2">
+          {/* Grid 2x2 con 4 tarjetas de beneficios: Título 21-23px, cuerpo 16-17px */}
+          <div className="mt-10 sm:mt-12 grid gap-4 sm:gap-5 sm:grid-cols-2">
             {t.home.editorial.articles.map((article, idx) => {
               function DocumentOptimizeIcon({ className = "size-5" }: { className?: string }) {
                 return (
@@ -492,7 +494,7 @@ function Home() {
                   topBorder: "border-t-[5px] border-t-[#06B6D4]",
                   iconBg: "bg-[#06B6D4] text-white",
                   hoverShadow: "hover:shadow-[6px_6px_0_#06B6D4]",
-                  tag: locale === "ca" ? "PROCESSAMENT LOCAL" : locale === "en" ? "LOCAL PROCESSING" : "PROCESAMIENTO LOCAL",
+                  tag: locale === "ca" ? "NAVEGADOR LOCAL" : locale === "en" ? "IN-BROWSER" : "NAVEGADOR LOCAL",
                   tagBg: "bg-[#06B6D4] text-white",
                 },
                 {
@@ -500,7 +502,7 @@ function Home() {
                   topBorder: "border-t-[5px] border-t-[#EC3C2D]",
                   iconBg: "bg-[#EC3C2D] text-white",
                   hoverShadow: "hover:shadow-[6px_6px_0_#EC3C2D]",
-                  tag: locale === "ca" ? "SENSE REGISTRES" : locale === "en" ? "NO SIGN-UP REQUIRED" : "SIN REGISTROS",
+                  tag: locale === "ca" ? "SENSE REGISTRES" : locale === "en" ? "NO SIGN-UP" : "SIN REGISTROS",
                   tagBg: "bg-[#EC3C2D] text-white",
                 },
                 {
@@ -508,7 +510,7 @@ function Home() {
                   topBorder: "border-t-[5px] border-t-[#2563EB]",
                   iconBg: "bg-[#2563EB] text-white",
                   hoverShadow: "hover:shadow-[6px_6px_0_#2563EB]",
-                  tag: locale === "ca" ? "ALTA FIDELITAT" : locale === "en" ? "HIGH ACCURACY" : "ALTA FIDELIDAD",
+                  tag: locale === "ca" ? "MULTIFORMAT" : locale === "en" ? "MULTI-FORMAT" : "MULTIFORMATO",
                   tagBg: "bg-[#2563EB] text-white",
                 },
                 {
@@ -516,7 +518,7 @@ function Home() {
                   topBorder: "border-t-[5px] border-t-[#EA580C]",
                   iconBg: "bg-[#EA580C] text-white",
                   hoverShadow: "hover:shadow-[6px_6px_0_#EA580C]",
-                  tag: locale === "ca" ? "MÀXIMA NITIDESA" : locale === "en" ? "MAX SHARPNESS" : "MÁXIMA NITIDEZ",
+                  tag: locale === "ca" ? "OPTIMITZACIÓ" : locale === "en" ? "OPTIMIZATION" : "OPTIMIZACIÓN",
                   tagBg: "bg-[#EA580C] text-white",
                 },
               ];
@@ -526,28 +528,28 @@ function Home() {
               return (
                 <article
                   key={article.title}
-                  className={`group relative flex flex-col justify-start rounded-xl border-2 border-[#0F0F12] ${theme.topBorder} bg-[#FFFFFF] p-6 sm:p-7 shadow-[4px_4px_0_#0F0F12] transition-all duration-200 hover:-translate-y-0.5 ${theme.hoverShadow}`}
+                  className={`group relative flex flex-col justify-start rounded-2xl border-2 border-[#0F0F12] ${theme.topBorder} bg-[#FFFFFF] p-6 sm:p-7 shadow-[4px_4px_0_#0F0F12] transition-all duration-200 hover:-translate-y-0.5 ${theme.hoverShadow}`}
                 >
-                  {/* Fila superior: Icono 44px + Tag de 11px */}
+                  {/* Fila superior: Icono 40–44px + Tag de 12–13px */}
                   <div className="flex items-center justify-between gap-3 mb-4">
                     <span
-                      className={`inline-flex size-11 shrink-0 items-center justify-center rounded-lg border-2 border-[#0F0F12] ${theme.iconBg} shadow-[2px_2px_0_#0F0F12] transition-transform duration-200 group-hover:scale-105`}
+                      className={`inline-flex size-[42px] shrink-0 items-center justify-center rounded-xl border-2 border-[#0F0F12] ${theme.iconBg} shadow-[2px_2px_0_#0F0F12] transition-transform duration-200 group-hover:scale-105`}
                     >
                       <Icon className="size-5 stroke-[2.4]" />
                     </span>
 
-                    <span className={`inline-flex items-center rounded-md border border-[#0F0F12] px-2.5 py-1 text-[11px] font-black tracking-wider uppercase whitespace-nowrap shadow-[1.5px_1.5px_0_#0F0F12] ${theme.tagBg}`}>
+                    <span className={`inline-flex items-center rounded-md border border-[#0F0F12] px-3 py-1 text-[12px] sm:text-[13px] font-black tracking-wider uppercase whitespace-nowrap shadow-[1.5px_1.5px_0_#0F0F12] ${theme.tagBg}`}>
                       {theme.tag}
                     </span>
                   </div>
 
-                  {/* Título de la tarjeta 20–21px */}
-                  <h3 className="text-[19px] sm:text-[21px] font-black tracking-tight leading-snug text-[#0F0F12]">
+                  {/* Título de la tarjeta 21–23px */}
+                  <h3 className="text-[21px] sm:text-[23px] font-black tracking-tight leading-snug text-[#0F0F12]">
                     {article.title}
                   </h3>
 
-                  {/* Párrafo explicativo 15–16px con interlineado ajustado */}
-                  <p className="mt-2 text-[15px] sm:text-[15.5px] leading-relaxed font-medium text-[#0F0F12]/80">
+                  {/* Párrafo explicativo 16–17px con interlineado 1.48 */}
+                  <p className="mt-2.5 text-[16px] sm:text-[17px] leading-[1.48] font-medium text-[#0F0F12]">
                     {article.desc}
                   </p>
                 </article>

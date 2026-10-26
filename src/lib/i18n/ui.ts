@@ -71,20 +71,20 @@ const es = {
       sub: "BreadPDF proporciona un conjunto directo de utilidades para trabajar con archivos PDF y convertirlos de forma ágil, segura y sin necesidad de instalar software pesado.",
       articles: [
         {
-          title: "¿Cómo funciona el procesamiento local en el navegador?",
-          desc: "Gran parte de nuestras herramientas (como unir, dividir, rotar, comprimir o extraer páginas) operan mediante tecnologías modernas de WebAssembly y JavaScript directamente en tu navegador. Tus documentos no viajan a servidores remotos ni quedan registrados en bases de datos externas.",
+          title: "Procesamiento en tu navegador",
+          desc: "Trabaja con tus documentos directamente en el navegador cuando la herramienta lo permite, sin subir archivos a un servidor.",
         },
         {
-          title: "Sin registros obligatorios ni límites ocultos",
-          desc: "Puedes utilizar cualquiera de las herramientas disponibles de forma directa. No necesitas crear una cuenta, introducir direcciones de correo electrónico ni esperar enlaces de descarga para resolver una tarea puntual con tus documentos.",
+          title: "Sin registros obligatorios",
+          desc: "Accede directamente a las herramientas sin necesidad de crear una cuenta ni compartir tus datos.",
         },
         {
-          title: "Conversión fiel entre formatos",
-          desc: "Transforma documentos PDF a formatos editables como Word, Excel o presentaciones PowerPoint, así como imágenes (JPG, PNG, WebP) conservando la disposición, las tipografías y la estructura original del contenido para que puedas continuar trabajando sin pérdidas de formato.",
+          title: "Conversión entre formatos",
+          desc: "Convierte documentos e imágenes a los formatos que admite cada herramienta sin complicaciones.",
         },
         {
-          title: "Optimización y preparación para envíos",
-          desc: "Reduce el peso de archivos PDF para adjuntarlos por correo electrónico, cumplir con los límites de trámites telemáticos o publicarlos en la web manteniendo la máxima nitidez visual posible tanto en pantalla como en impresión.",
+          title: "Optimización y preparación",
+          desc: "Reduce el tamaño de tus PDF o prepara los documentos para compartirlos e imprimirlos, según la herramienta.",
         },
       ],
     },
@@ -463,20 +463,20 @@ const ca: Dict = {
       sub: "BreadPDF proporciona un conjunt directe d'utilitats per treballar amb fitxers PDF i convertir-los de manera àgil, segura i sense necessitat d'instal·lar programari pesat.",
       articles: [
         {
-          title: "Com funciona el processament local al navegador?",
-          desc: "Gran part de les nostres eines (com ara unir, dividir, girar, comprimir o extreure pàgines) operen mitjançant tecnologies modernes de WebAssembly i JavaScript directament al teu navegador. Els teus documents no viatgen a servidors remots ni queden registrats en bases de dades externes.",
+          title: "Processament al teu navegador",
+          desc: "Treballa amb els teus documents directament al navegador quan l'eina ho permet, sense pujar fitxers a cap servidor.",
         },
         {
-          title: "Sense registres obligatoris ni límits ocults",
-          desc: "Pots utilitzar qualsevol de les eines disponibles de manera directa. No cal crear cap compte, introduir adreces de correu electrònic ni esperar enllaços de descàrrega per resoldre una feina puntual amb els teus documents.",
+          title: "Sense registres obligatoris",
+          desc: "Accedeix directament a les eines sense necessitat de crear cap compte ni compartir les teves dades.",
         },
         {
-          title: "Conversió fidel entre formats",
-          desc: "Transforma documents PDF a formats editables com Word, Excel o presentacions PowerPoint, així com imatges (JPG, PNG, WebP) conservant la disposició, les tipografies i l'estructura original del contingut per poder continuar treballant sense pèrdues de format.",
+          title: "Conversió entre formats",
+          desc: "Converteix documents i imatges als formats admesos per cada eina sense complicacions.",
         },
         {
-          title: "Optimització i preparació per a enviaments",
-          desc: "Redueix el pes dels fitxers PDF per adjuntar-los per correu electrònic, complir amb els límits de tràmits telemàtics o publicar-los al web mantenint la màxima nitidesa visual possible tant en pantalla com en impressió.",
+          title: "Optimització i preparació",
+          desc: "Redueix la mida dels teus PDF o prepara els documents per compartir-los i imprimir-los, segons l'eina.",
         },
       ],
     },
@@ -851,20 +851,20 @@ const en: Dict = {
       sub: "BreadPDF provides a focused set of utilities to work with PDF documents and convert them quickly, securely, and without installing heavy desktop software.",
       articles: [
         {
-          title: "How does local browser processing work?",
-          desc: "Most of our core tools (such as merge, split, rotate, compress, or extract pages) operate using modern WebAssembly and JavaScript right inside your browser. Your files never travel to external servers and are not stored in third-party databases.",
+          title: "In-browser processing",
+          desc: "Work with your documents directly inside your browser whenever supported, without uploading files to a server.",
         },
         {
-          title: "No mandatory sign-ups or hidden gates",
-          desc: "You can use every available tool directly. You don't need to create an account, share an email address, or wait for email download links to complete an urgent document task.",
+          title: "No mandatory sign-ups",
+          desc: "Access every available tool right away without needing to register an account or share your details.",
         },
         {
-          title: "Accurate format conversions",
-          desc: "Transform PDF documents into editable formats like Word, Excel, or PowerPoint presentations, as well as images (JPG, PNG, WebP) while preserving layout, fonts, and content hierarchy so you can continue working without disruption.",
+          title: "Format conversion",
+          desc: "Convert documents and images reliably into the formats supported by each tool without hassle.",
         },
         {
-          title: "Optimised and ready to share",
-          desc: "Reduce the file size of your PDFs to attach them via email, meet official upload size limits, or publish them online while preserving maximum visual sharpness on screen and in print.",
+          title: "Optimization & preparation",
+          desc: "Shrink your PDF size or prepare files for sharing and printing, depending on the tool selected.",
         },
       ],
     },
