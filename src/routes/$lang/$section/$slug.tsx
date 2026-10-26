@@ -647,15 +647,15 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
             <details
               key={item.q}
               open={idx < 2}
-              className="group rounded-2xl border border-slate-200 bg-white p-6 sm:p-7 shadow-xs transition-colors hover:border-slate-300"
+              className="group rounded-2xl border-2 border-[#0F0F12] bg-white p-6 sm:p-7 shadow-[4px_4px_0_#0F0F12] transition-all duration-150 hover:-translate-y-0.5 open:border-l-8 open:border-l-[#2563EB]"
             >
-              <summary className="flex cursor-pointer items-center justify-between text-[17.5px] sm:text-[18.5px] font-bold text-[#0F172A] select-none list-none [&::-webkit-details-marker]:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EC3C2D]/40 rounded-lg">
+              <summary className="flex cursor-pointer items-center justify-between text-[18px] sm:text-[20px] font-black text-[#0F172A] select-none list-none [&::-webkit-details-marker]:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB]/40 rounded-lg">
                 <span className="pr-4 leading-snug">{item.q}</span>
-                <span className={`shrink-0 rounded-full p-2.5 ${accent.iconBg} text-white shadow-xs transition-transform duration-200 group-open:rotate-180`}>
-                  <ChevronRight className="size-4.5 rotate-90 text-white" strokeWidth={2.8} />
+                <span className="shrink-0 rounded-xl border-2 border-[#0F0F12] bg-[#0F0F12] text-white p-2 shadow-[2px_2px_0_#0F0F12] group-hover:bg-[#2563EB] transition-transform duration-200 group-open:rotate-180">
+                  <ChevronRight className="size-4.5 rotate-90 text-white stroke-[3]" />
                 </span>
               </summary>
-              <div className="mt-4 border-t border-slate-100 pt-4 text-[16px] sm:text-[16.5px] leading-relaxed text-slate-700 font-normal">
+              <div className="mt-4 border-t-2 border-slate-100 pt-4 text-[16px] sm:text-[17px] leading-relaxed text-slate-700 font-medium">
                 {item.a}
               </div>
             </details>
@@ -1152,47 +1152,60 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
         </aside>
       )}
 
-      {/* 7. FINAL CATALOG CTA: Clean, high-impact invitation with BreadPDF brand red background */}
-      <section className="mt-14 mb-4 rounded-3xl bg-linear-to-br from-[#EC3C2D] to-[#D93426] p-7 sm:p-10 text-center shadow-lg text-white relative overflow-hidden">
-        {/* Subtle decorative circles for depth without extra layout weight */}
-        <div className="absolute -top-12 -right-12 size-48 rounded-full bg-white/10 blur-2xl pointer-events-none" />
-        <div className="absolute -bottom-12 -left-12 size-48 rounded-full bg-black/10 blur-2xl pointer-events-none" />
+      {/* 7. FINAL CATALOG CTA: Neo-Brutalist High-Impact with BreadPDF Mascot and Solid 8px Shadow */}
+      <section className="mt-16 mb-6 rounded-3xl border-3 border-[#0F0F12] bg-[#EC3C2D] p-8 sm:p-12 text-center shadow-[8px_8px_0_#0F0F12] text-white relative overflow-hidden">
+        <div className="relative max-w-3xl mx-auto z-10 flex flex-col md:flex-row items-center justify-between gap-8">
+          
+          <div className="flex-1 text-center md:text-left">
+            <span className="inline-flex items-center gap-2 rounded-lg border-2 border-[#0F0F12] bg-white px-4 py-1.5 text-[13px] sm:text-[14px] font-black uppercase tracking-wider text-[#0F0F12] shadow-[2px_2px_0_#0F0F12]">
+              <span className="size-2 rounded-full bg-[#EC3C2D] shrink-0" />
+              <span>{tools.length} {locale === "ca" ? "EINES DISPONIBLES" : locale === "en" ? "AVAILABLE TOOLS" : "HERRAMIENTAS DISPONIBLES"}</span>
+            </span>
 
-        <div className="relative max-w-2xl mx-auto z-10">
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-white px-4 py-1.5 text-[13px] font-black uppercase tracking-wider text-[#EC3C2D] shadow-sm">
-            <span>{tools.length} {locale === "ca" ? "EINES DISPONIBLES" : locale === "en" ? "AVAILABLE TOOLS" : "HERRAMIENTAS DISPONIBLES"}</span>
-          </span>
-          <h2 className="mt-3.5 text-2xl sm:text-3xl font-black text-white tracking-tight">
-            {locale === "ca"
-              ? "Explora totes les eines de BreadPDF"
-              : locale === "en"
-              ? "Explore all BreadPDF tools"
-              : "Explora todas las herramientas de BreadPDF"}
-          </h2>
-          <p className="mt-2.5 text-[15.5px] sm:text-[16.5px] text-white/90 leading-relaxed max-w-lg mx-auto font-medium">
-            {locale === "ca"
-              ? "Troba la utilitat exacta per a cada tasca: conversió d'Office, extracció OCR, signatura, seguretat i molt més."
-              : locale === "en"
-              ? "Find the exact tool for every task: Office conversion, OCR extraction, signing, security, and more."
-              : "Encuentra la utilidad exacta para cada tarea: conversión de Office, extracción OCR, firma, seguridad y mucho más."}
-          </p>
-          <div className="mt-6 flex justify-center">
-            <Link
-              to={SECTION_ROUTE}
-              params={catalogParams(locale)}
-              onClick={() => trackToolCatalogViewAllClicked({ source: "tool_page_bottom_cta", language: locale })}
-              className="inline-flex items-center gap-2 rounded-xl bg-white hover:bg-slate-100 text-[#0F172A] px-7 py-3.5 text-[15px] font-black shadow-md transition-all hover:shadow-lg hover:-translate-y-0.5 cursor-pointer"
-            >
-              <span>
-                {locale === "ca"
-                  ? `Veure el catàleg complet (${tools.length})`
-                  : locale === "en"
-                  ? `View full catalog (${tools.length})`
-                  : `Ver catálogo completo (${tools.length})`}
-              </span>
-              <span aria-hidden className="text-[#EC3C2D]">→</span>
-            </Link>
+            <h2 className="mt-4 text-3xl sm:text-4xl lg:text-[2.6rem] font-black text-white tracking-tight leading-tight">
+              {locale === "ca"
+                ? "Explora totes les eines de BreadPDF"
+                : locale === "en"
+                ? "Explore all BreadPDF tools"
+                : "Explora todas las herramientas de BreadPDF"}
+            </h2>
+
+            <p className="mt-3 text-[16px] sm:text-[17.5px] text-white/95 leading-relaxed font-semibold">
+              {locale === "ca"
+                ? "Troba la utilitat exacta per a cada tasca: conversió d'Office, extracció OCR, signatura, seguretat i molt més."
+                : locale === "en"
+                ? "Find the exact tool for every task: Office conversion, OCR extraction, signing, security, and more."
+                : "Encuentra la utilidad exacta para cada tarea: conversión de Office, extracción OCR, firma, seguridad y mucho más."}
+            </p>
+
+            <div className="mt-6 flex justify-center md:justify-start">
+              <Link
+                to={SECTION_ROUTE}
+                params={catalogParams(locale)}
+                onClick={() => trackToolCatalogViewAllClicked({ source: "tool_page_bottom_cta", language: locale })}
+                className="inline-flex items-center gap-2.5 rounded-xl border-2 border-[#0F0F12] bg-white hover:bg-[#F4F4F6] text-[#0F0F12] px-8 py-4 text-[16px] sm:text-[17px] font-black shadow-[4px_4px_0_#0F0F12] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0_#0F0F12] transition-all cursor-pointer"
+              >
+                <span>
+                  {locale === "ca"
+                    ? `Veure catàleg complet (${tools.length}) →`
+                    : locale === "en"
+                    ? `View full catalog (${tools.length}) →`
+                    : `Ver catálogo completo (${tools.length}) →`}
+                </span>
+              </Link>
+            </div>
           </div>
+
+          <div className="shrink-0 flex items-center justify-center">
+            <img
+              src={BRAND_ASSETS.mascots.celebrate}
+              alt="BreadPDF Mascot Celebrate"
+              width={160}
+              height={160}
+              className="size-36 sm:size-44 object-contain animate-neo-wiggle drop-shadow-md select-none pointer-events-none"
+            />
+          </div>
+
         </div>
       </section>
 

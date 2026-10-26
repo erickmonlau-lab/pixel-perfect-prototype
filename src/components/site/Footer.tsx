@@ -134,7 +134,7 @@ export function Footer() {
               </span>
             </Link>
 
-            <p className="text-[15px] sm:text-[15.5px] leading-[1.65] text-slate-300 max-w-[280px]">
+            <p className="text-[16px] sm:text-[16.5px] leading-relaxed text-slate-300 max-w-[280px] font-medium">
               {copy.description}
             </p>
 
@@ -146,7 +146,7 @@ export function Footer() {
 
           {/* COL 2: HERRAMIENTAS (lg:col-span-2) */}
           <div className="lg:col-span-2">
-            <h3 className="mb-6 text-[18px] sm:text-[19px] font-extrabold uppercase tracking-[0.04em] text-white leading-tight">
+            <h3 className="mb-6 text-[19px] sm:text-[21px] font-black uppercase tracking-wider text-white leading-tight">
               {copy.colTools}
             </h3>
             <ul className="space-y-4">
@@ -158,7 +158,7 @@ export function Footer() {
                     <Link
                       to={DETAIL_ROUTE}
                       params={toolParams(locale, item.slug)}
-                      className="group inline-flex items-center gap-2.5 text-[15px] sm:text-[15.5px] font-medium text-slate-300 transition-colors hover:text-[#EC3C2D]"
+                      className="group inline-flex items-center gap-2.5 text-[16px] sm:text-[16.5px] font-semibold text-slate-200 transition-colors hover:text-[#EC3C2D]"
                     >
                       <span className="size-2 rounded-full bg-[#EC3C2D] shrink-0 opacity-90 group-hover:opacity-100 transition-opacity" aria-hidden="true" />
                       <span>{name}</span>
@@ -172,7 +172,7 @@ export function Footer() {
                   to={SECTION_ROUTE}
                   params={catalogParams(locale)}
                   onClick={() => trackToolCatalogViewAllClicked({ source: "footer", language: locale })}
-                  className="group inline-flex items-center gap-1.5 text-[15px] font-bold text-[#EC3C2D] transition-colors hover:text-[#FF5A4D]"
+                  className="group inline-flex items-center gap-1.5 text-[16px] font-black text-[#EC3C2D] transition-colors hover:text-white"
                 >
                   <span>
                     {locale === "ca"
@@ -188,7 +188,7 @@ export function Footer() {
 
           {/* COL 3: INFORMACIÓN (lg:col-span-2 xl:col-span-3) */}
           <div className="lg:col-span-2 xl:col-span-3">
-            <h3 className="mb-6 text-[18px] sm:text-[19px] font-extrabold uppercase tracking-[0.04em] text-white leading-tight">
+            <h3 className="mb-6 text-[19px] sm:text-[21px] font-black uppercase tracking-wider text-white leading-tight">
               {copy.colInfo}
             </h3>
             <ul className="space-y-4 text-[15px] sm:text-[15.5px] text-slate-300">
@@ -197,7 +197,7 @@ export function Footer() {
                 <Link
                   to={SECTION_ROUTE}
                   params={aboutParams(locale)}
-                  className="group inline-flex items-center gap-2.5 font-medium text-slate-300 transition-colors hover:text-[#EC3C2D]"
+                  className="group inline-flex items-center gap-2.5 font-semibold text-[16px] sm:text-[16.5px] text-slate-200 transition-colors hover:text-[#EC3C2D]"
                 >
                   <span className="size-2 rounded-full bg-[#EC3C2D] shrink-0 opacity-90 group-hover:opacity-100 transition-opacity" aria-hidden="true" />
                   <span>{copy.about}</span>
@@ -209,7 +209,7 @@ export function Footer() {
                 <Link
                   to={SECTION_ROUTE}
                   params={guidesHubParams(locale)}
-                  className="group inline-flex items-center gap-2.5 font-medium text-slate-300 transition-colors hover:text-[#EC3C2D]"
+                  className="group inline-flex items-center gap-2.5 font-semibold text-[16px] sm:text-[16.5px] text-slate-200 transition-colors hover:text-[#EC3C2D]"
                 >
                   <BookOpen className="size-4 shrink-0 text-[#EC3C2D]" />
                   <span>{copy.guides}</span>
@@ -221,7 +221,7 @@ export function Footer() {
                 <Link
                   to={SECTION_ROUTE}
                   params={catalogParams(locale)}
-                  className="group inline-flex items-center gap-2.5 font-medium text-slate-300 transition-colors hover:text-[#EC3C2D]"
+                  className="group inline-flex items-center gap-2.5 font-semibold text-[16px] sm:text-[16.5px] text-slate-200 transition-colors hover:text-[#EC3C2D]"
                 >
                   <span className="size-2 rounded-full bg-[#EC3C2D] shrink-0 opacity-90 group-hover:opacity-100 transition-opacity" aria-hidden="true" />
                   <span>
@@ -238,7 +238,7 @@ export function Footer() {
               <li>
                 <a
                   href={`mailto:${copy.contactEmail}`}
-                  className="group inline-flex items-center gap-2.5 font-medium text-slate-300 transition-colors hover:text-[#EC3C2D]"
+                  className="group inline-flex items-center gap-2.5 font-semibold text-[16px] sm:text-[16.5px] text-slate-200 transition-colors hover:text-[#EC3C2D]"
                 >
                   <MessageSquare className="size-4 shrink-0 text-[#EC3C2D]" />
                   <span>{copy.support} ({copy.supportDesc})</span>
@@ -250,7 +250,7 @@ export function Footer() {
 
           {/* COL 4: LEGAL (lg:col-span-2) */}
           <div className="lg:col-span-2">
-            <h3 className="mb-6 text-[18px] sm:text-[19px] font-extrabold uppercase tracking-[0.04em] text-white leading-tight">
+            <h3 className="mb-6 text-[19px] sm:text-[21px] font-black uppercase tracking-wider text-white leading-tight">
               {copy.colLegal}
             </h3>
             <ul className="space-y-4">
@@ -258,7 +258,7 @@ export function Footer() {
                 <Link
                   to={SECTION_ROUTE}
                   params={privacyParams(locale)}
-                  className="group inline-flex items-center gap-2.5 text-[15px] sm:text-[15.5px] font-medium text-slate-300 transition-colors hover:text-[#EC3C2D]"
+                  className="group inline-flex items-center gap-2.5 text-[16px] sm:text-[16.5px] font-semibold text-slate-200 transition-colors hover:text-[#EC3C2D]"
                 >
                   <span className="size-2 rounded-full bg-[#EC3C2D] shrink-0 opacity-90 group-hover:opacity-100 transition-opacity" aria-hidden="true" />
                   <span>{copy.privacyFull}</span>
@@ -268,7 +268,7 @@ export function Footer() {
                 <Link
                   to={SECTION_ROUTE}
                   params={cookiesParams(locale)}
-                  className="group inline-flex items-center gap-2.5 text-[15px] sm:text-[15.5px] font-medium text-slate-300 transition-colors hover:text-[#EC3C2D]"
+                  className="group inline-flex items-center gap-2.5 text-[16px] sm:text-[16.5px] font-semibold text-slate-200 transition-colors hover:text-[#EC3C2D]"
                 >
                   <span className="size-2 rounded-full bg-[#EC3C2D] shrink-0 opacity-90 group-hover:opacity-100 transition-opacity" aria-hidden="true" />
                   <span>{copy.cookies}</span>
@@ -278,7 +278,7 @@ export function Footer() {
                 <Link
                   to={SECTION_ROUTE}
                   params={termsParams(locale)}
-                  className="group inline-flex items-center gap-2.5 text-[15px] sm:text-[15.5px] font-medium text-slate-300 transition-colors hover:text-[#EC3C2D]"
+                  className="group inline-flex items-center gap-2.5 text-[16px] sm:text-[16.5px] font-semibold text-slate-200 transition-colors hover:text-[#EC3C2D]"
                 >
                   <span className="size-2 rounded-full bg-[#EC3C2D] shrink-0 opacity-90 group-hover:opacity-100 transition-opacity" aria-hidden="true" />
                   <span>{copy.legalTerms}</span>
