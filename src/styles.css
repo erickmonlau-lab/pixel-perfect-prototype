@@ -1080,80 +1080,99 @@
 
 /* ============================================================
    BREADPDF HERO EDITORIAL CLAIM ANIMATIONS (Entry with Stagger)
+   Composición dinámica con inclinaciones expresivas (-5° a -9°)
    Respects prefers-reduced-motion
    ============================================================ */
 @keyframes claimEntry1 {
   0% {
     opacity: 0;
-    transform: translateY(12px) rotate(-6deg) scale(0.92);
+    transform: translateX(-16px) translateY(8px) rotate(-12deg) scale(0.9);
   }
   100% {
     opacity: 1;
-    transform: translateY(0) rotate(-3deg) scale(1);
+    transform: translateX(0) translateY(0) rotate(-7.5deg) scale(1);
   }
 }
 
 @keyframes claimEntry2 {
   0% {
     opacity: 0;
-    transform: translateY(12px) rotate(6deg) scale(0.92);
+    transform: translateX(-14px) translateY(8px) rotate(-10deg) scale(0.9);
   }
   100% {
     opacity: 1;
-    transform: translateY(0) rotate(2deg) scale(1);
+    transform: translateX(0) translateY(0) rotate(-6deg) scale(1);
   }
 }
 
 @keyframes claimEntry3 {
   0% {
     opacity: 0;
-    transform: translateY(8px) scale(0.95);
+    transform: translateX(-10px) translateY(6px) rotate(-8deg) scale(0.92);
   }
   100% {
     opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: translateX(0) translateY(0) rotate(-5deg) scale(1);
   }
 }
 
 @keyframes claimArrowDraw {
   0% {
     opacity: 0;
-    stroke-dashoffset: 60;
-    transform: scale(0.8);
+    stroke-dashoffset: 120;
+    transform: scale(0.8) rotate(-10deg);
+  }
+  60% {
+    opacity: 1;
   }
   100% {
     opacity: 1;
     stroke-dashoffset: 0;
-    transform: scale(1);
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+@keyframes energySpark {
+  0% {
+    opacity: 0;
+    transform: scale(0.4) rotate(-10deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
   }
 }
 
 .animate-claim-1 {
-  animation: claimEntry1 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+  animation: claimEntry1 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.08s both;
 }
 
 .animate-claim-2 {
-  animation: claimEntry2 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.25s both;
+  animation: claimEntry2 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.22s both;
 }
 
 .animate-claim-3 {
-  animation: claimEntry3 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both;
+  animation: claimEntry3 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.36s both;
 }
 
 .animate-claim-arrow {
-  stroke-dasharray: 60;
-  animation: claimArrowDraw 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.55s both;
+  stroke-dasharray: 120;
+  animation: claimArrowDraw 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.5s both;
+}
+
+.animate-energy-spark {
+  animation: energySpark 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.65s both;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .animate-claim-1,
   .animate-claim-2,
   .animate-claim-3,
-  .animate-claim-arrow {
+  .animate-claim-arrow,
+  .animate-energy-spark {
     animation: none !important;
     opacity: 1 !important;
     stroke-dashoffset: 0 !important;
-    transform: none !important;
   }
 }
 

@@ -126,43 +126,123 @@ function Home() {
         <div className="relative w-full max-w-[1760px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 z-20 flex flex-col items-center justify-center min-h-[430px] lg:min-h-[460px]">
 
           {/* ============================================================
-              ZONA 1 (LATERAL IZQUIERDO): FRASE EDITORIAL ANIMADA + FLECHA + MASCOTA
+              ZONA 1 (LATERAL IZQUIERDO): FRASE EDITORIAL DINÁMICA + FLECHA + MASCOTA
               Empujada al margen exterior izquierdo (left-0 xl:left-2 2xl:left-5)
               ============================================================ */}
-          <div className="hidden xl:flex flex-col items-start absolute left-0 xl:left-2 2xl:left-5 top-1/2 -translate-y-1/2 z-25 select-none pointer-events-none">
+          <div className="hidden xl:flex flex-col items-start absolute left-0 xl:left-2 2xl:left-4 top-1/2 -translate-y-1/2 z-25 select-none pointer-events-none">
             
-            {/* Frase tipográfica editorial expresiva de 3 niveles escalonados */}
-            <div className="mb-2 pl-2 flex flex-col items-start select-none">
+            {/* Frase tipográfica editorial dinámica inclinada (-7° a -5°) con trazos rojos orgánicos SVG */}
+            <div className="relative mb-1 pl-1 flex flex-col items-start select-none w-auto max-w-[280px] 2xl:max-w-[320px]">
               
-              {/* Línea 1: MÁS RÁPIDO - Display rotada con subrayado rojo sólido */}
-              <div className="animate-claim-1 relative inline-block text-xl 2xl:text-2xl font-black uppercase tracking-tight text-[#0F0F12]">
-                <span className="drop-shadow-[1px_1px_0_rgba(255,255,255,0.8)]">
+              {/* Línea 1: MÁS RÁPIDO - Display extra bold condensada inclinada a -7.5° */}
+              <div className="animate-claim-1 relative inline-block text-[24px] 2xl:text-[27px] font-black uppercase tracking-tight text-[#0F0F12] leading-none origin-bottom-left pb-1.5 transform -rotate-[7.5deg]">
+                <span className="relative z-10 block select-none">
                   {locale === "ca" ? "MÉS RÀPID" : locale === "en" ? "FASTER" : "MÁS RÁPIDO"}
                 </span>
-                <span className="block h-1.5 w-full bg-[#EC3C2D] rounded-full mt-0.5 shadow-[1px_1px_0_#0F0F12]" />
+                {/* Trazo rojo gráfico con silueta orgánica viva */}
+                <svg
+                  className="absolute left-0 bottom-0 w-full h-[7px] overflow-visible pointer-events-none z-0"
+                  viewBox="0 0 140 8"
+                  preserveAspectRatio="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M 1 4.5 Q 35 2, 75 4.5 T 139 3.5"
+                    stroke="#EC3C2D"
+                    strokeWidth="4.5"
+                    strokeLinecap="round"
+                    fill="none"
+                  />
+                </svg>
               </div>
               
-              {/* Línea 2: MÁS FÁCIL - Desplazamiento orgánico con rotación inversa y subrayado */}
-              <div className="animate-claim-2 relative inline-block text-2xl 2xl:text-[28px] font-black uppercase tracking-tight text-[#0F0F12] mt-1 ml-5">
-                <span className="drop-shadow-[1px_1px_0_rgba(255,255,255,0.8)]">
+              {/* Línea 2: MÁS FÁCIL - Desplazada rítmicamente con inclinación a -6° y trazo rojo expresivo */}
+              <div className="animate-claim-2 relative inline-block text-[28px] 2xl:text-[32px] font-black uppercase tracking-tight text-[#0F0F12] leading-none mt-2.5 ml-5 origin-bottom-left pb-1.5 transform -rotate-[6deg]">
+                <span className="relative z-10 block select-none">
                   {locale === "ca" ? "MÉS FÀCIL" : locale === "en" ? "EASIER" : "MÁS FÁCIL"}
                 </span>
-                <span className="block h-1.5 w-full bg-[#EC3C2D] rounded-full mt-0.5 shadow-[1px_1px_0_#0F0F12]" />
+                {/* Trazo rojo gráfico orgánico */}
+                <svg
+                  className="absolute left-0 bottom-0 w-full h-[8px] overflow-visible pointer-events-none z-0"
+                  viewBox="0 0 160 8"
+                  preserveAspectRatio="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M 1.5 4.5 Q 45 2.5, 90 4.5 T 158.5 3.5"
+                    stroke="#EC3C2D"
+                    strokeWidth="5"
+                    strokeLinecap="round"
+                    fill="none"
+                  />
+                </svg>
               </div>
 
-              {/* Línea 3: EN TU NAVEGADOR + Flecha dinámica curva conduciendo a la mascota */}
-              <div className="animate-claim-3 flex items-center gap-2 mt-1.5 ml-1 text-xs 2xl:text-[13.5px] font-black uppercase tracking-widest text-[#0F0F12]">
-                <span>{locale === "ca" ? "AL TEU NAVEGADOR" : locale === "en" ? "IN YOUR BROWSER" : "EN TU NAVEGADOR"}</span>
-                {/* Flecha roja dibujada apuntando al pan corriendo */}
-                <svg viewBox="0 0 36 36" fill="none" className="animate-claim-arrow size-7 text-[#EC3C2D] transform rotate-6 shrink-0">
-                  <path d="M6 10 C 16 10, 26 16, 28 26" stroke="#EC3C2D" strokeWidth="3.5" strokeLinecap="round" />
-                  <path d="M19 26 L 28 26 L 28 17" stroke="#EC3C2D" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
+              {/* Línea 3: EN TU NAVEGADOR + Flecha roja contorneada con curva orgánica hacia la mascota */}
+              <div className="relative mt-2.5 ml-2.5 flex items-start">
+                
+                {/* Flecha roja gruesa con contorno negro sólido apuntando directamente a la mascota */}
+                <div className="absolute -left-7 -bottom-6 pointer-events-none z-20">
+                  <svg
+                    viewBox="0 0 54 64"
+                    fill="none"
+                    className="animate-claim-arrow w-11 h-13 2xl:w-13 2xl:h-15 overflow-visible drop-shadow-[1.5px_1.5px_0_#0F0F12]"
+                    aria-hidden="true"
+                  >
+                    {/* Trazos de energía cinética en rojo sólido */}
+                    <g className="animate-energy-spark" stroke="#EC3C2D" strokeWidth="2.5" strokeLinecap="round">
+                      <line x1="8" y1="12" x2="3" y2="8" />
+                      <line x1="12" y1="6" x2="10" y2="1" />
+                    </g>
+
+                    {/* Contorno negro exterior de la flecha */}
+                    <path
+                      d="M 32 4 C 14 12, 5 28, 14 50"
+                      stroke="#0F0F12"
+                      strokeWidth="7"
+                      strokeLinecap="round"
+                      fill="none"
+                    />
+                    <path
+                      d="M 2 40 L 14 51 L 27 42"
+                      stroke="#0F0F12"
+                      strokeWidth="7"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      fill="none"
+                    />
+
+                    {/* Núcleo rojo vivo interior de la flecha */}
+                    <path
+                      d="M 32 4 C 14 12, 5 28, 14 50"
+                      stroke="#EC3C2D"
+                      strokeWidth="4"
+                      strokeLinecap="round"
+                      fill="none"
+                    />
+                    <path
+                      d="M 2 40 L 14 51 L 27 42"
+                      stroke="#EC3C2D"
+                      strokeWidth="4"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      fill="none"
+                    />
+                  </svg>
+                </div>
+
+                {/* Texto EN TU NAVEGADOR inclinado a -5° */}
+                <div className="animate-claim-3 relative inline-block text-xs 2xl:text-[14px] font-black uppercase tracking-widest text-[#0F0F12] pl-6 origin-bottom-left transform -rotate-[5deg]">
+                  <span className="relative z-10 block select-none">
+                    {locale === "ca" ? "AL TEU NAVEGADOR" : locale === "en" ? "IN YOUR BROWSER" : "EN TU NAVEGADOR"}
+                  </span>
+                </div>
+
               </div>
             </div>
 
             {/* Mascota BreadPDF original en carrera dinámica con documento PDF */}
-            <div className="relative transition-transform hover:scale-105 duration-300 pointer-events-auto cursor-pointer">
+            <div className="relative mt-2 transition-transform hover:scale-105 duration-300 pointer-events-auto cursor-pointer">
               <img
                 src="/brand/hero-mascot-perfect.png"
                 alt="Mascota BreadPDF"
@@ -215,16 +295,20 @@ function Home() {
                 </span>
               </span>
 
-              {/* Línea 3: EN UN SOLO LUGAR con subrayado rojo amplio debajo de las letras */}
-              <span className="relative inline-block mt-1 sm:mt-1.5 pb-2.5 sm:pb-3">
+              {/* Línea 3: EN UN SOLO LUGAR con subrayado rojo controlado cercano a las letras */}
+              <span className="relative inline-block mt-1 sm:mt-1.5 pb-1 sm:pb-1.5">
                 <span className="relative z-10">{heroCopy.line2}</span>
-                <span className="absolute inset-x-0 bottom-0 h-1 sm:h-1.5 bg-[#EC3C2D] rounded-full shadow-[1px_1px_0_#0F0F12]" />
+                <span className="absolute inset-x-0 bottom-0 h-[3.5px] bg-[#EC3C2D] rounded-full" />
               </span>
             </h1>
 
-            {/* DESCRIPCIÓN BREVE Y LEGIBLE */}
-            <p className="mx-auto mt-2 mb-3 max-w-2xl text-sm sm:text-base lg:text-[16.5px] font-medium text-slate-800 leading-normal">
-              Comprime, convierte, une, divide y edita tus documentos online. Rápido, claro y sin complicaciones.
+            {/* DESCRIPCIÓN BREVE Y LEGIBLE CON ESPACIO CLARO PARA RESPIRAR */}
+            <p className="mx-auto mt-4 sm:mt-4.5 mb-3 max-w-2xl text-sm sm:text-base lg:text-[16.5px] font-medium text-slate-800 leading-relaxed">
+              {locale === "ca"
+                ? "Comprimeix, converteix, uneix, divideix i edita els teus documents online. Ràpid, clar i sense complicacions."
+                : locale === "en"
+                ? "Compress, convert, merge, split and edit your documents online. Fast, clear and hassle-free."
+                : "Comprime, convierte, une, divide y edita tus documentos online. Rápido, claro y sin complicaciones."}
             </p>
 
             {/* BUSCADOR PROMINENTE */}
