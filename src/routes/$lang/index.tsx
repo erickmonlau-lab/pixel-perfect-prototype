@@ -322,23 +322,23 @@ function Home() {
               ZONA 3 (LATERAL DERECHO): 4 TARJETAS CON EL MISMO LENGUAJE VISUAL DEL CATÁLOGO
               Empujada al margen exterior derecho (right-0 xl:right-2 2xl:right-5)
               ============================================================ */}
-          <div className="hidden xl:flex flex-col gap-2.5 absolute right-0 xl:right-2 2xl:right-5 top-1/2 -translate-y-1/2 z-25 select-none w-50 2xl:w-54">
+          <div className="hidden xl:flex flex-col gap-3.5 absolute right-0 xl:right-2 2xl:right-5 top-1/2 -translate-y-1/2 z-25 select-none w-[232px] 2xl:w-[252px]">
             
             {/* 1. COMPRIMIR PDF (Familia Optimizar - Azul corporativo) */}
             <Link
               to={DETAIL_ROUTE}
               params={toolParams(locale, "comprimir-pdf")}
-              className="group flex items-center gap-3 p-2.5 rounded-2xl bg-white border-2 border-[#0F0F12] shadow-[3.5px_3.5px_0_#0F0F12] hover:-translate-y-0.5 hover:shadow-[5px_5px_0_#0F0F12] transition-all cursor-pointer transform -rotate-1"
+              className="group flex items-center gap-3.5 p-3 rounded-2xl bg-white border-2 border-[#0F0F12] shadow-[3.5px_3.5px_0_#0F0F12] hover:-translate-y-0.5 hover:shadow-[5px_5px_0_#0F0F12] transition-all cursor-pointer transform -rotate-1"
             >
-              <span className="flex size-10.5 shrink-0 items-center justify-center rounded-xl bg-[#2563EB] text-white border-1.5 border-[#0F0F12] shadow-[1.5px_1.5px_0_#0F0F12]">
-                <ToolIcon name="Minimize2" canonicalSlug="comprimir-pdf" className="size-5.5 text-white" />
+              <span className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-[#2563EB] text-white border-1.5 border-[#0F0F12] shadow-[1.5px_1.5px_0_#0F0F12]">
+                <ToolIcon name="Minimize2" canonicalSlug="comprimir-pdf" className="size-6 text-white" />
               </span>
               <div className="min-w-0 flex-1 text-left">
-                <span className="block text-[13.5px] font-black uppercase tracking-tight text-[#0F0F12] group-hover:text-[#2563EB] transition-colors truncate">
+                <span className="block text-[16px] font-bold text-[#0F0F12] group-hover:text-[#2563EB] transition-colors truncate leading-snug">
                   {locale === "ca" ? "Comprimir PDF" : locale === "en" ? "Compress PDF" : "Comprimir PDF"}
                 </span>
-                <span className="block text-[11px] font-bold uppercase tracking-wider text-slate-500">
-                  {locale === "ca" ? "Optimitzar mida" : locale === "en" ? "Reduce size" : "Reducir peso"}
+                <span className="block text-[13px] font-medium text-slate-600 truncate mt-0.5 leading-snug">
+                  {locale === "ca" ? "Optimitza i redueix mida" : locale === "en" ? "Reduce file size" : "Reduce el tamaño del archivo"}
                 </span>
               </div>
             </Link>
@@ -347,36 +347,36 @@ function Home() {
             <Link
               to={DETAIL_ROUTE}
               params={toolParams(locale, "unir-pdf")}
-              className="group flex items-center gap-3 p-2.5 rounded-2xl bg-white border-2 border-[#0F0F12] shadow-[3.5px_3.5px_0_#0F0F12] hover:-translate-y-0.5 hover:shadow-[5px_5px_0_#0F0F12] transition-all cursor-pointer transform rotate-1.5 ml-2"
+              className="group flex items-center gap-3.5 p-3 rounded-2xl bg-white border-2 border-[#0F0F12] shadow-[3.5px_3.5px_0_#0F0F12] hover:-translate-y-0.5 hover:shadow-[5px_5px_0_#0F0F12] transition-all cursor-pointer transform rotate-1.5 ml-2"
             >
-              <span className="flex size-10.5 shrink-0 items-center justify-center rounded-xl bg-[#7C3AED] text-white border-1.5 border-[#0F0F12] shadow-[1.5px_1.5px_0_#0F0F12]">
-                <ToolIcon name="Combine" canonicalSlug="unir-pdf" className="size-5.5 text-white" />
+              <span className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-[#7C3AED] text-white border-1.5 border-[#0F0F12] shadow-[1.5px_1.5px_0_#0F0F12]">
+                <ToolIcon name="Combine" canonicalSlug="unir-pdf" className="size-6 text-white" />
               </span>
               <div className="min-w-0 flex-1 text-left">
-                <span className="block text-[13.5px] font-black uppercase tracking-tight text-[#0F0F12] group-hover:text-[#7C3AED] transition-colors truncate">
+                <span className="block text-[16px] font-bold text-[#0F0F12] group-hover:text-[#7C3AED] transition-colors truncate leading-snug">
                   {locale === "ca" ? "Unir PDF" : locale === "en" ? "Merge PDF" : "Unir PDF"}
                 </span>
-                <span className="block text-[11px] font-bold uppercase tracking-wider text-slate-500">
-                  {locale === "ca" ? "Fusionar arxius" : locale === "en" ? "Combine files" : "Juntar archivos"}
+                <span className="block text-[13px] font-medium text-slate-600 truncate mt-0.5 leading-snug">
+                  {locale === "ca" ? "Combina múltiples arxius" : locale === "en" ? "Combine multiple files" : "Combina múltiples archivos"}
                 </span>
               </div>
             </Link>
 
-            {/* 3. CONVERTIR PDF (Familia Convertir - Verde corporativo) */}
+            {/* 3. PDF A WORD (Familia Convertir - Azul editorial de documentos) */}
             <Link
               to={DETAIL_ROUTE}
               params={toolParams(locale, "pdf-a-word")}
-              className="group flex items-center gap-3 p-2.5 rounded-2xl bg-white border-2 border-[#0F0F12] shadow-[3.5px_3.5px_0_#0F0F12] hover:-translate-y-0.5 hover:shadow-[5px_5px_0_#0F0F12] transition-all cursor-pointer transform -rotate-1.5 -ml-1"
+              className="group flex items-center gap-3.5 p-3 rounded-2xl bg-white border-2 border-[#0F0F12] shadow-[3.5px_3.5px_0_#0F0F12] hover:-translate-y-0.5 hover:shadow-[5px_5px_0_#0F0F12] transition-all cursor-pointer transform -rotate-1.5 -ml-1"
             >
-              <span className="flex size-10.5 shrink-0 items-center justify-center rounded-xl bg-[#059669] text-white border-1.5 border-[#0F0F12] shadow-[1.5px_1.5px_0_#0F0F12]">
-                <ToolIcon name="FileType2" canonicalSlug="pdf-a-word" className="size-5.5 text-white" />
+              <span className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-[#2563EB] text-white border-1.5 border-[#0F0F12] shadow-[1.5px_1.5px_0_#0F0F12]">
+                <ToolIcon name="FileType2" canonicalSlug="pdf-a-word" className="size-6 text-white" />
               </span>
               <div className="min-w-0 flex-1 text-left">
-                <span className="block text-[13.5px] font-black uppercase tracking-tight text-[#0F0F12] group-hover:text-[#059669] transition-colors truncate">
-                  {locale === "ca" ? "Convertir PDF" : locale === "en" ? "Convert PDF" : "Convertir PDF"}
+                <span className="block text-[16px] font-bold text-[#0F0F12] group-hover:text-[#2563EB] transition-colors truncate leading-snug">
+                  {locale === "ca" ? "PDF a Word" : locale === "en" ? "PDF to Word" : "PDF a Word"}
                 </span>
-                <span className="block text-[11px] font-bold uppercase tracking-wider text-slate-500">
-                  {locale === "ca" ? "A Word, JPG, Excel" : locale === "en" ? "To Word, JPG, Excel" : "A Word, JPG, Excel"}
+                <span className="block text-[13px] font-medium text-slate-600 truncate mt-0.5 leading-snug">
+                  {locale === "ca" ? "Converteix a docx editable" : locale === "en" ? "Convert to editable docx" : "Convierte a docx editable"}
                 </span>
               </div>
             </Link>
@@ -385,17 +385,17 @@ function Home() {
             <Link
               to={DETAIL_ROUTE}
               params={toolParams(locale, "dividir-pdf")}
-              className="group flex items-center gap-3 p-2.5 rounded-2xl bg-white border-2 border-[#0F0F12] shadow-[3.5px_3.5px_0_#0F0F12] hover:-translate-y-0.5 hover:shadow-[5px_5px_0_#0F0F12] transition-all cursor-pointer transform rotate-1 ml-1"
+              className="group flex items-center gap-3.5 p-3 rounded-2xl bg-white border-2 border-[#0F0F12] shadow-[3.5px_3.5px_0_#0F0F12] hover:-translate-y-0.5 hover:shadow-[5px_5px_0_#0F0F12] transition-all cursor-pointer transform rotate-1 ml-1"
             >
-              <span className="flex size-10.5 shrink-0 items-center justify-center rounded-xl bg-[#7C3AED] text-white border-1.5 border-[#0F0F12] shadow-[1.5px_1.5px_0_#0F0F12]">
-                <ToolIcon name="FileOutput" canonicalSlug="dividir-pdf" className="size-5.5 text-white" />
+              <span className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-[#7C3AED] text-white border-1.5 border-[#0F0F12] shadow-[1.5px_1.5px_0_#0F0F12]">
+                <ToolIcon name="FileOutput" canonicalSlug="dividir-pdf" className="size-6 text-white" />
               </span>
               <div className="min-w-0 flex-1 text-left">
-                <span className="block text-[13.5px] font-black uppercase tracking-tight text-[#0F0F12] group-hover:text-[#7C3AED] transition-colors truncate">
+                <span className="block text-[16px] font-bold text-[#0F0F12] group-hover:text-[#7C3AED] transition-colors truncate leading-snug">
                   {locale === "ca" ? "Dividir PDF" : locale === "en" ? "Split PDF" : "Dividir PDF"}
                 </span>
-                <span className="block text-[11px] font-bold uppercase tracking-wider text-slate-500">
-                  {locale === "ca" ? "Separar pàgines" : locale === "en" ? "Extract pages" : "Extraer páginas"}
+                <span className="block text-[13px] font-medium text-slate-600 truncate mt-0.5 leading-snug">
+                  {locale === "ca" ? "Separa per pàgines o rangs" : locale === "en" ? "Separate by pages or ranges" : "Separa por páginas o rangos"}
                 </span>
               </div>
             </Link>
