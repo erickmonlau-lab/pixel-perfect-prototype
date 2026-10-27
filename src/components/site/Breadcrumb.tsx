@@ -27,23 +27,19 @@ export function Breadcrumb({ items, className = "", showHomeIcon = true }: Bread
   return (
     <nav
       aria-label="Breadcrumb"
-      className={`text-[14px] sm:text-[14.5px] font-bold text-slate-700 mb-3 sm:mb-4 ${className}`}
+      className={`mb-3 w-full min-w-0 text-[14px] font-bold text-slate-700 sm:mb-4 sm:text-[14.5px] ${className}`}
     >
-      <ol className="flex flex-wrap items-center gap-2 leading-none">
+      <ol className="flex w-full min-w-0 flex-wrap items-center gap-2 leading-snug">
         {/* Link to Home */}
-        <li className="inline-flex items-center">
+        <li className="inline-flex shrink-0 items-center">
           <Link
             to={HOME_ROUTE}
             params={homeParams(locale)}
-            className="group inline-flex items-center gap-1.5 rounded-lg border-2 border-[#0F0F12] bg-white px-2.5 py-1 text-slate-800 shadow-[2px_2px_0_#0F0F12] hover:bg-[#FEF08A] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0F0F12]"
+            className="group inline-flex items-center gap-1.5 whitespace-nowrap rounded-lg border-2 border-[#0F0F12] bg-white px-2.5 py-1 text-slate-800 shadow-[2px_2px_0_#0F0F12] transition-all hover:bg-[#FEF08A] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0F0F12]"
             aria-label={`${t.nav.home} · BreadPDF`}
           >
-            {showHomeIcon && (
-              <Home className="size-3.5 text-[#0F0F12] shrink-0" />
-            )}
-            <span className="font-black text-[#0F0F12]">
-              {t.nav.home}
-            </span>
+            {showHomeIcon && <Home className="size-3.5 text-[#0F0F12] shrink-0" />}
+            <span className="font-black text-[#0F0F12]">{t.nav.home}</span>
           </Link>
         </li>
 
@@ -52,30 +48,37 @@ export function Breadcrumb({ items, className = "", showHomeIcon = true }: Bread
           const isLast = index === items.length - 1;
 
           return (
-            <React.Fragment key={index}>
-              <li className="inline-flex items-center text-slate-400 select-none font-black" aria-hidden="true">
+            <li
+              key={index}
+              className={`flex min-w-0 items-center gap-2 ${
+                isLast ? "flex-[1_1_15rem]" : "shrink-0"
+              }`}
+            >
+              <span
+                className="inline-flex shrink-0 items-center select-none text-slate-400 font-black"
+                aria-hidden="true"
+              >
                 <ChevronRight className="size-4 stroke-[3] text-[#0F0F12]" />
-              </li>
-              <li className="inline-flex items-center">
-                {isLast || !item.to ? (
-                  <span
-                    className="inline-flex items-center rounded-lg border-2 border-[#0F0F12] bg-[#F4F4F6] px-2.5 py-1 font-black text-[#0F0F12] shadow-[2px_2px_0_#0F0F12] truncate max-w-[240px] sm:max-w-md"
-                    aria-current="page"
-                  >
-                    {item.label}
-                  </span>
-                ) : (
-                  <Link
-                    to={item.to as any}
-                    params={item.params as any}
-                    search={item.search as any}
-                    className="inline-flex items-center rounded-lg border-2 border-[#0F0F12] bg-white px-2.5 py-1 font-black text-[#0F0F12] shadow-[2px_2px_0_#0F0F12] hover:bg-[#FEF08A] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0F0F12]"
-                  >
-                    {item.label}
-                  </Link>
-                )}
-              </li>
-            </React.Fragment>
+              </span>
+              {isLast || !item.to ? (
+                <span
+                  className="block w-full min-w-0 whitespace-normal break-words rounded-lg border-2 border-[#0F0F12] bg-[#F4F4F6] px-2.5 py-1 font-black leading-snug text-[#0F0F12] shadow-[2px_2px_0_#0F0F12]"
+                  aria-current="page"
+                  title={item.label}
+                >
+                  {item.label}
+                </span>
+              ) : (
+                <Link
+                  to={item.to as any}
+                  params={item.params as any}
+                  search={item.search as any}
+                  className="inline-flex items-center whitespace-nowrap rounded-lg border-2 border-[#0F0F12] bg-white px-2.5 py-1 font-black text-[#0F0F12] shadow-[2px_2px_0_#0F0F12] transition-all hover:bg-[#FEF08A] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0F0F12]"
+                >
+                  {item.label}
+                </Link>
+              )}
+            </li>
           );
         })}
       </ol>

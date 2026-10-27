@@ -38,6 +38,7 @@ import {
 } from "@/lib/i18n/routing";
 import { useAuth } from "@/lib/auth/auth-context";
 import { Logo } from "./Logo";
+import "./header-responsive.css";
 import { ToolIcon } from "./ToolIcon";
 import { getRichToolIcon } from "./RichToolIcon";
 import { getToolColorTheme } from "@/lib/tools/color-system";
@@ -145,11 +146,11 @@ export function Header() {
         }
       }}
     >
-      <div className="site-header mx-auto flex w-full max-w-[1440px] items-center justify-between px-4 sm:px-6 lg:px-8">
+      <div className="site-header mx-auto flex w-full max-w-[1440px] items-center justify-between px-4 max-[430px]:px-3 sm:px-6 lg:px-8">
         {/* ============================================================
             ZONA IZQUIERDA: LOGO BREADPDF
             ============================================================ */}
-        <div className="flex shrink-0 items-center">
+        <div className="site-header-brand flex shrink-0 items-center">
           <Link
             to={HOME_ROUTE}
             params={homeParams(locale)}
@@ -539,13 +540,7 @@ export function Header() {
             className="inline-flex items-center gap-1.5 text-[15px] font-bold text-slate-700 hover:text-[#EC3C2D] transition-colors"
           >
             <BookOpen className="size-4 text-[#EC3C2D]" />
-            <span>
-              {locale === "ca"
-                ? "Guies"
-                : locale === "en"
-                  ? "Guides"
-                  : "Guías"}
-            </span>
+            <span>{locale === "ca" ? "Guies" : locale === "en" ? "Guides" : "Guías"}</span>
           </Link>
 
           <Link
@@ -554,11 +549,7 @@ export function Header() {
             className="inline-flex items-center gap-1.5 text-[15px] font-bold text-slate-700 hover:text-[#EC3C2D] transition-colors"
           >
             <span>
-              {locale === "ca"
-                ? "Sobre BreadPDF"
-                : locale === "en"
-                  ? "About"
-                  : "Sobre BreadPDF"}
+              {locale === "ca" ? "Sobre BreadPDF" : locale === "en" ? "About" : "Sobre BreadPDF"}
             </span>
           </Link>
 
@@ -572,12 +563,12 @@ export function Header() {
         {/* ============================================================
             MÓVIL: IDIOMA + HAMBURGUESA
             ============================================================ */}
-        <div className="ml-auto flex items-center gap-2 lg:hidden">
+        <div className="site-header-mobile-controls ml-auto flex shrink-0 items-center gap-2 max-[430px]:gap-1 lg:hidden">
           <LanguageSwitcher />
           <button
             type="button"
             onClick={() => setMobileOpen((value) => !value)}
-            className="transition-standard inline-flex size-11 items-center justify-center rounded-xl border border-[#E5E7EB] text-[#0F172A] hover:bg-[#F5F7FA]"
+            className="transition-standard inline-flex size-11 max-[430px]:size-10 items-center justify-center rounded-xl border border-[#E5E7EB] text-[#0F172A] hover:bg-[#F5F7FA]"
             aria-expanded={mobileOpen}
             aria-label={mobileOpen ? t.nav.closeMenu : t.nav.openMenu}
           >

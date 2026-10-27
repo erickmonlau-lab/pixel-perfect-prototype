@@ -1,0 +1,766 @@
+.campus-guide .guide-hero__visual-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.5rem;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.campus-guide .guide-hero__visual {
+  min-width: 0;
+}
+
+.campus-hero-visual {
+  width: 100%;
+  max-width: 32rem;
+  min-width: 0;
+  justify-self: end;
+  padding: 1.6rem 1.1rem;
+  border: 2px solid #171717;
+  border-radius: 1rem;
+  background: #fff;
+  box-shadow: 3px 3px 0 #171717;
+}
+
+.campus-hero-visual__context {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 0.7rem;
+  color: #171717;
+}
+
+.campus-hero-visual__campus-icon {
+  display: inline-flex;
+  width: 2.6rem;
+  height: 2.6rem;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  background: #f13b32;
+  color: #fff;
+  border-radius: 0.65rem;
+}
+
+.campus-hero-visual__context-copy {
+  min-width: 0;
+  color: #171717;
+  font-size: 1.1rem;
+  font-weight: 750;
+  line-height: 1.25;
+}
+
+.campus-hero-visual__mascot {
+  width: 4rem !important;
+  height: 4rem !important;
+  flex: 0 0 4rem;
+  margin-left: auto;
+}
+
+.campus-hero-visual__document {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 1.1rem;
+}
+
+.campus-hero-visual__file-icon {
+  flex: 0 0 auto;
+  color: #f13b32;
+  stroke-width: 2.25;
+}
+
+.campus-hero-visual__document-name {
+  min-width: 0;
+  color: #171717;
+  font-size: 0.95rem;
+  font-weight: 650;
+}
+
+.campus-hero-visual__pdf-tag {
+  margin-left: auto;
+  border-radius: 0.35rem;
+  padding: 0.18rem 0.4rem;
+  background: #f13b32;
+  color: #fff;
+  font-size: 0.68rem;
+  font-weight: 900;
+}
+
+.campus-hero-visual__warning {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  margin-top: 1.15rem;
+  padding-left: 0.7rem;
+  border-left: 3px solid #f13b32;
+  color: #171717;
+}
+
+.campus-hero-visual__warning > svg {
+  color: #f13b32;
+}
+
+.campus-hero-visual__warning span {
+  display: grid;
+  gap: 0.08rem;
+}
+
+.campus-hero-visual__warning strong {
+  font-size: 0.9rem;
+  font-weight: 750;
+  line-height: 1.35;
+}
+
+.campus-hero-visual__warning small {
+  color: #404040;
+  font-size: 0.8rem;
+  line-height: 1.4;
+}
+
+.campus-hero-visual__solutions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1.3rem;
+}
+
+.campus-hero-visual__solution {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.35rem 0;
+  color: #171717;
+}
+
+.campus-hero-visual__solution strong {
+  min-width: 0;
+  color: #171717;
+  font-size: 0.83rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.campus-hero-visual__solution svg {
+  flex: 0 0 auto;
+  color: #f13b32;
+  stroke-width: 2.25;
+}
+
+.campus-diagnostic {
+  margin-top: 2rem;
+}
+
+.campus-section-heading {
+  display: grid;
+  justify-items: start;
+  gap: 0.45rem;
+  margin-bottom: 1.1rem;
+}
+
+.campus-section-eyebrow,
+.campus-option__badge,
+.campus-decision__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  border: 1.5px solid #171717;
+  border-radius: 999px;
+  padding: 0.28rem 0.65rem;
+  background: #f13b32;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 900;
+  letter-spacing: 0.055em;
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+
+.campus-section__title {
+  margin: 0;
+  color: #171717;
+  font-size: clamp(24px, 2.2vw, 34px);
+  font-weight: 900;
+  letter-spacing: -0.035em;
+  line-height: 1.15;
+  text-wrap: pretty;
+}
+
+.campus-diagnostic__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.9rem;
+}
+
+.campus-diagnostic__choice {
+  display: grid;
+  min-width: 0;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+  gap: 0.85rem;
+  padding: 1rem;
+  border: 2px solid #171717;
+  border-radius: 0.9rem;
+  background: #fff;
+  box-shadow: 3px 3px 0 #171717;
+}
+
+.campus-diagnostic__choice--recommended {
+  border-left: 6px solid #f13b32;
+}
+
+.campus-diagnostic__icon,
+.campus-option__icon,
+.campus-cause__icon {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #171717;
+  border-radius: 0.65rem;
+  background: #f13b32;
+  color: #fff;
+}
+
+.campus-diagnostic__icon {
+  width: 3rem;
+  height: 3rem;
+}
+
+.campus-diagnostic__copy {
+  min-width: 0;
+}
+
+.campus-diagnostic__option {
+  color: #bd2d26;
+  font-size: 0.75rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+}
+
+.campus-diagnostic__choice h3 {
+  margin: 0.15rem 0 0;
+  color: #171717;
+  font-size: 1.2rem;
+  font-weight: 900;
+  line-height: 1.25;
+}
+
+.campus-guide .campus-diagnostic__choice p {
+  max-width: none;
+  margin: 0.4rem 0 0;
+  color: #333;
+  font-size: 1rem;
+  line-height: 1.55;
+}
+
+.campus-guide .campus-guide__prose {
+  color: #292929;
+  font-size: clamp(16px, 1.15vw, 18px);
+  line-height: 1.7;
+}
+
+.campus-guide .campus-guide__prose > section {
+  margin-top: 3.25rem;
+}
+
+.campus-guide .campus-guide__prose > section > .campus-section__title,
+.campus-guide .campus-guide__prose > section > .campus-section-heading {
+  margin-bottom: 1rem;
+}
+
+.campus-guide .campus-guide__prose .campus-section__title {
+  font-size: clamp(24px, 2.2vw, 34px);
+}
+
+.campus-guide .campus-causes__intro > p {
+  max-width: none;
+  margin: 0 0 0.9rem;
+  color: #171717;
+  font-weight: 700;
+}
+
+.campus-causes__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.8rem;
+}
+
+.campus-cause {
+  min-width: 0;
+  padding: 1rem;
+  border: 1.5px solid #171717;
+  border-bottom: 4px solid #f13b32;
+  border-radius: 0.8rem;
+  background: #f7f8fa;
+}
+
+.campus-cause__icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.6rem;
+}
+
+.campus-cause h3 {
+  margin: 0.75rem 0 0.25rem;
+  color: #171717;
+  font-size: 1.05rem;
+  font-weight: 900;
+  line-height: 1.3;
+}
+
+.campus-guide .campus-cause p {
+  max-width: none;
+  margin: 0;
+  color: #333;
+  font-size: 0.98rem;
+  line-height: 1.55;
+}
+
+.campus-workflow-section > p {
+  max-width: 780px;
+}
+
+.campus-workflow__steps {
+  display: grid;
+  gap: 0.15rem;
+  margin: 1.2rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.campus-workflow__step {
+  display: grid;
+  min-width: 0;
+  grid-template-columns: 2.65rem minmax(0, 1fr);
+  gap: 0.9rem;
+  padding: 0.8rem 0;
+}
+
+.campus-workflow__number {
+  display: inline-flex;
+  width: 2.5rem;
+  height: 2.5rem;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #171717;
+  border-radius: 0.65rem;
+  background: #f13b32;
+  box-shadow: 2px 2px 0 #171717;
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 900;
+}
+
+.campus-workflow__copy {
+  min-width: 0;
+  padding: 0.05rem 0 0.75rem 1rem;
+  border-left: 2px solid #171717;
+}
+
+.campus-workflow__copy h3 {
+  margin: 0;
+  color: #171717;
+  font-size: 1.15rem;
+  font-weight: 900;
+  line-height: 1.3;
+}
+
+.campus-guide .campus-workflow__copy p {
+  max-width: none;
+  margin: 0.4rem 0 0;
+  color: #333;
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+.campus-workflow__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem 1rem;
+  margin-top: 0.6rem;
+}
+
+.campus-workflow__actions a {
+  color: #bd2d26;
+  font-size: 0.94rem;
+  font-weight: 800;
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 0.18em;
+  overflow-wrap: anywhere;
+}
+
+.campus-workflow__actions a:focus-visible {
+  border-radius: 0.2rem;
+  outline: 3px solid #171717;
+  outline-offset: 3px;
+}
+
+.campus-option-section {
+  margin-top: 2.5rem;
+}
+
+.campus-option {
+  min-width: 0;
+  padding: 1.25rem;
+  border: 2px solid #171717;
+  border-radius: 1rem;
+  background: #fff;
+  box-shadow: 3px 3px 0 #171717;
+}
+
+.campus-option--recommended {
+  border-top: 6px solid #f13b32;
+}
+
+.campus-option__heading {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.campus-option__icon {
+  width: 3.3rem;
+  height: 3.3rem;
+  border-radius: 0.7rem;
+}
+
+.campus-option__badge {
+  margin-bottom: 0.3rem;
+  font-size: 0.7rem;
+}
+
+.campus-option__badge--secondary {
+  background: #f13b32;
+}
+
+.campus-option__heading > div {
+  min-width: 0;
+}
+
+.campus-guide .campus-option__heading .campus-section__title {
+  font-size: clamp(24px, 2.2vw, 34px);
+}
+
+.campus-guide .campus-option__description {
+  max-width: 780px;
+  margin: 1rem 0 0;
+  color: #292929;
+  font-size: clamp(16px, 1.15vw, 18px);
+  line-height: 1.65;
+}
+
+.campus-prerequisite {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+  gap: 0.75rem;
+  margin-top: 1.15rem;
+  padding: 0.85rem 1rem;
+  border: 2px solid #171717;
+  border-radius: 0.75rem;
+  background: #f13b32;
+  color: #fff;
+}
+
+.campus-prerequisite__icon {
+  margin-top: 0.12rem;
+  color: #fff;
+}
+
+.campus-prerequisite h3 {
+  margin: 0;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 900;
+  line-height: 1.35;
+}
+
+.campus-guide .campus-prerequisite p {
+  max-width: none;
+  margin: 0.25rem 0 0;
+  color: #fff;
+  font-size: 0.96rem;
+  line-height: 1.55;
+}
+
+.campus-guide .campus-guide__cta {
+  margin: 1.1rem 0 0;
+}
+
+.campus-guide .campus-guide__cta > div {
+  align-items: center;
+  gap: 1rem;
+}
+
+.campus-guide .campus-guide__cta p {
+  max-width: none;
+}
+
+.campus-guide__cta--recommended .guide-cta > div > div > p:first-child {
+  color: #171717;
+  font-size: 1.1rem;
+}
+
+.campus-guide__cta--recommended .guide-cta > div > div > p:last-child,
+.campus-guide__cta--split .guide-cta > div > div > p:last-child {
+  color: #404040;
+  font-size: 0.98rem;
+}
+
+.campus-decision {
+  margin-top: 3.25rem;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  border: 2px solid #171717;
+  border-radius: 1rem;
+  background: #171717;
+  color: #fff;
+}
+
+.campus-decision__heading {
+  display: grid;
+  justify-items: start;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.campus-decision__eyebrow {
+  background: #f13b32;
+}
+
+.campus-guide .campus-decision .campus-section__title {
+  color: #fff;
+  font-size: clamp(24px, 2.2vw, 30px);
+}
+
+.campus-decision__flow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: stretch;
+  gap: 0.75rem;
+}
+
+.campus-decision__node {
+  min-width: 0;
+  padding: 1.25rem;
+  border: 2px solid #171717;
+  border-radius: 0.9rem;
+  background: #fff;
+  box-shadow: 3px 3px 0 #000;
+}
+
+.campus-decision__node-icon {
+  display: inline-flex;
+  width: 3.25rem;
+  height: 3.25rem;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #171717;
+  border-radius: 0.75rem;
+  background: #f13b32;
+  box-shadow: 2px 2px 0 #171717;
+  color: #fff;
+}
+
+.campus-decision__node-icon svg {
+  width: 1.65rem;
+  height: 1.65rem;
+  stroke-width: 2.25;
+}
+
+.campus-decision__node h3 {
+  margin: 0.8rem 0 0;
+  color: #171717;
+  font-size: clamp(1.125rem, 1.5vw, 1.25rem);
+  font-weight: 900;
+  line-height: 1.25;
+}
+
+.campus-guide .campus-decision__node p {
+  max-width: none;
+  margin: 0.45rem 0 0;
+  color: #333;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.campus-decision__arrow {
+  width: 1.9rem;
+  height: 1.9rem;
+  justify-self: center;
+  align-self: center;
+  color: #f13b32;
+  stroke-width: 3;
+  transform: rotate(90deg);
+}
+
+@media (min-width: 640px) {
+  .campus-diagnostic__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .campus-causes__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 900px) {
+  .campus-guide .guide-hero__visual-layout {
+    grid-template-columns: minmax(0, 1.25fr) minmax(17rem, 0.75fr);
+    gap: 1.75rem;
+  }
+
+  .campus-causes__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .campus-decision__flow {
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr);
+    gap: 0.75rem;
+  }
+
+  .campus-decision__node {
+    padding: 1.15rem;
+  }
+
+  .campus-decision__arrow {
+    width: 1.65rem;
+    height: 1.65rem;
+    transform: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .campus-guide > header {
+    padding-bottom: 1.5rem;
+  }
+
+  .campus-guide .guide-hero__visual-layout {
+    gap: 0.8rem;
+    margin-top: 0.75rem;
+  }
+
+  .campus-guide .guide-hero__visual-layout .mt-4 {
+    margin-top: 0.75rem;
+  }
+
+  .campus-guide .guide-hero__visual-layout h1 {
+    margin-top: 1rem;
+    font-size: clamp(1.875rem, 8vw, 2rem);
+    line-height: 1.02;
+  }
+
+  .campus-guide .guide-hero__visual-layout > div:first-child > p {
+    margin-top: 0.75rem;
+    font-size: 1.0625rem;
+    line-height: 1.5;
+  }
+
+  .campus-hero-visual {
+    padding: 1rem;
+  }
+
+  .campus-hero-visual__context {
+    gap: 0.55rem;
+  }
+
+  .campus-hero-visual__campus-icon {
+    width: 2.3rem;
+    height: 2.3rem;
+  }
+
+  .campus-hero-visual__context-copy {
+    font-size: 1.02rem;
+  }
+
+  .campus-hero-visual__mascot {
+    width: 3.2rem !important;
+    height: 3.2rem !important;
+    flex-basis: 3.2rem;
+  }
+
+  .campus-hero-visual__warning {
+    margin-top: 1rem;
+  }
+
+  .campus-hero-visual__solutions {
+    gap: 0.6rem;
+    margin-top: 1.05rem;
+  }
+
+  .campus-hero-visual__solution {
+    gap: 0.35rem;
+  }
+
+  .campus-hero-visual__solution strong {
+    font-size: 0.78rem;
+  }
+
+  .campus-guide .campus-guide__cta > div > a {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    justify-content: center;
+    padding-right: 0.75rem;
+    padding-left: 0.75rem;
+    white-space: normal;
+    text-align: center;
+  }
+
+  .campus-guide .campus-guide__cta > div > a > span {
+    min-width: 0;
+  }
+
+  .campus-diagnostic__choice {
+    padding: 0.85rem;
+  }
+
+  .campus-option,
+  .campus-decision {
+    padding: 1rem;
+  }
+
+  .campus-decision__flow {
+    gap: 0.5rem;
+  }
+
+  .campus-decision__node {
+    padding: 1rem;
+  }
+
+  .campus-decision__node h3 {
+    font-size: 1.125rem;
+  }
+
+  .campus-decision__node p {
+    font-size: 0.98rem;
+  }
+
+  .campus-option__heading {
+    align-items: flex-start;
+    gap: 0.7rem;
+  }
+
+  .campus-option__icon {
+    width: 2.85rem;
+    height: 2.85rem;
+  }
+
+  .campus-workflow__step {
+    grid-template-columns: 2.35rem minmax(0, 1fr);
+    gap: 0.65rem;
+  }
+
+  .campus-workflow__number {
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+
+  .campus-workflow__copy {
+    padding-left: 0.75rem;
+  }
+}

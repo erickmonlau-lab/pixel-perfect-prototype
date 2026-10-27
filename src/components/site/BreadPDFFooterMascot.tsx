@@ -26,7 +26,7 @@ export function BreadPDFFooterMascot({ className = "", size = "lg" }: BreadPDFFo
         width={260}
         height={240}
         className="relative z-10 w-auto h-full max-w-full object-contain pointer-events-none"
-        loading="lazy"
+        loading="eager"
         decoding="async"
       />
     </div>
