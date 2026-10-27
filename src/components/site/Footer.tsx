@@ -32,7 +32,8 @@ const FEATURED_TOOLS = [
 const FOOTER_COPY = {
   es: {
     bannerTitle: "¿Qué necesitas hacer con tu PDF?",
-    bannerSub: "Comprime, une, divide, convierte o firma documentos al instante y 100% en tu navegador.",
+    bannerSub:
+      "Comprime, une, divide, convierte o firma documentos al instante y 100% en tu navegador.",
     bannerCta: "Ver todas las herramientas",
     description:
       "Herramientas PDF online para comprimir, unir, dividir, convertir y editar documentos. Directamente en tu navegador sin enviar datos a servidores externos.",
@@ -54,7 +55,8 @@ const FOOTER_COPY = {
   },
   ca: {
     bannerTitle: "Què necessites fer amb el teu PDF?",
-    bannerSub: "Comprimeix, uneix, divideix, converteix o signa documents a l'instant i 100% al teu navegador.",
+    bannerSub:
+      "Comprimeix, uneix, divideix, converteix o signa documents a l'instant i 100% al teu navegador.",
     bannerCta: "Veure totes les eines",
     description:
       "Eines PDF en línia per comprimir, unir, dividir, convertir i editar documents. Directament al teu navegador sense enviar dades a servidors externs.",
@@ -76,7 +78,8 @@ const FOOTER_COPY = {
   },
   en: {
     bannerTitle: "What do you need to do with your PDF?",
-    bannerSub: "Compress, merge, split, convert, or sign documents instantly and 100% inside your browser.",
+    bannerSub:
+      "Compress, merge, split, convert, or sign documents instantly and 100% inside your browser.",
     bannerCta: "View all tools",
     description:
       "Online PDF tools to compress, merge, split, convert and edit documents. Directly inside your browser without uploading files to remote servers.",
@@ -98,16 +101,26 @@ const FOOTER_COPY = {
   },
 } as const;
 
+/** Pequeño punto rojo decorativo reutilizable */
+function Dot() {
+  return (
+    <span
+      className="size-[7px] rounded-full bg-[#EC3C2D] shrink-0 opacity-75 group-hover:opacity-100 transition-opacity mt-[1px]"
+      aria-hidden="true"
+    />
+  );
+}
+
 export function Footer() {
   const { locale, tools } = useLocale();
   const copy = FOOTER_COPY[locale as keyof typeof FOOTER_COPY] ?? FOOTER_COPY.es;
   const year = new Date().getFullYear();
 
   return (
-    <footer className="mt-20 border-t-2 border-[#0F0F12] bg-[#F1F1F4] text-[#0F0F12]">
+    <footer className="mt-20 border-t-2 border-[#0F0F12] text-[#0F0F12] overflow-hidden">
       {/* ── BANNER ACCIÓN SUPERIOR ── */}
       <div className="border-b-2 border-[#0F0F12] bg-white py-8 sm:py-10">
-        <div className="w-full max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-12 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="w-full max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-16 flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="max-w-2xl text-center md:text-left">
             <h3 className="text-[24px] sm:text-[28px] font-black text-[#0F0F12] tracking-tight leading-tight">
               {copy.bannerTitle}
@@ -120,7 +133,9 @@ export function Footer() {
             to={HOME_ROUTE}
             params={homeParams(locale)}
             hash="catalogo"
-            onClick={() => trackToolCatalogViewAllClicked({ source: "footer_banner", language: locale })}
+            onClick={() =>
+              trackToolCatalogViewAllClicked({ source: "footer_banner", language: locale })
+            }
             className="inline-flex items-center gap-2 rounded-xl border-2 border-[#0F0F12] bg-[#EC3C2D] hover:bg-[#D93426] text-white px-7 py-3.5 text-[16px] font-black shadow-[4px_4px_0_#0F0F12] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0_#0F0F12] transition-all cursor-pointer shrink-0"
           >
             <span>{copy.bannerCta}</span>
@@ -129,13 +144,68 @@ export function Footer() {
         </div>
       </div>
 
-      {/* ── CUERPO PRINCIPAL DEL FOOTER ── */}
-      <div className="w-full max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-12 pt-10 pb-8 sm:pt-12 sm:pb-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 items-start">
-          
-          {/* COL 1: MARCA + MASCOTA + DESCRIPCIÓN + IDIOMAS (lg:col-span-4) */}
-          <div className="lg:col-span-4 space-y-4">
-            <div className="flex items-center gap-4">
+      {/* ─────────────────────────────────────────────────────────────── */}
+      {/* CUERPO PRINCIPAL — fondo con iluminación ambiental difuminada   */}
+      {/* ─────────────────────────────────────────────────────────────── */}
+      <div className="relative bg-[#F4F4F7]">
+        {/* ── Difuminados de iluminación ambiental ── */}
+        {/*
+          Tres elipses absolutas con radial-gradient:
+          · Rojo coral (zona de marca, izquierda-arriba)
+          · Naranja muy suave (centro, casi invisible)
+          · Violeta pálido (derecha, zona legal/mascota)
+          overflow-hidden en el padre evita scroll horizontal.
+          pointer-events:none para no interferir con los enlaces.
+        */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 overflow-hidden"
+          style={{ zIndex: 0 }}
+        >
+          {/* Brillo rojo-coral — zona de marca (izquierda) */}
+          <div
+            style={{
+              position: "absolute",
+              top: "-60px",
+              left: "-80px",
+              width: "520px",
+              height: "420px",
+              background:
+                "radial-gradient(ellipse at center, rgba(236,60,45,0.13) 0%, rgba(236,60,45,0.05) 45%, transparent 70%)",
+              transform: "rotate(-15deg)",
+            }}
+          />
+          {/* Brillo naranja cálido — centro */}
+          <div
+            style={{
+              position: "absolute",
+              top: "20px",
+              left: "38%",
+              width: "400px",
+              height: "300px",
+              background:
+                "radial-gradient(ellipse at center, rgba(255,160,60,0.07) 0%, transparent 65%)",
+            }}
+          />
+          {/* Brillo violeta suave — zona derecha / mascota */}
+          <div
+            style={{
+              position: "absolute",
+              bottom: "-40px",
+              right: "-60px",
+              width: "480px",
+              height: "400px",
+              background:
+                "radial-gradient(ellipse at center, rgba(139,92,246,0.09) 0%, rgba(139,92,246,0.03) 50%, transparent 70%)",
+            }}
+          />
+        </div>
+
+        {/* ── Contenido del footer — posición relativa sobre los difuminados ── */}
+        <div className="relative z-10 w-full max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-16 pt-12 pb-10">
+          <div className="grid grid-cols-2 items-start gap-x-8 gap-y-10 xl:grid-cols-[minmax(220px,1.25fr)_minmax(140px,0.9fr)_minmax(140px,0.9fr)_minmax(155px,0.9fr)_minmax(165px,1fr)] xl:gap-x-6 xl:gap-y-0">
+            {/* ── COL 1: MARCA ── */}
+            <div className="col-span-2 space-y-5 xl:col-span-1">
               <Link
                 to={HOME_ROUTE}
                 params={homeParams(locale)}
@@ -144,136 +214,133 @@ export function Footer() {
                 <img
                   src={BRAND_ASSETS.iconWebp}
                   alt="BreadPDF"
-                  width={56}
-                  height={54}
-                  className="h-11 sm:h-12 w-auto object-contain drop-shadow-xs transition-transform duration-200 group-hover:scale-105"
+                  width={52}
+                  height={50}
+                  className="h-11 w-auto object-contain drop-shadow-xs transition-transform duration-200 group-hover:scale-105"
                   loading="lazy"
                   decoding="async"
                 />
-                <span className="font-heading text-[24px] sm:text-[27px] font-black tracking-tight leading-none">
+                <span className="font-heading text-[25px] sm:text-[27px] font-black tracking-tight leading-none">
                   <span className="text-[#592316]">{BRAND_WORDMARK.bread}</span>
                   <span className="text-[#EC3C2D]">{BRAND_WORDMARK.pdf}</span>
                 </span>
               </Link>
-              {/* Mascota integrada junto al logo — compacta y sin tarjeta */}
-              <BreadPDFFooterMascot className="h-[72px] w-auto" />
+
+              <p className="text-[14.5px] sm:text-[15px] leading-relaxed text-slate-600 max-w-[280px] font-medium">
+                {copy.description}
+              </p>
+
+              <div>
+                <LanguageSwitcher />
+              </div>
             </div>
 
-            <p className="text-[15px] sm:text-[15.5px] leading-relaxed text-slate-700 max-w-[340px] font-medium">
-              {copy.description}
-            </p>
-
-            {/* Selector de idioma con borde neo-brutalista */}
-            <div className="pt-1">
-              <LanguageSwitcher />
+            {/* COL 2: HERRAMIENTAS */}
+            <div>
+              <h4 className="mb-4 text-[13px] font-black uppercase tracking-[0.12em] text-[#0F0F12] leading-tight">
+                {copy.colTools}
+              </h4>
+              <ul className="space-y-3">
+                {FEATURED_TOOLS.map((item) => {
+                  const toolDef = tools.find((t) => t.canonicalSlug === item.slug);
+                  const name = toolDef?.name ?? item.name;
+                  return (
+                    <li key={item.slug}>
+                      <Link
+                        to={DETAIL_ROUTE}
+                        params={toolParams(locale, item.slug)}
+                        className="group inline-flex items-start gap-2 text-[14.5px] sm:text-[15px] font-semibold text-slate-700 transition-colors hover:text-[#EC3C2D] leading-snug"
+                      >
+                        <Dot />
+                        <span>{name}</span>
+                      </Link>
+                    </li>
+                  );
+                })}
+                <li className="pt-1">
+                  <Link
+                    to={HOME_ROUTE}
+                    params={homeParams(locale)}
+                    hash="catalogo"
+                    onClick={() =>
+                      trackToolCatalogViewAllClicked({ source: "footer", language: locale })
+                    }
+                    className="group inline-flex items-center gap-1.5 text-[14px] font-black text-[#EC3C2D] hover:underline underline-offset-2"
+                  >
+                    <span>
+                      {locale === "ca"
+                        ? `Totes les ${tools.length} eines →`
+                        : locale === "en"
+                          ? `View all ${tools.length} tools →`
+                          : `Ver las ${tools.length} herramientas →`}
+                    </span>
+                  </Link>
+                </li>
+              </ul>
             </div>
-          </div>
 
-          {/* COL 2: HERRAMIENTAS (lg:col-span-3) */}
-          <div className="lg:col-span-3">
-            <h4 className="mb-5 text-[17px] sm:text-[18px] font-black uppercase tracking-wider text-[#0F0F12] leading-tight">
-              {copy.colTools}
-            </h4>
-            <ul className="space-y-3.5">
-              {FEATURED_TOOLS.map((item) => {
-                const toolDef = tools.find((t) => t.canonicalSlug === item.slug);
-                const name = toolDef?.name ?? item.name;
-                return (
-                  <li key={item.slug}>
-                    <Link
-                      to={DETAIL_ROUTE}
-                      params={toolParams(locale, item.slug)}
-                      className="group inline-flex items-center gap-2 text-[15px] sm:text-[15.5px] font-bold text-slate-800 transition-colors hover:text-[#EC3C2D]"
-                    >
-                      <span className="size-2 rounded-full bg-[#EC3C2D] shrink-0 opacity-80 group-hover:opacity-100 transition-opacity" aria-hidden="true" />
-                      <span>{name}</span>
-                    </Link>
-                  </li>
-                );
-              })}
-              {/* Enlace al catálogo central con conteo dinámico real de herramientas */}
-              <li className="pt-2">
-                <Link
-                  to={HOME_ROUTE}
-                  params={homeParams(locale)}
-                  hash="catalogo"
-                  onClick={() => trackToolCatalogViewAllClicked({ source: "footer", language: locale })}
-                  className="group inline-flex items-center gap-1.5 text-[15px] font-black text-[#EC3C2D] hover:underline"
-                >
-                  <span>
-                    {locale === "ca"
-                      ? `Totes les ${tools.length} eines →`
-                      : locale === "en"
-                      ? `View all ${tools.length} tools →`
-                      : `Ver las ${tools.length} herramientas →`}
-                  </span>
-                </Link>
-              </li>
-            </ul>
-          </div>
+            {/* COL 3: INFORMACIÓN */}
+            <div>
+              <h4 className="mb-4 text-[13px] font-black uppercase tracking-[0.12em] text-[#0F0F12] leading-tight">
+                {copy.colInfo}
+              </h4>
+              <ul className="space-y-3 text-[14.5px] sm:text-[15px]">
+                <li>
+                  <Link
+                    to={SECTION_ROUTE}
+                    params={aboutParams(locale)}
+                    className="group inline-flex items-start gap-2 font-semibold text-slate-700 transition-colors hover:text-[#EC3C2D] leading-snug"
+                  >
+                    <Dot />
+                    <span>{copy.about}</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to={SECTION_ROUTE}
+                    params={guidesHubParams(locale)}
+                    className="group inline-flex items-start gap-2 font-semibold text-slate-700 transition-colors hover:text-[#EC3C2D] leading-snug"
+                  >
+                    <BookOpen className="size-3.5 shrink-0 text-[#EC3C2D] mt-[2px]" />
+                    <span>{copy.guides}</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to={HOME_ROUTE}
+                    params={homeParams(locale)}
+                    hash="catalogo"
+                    className="group inline-flex items-start gap-2 font-semibold text-slate-700 transition-colors hover:text-[#EC3C2D] leading-snug"
+                  >
+                    <Dot />
+                    <span>{copy.bottomTools}</span>
+                  </Link>
+                </li>
+                <li>
+                  <a
+                    href={`mailto:${copy.contactEmail}`}
+                    className="group inline-flex items-start gap-2 font-semibold text-slate-700 transition-colors hover:text-[#EC3C2D] leading-snug"
+                  >
+                    <MessageSquare className="size-3.5 shrink-0 text-[#EC3C2D] mt-[2px]" />
+                    <span>{copy.support}</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
 
-          {/* COL 3: INFORMACIÓN (lg:col-span-2) */}
-          <div className="lg:col-span-2">
-            <h4 className="mb-5 text-[17px] sm:text-[18px] font-black uppercase tracking-wider text-[#0F0F12] leading-tight">
-              {copy.colInfo}
-            </h4>
-            <ul className="space-y-3.5 text-[15px] sm:text-[15.5px]">
-              <li>
-                <Link
-                  to={SECTION_ROUTE}
-                  params={aboutParams(locale)}
-                  className="group inline-flex items-center gap-2 font-bold text-slate-800 transition-colors hover:text-[#EC3C2D]"
-                >
-                  <span className="size-2 rounded-full bg-[#EC3C2D] shrink-0 opacity-80" aria-hidden="true" />
-                  <span>{copy.about}</span>
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to={SECTION_ROUTE}
-                  params={guidesHubParams(locale)}
-                  className="group inline-flex items-center gap-2 font-bold text-slate-800 transition-colors hover:text-[#EC3C2D]"
-                >
-                  <BookOpen className="size-4 shrink-0 text-[#EC3C2D]" />
-                  <span>{copy.guides}</span>
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to={HOME_ROUTE}
-                  params={homeParams(locale)}
-                  hash="catalogo"
-                  className="group inline-flex items-center gap-2 font-bold text-slate-800 transition-colors hover:text-[#EC3C2D]"
-                >
-                  <span className="size-2 rounded-full bg-[#EC3C2D] shrink-0 opacity-80" aria-hidden="true" />
-                  <span>{copy.bottomTools}</span>
-                </Link>
-              </li>
-              <li>
-                <a
-                  href={`mailto:${copy.contactEmail}`}
-                  className="group inline-flex items-center gap-2 font-bold text-slate-800 transition-colors hover:text-[#EC3C2D]"
-                >
-                  <MessageSquare className="size-4 shrink-0 text-[#EC3C2D]" />
-                  <span>{copy.support}</span>
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          {/* COL 4: LEGAL (lg:col-span-3) */}
-          <div className="lg:col-span-3">
-            <h4 className="mb-5 text-[17px] sm:text-[18px] font-black uppercase tracking-wider text-[#0F0F12] leading-tight">
-              {copy.colLegal}
-            </h4>
-            <ul className="space-y-3.5">
+            {/* COL 4: LEGAL */}
+            <div>
+              <h4 className="mb-4 text-[13px] font-black uppercase tracking-[0.12em] text-[#0F0F12] leading-tight">
+                {copy.colLegal}
+              </h4>
+              <ul className="space-y-3 text-[14.5px] sm:text-[15px]">
                 <li>
                   <Link
                     to={SECTION_ROUTE}
                     params={privacyParams(locale)}
-                    className="group inline-flex items-center gap-2 text-[15px] sm:text-[15.5px] font-bold text-slate-800 transition-colors hover:text-[#EC3C2D]"
+                    className="group inline-flex items-start gap-2 font-semibold text-slate-700 transition-colors hover:text-[#EC3C2D] leading-snug"
                   >
-                    <span className="size-2 rounded-full bg-[#EC3C2D] shrink-0 opacity-80" aria-hidden="true" />
+                    <Dot />
                     <span>{copy.privacyFull}</span>
                   </Link>
                 </li>
@@ -281,9 +348,9 @@ export function Footer() {
                   <Link
                     to={SECTION_ROUTE}
                     params={cookiesParams(locale)}
-                    className="group inline-flex items-center gap-2 text-[15px] sm:text-[15.5px] font-bold text-slate-800 transition-colors hover:text-[#EC3C2D]"
+                    className="group inline-flex items-start gap-2 font-semibold text-slate-700 transition-colors hover:text-[#EC3C2D] leading-snug"
                   >
-                    <span className="size-2 rounded-full bg-[#EC3C2D] shrink-0 opacity-80" aria-hidden="true" />
+                    <Dot />
                     <span>{copy.cookies}</span>
                   </Link>
                 </li>
@@ -291,34 +358,41 @@ export function Footer() {
                   <Link
                     to={SECTION_ROUTE}
                     params={termsParams(locale)}
-                    className="group inline-flex items-center gap-2 text-[15px] sm:text-[15.5px] font-bold text-slate-800 transition-colors hover:text-[#EC3C2D]"
+                    className="group inline-flex items-start gap-2 font-semibold text-slate-700 transition-colors hover:text-[#EC3C2D] leading-snug"
                   >
-                    <span className="size-2 rounded-full bg-[#EC3C2D] shrink-0 opacity-80" aria-hidden="true" />
+                    <Dot />
                     <span>{copy.legalTerms}</span>
                   </Link>
                 </li>
               </ul>
+            </div>
+
+            {/* ── MASCOTA — a la derecha de Legal en escritorio, independiente en móvil ── */}
+            <div className="col-span-2 flex justify-center xl:col-span-1 xl:items-end xl:justify-center xl:pb-2">
+              <BreadPDFFooterMascot size="lg" />
+            </div>
           </div>
-
         </div>
+        {/* /container */}
       </div>
+      {/* /fondo difuminado */}
 
-      {/* ── BARRA INFERIOR LEGAL ────────────────────────────────────── */}
-      <div className="border-t-2 border-[#0F0F12] bg-[#E8E8EC]">
-        <div className="w-full max-w-[1440px] mx-auto flex flex-col gap-3 px-6 sm:px-10 lg:px-12 py-4 text-[13.5px] font-semibold text-slate-700 sm:flex-row sm:items-center sm:justify-between">
-          <p>{copy.copyright(year)}</p>
-          <div className="flex flex-wrap items-center gap-6">
+      {/* ── BARRA INFERIOR LEGAL ── */}
+      <div className="border-t border-[#0F0F12]/20 bg-[#EAEAEE]">
+        <div className="w-full max-w-[1440px] mx-auto flex flex-col gap-2.5 px-6 sm:px-10 lg:px-16 py-4 text-[13px] font-semibold text-slate-500 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-slate-600">{copy.copyright(year)}</p>
+          <div className="flex flex-wrap items-center gap-5">
             <Link
               to={SECTION_ROUTE}
               params={aboutParams(locale)}
-              className="transition-colors hover:text-[#EC3C2D]"
+              className="transition-colors hover:text-[#EC3C2D] hover:underline underline-offset-2"
             >
               {copy.about}
             </Link>
             <Link
               to={SECTION_ROUTE}
               params={privacyParams(locale)}
-              className="transition-colors hover:text-[#EC3C2D]"
+              className="transition-colors hover:text-[#EC3C2D] hover:underline underline-offset-2"
             >
               {copy.bottomPrivacy}
             </Link>
@@ -326,7 +400,7 @@ export function Footer() {
               to={HOME_ROUTE}
               params={homeParams(locale)}
               hash="catalogo"
-              className="transition-colors hover:text-[#EC3C2D]"
+              className="transition-colors hover:text-[#EC3C2D] hover:underline underline-offset-2"
             >
               {copy.bottomTools}
             </Link>
