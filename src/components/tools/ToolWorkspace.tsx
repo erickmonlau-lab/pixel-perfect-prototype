@@ -703,33 +703,35 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
             )}
           </div>
 
-          {/* Panel de configuracion â€” debajo del dropzone, visible si la herramienta tiene opciones */}
-          {tool.options && tool.options.length > 0 && (
-            <div className="mx-4 sm:mx-6 mb-4 sm:mb-6 rounded-2xl border-2 border-[#0F0F12] bg-white shadow-[3px_3px_0_#0F0F12]" onClick={(e) => e.stopPropagation()}>
 
-              {/* Encabezado del panel */}
-              <div className="flex items-center justify-between px-5 sm:px-6 py-3.5 border-b-2 border-slate-100">
-                <span className="text-[13.5px] sm:text-[14px] font-black uppercase tracking-wider text-[#0F0F12] flex items-center gap-2">
+          {/* Panel de configuracion debajo del dropzone */}
+          {tool.options && tool.options.length > 0 && (
+            <div className="mx-4 sm:mx-6 mb-6 sm:mb-8 rounded-2xl border-2 border-[#0F0F12] bg-white shadow-[3px_3px_0_#0F0F12]" onClick={(e) => e.stopPropagation()}>
+
+              {/* Encabezado */}
+              <div className="flex items-center justify-between px-5 sm:px-6 py-4 border-b-2 border-[#F1F1F4]">
+                <div className="flex items-center gap-2.5">
                   <SlidersHorizontal className="size-4 text-[#EC3C2D] shrink-0" />
-                  Nivel de compresion
-                </span>
-                <span className="shrink-0 inline-flex items-center gap-1 rounded-md border border-[#0F0F12] bg-[#F1F1F4] px-2 py-0.5 text-[10.5px] font-bold text-[#0F0F12]">
-                  <span className="size-1.5 rounded-full bg-[#10B981]" />
+                  <span className="text-[13px] sm:text-[14px] font-black uppercase tracking-widest text-[#0F0F12]">
+                    Nivel de compresion
+                  </span>
+                </div>
+                <span className="shrink-0 inline-flex items-center gap-1.5 rounded-md border border-[#0F0F12] bg-[#F1F1F4] px-2.5 py-1 text-[11px] font-bold text-[#0F0F12]">
+                  <span className="size-2 rounded-full bg-[#10B981] shrink-0" />
                   WASM local
                 </span>
               </div>
 
-              <div className="p-4 sm:p-5 flex flex-col gap-3">
+              {/* Grid de presets */}
+              <div className="p-4 sm:p-5 flex flex-col gap-4">
                 {tool.options.map((opt) => (
-                  <div key={opt.key} className="flex flex-col gap-2">
+                  <div key={opt.key}>
                     {opt.type === "select" && (
-                      <div
-                        className="grid gap-2"
-                        style={{ gridTemplateColumns: "repeat(auto-fit, minmax(185px, 1fr))" }}
-                      >
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
                         {opt.options.map((o) => {
                           const isSelected = (values[opt.key] ?? opt.default) === o.value;
 
+                          // Parse label into main title + subtitle
                           const isTarget = o.value.startsWith("target_");
                           let mainLabel = o.label;
                           let subLabel = "";
@@ -746,11 +748,11 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                           }
 
                           const isBalanced = o.value === "balanced";
-                          const badgeText =
-                            o.value === "lossless" ? "âˆ’15%" :
-                            o.value === "light" ? "âˆ’40%" :
-                            o.value === "balanced" ? "âˆ’70%" :
-                            (o.value === "aggressive" || o.value === "max" || o.value === "strong") ? "âˆ’85%" :
+                          const reductionPct =
+                            o.value === "lossless" ? "-15%" :
+                            o.value === "light" ? "-40%" :
+                            o.value === "balanced" ? "-70%" :
+                            (o.value === "strong" || o.value === "aggressive" || o.value === "max") ? "-85%" :
                             null;
 
                           return (
@@ -758,46 +760,56 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                               key={o.value}
                               type="button"
                               onClick={(e) => { e.stopPropagation(); setValues((v) => ({ ...v, [opt.key]: o.value })); }}
-                              className={`flex flex-col p-3 sm:p-3.5 rounded-xl border-2 text-left transition-all duration-120 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F13B32] ${
+                              className={`flex flex-col gap-2 p-4 sm:p-5 rounded-xl border-2 text-left w-full transition-all duration-120 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F13B32] ${
                                 isSelected
                                   ? "bg-[#F13B32] border-[#0F0F12] shadow-[3px_3px_0_#0F0F12]"
                                   : "bg-white border-[#0F0F12] shadow-[2px_2px_0_#0F0F12] hover:bg-[#FFF5F5] hover:shadow-[3px_3px_0_#0F0F12]"
                               }`}
                             >
-                              {/* Nombre + indicador seleccion */}
-                              <div className="flex items-start justify-between gap-2">
-                                <span className={`text-[14px] sm:text-[15px] font-black leading-snug ${isSelected ? "text-white" : "text-[#0F0F12]"}`}>
+                              {/* Fila superior: nombre + radio de seleccion */}
+                              <div className="flex items-center justify-between gap-3">
+                                <span className={`text-[15px] sm:text-[16px] font-bold leading-snug ${isSelected ? "text-white" : "text-[#0F0F12]"}`}>
                                   {mainLabel}
                                 </span>
-                                <span className={`shrink-0 mt-0.5 size-5 rounded-full border-2 flex items-center justify-center text-[10px] font-black transition-colors ${
-                                  isSelected ? "bg-white border-white text-[#F13B32]" : "border-slate-300 bg-white text-transparent"
-                                }`}>
+                                {/* Indicador de seleccion: circulo vacio / relleno blanco con check */}
+                                <span
+                                  aria-hidden
+                                  className={`shrink-0 size-5 rounded-full border-2 flex items-center justify-center text-[11px] font-black transition-all ${
+                                    isSelected
+                                      ? "bg-white border-white text-[#F13B32]"
+                                      : "border-slate-300 bg-transparent"
+                                  }`}
+                                >
                                   {isSelected ? "âœ“" : ""}
                                 </span>
                               </div>
 
-                              {/* Descripcion */}
+                              {/* Descripcion / caso de uso */}
                               {subLabel && (
-                                <span className={`mt-1 text-[12px] sm:text-[12.5px] leading-snug font-medium block ${isSelected ? "text-white/85" : "text-slate-500"}`}>
+                                <p className={`text-[13.5px] sm:text-[14px] leading-relaxed font-medium m-0 ${isSelected ? "text-white/85" : "text-slate-500"}`}>
                                   {subLabel}
-                                </span>
+                                </p>
                               )}
 
-                              {/* Badges */}
-                              {(isBalanced || badgeText) && (
-                                <div className="mt-2 flex items-center gap-1.5 flex-wrap">
+                              {/* Zona de badges: RECOMENDADO + reduccion */}
+                              {(isBalanced || reductionPct) && (
+                                <div className="flex items-center gap-2 flex-wrap mt-0.5">
                                   {isBalanced && (
-                                    <span className={`text-[10px] font-black uppercase tracking-wide px-1.5 py-0.5 rounded-md border ${
-                                      isSelected ? "bg-white text-[#F13B32] border-white" : "bg-[#F13B32] text-white border-[#0F0F12]"
+                                    <span className={`inline-flex items-center text-[11px] font-black uppercase tracking-wide px-2 py-0.5 rounded-md border ${
+                                      isSelected
+                                        ? "bg-white text-[#F13B32] border-white"
+                                        : "bg-[#F13B32] text-white border-[#0F0F12]"
                                     }`}>
                                       RECOMENDADO
                                     </span>
                                   )}
-                                  {badgeText && (
-                                    <span className={`text-[10px] font-black px-1.5 py-0.5 rounded-md border ${
-                                      isSelected ? "bg-white/20 text-white border-white/40" : "bg-[#F1F1F4] text-[#0F0F12] border-[#0F0F12]"
+                                  {reductionPct && (
+                                    <span className={`inline-flex items-center text-[11px] font-bold px-2 py-0.5 rounded-md border ${
+                                      isSelected
+                                        ? "bg-white/25 text-white border-white/30"
+                                        : "bg-[#F4F4F6] text-[#0F0F12] border-[#D1D5DB]"
                                     }`}>
-                                      {badgeText}
+                                      {reductionPct}
                                     </span>
                                   )}
                                 </div>
@@ -811,8 +823,9 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                     {opt.type === "range" && (
                       <div className="flex flex-col gap-2">
                         <div className="flex items-center justify-between">
-                          <label className="text-[13px] sm:text-[13.5px] font-black text-[#0F0F12]">
-                            {opt.label}{opt.help && <span className="ml-1 text-[12px] font-normal text-slate-500">({opt.help})</span>}
+                          <label className="text-[13.5px] font-black text-[#0F0F12]">
+                            {opt.label}
+                            {opt.help && <span className="ml-1 text-[12px] font-normal text-slate-500">({opt.help})</span>}
                           </label>
                           {values[opt.key] != null && (
                             <span className="text-[13px] font-mono font-black text-[#0F0F12] bg-[#FEF08A] border-2 border-[#0F0F12] rounded-lg px-2.5 py-0.5 shadow-[1px_1px_0_#0F0F12]">
@@ -838,15 +851,16 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                         value={String(values[opt.key] ?? opt.default)}
                         placeholder={(opt as any).placeholder}
                         onChange={(e) => setValues((v) => ({ ...v, [opt.key]: e.target.value }))}
-                        className="rounded-xl border-2 border-[#0F0F12] bg-white px-3.5 py-2 text-[14px] font-bold text-[#0F172A] shadow-[1.5px_1.5px_0_#0F0F12] focus:shadow-[2px_2px_0_#2563EB] focus:outline-hidden"
+                        className="w-full rounded-xl border-2 border-[#0F0F12] bg-white px-3.5 py-2 text-[14px] font-bold text-[#0F172A] shadow-[1.5px_1.5px_0_#0F0F12] focus:shadow-[2px_2px_0_#2563EB] focus:outline-hidden"
                       />
                     )}
                   </div>
                 ))}
 
-                <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-[12px] text-slate-400 font-medium">
-                  <span>Ajusta antes o despues de anadir el archivo</span>
-                  <span className="font-bold text-[#0F0F12]">100% privado</span>
+                {/* Pie del panel */}
+                <div className="flex items-center justify-between text-[12.5px] text-slate-500 font-medium pt-2 border-t border-[#F1F1F4]">
+                  <span>Ajusta las opciones antes o despuÃ©s de aÃ±adir el archivo</span>
+                  <span className="font-black text-[#0F0F12] shrink-0 ml-4">100% privado</span>
                 </div>
               </div>
             </div>
