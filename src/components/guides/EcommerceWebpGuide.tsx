@@ -1,26 +1,94 @@
 import { Link } from "@tanstack/react-router";
-import {
-  Image as ImageIcon,
-  ShoppingBag,
-  ExternalLink,
-  Layers,
-} from "lucide-react";
+import { ArrowDown, ArrowRight, ExternalLink, ShoppingBag } from "lucide-react";
+import { BRAND_ASSETS } from "@/lib/brand";
 import type { Locale } from "@/lib/i18n/config";
 import { type GuideDefinition } from "@/lib/guides/registry";
 import { toolPath } from "@/lib/i18n/routing";
 import {
   GuideHero,
-  GuideInfographic,
   GuideStep,
   GuideCTA,
-  GuideMascotCallout,
   GuideFAQ,
   GuideFooterSources,
 } from "@/components/guides/editorial/GuideEditorial";
+import "./EcommerceWebpGuide.css";
 
 interface GuideArticleProps {
   locale: Locale;
   guide: GuideDefinition;
+}
+
+function WebpCompressionDiagram({ locale }: { locale: Locale }) {
+  const isCa = locale === "ca";
+  const isEn = locale === "en";
+  const originalSize = isEn ? "1.8 MB" : "1,8 MB";
+  const copy = {
+    original: "ORIGINAL",
+    optimized: isCa ? "OPTIMITZAT" : isEn ? "OPTIMIZED" : "OPTIMIZADO",
+    standard: isCa
+      ? "Fotografia o gràfic estàndard"
+      : isEn
+        ? "Standard photo or graphic"
+        : "Fotografía o gráfico estándar",
+    optimizedDescription: isCa
+      ? "Imatge optimitzada per al web"
+      : isEn
+        ? "Image optimized for the web"
+        : "Imagen optimizada para web",
+    heavier: isCa ? "Fitxer de més pes" : isEn ? "Larger file size" : "Mayor peso de archivo",
+    lighter: isCa
+      ? "Menys pes per descarregar"
+      : isEn
+        ? "Less data to download"
+        : "Menos peso para descargar",
+    fileSize: isCa ? "Mida del fitxer" : isEn ? "File size" : "Tamaño del archivo",
+    caption: isCa
+      ? "Exemple comparatiu del pes d'una imatge original i la seva versió WebP."
+      : isEn
+        ? "Example comparison of an original image and its WebP version."
+        : "Ejemplo comparativo del peso de una imagen original y su versión WebP.",
+  };
+
+  return (
+    <figure className="webp-comparison" aria-label={copy.caption}>
+      <div className="webp-comparison__panels">
+        <section className="webp-comparison__panel" aria-label={copy.original}>
+          <span className="webp-comparison__eyebrow webp-comparison__eyebrow--original">
+            {copy.original}
+          </span>
+          <h3>JPG / PNG</h3>
+          <p>{copy.standard}</p>
+          <div className="webp-comparison__metric" aria-label={`${copy.fileSize}: ${originalSize}`}>
+            <span className="sr-only">{copy.fileSize}</span>
+            <strong>{originalSize}</strong>
+          </div>
+          <p className="webp-comparison__note">{copy.heavier}</p>
+        </section>
+
+        <div className="webp-comparison__transition" aria-hidden="true">
+          <ArrowRight className="webp-comparison__arrow--desktop" />
+          <ArrowDown className="webp-comparison__arrow--mobile" />
+        </div>
+
+        <section
+          className="webp-comparison__panel webp-comparison__panel--optimized"
+          aria-label="WebP"
+        >
+          <span className="webp-comparison__eyebrow webp-comparison__eyebrow--optimized">
+            {copy.optimized}
+          </span>
+          <h3>WebP</h3>
+          <p>{copy.optimizedDescription}</p>
+          <div className="webp-comparison__metric" aria-label={`${copy.fileSize}: 320 KB`}>
+            <span className="sr-only">{copy.fileSize}</span>
+            <strong>320 KB</strong>
+          </div>
+          <p className="webp-comparison__note">{copy.lighter}</p>
+        </section>
+      </div>
+      <figcaption className="webp-comparison__caption">{copy.caption}</figcaption>
+    </figure>
+  );
 }
 
 export function EcommerceWebpGuide({ locale, guide }: GuideArticleProps) {
@@ -30,7 +98,7 @@ export function EcommerceWebpGuide({ locale, guide }: GuideArticleProps) {
   const faqs = guide.faqs[locale] || guide.faqs.es;
 
   return (
-    <article className="mx-auto max-w-[860px] px-4 py-8 sm:px-6 sm:py-12">
+    <article className="mx-auto w-full min-w-0 max-w-[860px] px-4 py-8 sm:px-6 sm:py-12">
       {/* Editorial Header */}
       <GuideHero
         locale={locale}
@@ -68,38 +136,43 @@ export function EcommerceWebpGuide({ locale, guide }: GuideArticleProps) {
       />
 
       {/* Editorial Infographic */}
-      <GuideInfographic
-        src="/webp-vs-jpg-png-ecommerce.svg"
-        alt={guide.image?.alt[locale] || guide.image?.alt.es || "WebP vs JPG vs PNG"}
-        caption={
-          isCa
-            ? "Diagrama tècnic: comparativa de compressió predictiva i reducció d'octets per a ús a la web."
-            : isEn
-            ? "Technical diagram: predictive compression comparison and byte savings for web deployment."
-            : "Diagrama técnico: comparativa de compresión predictiva y reducción de octetos para uso en la web."
-        }
-      />
+      <WebpCompressionDiagram locale={locale} />
 
       {/* Mascota Corriendo (Velocidad web / Core Web Vitals / Rendimiento de tienda) */}
-      <GuideMascotCallout
-        variant="run"
-        background="red"
-        badge={isCa ? "Velocitat & Core Web Vitals" : isEn ? "PageSpeed & Core Web Vitals" : "Velocidad & Core Web Vitals"}
-        title={
-          isCa
-            ? "Imatges ultralleugeres que acceleren el Largest Contentful Paint (LCP)"
-            : isEn
-            ? "Ultralight images that accelerate Largest Contentful Paint (LCP)"
-            : "Imágenes ultraligeras que aceleran el Largest Contentful Paint (LCP)"
-        }
-        description={
-          isCa
-            ? "En botigues electròniques com WooCommerce, Shopify o PrestaShop, el 70% del pes transferit a la primera càrrega prové de les imatges. Reduir els octets dels elements visuals de la portada redueix directament el temps de càrrega interactiu i millora la ràtio de conversió mòbil."
-            : isEn
-            ? "In e-commerce stores running on WooCommerce, Shopify, or Magento, over 70% of transferred page weight originates from image assets. Trimming the byte weight of hero banners directly improves interactive load times and mobile conversion rates."
-            : "En tiendas electrónicas con catálogos visuales extensos, más del 70% del peso transferido en la primera carga proviene de las imágenes. Reducir los octetos de los elementos gráficos de portada disminuye directamente los tiempos de renderizado y mejora la tasa de conversión en móviles."
-        }
-      />
+      <aside className="webp-lcp-recommendation">
+        <img
+          src={BRAND_ASSETS.mascots.run}
+          alt=""
+          aria-hidden="true"
+          width={56}
+          height={56}
+          loading="lazy"
+          decoding="async"
+        />
+        <div className="webp-lcp-recommendation__content">
+          <p className="webp-lcp-recommendation__eyebrow">
+            {isCa
+              ? "Velocitat i Core Web Vitals"
+              : isEn
+                ? "Speed & Core Web Vitals"
+                : "Velocidad y Core Web Vitals"}
+          </p>
+          <h2>
+            {isCa
+              ? "Imatges ultralleugeres que acceleren el Largest Contentful Paint (LCP)"
+              : isEn
+                ? "Ultralight images that accelerate Largest Contentful Paint (LCP)"
+                : "Imágenes ultraligeras que aceleran el Largest Contentful Paint (LCP)"}
+          </h2>
+          <p className="webp-lcp-recommendation__description">
+            {isCa
+              ? "Optimitzar les imatges principals redueix les dades que la botiga ha de descarregar. El LCP també depèn de les dimensions, la prioritat de càrrega i el servidor o CDN."
+              : isEn
+                ? "Optimizing key images reduces the data a store needs to download. LCP also depends on image dimensions, loading priority, and the server or CDN."
+                : "Optimizar las imágenes principales reduce los datos que la tienda debe descargar. El LCP también depende de sus dimensiones, la prioridad de carga y el servidor o CDN."}
+          </p>
+        </div>
+      </aside>
 
       {/* Body Content */}
       <div className="mt-12 space-y-10 text-[16.5px] sm:text-[17.5px] leading-relaxed text-slate-800">

@@ -1,0 +1,261 @@
+.guide-article .webp-comparison {
+  width: 100%;
+  max-width: none;
+  margin: 2rem auto;
+}
+
+.webp-comparison__panels {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 3.5rem minmax(0, 1fr);
+  align-items: stretch;
+  gap: 1.25rem;
+}
+
+.webp-comparison__panel {
+  min-width: 0;
+  padding: clamp(1.25rem, 2.5vw, 2rem);
+  border: 2px solid #0f0f12;
+  border-radius: 1rem;
+  background: #fff;
+  box-shadow: 3px 3px 0 #0f0f12;
+}
+
+.webp-comparison__panel--optimized {
+  border-top: 6px solid #f13b32;
+  background: #fff8f7;
+}
+
+.webp-comparison .webp-comparison__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.75rem;
+  padding: 0.2rem 0.6rem;
+  border: 1.5px solid #0f0f12;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  line-height: 1;
+}
+
+.webp-comparison__eyebrow--original {
+  background: #f3f3f3;
+  color: #171717;
+}
+
+.webp-comparison__eyebrow--optimized {
+  background: #f13b32;
+  color: #fff;
+}
+
+.webp-comparison .webp-comparison__panel h3 {
+  margin-top: 0.9rem;
+  color: #0f0f12;
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  font-weight: 900;
+  letter-spacing: -0.035em;
+  line-height: 1.1;
+}
+
+.webp-comparison .webp-comparison__panel > p {
+  max-width: none;
+  margin-top: 0.45rem;
+  color: #404047;
+  font-size: clamp(0.95rem, 1.5vw, 1.05rem);
+  line-height: 1.5;
+}
+
+.webp-comparison .webp-comparison__metric {
+  display: block;
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  margin-top: 1.25rem;
+}
+
+.webp-comparison .webp-comparison__metric strong {
+  display: block;
+  color: #0f0f12;
+  font-size: clamp(2.5rem, 5vw, 3.75rem);
+  font-weight: 950;
+  letter-spacing: -0.065em;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.webp-comparison__panel--optimized .webp-comparison__metric strong {
+  color: #f13b32;
+}
+
+.webp-comparison__panel > .webp-comparison__note {
+  margin-top: 0.65rem;
+  color: #404047;
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.webp-comparison__transition {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+.webp-comparison__transition svg {
+  width: 3rem;
+  height: 3rem;
+  padding: 0.65rem;
+  border: 2px solid #0f0f12;
+  border-radius: 999px;
+  background: #f13b32;
+  box-shadow: 3px 3px 0 #0f0f12;
+  stroke-width: 3;
+}
+
+.webp-comparison .webp-comparison__transition svg {
+  color: #fff;
+}
+
+.webp-comparison .webp-comparison__panel > .webp-comparison__note {
+  min-height: 0;
+  font-size: 0.95rem;
+}
+
+.webp-comparison__arrow--mobile {
+  display: none;
+}
+
+.webp-comparison__caption {
+  margin-top: 0.85rem;
+  color: #505057;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.webp-lcp-recommendation {
+  display: grid;
+  grid-template-columns: 3.5rem minmax(0, 1fr);
+  align-items: start;
+  gap: 1rem;
+  width: 100%;
+  margin: 1.75rem 0;
+  padding: 1.25rem 1.5rem;
+  border: 2px solid #0f0f12;
+  border-top: 5px solid #f13b32;
+  border-radius: 1rem;
+  background: #fff;
+  box-shadow: 3px 3px 0 #0f0f12;
+}
+
+.webp-lcp-recommendation > img {
+  display: block;
+  width: 3.5rem;
+  height: 3.5rem;
+  object-fit: contain;
+}
+
+.webp-lcp-recommendation__eyebrow {
+  margin: 0;
+  color: #c62828;
+  font-size: 0.75rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.webp-lcp-recommendation__content h2 {
+  max-width: none;
+  margin-top: 0.35rem;
+  color: #0f0f12;
+  font-size: clamp(1.35rem, 2.25vw, 1.8rem);
+  font-weight: 900;
+  letter-spacing: -0.035em;
+  line-height: 1.2;
+  text-wrap: pretty;
+}
+
+.webp-lcp-recommendation__description {
+  max-width: none;
+  margin: 0.6rem 0 0;
+  color: #404047;
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+@media (max-width: 639px) {
+  .guide-article .webp-comparison {
+    margin-block: 1.5rem;
+  }
+
+  .webp-comparison__panels {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.75rem;
+  }
+
+  .webp-comparison .webp-comparison__panel {
+    padding: 1.15rem 1.25rem;
+  }
+
+  .webp-comparison .webp-comparison__panel h3 {
+    margin-top: 0.7rem;
+    font-size: 1.55rem;
+  }
+
+  .webp-comparison .webp-comparison__panel > p {
+    font-size: 1rem;
+  }
+
+  .webp-comparison .webp-comparison__metric {
+    margin-top: 1rem;
+  }
+
+  .webp-comparison .webp-comparison__metric strong {
+    font-size: clamp(2.5rem, 12vw, 3rem);
+  }
+
+  .webp-comparison__transition {
+    min-height: 2.75rem;
+  }
+
+  .webp-comparison__transition svg {
+    width: 2.65rem;
+    height: 2.65rem;
+    padding: 0.55rem;
+  }
+
+  .webp-comparison__arrow--desktop {
+    display: none;
+  }
+
+  .webp-comparison__arrow--mobile {
+    display: block;
+  }
+
+  .webp-lcp-recommendation {
+    grid-template-columns: minmax(0, 1fr);
+    margin-block: 1.5rem;
+    padding: 1rem;
+  }
+
+  .webp-lcp-recommendation > img {
+    display: none;
+  }
+
+  .webp-lcp-recommendation__eyebrow {
+    font-size: 0.6875rem;
+  }
+
+  .webp-lcp-recommendation__content h2 {
+    font-size: 1.25rem;
+    line-height: 1.25;
+  }
+
+  .webp-lcp-recommendation__description {
+    font-size: 0.95rem;
+    line-height: 1.55;
+  }
+}
