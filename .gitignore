@@ -20,6 +20,9 @@ dist-ssr
 .wrangler/
 .dev.vars
 
+# Temporary browser profiles (headless screenshots)
+.temp-edge-profile/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
