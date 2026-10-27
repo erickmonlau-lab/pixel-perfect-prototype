@@ -51,11 +51,11 @@
 
     @media (prefers-reduced-motion: reduce) {
       .mascot-body {
-        animation: mascot-bob-reduced 5s ease-in-out infinite;
+        animation: mascot-bob-reduced 2.8s ease-in-out infinite;
       }
 
       .wave-arm {
-        animation: mascot-wave-reduced 5s ease-in-out infinite;
+        animation: mascot-wave-reduced 1.8s ease-in-out infinite;
       }
 
       .eye-open, .eye-closed {

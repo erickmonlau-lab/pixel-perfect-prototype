@@ -113,7 +113,7 @@ function Dot() {
 }
 
 const COLUMN_HEADING_CLASS =
-  "mb-3 inline-flex w-fit max-w-full items-center gap-1 rounded-full border-2 border-[#0F0F12] bg-white px-1.5 py-1 text-[11px] font-bold uppercase leading-none tracking-[0.04em] text-[#0F0F12] shadow-[2px_2px_0_#0F0F12] sm:mb-5 sm:gap-2 sm:px-3 sm:py-1.5 sm:text-[14px] sm:shadow-[3px_3px_0_#0F0F12]";
+  "mb-3 inline-flex w-fit max-w-full items-center gap-1 rounded-full border-2 border-[#0F0F12] bg-white px-1.5 py-1 text-[11px] font-bold uppercase leading-none tracking-[0.04em] text-[#0F0F12] shadow-[2px_2px_0_#0F0F12] sm:mb-5 sm:gap-2 sm:px-3 sm:py-1.5 sm:text-[14px] sm:shadow-[3px_3px_0_#0F0F12] xl:px-3.5 xl:text-[16px]";
 
 function ColumnHeadingIcon({ children }: { children: ReactNode }) {
   return (
@@ -132,7 +132,7 @@ export function Footer() {
     <footer className="mt-20 border-t-2 border-[#0F0F12] text-[#0F0F12] overflow-hidden">
       {/* ── BANNER ACCIÓN SUPERIOR ── */}
       <div className="border-b-2 border-[#0F0F12] bg-white py-8 sm:py-10">
-        <div className="w-full max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-16 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="w-full max-w-[1600px] mx-auto px-6 sm:px-10 lg:px-16 xl:px-16 2xl:px-24 flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="max-w-2xl text-center md:text-left">
             <h3 className="text-[24px] sm:text-[28px] font-black text-[#0F0F12] tracking-tight leading-tight">
               {copy.bannerTitle}
@@ -160,8 +160,8 @@ export function Footer() {
       {/* CUERPO PRINCIPAL — fondo con iluminación ambiental difuminada   */}
       {/* ─────────────────────────────────────────────────────────────── */}
       <div className="relative overflow-hidden bg-[#F13B32]">
-        <div className="relative z-10 w-full max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-16 pt-12 pb-10">
-          <div className="grid grid-cols-2 items-start gap-x-4 gap-y-7 sm:gap-x-8 sm:gap-y-10 xl:grid-cols-[minmax(220px,1.15fr)_minmax(265px,1.1fr)_minmax(140px,0.8fr)_minmax(155px,0.85fr)_minmax(165px,0.9fr)] xl:gap-x-6 xl:gap-y-0">
+        <div className="relative z-10 mx-auto w-full max-w-[1600px] px-6 pb-10 pt-12 sm:px-10 sm:pt-12 lg:px-16 xl:px-16 xl:pb-9 xl:pt-14 2xl:px-24">
+          <div className="grid grid-cols-2 items-start gap-x-4 gap-y-7 sm:gap-x-8 sm:gap-y-10 xl:grid-cols-[minmax(220px,1.25fr)_minmax(290px,1.1fr)_minmax(170px,0.95fr)_minmax(180px,1.05fr)_minmax(175px,0.8fr)] xl:gap-x-6 xl:gap-y-4">
             {/* ── COL 1: MARCA ── */}
             <div className="col-span-2 row-span-1 space-y-4 sm:space-y-5 xl:col-span-1 xl:row-span-2">
               <Link
@@ -174,17 +174,17 @@ export function Footer() {
                   alt="BreadPDF"
                   width={52}
                   height={50}
-                  className="h-11 w-auto object-contain drop-shadow-xs transition-transform duration-200 group-hover:scale-105"
+                  className="h-11 w-auto object-contain drop-shadow-xs transition-transform duration-200 group-hover:scale-105 xl:h-[52px]"
                   loading="lazy"
                   decoding="async"
                 />
-                <span className="font-heading text-[25px] sm:text-[27px] font-black tracking-tight leading-none">
+                <span className="font-heading text-[25px] font-black leading-none tracking-tight sm:text-[27px] xl:text-[30px]">
                   <span className="text-white">{BRAND_WORDMARK.bread}</span>
                   <span className="text-white">{BRAND_WORDMARK.pdf}</span>
                 </span>
               </Link>
 
-              <p className="text-[14.5px] sm:text-[15px] leading-relaxed text-white max-w-[280px] font-medium">
+              <p className="max-w-[320px] text-[14.5px] font-medium leading-relaxed text-white sm:text-[15px]">
                 {copy.description}
               </p>
 
@@ -201,7 +201,7 @@ export function Footer() {
                 </ColumnHeadingIcon>
                 {copy.colTools}
               </h4>
-              <ul className="space-y-3">
+              <ul className="space-y-3 xl:space-y-3.5">
                 {FEATURED_TOOLS.map((item) => {
                   const toolDef = tools.find((t) => t.canonicalSlug === item.slug);
                   const name = toolDef?.name ?? item.name;
@@ -321,9 +321,9 @@ export function Footer() {
               params={homeParams(locale)}
               hash="catalogo"
               onClick={() => trackToolCatalogViewAllClicked({ source: "footer", language: locale })}
-              className="col-span-2 mx-auto inline-flex max-w-full items-center gap-2 whitespace-nowrap rounded-full border-2 border-[#0F0F12] bg-white px-3 py-2 text-[12px] font-bold text-[#171717] shadow-[3px_3px_0_#0F0F12] transition-transform hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[1px_1px_0_#0F0F12] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:px-4 sm:text-[14px] xl:col-span-1 xl:col-start-2 xl:row-start-2"
+              className="col-span-2 mx-auto mt-3 inline-flex max-w-full items-center gap-2 whitespace-nowrap rounded-full border-2 border-[#0F0F12] bg-white px-3 py-2 text-[12px] font-bold text-[#171717] shadow-[3px_3px_0_#0F0F12] transition-transform hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[1px_1px_0_#0F0F12] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:px-4 sm:text-[14px] xl:col-span-1 xl:col-start-2 xl:row-start-2 xl:mt-5 xl:px-5 xl:py-2.5 xl:text-[15px]"
             >
-              <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-[#F13B32] text-[13px] font-black text-white">
+              <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-[#F13B32] text-[13px] font-black text-white xl:size-8">
                 {tools.length}
               </span>
               <span>{copy.bannerCta}</span>
@@ -331,7 +331,7 @@ export function Footer() {
             </Link>
 
             {/* ── MASCOTA — a la derecha de Legal en escritorio, independiente en móvil ── */}
-            <div className="col-span-2 flex justify-end pt-1 xl:col-span-1 xl:col-start-5 xl:row-span-2 xl:row-start-1 xl:items-end xl:justify-center xl:pb-2 xl:pt-0">
+            <div className="col-span-2 flex justify-end pt-1 xl:col-span-1 xl:col-start-5 xl:row-span-2 xl:row-start-1 xl:items-center xl:justify-center xl:pt-0">
               <BreadPDFFooterMascot size="lg" />
             </div>
           </div>
@@ -342,7 +342,7 @@ export function Footer() {
 
       {/* ── BARRA INFERIOR LEGAL ── */}
       <div className="border-t border-white/25 bg-[#D92F28] text-white">
-        <div className="mx-auto flex w-full max-w-[1440px] flex-col items-center gap-1 px-6 py-3 text-center text-[12px] font-semibold sm:flex-row sm:items-center sm:justify-between sm:gap-2 sm:px-10 sm:py-3 sm:text-left sm:text-[13px] lg:px-16">
+        <div className="mx-auto flex w-full max-w-[1600px] flex-col items-center gap-1 px-6 py-3 text-center text-[12px] font-semibold sm:flex-row sm:items-center sm:justify-between sm:gap-2 sm:px-10 sm:py-3 sm:text-left sm:text-[13px] lg:px-16 xl:px-16 2xl:px-24">
           <p>{copy.copyright(year)}</p>
           <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 sm:gap-x-5">
             <Link
