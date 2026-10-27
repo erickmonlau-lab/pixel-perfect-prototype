@@ -633,255 +633,225 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
       className="overflow-hidden rounded-3xl border-2 border-[#0F0F12] bg-white shadow-[6px_6px_0_#0F0F12]"
       aria-label={t.workspace.aria(tool.name)}
     >
-      {/* Zona de Subida y Configuracion Integrada - Composicion equilibrada y ergonomica */}
+      {/* â”€â”€ DROPZONE PRINCIPAL â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       {files.length === 0 && (!isAutoFlow || (phase !== "uploading" && phase !== "processing" && phase !== "done")) && (
-        <div className="p-4 sm:p-6 lg:p-8">
-          <div className={`grid grid-cols-1 ${tool.options && tool.options.length > 0 ? "lg:grid-cols-12" : ""} gap-6 items-stretch`}>
+        <div className="flex flex-col">
 
-            {/* Columna Izquierda: Dropzone & Accion Principal */}
-            <div
-              onDragOver={(event) => {
-                event.preventDefault();
-                setDragging(true);
-              }}
-              onDragLeave={() => setDragging(false)}
-              onDrop={(event) => {
-                event.preventDefault();
-                setDragging(false);
-                addFiles(event.dataTransfer.files);
-              }}
-              onClick={() => inputRef.current?.click()}
-              className={`flex flex-col items-center justify-center text-center rounded-2xl border-2 border-dashed border-[#0F0F12] p-6 sm:p-8 cursor-pointer select-none transition-all duration-150 ${
-                tool.options && tool.options.length > 0 ? "lg:col-span-4 xl:col-span-4" : "w-full py-10 sm:py-14"
-              } ${
-                dragging
-                  ? "bg-[#FEECEB] scale-[1.01] shadow-[6px_6px_0_#EC3C2D]"
-                  : "bg-[#FAFAFB] shadow-[3px_3px_0_#0F0F12] hover:bg-white hover:shadow-[4px_4px_0_#0F0F12]"
-              }`}
-            >
-              <input
-                ref={inputRef}
-                type="file"
-                accept={tool.accept}
-                multiple={tool.multiple}
-                className="sr-only"
-                onClick={(e) => e.stopPropagation()}
-                onChange={(event) => {
-                  addFiles(event.target.files);
-                  event.target.value = "";
-                }}
-              />
+          {/* Zona de arrastre a ancho completo */}
+          <div
+            onDragOver={(event) => { event.preventDefault(); setDragging(true); }}
+            onDragLeave={() => setDragging(false)}
+            onDrop={(event) => { event.preventDefault(); setDragging(false); addFiles(event.dataTransfer.files); }}
+            onClick={() => inputRef.current?.click()}
+            className={`m-4 sm:m-6 rounded-3xl border-[3px] border-dashed border-[#0F0F12] px-6 py-10 sm:py-14 text-center cursor-pointer select-none transition-all duration-150 ${
+              dragging
+                ? "bg-[#FEECEB] scale-[1.01] shadow-[8px_8px_0_#EC3C2D]"
+                : "bg-white shadow-[6px_6px_0_#0F0F12] hover:shadow-[8px_8px_0_#0F0F12] hover:bg-slate-50/60"
+            }`}
+          >
+            <input
+              ref={inputRef}
+              type="file"
+              accept={tool.accept}
+              multiple={tool.multiple}
+              className="sr-only"
+              onClick={(e) => e.stopPropagation()}
+              onChange={(event) => { addFiles(event.target.files); event.target.value = ""; }}
+            />
 
-              <span className="flex size-14 sm:size-16 items-center justify-center rounded-2xl border-2 border-[#0F0F12] bg-[#EC3C2D] text-white shadow-[3px_3px_0_#0F0F12] transition-transform hover:scale-105 shrink-0">
-                <Upload className="size-7 sm:size-8 text-white stroke-[2.4]" aria-hidden />
-              </span>
+            {/* Icono de subida â€” cuadrado rojo con pictograma blanco */}
+            <span className="mx-auto flex size-16 sm:size-20 items-center justify-center rounded-2xl border-2 border-[#0F0F12] bg-[#EC3C2D] text-white shadow-[4px_4px_0_#0F0F12] transition-transform group-hover:scale-105 shrink-0">
+              <Upload className="size-8 sm:size-10 text-white stroke-[2.4]" aria-hidden />
+            </span>
 
-              <h2 className="mt-4 text-[20px] sm:text-[22px] font-black tracking-tight text-[#0F0F12] leading-tight">
-                {tool.multiple ? t.workspace.dropMany : t.workspace.dropOne}
-              </h2>
+            {/* Titulo principal */}
+            <h2 className="mt-5 text-[1.55rem] sm:text-[1.9rem] lg:text-[2.1rem] font-black tracking-tight text-[#0F0F12] leading-tight">
+              {tool.multiple ? t.workspace.dropMany : t.workspace.dropOne}
+            </h2>
 
-              <p className="mt-1.5 text-[14px] sm:text-[15px] text-slate-600 max-w-xs leading-normal font-normal">
-                {tool.multiple ? t.workspace.hint : t.workspace.hintOne}
-              </p>
+            {/* Subtitulo */}
+            <p className="mt-2 text-[15px] sm:text-[16px] text-slate-500 leading-normal font-medium max-w-sm mx-auto">
+              {tool.multiple ? t.workspace.hint : t.workspace.hintOne}
+            </p>
 
-              <div className="mt-5 w-full flex justify-center">
-                <Button
-                  size="lg"
-                  className="w-full max-w-xs h-13 sm:h-14 px-6 text-[16px] sm:text-[17px] font-black rounded-xl border-2 border-[#0F0F12] bg-[#EC3C2D] text-white shadow-[3px_3px_0_#0F0F12] hover:bg-[#D43426] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0_#0F0F12] active:translate-x-[3px] active:translate-y-[3px] active:shadow-none transition-all cursor-pointer"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    inputRef.current?.click();
-                  }}
-                  type="button"
-                >
-                  {tool.multiple ? t.workspace.selectMany : t.workspace.selectOne}
-                </Button>
-              </div>
-
-              <div className="mt-4 flex items-center justify-center">
-                <div className="inline-flex items-center gap-2 rounded-lg border border-[#0F0F12] bg-white px-3 py-1 text-[12.5px] sm:text-[13px] font-bold text-[#0F0F12] shadow-[1.5px_1.5px_0_#0F0F12]">
-                  <ShieldCheck className="size-4 text-[#2563EB] shrink-0" />
-                  <span>{t.workspace.privacyNote}</span>
-                </div>
-              </div>
-
-              {phase === "error" && message && files.length === 0 && (
-                <div className="mt-3 inline-flex items-center gap-2 rounded-xl border border-red-200 bg-[#FEECEB] px-3 py-1.5 text-[13px] font-semibold text-[#EC3C2D]">
-                  <AlertCircle className="size-4 shrink-0" />
-                  <span>{message}</span>
-                </div>
-              )}
+            {/* Boton protagonista */}
+            <div className="mt-7 flex justify-center">
+              <Button
+                size="lg"
+                className="h-13 sm:h-14 px-8 sm:px-10 text-[16px] sm:text-[17px] font-black rounded-xl border-2 border-[#0F0F12] bg-[#EC3C2D] text-white shadow-[4px_4px_0_#0F0F12] hover:bg-[#D43426] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0_#0F0F12] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none transition-all cursor-pointer"
+                onClick={(e) => { e.stopPropagation(); inputRef.current?.click(); }}
+                type="button"
+              >
+                {tool.multiple ? t.workspace.selectMany : t.workspace.selectOne}
+              </Button>
             </div>
 
-            {/* Columna Derecha: Panel de Configuracion â€” mas ancho para dar espacio a los presets */}
-            {tool.options && tool.options.length > 0 && (
-              <div className="lg:col-span-8 xl:col-span-8 flex flex-col justify-between rounded-2xl border-2 border-[#0F0F12] bg-white p-5 sm:p-6 shadow-[3px_3px_0_#0F0F12]">
-                <div>
-                  {/* Encabezado del panel */}
-                  <div className="flex items-center justify-between pb-3 mb-4 border-b-2 border-slate-100">
-                    <span className="text-[13.5px] sm:text-[14px] font-black uppercase tracking-wider text-[#0F0F12] flex items-center gap-2">
-                      <SlidersHorizontal className="size-4 text-[#EC3C2D] shrink-0" />
-                      Configuracion y presets recomendados
-                    </span>
-                    <span className="shrink-0 inline-flex items-center gap-1 rounded-md border border-[#0F0F12] bg-[#F1F1F4] px-2 py-0.5 text-[10.5px] font-bold text-[#0F0F12]">
-                      <span className="size-1.5 rounded-full bg-[#10B981]" />
-                      WASM local
-                    </span>
-                  </div>
+            {/* Privacidad */}
+            <div className="mt-5 flex items-center justify-center">
+              <div className="inline-flex items-center gap-2 rounded-lg border-2 border-[#0F0F12] bg-white px-4 py-1.5 text-[13px] sm:text-[13.5px] font-bold text-[#0F0F12] shadow-[2px_2px_0_#0F0F12]">
+                <ShieldCheck className="size-4.5 text-[#2563EB] shrink-0" />
+                <span>{t.workspace.privacyNote}</span>
+              </div>
+            </div>
 
-                  <div className="flex flex-col gap-3">
-                    {tool.options.map((opt) => (
-                      <div key={opt.key} className="flex flex-col gap-2">
+            {/* Error antes de cargar */}
+            {phase === "error" && message && files.length === 0 && (
+              <div className="mt-4 inline-flex items-center gap-2 rounded-xl border border-red-200 bg-[#FEECEB] px-4 py-2 text-[13px] font-semibold text-[#EC3C2D]">
+                <AlertCircle className="size-4 shrink-0" />
+                <span>{message}</span>
+              </div>
+            )}
+          </div>
+
+          {/* Panel de configuracion â€” debajo del dropzone, visible si la herramienta tiene opciones */}
+          {tool.options && tool.options.length > 0 && (
+            <div className="mx-4 sm:mx-6 mb-4 sm:mb-6 rounded-2xl border-2 border-[#0F0F12] bg-white shadow-[3px_3px_0_#0F0F12]" onClick={(e) => e.stopPropagation()}>
+
+              {/* Encabezado del panel */}
+              <div className="flex items-center justify-between px-5 sm:px-6 py-3.5 border-b-2 border-slate-100">
+                <span className="text-[13.5px] sm:text-[14px] font-black uppercase tracking-wider text-[#0F0F12] flex items-center gap-2">
+                  <SlidersHorizontal className="size-4 text-[#EC3C2D] shrink-0" />
+                  Nivel de compresion
+                </span>
+                <span className="shrink-0 inline-flex items-center gap-1 rounded-md border border-[#0F0F12] bg-[#F1F1F4] px-2 py-0.5 text-[10.5px] font-bold text-[#0F0F12]">
+                  <span className="size-1.5 rounded-full bg-[#10B981]" />
+                  WASM local
+                </span>
+              </div>
+
+              <div className="p-4 sm:p-5 flex flex-col gap-3">
+                {tool.options.map((opt) => (
+                  <div key={opt.key} className="flex flex-col gap-2">
+                    {opt.type === "select" && (
+                      <div
+                        className="grid gap-2"
+                        style={{ gridTemplateColumns: "repeat(auto-fit, minmax(185px, 1fr))" }}
+                      >
+                        {opt.options.map((o) => {
+                          const isSelected = (values[opt.key] ?? opt.default) === o.value;
+
+                          const isTarget = o.value.startsWith("target_");
+                          let mainLabel = o.label;
+                          let subLabel = "";
+                          if (isTarget) {
+                            const parenIdx = o.label.indexOf(" (");
+                            if (parenIdx !== -1) {
+                              mainLabel = o.label.slice(0, parenIdx);
+                              subLabel = o.label.slice(parenIdx + 2, -1);
+                            }
+                          } else if (o.label.includes(" - ")) {
+                            const parts = o.label.split(" - ");
+                            mainLabel = parts[0]?.trim() ?? o.label;
+                            subLabel = parts.slice(1).join(" - ").trim();
+                          }
+
+                          const isBalanced = o.value === "balanced";
+                          const badgeText =
+                            o.value === "lossless" ? "âˆ’15%" :
+                            o.value === "light" ? "âˆ’40%" :
+                            o.value === "balanced" ? "âˆ’70%" :
+                            (o.value === "aggressive" || o.value === "max" || o.value === "strong") ? "âˆ’85%" :
+                            null;
+
+                          return (
+                            <button
+                              key={o.value}
+                              type="button"
+                              onClick={(e) => { e.stopPropagation(); setValues((v) => ({ ...v, [opt.key]: o.value })); }}
+                              className={`flex flex-col p-3 sm:p-3.5 rounded-xl border-2 text-left transition-all duration-120 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F13B32] ${
+                                isSelected
+                                  ? "bg-[#F13B32] border-[#0F0F12] shadow-[3px_3px_0_#0F0F12]"
+                                  : "bg-white border-[#0F0F12] shadow-[2px_2px_0_#0F0F12] hover:bg-[#FFF5F5] hover:shadow-[3px_3px_0_#0F0F12]"
+                              }`}
+                            >
+                              {/* Nombre + indicador seleccion */}
+                              <div className="flex items-start justify-between gap-2">
+                                <span className={`text-[14px] sm:text-[15px] font-black leading-snug ${isSelected ? "text-white" : "text-[#0F0F12]"}`}>
+                                  {mainLabel}
+                                </span>
+                                <span className={`shrink-0 mt-0.5 size-5 rounded-full border-2 flex items-center justify-center text-[10px] font-black transition-colors ${
+                                  isSelected ? "bg-white border-white text-[#F13B32]" : "border-slate-300 bg-white text-transparent"
+                                }`}>
+                                  {isSelected ? "âœ“" : ""}
+                                </span>
+                              </div>
+
+                              {/* Descripcion */}
+                              {subLabel && (
+                                <span className={`mt-1 text-[12px] sm:text-[12.5px] leading-snug font-medium block ${isSelected ? "text-white/85" : "text-slate-500"}`}>
+                                  {subLabel}
+                                </span>
+                              )}
+
+                              {/* Badges */}
+                              {(isBalanced || badgeText) && (
+                                <div className="mt-2 flex items-center gap-1.5 flex-wrap">
+                                  {isBalanced && (
+                                    <span className={`text-[10px] font-black uppercase tracking-wide px-1.5 py-0.5 rounded-md border ${
+                                      isSelected ? "bg-white text-[#F13B32] border-white" : "bg-[#F13B32] text-white border-[#0F0F12]"
+                                    }`}>
+                                      RECOMENDADO
+                                    </span>
+                                  )}
+                                  {badgeText && (
+                                    <span className={`text-[10px] font-black px-1.5 py-0.5 rounded-md border ${
+                                      isSelected ? "bg-white/20 text-white border-white/40" : "bg-[#F1F1F4] text-[#0F0F12] border-[#0F0F12]"
+                                    }`}>
+                                      {badgeText}
+                                    </span>
+                                  )}
+                                </div>
+                              )}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    )}
+
+                    {opt.type === "range" && (
+                      <div className="flex flex-col gap-2">
                         <div className="flex items-center justify-between">
-                          <label className="text-[13px] sm:text-[13.5px] font-black text-[#0F0F12] flex items-center gap-1.5">
-                            <span>{opt.label}</span>
-                            {opt.help && (
-                              <span className="text-[12px] font-normal text-slate-500">({opt.help})</span>
-                            )}
+                          <label className="text-[13px] sm:text-[13.5px] font-black text-[#0F0F12]">
+                            {opt.label}{opt.help && <span className="ml-1 text-[12px] font-normal text-slate-500">({opt.help})</span>}
                           </label>
-                          {opt.type === "range" && values[opt.key] != null && (
+                          {values[opt.key] != null && (
                             <span className="text-[13px] font-mono font-black text-[#0F0F12] bg-[#FEF08A] border-2 border-[#0F0F12] rounded-lg px-2.5 py-0.5 shadow-[1px_1px_0_#0F0F12]">
                               {values[opt.key]}{opt.unit ?? ""}
                             </span>
                           )}
                         </div>
-
-                        {/* Preset Cards: auto-fit, min 175px each */}
-                        {opt.type === "select" && (
-                          <div
-                            className="grid gap-2"
-                            style={{ gridTemplateColumns: "repeat(auto-fit, minmax(175px, 1fr))" }}
-                          >
-                            {opt.options.map((o) => {
-                              const isSelected = (values[opt.key] ?? opt.default) === o.value;
-
-                              const isTarget = o.value.startsWith("target_");
-                              let mainLabel = o.label;
-                              let subLabel = "";
-                              if (isTarget) {
-                                const parenIdx = o.label.indexOf(" (");
-                                if (parenIdx !== -1) {
-                                  mainLabel = o.label.slice(0, parenIdx);
-                                  subLabel = o.label.slice(parenIdx + 2, -1);
-                                }
-                              } else if (o.label.includes(" - ")) {
-                                const parts = o.label.split(" - ");
-                                mainLabel = parts[0]?.trim() ?? o.label;
-                                subLabel = parts.slice(1).join(" - ").trim();
-                              }
-
-                              const isBalanced = o.value === "balanced";
-                              const badgeText =
-                                o.value === "lossless" ? "âˆ’15%" :
-                                o.value === "light" ? "âˆ’40%" :
-                                o.value === "balanced" ? "âˆ’70%" :
-                                (o.value === "aggressive" || o.value === "max" || o.value === "strong") ? "âˆ’85%" :
-                                null;
-
-                              return (
-                                <button
-                                  key={o.value}
-                                  type="button"
-                                  onClick={(e) => {
-                                    e.stopPropagation();
-                                    setValues((v) => ({ ...v, [opt.key]: o.value }));
-                                  }}
-                                  className={`flex flex-col p-3 sm:p-3.5 rounded-xl border-2 text-left transition-all duration-120 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F13B32] ${
-                                    isSelected
-                                      ? "bg-[#F13B32] border-[#0F0F12] shadow-[3px_3px_0_#0F0F12]"
-                                      : "bg-white border-[#0F0F12] shadow-[2px_2px_0_#0F0F12] hover:bg-[#FFF5F5] hover:shadow-[3px_3px_0_#0F0F12]"
-                                  }`}
-                                >
-                                  {/* Nombre + indicador seleccion */}
-                                  <div className="flex items-start justify-between gap-2">
-                                    <span className={`text-[14px] sm:text-[15px] font-black leading-snug ${isSelected ? "text-white" : "text-[#0F0F12]"}`}>
-                                      {mainLabel}
-                                    </span>
-                                    <span className={`shrink-0 mt-0.5 size-5 rounded-full border-2 flex items-center justify-center text-[10px] font-black transition-colors ${
-                                      isSelected
-                                        ? "bg-white border-white text-[#F13B32]"
-                                        : "border-slate-300 bg-white text-transparent"
-                                    }`}>
-                                      {isSelected ? "âœ“" : ""}
-                                    </span>
-                                  </div>
-
-                                  {/* Descripcion / caso de uso */}
-                                  {subLabel && (
-                                    <span className={`mt-1 text-[12px] sm:text-[12.5px] leading-snug font-medium block ${isSelected ? "text-white/85" : "text-slate-500"}`}>
-                                      {subLabel}
-                                    </span>
-                                  )}
-
-                                  {/* Badges: RECOMENDADO + porcentaje */}
-                                  {(isBalanced || badgeText) && (
-                                    <div className="mt-2 flex items-center gap-1.5 flex-wrap">
-                                      {isBalanced && (
-                                        <span className={`text-[10px] font-black uppercase tracking-wide px-1.5 py-0.5 rounded-md border ${
-                                          isSelected
-                                            ? "bg-white text-[#F13B32] border-white"
-                                            : "bg-[#F13B32] text-white border-[#0F0F12]"
-                                        }`}>
-                                          RECOMENDADO
-                                        </span>
-                                      )}
-                                      {badgeText && (
-                                        <span className={`text-[10px] font-black px-1.5 py-0.5 rounded-md border ${
-                                          isSelected
-                                            ? "bg-white/20 text-white border-white/40"
-                                            : "bg-[#F1F1F4] text-[#0F0F12] border-[#0F0F12]"
-                                        }`}>
-                                          {badgeText}
-                                        </span>
-                                      )}
-                                    </div>
-                                  )}
-                                </button>
-                              );
-                            })}
-                          </div>
-                        )}
-
-                        {/* Slider for Range */}
-                        {opt.type === "range" && (
-                          <div className="p-3 rounded-xl border-2 border-[#0F0F12] bg-[#F8FAFC] shadow-[1.5px_1.5px_0_#0F0F12]">
-                            <div className="flex items-center gap-3">
-                              <input
-                                type="range"
-                                min={opt.min}
-                                max={opt.max}
-                                step={opt.step}
-                                value={Number(values[opt.key] ?? opt.default)}
-                                onChange={(e) => setValues((v) => ({ ...v, [opt.key]: Number(e.target.value) }))}
-                                className="h-2.5 flex-1 cursor-pointer appearance-none rounded-full bg-slate-200 accent-[#EC3C2D] border border-[#0F0F12] [&::-webkit-slider-thumb]:size-4.5 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-[#EC3C2D] [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-[#0F0F12] [&::-webkit-slider-thumb]:shadow-[1.5px_1.5px_0_#0F0F12]"
-                              />
-                            </div>
-                          </div>
-                        )}
-
-                        {/* Text Input */}
-                        {opt.type === "text" && (
+                        <div className="p-3 rounded-xl border-2 border-[#0F0F12] bg-[#F8FAFC] shadow-[1.5px_1.5px_0_#0F0F12]">
                           <input
-                            type="text"
-                            value={String(values[opt.key] ?? opt.default)}
-                            placeholder={(opt as any).placeholder}
-                            onChange={(e) => setValues((v) => ({ ...v, [opt.key]: e.target.value }))}
-                            className="rounded-xl border-2 border-[#0F0F12] bg-white px-3.5 py-2 text-[14px] font-bold text-[#0F172A] shadow-[1.5px_1.5px_0_#0F0F12] focus:shadow-[2px_2px_0_#2563EB] focus:outline-hidden"
+                            type="range"
+                            min={opt.min} max={opt.max} step={opt.step}
+                            value={Number(values[opt.key] ?? opt.default)}
+                            onChange={(e) => setValues((v) => ({ ...v, [opt.key]: Number(e.target.value) }))}
+                            className="h-2.5 w-full cursor-pointer appearance-none rounded-full bg-slate-200 accent-[#EC3C2D] border border-[#0F0F12] [&::-webkit-slider-thumb]:size-4.5 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-[#EC3C2D] [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-[#0F0F12] [&::-webkit-slider-thumb]:shadow-[1.5px_1.5px_0_#0F0F12]"
                           />
-                        )}
+                        </div>
                       </div>
-                    ))}
-                  </div>
-                </div>
+                    )}
 
-                <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[12.5px] text-slate-500 font-medium">
-                  <span>Ajusta las opciones antes o despues de anadir el archivo</span>
+                    {opt.type === "text" && (
+                      <input
+                        type="text"
+                        value={String(values[opt.key] ?? opt.default)}
+                        placeholder={(opt as any).placeholder}
+                        onChange={(e) => setValues((v) => ({ ...v, [opt.key]: e.target.value }))}
+                        className="rounded-xl border-2 border-[#0F0F12] bg-white px-3.5 py-2 text-[14px] font-bold text-[#0F172A] shadow-[1.5px_1.5px_0_#0F0F12] focus:shadow-[2px_2px_0_#2563EB] focus:outline-hidden"
+                      />
+                    )}
+                  </div>
+                ))}
+
+                <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-[12px] text-slate-400 font-medium">
+                  <span>Ajusta antes o despues de anadir el archivo</span>
                   <span className="font-bold text-[#0F0F12]">100% privado</span>
                 </div>
               </div>
-            )}
+            </div>
+          )}
 
-          </div>
         </div>
       )}
 
