@@ -150,9 +150,9 @@ export function Footer() {
       <div
         className="relative overflow-hidden"
         style={{
-          backgroundColor: "#f1eef3",
+          backgroundColor: "#f4e8e8",
           backgroundImage:
-            "radial-gradient(ellipse 72% 125% at -8% 42%, rgba(241,59,50,0.32) 0%, rgba(244,114,182,0.2) 36%, transparent 76%), radial-gradient(ellipse 68% 115% at 43% 5%, rgba(59,130,246,0.24) 0%, rgba(139,92,246,0.22) 38%, transparent 78%), radial-gradient(ellipse 68% 122% at 106% 52%, rgba(139,92,246,0.31) 0%, rgba(59,130,246,0.19) 40%, rgba(244,114,182,0.15) 58%, transparent 82%), radial-gradient(ellipse 48% 82% at 14% 104%, rgba(255,145,77,0.24) 0%, transparent 78%)",
+            "radial-gradient(ellipse 42% 140% at 54% 48%, rgba(255,253,248,0.86) 0%, rgba(255,253,248,0.72) 38%, rgba(255,253,248,0.34) 62%, transparent 84%), radial-gradient(ellipse 24% 100% at 90% 50%, rgba(255,250,241,0.92) 0%, rgba(255,250,241,0.74) 38%, rgba(255,250,241,0.3) 63%, transparent 84%), radial-gradient(ellipse 82% 150% at 2% 38%, rgba(241,59,50,0.48) 0%, rgba(241,59,50,0.32) 32%, rgba(244,114,182,0.24) 55%, transparent 84%), radial-gradient(ellipse 74% 130% at 43% 8%, rgba(241,59,50,0.24) 0%, rgba(255,145,77,0.16) 38%, rgba(244,114,182,0.13) 58%, transparent 84%), radial-gradient(ellipse 78% 145% at 104% 48%, rgba(241,59,50,0.3) 0%, rgba(244,114,182,0.23) 40%, rgba(255,145,77,0.14) 60%, transparent 86%), radial-gradient(ellipse 60% 100% at 17% 110%, rgba(255,145,77,0.34) 0%, rgba(241,59,50,0.14) 48%, transparent 82%)",
         }}
       >
         <div className="relative z-10 w-full max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-16 pt-12 pb-10">
