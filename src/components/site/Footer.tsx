@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
-import { MessageSquare, BookOpen, ArrowRight } from "lucide-react";
+import { MessageSquare, BookOpen, ArrowRight, Wrench, ShieldCheck } from "lucide-react";
+import type { ReactNode } from "react";
 import { useLocale } from "@/lib/i18n/context";
 import {
   DETAIL_ROUTE,
@@ -105,9 +106,20 @@ const FOOTER_COPY = {
 function Dot() {
   return (
     <span
-      className="size-[7px] rounded-full bg-[#EC3C2D] shrink-0 opacity-75 group-hover:opacity-100 transition-opacity mt-[1px]"
+      className="mt-[6px] size-[7px] shrink-0 rounded-full border border-[#0F0F12] bg-white"
       aria-hidden="true"
     />
+  );
+}
+
+const COLUMN_HEADING_CLASS =
+  "mb-5 inline-flex w-fit max-w-full items-center gap-1.5 rounded-full border-2 border-[#0F0F12] bg-white px-2 py-1 text-[13px] font-bold uppercase leading-none tracking-[0.04em] text-[#0F0F12] shadow-[3px_3px_0_#0F0F12] sm:gap-2 sm:px-3 sm:py-1.5 sm:text-[14px]";
+
+function ColumnHeadingIcon({ children }: { children: ReactNode }) {
+  return (
+    <span className="flex size-[18px] shrink-0 items-center justify-center rounded-full bg-[#EC3C2D] text-white sm:size-5">
+      {children}
+    </span>
   );
 }
 
@@ -147,14 +159,7 @@ export function Footer() {
       {/* ─────────────────────────────────────────────────────────────── */}
       {/* CUERPO PRINCIPAL — fondo con iluminación ambiental difuminada   */}
       {/* ─────────────────────────────────────────────────────────────── */}
-      <div
-        className="relative overflow-hidden"
-        style={{
-          backgroundColor: "#f4e8e8",
-          backgroundImage:
-            "radial-gradient(ellipse 42% 140% at 54% 48%, rgba(255,253,248,0.86) 0%, rgba(255,253,248,0.72) 38%, rgba(255,253,248,0.34) 62%, transparent 84%), radial-gradient(ellipse 24% 100% at 90% 50%, rgba(255,250,241,0.92) 0%, rgba(255,250,241,0.74) 38%, rgba(255,250,241,0.3) 63%, transparent 84%), radial-gradient(ellipse 82% 150% at 2% 38%, rgba(241,59,50,0.48) 0%, rgba(241,59,50,0.32) 32%, rgba(244,114,182,0.24) 55%, transparent 84%), radial-gradient(ellipse 74% 130% at 43% 8%, rgba(241,59,50,0.24) 0%, rgba(255,145,77,0.16) 38%, rgba(244,114,182,0.13) 58%, transparent 84%), radial-gradient(ellipse 78% 145% at 104% 48%, rgba(241,59,50,0.3) 0%, rgba(244,114,182,0.23) 40%, rgba(255,145,77,0.14) 60%, transparent 86%), radial-gradient(ellipse 60% 100% at 17% 110%, rgba(255,145,77,0.34) 0%, rgba(241,59,50,0.14) 48%, transparent 82%)",
-        }}
-      >
+      <div className="relative overflow-hidden bg-[#F13B32]">
         <div className="relative z-10 w-full max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-16 pt-12 pb-10">
           <div className="grid grid-cols-2 items-start gap-x-8 gap-y-10 xl:grid-cols-[minmax(220px,1.25fr)_minmax(140px,0.9fr)_minmax(140px,0.9fr)_minmax(155px,0.9fr)_minmax(165px,1fr)] xl:gap-x-6 xl:gap-y-0">
             {/* ── COL 1: MARCA ── */}
@@ -174,12 +179,12 @@ export function Footer() {
                   decoding="async"
                 />
                 <span className="font-heading text-[25px] sm:text-[27px] font-black tracking-tight leading-none">
-                  <span className="text-[#592316]">{BRAND_WORDMARK.bread}</span>
-                  <span className="text-[#EC3C2D]">{BRAND_WORDMARK.pdf}</span>
+                  <span className="text-white">{BRAND_WORDMARK.bread}</span>
+                  <span className="text-white">{BRAND_WORDMARK.pdf}</span>
                 </span>
               </Link>
 
-              <p className="text-[14.5px] sm:text-[15px] leading-relaxed text-[#46434a] max-w-[280px] font-medium">
+              <p className="text-[14.5px] sm:text-[15px] leading-relaxed text-white max-w-[280px] font-medium">
                 {copy.description}
               </p>
 
@@ -190,7 +195,10 @@ export function Footer() {
 
             {/* COL 2: HERRAMIENTAS */}
             <div>
-              <h4 className="mb-5 text-[17px] font-bold uppercase tracking-[0.09em] text-[#17171C] leading-tight">
+              <h4 className={COLUMN_HEADING_CLASS}>
+                <ColumnHeadingIcon>
+                  <Wrench className="size-3" strokeWidth={2.5} />
+                </ColumnHeadingIcon>
                 {copy.colTools}
               </h4>
               <ul className="space-y-3">
@@ -202,7 +210,7 @@ export function Footer() {
                       <Link
                         to={DETAIL_ROUTE}
                         params={toolParams(locale, item.slug)}
-                        className="group inline-flex items-start gap-2 text-[15px] font-semibold text-[#30313A] transition-colors hover:text-[#EC3C2D] leading-relaxed"
+                        className="group inline-flex items-start gap-2 text-[15px] font-semibold text-white transition-colors hover:text-[#0F0F12] leading-relaxed"
                       >
                         <Dot />
                         <span>{name}</span>
@@ -218,7 +226,7 @@ export function Footer() {
                     onClick={() =>
                       trackToolCatalogViewAllClicked({ source: "footer", language: locale })
                     }
-                    className="group inline-flex items-center gap-1.5 text-[14px] font-black text-[#EC3C2D] hover:underline underline-offset-2"
+                    className="group inline-flex items-center gap-1.5 text-[14px] font-black text-white hover:text-[#0F0F12] hover:underline underline-offset-2"
                   >
                     <span>
                       {locale === "ca"
@@ -234,7 +242,10 @@ export function Footer() {
 
             {/* COL 3: INFORMACIÓN */}
             <div>
-              <h4 className="mb-5 text-[17px] font-bold uppercase tracking-[0.09em] text-[#17171C] leading-tight">
+              <h4 className={COLUMN_HEADING_CLASS}>
+                <ColumnHeadingIcon>
+                  <BookOpen className="size-3" strokeWidth={2.5} />
+                </ColumnHeadingIcon>
                 {copy.colInfo}
               </h4>
               <ul className="space-y-3 text-[15px] leading-relaxed">
@@ -242,7 +253,7 @@ export function Footer() {
                   <Link
                     to={SECTION_ROUTE}
                     params={aboutParams(locale)}
-                    className="group inline-flex items-start gap-2 font-semibold text-[#30313A] transition-colors hover:text-[#EC3C2D] leading-relaxed"
+                    className="group inline-flex items-start gap-2 font-semibold text-white transition-colors hover:text-[#0F0F12] leading-relaxed"
                   >
                     <Dot />
                     <span>{copy.about}</span>
@@ -252,9 +263,9 @@ export function Footer() {
                   <Link
                     to={SECTION_ROUTE}
                     params={guidesHubParams(locale)}
-                    className="group inline-flex items-start gap-2 font-semibold text-[#30313A] transition-colors hover:text-[#EC3C2D] leading-relaxed"
+                    className="group inline-flex items-start gap-2 font-semibold text-white transition-colors hover:text-[#0F0F12] leading-relaxed"
                   >
-                    <BookOpen className="size-3.5 shrink-0 text-[#EC3C2D] mt-[2px]" />
+                    <BookOpen className="mt-[2px] size-3.5 shrink-0 text-white" />
                     <span>{copy.guides}</span>
                   </Link>
                 </li>
@@ -263,7 +274,7 @@ export function Footer() {
                     to={HOME_ROUTE}
                     params={homeParams(locale)}
                     hash="catalogo"
-                    className="group inline-flex items-start gap-2 font-semibold text-[#30313A] transition-colors hover:text-[#EC3C2D] leading-relaxed"
+                    className="group inline-flex items-start gap-2 font-semibold text-white transition-colors hover:text-[#0F0F12] leading-relaxed"
                   >
                     <Dot />
                     <span>{copy.bottomTools}</span>
@@ -272,9 +283,9 @@ export function Footer() {
                 <li>
                   <a
                     href={`mailto:${copy.contactEmail}`}
-                    className="group inline-flex items-start gap-2 font-semibold text-[#30313A] transition-colors hover:text-[#EC3C2D] leading-relaxed"
+                    className="group inline-flex items-start gap-2 font-semibold text-white transition-colors hover:text-[#0F0F12] leading-relaxed"
                   >
-                    <MessageSquare className="size-3.5 shrink-0 text-[#EC3C2D] mt-[2px]" />
+                    <MessageSquare className="mt-[2px] size-3.5 shrink-0 text-white" />
                     <span>{copy.support}</span>
                   </a>
                 </li>
@@ -283,7 +294,10 @@ export function Footer() {
 
             {/* COL 4: LEGAL */}
             <div>
-              <h4 className="mb-5 text-[17px] font-bold uppercase tracking-[0.09em] text-[#17171C] leading-tight">
+              <h4 className={COLUMN_HEADING_CLASS}>
+                <ColumnHeadingIcon>
+                  <ShieldCheck className="size-3" strokeWidth={2.5} />
+                </ColumnHeadingIcon>
                 {copy.colLegal}
               </h4>
               <ul className="space-y-3 text-[15px] leading-relaxed">
@@ -291,7 +305,7 @@ export function Footer() {
                   <Link
                     to={SECTION_ROUTE}
                     params={privacyParams(locale)}
-                    className="group inline-flex items-start gap-2 font-semibold text-[#30313A] transition-colors hover:text-[#EC3C2D] leading-relaxed"
+                    className="group inline-flex items-start gap-2 font-semibold text-white transition-colors hover:text-[#0F0F12] leading-relaxed"
                   >
                     <Dot />
                     <span>{copy.privacyFull}</span>
@@ -301,7 +315,7 @@ export function Footer() {
                   <Link
                     to={SECTION_ROUTE}
                     params={cookiesParams(locale)}
-                    className="group inline-flex items-start gap-2 font-semibold text-[#30313A] transition-colors hover:text-[#EC3C2D] leading-relaxed"
+                    className="group inline-flex items-start gap-2 font-semibold text-white transition-colors hover:text-[#0F0F12] leading-relaxed"
                   >
                     <Dot />
                     <span>{copy.cookies}</span>
@@ -311,7 +325,7 @@ export function Footer() {
                   <Link
                     to={SECTION_ROUTE}
                     params={termsParams(locale)}
-                    className="group inline-flex items-start gap-2 font-semibold text-[#30313A] transition-colors hover:text-[#EC3C2D] leading-relaxed"
+                    className="group inline-flex items-start gap-2 font-semibold text-white transition-colors hover:text-[#0F0F12] leading-relaxed"
                   >
                     <Dot />
                     <span>{copy.legalTerms}</span>
