@@ -371,7 +371,7 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
   const isFav = isFavorite(canonicalSlug);
 
   return (
-    <div className="mx-auto max-w-5xl px-4 sm:px-6 py-5 sm:py-6.5">
+    <div className="mx-auto max-w-[1200px] px-4 sm:px-6 py-5 sm:py-6.5">
       {/* 1. BREADCRUMB: Contextual, clear Home link with house icon, accessible */}
       <Breadcrumb
         items={[
@@ -513,40 +513,40 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
                   {engineDesc}
                 </p>
 
-                {/* 2 Tarjetas Luminosas: Casos de Uso (Verde suave) vs Aspectos a considerar (Ámbar suave) */}
+                {/* 2 Tarjetas: Casos de Uso (blanco + rojo) vs Aspectos (blanco + amarillo) — identidad BreadPDF */}
                 <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6 pt-6 border-t-2 border-slate-100">
-                  <div className="rounded-2xl border-2 border-[#0F0F12] bg-[#ECFDF5] p-5 shadow-[3px_3px_0_#10B981] flex flex-col justify-start">
+                  <div className="rounded-2xl border-2 border-[#0F0F12] bg-white p-5 shadow-[3px_3px_0_#0F0F12] flex flex-col justify-start">
                     <div className="flex items-center gap-3">
-                      <span className="size-8 rounded-lg bg-[#10B981] text-white flex items-center justify-center font-black text-[16px] border border-[#0F0F12] shadow-[1px_1px_0_#0F0F12]">
+                      <span className="size-8 rounded-lg bg-[#EC3C2D] text-white flex items-center justify-center font-black text-[16px] border border-[#0F0F12] shadow-[1px_1px_0_#0F0F12]">
                         ✓
                       </span>
-                      <h3 className="text-[20px] sm:text-[22px] font-black text-[#0F172A]">
+                      <h3 className="text-[18px] sm:text-[20px] font-black text-[#0F172A]">
                         {locale === "ca" ? "Casos d'ús recomanats" : locale === "en" ? "Recommended use cases" : "Casos de uso recomendados"}
                       </h3>
                     </div>
-                    <ul className="mt-5 space-y-3.5 text-[16px] sm:text-[17px] text-slate-800 font-medium leading-relaxed">
+                    <ul className="mt-4 space-y-3 text-[15px] sm:text-[16px] text-slate-800 font-medium leading-relaxed">
                       {bestFor.map((item, idx) => (
                         <li key={idx} className="flex items-start gap-2.5">
-                          <span className="size-2 rounded-full bg-[#10B981] mt-2 shrink-0" />
+                          <span className="size-2 rounded-full bg-[#EC3C2D] mt-[7px] shrink-0" />
                           <span>{item}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
 
-                  <div className="rounded-2xl border-2 border-[#0F0F12] bg-[#FFFBEB] p-5 shadow-[3px_3px_0_#F59E0B] flex flex-col justify-start">
+                  <div className="rounded-2xl border-2 border-[#0F0F12] bg-white p-5 shadow-[3px_3px_0_#0F0F12] flex flex-col justify-start">
                     <div className="flex items-center gap-3">
-                      <span className="size-8 rounded-lg bg-[#F59E0B] text-[#0F0F12] flex items-center justify-center font-black text-[16px] border border-[#0F0F12] shadow-[1px_1px_0_#0F0F12]">
+                      <span className="size-8 rounded-lg bg-[#FEF08A] text-[#0F0F12] flex items-center justify-center font-black text-[16px] border border-[#0F0F12] shadow-[1px_1px_0_#0F0F12]">
                         !
                       </span>
-                      <h3 className="text-[20px] sm:text-[22px] font-black text-[#0F172A]">
+                      <h3 className="text-[18px] sm:text-[20px] font-black text-[#0F172A]">
                         {locale === "ca" ? "Aspectes a tenir en compte" : locale === "en" ? "Technical constraints & trade-offs" : "Aspectos a tener en cuenta"}
                       </h3>
                     </div>
-                    <ul className="mt-5 space-y-3.5 text-[16px] sm:text-[17px] text-slate-800 font-medium leading-relaxed">
+                    <ul className="mt-4 space-y-3 text-[15px] sm:text-[16px] text-slate-800 font-medium leading-relaxed">
                       {limitations.map((item, idx) => (
                         <li key={idx} className="flex items-start gap-2.5">
-                          <span className="size-2 rounded-full bg-[#F59E0B] mt-2 shrink-0" />
+                          <span className="size-2 rounded-full bg-[#0F0F12] mt-[7px] shrink-0" />
                           <span>{item}</span>
                         </li>
                       ))}
@@ -678,7 +678,7 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
             >
               <summary className="flex cursor-pointer items-center justify-between text-[16.5px] sm:text-[17.5px] font-black text-[#0F0F12] select-none list-none [&::-webkit-details-marker]:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0F0F12] rounded-lg">
                 <span className="pr-4 leading-snug">{item.q}</span>
-                <span className="shrink-0 rounded-lg border-2 border-[#0F0F12] bg-[#EDEDF0] text-[#0F0F12] p-1.5 shadow-[1px_1px_0_#0F0F12] group-hover:bg-[#FEF08A] transition-transform duration-200 group-open:rotate-180">
+                <span className="shrink-0 rounded-lg border-2 border-[#0F0F12] bg-[#EDEDF0] text-[#0F0F12] p-1.5 shadow-[1px_1px_0_#0F0F12] group-hover:bg-[#FEF08A] group-open:bg-[#EC3C2D] group-open:text-white group-open:shadow-[1px_1px_0_#0F0F12] transition-all duration-200 group-open:rotate-180">
                   <ChevronRight className="size-4 rotate-90 stroke-[2.5]" />
                 </span>
               </summary>
@@ -691,7 +691,7 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
       </section>
 
       {/* 6. HERRAMIENTAS RELACIONADAS: 4 curated complementary tools */}
-      <section className="mt-14 sm:mt-16 mb-6" aria-labelledby="related">
+      <section className="mt-12 sm:mt-14 mb-4" aria-labelledby="related">
         <div className="flex items-center justify-between">
           <h2 id="related" className="text-[24px] sm:text-[28px] font-black tracking-tight text-[#0F172A]">
             {t.tool.related}
@@ -734,15 +734,15 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
       {(tool.canonicalSlug === "comprimir-pdf" || tool.canonicalSlug === "dividir-pdf-por-tamano") && (
         <aside
           aria-label="Guía académica relacionada"
-          className="mt-10 rounded-2xl border-2 border-[#0F0F12] bg-[#F8FAFC] p-6 sm:p-7 shadow-[4px_4px_0_#0F0F12] hover:shadow-[6px_6px_0_#0F0F12] transition-all"
+          className="mt-7 rounded-2xl border-2 border-[#0F0F12] bg-[#F8FAFC] p-6 sm:p-7 shadow-[4px_4px_0_#0F0F12] hover:shadow-[6px_6px_0_#0F0F12] transition-all"
         >
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
             <div className="flex items-start gap-4">
-              <span className="flex size-12 shrink-0 items-center justify-center rounded-xl border-2 border-[#0F0F12] bg-[#2563EB] text-white shadow-[2px_2px_0_#0F0F12]">
+              <span className="flex size-12 shrink-0 items-center justify-center rounded-xl border-2 border-[#0F0F12] bg-[#EC3C2D] text-white shadow-[2px_2px_0_#0F0F12]">
                 <BookOpen className="size-6" />
               </span>
               <div>
-                <span className="inline-flex items-center rounded-md border-2 border-[#0F0F12] bg-[#DBEAFE] px-2.5 py-0.5 text-[12px] font-black uppercase tracking-wider text-[#1E40AF] shadow-[2px_2px_0_#0F0F12]">
+                <span className="inline-flex items-center rounded-md border-2 border-[#0F0F12] bg-[#FEECEB] px-2.5 py-0.5 text-[12px] font-black uppercase tracking-wider text-[#EC3C2D] shadow-[2px_2px_0_#0F0F12]">
                   {locale === "ca" ? "Guia Educativa" : locale === "en" ? "Academic Guide" : "Guía Educativa"}
                 </span>
                 <h3 className="text-[18px] sm:text-[19px] font-black text-[#0F0F12] mt-2">
@@ -966,7 +966,7 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
         tool.canonicalSlug === "pdf-a-word") && (
         <aside
           aria-label="Guía editorial de OCR y documentos escaneados buscables"
-          className="mt-10 rounded-2xl border-2 border-[#0F0F12] bg-[#EEF2FF] p-6 sm:p-7 shadow-[4px_4px_0_#0F0F12] hover:shadow-[6px_6px_0_#0F0F12] transition-all"
+          className="mt-7 rounded-2xl border-2 border-[#0F0F12] bg-[#EEF2FF] p-6 sm:p-7 shadow-[4px_4px_0_#0F0F12] hover:shadow-[6px_6px_0_#0F0F12] transition-all"
         >
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
             <div className="flex items-start gap-4">
@@ -1096,7 +1096,7 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
       {(tool.canonicalSlug === "comprimir-pdf" || tool.canonicalSlug === "imagen-a-webp") && (
         <aside
           aria-label="Guía editorial para solucionar subidas a WordPress y WooCommerce"
-          className="mt-10 rounded-2xl border-2 border-[#0F0F12] bg-[#EEF2FF] p-6 sm:p-7 shadow-[4px_4px_0_#0F0F12] hover:shadow-[6px_6px_0_#0F0F12] transition-all"
+          className="mt-7 rounded-2xl border-2 border-[#0F0F12] bg-[#EEF2FF] p-6 sm:p-7 shadow-[4px_4px_0_#0F0F12] hover:shadow-[6px_6px_0_#0F0F12] transition-all"
         >
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
             <div className="flex items-start gap-4">
@@ -1179,7 +1179,7 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
       )}
 
       {/* 7. FINAL CATALOG CTA: Neo-Brutalist High-Impact with BreadPDF Mascot and Solid 8px Shadow */}
-      <section className="mt-16 mb-6 rounded-3xl border-3 border-[#0F0F12] bg-[#EC3C2D] p-8 sm:p-12 text-center shadow-[8px_8px_0_#0F0F12] text-white relative overflow-hidden">
+      <section className="mt-10 mb-4 rounded-3xl border-3 border-[#0F0F12] bg-[#EC3C2D] p-8 sm:p-12 text-center shadow-[8px_8px_0_#0F0F12] text-white relative overflow-hidden">
         <div className="relative max-w-3xl mx-auto z-10 flex flex-col md:flex-row items-center justify-between gap-8">
           
           <div className="flex-1 text-center md:text-left">
@@ -1235,7 +1235,7 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
       </section>
 
       {/* Espacio reservado para AdSense (Footer Banner no intrusivo, a más de 100px del workspace interactivo) */}
-      <div className="mt-12 pt-2">
+      <div className="mt-4">
         <AdSlot slotType="footer_banner" />
       </div>
     </div>

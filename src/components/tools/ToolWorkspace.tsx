@@ -780,16 +780,16 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                                   }}
                                   className={`relative flex items-center justify-between p-2.5 sm:p-3 rounded-xl border-2 border-[#0F0F12] text-left transition-all duration-120 cursor-pointer ${
                                     isSelected
-                                      ? "bg-[#EFF6FF] border-[#0F0F12] shadow-[2.5px_2.5px_0_#2563EB]"
+                                      ? "bg-[#FEECEB] border-[#0F0F12] shadow-[2.5px_2.5px_0_#EC3C2D]"
                                       : "bg-white shadow-[1.5px_1.5px_0_#0F0F12] hover:bg-slate-50"
                                   }`}
                                 >
-                                  <div className="flex flex-col min-w-0 pr-2">
-                                    <span className="text-[13.5px] sm:text-[14px] font-bold text-[#0F0F12] truncate leading-tight">
+                                  <div className="flex flex-col min-w-0 pr-1.5">
+                                    <span className="text-[13px] sm:text-[13.5px] font-bold text-[#0F0F12] leading-snug">
                                       {o.label.split("—")[0]?.trim()}
                                     </span>
                                     {o.label.includes("—") && (
-                                      <span className="text-[11.5px] text-slate-500 truncate mt-0.5">
+                                      <span className="text-[11px] text-slate-500 mt-0.5 leading-snug">
                                         {o.label.split("—")[1]?.trim()}
                                       </span>
                                     )}
@@ -798,13 +798,13 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                                   <div className="flex items-center gap-1.5 shrink-0">
                                     {badgeText && (
                                       <span className={`text-[10px] font-black uppercase px-1.5 py-0.5 rounded border border-[#0F0F12] ${
-                                        isSelected ? "bg-[#2563EB] text-white" : "bg-slate-100 text-[#0F0F12]"
+                                        isSelected ? "bg-[#EC3C2D] text-white" : "bg-slate-100 text-[#0F0F12]"
                                       }`}>
                                         {badgeText}
                                       </span>
                                     )}
                                     {isSelected ? (
-                                      <span className="size-4.5 rounded-full bg-[#2563EB] text-white flex items-center justify-center text-[10px] font-black">
+                                      <span className="size-4.5 rounded-full bg-[#EC3C2D] text-white flex items-center justify-center text-[10px] font-black">
                                         ✓
                                       </span>
                                     ) : (
