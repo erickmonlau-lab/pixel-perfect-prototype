@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 240" width="260" height="240" role="img" aria-label="Mascota pan de molde con un PDF saludando">
+  <style>
+    .mascot-body {
+      animation: mascot-bob 2.4s ease-in-out infinite;
+    }
+
+    .wave-arm {
+      transform-box: view-box;
+      transform-origin: 66px 152px;
+      animation: mascot-wave 1.4s ease-in-out infinite;
+    }
+
+    .eye-open {
+      animation: mascot-blink-open 5s infinite;
+    }
+
+    .eye-closed {
+      opacity: 0;
+      animation: mascot-blink-closed 5s infinite;
+    }
+
+    @keyframes mascot-bob {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+
+    @keyframes mascot-wave {
+      0%, 100% { transform: rotate(-22deg); }
+      50% { transform: rotate(18deg); }
+    }
+
+    @keyframes mascot-blink-open {
+      0%, 94%, 96%, 100% { opacity: 1; }
+      95% { opacity: 0; }
+    }
+
+    @keyframes mascot-blink-closed {
+      0%, 94%, 96%, 100% { opacity: 0; }
+      95% { opacity: 1; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .mascot-body, .wave-arm, .eye-open, .eye-closed {
+        animation: none !important;
+      }
+
+      .eye-open { opacity: 1; }
+      .eye-closed { opacity: 0; }
+    }
+  </style>
+  <!-- sombra -->
+  <ellipse cx="130" cy="228" rx="64" ry="6" fill="#000" opacity="0.08"/>
+
+  <g class="mascot-body">
+
+    <!-- pies -->
+    <ellipse cx="106" cy="211" rx="18" ry="10" fill="#5A3319"/>
+    <ellipse cx="154" cy="211" rx="18" ry="10" fill="#5A3319"/>
+
+    <!-- pan de molde: parte superior más plana -->
+    <path d="M70 106 C56 102 54 78 80 66 C96 54 118 56 130 60 C142 56 164 54 180 66 C206 78 204 102 190 106 L194 184 Q194 200 178 200 L82 200 Q66 200 66 184 Z"
+          fill="#F9DDB0" stroke="#B8692A" stroke-width="10" stroke-linejoin="round"/>
+
+    <!-- mejillas -->
+    <ellipse cx="95" cy="136" rx="10" ry="7" fill="#F4A6A0" opacity="0.8"/>
+    <ellipse cx="165" cy="136" rx="10" ry="7" fill="#F4A6A0" opacity="0.8"/>
+
+    <!-- ojos sonrientes (parpadean) -->
+    <path class="eye-open" d="M95 118 Q106 103 117 118" fill="none" stroke="#4A2A14" stroke-width="5" stroke-linecap="round"/>
+    <path class="eye-open" d="M143 118 Q154 103 165 118" fill="none" stroke="#4A2A14" stroke-width="5" stroke-linecap="round"/>
+    <path class="eye-closed" d="M95 116 H117" fill="none" stroke="#4A2A14" stroke-width="5" stroke-linecap="round"/>
+    <path class="eye-closed" d="M143 116 H165" fill="none" stroke="#4A2A14" stroke-width="5" stroke-linecap="round"/>
+
+    <!-- boca -->
+    <path d="M117 131 Q130 161 143 131 Z" fill="#D9323A" stroke="#4A2A14" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M123 144 Q130 138 137 144 Q130 153 123 144 Z" fill="#F58A8F"/>
+
+    <!-- documento PDF (más arriba, manos lejos de los pies) -->
+    <g>
+      <path d="M154 138 H194 L212 156 V196 Q212 202 206 202 H160 Q154 202 154 196 Z" fill="#FFFFFF" stroke="#D8D4E6" stroke-width="2"/>
+      <path d="M194 138 V152 Q194 156 198 156 H212 Z" fill="#E6E2F2"/>
+      <rect x="159" y="164" width="48" height="26" rx="6" fill="#E8473F"/>
+      <text x="183" y="183" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="15" fill="#FFFFFF">PDF</text>
+      <!-- manos sujetando -->
+      <circle cx="156" cy="180" r="10" fill="#5A3319"/>
+      <circle cx="210" cy="178" r="10" fill="#5A3319"/>
+    </g>
+
+    <!-- brazo que saluda -->
+    <g class="wave-arm">
+      <line x1="66" y1="152" x2="30" y2="108" stroke="#5A3319" stroke-width="9" stroke-linecap="round"/>
+      <circle cx="27" cy="104" r="11" fill="#5A3319"/>
+    </g>
+  </g>
+</svg>

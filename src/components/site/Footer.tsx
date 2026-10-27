@@ -147,61 +147,14 @@ export function Footer() {
       {/* ─────────────────────────────────────────────────────────────── */}
       {/* CUERPO PRINCIPAL — fondo con iluminación ambiental difuminada   */}
       {/* ─────────────────────────────────────────────────────────────── */}
-      <div className="relative bg-[#F4F4F7]">
-        {/* ── Difuminados de iluminación ambiental ── */}
-        {/*
-          Tres elipses absolutas con radial-gradient:
-          · Rojo coral (zona de marca, izquierda-arriba)
-          · Naranja muy suave (centro, casi invisible)
-          · Violeta pálido (derecha, zona legal/mascota)
-          overflow-hidden en el padre evita scroll horizontal.
-          pointer-events:none para no interferir con los enlaces.
-        */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 overflow-hidden"
-          style={{ zIndex: 0 }}
-        >
-          {/* Brillo rojo-coral — zona de marca (izquierda) */}
-          <div
-            style={{
-              position: "absolute",
-              top: "-60px",
-              left: "-80px",
-              width: "520px",
-              height: "420px",
-              background:
-                "radial-gradient(ellipse at center, rgba(236,60,45,0.13) 0%, rgba(236,60,45,0.05) 45%, transparent 70%)",
-              transform: "rotate(-15deg)",
-            }}
-          />
-          {/* Brillo naranja cálido — centro */}
-          <div
-            style={{
-              position: "absolute",
-              top: "20px",
-              left: "38%",
-              width: "400px",
-              height: "300px",
-              background:
-                "radial-gradient(ellipse at center, rgba(255,160,60,0.07) 0%, transparent 65%)",
-            }}
-          />
-          {/* Brillo violeta suave — zona derecha / mascota */}
-          <div
-            style={{
-              position: "absolute",
-              bottom: "-40px",
-              right: "-60px",
-              width: "480px",
-              height: "400px",
-              background:
-                "radial-gradient(ellipse at center, rgba(139,92,246,0.09) 0%, rgba(139,92,246,0.03) 50%, transparent 70%)",
-            }}
-          />
-        </div>
-
-        {/* ── Contenido del footer — posición relativa sobre los difuminados ── */}
+      <div
+        className="relative overflow-hidden"
+        style={{
+          backgroundColor: "#f1eef3",
+          backgroundImage:
+            "radial-gradient(ellipse 72% 125% at -8% 42%, rgba(241,59,50,0.32) 0%, rgba(244,114,182,0.2) 36%, transparent 76%), radial-gradient(ellipse 68% 115% at 43% 5%, rgba(59,130,246,0.24) 0%, rgba(139,92,246,0.22) 38%, transparent 78%), radial-gradient(ellipse 68% 122% at 106% 52%, rgba(139,92,246,0.31) 0%, rgba(59,130,246,0.19) 40%, rgba(244,114,182,0.15) 58%, transparent 82%), radial-gradient(ellipse 48% 82% at 14% 104%, rgba(255,145,77,0.24) 0%, transparent 78%)",
+        }}
+      >
         <div className="relative z-10 w-full max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-16 pt-12 pb-10">
           <div className="grid grid-cols-2 items-start gap-x-8 gap-y-10 xl:grid-cols-[minmax(220px,1.25fr)_minmax(140px,0.9fr)_minmax(140px,0.9fr)_minmax(155px,0.9fr)_minmax(165px,1fr)] xl:gap-x-6 xl:gap-y-0">
             {/* ── COL 1: MARCA ── */}
@@ -226,7 +179,7 @@ export function Footer() {
                 </span>
               </Link>
 
-              <p className="text-[14.5px] sm:text-[15px] leading-relaxed text-slate-600 max-w-[280px] font-medium">
+              <p className="text-[14.5px] sm:text-[15px] leading-relaxed text-[#46434a] max-w-[280px] font-medium">
                 {copy.description}
               </p>
 
@@ -237,7 +190,7 @@ export function Footer() {
 
             {/* COL 2: HERRAMIENTAS */}
             <div>
-              <h4 className="mb-4 text-[13px] font-black uppercase tracking-[0.12em] text-[#0F0F12] leading-tight">
+              <h4 className="mb-5 text-[17px] font-bold uppercase tracking-[0.09em] text-[#17171C] leading-tight">
                 {copy.colTools}
               </h4>
               <ul className="space-y-3">
@@ -249,7 +202,7 @@ export function Footer() {
                       <Link
                         to={DETAIL_ROUTE}
                         params={toolParams(locale, item.slug)}
-                        className="group inline-flex items-start gap-2 text-[14.5px] sm:text-[15px] font-semibold text-slate-700 transition-colors hover:text-[#EC3C2D] leading-snug"
+                        className="group inline-flex items-start gap-2 text-[15px] font-semibold text-[#30313A] transition-colors hover:text-[#EC3C2D] leading-relaxed"
                       >
                         <Dot />
                         <span>{name}</span>
@@ -281,15 +234,15 @@ export function Footer() {
 
             {/* COL 3: INFORMACIÓN */}
             <div>
-              <h4 className="mb-4 text-[13px] font-black uppercase tracking-[0.12em] text-[#0F0F12] leading-tight">
+              <h4 className="mb-5 text-[17px] font-bold uppercase tracking-[0.09em] text-[#17171C] leading-tight">
                 {copy.colInfo}
               </h4>
-              <ul className="space-y-3 text-[14.5px] sm:text-[15px]">
+              <ul className="space-y-3 text-[15px] leading-relaxed">
                 <li>
                   <Link
                     to={SECTION_ROUTE}
                     params={aboutParams(locale)}
-                    className="group inline-flex items-start gap-2 font-semibold text-slate-700 transition-colors hover:text-[#EC3C2D] leading-snug"
+                    className="group inline-flex items-start gap-2 font-semibold text-[#30313A] transition-colors hover:text-[#EC3C2D] leading-relaxed"
                   >
                     <Dot />
                     <span>{copy.about}</span>
@@ -299,7 +252,7 @@ export function Footer() {
                   <Link
                     to={SECTION_ROUTE}
                     params={guidesHubParams(locale)}
-                    className="group inline-flex items-start gap-2 font-semibold text-slate-700 transition-colors hover:text-[#EC3C2D] leading-snug"
+                    className="group inline-flex items-start gap-2 font-semibold text-[#30313A] transition-colors hover:text-[#EC3C2D] leading-relaxed"
                   >
                     <BookOpen className="size-3.5 shrink-0 text-[#EC3C2D] mt-[2px]" />
                     <span>{copy.guides}</span>
@@ -310,7 +263,7 @@ export function Footer() {
                     to={HOME_ROUTE}
                     params={homeParams(locale)}
                     hash="catalogo"
-                    className="group inline-flex items-start gap-2 font-semibold text-slate-700 transition-colors hover:text-[#EC3C2D] leading-snug"
+                    className="group inline-flex items-start gap-2 font-semibold text-[#30313A] transition-colors hover:text-[#EC3C2D] leading-relaxed"
                   >
                     <Dot />
                     <span>{copy.bottomTools}</span>
@@ -319,7 +272,7 @@ export function Footer() {
                 <li>
                   <a
                     href={`mailto:${copy.contactEmail}`}
-                    className="group inline-flex items-start gap-2 font-semibold text-slate-700 transition-colors hover:text-[#EC3C2D] leading-snug"
+                    className="group inline-flex items-start gap-2 font-semibold text-[#30313A] transition-colors hover:text-[#EC3C2D] leading-relaxed"
                   >
                     <MessageSquare className="size-3.5 shrink-0 text-[#EC3C2D] mt-[2px]" />
                     <span>{copy.support}</span>
@@ -330,15 +283,15 @@ export function Footer() {
 
             {/* COL 4: LEGAL */}
             <div>
-              <h4 className="mb-4 text-[13px] font-black uppercase tracking-[0.12em] text-[#0F0F12] leading-tight">
+              <h4 className="mb-5 text-[17px] font-bold uppercase tracking-[0.09em] text-[#17171C] leading-tight">
                 {copy.colLegal}
               </h4>
-              <ul className="space-y-3 text-[14.5px] sm:text-[15px]">
+              <ul className="space-y-3 text-[15px] leading-relaxed">
                 <li>
                   <Link
                     to={SECTION_ROUTE}
                     params={privacyParams(locale)}
-                    className="group inline-flex items-start gap-2 font-semibold text-slate-700 transition-colors hover:text-[#EC3C2D] leading-snug"
+                    className="group inline-flex items-start gap-2 font-semibold text-[#30313A] transition-colors hover:text-[#EC3C2D] leading-relaxed"
                   >
                     <Dot />
                     <span>{copy.privacyFull}</span>
@@ -348,7 +301,7 @@ export function Footer() {
                   <Link
                     to={SECTION_ROUTE}
                     params={cookiesParams(locale)}
-                    className="group inline-flex items-start gap-2 font-semibold text-slate-700 transition-colors hover:text-[#EC3C2D] leading-snug"
+                    className="group inline-flex items-start gap-2 font-semibold text-[#30313A] transition-colors hover:text-[#EC3C2D] leading-relaxed"
                   >
                     <Dot />
                     <span>{copy.cookies}</span>
@@ -358,7 +311,7 @@ export function Footer() {
                   <Link
                     to={SECTION_ROUTE}
                     params={termsParams(locale)}
-                    className="group inline-flex items-start gap-2 font-semibold text-slate-700 transition-colors hover:text-[#EC3C2D] leading-snug"
+                    className="group inline-flex items-start gap-2 font-semibold text-[#30313A] transition-colors hover:text-[#EC3C2D] leading-relaxed"
                   >
                     <Dot />
                     <span>{copy.legalTerms}</span>
@@ -378,9 +331,9 @@ export function Footer() {
       {/* /fondo difuminado */}
 
       {/* ── BARRA INFERIOR LEGAL ── */}
-      <div className="border-t border-[#0F0F12]/20 bg-[#EAEAEE]">
-        <div className="w-full max-w-[1440px] mx-auto flex flex-col gap-2.5 px-6 sm:px-10 lg:px-16 py-4 text-[13px] font-semibold text-slate-500 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-slate-600">{copy.copyright(year)}</p>
+      <div className="border-t border-[#0F0F12]/20 bg-[#e6e2e9]">
+        <div className="w-full max-w-[1440px] mx-auto flex flex-col gap-2.5 px-6 sm:px-10 lg:px-16 py-4 text-[13px] font-semibold text-[#45434b] sm:flex-row sm:items-center sm:justify-between">
+          <p>{copy.copyright(year)}</p>
           <div className="flex flex-wrap items-center gap-5">
             <Link
               to={SECTION_ROUTE}
