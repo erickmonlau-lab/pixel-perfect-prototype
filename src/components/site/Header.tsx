@@ -137,7 +137,7 @@ export function Header() {
 
   return (
     <header
-      className="sticky top-0 z-40 border-b border-[#E5E7EB] bg-white/95 backdrop-blur-md"
+      className="sticky top-0 z-40 border-b-2 border-[#0F0F12] bg-[#FFFFFF]"
       onKeyDown={(event) => {
         if (event.key === "Escape") {
           setActiveDropdown(null);

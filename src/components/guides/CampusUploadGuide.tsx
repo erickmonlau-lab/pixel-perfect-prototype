@@ -31,7 +31,7 @@ export function CampusUploadGuide({ locale, guide }: GuideArticleProps) {
   const faqs = guide.faqs[locale] || guide.faqs.es;
 
   return (
-    <article className="mx-auto max-w-[960px] px-4 py-10 sm:px-8 sm:py-16">
+    <article className="mx-auto max-w-[860px] px-4 py-10 sm:px-8 sm:py-16">
       {/* Editorial Header */}
       <GuideHero
         locale={locale}

@@ -7,19 +7,6 @@ interface LogoProps {
 }
 
 export function Logo({ tone = "dark", size = "md", showWordmark = true }: LogoProps) {
-  // Dimension scales: prominent presence in header
-  const iconSizes = {
-    sm: "h-8 w-auto",
-    md: "h-12 sm:h-[56px] w-auto",
-    lg: "h-14 w-auto",
-  };
-
-  const textSizes = {
-    sm: "text-[20px]",
-    md: "text-[28px] sm:text-[33px] font-black",
-    lg: "text-[32px]",
-  };
-
   return (
     <span className="inline-flex items-center gap-2.5 select-none shrink-0 group">
       {/* Official Mascot Character holding PDF document */}
@@ -28,16 +15,16 @@ export function Logo({ tone = "dark", size = "md", showWordmark = true }: LogoPr
         alt="BreadPDF"
         width={44}
         height={42}
-        className={`${iconSizes[size]} site-logo-icon object-contain drop-shadow-xs transition-transform duration-200 group-hover:scale-105`}
+        className="h-10 sm:h-11 w-auto site-logo-icon object-contain drop-shadow-xs transition-transform duration-200 group-hover:scale-105"
         loading="eager"
         fetchPriority="high"
         decoding="async"
       />
 
-      {/* Wordmark: Bread in brown/white, PDF in brand red */}
+      {/* Wordmark: Bread in brown/white, PDF in brand red — aligned to the exact same baseline */}
       {showWordmark && (
         <span
-          className={`font-heading ${textSizes[size]} site-logo-text inline-flex items-baseline tracking-tight`}
+          className="font-heading text-[26px] sm:text-[28px] font-black site-logo-text inline-flex items-baseline tracking-tight leading-none"
         >
           <span
             className={
@@ -48,7 +35,7 @@ export function Logo({ tone = "dark", size = "md", showWordmark = true }: LogoPr
           >
             {BRAND_WORDMARK.bread}
           </span>
-          <span className="text-[#EC3C2D] ml-0.5">
+          <span className="text-[#EC3C2D]">
             {BRAND_WORDMARK.pdf}
           </span>
         </span>

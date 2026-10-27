@@ -666,15 +666,16 @@
 }
 
 .site-logo-icon {
-  height: 46px !important;
-  width: 48px !important;
-  aspect-ratio: 44 / 42;
+  height: 44px !important;
+  width: auto !important;
 }
 
 .site-logo-text {
-  font-size: 26px !important;
-  line-height: 1 !important;
+  font-size: 28px !important;
+  line-height: normal !important;
   font-weight: 800 !important;
+  display: inline-flex !important;
+  align-items: baseline !important;
 }
 
 .site-auth-login {

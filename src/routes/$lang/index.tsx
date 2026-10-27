@@ -653,21 +653,21 @@ function Home() {
                   className={`group relative flex flex-col justify-between rounded-2xl border-2 border-[#0F0F12] ${gTheme.border} bg-[#FFFFFF] p-6 sm:p-7 shadow-[5px_5px_0_#0F0F12] transition-all duration-200 hover:-translate-y-1 ${gTheme.hoverShadow}`}
                 >
                   <div className="flex flex-col">
-                    {/* Fila superior: Icono temático de 42px + Categoría (13-14px) + Tiempo de lectura visible */}
-                    <div className="flex items-center justify-between gap-3 mb-5">
-                      <div className="flex items-center gap-3">
+                    {/* Fila superior: Icono temático de 42px + Categoría (13-14px) + Tiempo de lectura limpio y visual */}
+                    <div className="flex items-center justify-between gap-2.5 mb-5">
+                      <div className="flex items-center gap-2.5 min-w-0">
                         <span className={`inline-flex size-[42px] shrink-0 items-center justify-center rounded-xl border-2 border-[#0F0F12] ${gTheme.iconBoxBg} shadow-[2px_2px_0_#0F0F12]`}>
                           <GuideIcon className="size-5 stroke-[2.4]" />
                         </span>
-                        <span className={`inline-block rounded-md border border-[#0F0F12] ${gTheme.badgeBg} text-white px-3 py-1 text-[12px] sm:text-[13px] font-black uppercase tracking-wider shadow-[2px_2px_0_#0F0F12]`}>
+                        <span className={`inline-block rounded-md border border-[#0F0F12] ${gTheme.badgeBg} text-white px-2.5 py-1 text-[12px] sm:text-[13px] font-black uppercase tracking-wider shadow-[2px_2px_0_#0F0F12] truncate`}>
                           {guide.category}
                         </span>
                       </div>
 
-                      {/* Tiempo de lectura con superficie sólida clara, borde definido y alto contraste */}
-                      <span className="inline-flex items-center gap-1.5 rounded-md border border-[#0F0F12] bg-[#F1F1F4] px-2.5 py-1 text-[11px] sm:text-[12px] font-black text-[#0F0F12] uppercase tracking-wider shadow-[1.5px_1.5px_0_#0F0F12] shrink-0">
-                        <Clock className="size-3.5 text-[#0F0F12] stroke-[2.5]" />
-                        <span>{readingLabel}</span>
+                      {/* Tiempo de lectura: superficie blanca pura, borde negro 2px, sombra y formato compacto "X min" */}
+                      <span className="inline-flex items-center gap-1.5 rounded-lg border-2 border-[#0F0F12] bg-[#FFFFFF] px-2.5 py-1 text-[12px] sm:text-[13px] font-black text-[#0F0F12] uppercase tracking-wider shadow-[2px_2px_0_#0F0F12] shrink-0">
+                        <Clock className="size-3.5 text-[#EC3C2D] stroke-[2.8]" />
+                        <span>{guide.readingTimeMinutes} min</span>
                       </span>
                     </div>
 

@@ -31,7 +31,7 @@ export function PdfToExcelGuide({ locale, guide }: GuideArticleProps) {
   const faqs = guide.faqs[locale] || guide.faqs.es;
 
   return (
-    <article className="mx-auto max-w-[960px] px-4 py-8 sm:px-6 sm:py-12">
+    <article className="mx-auto max-w-[860px] px-4 py-8 sm:px-6 sm:py-12">
       {/* Editorial Header */}
       <GuideHero
         locale={locale}
