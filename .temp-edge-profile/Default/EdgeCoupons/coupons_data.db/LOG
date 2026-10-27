@@ -1,0 +1,6 @@
+2026/10/01-10:44:19.755 4374 Reusing MANIFEST C:\Users\erick\.gemini\antigravity\scratch\arvio\.temp-edge-profile\Default\EdgeCoupons/coupons_data.db/MANIFEST-000001
+2026/10/01-10:44:19.755 4374 Recovering log #4
+2026/10/01-10:44:19.756 4374 Reusing old log C:\Users\erick\.gemini\antigravity\scratch\arvio\.temp-edge-profile\Default\EdgeCoupons/coupons_data.db/000004.log 
+2026/10/01-10:44:19.804 8d68 Level-0 table #8: started
+2026/10/01-10:44:19.817 8d68 Level-0 table #8: 683444 bytes OK
+2026/10/01-10:44:19.820 8d68 Delete type=0 #4

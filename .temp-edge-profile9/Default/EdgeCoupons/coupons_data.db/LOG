@@ -1,0 +1,5 @@
+2026/10/27-01:20:55.194 9d40 Creating DB C:\Users\erick\.gemini\antigravity\scratch\arvio\.temp-edge-profile9\Default\EdgeCoupons/coupons_data.db since it was missing.
+2026/10/27-01:20:55.231 9d40 Reusing MANIFEST C:\Users\erick\.gemini\antigravity\scratch\arvio\.temp-edge-profile9\Default\EdgeCoupons/coupons_data.db/MANIFEST-000001
+2026/10/27-01:20:55.397 9890 Level-0 table #5: started
+2026/10/27-01:20:55.415 9890 Level-0 table #5: 683284 bytes OK
+2026/10/27-01:20:55.417 9890 Delete type=0 #3

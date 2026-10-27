@@ -1,0 +1,1152 @@
+{
+  "comprimir-pdf": {
+    "es": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 62823
+    },
+    "ca": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 62647
+    },
+    "en": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 62221
+    }
+  },
+  "unir-pdf": {
+    "es": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 60430
+    },
+    "ca": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 60184
+    },
+    "en": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 59673
+    }
+  },
+  "dividir-pdf": {
+    "es": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 57558
+    },
+    "ca": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 57343
+    },
+    "en": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 56907
+    }
+  },
+  "pdf-a-jpg": {
+    "es": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 57906
+    },
+    "ca": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 57794
+    },
+    "en": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 56980
+    }
+  },
+  "jpg-a-pdf": {
+    "es": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 57642
+    },
+    "ca": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 57479
+    },
+    "en": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 56917
+    }
+  },
+  "rotar-pdf": {
+    "es": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 57591
+    },
+    "ca": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 57382
+    },
+    "en": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 56716
+    }
+  },
+  "extraer-paginas-pdf": {
+    "es": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 57681
+    },
+    "ca": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 57508
+    },
+    "en": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 57014
+    }
+  },
+  "eliminar-paginas-pdf": {
+    "es": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 59449
+    },
+    "ca": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 59352
+    },
+    "en": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 58632
+    }
+  },
+  "extraer-texto-pdf": {
+    "es": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 59314
+    },
+    "ca": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 59074
+    },
+    "en": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 58470
+    }
+  },
+  "pdf-a-word": {
+    "es": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 59705
+    },
+    "ca": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 59598
+    },
+    "en": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 58993
+    }
+  },
+  "word-a-pdf": {
+    "es": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 56253
+    },
+    "ca": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 56101
+    },
+    "en": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 55618
+    }
+  },
+  "marca-de-agua": {
+    "es": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 49718
+    },
+    "ca": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 49656
+    },
+    "en": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 49338
+    }
+  },
+  "numerar-paginas": {
+    "es": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 52107
+    },
+    "ca": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 52007
+    },
+    "en": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 51699
+    }
+  },
+  "ocr-pdf": {
+    "es": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 62999
+    },
+    "ca": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 57139
+    },
+    "en": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 56715
+    }
+  },
+  "reparar-pdf": {
+    "es": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 52073
+    },
+    "ca": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 51963
+    },
+    "en": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 51705
+    }
+  },
+  "proteger-pdf": {
+    "es": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 56100
+    },
+    "ca": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 50933
+    },
+    "en": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 50633
+    }
+  },
+  "desbloquear-pdf": {
+    "es": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 56359
+    },
+    "ca": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 49735
+    },
+    "en": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 49417
+    }
+  },
+  "firmar-pdf": {
+    "es": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 54590
+    },
+    "ca": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 52940
+    },
+    "en": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 52655
+    }
+  },
+  "pdf-a-excel": {
+    "es": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 52966
+    },
+    "ca": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 51188
+    },
+    "en": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 51046
+    }
+  },
+  "comparar-pdf": {
+    "es": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 57055
+    },
+    "ca": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 50010
+    },
+    "en": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 50402
+    }
+  },
+  "resumir-pdf": {
+    "es": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 50763
+    },
+    "ca": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 50473
+    },
+    "en": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 50526
+    }
+  },
+  "extraer-datos": {
+    "es": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 52567
+    },
+    "ca": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 52278
+    },
+    "en": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 52255
+    }
+  },
+  "pdf-a-powerpoint": {
+    "es": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 49671
+    },
+    "ca": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 49525
+    },
+    "en": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 49335
+    }
+  },
+  "pdf-a-webp": {
+    "es": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 57536
+    },
+    "ca": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 57396
+    },
+    "en": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 56794
+    }
+  },
+  "qr-pdf": {
+    "es": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 60844
+    },
+    "ca": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 52613
+    },
+    "en": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 52423
+    }
+  },
+  "censurar-pdf": {
+    "es": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 60221
+    },
+    "ca": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 51290
+    },
+    "en": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 51013
+    }
+  },
+  "recortar-pdf": {
+    "es": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 50028
+    },
+    "ca": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 49864
+    },
+    "en": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 49501
+    }
+  },
+  "pdf-a-markdown": {
+    "es": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 49754
+    },
+    "ca": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 49463
+    },
+    "en": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 49335
+    }
+  },
+  "pdf-a-pdfa": {
+    "es": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 51240
+    },
+    "ca": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 51116
+    },
+    "en": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 50893
+    }
+  },
+  "excel-a-pdf": {
+    "es": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 49653
+    },
+    "ca": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 49577
+    },
+    "en": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 49321
+    }
+  },
+  "reordenar-paginas-pdf": {
+    "es": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 56171
+    },
+    "ca": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 56127
+    },
+    "en": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 55603
+    }
+  },
+  "aplanar-pdf": {
+    "es": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 58607
+    },
+    "ca": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 58254
+    },
+    "en": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 57936
+    }
+  },
+  "eliminar-metadatos-pdf": {
+    "es": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 58787
+    },
+    "ca": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 58584
+    },
+    "en": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 58089
+    }
+  },
+  "pdf-a-png": {
+    "es": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 55466
+    },
+    "ca": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 55269
+    },
+    "en": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 54958
+    }
+  },
+  "png-a-pdf": {
+    "es": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 55570
+    },
+    "ca": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 55376
+    },
+    "en": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 55070
+    }
+  },
+  "redimensionar-pdf": {
+    "es": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 56799
+    },
+    "ca": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 56616
+    },
+    "en": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 56114
+    }
+  },
+  "editar-metadatos-pdf": {
+    "es": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 52998
+    },
+    "ca": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 52874
+    },
+    "en": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 52448
+    }
+  },
+  "anadir-texto-pdf": {
+    "es": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 54449
+    },
+    "ca": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 54280
+    },
+    "en": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 53827
+    }
+  },
+  "insertar-paginas-pdf": {
+    "es": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 56442
+    },
+    "ca": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 56149
+    },
+    "en": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 55523
+    }
+  },
+  "optimizar-pdf-para-impresion": {
+    "es": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 57521
+    },
+    "ca": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 56968
+    },
+    "en": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 56543
+    }
+  },
+  "webp-a-pdf": {
+    "es": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 55845
+    },
+    "ca": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 55654
+    },
+    "en": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 55303
+    }
+  },
+  "markdown-a-pdf": {
+    "es": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 56078
+    },
+    "ca": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 55913
+    },
+    "en": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 55550
+    }
+  },
+  "powerpoint-a-pdf": {
+    "es": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 56813
+    },
+    "ca": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 56637
+    },
+    "en": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 56139
+    }
+  },
+  "svg-a-pdf": {
+    "es": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 56168
+    },
+    "ca": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 56002
+    },
+    "en": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 55586
+    }
+  },
+  "extraer-imagenes-pdf": {
+    "es": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 56925
+    },
+    "ca": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 56389
+    },
+    "en": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 56320
+    }
+  },
+  "dividir-pdf-por-tamano": {
+    "es": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 58233
+    },
+    "ca": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 57518
+    },
+    "en": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 57709
+    }
+  },
+  "eliminar-paginas-en-blanco": {
+    "es": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 59421
+    },
+    "ca": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 57367
+    },
+    "en": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 58759
+    }
+  },
+  "imagen-a-webp": {
+    "es": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 61990
+    },
+    "ca": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 60118
+    },
+    "en": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 59825
+    }
+  },
+  "sanear-pdf": {
+    "es": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 60003
+    },
+    "ca": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 57814
+    },
+    "en": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 59401
+    }
+  },
+  "rellenar-formulario-pdf": {
+    "es": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 59016
+    },
+    "ca": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 56727
+    },
+    "en": {
+      "status": 200,
+      "hasH1": true,
+      "hasTitle": true,
+      "hasSchema": true,
+      "bytes": 57975
+    }
+  }
+}

@@ -1,0 +1,3109 @@
+<USER_REQUEST>
+# BREADPDF — MASTER RESEARCH PROMPT DEFINITIVO
+## MASTER SEARCH DEMAND + SEO + SEM + GEO + PRODUCT GAP + WORKFLOW DATABASE
+### Investigación exhaustiva, verificable y orientada a ejecución — 2026
+
+---
+
+# 0. MISIÓN PRINCIPAL
+
+Quiero realizar la investigación más completa, rigurosa y accionable posible para BREADPDF.
+
+NO quiero una nueva versión resumida de investigaciones anteriores.
+
+NO quiero un informe superficial.
+
+NO quiero una simple lista de keywords.
+
+NO quiero una colección de ideas genéricas de SEO.
+
+NO quiero que simplemente aceptes las conclusiones de los documentos adjuntos.
+
+Quiero que construyas una única investigación maestra definitiva que absorba todo el conocimiento útil disponible, compruebe aquello que deba comprobarse, corrija lo que esté desactualizado o sea incorrecto, descubra oportunidades nuevas y termine en una base de datos maestra que pueda utilizarse directamente para tomar decisiones de:
+
+- SEO
+- arquitectura web
+- creación de páginas
+- creación de herramientas
+- contenido
+- internal linking
+- SEM / Google Ads
+- GEO / AI Search
+- localización ES / CA / EN
+- producto
+- workflows
+- monetización
+- Premium / SaaS
+- B2B
+- posicionamiento competitivo
+
+Tu trabajo no consiste en producir mucho texto.
+
+Tu trabajo consiste en descubrir, organizar y validar el máximo universo de demanda relevante para BREADPDF y transformarlo en un mapa de ejecución.
+
+---
+
+# 1. DOCUMENTOS DE ENTRADA OBLIGATORIOS
+
+He adjuntado dos documentos.
+
+DOCUMENTO 1:
+“Se ha pegado el markdown(20260930-185321).md”
+
+DOCUMENTO 2:
+“Se ha pegado el markdown (2)(1).md”
+
+Debes leerlos COMPLETOS antes de construir tu análisis.
+
+IMPORTANTE:
+
+No trates el segundo como una simple sustitución del primero.
+
+No decidas que uno es “el bueno” y el otro “el malo”.
+
+Debes fusionarlos.
+
+Debes utilizar ambos como punto de partida.
+
+Pero tampoco debes asumir que sus afirmaciones son correctas.
+
+Debes clasificarlas mentalmente en:
+
+A. Hechos que deben verificarse
+B. Datos reales
+C. Datos estimados
+D. Hipótesis
+E. Interpretaciones
+F. Recomendaciones estratégicas
+G. Oportunidades todavía no validadas
+
+Y después verificar todo aquello que pueda haber cambiado.
+
+---
+
+# 2. REGLA FUNDAMENTAL: NO CONFÍES CIEGAMENTE EN LOS DOCUMENTOS
+
+Los documentos son material de investigación previa.
+
+NO son una fuente de verdad absoluta.
+
+Debes detectar expresamente:
+
+- afirmaciones desactualizadas
+- estadísticas estimadas
+- keywords con volumen no confirmado
+- conclusiones extrapoladas
+- supuestas oportunidades que ya existen
+- competidores que hayan cambiado
+- herramientas nuevas de los competidores
+- cambios recientes de Google
+- cambios de SERP
+- cambios de Google Search Console
+- cambios en AI Search
+- cambios en Keyword Planner
+- cambios regulatorios
+- errores de arquitectura
+- oportunidades sobrevaloradas
+- oportunidades infravaloradas
+
+Nunca conviertas una hipótesis en un hecho.
+
+Si una cifra no es real y verificable, etiquétala como:
+
+ESTIMATED
+
+Si una afirmación solo puede inferirse:
+
+INFERENCE
+
+Si no puede comprobarse:
+
+UNVERIFIED
+
+Si existe evidencia contradictoria:
+
+CONTESTED / MIXED EVIDENCE
+
+Nunca rellenes huecos inventando datos.
+
+---
+
+# 3. OBJETIVO EMPRESARIAL DE LA INVESTIGACIÓN
+
+BREADPDF no quiere simplemente “posicionarse para PDF”.
+
+El objetivo es maximizar la cobertura de búsquedas RELEVANTES que puedan conducir a:
+
+1. uso real de una herramienta
+2. resolución de un problema
+3. repetición de uso
+4. conversión Premium
+5. uso profesional
+6. uso B2B
+7. API / automatización
+8. workflows de múltiples herramientas
+9. tráfico cualificado
+10. reconocimiento de marca
+
+La tesis estratégica inicial que debes investigar es:
+
+QUERY × PROBLEMA × WORKFLOW
+
+y comprobar si realmente representa una arquitectura más poderosa que:
+
+KEYWORD → PAGE
+
+No debes limitarte al modelo tradicional:
+
+keyword → landing
+
+Debes investigar también:
+
+query
+→ problema
+→ respuesta
+→ herramienta
+→ siguiente acción
+→ workflow
+→ conversión
+
+---
+
+# 4. CONTEXTO ACTUAL DE BREADPDF
+
+Utiliza este contexto como información de partida, pero comprueba el estado real cuando puedas:
+
+BREADPDF:
+https://breadpdf.com/
+
+Tipo de producto:
+SaaS / plataforma de herramientas PDF online.
+
+Propuesta general:
+herramientas PDF rápidas, modernas, sencillas y orientadas a resolver tareas reales.
+
+BREADPDF trabaja actualmente con:
+- múltiples herramientas PDF
+- versiones ES / CA / EN
+- páginas de herramientas
+- categorías
+- contenido editorial / guías
+- SEO programático controlado
+- workflows de documentos
+- analítica
+- monetización
+- Premium
+
+Existe aproximadamente un ecosistema de 50 herramientas actualmente.
+
+No supongas que todas las herramientas deben recibir una página nueva.
+
+No supongas que cada keyword necesita una URL.
+
+No supongas que cada nueva oportunidad requiere construir una herramienta.
+
+Precisamente debes descubrir qué merece:
+
+A. herramienta existente
+B. nueva herramienta
+C. página existente
+D. nueva guía
+E. nueva categoría
+F. workflow
+G. feature
+H. página B2B
+I. landing SEM
+J. nada
+
+---
+
+# 5. OBJETIVO Nº 1: DESCUBRIR EL UNIVERSO REAL DE DEMANDA
+
+Debes construir el universo de búsquedas más amplio y relevante posible relacionado con:
+
+PDF
+comprimir PDF
+reducir PDF
+unir PDF
+separar PDF
+dividir PDF
+extraer páginas PDF
+ordenar PDF
+editar PDF
+firmar PDF
+proteger PDF
+desbloquear PDF
+OCR PDF
+PDF a Word
+PDF a Excel
+PDF a JPG
+JPG a PDF
+PDF a PNG
+PDF a texto
+PDF a Markdown
+PDF/A
+reparar PDF
+comparar PDF
+censurar PDF
+formularios PDF
+rellenar PDF
+numerar PDF
+rotar PDF
+escanear PDF
+convertir PDF
+PDF escaneado
+documentos escaneados
+resumir PDF
+IA + PDF
+privacidad PDF
+PDF sin subir archivos
+PDF local
+PDF en navegador
+PDF sin registro
+PDF seguro
+PDF para estudiantes
+PDF para empresas
+PDF para administración pública
+PDF para trámites
+PDF para Moodle
+PDF para SEPE
+PDF para Agencia Tributaria
+PDF para universidad
+PDF para facturas
+PDF para contratos
+PDF para DNI
+PDF para documentación
+PDF para email
+PDF para formularios online
+PDF con límite de MB
+etc.
+
+PERO NO TE LIMITES A ESTA LISTA.
+
+Debes descubrir otros universos.
+
+---
+
+# 6. INVESTIGA MÁS ALLÁ DE LAS KEYWORDS OBVIAS
+
+No debes pensar únicamente en:
+
+“comprimir pdf”
+
+Debes descubrir:
+
+## A. Búsquedas por tarea
+
+“cómo comprimir...”
+“quiero reducir...”
+“necesito sacar...”
+“cómo juntar...”
+“cómo convertir...”
+“cómo firmar...”
+etc.
+
+## B. Búsquedas por problema
+
+“mi PDF pesa demasiado”
+“no puedo subir el PDF”
+“no puedo imprimir el PDF”
+“el PDF está protegido”
+“no puedo editar el PDF”
+“el PDF está escaneado”
+“quiero sacar solo unas páginas”
+etc.
+
+## C. Búsquedas por restricción
+
+“2 MB”
+“5 MB”
+“10 MB”
+“25 MB”
+“sin perder calidad”
+“sin registro”
+“sin subir”
+“gratis”
+“online”
+“desde móvil”
+“rápido”
+etc.
+
+## D. Búsquedas por contexto
+
+universidad
+TFG
+TFM
+Moodle
+SEPE
+DNI
+DNIe
+Agencia Tributaria
+administración
+oposiciones
+trabajo
+RRHH
+facturas
+contratos
+inmobiliaria
+gestoría
+asesoría
+empresa
+autónomos
+etc.
+
+## E. Búsquedas por resultado final
+
+“PDF editable”
+“Word editable”
+“Excel editable”
+“PDF más pequeño”
+“PDF firmado”
+“PDF/A”
+“PDF con OCR”
+“texto extraído”
+etc.
+
+## F. Búsquedas por intención comercial
+
+“mejor herramienta”
+“software PDF”
+“alternativa a...”
+“PDF online”
+“PDF premium”
+“PDF para empresa”
+“API PDF”
+etc.
+
+## G. Búsquedas conversacionales
+
+“¿cómo hago para...?”
+“necesito...”
+“qué hago si...”
+“cómo consigo que...”
+“cómo reduzco...”
+“cómo saco...”
+
+## H. Búsquedas extremadamente long-tail
+
+No ignores las consultas long-tail.
+
+Muchas pueden tener poco volumen individual pero representar una gran cantidad de demanda agregada.
+
+---
+
+# 7. NO UTILICES EL PRINCIPIO “1 KEYWORD = 1 PÁGINA”
+
+Este punto es OBLIGATORIO.
+
+Debes decidir cuándo varias keywords pertenecen a la MISMA intención.
+
+Ejemplo:
+
+comprimir pdf
+reducir tamaño pdf
+reducir peso pdf
+hacer pdf más pequeño
+disminuir tamaño pdf
+
+Probablemente deben consolidarse en una página núcleo.
+
+Pero:
+
+comprimir pdf a 2 MB
+
+puede representar una intención específica distinta.
+
+Y:
+
+pdf demasiado grande para email
+
+puede ser una problemática contextual distinta.
+
+Y:
+
+sacar páginas concretas de un PDF
+
+puede representar una intención diferente de dividir un documento en partes.
+
+Por tanto:
+
+KEYWORDS ≠ URLS
+
+Tu trabajo consiste en construir:
+
+KEYWORD UNIVERSE
+→ INTENT CLUSTERS
+→ SEARCH JOURNEYS
+→ URL STRATEGY
+
+---
+
+# 8. SISTEMA DE DECISIÓN PARA CREAR UNA NUEVA URL
+
+Para cada cluster debes decidir:
+
+¿Necesita una URL propia?
+
+La respuesta debe analizar:
+
+1. ¿La intención cambia?
+2. ¿La necesidad del usuario cambia?
+3. ¿La solución cambia?
+4. ¿El flujo de trabajo cambia?
+5. ¿La SERP cambia sustancialmente?
+6. ¿Los competidores posicionados cambian?
+7. ¿El contenido necesario cambia?
+8. ¿Una sola URL puede resolver adecuadamente la intención?
+9. ¿Existe riesgo de canibalización?
+10. ¿La página nueva aportaría valor real?
+
+Clasifica cada oportunidad como:
+
+CORE TOOL
+SUPPORTING GUIDE
+PROBLEM PAGE
+USE CASE PAGE
+WORKFLOW PAGE
+CATEGORY
+B2B LANDING
+SEM LANDING
+FEATURE PAGE
+NEW PRODUCT
+NO NEW URL
+
+Y debes explicar POR QUÉ.
+
+---
+
+# 9. ANTI-CANIBALIZACIÓN
+
+Analiza explícitamente:
+
+- keywords duplicadas
+- intención duplicada
+- páginas equivalentes
+- páginas casi equivalentes
+- páginas que deberían consolidarse
+- páginas que deberían redirigirse
+- páginas que deberían canonicalizar
+- páginas que deberían desaparecer
+- páginas que podrían competir entre sí
+
+Crea una columna:
+
+CANNIBALIZATION RISK
+
+Valores posibles:
+
+NONE
+LOW
+MEDIUM
+HIGH
+CRITICAL
+
+Y otra:
+
+RECOMMENDED ACTION
+
+Ejemplo:
+
+CONSOLIDATE
+KEEP
+CREATE
+301
+CANONICAL
+NOINDEX
+MERGE INTO CORE
+CREATE SUPPORTING GUIDE
+
+---
+
+# 10. INVESTIGA LAS SERPs REALES
+
+No te limites a mirar volúmenes.
+
+Para los clusters relevantes debes estudiar SERPs actuales.
+
+Analiza:
+
+- resultados orgánicos
+- herramientas
+- blogs
+- guías
+- foros
+- Reddit
+- YouTube
+- PDFs
+- snippets
+- AI Overviews
+- AI Mode cuando esté disponible
+- People Also Ask
+- vídeos
+- imágenes
+- resultados comerciales
+- resultados de software/SaaS
+- páginas de competidores
+- features de Google
+
+Clasifica el tipo de SERP:
+
+TOOL
+GUIDE
+MIXED
+COMMERCIAL
+INFORMATIONAL
+TRANSACTIONAL
+PROBLEM
+B2B
+AI
+FORUM
+VIDEO
+OTHER
+
+No asumas que el volumen equivale a oportunidad.
+
+---
+
+# 11. COMPETIDORES
+
+Debes analizar exhaustivamente al menos:
+
+- Adobe Acrobat
+- Smallpdf
+- iLovePDF
+- PDF24
+
+Pero NO te limites a ellos.
+
+Encuentra:
+
+- competidores internacionales
+- competidores españoles
+- competidores catalanes
+- competidores especializados
+- herramientas de privacidad/local processing
+- herramientas de OCR
+- herramientas de e-sign
+- herramientas de AI PDF
+- micro-SaaS
+- nuevas startups
+- competidores que estén apareciendo en SERPs long-tail
+
+Para cada competidor analiza:
+
+- herramientas
+- categorías
+- arquitectura
+- páginas indexables
+- contenido
+- problem pages
+- SEO footprint
+- localización
+- IA
+- privacidad
+- pricing
+- Premium
+- B2B
+- API
+- firmas
+- OCR
+- workflows
+- UX
+- claims técnicos
+- propuesta de valor
+
+No debes crear una comparación basada únicamente en número de herramientas.
+
+---
+
+# 12. NO BUSQUES UN “GAP” SOLO PORQUE BREADPDF NO TENGA UNA FEATURE
+
+Esto es obligatorio.
+
+Una feature no es una oportunidad únicamente porque BREADPDF no la tenga.
+
+Para considerar un verdadero PRODUCT GAP debes encontrar evidencia de:
+
+- demanda
+- intención
+- usuarios
+- SERP
+- problema
+- valor comercial
+- posibilidad técnica
+- diferenciación
+- competencia
+- capacidad real de BREADPDF para resolverlo
+
+Clasifica:
+
+FALSE GAP
+WEAK GAP
+POTENTIAL GAP
+VALIDATED GAP
+STRATEGIC GAP
+
+Pero nunca inventes la validación.
+
+---
+
+# 13. INVESTIGA EL CONCEPTO “PDF PROBLEM SOLVER”
+
+Debes testar formalmente esta hipótesis.
+
+En vez de:
+
+“BREADPDF tiene 50 herramientas”
+
+la arquitectura conceptual sería:
+
+“BREADPDF resuelve problemas relacionados con documentos PDF.”
+
+Investiga qué demanda existe alrededor de:
+
+PROBLEMA
+→ SOLUCIÓN
+→ HERRAMIENTA
+→ SIGUIENTE PASO
+
+Ejemplos:
+
+PDF demasiado grande
+→ comprimir
+→ comprobar tamaño
+→ descargar
+
+PDF escaneado
+→ OCR
+→ Word
+→ editar
+
+12 PDFs
+→ unir
+→ ordenar
+→ comprimir
+→ descargar
+
+PDF protegido
+→ desbloquear
+→ editar
+→ volver a proteger
+
+páginas concretas
+→ extraer
+→ ordenar
+→ comprimir
+
+Debes descubrir muchos más workflows.
+
+---
+
+# 14. WORKFLOW RESEARCH
+
+Crea una base específica de workflows.
+
+Para cada workflow:
+
+- nombre
+- problema inicial
+- query inicial
+- pasos
+- herramientas implicadas
+- siguiente acción
+- posible URL de entrada
+- posible CTA
+- oportunidad SEO
+- oportunidad Premium
+- oportunidad B2B
+- dificultad técnica
+- demanda estimada/verificada
+- competidores
+- oportunidad de diferenciación
+
+Ejemplo:
+
+“Enviar documentación a una plataforma con límite de tamaño”
+
+Query:
+“pdf demasiado grande para subir”
+
+Workflow:
+
+1. Seleccionar PDF
+2. Comprimir
+3. Comprobar tamaño
+4. Si sigue siendo demasiado grande, optimizar
+5. Descargar
+
+---
+
+# 15. PROBLEM QUERY RESEARCH
+
+Investiga específicamente búsquedas en forma de:
+
+“mi PDF...”
+
+“no puedo...”
+
+“cómo conseguir...”
+
+“cómo solucionar...”
+
+“PDF demasiado...”
+
+“PDF no...”
+
+“PDF protegido...”
+
+“PDF escaneado...”
+
+“PDF pesa...”
+
+“PDF no abre...”
+
+“PDF no imprime...”
+
+“PDF no deja copiar...”
+
+“PDF no deja editar...”
+
+etc.
+
+Debes encontrar al menos:
+
+- problemas técnicos
+- problemas de tamaño
+- problemas de edición
+- problemas de impresión
+- problemas de compatibilidad
+- problemas de OCR
+- problemas de formularios
+- problemas administrativos
+- problemas educativos
+- problemas empresariales
+- problemas de firmas
+- problemas de privacidad
+- problemas de conversión
+
+---
+
+# 16. KEYWORD RESEARCH REAL
+
+Utiliza, cuando tengas acceso, fuentes como:
+
+- Google Keyword Planner
+- Google Search Console
+- Google Trends
+- Google Search
+- SERPs
+- herramientas de inteligencia competitiva
+- fuentes sectoriales fiables
+- Reddit cuando aporte información sobre lenguaje/experiencias
+- comunidades relevantes
+- páginas oficiales de Google
+- documentación oficial
+- páginas oficiales de competidores
+
+IMPORTANTE:
+
+Nunca mezcles silenciosamente:
+
+REAL DATA
+
+con
+
+ESTIMATED DATA
+
+Cada dato debe tener:
+
+SOURCE
+SOURCE DATE
+COUNTRY
+LANGUAGE
+DATA TYPE
+
+---
+
+# 17. KEYWORD PLANNER
+
+Para Keyword Planner debes intentar obtener:
+
+- keyword
+- average monthly searches
+- location
+- language
+- competition
+- top of page bid low
+- top of page bid high
+- trend
+- seasonality cuando sea relevante
+
+No confundas:
+
+Ads Competition
+
+con:
+
+SEO Difficulty
+
+No uses:
+
+CPC alto = keyword buena
+
+No uses:
+
+mucho volumen = keyword buena
+
+Separa:
+
+SEARCH DEMAND
+
+de:
+
+BUSINESS VALUE
+
+---
+
+# 18. SEARCH CONSOLE
+
+Cuando existan datos de Search Console, incorpóralos.
+
+Analiza:
+
+- queries
+- clicks
+- impressions
+- CTR
+- average position
+- page
+- country
+- device
+- date
+- query growth
+- pages gaining impressions
+- pages losing impressions
+- emerging queries
+- query/page mismatch
+- cannibalization
+- low-CTR opportunities
+- high-impression / zero-click opportunities
+
+Cuando exista información sobre superficies generativas/AI Search en Search Console, analízala separadamente.
+
+NO mezcles:
+
+Google Search normal
+
+con
+
+AI Search / generative surfaces.
+
+---
+
+# 19. GOOGLE AI SEARCH / GEO
+
+Investiga el estado ACTUAL de:
+
+- AI Overviews
+- AI Mode
+- Google generative search
+- query fan-out
+- Search Console generative AI reporting
+- Google documentation
+- crawlability
+- indexing
+- snippets
+- structured data
+
+No utilices teorías SEO antiguas.
+
+No vendas “GEO hacks”.
+
+No afirmes:
+
+FAQ schema = aparecer en AI
+
+No afirmes:
+
+llms.txt = ranking
+
+No afirmes:
+
+una técnica especial garantiza aparecer en AI
+
+Debes investigar cuál es realmente la posición oficial y actual de Google.
+
+El objetivo de BREADPDF es:
+
+contenido útil
++
+respuestas directas
++
+cobertura semántica
++
+información original
++
+arquitectura clara
++
+buena indexación
++
+buena experiencia
++
+entidad clara
++
+medición
+
+Investiga también la utilidad real de:
+
+llms.txt
+
+pero clasifícala correctamente según la evidencia actual.
+
+---
+
+# 20. AI SEARCH QUERY COVERAGE
+
+Para cada gran tema, no estudies solo la query principal.
+
+Investiga:
+
+- preguntas relacionadas
+- reformulaciones
+- subproblemas
+- comparaciones
+- restricciones
+- preguntas posteriores
+- queries de continuación
+- entidades relacionadas
+- términos semánticamente cercanos
+
+Ejemplo:
+
+“comprimir PDF”
+
+Investigar además:
+
+- cuánto comprime
+- cuánto pesa
+- compresión a 2 MB
+- compresión a 5 MB
+- pérdida de calidad
+- imágenes
+- formularios
+- email
+- Moodle
+- SEPE
+- móvil
+- Mac
+- Windows
+- PDF escaneado
+- privacidad
+- sin registro
+- etc.
+
+Pero no conviertas automáticamente cada consulta en una URL.
+
+Debes agruparlas por intención.
+
+---
+
+# 21. PRIVACIDAD / CLIENT-SIDE PROCESSING
+
+Investiga seriamente la oportunidad alrededor de:
+
+- PDF sin subir
+- PDF en el navegador
+- PDF local
+- PDF privado
+- procesar PDF offline
+- PDF sin servidores
+- PDF sin registro
+- PDF seguro
+- documentos sensibles
+
+Analiza:
+
+- demanda
+- competencia
+- SERPs
+- tendencia
+- lenguaje del usuario
+- posicionamiento de competidores
+- viabilidad técnica
+- ventajas reales
+- limitaciones
+- claims de privacidad
+
+MUY IMPORTANTE:
+
+No afirmes que BREADPDF “nunca sube archivos” o que realiza todo localmente salvo que esa afirmación haya sido comprobada técnicamente herramienta por herramienta.
+
+Distingue:
+
+ACTUAL
+PLANNED
+PARTIAL
+UNVERIFIED
+
+Si unas herramientas funcionan localmente y otras no, documenta la diferencia.
+
+---
+
+# 22. WEBASSEMBLY / WASM
+
+Investiga:
+
+- qué operaciones PDF pueden realizarse realmente client-side
+- qué costes tienen
+- OCR en navegador
+- compresión client-side
+- unión
+- extracción
+- conversión
+- rendimiento
+- memoria
+- móviles
+- navegadores
+- límites prácticos
+
+No conviertas:
+
+“WASM puede hacerlo”
+
+en:
+
+“BREADPDF debe hacerlo todo con WASM”.
+
+Debes analizar viabilidad, coste y beneficio.
+
+---
+
+# 23. E-SIGN / FIRMA ELECTRÓNICA
+
+Investiga con especial cuidado:
+
+- firma simple
+- firma avanzada
+- firma cualificada
+- eIDAS
+- normativa española aplicable
+- proveedores existentes
+- competidores
+- intención comercial
+- CPC
+- B2B
+- riesgos regulatorios
+- requisitos técnicos
+
+NO equipares:
+
+firma dibujada
+
+con
+
+firma avanzada
+
+ni:
+
+firma avanzada
+
+con
+
+firma cualificada.
+
+No recomiendes una estrategia jurídica o comercial basada en claims que BREADPDF no pueda cumplir.
+
+Si existe oportunidad, sepárala como:
+
+SEO OPPORTUNITY
+PRODUCT OPPORTUNITY
+B2B OPPORTUNITY
+REGULATORY REQUIREMENT
+
+---
+
+# 24. CATALÁN
+
+Investiga ES / CA / EN separadamente.
+
+No hagas simplemente:
+
+ES keyword
+→ traducción literal CA
+
+Investiga:
+
+- consultas catalanas reales
+- vocabulario real
+- variaciones
+- intención
+- volumen
+- competidores
+- localización de competidores
+- SERP
+- oportunidad
+- contenido nativo
+
+Analiza especialmente consultas como:
+
+reduir pes pdf
+ajuntar documents
+dividir pdf
+extreure pàgines
+etc.
+
+Pero no asumas que el catalán tiene “competencia cero”.
+
+Comprueba qué competidores existen.
+
+Determina dónde realmente hay:
+
+- menor competencia
+- demanda suficiente
+- mejor oportunidad de posicionamiento
+- mejor oportunidad de conversión
+
+---
+
+# 25. ESPAÑA — CASOS DE USO
+
+Investiga búsquedas relacionadas con:
+
+- SEPE
+- Seguridad Social
+- Agencia Tributaria
+- DNI / DNIe
+- trámites administrativos
+- universidades
+- Moodle
+- oposiciones
+- TFG
+- TFM
+- estudiantes
+- profesores
+- autónomos
+- gestorías
+- asesorías
+- RRHH
+- contratos
+- facturas
+- inmobiliarias
+- documentación corporativa
+- formularios
+- administración pública
+
+No inventes una oportunidad.
+
+Busca evidencia real de demanda.
+
+Determina cuáles son:
+
+HIGH RELEVANCE
+MEDIUM RELEVANCE
+LOW RELEVANCE
+
+Y clasifica el tipo de landing necesario.
+
+---
+
+# 26. SEARCH JOURNEYS
+
+Para cada grupo importante de búsquedas, construye el viaje:
+
+DISCOVERY QUERY
+↓
+PROBLEM
+↓
+LANDING
+↓
+TOOL
+↓
+PROCESS
+↓
+RESULT
+↓
+NEXT ACTION
+↓
+REPEAT USE
+↓
+PREMIUM / BUSINESS
+
+Ejemplo:
+
+“¿Cómo reducir un PDF a 2 MB?”
+
+→ guía
+→ compresor
+→ objetivo 2 MB
+→ descarga
+→ compartir/firmar/convertir
+→ posible cuenta Premium
+
+Investiga dónde existen oportunidades de continuidad.
+
+---
+
+# 27. SEM / GOOGLE ADS
+
+Investiga SEM como estrategia independiente de SEO.
+
+No asumas que una keyword con alto CPC es necesariamente buena.
+
+Analiza:
+
+- volumen
+- CPC
+- competencia Ads
+- intención
+- problema
+- conversión probable
+- valor comercial
+- recurrencia
+- Premium
+- B2B
+- API
+- LTV potencial
+- SERP
+- coste de adquisición potencial
+- encaje con landing
+- posibilidad de remarketing
+
+Agrupa keywords SEM por:
+
+CORE TOOL
+HIGH INTENT
+B2B
+PREMIUM
+OCR
+E-SIGN
+API
+WORKFLOW
+USE CASE
+
+Y determina:
+
+SEM PRIORITY
+
+Pero nunca bases la decisión únicamente en CPC.
+
+---
+
+# 28. MODELO DE BUSINESS VALUE
+
+Construye una metodología objetiva.
+
+Como mínimo considera:
+
+SEARCH DEMAND
++
+SEARCH INTENT
++
+PRODUCT FIT
++
+CONVERSION POTENTIAL
++
+RECURRING USE
++
+PREMIUM POTENTIAL
++
+B2B POTENTIAL
++
+SERP OPPORTUNITY
++
+COMPETITION
++
+IMPLEMENTATION COST
++
+DIFFERENTIATION
+
+No hagas:
+
+HIGH VOLUME = HIGH PRIORITY
+
+Puedes construir una puntuación interna, pero:
+
+- explica la metodología
+- no inventes inputs
+- marca datos faltantes
+- no confundas score estratégico con datos reales
+- nunca presentes una puntuación como una medición objetiva de Google
+
+---
+
+# 29. PRODUCT GAP RESEARCH
+
+Investiga si BREADPDF debería desarrollar:
+
+- nuevas herramientas
+- nuevos formatos
+- OCR
+- extracción
+- reparación
+- comparación
+- PDF/A
+- censura
+- firma
+- workflows
+- AI Workspace
+- funciones de automatización
+- API
+- procesamiento local
+- funcionalidades Premium
+- funcionalidades B2B
+
+Para cada oportunidad:
+
+- demanda
+- queries
+- SERP
+- competidores
+- productos existentes
+- valor
+- dificultad
+- coste técnico aproximado
+- diferenciación
+- dependencia tecnológica
+- riesgo
+- oportunidad SEO
+- oportunidad comercial
+
+Clasifica:
+
+BUILD NOW
+BUILD LATER
+VALIDATE FIRST
+DO NOT BUILD
+
+NO decidas basándote únicamente en lo que hacen competidores.
+
+---
+
+# 30. AI WORKSPACE
+
+Investiga la oportunidad de convertir BREADPDF en algo más que un catálogo.
+
+Concepto:
+
+AI PDF WORKSPACE
+
+donde una instrucción pueda generar una secuencia de acciones.
+
+Ejemplo:
+
+“Resume este PDF y después extrae las páginas que contienen las facturas.”
+
+→ analizar
+→ resumir
+→ localizar páginas
+→ extraer
+→ descargar
+
+Otro:
+
+“Convierte este documento escaneado a Word editable y después comprímelo.”
+
+→ OCR
+→ Word
+→ compresión
+
+Investiga:
+
+- demanda
+- SERPs
+- competidores
+- Adobe
+- Smallpdf
+- iLovePDF
+- modelos
+- costes
+- privacidad
+- UX
+- diferenciación
+- B2C
+- B2B
+
+No presentes AI Workspace como “gap” simplemente porque BREADPDF aún no lo tenga.
+
+---
+
+# 31. CONTENIDO EDITORIAL
+
+Investiga qué contenido debería existir alrededor de las herramientas.
+
+No generes una lista arbitraria de cientos de artículos.
+
+Busca:
+
+- consultas con problema
+- queries específicas
+- búsquedas de explicación
+- preguntas de usuarios
+- requisitos técnicos
+- límites de tamaño
+- errores
+- comparaciones
+- tutoriales
+- casos de uso
+- trámites
+
+Para cada guía:
+
+QUERY
+PROBLEM
+INTENT
+TARGET TOOL
+SEARCH VALUE
+BUSINESS VALUE
+CANNIBALIZATION
+PROPOSED URL
+LANGUAGE
+CTA
+INTERNAL LINKS
+UPDATE FREQUENCY
+
+---
+
+# 32. CORE TOOL PAGES
+
+Determina qué debe contener cada página núcleo.
+
+Como mínimo investiga:
+
+- title
+- H1
+- intro
+- upload CTA
+- supported formats
+- limits
+- steps
+- actual functionality
+- privacy
+- use cases
+- troubleshooting
+- direct answers
+- related questions
+- next tools
+- related guides
+- internal links
+- Premium CTA cuando corresponda
+
+Pero no conviertas cada página en un bloque artificial de SEO.
+
+El contenido debe resolver la tarea.
+
+---
+
+# 33. FAQ
+
+Investiga el uso actual de FAQ.
+
+No asumas que:
+
+FAQ schema
+
+genera automáticamente rich results.
+
+Determina:
+
+- utilidad UX
+- utilidad semántica
+- utilidad para contenido
+- situación actual de Google
+- limitaciones
+
+Las preguntas deben estar basadas en:
+
+REAL QUERIES
+REAL PROBLEMS
+REAL SEARCH DEMAND
+
+No generes FAQs inútiles.
+
+---
+
+# 34. STRUCTURED DATA
+
+Investiga el uso apropiado de:
+
+- WebApplication
+- SoftwareApplication si corresponde
+- Organization
+- WebSite
+- BreadcrumbList
+- Article
+- HowTo
+- FAQPage
+- otros tipos pertinentes
+
+Determina qué sigue siendo útil y qué ha quedado obsoleto.
+
+No implementes schema simplemente porque “SEO lo recomienda”.
+
+Debe haber correspondencia con contenido y documentación actual.
+
+---
+
+# 35. HREFLANG / INDEXATION / ARCHITECTURE
+
+Audita conceptualmente:
+
+- canonical
+- hreflang
+- x-default
+- sitemap
+- robots
+- indexability
+- noindex
+- thin pages
+- duplicate pages
+- localized URLs
+- categories
+- guides
+- tools
+- legal
+- private routes
+
+Determina la arquitectura ideal.
+
+No inventes URLs incompatibles con la arquitectura actual.
+
+Cuando propongas una URL nueva debes indicar:
+
+CURRENT URL
+vs
+PROPOSED URL
+
+Y verificar la coherencia.
+
+---
+
+# 36. IMPORTANTE: NO INVENTES LA ARQUITECTURA
+
+Antes de recomendar nuevas URLs:
+
+1. inspecciona la web pública
+2. inspecciona sitemap
+3. inspecciona estructura visible
+4. revisa herramientas existentes
+5. identifica localizaciones
+6. verifica patrones reales de URL
+
+NO propongas:
+
+/comprimir-pdf
+
+si la arquitectura real utiliza otra ruta, sin explicar cómo debe mapearse.
+
+Todas las recomendaciones deben respetar la arquitectura real de BREADPDF.
+
+---
+
+# 37. COVERAGE MATRIX
+
+Construye una matriz completa:
+
+QUERY
+→ CLUSTER
+→ INTENT
+→ PROBLEM
+→ LANGUAGE
+→ COUNTRY
+→ EXISTING TOOL
+→ EXISTING PAGE
+→ EXISTING GUIDE
+→ RECOMMENDED URL
+→ WORKFLOW
+→ SEM
+→ GEO
+→ BUSINESS VALUE
+→ GAP
+→ CANNIBALIZATION
+→ PRIORITY
+
+---
+
+# 38. MASTER KEYWORD DATABASE
+
+Esta es una de las partes MÁS IMPORTANTES.
+
+La base de datos final debe contener, cuando sea posible:
+
+1. Raw Keyword
+2. Normalized Keyword
+3. Country
+4. Language
+5. Search Volume
+6. Data Source
+7. Source Date
+8. Data Type
+9. CPC
+10. Ads Competition
+11. Trend
+12. SERP Type
+13. SERP Features
+14. Search Intent
+15. Search Sub-Intent
+16. User Problem
+17. Search Journey
+18. Cluster
+19. Parent Cluster
+20. Existing BREADPDF Tool
+21. Existing BREADPDF URL
+22. Recommended Target URL
+23. Recommended Page Type
+24. Supporting Guide
+25. Workflow
+26. SEM
+27. GEO Relevance
+28. Product Fit
+29. Premium Potential
+30. B2B Potential
+31. Recurring Use Potential
+32. Competitive Intensity
+33. Cannibalization Risk
+34. Recommended Action
+35. Product Gap
+36. Content Gap
+37. Search Gap
+38. Localization Opportunity
+39. Implementation Complexity
+40. Strategic Differentiation
+41. Priority
+42. Reason
+43. Evidence
+44. Source URLs
+
+No reduzcas esta estructura simplemente para que el documento sea más corto.
+
+---
+
+# 39. RAW QUERY VS NORMALIZED QUERY
+
+Mantén siempre la búsqueda original.
+
+Ejemplo:
+
+RAW:
+“como hacer que un pdf pese menos”
+
+NORMALIZED:
+“reducir tamaño pdf”
+
+Esto permite diferenciar:
+
+lenguaje real del usuario
+
+de:
+
+cluster estratégico.
+
+No destruyas las consultas long-tail.
+
+---
+
+# 40. CLUSTERING
+
+Agrupa queries por intención y no solo por palabras compartidas.
+
+Por ejemplo:
+
+“comprimir PDF”
+“reducir PDF”
+“hacer PDF más pequeño”
+
+pueden pertenecer al mismo cluster.
+
+Pero:
+
+“comprimir PDF a 2MB”
+“PDF demasiado grande para Moodle”
+
+pueden formar subclusters distintos.
+
+El clustering debe basarse en:
+
+- SERP overlap
+- user need
+- solution overlap
+- intent
+- context
+
+No únicamente NLP semántico.
+
+---
+
+# 41. SERP OVERLAP
+
+Para keywords importantes, comprueba cuánto se solapan los resultados.
+
+Esto ayuda a decidir:
+
+SAME URL
+vs
+SEPARATE URL
+
+Una diferencia semántica no basta para justificar una nueva página si Google muestra prácticamente la misma SERP y la misma solución.
+
+---
+
+# 42. SEARCH INTENT
+
+Utiliza una taxonomía consistente:
+
+INFORMATIONAL
+NAVIGATIONAL
+COMMERCIAL INVESTIGATION
+TRANSACTIONAL
+PROBLEM SOLVING
+USE CASE
+B2B
+WORKFLOW
+LOCALIZED
+PRIVACY
+AI
+OTHER
+
+Puedes añadir subintenciones.
+
+---
+
+# 43. LONG-TAIL
+
+El long-tail debe analizarse de forma agregada.
+
+No descartes una query solo porque individualmente tenga:
+
+10
+20
+50
+100
+
+búsquedas.
+
+Analiza:
+
+- cluster total
+- lenguaje
+- intención
+- CTR
+- posibilidad de captación
+- conversión
+- relación con una herramienta
+
+---
+
+# 44. QUERY × PROBLEM × WORKFLOW
+
+Para cada gran cluster intenta responder:
+
+QUERY:
+¿Qué busca?
+
+PROBLEM:
+¿Qué le pasa realmente?
+
+SOLUTION:
+¿Qué necesita?
+
+TOOL:
+¿Qué herramienta lo resuelve?
+
+WORKFLOW:
+¿Qué podría necesitar después?
+
+CONTENT:
+¿Qué explicación ayuda?
+
+BUSINESS:
+¿Qué valor comercial tiene?
+
+Esto debe convertirse en uno de los principales marcos del documento final.
+
+---
+
+# 45. “DO NOT BUILD” DATABASE
+
+Una parte muy importante del estudio será determinar qué NO hacer.
+
+Crea una sección:
+
+DO NOT BUILD
+
+con oportunidades como:
+
+- features ya completamente comoditizadas
+- páginas sin demanda
+- duplicados
+- páginas canibalizadoras
+- product gaps falsos
+- keywords de bajo valor
+- contenido que podría ser absorbido por una página existente
+- features técnicamente complejas con demanda insuficiente
+- páginas creadas solo por variar una keyword
+- ideas atractivas pero sin evidencia
+
+Esto evita perder meses de desarrollo.
+
+---
+
+# 46. “BUILD NOW” DATABASE
+
+Crea también:
+
+BUILD NOW
+
+con oportunidades que tengan suficiente evidencia.
+
+Para cada una:
+
+WHAT
+WHY
+QUERY
+DEMAND
+INTENT
+CURRENT COVERAGE
+GAP
+URL / TOOL
+BUSINESS VALUE
+IMPLEMENTATION
+DEPENDENCIES
+SEO
+SEM
+GEO
+PRIORITY
+EVIDENCE
+
+---
+
+# 47. “VALIDATE FIRST”
+
+No todas las oportunidades deben construirse.
+
+Crea:
+
+VALIDATE FIRST
+
+para cosas que necesiten:
+
+- más datos
+- landing experimental
+- Ads test
+- waitlist
+- prototype
+- Search Console
+- user research
+- technical test
+- conversion test
+
+---
+
+# 48. ACTUAL VS FUTURE
+
+Separa SIEMPRE:
+
+CURRENT STATE
+
+de:
+
+RECOMMENDED FUTURE STATE
+
+No describas una funcionalidad futura como si ya existiera.
+
+---
+
+# 49. ROADMAP
+
+A partir de toda la investigación debes producir un roadmap.
+
+Pero NO quiero un roadmap basado en intuición.
+
+Debe derivar de la base de datos.
+
+Como mínimo:
+
+PHASE 0
+Research / Data Foundation
+
+PHASE 1
+Core SEO architecture
+
+PHASE 2
+Problem Queries
+
+PHASE 3
+Search Journeys / Workflows
+
+PHASE 4
+Privacy / Client-side differentiation
+
+PHASE 5
+CA localization
+
+PHASE 6
+SEM expansion
+
+PHASE 7
+B2B / Premium
+
+PHASE 8
+AI Workspace
+
+Pero puedes cambiar completamente estas fases si los datos demuestran que existe una estructura mejor.
+
+No te sientas obligado a conservar el roadmap de los documentos.
+
+---
+
+# 50. PRIORITY SYSTEM
+
+Crea prioridades:
+
+P0 = crítico
+P1 = muy importante
+P2 = importante
+P3 = oportunidad futura
+P4 = no ejecutar
+
+La prioridad debe surgir de evidencia, no de entusiasmo.
+
+Explica siempre:
+
+WHY THIS PRIORITY
+
+---
+
+# 51. SEO CONTENT MAP
+
+Entrega un mapa:
+
+CORE TOOLS
+↓
+CATEGORIES
+↓
+PROBLEM PAGES
+↓
+GUIDES
+↓
+USE CASES
+↓
+WORKFLOWS
+↓
+B2B
+↓
+PREMIUM
+
+Y para cada nodo:
+
+- target intent
+- links in
+- links out
+- CTA
+- related tools
+
+---
+
+# 52. INTERNAL LINKING
+
+Investiga cómo debería funcionar:
+
+GUIDE
+→ TOOL
+
+TOOL
+→ RELATED GUIDE
+
+TOOL
+→ NEXT TOOL
+
+TOOL
+→ WORKFLOW
+
+CATEGORY
+→ TOOL
+
+WORKFLOW
+→ TOOL 1
+→ TOOL 2
+→ TOOL 3
+
+Determina qué páginas deberían recibir más autoridad interna.
+
+---
+
+# 53. TOPICAL AUTHORITY
+
+Investiga si BREADPDF debería estructurarse alrededor de grandes clusters como:
+
+Compress PDF
+Merge PDF
+Split / Extract PDF
+Convert PDF
+OCR
+Edit PDF
+Protect PDF
+Sign PDF
+Manage PDF
+AI PDF
+Privacy
+Use Cases
+Business PDF
+
+Determina:
+
+- cuáles son verdaderas entidades
+- cuáles deberían ser categorías
+- cuáles son simples herramientas
+- cuáles son clusters editoriales
+
+---
+
+# 54. BRAND STRATEGY
+
+Investiga búsquedas relacionadas con:
+
+- BREADPDF
+- alternativas
+- competidores
+- búsquedas de marca
+- “BREADPDF vs...”
+- “alternative to...”
+- “free alternative”
+- etc.
+
+Pero evita crear páginas basura para cada competidor.
+
+Solo recomienda páginas cuando existe intención y utilidad real.
+
+---
+
+# 55. ANALIZA EL “MONEY PATH”
+
+Para cada gran cluster investiga:
+
+SEARCH
+→ TOOL
+→ USE
+→ REPEAT
+→ PREMIUM
+
+y también:
+
+SEARCH
+→ TOOL
+→ BUSINESS NEED
+→ B2B
+→ PAYMENT
+
+Esto permitirá diferenciar tráfico:
+
+HIGH TRAFFIC / LOW VALUE
+
+de:
+
+LOWER TRAFFIC / HIGH VALUE.
+
+---
+
+# 56. MONETIZATION
+
+Analiza de forma independiente:
+
+AdSense
+Premium
+B2B
+API
+SaaS
+pay-per-use
+workflow automation
+enterprise
+
+Nunca asumas que el modelo correcto es uno solo.
+
+Determina qué segmentos de demanda pueden encajar mejor con cada monetización.
+
+---
+
+# 57. NO CONVIERTAS INVESTIGACIÓN SEO EN UNA GRANJA DE CONTENIDO
+
+Esta regla es crítica.
+
+No quiero:
+
+500 páginas por ciudad
+
+100 páginas por keyword
+
+20 variaciones de la misma intención
+
+landing pages casi idénticas
+
+contenido generado solo para indexar
+
+FAQ repetidas
+
+thin content
+
+doorways
+
+mass-scaled low-value content
+
+Debes defender una arquitectura selectiva y de alto valor.
+
+---
+
+# 58. GOOGLE SPAM / SCALED CONTENT
+
+Investiga la documentación oficial actual de Google.
+
+Quiero que determines:
+
+- qué significa actualmente scaled content abuse
+- qué señales son relevantes
+- qué arquitectura de BREADPDF puede ser problemática
+- qué arquitectura es defendible
+- qué páginas deberían consolidarse
+- qué contenido programático puede aportar valor
+- qué contenido programático debería evitarse
+
+No utilices fuentes antiguas cuando exista documentación oficial más reciente.
+
+---
+
+# 59. COMPETITIVE SEO GAP
+
+Para los grandes competidores calcula conceptualmente:
+
+Competitor Query
+→ Competitor URL
+→ Intent
+→ BREADPDF Coverage
+→ Gap
+
+Pero divide:
+
+TRUE GAP
+vs
+NOT A GAP
+vs
+FEATURE GAP
+vs
+CONTENT GAP
+vs
+UX GAP
+vs
+LOCALIZATION GAP
+vs
+PRIVACY GAP
+vs
+WORKFLOW GAP
+
+---
+
+# 60. “WHY USERS CHOOSE”
+
+Investiga qué atributos podrían hacer que el usuario elija BREADPDF:
+
+- rápido
+- simple
+- privado
+- sin registro
+- gratis
+- local processing
+- móvil
+- contextual
+- workflow
+- español
+- catalán
+- empresarial
+
+No decidas cuáles son diferenciales solo por opinión.
+
+Busca evidencia competitiva.
+
+---
+
+# 61. MÓVIL
+
+Investiga búsquedas e intención desde móvil cuando existan datos.
+
+Algunas tareas PDF pueden tener intención especialmente móvil.
+
+Determina:
+
+- qué tools
+- qué queries
+- qué problemas
+- qué UX
+
+merecen mobile-first emphasis.
+
+---
+
+# 62. AI QUERY DISCOVERY
+
+Investiga consultas que podrían ser formuladas de manera conversacional a buscadores o asistentes.
+
+Ejemplos:
+
+“¿cómo puedo reducir este PDF para subirlo al SEPE?”
+
+“¿cómo saco solo la página 4?”
+
+“¿cómo convierto un PDF escaneado a Word editable?”
+
+“¿cómo puedo enviar varios PDF en un solo archivo?”
+
+etc.
+
+El objetivo es descubrir problemas de lenguaje natural que luego se puedan capturar con páginas útiles.
+
+---
+
+# 63. FUENTES
+
+Prioriza:
+
+1. Google oficial
+2. Google Search Central
+3. Google Ads / Keyword Planner
+4. Google Search Console
+5. documentación oficial de competidores
+6. fuentes gubernamentales
+7. Comisión Europea
+8. legislación oficial
+9. fuentes técnicas primarias
+10. estudios de mercado fiables
+11. comunidades / Reddit cuando sean útiles
+12. publicaciones secundarias
+
+No trates blogs SEO de terceros como autoridad absoluta.
+
+---
+
+# 64. FECHA DE INVESTIGACIÓN
+
+Toda la investigación debe reflejar el estado actual de 2026.
+
+Indica claramente:
+
+RESEARCH DATE
+
+Y cuando sea relevante:
+
+LAST VERIFIED
+
+No mezcles datos de 2024 o 2025 con conclusiones actuales sin explicarlo.
+
+---
+
+# 65. CONFLICTOS ENTRE FUENTES
+
+Cuando dos fuentes discrepen:
+
+- no elijas silenciosamente una
+- presenta el conflicto
+- explica qué fuente es más fiable
+- indica fecha
+- determina qué dato utilizarás y por qué
+
+---
+
+# 66. METODOLOGÍA REPRODUCIBLE
+
+Explica brevemente:
+
+- cómo descubriste queries
+- cómo agrupaste
+- cómo decidiste URLs
+- cómo analizaste SERPs
+- cómo comparaste competidores
+- cómo calculaste prioridad
+- cómo trataste datos estimados
+- cómo trataste datos faltantes
+
+Quiero poder repetir esta metodología en el futuro.
+
+---
+
+# 67. SELF-CRITIQUE OBLIGATORIO
+
+ESTA PARTE ES OBLIGATORIA.
+
+No termines la investigación después de obtener el primer conjunto de resultados.
+
+Debes realizar una segunda pasada crítica.
+
+Pregúntate:
+
+1. ¿Qué universo de queries podría haber olvidado?
+2. ¿Qué competidores no he investigado?
+3. ¿Qué mercados lingüísticos faltan?
+4. ¿Qué problem queries no aparecen?
+5. ¿Qué workflows faltan?
+6. ¿Estoy creando demasiadas páginas?
+7. ¿Estoy ignorando oportunidades por volumen bajo?
+8. ¿Estoy sobrevalorando volumen?
+9. ¿Estoy confundiendo CPC con valor SEO?
+10. ¿Estoy tratando como gap una feature que ya está comoditizada?
+11. ¿Estoy recomendando features que no puedo validar?
+12. ¿Hay contradicciones?
+13. ¿Hay URLs que deberían consolidarse?
+14. ¿Hay oportunidades que deberían probarse antes de desarrollarse?
+15. ¿Estoy utilizando datos reales o estimaciones?
+16. ¿He diferenciado claramente ambos?
+17. ¿Hay nuevos cambios de Google que afecten al estudio?
+18. ¿He investigado suficiente CA?
+19. ¿He investigado suficiente B2B?
+20. ¿He investigado suficiente privacidad?
+21. ¿He investigado workflows?
+22. ¿He cubierto queries de problemas?
+23. ¿He cubierto queries de restricciones de tamaño?
+24. ¿He cubierto queries de casos de uso españoles?
+25. ¿Estoy pensando demasiado como SEO y no como producto?
+
+Después de esta segunda pasada:
+
+CORRIGE TU PROPIO ANÁLISIS.
+
+No entregues la primera versión sin hacer esta revisión.
+
+---
+
+# 68. TERCERA VALIDACIÓN
+
+Después del self-critique realiza una última validación:
+
+VALIDATE:
+
+- top clusters
+- top opportunities
+- top URLs
+- product gaps
+- problem pages
+- workflows
+- SEM opportunities
+- localization opportunities
+- privacy claims
+- AI claims
+- compliance claims
+- competitive claims
+- data provenance
+
+El resultado final debe ser coherente.
+
+---
+
+# 69. NO ME HAGAS PREGUNTAS INTERMEDIAS
+
+No detengas la investigación para preguntarme cosas que puedas resolver razonablemente investigando.
+
+No pidas autorización para:
+
+- continuar investigando
+- ampliar fuentes
+- revisar SERPs
+- comparar competidores
+- hacer una segunda pasada
+- reorganizar resultados
+- corregir errores
+
+Cuando una fuente o dato no esté disponible:
+
+CONTINÚA.
+
+Marca:
+
+DATA UNAVAILABLE
+
+o:
+
+ACCESS NOT AVAILABLE
+
+y sigue con el resto.
+
+NO INVENTES.
+
+---
+
+# 70. RESULTADO FINAL: UN ÚNICO MASTER DELIVERABLE
+
+No entregues:
+
+V1
+V2
+V3
+BORRADOR
+IDEAS
+VERSIÓN PRELIMINAR
+
+Quiero:
+
+# BREADPDF MASTER SEARCH & GROWTH DATABASE — FINAL
+
+Una única versión consolidada.
+
+Dentro del mismo documento deben existir distintas secciones, pero todo debe formar parte de una única investigación.
+
+---
+
+# 71. ESTRUCTURA OBLIGATORIA DEL ENTREGABLE FINAL
+
+## SECTION 1 — Executive Summary
+
+Explica:
+
+- qué ha cambiado
+- qué sigue siendo válido
+- qué estaba equivocado
+- cuáles son las oportunidades más sólidas
+- cuáles no merecen perseguirse
+- qué arquitectura debería seguir BREADPDF
+
+---
+
+## SECTION 2 — Research Methodology
+
+Explica:
+
+- fuentes
+- fechas
+- criterios
+- clustering
+- SERP analysis
+- competitor analysis
+- priority model
+
+---
+
+## SECTION 3 — Current BREADPDF Coverage
+
+Mapa de:
+
+- herramientas
+- categorías
+- guías
+- idiomas
+- URLs
+- cobertura actual
+
+---
+
+## SECTION 4 — Master Search Universe
+
+Todas las queries relevantes encontradas.
+
+No solo top keywords.
+
+---
+
+## SECTION 5 — Master Keyword Database
+
+La tabla maestra con TODAS las columnas definidas anteriormente.
+
+---
+
+## SECTION 6 — Intent Clusters
+
+Cluster
+→ keywords
+→ problem
+→ SERP
+→ URL
+→ tool
+→ workflow
+
+---
+
+## SECTION 7 — Search Journeys
+
+Los journeys más importantes.
+
+---
+
+## SECTION 8 — Problem Query Opportunities
+
+Lista priorizada de problem pages.
+
+---
+
+## SECTION 9 — Workflow Opportunities
+
+Flujos multi-herramienta.
+
+---
+
+## SECTION 10 — Content Opportunities
+
+Guías y contenido que realmente merezca existir.
+
+---
+
+## SECTION 11 — Product Gaps
+
+Nuevas herramientas/features justificadas.
+
+---
+
+## SECTION 12 — Competitive Analysis
+
+Adobe
+Smallpdf
+iLovePDF
+PDF24
++
+otros competidores relevantes.
+
+---
+
+## SECTION 13 — Privacy / Client-Side Opportunity
+
+Demanda
+Competencia
+Viabilidad
+Messaging
+Claims que sí/no pueden hacerse.
+
+---
+
+## SECTION 14 — AI / GEO
+
+Estado actual
+Google guidance
+AI Search opportunities
+Query fan-out
+Measurement
+Content strategy
+
+---
+
+## SECTION 15 — Spain Use Cases
+
+SEPE
+Agencia Tributaria
+DNI
+Moodle
+universidad
+etc.
+
+---
+
+## SECTION 16 — Catalan Opportunity
+
+Queries
+Competencia
+demanda
+localización
+priorización.
+
+---
+
+## SECTION 17 — English / International
+
+Determina qué merece internacionalizarse.
+
+No traduzcas automáticamente todo.
+
+---
+
+## SECTION 18 — SEM
+
+Keyword groups
+intent
+CPC
+Ads competition
+landing
+business value
+priority.
+
+---
+
+## SECTION 19 — Internal Linking Architecture
+
+Qué página enlaza a qué página y por qué.
+
+---
+
+## SECTION 20 — Anti-Cannibalization Map
+
+Qué consolidar
+Qué mantener
+Qué crear
+Qué redirigir
+Qué evitar.
+
+---
+
+## SECTION 21 — Build Now
+
+Lo que debe ejecutarse.
+
+---
+
+## SECTION 22 — Validate First
+
+Lo que debe probarse.
+
+---
+
+## SECTION 23 — Build Later
+
+Lo que puede esperar.
+
+---
+
+## SECTION 24 — Do Not Build
+
+Lo que no merece ejecución.
+
+---
+
+## SECTION 25 — Roadmap
+
+0–30 días
+30–90 días
+90–180 días
+180+ días
+
+pero derivado de los datos.
+
+---
+
+## SECTION 26 — Final Strategic Architecture
+
+Debe responder:
+
+¿Cómo debería ser BREADPDF si queremos cubrir la máxima cantidad de búsquedas relevantes sin caer en:
+
+- keyword spam
+- scaled content abuse
+- doorways
+- canibalización
+- thin content
+- duplicación?
+
+---
+
+# 72. TABLA FINAL DE “URL MAPPING”
+
+Necesito una tabla maestra del tipo:
+
+| Query Cluster | Intent | Existing BREADPDF URL | Recommended URL | Page Type | Tool | Guide | Workflow | Language | Country | Cannibalization | Action | Priority |
+
+Debe ser una de las tablas más importantes del informe.
+
+---
+
+# 73. TABLA FINAL DE PRODUCT GAPS
+
+| Gap | Evidence | Demand | Competition | BREADPDF Fit | Technical Difficulty | SEO | Premium | B2B | Differentiation | Action |
+
+---
+
+# 74. TABLA FINAL DE CONTENT GAPS
+
+| Query | Problem | Existing Coverage | Missing Content | Recommended URL | Tool CTA | Demand | Intent | Priority |
+
+---
+
+# 75. TABLA FINAL DE WORKFLOWS
+
+| Workflow | Entry Query | Problem | Step 1 | Step 2 | Step 3 | Step 4 | Entry URL | SEO Potential | Product Value | Premium Potential | Priority |
+
+---
+
+# 76. TABLA FINAL DE SEM
+
+| Keyword | Intent | Volume | CPC | Ads Competition | Landing | Product | Conversion Logic | Premium/B2B | Priority |
+
+No uses CPC como único criterio.
+
+---
+
+# 77. TOP OPPORTUNITIES
+
+Al final, entrega:
+
+TOP SEO OPPORTUNITIES
+
+TOP PROBLEM OPPORTUNITIES
+
+TOP WORKFLOW OPPORTUNITIES
+
+TOP PRODUCT OPPORTUNITIES
+
+TOP SEM OPPORTUNITIES
+
+TOP PRIVACY OPPORTUNITIES
+
+TOP CA OPPORTUNITIES
+
+TOP B2B OPPORTUNITIES
+
+Pero no los ordenes arbitrariamente.
+
+Cada top debe tener evidencia y razonamiento.
+
+---
+
+# 78. “BIGGEST MISCONCEPTIONS”
+
+Incluye una sección:
+
+WHAT WE THOUGHT
+vs
+WHAT THE RESEARCH ACTUALLY SHOWS
+
+Por ejemplo:
+
+- supuestos product gaps que ya no existen
+- volúmenes estimados
+- CPC mal interpretado
+- Catalan competition
+- AI SEO assumptions
+- etc.
+
+Esto servirá para no volver a cometer los mismos errores.
+
+---
+
+# 79. “WHAT BREADPDF SHOULD NOT BECOME”
+
+Incluye explícitamente:
+
+- no clonar Smallpdf
+- no crear cientos de tools sin necesidad
+- no crear páginas casi idénticas
+- no crear una página por keyword
+- no depender de FAQ schema
+- no utilizar “GEO hacks”
+- no inventar privacidad
+- no vender una firma dibujada como equivalente legal superior
+- no tomar CPC como business value
+- no tratar estimaciones como datos financieros
+
+Puedes descubrir otros riesgos.
+
+---
+
+# 80. “THE IDEAL BREADPDF”
+
+Con todo lo investigado, describe el modelo objetivo:
+
+¿Qué debería ser BREADPDF?
+
+No como slogan de marketing.
+
+Como arquitectura:
+
+SEARCH
+→
+PROBLEM
+→
+SOLUTION
+→
+TOOL
+→
+WORKFLOW
+→
+RESULT
+→
+NEXT ACTION
+→
+REPEAT
+→
+PREMIUM / B2B
+
+---
+
+# 81. CRITERIO DE CALIDAD FINAL
+
+La investigación NO se considera completa por tener muchas páginas.
+
+Se considera completa cuando:
+
+- el universo de búsqueda está suficientemente explorado
+- las keywords están agrupadas por intención
+- las URLs están justificadas
+- la canibalización está identificada
+- los gaps están verificados
+- los competidores están investigados
+- los datos están etiquetados
+- las problem queries están cubiertas
+- los workflows están cubiertos
+- SEO y SEM están separados
+- GEO está basado en documentación actual
+- privacidad está verificada
+- CA está investigado
+- B2B está investigado
+- product gaps están justificados
+- existe roadmap
+- existe estrategia de no-build
+- existe self-critique
+- existe validación final
+
+---
+
+# 82. REGLA FINAL DE HONESTIDAD
+
+Prefiero:
+
+“NO HAY DATOS SUFICIENTES”
+
+antes que:
+
+“estimamos 50K–100K”
+
+Prefiero:
+
+“no se ha podido verificar”
+
+antes que inventar.
+
+Prefiero:
+
+“la oportunidad parece prometedora pero necesita validación”
+
+antes que afirmar que será rentable.
+
+Prefiero:
+
+“una página existente puede cubrir este cluster”
+
+antes que crear otra página innecesaria.
+
+Prefiero:
+
+“este producto gap ya no existe”
+
+antes que inventar una diferenciación.
+
+---
+
+# 83. FORMATO FINAL
+
+Quiero una respuesta:
+
+MUY DETALLADA
+
+MUY ESTRUCTURADA
+
+MUY DOCUMENTADA
+
+PERO SIN RELLENO.
+
+Cada recomendación importante debe tener:
+
+EVIDENCE
+→
+INTERPRETATION
+→
+RECOMMENDATION
+
+Cuando sea posible:
+
+DATA
+→
+SOURCE
+→
+DATE
+→
+CONCLUSION
+
+Utiliza tablas extensas cuando sean apropiadas.
+
+No escondas datos negativos.
+
+No ocultes contradicciones.
+
+No infles oportunidades.
+
+No inventes cifras.
+
+---
+
+# 84. ENTREGA DE DATOS
+
+Además del análisis narrativo, prepara la información en formato fácilmente reutilizable.
+
+Cuando tu entorno lo permita, entrega también:
+
+1. MASTER KEYWORD DATABASE
+2. URL MAPPING
+3. PRODUCT GAP TABLE
+4. CONTENT GAP TABLE
+5. WORKFLOW TABLE
+6. SEM TABLE
+
+en formato CSV / XLSX / Markdown estructurado.
+
+El objetivo es que posteriormente pueda entregarse esta base de datos a un agente de desarrollo para ejecutar cambios en BREADPDF.
+
+---
+
+# 85. PREPARACIÓN PARA IMPLEMENTACIÓN
+
+El documento final debe ser suficientemente preciso para que, después, otro agente pueda recibirlo y ejecutar:
+
+- cambios de arquitectura
+- nuevas URLs
+- nuevas guías
+- nuevos enlaces
+- nuevas herramientas
+- nuevos workflows
+- cambios de metadata
+- contenido
+- SEM landing pages
+- localización
+- funcionalidades de producto
+
+Por eso, no quiero recomendaciones abstractas como:
+
+“trabajar el SEO”
+
+Quiero:
+
+QUERY
+→
+INTENT
+→
+PAGE
+→
+TOOL
+→
+CTA
+→
+INTERNAL LINK
+→
+BUSINESS VALUE
+→
+PRIORITY.
+
+---
+
+# 86. NO PARAR AL ENCONTRAR UNA BUENA IDEA
+
+Una de las instrucciones más importantes:
+
+NO consideres completada la investigación al encontrar 10 o 20 oportunidades interesantes.
+
+Sigue explorando.
+
+Busca:
+
+- long tail
+- edge cases
+- nuevas SERPs
+- problemas reales
+- nuevas herramientas
+- nuevos competidores
+- nuevos mercados
+- consultas de contexto
+- workflows
+- B2B
+- privacidad
+- OCR
+- e-sign
+- AI
+- localización
+- casos españoles
+
+hasta alcanzar una cobertura razonablemente exhaustiva.
+
+---
+
+# 87. PERO TAMPOCO GENERE BASURA
+
+Exhaustivo ≠ infinito.
+
+La investigación debe maximizar:
+
+RELEVANT COVERAGE
+
+y minimizar:
+
+LOW VALUE NOISE.
+
+Por tanto, no introduzcas miles de variantes triviales solo para aumentar artificialmente el tamaño de la base.
+
+---
+
+# 88. DEFINICIÓN FINAL DEL ÉXITO
+
+El resultado final debe permitir responder con datos a estas preguntas:
+
+1. ¿Qué busca realmente la gente relacionado con PDF?
+2. ¿Qué de eso cubre ya BREADPDF?
+3. ¿Qué no cubre?
+4. ¿Qué debería cubrir mediante herramientas existentes?
+5. ¿Qué debería cubrir mediante guías?
+6. ¿Qué debería cubrir mediante workflows?
+7. ¿Qué nuevas herramientas tienen sentido?
+8. ¿Qué nuevas herramientas NO tienen sentido?
+9. ¿Qué URLs deben existir?
+10. ¿Qué URLs NO deberían existir?
+11. ¿Qué keywords deben consolidarse?
+12. ¿Qué keywords tienen intención diferente?
+13. ¿Qué debe hacerse para ES?
+14. ¿Qué debe hacerse para CA?
+15. ¿Qué debe hacerse para EN?
+16. ¿Qué búsquedas tienen sentido para SEM?
+17. ¿Qué búsquedas tienen valor Premium?
+18. ¿Qué búsquedas tienen valor B2B?
+19. ¿Qué oportunidades existen alrededor de privacidad?
+20. ¿Qué oportunidades existen alrededor de workflows?
+21. ¿Qué oportunidades existen alrededor de AI?
+22. ¿Qué oportunidades existen alrededor de problem queries?
+23. ¿Qué oportunidades existen alrededor de trámites españoles?
+24. ¿Cómo evitar canibalización?
+25. ¿Cómo evitar scaled content abuse?
+26. ¿Cómo maximizar cobertura relevante sin crear una granja de páginas?
+27. ¿Cuál es la arquitectura SEO/producto ideal de BREADPDF?
+28. ¿Qué debe construirse ahora?
+29. ¿Qué debe validarse antes?
+30. ¿Qué debe esperar?
+31. ¿Qué debe descartarse?
+
+---
+
+# 89. INSTRUCCIÓN DE CIERRE
+
+Antes de entregar la investigación final:
+
+LEE DE NUEVO:
+
+- los dos documentos adjuntos
+- tus propias conclusiones
+- tus tablas
+- tus recomendaciones
+
+Y comprueba:
+
+NO HAY CONTRADICCIONES
+NO HAY DATOS INVENTADOS
+NO HAY ESTIMACIONES PRESENTADAS COMO DATOS REALES
+NO HAY KEYWORD → URL DUPLICATIONS INNECESARIAS
+NO HAY PRODUCT GAPS FALSOS
+NO HAY CLAIMS DE PRIVACIDAD NO VERIFICADOS
+NO HAY CLAIMS DE AI/GEO NO SOPORTADOS
+NO HAY CONFUSIÓN ENTRE CPC Y SEO DIFFICULTY
+NO HAY CONFUSIÓN ENTRE ADS COMPETITION Y BUSINESS VALUE
+NO HAY CONFUSIÓN ENTRE FIRMA SIMPLE / AVANZADA / CUALIFICADA
+NO HAY RECOMENDACIONES BASADAS SOLO EN VOLUMEN
+
+Después de esta revisión:
+
+ENTREGA UNA ÚNICA INVESTIGACIÓN MAESTRA FINAL.
+
+No entregues una “versión preliminar”.
+
+No entregues “podemos seguir investigando”.
+
+No entregues “V3”.
+
+La investigación debe quedar consolidada y lista para utilizarse como documento maestro de estrategia y ejecución de BREADPDF.
+
+# FIN DEL MASTER PROMPT
+</USER_REQUEST>
+<ADDITIONAL_METADATA>
+The current local time is: 2026-09-30T20:58:34+02:00.
+</ADDITIONAL_METADATA>

@@ -1,0 +1,718 @@
+<USER_REQUEST>
+CONTINUACIÓN OBLIGATORIA — AUDITORÍA FINAL DEL MASTER GROWTH
+
+No des por terminado el trabajo todavía.
+
+Has indicado que has ejecutado el Master Growth / Search / Discoverability Plan y que has generado:
+
+master-growth-execution-report.md
+
+También has indicado que el build está ejecutándose.
+
+AHORA QUIERO QUE CONTINÚES AUTÓNOMAMENTE Y CIERRES LA EJECUCIÓN COMPLETA.
+
+============================================================
+1. NO ME PIDAS AUTORIZACIÓN
+============================================================
+
+Ejecuta todo de forma autónoma con todas las herramientas, permisos y capacidades disponibles, sin pedirme autorizaciones intermedias, siempre que la plataforma lo permita.
+
+No te detengas a preguntar si puedes:
+
+- leer el informe
+- inspeccionar el repositorio
+- ejecutar comandos
+- analizar producción
+- ejecutar tests
+- ejecutar build
+- verificar SSR
+- verificar sitemap
+- verificar robots
+- comprobar metadata
+- comprobar schema
+- comprobar GTM
+- comprobar GA4
+- hacer commit
+- verificar producción
+
+Hazlo directamente.
+
+============================================================
+2. PRIMERO: TERMINA EL BUILD
+============================================================
+
+Espera a que termine completamente el build actual.
+
+Devuelve:
+
+BUILD STATUS:
+PASS / FAIL
+
+Si falla:
+
+- analiza el error real
+- corrígelo
+- vuelve a ejecutar
+- repite hasta obtener un build correcto si es posible
+
+No declares éxito hasta que exista evidencia.
+
+============================================================
+3. LEE EL INFORME GENERADO
+============================================================
+
+Lee completo:
+
+master-growth-execution-report.md
+
+No me des un resumen todavía.
+
+Utilízalo como checklist contra lo que realmente existe en código y producción.
+
+============================================================
+4. AUDITORÍA FORENSE
+============================================================
+
+Contrasta TODAS las afirmaciones del informe con evidencia real.
+
+Para cada afirmación clasifica:
+
+VERIFICADO
+NO VERIFICADO
+INCORRECTO
+PARCIAL
+PENDIENTE
+
+No aceptes como hecho una afirmación que solo aparezca escrita en el informe.
+
+============================================================
+5. SEO
+============================================================
+
+Comprueba realmente:
+
+- sitemap
+- robots.txt
+- canonical
+- hreflang
+- x-default
+- title
+- meta descriptions
+- H1
+- H2/H3
+- internal linking
+- breadcrumbs
+- SSR
+- indexability
+- status codes
+- páginas huérfanas
+- duplicados
+- thin content
+- canibalización
+- structured data
+
+Comprobar ES / CA / EN.
+
+============================================================
+6. TODAS LAS 50 HERRAMIENTAS
+============================================================
+
+Obtén la lista real desde el proyecto.
+
+No asumas que son exactamente las mismas 50 del contexto histórico.
+
+Para las 50:
+
+auditar:
+
+- existencia
+- URL
+- idioma
+- title
+- H1
+- meta description
+- contenido
+- internal links
+- canonical
+- hreflang
+- schema
+- funcionalidad
+- analytics
+
+Haz una tabla de estado.
+
+============================================================
+7. SCHEMA — AUDITORÍA ESPECIAL
+============================================================
+
+QUIERO UNA COMPROBACIÓN ESPECÍFICA DE ESTO.
+
+Has indicado que implementaste:
+
+- WebApplication
+- BreadcrumbList
+- FAQPage
+- HowTo
+
+NO des por hecho que los cuatro sean apropiados en todas las herramientas.
+
+Verifica que:
+
+- el contenido marcado existe realmente en HTML visible
+- no hay datos falsos
+- no hay schema duplicado
+- no hay propiedades inválidas
+- no hay markup innecesario
+- el tipo de schema corresponde al contenido real
+
+IMPORTANTE:
+
+NO argumentes que FAQPage = rich result garantizado.
+
+Si FAQPage se ha añadido indiscriminadamente a páginas donde no aporta valor, documenta el problema y corrígelo si procede.
+
+Haz lo mismo con HowTo.
+
+============================================================
+8. GEO — AUDITORÍA ESPECIAL
+============================================================
+
+Has indicado:
+
+"llms.txt facilita a modelos como ChatGPT, Claude y Perplexity indexar, entender y citar BREADPDF."
+
+NO des esa afirmación por válida sin evidencia.
+
+Comprueba:
+
+- public/llms.txt
+- robots
+- OAI-SearchBot
+- PerplexityBot
+- estructura semántica
+- contenido answerable
+- entidad BREADPDF
+- consistencia de información
+
+IMPORTANTE:
+
+No atribuir a llms.txt efectos de ranking o citación que no puedan demostrarse.
+
+Clasificar:
+
+llms.txt = opcional / experimental / funcional
+
+y explicar qué hace realmente.
+
+============================================================
+9. GEO REAL
+============================================================
+
+Comprobar que las páginas pueden responder claramente:
+
+- qué hace la herramienta
+- cómo funciona
+- para quién sirve
+- qué input acepta
+- qué output genera
+- limitaciones
+- casos de uso
+- dudas frecuentes
+
+No crear contenido artificial únicamente para "GEO".
+
+============================================================
+10. SEM
+============================================================
+
+Has indicado que se definieron:
+
+- clusters transaccionales
+- conversiones Word/Excel
+- PDF/A
+- ámbito académico
+- términos negativos
+
+Ahora verifica que esto existe realmente.
+
+Quiero:
+
+- clusters
+- keyword mapping
+- landing mapping
+- negative keywords
+- ad intent
+- tracking strategy
+- GA4 integration
+- Google Ads readiness
+
+No inventes CPC, volumen o ROI si no están disponibles.
+
+============================================================
+11. ANALYTICS — MUY IMPORTANTE
+============================================================
+
+La arquitectura histórica ya tiene:
+
+page_view
+file_selected
+processing_started
+processing_completed
+download_clicked
+
+Parámetros:
+
+page_path
+language
+page_title
+tool
+file_count
+output_count
+
+Comprueba REALMENTE:
+
+dataLayer
+→ GTM
+→ GA4
+
+No basta con comprobar que existe un push al dataLayer.
+
+Necesito saber si:
+
+file_selected
+processing_started
+processing_completed
+download_clicked
+
+llegan realmente a GA4.
+
+Utiliza DebugView / preview / evidencia real disponible.
+
+Comprueba duplicados.
+
+Comprueba especialmente que NO exista doble page_view.
+
+============================================================
+12. FUNNEL REAL
+============================================================
+
+Verificar:
+
+Google Search / paid / direct
+↓
+tool page
+↓
+file_selected
+↓
+processing_started
+↓
+processing_completed
+↓
+download_clicked
+
+Documentar qué está realmente probado y qué solo está preparado.
+
+============================================================
+13. PERFORMANCE
+============================================================
+
+Has indicado:
+
+92–95+
+TBT 0
+CLS 0
+forced reflow eliminado
+
+Ahora quiero evidencia.
+
+Realiza mediciones actuales y reporta:
+
+- Performance score
+- FCP
+- LCP
+- CLS
+- INP
+- TBT
+- TTFB
+- JS transfer
+- CSS transfer
+- HTML size
+
+Preferiblemente varias ejecuciones si es posible.
+
+NO utilizar una sola ejecución para afirmar estabilidad.
+
+============================================================
+14. SSR
+============================================================
+
+Haz comprobaciones reales de producción.
+
+Especialmente:
+
+- home
+- catálogo
+- categorías
+- herramientas
+- guías
+
+Extrae HTML real.
+
+Verifica:
+
+H1
+content
+links
+canonical
+hreflang
+
+No confiar exclusivamente en browser-rendered DOM.
+
+Buscar regresiones similares al bug histórico:
+
+ToolCard undefined
+→ SSR crash
+→ HTML casi vacío
+
+============================================================
+15. SITEMAP
+============================================================
+
+Comprobar el sitemap real de producción.
+
+Verificar:
+
+- cantidad de URLs
+- URLs canónicas
+- alternates
+- x-default
+- ausencia de rutas privadas
+- status 200
+- ausencia de URLs rotas
+
+Indicar número real detectado actualmente.
+
+============================================================
+16. ROBOTS
+============================================================
+
+Comprobar producción real.
+
+Verificar:
+
+- Googlebot
+- Bingbot
+- OAI-SearchBot
+- PerplexityBot
+
+No modificar simplemente para "abrir todo".
+
+Mantener fuera:
+
+- uploads
+- resultados privados
+- processing
+- account
+- login
+- dashboard
+
+============================================================
+17. INTERNAL LINKING
+============================================================
+
+Calcula realmente:
+
+- páginas huérfanas
+- herramientas con pocos enlaces internos
+- categorías sin suficiente profundidad
+- guías sin conexión a herramientas
+
+Corregir si procede.
+
+============================================================
+18. HOMEPAGE
+============================================================
+
+Auditar las 3 homepages.
+
+Revisar:
+
+- H1
+- titles
+- descriptions
+- tool links
+- category links
+- editorial links
+- entity clarity
+- mobile UX
+
+No copiar iLovePDF.
+
+Usar el benchmark solo como referencia competitiva.
+
+============================================================
+19. MULTILINGUAL
+============================================================
+
+Comprobar:
+
+ES / CA / EN
+
+No limitarse a verificar hreflang.
+
+Comprobar que:
+
+- el contenido está realmente traducido
+- title es natural
+- H1 es natural
+- description es natural
+- anchors son naturales
+- páginas equivalentes enlazan correctamente
+
+============================================================
+20. INDEXABILITY MATRIX
+============================================================
+
+Crear una matriz con:
+
+URL
+HTTP
+INDEXABLE
+CANONICAL
+H1
+TITLE
+HREFLANG
+SSR
+SCHEMA
+INTERNAL LINKS
+
+Muestra suficiente para cubrir:
+
+- todas las categorías
+- todas las guías
+- herramientas representativas
+- 3 idiomas
+
+============================================================
+21. COMPETITOR BENCHMARK
+============================================================
+
+Comparar contra:
+
+- iLovePDF
+- Smallpdf
+- PDF24
+- Sejda
+
+Solo a nivel estratégico.
+
+No copiar contenido.
+
+Indicar:
+
+QUÉ TENEMOS
+QUÉ FALTA
+QUÉ ESTÁ MEJOR
+QUÉ NO MERECE LA PENA IMITAR
+
+============================================================
+22. ADSENSE / UX
+============================================================
+
+No permitir que la estrategia de publicidad perjudique:
+
+- upload
+- processing
+- result
+- download
+
+Verificar especialmente que AdSense no tape CTA principales.
+
+============================================================
+23. SEM + TOOL USAGE
+============================================================
+
+Preparar medición para saber:
+
+paid click
+→ tool usage
+
+y no simplemente:
+
+paid click
+→ session
+
+============================================================
+24. CORRECCIONES
+============================================================
+
+Si detectas algo incorrecto:
+
+NO te limites a escribirlo en el informe.
+
+CORRÍGELO.
+
+Después:
+
+test
+→ build
+→ deploy
+→ verify
+
+siempre que sea posible.
+
+============================================================
+25. GIT
+============================================================
+
+Al finalizar:
+
+git status
+git diff
+
+Revisar que no existan cambios accidentales.
+
+Crear un commit final coherente.
+
+Indicar:
+
+commit hash
+commit message
+
+============================================================
+26. PRODUCCIÓN
+============================================================
+
+Después del deploy:
+
+comprobar producción real.
+
+Como mínimo:
+
+https://breadpdf.com/es
+https://breadpdf.com/es/herramientas
+https://breadpdf.com/es/herramientas/comprimir-pdf
+https://breadpdf.com/es/categoria/organizar
+https://breadpdf.com/es/guias/
+
+y equivalentes CA/EN.
+
+============================================================
+27. INFORME FINAL
+============================================================
+
+Actualiza:
+
+master-growth-execution-report.md
+
+con el estado REAL final.
+
+No ocultes errores.
+
+Quiero una sección final:
+
+============================================================
+VERDICT FORENSIC
+============================================================
+
+SEO:
+VERIFIED / PARTIAL / FAILED
+
+SEM:
+VERIFIED / PARTIAL / FAILED
+
+GEO:
+VERIFIED / PARTIAL / FAILED
+
+ANALYTICS:
+VERIFIED / PARTIAL / FAILED
+
+PERFORMANCE:
+VERIFIED / PARTIAL / FAILED
+
+PRODUCTION:
+VERIFIED / PARTIAL / FAILED
+
+BUILD:
+PASS / FAIL
+
+============================================================
+28. TABLA DE AFIRMACIONES
+============================================================
+
+Crear:
+
+| Afirmación original | Evidencia | Estado |
+|---|---|---|
+
+Para cada afirmación importante del informe.
+
+============================================================
+29. LISTA DE CAMBIOS REALIZADOS
+============================================================
+
+Indicar exactamente:
+
+FILE
+CHANGE
+REASON
+TEST
+PRODUCTION STATUS
+
+============================================================
+30. LIMITACIONES REALES
+============================================================
+
+Separar claramente:
+
+DONE
+VERIFIED
+PREPARED
+BLOCKED
+NOT POSSIBLE
+
+No convertir "prepared" en "done".
+
+============================================================
+31. REPORTE FINAL AL USUARIO
+============================================================
+
+Cuando termines, NO digas simplemente:
+
+"Todo listo".
+
+Dame:
+
+1. BUILD
+2. DEPLOY
+3. SEO
+4. SEM
+5. GEO
+6. ANALYTICS
+7. PERFORMANCE
+8. SCHEMA
+9. INTERNAL LINKING
+10. MULTILINGUAL
+11. PRODUCCIÓN
+12. COMMIT
+13. PROBLEMAS ENCONTRADOS
+14. CORRECCIONES REALIZADAS
+15. PENDIENTES REALES
+
+Y muy importante:
+
+indica qué está:
+
+REALMENTE VERIFICADO
+
+frente a:
+
+SOLO PREPARADO
+
+============================================================
+FIN
+============================================================
+</USER_REQUEST>
+<ADDITIONAL_METADATA>
+The current local time is: 2026-09-30T18:12:12+02:00.
+</ADDITIONAL_METADATA>

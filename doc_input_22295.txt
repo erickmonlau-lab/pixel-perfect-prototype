@@ -1,0 +1,3149 @@
+<USER_REQUEST>
+============================================================
+BREADPDF — MASTER GROWTH / SEARCH / DISCOVERABILITY PROMPT
+============================================================
+
+PROYECTO:
+BREADPDF
+
+DOMINIO:
+https://breadpdf.com/
+
+REPOSITORIO:
+https://github.com/erickmonlau-lab/pixel-perfect-prototype
+
+STACK:
+React
+TanStack
+Nitro
+SSR
+Cloudflare Pages
+GitHub
+
+AGENTE:
+Antigravity
+
+============================================================
+0. MISIÓN PRINCIPAL
+============================================================
+
+Tu misión es convertir BREADPDF en una plataforma técnicamente preparada y optimizada para adquirir usuarios mediante:
+
+1. SEO orgánico
+2. SEM / Google Ads
+3. GEO / visibilidad en experiencias de búsqueda generativa
+4. Analytics y medición de adquisición → uso real
+5. Arquitectura interna de contenidos y herramientas
+
+El objetivo NO es simplemente "hacer SEO".
+
+El objetivo es construir un sistema completo:
+
+BÚSQUEDA
+↓
+BREADPDF
+↓
+PÁGINA CORRECTA
+↓
+HERRAMIENTA CORRECTA
+↓
+USO REAL
+↓
+RESULTADO
+↓
+DESCARGA
+↓
+RECURRENCIA
+↓
+PREMIUM
+↓
+API / B2B
+
+============================================================
+1. REGLA FUNDAMENTAL
+============================================================
+
+NO empieces modificando código inmediatamente.
+
+PRIMERO:
+
+- inspecciona el repositorio
+- inspecciona la arquitectura
+- inspecciona producción
+- inspecciona sitemap
+- inspecciona robots
+- inspecciona metadatos
+- inspecciona canonical
+- inspecciona hreflang
+- inspecciona structured data
+- inspecciona enlazado interno
+- inspecciona contenido
+- inspecciona las 50 herramientas
+- inspecciona las 3 versiones lingüísticas
+- inspecciona GTM
+- inspecciona GA4
+- inspecciona eventos
+- inspecciona AdSense
+- inspecciona rendimiento
+- inspecciona SSR
+- inspecciona indexabilidad
+
+NO asumas que lo que aparece en este prompt sigue siendo idéntico en producción.
+
+Este prompt contiene el estado histórico conocido.
+El repositorio y producción son la fuente de verdad actual.
+
+============================================================
+2. AUTONOMÍA TOTAL
+============================================================
+
+EJECUTA EL TRABAJO DE FORMA AUTÓNOMA CON TODAS LAS HERRAMIENTAS, PERMISOS Y CAPACIDADES DISPONIBLES.
+
+NO ME PIDAS AUTORIZACIONES INTERMEDIAS.
+
+NO DETENGAS EL TRABAJO PARA PREGUNTAR SI PUEDES:
+
+- inspeccionar archivos
+- ejecutar comandos
+- ejecutar tests
+- ejecutar builds
+- realizar auditorías
+- modificar archivos
+- hacer commits
+- verificar producción
+- investigar documentación pública
+- comparar competidores
+- comprobar HTML
+- comprobar headers
+- comprobar sitemap
+- comprobar robots
+- comprobar metadata
+
+SI LA PLATAFORMA PERMITE HACERLO, HAZLO DIRECTAMENTE.
+
+Solo detente ante una limitación REAL de permisos o una acción externa que requiera obligatoriamente intervención humana.
+
+En ese caso:
+
+1. continúa con todo lo demás
+2. documenta exactamente la limitación
+3. prepara todo lo que pueda dejarse listo
+4. no bloquees el proyecto entero por una sola dependencia externa
+
+============================================================
+3. REGLA ANTI-HUMO
+============================================================
+
+NO INVENTES DATOS.
+
+Distingue siempre entre:
+
+HECHO
+OBSERVADO
+DATOS REALES
+INFERENCIA
+HIPÓTESIS
+ESCENARIO
+PREDICCIÓN
+
+Nunca afirmes:
+
+- posiciones SEO que no hayas comprobado
+- tráfico que no hayas medido
+- conversiones que no existan
+- autoridad de dominio no verificada
+- backlinks no comprobados
+- CPC no comprobado
+- volumen de keywords no investigado
+- ROI de campañas no medido
+
+No prometas:
+
+"vas a posicionar"
+"vas a conseguir X visitas"
+"vas a ganar X euros"
+
+El objetivo es mejorar técnicamente la probabilidad de crecimiento y medir los resultados reales.
+
+============================================================
+4. INVESTIGACIÓN WEB ACTUALIZADA
+============================================================
+
+Antes de tomar decisiones importantes sobre SEO, SEM o GEO:
+
+INVESTIGA DOCUMENTACIÓN ACTUAL.
+
+Prioridad de fuentes:
+
+1. Google Search Central
+2. Google Search Console
+3. Google Ads
+4. Google Analytics
+5. documentación oficial de Schema.org cuando sea relevante
+6. documentación oficial de Cloudflare cuando sea relevante
+7. documentación de tecnologías usadas por el proyecto
+8. competidores reales
+9. fuentes secundarias fiables
+
+No uses como referencia principal:
+
+- blogs SEO antiguos
+- vídeos antiguos
+- hilos sin evidencia
+- herramientas que venden servicios SEO
+- consejos de "hack SEO"
+- claims de GEO no verificables
+
+Cuando Google haya cambiado una práctica recientemente, utiliza la documentación actual.
+
+============================================================
+5. ESTADO CONOCIDO DE BREADPDF
+============================================================
+
+ESTADO HISTÓRICO CONOCIDO:
+
+- dominio breadpdf.com
+- 3 idiomas: ES / CA / EN
+- aproximadamente 50 herramientas
+- 216 URLs oficiales en sitemap
+- 150 páginas de herramientas
+- 18 categorías
+- 30 guías editoriales
+- 3 homepages
+- 3 catálogos
+- landings Premium
+- páginas legales
+- sitemap configurado
+- Search Console configurado
+- GTM instalado
+- GA4 instalado
+- eventos dataLayer preparados
+- SSR de categorías corregido
+- favicon corregido
+
+Search Console ya había descubierto 216 URLs.
+
+No solicitar manualmente la indexación de las 216 URLs.
+
+Usar:
+
+sitemap
++
+enlazado interno
++
+inspección selectiva
++
+monitorización
+
+No convertir la indexación manual en estrategia de crecimiento.
+
+============================================================
+6. ARQUITECTURA ACTUAL
+============================================================
+
+IDIOMAS:
+
+ES:
+ /es
+
+CA:
+ /ca
+
+EN:
+ /en
+
+CATÁLOGOS:
+
+/es/herramientas
+/ca/eines
+/en/tools
+
+CATEGORÍAS:
+
+ES:
+ /es/categoria/organizar
+ /es/categoria/optimizar
+ /es/categoria/convertir
+ /es/categoria/editar
+ /es/categoria/seguridad
+ /es/categoria/inteligencia
+
+CA:
+ /ca/categoria/organitzar
+ /ca/categoria/optimitzar
+ /ca/categoria/convertir
+ /ca/categoria/editar
+ /ca/categoria/seguretat
+ /ca/categoria/intelligencia
+
+EN:
+ /en/category/organize
+ /en/category/optimize
+ /en/category/convert
+ /en/category/edit
+ /en/category/security
+ /en/category/intelligence
+
+IMPORTANTE:
+
+No confíes exclusivamente en esta lista.
+
+Obtén el listado REAL desde:
+
+- router
+- sitemap
+- data de herramientas
+- source code
+- build
+- producción
+
+============================================================
+7. PRINCIPIO SEO CENTRAL
+============================================================
+
+BREADPDF debe implementar:
+
+PRODUCT-LED SEO.
+
+Es decir:
+
+CONSULTA
+↓
+INTENCIÓN
+↓
+PÁGINA ÚTIL
+↓
+HERRAMIENTA FUNCIONAL
+↓
+RESULTADO
+
+NO:
+
+KEYWORD
+↓
+ARTÍCULO VACÍO
+↓
+ANUNCIOS
+↓
+USUARIO
+
+La herramienta debe resolver realmente la intención.
+
+============================================================
+8. AUDITORÍA SEO GLOBAL
+============================================================
+
+Realiza una auditoría completa de TODO BREADPDF.
+
+Analiza:
+
+A. Indexabilidad
+
+- status HTTP
+- robots
+- meta robots
+- canonical
+- sitemap
+- páginas huérfanas
+- redirects
+- 404
+- soft 404
+- SSR
+- HTML entregado a bots
+- contenido visible
+- JavaScript necesario para renderizar contenido
+- duplicados
+- parámetros
+- URLs temporales
+
+B. On-page
+
+- title
+- H1
+- H2
+- H3
+- meta description
+- headings
+- texto visible
+- imágenes
+- alt
+- enlaces
+- anchors
+- breadcrumbs
+- navegación
+
+C. Internacionalización
+
+- hreflang
+- canonical
+- correspondencia ES/CA/EN
+- x-default
+- URLs equivalentes
+- traducciones reales
+- idioma del contenido
+- títulos
+- metadatos
+
+D. Arquitectura
+
+- home → categorías
+- categorías → herramientas
+- herramientas → herramientas relacionadas
+- guías → herramientas
+- herramientas → guías
+- catálogo → herramientas
+- breadcrumbs
+
+E. Technical SEO
+
+- SSR
+- HTML
+- performance
+- Core Web Vitals
+- JS
+- CSS
+- preload
+- modulepreload
+- TTFB
+- LCP
+- CLS
+- INP
+- tamaño de página
+
+F. Content quality
+
+- thin content
+- contenido duplicado
+- canibalización
+- páginas prácticamente idénticas
+- contenidos genéricos
+- contenido sin valor añadido
+- páginas que pueden confundirse entre sí
+
+============================================================
+9. AUDITORÍA DE LAS 50 HERRAMIENTAS
+============================================================
+
+Esta fase es OBLIGATORIA.
+
+Obtén la lista REAL de las 50 herramientas desde el proyecto.
+
+Para CADA herramienta crear internamente una ficha:
+
+TOOL
+ID
+NOMBRE ES
+NOMBRE CA
+NOMBRE EN
+URL ES
+URL CA
+URL EN
+CATEGORÍA
+FUNCIÓN
+INPUT
+OUTPUT
+MULTI-FILE
+CONFIGURACIÓN
+INTENCIÓN PRINCIPAL
+INTENCIONES SECUNDARIAS
+KEYWORDS
+LONG TAILS
+FAQ
+GUÍAS RELACIONADAS
+TOOLS RELACIONADAS
+TITLE
+H1
+META DESCRIPTION
+H2
+INTERNAL LINKS
+SCHEMA
+SEM LANDING
+SEM KEYWORDS
+NEGATIVE KEYWORDS
+GEO TOPICS
+ANALYTICS EVENTS
+
+No rellenes campos con información inventada.
+
+============================================================
+10. KEYWORD / SEARCH INTENT RESEARCH
+============================================================
+
+Realiza investigación real para cada herramienta.
+
+No te limites a una keyword principal.
+
+Identifica:
+
+HEAD TERMS
+
+MID-TAIL
+
+LONG-TAIL
+
+QUERY VARIANTS
+
+PROBLEM QUERIES
+
+USE CASE QUERIES
+
+HOW-TO QUERIES
+
+FILE-FORMAT QUERIES
+
+SIZE/LIMIT QUERIES
+
+QUALITY QUERIES
+
+COMPARISON QUERIES
+
+DEVICE QUERIES
+
+BUSINESS/STUDENT/WORK USE CASES
+
+INTENCIONES TRANSACCIONALES
+
+INTENCIONES INFORMATIVAS
+
+INTENCIONES NAVEGACIONALES
+
+INTENCIONES DE HERRAMIENTA
+
+INTENCIONES ESPECÍFICAS
+
+Ejemplo:
+
+COMPRIMIR PDF
+
+No quedarse solo con:
+
+"comprimir pdf"
+
+Explorar también variantes reales como:
+
+"comprimir pdf online"
+"comprimir pdf gratis"
+"reducir tamaño pdf"
+"comprimir pdf para email"
+"comprimir pdf a 2 mb"
+"comprimir pdf a 1 mb"
+"comprimir pdf sin perder calidad"
+etc.
+
+Pero NO añadas keywords solo porque parezcan lógicas.
+
+Comprueba demanda e intención cuando sea posible.
+
+============================================================
+11. GOOGLE KEYWORD PLANNER
+============================================================
+
+Si existe acceso disponible:
+
+utiliza Google Keyword Planner.
+
+IMPORTANTE:
+
+La métrica:
+
+Alta / Media / Baja
+
+de Keyword Planner representa competencia publicitaria y NO debe confundirse con dificultad SEO.
+
+Para cada grupo:
+
+separar:
+
+SEARCH VOLUME
+ADS COMPETITION
+CPC
+SEARCH INTENT
+SEO OBSERVATION
+
+No mezclar esas variables.
+
+============================================================
+12. KEYWORD CLUSTERS
+============================================================
+
+Construye clusters.
+
+EJEMPLO:
+
+COMPRIMIR PDF
+
+CLUSTER A:
+comprimir pdf
+
+CLUSTER B:
+comprimir pdf online
+
+CLUSTER C:
+comprimir pdf gratis
+
+CLUSTER D:
+reducir tamaño pdf
+
+CLUSTER E:
+comprimir pdf a X MB
+
+CLUSTER F:
+comprimir pdf para email
+
+CLUSTER G:
+comprimir PDF sin perder calidad
+
+Después determina:
+
+¿Todo debe vivir en la herramienta?
+
+o
+
+¿alguna intención merece una guía independiente?
+
+Regla:
+
+NO crear páginas separadas solo porque exista una pequeña variación de keyword.
+
+Crear una página nueva solo si:
+
+- existe intención suficientemente diferente
+- existe valor real para el usuario
+- puede proporcionar una experiencia diferente
+- no produce thin content
+- no genera canibalización
+
+============================================================
+13. MAPA KEYWORD → URL
+============================================================
+
+Crear una matriz interna:
+
+KEYWORD
+↓
+SEARCH INTENT
+↓
+LANGUAGE
+↓
+TARGET URL
+↓
+PAGE TYPE
+↓
+TOOL
+↓
+SUPPORTING GUIDE
+↓
+INTERNAL LINKS
+
+Cada intención debe tener una página objetivo clara.
+
+Evitar:
+
+dos URLs compitiendo por exactamente la misma intención sin motivo.
+
+============================================================
+14. TITLE STRATEGY
+============================================================
+
+Crear títulos únicos.
+
+No usar un único patrón repetido de forma absurda.
+
+El title debe:
+
+- describir la herramienta
+- coincidir con intención
+- ser natural
+- ser útil
+- incluir marca cuando proceda
+- diferenciar páginas
+
+Ejemplos conceptuales:
+
+"Comprimir PDF online gratis | BREADPDF"
+
+"Unir PDF online gratis | BREADPDF"
+
+"Convertir PDF a Word online | BREADPDF"
+
+NO copiar los títulos de competidores.
+
+============================================================
+15. META DESCRIPTION STRATEGY
+============================================================
+
+Crear descriptions únicas y útiles.
+
+Deben explicar:
+
+- qué hace
+- beneficio
+- facilidad
+- contexto
+
+No keyword stuffing.
+
+No repetir exactamente la misma description en 50 páginas.
+
+============================================================
+16. H1 STRATEGY
+============================================================
+
+Cada herramienta debe tener un H1 claro.
+
+Ejemplo:
+
+"Comprimir PDF online"
+
+NO:
+
+"Bienvenido a nuestra herramienta"
+
+No convertir la marca en el H1 principal si eso perjudica la claridad de la intención.
+
+============================================================
+17. CONTENIDO DE CADA HERRAMIENTA
+============================================================
+
+Cada herramienta importante debe disponer de contenido suficiente para:
+
+- explicar qué hace
+- explicar cómo utilizarla
+- explicar casos de uso
+- resolver dudas
+- enlazar herramientas relacionadas
+- enlazar contenido de apoyo
+
+Pero:
+
+NO rellenar artificialmente.
+
+NO escribir 2.000 palabras porque sí.
+
+La cantidad de texto debe estar subordinada a la utilidad.
+
+============================================================
+18. FAQ
+============================================================
+
+Mantener preguntas frecuentes cuando aporten valor real.
+
+IMPORTANTE:
+
+NO crear FAQ únicamente para intentar conseguir un rich result.
+
+La función principal de las FAQ será:
+
+- resolver dudas
+- cubrir long tails
+- aportar información útil
+- mejorar comprensión
+- reforzar contexto semántico
+- ayudar al usuario
+
+Verifica siempre la documentación actual de Google antes de implementar cualquier comportamiento esperado de rich results.
+
+============================================================
+19. STRUCTURED DATA
+============================================================
+
+Audita el structured data existente.
+
+Implementa solo marcado justificable.
+
+No añadir Schema.org por cantidad.
+
+Comprobar qué tipos son realmente adecuados para cada página.
+
+Validar el resultado.
+
+No prometer rich results.
+
+NO implementar schema solo porque un competidor no lo tenga.
+
+NO implementar schema solo por "GEO".
+
+============================================================
+20. INTERNAL LINKING ENGINE
+============================================================
+
+Esta fase es CRÍTICA.
+
+Crear una arquitectura de enlazado interno real.
+
+HOME
+↓
+CATEGORÍAS
+↓
+HERRAMIENTAS
+
+HOME
+↓
+HERRAMIENTAS PRINCIPALES
+
+CATEGORÍA
+↓
+TOOLS
+
+TOOL
+↓
+RELATED TOOLS
+
+GUIDE
+↓
+TOOL
+
+TOOL
+↓
+GUIDES
+
+TOOL
+↓
+CATEGORY
+
+CATEGORY
+↓
+RELATED CATEGORY
+
+Crear anchors descriptivos.
+
+NO usar:
+
+"haz clic aquí"
+
+cuando exista una alternativa descriptiva.
+
+Ejemplos:
+
+"Comprimir PDF"
+"Unir PDF"
+"Convertir PDF a Word"
+
+No crear una estructura artificial de enlaces.
+
+============================================================
+21. ORPHAN PAGES
+============================================================
+
+Encontrar páginas que:
+
+- están en sitemap
+- existen
+- pero reciben pocos o ningún enlace interno contextual
+
+Corregirlas mediante enlazado interno útil.
+
+Especialmente:
+
+- herramientas
+- categorías
+- guías
+
+============================================================
+22. TOPICAL AUTHORITY
+============================================================
+
+No intentar generar autoridad escribiendo cientos de artículos genéricos.
+
+Construir cobertura alrededor de problemas reales.
+
+Ejemplo:
+
+COMPRIMIR PDF
+
+Tool:
+Comprimir PDF
+
+Guides:
+- reducir PDF para límite de subida
+- reducir tamaño para email
+- compresión sin perder calidad
+- etc.
+
+Links:
+
+GUÍA
+→ TOOL
+
+TOOL
+→ GUÍAS RELACIONADAS
+
+No crear contenido solo por volumen.
+
+============================================================
+23. CONTENT GAP
+============================================================
+
+Comparar BREADPDF con:
+
+- iLovePDF
+- Smallpdf
+- PDF24
+- Sejda
+- otros competidores relevantes
+
+Analizar:
+
+- herramientas
+- categorías
+- queries
+- headings
+- contenidos
+- enlaces
+- páginas
+- casos de uso
+- funcionalidades
+
+IMPORTANTE:
+
+El competidor es benchmark.
+
+NO copiar:
+
+- texto
+- títulos exactos
+- diseño
+- branding
+- estructura propietaria
+- código
+- contenido
+
+Encontrar:
+
+qué tienen ellos
+qué tenemos nosotros
+qué falta
+qué podemos hacer mejor
+qué no merece la pena copiar
+
+============================================================
+24. BENCHMARK DE ILOVEPDF
+============================================================
+
+Utiliza también como referencia la inspección ya realizada de iLovePDF.
+
+Datos observados:
+
+- title claro
+- description clara
+- H1 principal
+- múltiples H3 de herramientas
+- muchas herramientas enlazadas
+- muchos enlaces internos
+- sitemap
+- robots
+- canonical
+- hreflang/idioma
+- Open Graph
+- Twitter cards
+- varias páginas de producto/herramienta
+
+La auditoría también mostró que esa home no tenía meta keywords útil para Google.
+
+NO implementar meta keywords como estrategia.
+
+Usar el benchmark para comprender:
+
+cómo organiza un player consolidado:
+
+HOME
+→ TOOLS
+→ CATEGORIES
+→ PREMIUM
+→ RELATED PRODUCTS
+
+pero mantener BREADPDF propio.
+
+============================================================
+25. SEO MULTILINGÜE
+============================================================
+
+Auditar ES / CA / EN por separado.
+
+No hacer una simple traducción automática ciega.
+
+Cada idioma debe:
+
+- tener title natural
+- meta description natural
+- H1 natural
+- headings naturales
+- copy natural
+- anchors naturales
+- FAQs naturales
+- internal linking propio
+- hreflang correcto
+
+CA no debe ser simplemente ES traducido palabra por palabra si eso produce lenguaje antinatural.
+
+EN debe estar escrito como inglés real.
+
+============================================================
+26. HREFLANG
+============================================================
+
+Comprobar:
+
+ES ↔ CA ↔ EN
+
+y:
+
+x-default
+
+Verificar:
+
+- reciprocidad
+- URLs correctas
+- canonical compatible
+- ausencia de URLs rotas
+- no mezclar idiomas
+- no enlazar una versión incorrecta
+
+Hacer comprobaciones automáticas.
+
+============================================================
+27. SITEMAP
+============================================================
+
+Auditar sitemap.
+
+Debe contener solo URLs:
+
+- públicas
+- canónicas
+- indexables
+- estables
+- útiles
+
+No incluir:
+
+- uploads
+- resultados
+- processing
+- account
+- login
+- rutas privadas
+- URLs temporales
+
+Verificar coherencia:
+
+SITEMAP
+↔
+CANONICAL
+↔
+HREFLANG
+↔
+HTTP STATUS
+
+============================================================
+28. ROBOTS
+============================================================
+
+Auditar robots.
+
+No bloquear accidentalmente:
+
+- herramientas públicas
+- categorías
+- contenido necesario
+
+No abrir:
+
+- áreas privadas
+- procesos temporales
+- resultados personales
+
+============================================================
+29. SSR / RENDERING
+============================================================
+
+Auditar TODAS las páginas principales con:
+
+- curl
+- HTML raw
+- render
+- SSR
+- production response
+
+Verificar que Googlebot recibe:
+
+- H1
+- title
+- content
+- links
+- canonical
+- hreflang
+
+No confiar únicamente en React ejecutado en navegador.
+
+Buscar regresiones como el bug histórico de categorías donde un componente inexistente provocaba HTML casi vacío.
+
+Esto es una comprobación OBLIGATORIA.
+
+============================================================
+30. INDEXABILITY TEST MATRIX
+============================================================
+
+Construir una matriz con:
+
+HOMEPAGE ES
+HOMEPAGE CA
+HOMEPAGE EN
+
+CATALOG ES
+CATALOG CA
+CATALOG EN
+
+TODAS LAS CATEGORÍAS
+
+MUESTRA REPRESENTATIVA DE LAS 50 TOOLS
+
+TODAS LAS GUÍAS
+
+PÁGINAS PREMIUM
+
+LEGALES
+
+Verificar:
+
+HTTP
+canonical
+robots
+H1
+lang
+hreflang
+content
+links
+structured data
+
+============================================================
+31. GOOGLE SEARCH CONSOLE
+============================================================
+
+Si existen herramientas/conectores disponibles:
+
+inspeccionar datos reales de Search Console.
+
+No confiar eternamente en el snapshot histórico.
+
+Analizar:
+
+queries
+clicks
+impressions
+CTR
+position
+pages
+countries
+devices
+search appearance
+
+Separar:
+
+BRAND
+NON-BRAND
+
+Encontrar:
+
+- queries emergentes
+- tools con impresiones
+- tools con clics
+- queries con muchas impresiones y bajo CTR
+- queries con buen CTR
+- pages sin impressions
+- páginas que Google está asociando a intenciones inesperadas
+
+No confundir:
+
+impressions
+usuarios
+sesiones
+tool usage
+
+============================================================
+32. SEARCH CONSOLE LOOP
+============================================================
+
+Crear un sistema de optimización recurrente:
+
+QUERY
+↓
+PAGE
+↓
+INTENT
+↓
+CTR
+↓
+TOOL USAGE
+↓
+RESULTADO
+
+Ejemplo:
+
+Query:
+"organizar paginas pdf"
+
+Landing:
+organizar PDF
+
+¿Hay click?
+
+¿Hay file_selected?
+
+¿Hay processing?
+
+¿Hay download?
+
+Si existe:
+
+impressions altas
++
+CTR bajo
+
+evaluar:
+
+title
+snippet
+intent match
+
+Si existe:
+
+click
++
+cero uso
+
+evaluar:
+
+UX
+CTA
+tool clarity
+page intent
+
+Esto es PRODUCT-LED SEO real.
+
+============================================================
+33. ANALYTICS
+============================================================
+
+Auditar implementación de:
+
+GTM-M6D3R3JF
+
+GA4:
+
+G-22E1Z6BZXE
+
+NO duplicar page_view.
+
+Comprobar que no exista una segunda implementación de GA4 que provoque duplicados.
+
+============================================================
+34. DATA LAYER
+============================================================
+
+Auditar estos eventos:
+
+page_view
+
+file_selected
+
+processing_started
+
+processing_completed
+
+download_clicked
+
+Parámetros existentes:
+
+page_view:
+- page_path
+- language
+- page_title
+
+file_selected:
+- tool
+- language
+- file_count
+
+processing_started:
+- tool
+- language
+
+processing_completed:
+- tool
+- language
+- output_count
+
+download_clicked:
+- tool
+- language
+
+No enviar:
+
+- file name
+- PDF contents
+- PDF text
+- personal information
+- sensitive document data
+
+============================================================
+35. GTM → GA4
+============================================================
+
+Comprobar que los eventos dataLayer realmente llegan a GA4.
+
+No asumir que:
+
+dataLayer push
+=
+GA4 event
+
+Validar:
+
+GTM trigger
+→
+GA4 event tag
+→
+GA4 DebugView
+
+Comprobar evento por evento:
+
+file_selected
+processing_started
+processing_completed
+download_clicked
+
+Comprobar parámetros.
+
+Comprobar ausencia de duplicados.
+
+============================================================
+36. KEY EVENTS / CONVERSIONS
+============================================================
+
+Determinar qué acciones representan valor real.
+
+Candidatos:
+
+processing_completed
+download_clicked
+
+Evaluar si:
+
+file_selected
+
+debe considerarse micro-conversión.
+
+NO marcar todo como conversión.
+
+Crear una jerarquía clara:
+
+MICRO:
+file_selected
+
+PROCESO:
+processing_started
+processing_completed
+
+RESULTADO:
+download_clicked
+
+BUSINESS:
+Premium conversion
+API signup
+etc.
+
+============================================================
+37. SEM / GOOGLE ADS
+============================================================
+
+Crear estrategia de búsqueda de pago.
+
+NO mandar todas las campañas a homepage.
+
+Cada intención debe llevar a:
+
+AD
+↓
+LANDING/TOOL
+
+Ejemplo:
+
+"comprimir pdf"
+
+→
+/es/herramientas/comprimir-pdf
+
+"pdf a word"
+
+→
+/es/herramientas/pdf-a-word
+
+"unir pdf"
+
+→
+/es/herramientas/unir-pdf
+
+============================================================
+38. SEM KEYWORD MAPPING
+============================================================
+
+Para cada tool:
+
+crear:
+
+PRIMARY PAID QUERIES
+
+SECONDARY PAID QUERIES
+
+NEGATIVE KEYWORDS
+
+SEARCH INTENT
+
+LANDING PAGE
+
+AD GROUP
+
+AD VARIATION
+
+CTA
+
+TRACKING
+
+No mezclar intenciones incompatibles en un mismo grupo solo por compartir palabras.
+
+============================================================
+39. SEM CAMPAIGN STRUCTURE
+============================================================
+
+Proponer estructura clara.
+
+Ejemplo conceptual:
+
+CAMPAIGN:
+PDF TOOLS — ES
+
+AD GROUP:
+COMPRESS PDF
+
+AD GROUP:
+MERGE PDF
+
+AD GROUP:
+SPLIT PDF
+
+etc.
+
+Cuando tenga sentido, separar herramientas de intención muy diferente.
+
+No crear miles de campañas innecesarias.
+
+============================================================
+40. SEM NEGATIVE KEYWORDS
+============================================================
+
+Investigar consultas irrelevantes.
+
+Ejemplos potenciales:
+
+- software desktop
+- tutoriales cuando no corresponde
+- reparación física
+- impresora
+- libros
+- código/programación
+- trabajo
+- empleo
+- crack
+- torrent
+- etc.
+
+NO añadir negativas indiscriminadamente.
+
+Validar contexto.
+
+============================================================
+41. SEM AD COPY
+============================================================
+
+Crear diferentes variantes de anuncios.
+
+Cada anuncio debe corresponder a la intención.
+
+Ejemplo conceptual:
+
+"Comprimir PDF Online"
+"Reduce el tamaño de tu PDF"
+"Sube tu PDF y comprímelo"
+"Sin instalación"
+
+NO hacer claims que no estén realmente respaldados.
+
+Evitar:
+
+"Mejor compresor del mundo"
+"100% ilimitado"
+"más rápido que todos"
+
+si no existe evidencia.
+
+============================================================
+42. SEM LANDING EXPERIENCE
+============================================================
+
+Cada landing pagada debe responder inmediatamente:
+
+QUÉ HACE
++
+PARA QUIÉN
++
+CÓMO USARLA
++
+CTA
+
+El usuario debe poder subir el archivo rápidamente.
+
+No obligar a registrarse antes de usar herramientas gratuitas salvo necesidad real.
+
+============================================================
+43. SEM + ANALYTICS
+============================================================
+
+Conectar:
+
+Google Ads
+↔
+GA4
+
+Medir:
+
+campaign
+ad group
+keyword/query
+landing page
+session
+file_selected
+processing_started
+processing_completed
+download_clicked
+
+No optimizar campañas únicamente por:
+
+CTR.
+
+Usar conversiones/acciones de valor.
+
+La documentación de Google Ads recomienda usar seguimiento de conversiones para medir qué acciones tienen valor para el negocio.
+
+============================================================
+44. SEM → SEO DATA FEEDBACK LOOP
+============================================================
+
+Utilizar los datos de SEM como investigación de intención.
+
+Pero NO copiar automáticamente toda consulta pagada a SEO.
+
+Analizar:
+
+QUERY
+↓
+INTENT
+↓
+TOOL USAGE
+↓
+PERFORMANCE
+
+Si una consulta demuestra:
+
+- demanda
+- relevancia
+- uso real
+
+evaluar su integración en:
+
+SEO
+content
+landing
+internal linking
+
+============================================================
+45. GEO / GENERATIVE SEARCH
+============================================================
+
+Objetivo:
+
+hacer que BREADPDF sea:
+
+- comprensible
+- recuperable
+- citable cuando corresponda
+- útil
+- semánticamente clara
+- consistente
+
+para experiencias modernas de búsqueda generativa.
+
+IMPORTANTE:
+
+NO crear una estrategia basada en supuestos mágicos.
+
+Google ha indicado que las buenas prácticas SEO continúan siendo relevantes para sus experiencias generativas.
+
+Por tanto:
+
+GEO = SEO técnico + contenido útil + entidad + claridad + evidencia + estructura + experiencia.
+
+============================================================
+46. GEO — CONTENT
+============================================================
+
+Para cada herramienta, asegurar respuestas claras a:
+
+WHAT
+=
+¿Qué hace?
+
+WHY
+=
+¿Para qué sirve?
+
+HOW
+=
+¿Cómo se utiliza?
+
+WHEN
+=
+¿Cuándo utilizarla?
+
+LIMITATIONS
+=
+¿Qué limitaciones existen?
+
+INPUT
+=
+¿Qué archivos acepta?
+
+OUTPUT
+=
+¿Qué genera?
+
+SECURITY
+=
+¿Qué ocurre con el archivo?
+
+USE CASES
+=
+¿Para qué casos sirve?
+
+QUESTIONS
+=
+¿Qué dudas reales tiene el usuario?
+
+No inventar capacidades.
+
+============================================================
+47. GEO — ANSWERABLE CONTENT
+============================================================
+
+Las páginas deben contener secciones que puedan responder directamente preguntas concretas.
+
+Ejemplo:
+
+¿Cómo comprimir un PDF?
+
+1. Sube el PDF.
+2. Elige el nivel si necesitas modificarlo.
+3. Ejecuta la compresión.
+4. Descarga el resultado.
+
+No convertir esto en contenido artificial.
+
+Debe existir realmente la funcionalidad.
+
+============================================================
+48. GEO — ENTITY CONSISTENCY
+============================================================
+
+Mantener consistente:
+
+BREADPDF
+breadpdf.com
+marca
+descripción
+producto
+herramientas
+categorías
+idiomas
+
+Evitar contradicciones entre:
+
+- home
+- about
+- tool pages
+- social profiles
+- metadata
+- structured data
+
+============================================================
+49. GEO — TRUST
+============================================================
+
+Mejorar señales de confianza reales.
+
+Investigar si BREADPDF puede mostrar de forma útil:
+
+- quién está detrás del producto
+- contacto
+- privacidad
+- tratamiento de archivos
+- seguridad
+- eliminación de archivos
+- limitaciones
+- tecnología
+- términos
+- información empresarial cuando corresponda
+
+NO inventar certificaciones.
+
+NO inventar seguridad.
+
+NO declarar:
+
+"military grade"
+
+"bank-level"
+
+"100% secure"
+
+etc.
+
+sin evidencia.
+
+============================================================
+50. GEO — ORIGINAL / NON-COMMODITY CONTENT
+============================================================
+
+No generar artículos genéricos que simplemente repitan definiciones de internet.
+
+Para cada guía:
+
+aportar:
+
+- contexto
+- pasos
+- ejemplos
+- casos de uso
+- limitaciones
+- datos propios de la herramienta
+- enlaces a la herramienta
+- información diferencial real
+
+============================================================
+51. GEO — IMAGES / MULTIMODAL
+============================================================
+
+Auditar imágenes.
+
+Comprobar:
+
+- alt
+- filename
+- context
+- dimensions
+- compression
+- lazy loading cuando corresponda
+- Open Graph
+- social image
+- visual content usefulness
+
+Investigar el estado actual de las capacidades multimodales de Search Console y Search.
+
+No crear imágenes simplemente para rellenar.
+
+Utilizar imágenes cuando realmente ayuden.
+
+============================================================
+52. GEO — LLMS.TXT
+============================================================
+
+NO tratar llms.txt como requisito SEO.
+
+Investigar la documentación oficial actual.
+
+Si se implementa:
+
+debe ser solo una mejora opcional para otros sistemas que pudieran consumirlo.
+
+NO afirmar:
+
+"llms.txt hará que Google nos cite"
+
+NO atribuirle un efecto de ranking que no exista.
+
+============================================================
+53. GEO — NO SPAM
+============================================================
+
+No generar:
+
+- cientos de páginas artificiales
+- contenido repetitivo
+- variaciones mínimas
+- fake statistics
+- páginas para cada combinación absurda de keywords
+- contenido exclusivamente generado por IA sin valor adicional
+
+Las políticas de spam también se aplican a las experiencias generativas.
+
+============================================================
+54. PROGRAMMATIC SEO
+============================================================
+
+Puede utilizarse generación programática SOLO cuando:
+
+- las páginas tengan utilidad real
+- las herramientas sean reales
+- haya intención distinta
+- exista contenido suficientemente diferenciado
+- no produzca miles de páginas basura
+
+Antes de crear nuevas URLs:
+
+evaluar:
+
+INTENT
+VALUE
+DUPLICATION
+CANIBALIZATION
+INDEXABILITY
+MAINTENANCE
+
+Si una nueva página no mejora el producto:
+
+NO CREARLA.
+
+============================================================
+55. GUIDES STRATEGY
+============================================================
+
+Auditar las guías existentes.
+
+Actualmente existen guías sobre casos de uso como:
+
+- reducir PDF para límites de subida
+- eliminar páginas en blanco
+- TFG/TFM
+- PDF → Excel
+- formularios
+- PDF/A
+- OCR
+- datos personales
+- archivos grandes
+- imágenes
+
+No asumir que todas están optimizadas.
+
+Para cada guía:
+
+- keyword cluster
+- intent
+- title
+- H1
+- structure
+- internal links
+- CTA
+- tool relationship
+- multilingual
+- GEO usefulness
+
+============================================================
+56. GUIDE → TOOL FUNNEL
+============================================================
+
+Cada guía relevante debe conducir naturalmente a una herramienta.
+
+Ejemplo:
+
+GUÍA:
+"Cómo reducir un PDF para subirlo a un campus virtual"
+
+↓
+BREADPDF
+
+"Reducir tamaño del PDF"
+
+↓
+TOOL:
+
+Comprimir PDF
+
+Nunca forzar enlaces donde no tengan sentido.
+
+============================================================
+57. CATEGORY PAGES
+============================================================
+
+Optimizar las categorías.
+
+Cada categoría debe:
+
+- explicar qué agrupa
+- contener H1 claro
+- tener contenido útil
+- listar herramientas reales
+- tener enlaces
+- tener breadcrumbs
+- tener canonical
+- tener hreflang
+- entregar HTML SSR correcto
+
+Revisar nuevamente el bug histórico de CategoryPage.
+
+============================================================
+58. HOME
+============================================================
+
+Auditar home ES/CA/EN.
+
+La home debe:
+
+- explicar claramente BREADPDF
+- mostrar herramientas importantes
+- enlazar categorías
+- enlazar herramientas
+- reforzar entidad
+- facilitar navegación
+- no convertirse en una página con keyword stuffing
+
+Mantener identidad visual propia.
+
+============================================================
+59. BRAND + NON-BRAND
+============================================================
+
+Separar estrategia:
+
+BRAND:
+
+BreadPDF
+Bread PDF
+etc.
+
+NON-BRAND:
+
+compress pdf
+merge pdf
+split pdf
+etc.
+
+No medir marca y no marca juntas cuando se estén analizando oportunidades SEO.
+
+============================================================
+60. CTR OPTIMIZATION
+============================================================
+
+Cuando Search Console muestre:
+
+high impressions
++
+low CTR
+
+evaluar:
+
+title
+meta description
+search intent
+page content
+SERP appearance
+
+No modificar titles simplemente para aumentar clicks si la página deja de responder a la intención.
+
+============================================================
+61. CANIBALIZACIÓN
+============================================================
+
+Buscar:
+
+dos o más URLs
+↓
+misma intención
+↓
+mismos términos
+↓
+competencia interna
+
+Crear un informe.
+
+Para cada caso:
+
+KEEP
+MERGE
+REDIRECT
+REWRITE
+LINK
+o mantener separadas si la intención realmente es diferente.
+
+No redirigir por sistema.
+
+============================================================
+62. INDEX BLOAT
+============================================================
+
+Auditar cantidad y calidad de URLs.
+
+BREADPDF debe priorizar:
+
+fewer useful URLs
+
+frente a:
+
+maximum URLs.
+
+No crear miles de páginas por combinaciones de keyword.
+
+============================================================
+63. ADSENSE
+============================================================
+
+NO destruir UX para monetizar.
+
+La configuración actualmente planteada incluye:
+
+- auto ads
+- banner/in-page
+- side rail
+- vignette
+- anchor desactivado
+- intent-based formats desactivados inicialmente
+- multiplex desactivado inicialmente
+
+No modificar la configuración de AdSense salvo que la investigación o el producto lo justifique.
+
+IMPORTANTE:
+
+No colocar publicidad encima de:
+
+- upload
+- CTA principal
+- selector de archivo
+- processing
+- result
+- download
+
+La monetización debe estar subordinada al producto.
+
+============================================================
+64. CONSENT MODE / PRIVACY
+============================================================
+
+Auditar:
+
+- GDPR
+- ePrivacy
+- consentimiento
+- Google tags
+- Analytics
+- Ads
+- AdSense
+- EEE
+
+No enviar información de los documentos.
+
+No capturar:
+
+- nombre de archivo
+- contenido PDF
+- texto
+- información personal
+
+Mantener la medición basada en eventos de producto agregados.
+
+============================================================
+65. CORE WEB VITALS
+============================================================
+
+No perseguir Lighthouse 100 como objetivo aislado.
+
+Priorizar:
+
+- LCP
+- INP
+- CLS
+- FCP
+- TTFB
+- JS
+- CSS
+- HTML
+- mobile
+
+Una mejora SEO que degrade significativamente la experiencia NO debe aceptarse.
+
+============================================================
+66. MOBILE-FIRST
+============================================================
+
+Las páginas deben funcionar especialmente bien en móvil.
+
+Auditar:
+
+- CTA
+- upload
+- buttons
+- typography
+- navigation
+- ads
+- tables
+- FAQs
+- links
+- tool workspace
+
+No crear un SEO perfecto que haga peor el producto.
+
+============================================================
+67. PERFORMANCE BUDGET
+============================================================
+
+Antes de añadir componentes nuevos:
+
+calcular impacto.
+
+Evitar:
+
+- dependencias pesadas
+- scripts innecesarios
+- librerías duplicadas
+- JS global para funcionalidades puntuales
+- images gigantes
+- animation libraries innecesarias
+
+Priorizar:
+
+- SSR
+- static content
+- code splitting
+- lazy loading
+- efficient CSS
+- minimal client JS
+
+============================================================
+68. SEO + PRODUCT UX
+============================================================
+
+La página debe funcionar como:
+
+LANDING SEO
++
+PRODUCT UI
+
+No crear una enorme introducción que empuje la herramienta hacia abajo.
+
+La herramienta debe estar visible inmediatamente.
+
+============================================================
+69. CONVERSION FUNNEL
+============================================================
+
+Construir medición conceptual:
+
+ORGANIC / PAID / OTHER
+↓
+LANDING
+↓
+FILE SELECTED
+↓
+PROCESSING STARTED
+↓
+PROCESSING COMPLETED
+↓
+DOWNLOAD
+
+Y posteriormente:
+
+DOWNLOAD
+↓
+RETURN
+↓
+PREMIUM
+
+============================================================
+70. CHANNEL ATTRIBUTION
+============================================================
+
+Distinguir:
+
+SEO
+SEM
+DIRECT
+REFERRAL
+SOCIAL
+OTHER
+
+Analizar:
+
+sessions
+engagement
+file_selected
+processing_completed
+download_clicked
+
+No considerar "traffic" como única métrica.
+
+============================================================
+71. SEO QUALITY SCORE INTERNO
+============================================================
+
+Crear una puntuación INTERNA de cumplimiento técnico.
+
+NO es una puntuación de Google.
+
+Evaluar:
+
+INDEXABILITY
+CONTENT
+TITLE
+H1
+META
+INTERNAL LINKS
+HREFLANG
+CANONICAL
+SSR
+STRUCTURED DATA
+UX
+PERFORMANCE
+ANALYTICS
+SEM READINESS
+GEO READINESS
+
+Sirve solamente para priorizar trabajo.
+
+============================================================
+72. PRIORIDAD DE HERRAMIENTAS
+============================================================
+
+Clasificar las herramientas internamente por:
+
+SEARCH DEMAND
+INTENT STRENGTH
+PRODUCT QUALITY
+COMPETITION
+SEM POTENTIAL
+SEO POTENTIAL
+RETURN USAGE POTENTIAL
+
+NO convertirlo en una promesa de tráfico.
+
+Utilizarlo para priorización de trabajo.
+
+============================================================
+73. NO TODAS LAS TOOLS TIENEN QUE RECIBIR EL MISMO CONTENIDO
+============================================================
+
+Ejemplos:
+
+COMPRIMIR PDF
+
+puede necesitar:
+
+- size use cases
+- email
+- limits
+- quality
+
+OCR:
+
+- scanned PDF
+- searchable
+- text extraction
+- language
+
+SIGN PDF:
+
+- signature
+- signing
+- workflow
+- privacy
+
+Cada herramienta debe tener contenido acorde a su intención.
+
+============================================================
+74. SEM DATA → PRODUCT IMPROVEMENT
+============================================================
+
+Si una consulta SEM tiene:
+
+muchos clicks
++
+muchos file_selected
++
+muchos completed
+
+documentarla como señal de intención fuerte.
+
+Si una consulta genera:
+
+clicks
++
+cero usage
+
+investigar:
+
+- landing mismatch
+- tool mismatch
+- UX
+- trust
+- performance
+
+No culpar automáticamente al SEO/SEM.
+
+============================================================
+75. SEARCH DATA → SEO CONTENT
+============================================================
+
+Si Search Console descubre una consulta inesperada:
+
+NO crear inmediatamente una página.
+
+Primero:
+
+1. comprobar intención
+2. comprobar relevancia
+3. comprobar herramienta
+4. comprobar volumen
+5. comprobar duplicación
+6. comprobar UX
+7. decidir si se optimiza página existente o nueva
+
+============================================================
+76. COMPETITOR ANALYSIS
+============================================================
+
+Analizar periódicamente competidores.
+
+Para cada uno:
+
+TOOLS
+PAGES
+TITLE
+H1
+CONTENT
+INTERNAL LINKS
+ARCHITECTURE
+SEM LANDING
+GEO ANSWERS
+TRUST
+PRICING
+UX
+
+Pero no perseguir cada funcionalidad del competidor.
+
+BREADPDF debe mantener identidad propia.
+
+============================================================
+77. SEARCH LANDSCAPE
+============================================================
+
+Investigar:
+
+Google Search
+AI Overviews
+AI Mode
+multimodal search
+image search
+other relevant search surfaces
+
+El objetivo es aumentar la probabilidad de que BREADPDF sea comprendido y descubierto.
+
+No prometer presencia.
+
+============================================================
+78. GEO / SEARCH CONSOLE
+============================================================
+
+Investigar qué datos actuales proporciona Search Console para:
+
+- generative AI features
+- multimodal search
+- search appearance
+
+Si las funciones están disponibles para la propiedad:
+
+analizar los datos reales.
+
+No inventar métricas de AI visibility.
+
+============================================================
+79. FUTURE-PROOF ARCHITECTURE
+============================================================
+
+La arquitectura debe quedar preparada para:
+
+- más tools
+- más idiomas
+- Premium
+- API
+- B2B
+- nuevas landing pages
+- nuevos search intents
+
+No hardcodear SEO para solamente 10 herramientas.
+
+============================================================
+80. CMS / DATA ARCHITECTURE
+============================================================
+
+Si las tools están definidas mediante datasets:
+
+asegurar que puedan almacenar:
+
+seoTitle
+metaDescription
+h1
+shortDescription
+longDescription
+faq
+relatedTools
+relatedGuides
+searchIntents
+schemaData
+localizedContent
+
+SIN duplicar información innecesariamente.
+
+No crear un monstruo de configuración si la arquitectura actual no lo necesita.
+
+============================================================
+81. SEO DATA MODEL
+============================================================
+
+Proponer o implementar una estructura mantenible.
+
+Conceptualmente:
+
+tool
+├── id
+├── category
+├── translations
+├── seo
+│   ├── title
+│   ├── description
+│   ├── h1
+│   ├── intents
+│   ├── queries
+│   └── relatedContent
+├── toolCapabilities
+└── analytics
+
+No implementar esto literalmente si contradice la arquitectura existente.
+
+Adaptarlo al código real.
+
+============================================================
+82. AUTOMATIZACIÓN INTERNA
+============================================================
+
+Crear scripts internos si ayudan a detectar:
+
+- missing titles
+- duplicate titles
+- missing H1
+- duplicate H1
+- missing canonical
+- invalid hreflang
+- orphan URLs
+- duplicate meta
+- pages missing links
+- sitemap inconsistencies
+- status errors
+
+No necesitas crear una UI nueva si un script de auditoría es suficiente.
+
+============================================================
+83. CI / SEO REGRESSION
+============================================================
+
+Siempre que sea viable:
+
+crear checks automatizables para prevenir:
+
+- title desaparecido
+- H1 desaparecido
+- canonical incorrecto
+- hreflang roto
+- sitemap inválido
+- SSR vacío
+- tool page rota
+
+Una regresión SEO crítica debe detectarse antes de producción.
+
+============================================================
+84. PRODUCTION VERIFICATION
+============================================================
+
+Después de cada gran cambio:
+
+BUILD
+↓
+TEST
+↓
+DEPLOY
+↓
+VERIFY PRODUCTION
+
+Comprobar:
+
+- homepage
+- catalog
+- categories
+- representative tools
+- guides
+- language variants
+
+Verificar HTML real.
+
+============================================================
+85. URL SAMPLE TESTING
+============================================================
+
+Como mínimo comprobar:
+
+ES:
+
+/es
+/es/herramientas
+/es/herramientas/comprimir-pdf
+/es/herramientas/unir-pdf
+/es/herramientas/dividir-pdf
+/es/categoria/organizar
+/es/categoria/convertir
+
+CA:
+
+equivalentes
+
+EN:
+
+equivalentes
+
+Además comprobar aleatoriamente múltiples herramientas.
+
+============================================================
+86. NO ROMPER FUNCIONALIDAD
+============================================================
+
+SEO no puede romper:
+
+- upload
+- processing
+- downloads
+- tool configuration
+- multi-file
+- authentication
+- navigation
+- mobile UX
+
+Si una modificación SEO rompe una herramienta:
+
+ROLLBACK THAT CHANGE
+
+y continúa con el resto.
+
+============================================================
+87. GIT
+============================================================
+
+Trabajar de forma limpia.
+
+Antes de modificar:
+
+revisar estado del repo.
+
+Después:
+
+git diff
+
+tests
+
+build
+
+commit
+
+El commit debe ser descriptivo.
+
+Ejemplo:
+
+feat(growth): implement search acquisition architecture
+
+Si el cambio es enorme y realmente requiere varios commits lógicos, utiliza commits coherentes.
+
+Pero no hagas commits basura.
+
+============================================================
+88. DOCUMENTACIÓN INTERNA
+============================================================
+
+Genera un documento interno si ayuda a dejar registrado:
+
+- SEO architecture
+- keyword mapping
+- internal linking rules
+- SEM strategy
+- GEO strategy
+- analytics
+- technical checks
+
+Por ejemplo:
+
+docs/growth-seo-sem-geo.md
+
+Solo si encaja con la arquitectura del proyecto.
+
+============================================================
+89. RESULTADO ESPERADO
+============================================================
+
+Al final quiero que BREADPDF tenga:
+
+SEO:
+
+✓ arquitectura
+✓ metadata
+✓ headings
+✓ internal linking
+✓ technical SEO
+✓ hreflang
+✓ canonical
+✓ sitemap
+✓ indexability
+✓ content
+✓ guides
+✓ search intent mapping
+
+SEM:
+
+✓ campaign architecture
+✓ ad groups
+✓ keyword mapping
+✓ negative keyword strategy
+✓ landing mapping
+✓ ad copy
+✓ conversion tracking
+✓ GA4 integration
+✓ measurement framework
+
+GEO:
+
+✓ semantic clarity
+✓ answerable content
+✓ entity consistency
+✓ useful content
+✓ original content
+✓ trust signals
+✓ structured content
+✓ multimodal readiness
+✓ generative-search readiness
+✓ no spam tactics
+✓ no fake GEO claims
+
+ANALYTICS:
+
+✓ GTM
+✓ GA4
+✓ dataLayer
+✓ events
+✓ key events
+✓ attribution
+✓ SEO → tool usage
+✓ SEM → tool usage
+
+============================================================
+90. NO HACER
+============================================================
+
+NO:
+
+- keyword stuffing
+- meta keywords
+- páginas duplicadas
+- páginas masivas sin valor
+- titles iguales
+- H1 iguales indiscriminados
+- contenido artificial
+- FAQ spam
+- schema spam
+- GEO hacks
+- llms.txt presentado como factor de ranking
+- promesas de ranking
+- promesas de tráfico
+- promesas de ingresos
+- backlinks artificiales
+- cloaking
+- doorway pages
+- páginas generadas exclusivamente por keywords
+- UX sacrificada para anuncios
+- tracking del contenido de PDFs
+
+============================================================
+91. ORDEN DE EJECUCIÓN
+============================================================
+
+FASE 1
+AUDITORÍA
+
+FASE 2
+SEARCH / KEYWORD / INTENT RESEARCH
+
+FASE 3
+ARQUITECTURA SEO
+
+FASE 4
+50 TOOLS × ES/CA/EN
+
+FASE 5
+INTERNAL LINKING
+
+FASE 6
+GUIDES
+
+FASE 7
+TECHNICAL SEO
+
+FASE 8
+GEO
+
+FASE 9
+SEM PREPARATION
+
+FASE 10
+GTM/GA4 VALIDATION
+
+FASE 11
+PERFORMANCE
+
+FASE 12
+TESTING
+
+FASE 13
+PRODUCTION
+
+FASE 14
+REPORT
+
+============================================================
+92. IMPORTANTE: EJECUTAR, NO SOLO AUDITAR
+============================================================
+
+NO quiero un informe que diga:
+
+"hay que hacer X"
+
+si puedes hacer X tú mismo.
+
+La regla es:
+
+DETECTAR
+↓
+PLANEAR
+↓
+IMPLEMENTAR
+↓
+TESTEAR
+↓
+CORREGIR
+↓
+DEPLOY
+↓
+VERIFY
+
+Solo informa como pendiente aquello que realmente no puedas ejecutar.
+
+============================================================
+93. PRIORIZACIÓN
+============================================================
+
+Si encuentras 100 problemas:
+
+NO intentes arreglarlos arbitrariamente.
+
+Clasifica:
+
+P0 = crítico
+P1 = importante
+P2 = mejora
+P3 = nice-to-have
+
+P0 incluye:
+
+- indexación rota
+- SSR roto
+- canonical incorrecto
+- hreflang roto
+- sitemap incorrecto
+- herramienta rota
+- tracking roto
+- contenido crítico ausente
+
+P1:
+
+- metadata
+- internal linking
+- intent mapping
+- content gaps
+- SEM setup
+- GEO content
+
+P2:
+
+- refinements
+
+P3:
+
+- cosmetic
+
+============================================================
+94. PRINCIPIO 80/20
+============================================================
+
+No dedicar días a microajustes mientras existan problemas estructurales.
+
+Priorizar:
+
+1. Indexability
+2. Tool quality
+3. Search intent
+4. Internal linking
+5. Content
+6. Analytics
+7. SEM readiness
+8. GEO readiness
+9. Performance refinements
+
+============================================================
+95. EXPECTATIVAS
+============================================================
+
+NO esperar que todos los cambios produzcan tráfico inmediatamente.
+
+Después de desplegar:
+
+Google debe:
+
+crawl
+↓
+process
+↓
+index
+↓
+rank
+
+Search data llega después.
+
+El agente debe dejar un sistema preparado para iterar.
+
+============================================================
+96. SEARCH CONSOLE FEEDBACK LOOP
+============================================================
+
+Cuando haya datos:
+
+QUERY
+→ PAGE
+→ CLICK
+→ USAGE
+→ RESULT
+
+usar esos datos para decidir:
+
+- title change
+- description change
+- content expansion
+- internal links
+- new guide
+- landing refinement
+- SEM test
+
+============================================================
+97. SEM BUDGET
+============================================================
+
+NO inventar un presupuesto si no existe.
+
+Si no existen datos suficientes:
+
+preparar estructura.
+
+Si existen datos reales:
+
+proponer asignación basada en:
+
+CPC
+conversion rate
+tool completion
+download
+business value
+
+No afirmar rentabilidad sin datos.
+
+============================================================
+98. SEM EXPERIMENTATION
+============================================================
+
+Preparar experimentos medibles.
+
+Ejemplo:
+
+AD COPY A
+vs
+AD COPY B
+
+LANDING A
+vs
+LANDING B
+
+Pero no lanzar experimentos absurdos con poco volumen.
+
+============================================================
+99. GEO EXPERIMENTATION
+============================================================
+
+No medir "GEO" con una vanity metric inventada.
+
+Medir lo que realmente podamos observar:
+
+- Search Console generative AI reporting cuando exista
+- organic queries
+- referral data
+- branded searches
+- assisted discovery
+- mentions/references verificables
+
+============================================================
+100. SEO + SEM + GEO = SISTEMA ÚNICO
+============================================================
+
+No crear tres arquitecturas independientes.
+
+Una herramienta:
+
+/es/herramientas/comprimir-pdf
+
+debe servir para:
+
+SEO
++
+SEM
++
+GEO
++
+ANALYTICS
+
+Así:
+
+SEO:
+Google organic
+
+SEM:
+Google paid
+
+GEO:
+AI/search discovery
+
+Analytics:
+measure real usage
+
+============================================================
+101. FINAL AUDIT
+============================================================
+
+Antes de terminar, ejecutar una auditoría final completa.
+
+Comprobar:
+
+[ ] BUILD
+[ ] TESTS
+[ ] SSR
+[ ] ROUTES
+[ ] SITEMAP
+[ ] ROBOTS
+[ ] CANONICAL
+[ ] HREFLANG
+[ ] TITLES
+[ ] DESCRIPTIONS
+[ ] H1
+[ ] INTERNAL LINKS
+[ ] CONTENT
+[ ] TOOLS
+[ ] ANALYTICS
+[ ] GTM
+[ ] GA4
+[ ] EVENTS
+[ ] SEM TRACKING
+[ ] GEO CONTENT
+[ ] PERFORMANCE
+[ ] MOBILE
+[ ] PRODUCTION
+
+============================================================
+102. REPORTE FINAL OBLIGATORIO
+============================================================
+
+Cuando termines, entrega un reporte dividido en:
+
+1. RESUMEN EJECUTIVO
+
+2. ESTADO SEO ANTES
+
+3. CAMBIOS SEO REALIZADOS
+
+4. ESTADO SEM
+
+5. CAMBIOS SEM REALIZADOS
+
+6. ESTADO GEO
+
+7. CAMBIOS GEO REALIZADOS
+
+8. ANALYTICS
+
+9. GTM
+
+10. GA4
+
+11. EVENTS
+
+12. KEY EVENTS / CONVERSIONS
+
+13. INTERNAL LINKING
+
+14. TOOL-BY-TOOL CHANGES
+
+15. MULTILINGUAL
+
+16. TECHNICAL SEO
+
+17. PERFORMANCE
+
+18. TESTS
+
+19. PRODUCTION VERIFICATION
+
+20. FILES MODIFIED
+
+21. COMMIT(S)
+
+22. LIMITATIONS
+
+23. PENDING ITEMS
+
+24. PRIORITY NEXT ACTIONS
+
+============================================================
+103. REPORTE TOOL-BY-TOOL
+============================================================
+
+No quiero únicamente:
+
+"se optimizaron las herramientas".
+
+Indica:
+
+TOOL
+URL
+SEO STATUS
+TITLE
+H1
+CONTENT
+INTERNAL LINKS
+INTENT
+SEM
+GEO
+ANALYTICS
+
+para las herramientas modificadas.
+
+============================================================
+104. DATOS Y TRAZABILIDAD
+============================================================
+
+Para cualquier afirmación importante:
+
+indicar de dónde sale:
+
+CODE
+PRODUCTION
+SEARCH CONSOLE
+GA4
+GOOGLE ADS
+GOOGLE DOCS
+COMPETITOR
+RESEARCH
+
+No presentar una inferencia como dato.
+
+============================================================
+105. REGLA FINAL ABSOLUTA
+============================================================
+
+No quiero simplemente:
+
+"he hecho una auditoría SEO".
+
+Quiero:
+
+INVESTIGAR
++
+DECIDIR
++
+IMPLEMENTAR
++
+PROBAR
++
+DESPLEGAR
++
+VERIFICAR
+
+Todo lo que puedas hacer de forma autónoma debe hacerse.
+
+Todo lo que no puedas hacer por una limitación externa debe quedar:
+
+- documentado
+- preparado
+- con instrucciones concretas
+- sin bloquear el resto del proyecto.
+
+BREADPDF debe terminar esta ejecución mejor preparado para:
+
+GOOGLE ORGANIC SEARCH
++
+GOOGLE ADS
++
+GENERATIVE SEARCH
++
+REAL TOOL USAGE
++
+ANALYTICS
++
+FUTURE PREMIUM
++
+API/B2B
+
+NO HAGAS CAMBIOS SOLO PARA "MARCAR CASILLAS SEO".
+
+Cada cambio debe responder a:
+
+¿Ayuda a Google a comprender BREADPDF?
+¿Ayuda al usuario a encontrar la herramienta correcta?
+¿Ayuda al usuario a utilizarla?
+¿Ayuda a medir lo que ocurre?
+¿Mantiene el producto rápido y funcional?
+
+Si la respuesta es no:
+
+NO HACER EL CAMBIO.
+
+============================================================
+FIN DEL MASTER PROMPT
+============================================================
+</USER_REQUEST>
+<ADDITIONAL_METADATA>
+The current local time is: 2026-09-30T17:04:14+02:00.
+</ADDITIONAL_METADATA>

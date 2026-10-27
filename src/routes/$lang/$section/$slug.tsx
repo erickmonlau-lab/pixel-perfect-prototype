@@ -386,7 +386,7 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
       />
 
       {/* 2. TOOL HEADER: Powerful H1, Solid Category Badge, and Contextual BreadPDF Mascot */}
-      <header className="mt-4 sm:mt-6 animate-fade-in">
+      <header className="mt-3 sm:mt-4 animate-fade-in">
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 lg:gap-8">
           {/* Columna Izquierda: Badge + H1 + Tagline */}
           <div className="flex-1 min-w-0 max-w-3xl">
@@ -427,16 +427,14 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
             </p>
           </div>
 
-          {/* Columna Derecha: Mascota BreadPDF integrada con presencia equilibrada */}
-          <div className="hidden lg:flex shrink-0 items-center justify-center select-none pointer-events-none p-2">
-            <div className="rounded-3xl border-2 border-[#0F0F12] bg-[#F1F1F4] p-4 shadow-[4px_4px_0_#0F0F12]">
-              <GuideMascot
-                variant={mascotForTool(tool.category, tool.canonicalSlug)}
-                priority={true}
-                alt={`Mascota oficial de BreadPDF para ${tool.name}`}
-                className="w-auto h-[125px] xl:h-[145px] object-contain drop-shadow-xs animate-neo-wiggle"
-              />
-            </div>
+          {/* Columna Derecha: Mascota BreadPDF integrada sin tarjeta contenedora */}
+          <div className="hidden lg:flex shrink-0 items-center justify-center select-none pointer-events-none">
+            <GuideMascot
+              variant={mascotForTool(tool.category, tool.canonicalSlug)}
+              priority={true}
+              alt={`Mascota oficial de BreadPDF para ${tool.name}`}
+              className="w-auto h-[130px] xl:h-[150px] object-contain drop-shadow-xs animate-neo-wiggle"
+            />
           </div>
         </div>
       </header>
@@ -497,8 +495,8 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
           const proTip = practical.proTip[locale] || practical.proTip.es;
 
           return (
-            <section className="mt-14 sm:mt-16" aria-labelledby="editorial-context">
-              <div className="rounded-3xl border-2 border-[#0F0F12] bg-white p-8 sm:p-12 shadow-[6px_6px_0_#0F0F12]">
+            <section className="mt-10 sm:mt-12" aria-labelledby="editorial-context">
+              <div className="rounded-2xl border-2 border-[#0F0F12] bg-white p-6 sm:p-8 shadow-[4px_4px_0_#0F0F12]">
                 {/* Etiqueta superior prominente con icono técnico de ajuste */}
                 <div className="inline-flex items-center gap-2 rounded-lg border-2 border-[#0F0F12] bg-[#EC3C2D] px-3.5 py-1 text-[13px] sm:text-[14px] font-black uppercase tracking-wide text-white shadow-[2px_2px_0_#0F0F12]">
                   <SlidersHorizontal className="size-5" />
@@ -517,7 +515,7 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
 
                 {/* 2 Tarjetas Luminosas: Casos de Uso (Verde suave) vs Aspectos a considerar (Ámbar suave) */}
                 <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6 pt-6 border-t-2 border-slate-100">
-                  <div className="rounded-2xl border-2 border-[#0F0F12] bg-[#ECFDF5] p-7 shadow-[4px_4px_0_#10B981] flex flex-col justify-start">
+                  <div className="rounded-2xl border-2 border-[#0F0F12] bg-[#ECFDF5] p-5 shadow-[3px_3px_0_#10B981] flex flex-col justify-start">
                     <div className="flex items-center gap-3">
                       <span className="size-8 rounded-lg bg-[#10B981] text-white flex items-center justify-center font-black text-[16px] border border-[#0F0F12] shadow-[1px_1px_0_#0F0F12]">
                         ✓
@@ -536,7 +534,7 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
                     </ul>
                   </div>
 
-                  <div className="rounded-2xl border-2 border-[#0F0F12] bg-[#FFFBEB] p-7 shadow-[4px_4px_0_#F59E0B] flex flex-col justify-start">
+                  <div className="rounded-2xl border-2 border-[#0F0F12] bg-[#FFFBEB] p-5 shadow-[3px_3px_0_#F59E0B] flex flex-col justify-start">
                     <div className="flex items-center gap-3">
                       <span className="size-8 rounded-lg bg-[#F59E0B] text-[#0F0F12] flex items-center justify-center font-black text-[16px] border border-[#0F0F12] shadow-[1px_1px_0_#0F0F12]">
                         !
@@ -557,20 +555,20 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
                 </div>
 
                 {/* Consejo Pro con Mascota ilustrada */}
-                <div className="mt-8 rounded-2xl border-2 border-[#0F0F12] bg-[#FEF08A] p-6 sm:p-7 shadow-[4px_4px_0_#0F0F12] flex flex-col sm:flex-row items-start sm:items-center gap-5">
+                <div className="mt-6 rounded-xl border-2 border-[#0F0F12] bg-[#FEF08A] p-4 sm:p-5 shadow-[3px_3px_0_#0F0F12] flex flex-col sm:flex-row items-start sm:items-center gap-4">
                   <div className="flex items-center gap-3 shrink-0">
                     <img
                       src={BRAND_ASSETS.mascots.think}
                       alt="BreadPDF Pro Tip"
-                      width={56}
-                      height={56}
-                      className="size-14 object-contain animate-neo-wiggle shrink-0 drop-shadow-xs"
+                      width={40}
+                      height={40}
+                      className="size-10 object-contain animate-neo-wiggle shrink-0 drop-shadow-xs"
                     />
-                    <span className="inline-flex items-center justify-center rounded-lg border-2 border-[#0F0F12] bg-[#0F0F12] px-3.5 py-1 text-[13px] font-black uppercase text-white shrink-0 tracking-wide shadow-[2px_2px_0_#0F0F12]">
+                    <span className="inline-flex items-center justify-center rounded-lg border-2 border-[#0F0F12] bg-[#0F0F12] px-3 py-1 text-[12px] font-black uppercase text-white shrink-0 tracking-wide shadow-[2px_2px_0_#0F0F12]">
                       {locale === "ca" ? "Consell Pro" : locale === "en" ? "Pro Tip" : "Consejo Pro"}
                     </span>
                   </div>
-                  <p className="m-0 leading-relaxed text-slate-900 font-bold text-[16px] sm:text-[17.5px]">
+                  <p className="m-0 leading-relaxed text-slate-900 font-bold text-[15px] sm:text-[16px]">
                     {proTip}
                   </p>
                 </div>
@@ -608,8 +606,8 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
         if (!t.category.details[tool.category]?.useCases) return null;
 
         return (
-          <section className="mt-14 sm:mt-16" aria-labelledby="editorial-context">
-            <div className="rounded-3xl border-2 border-[#0F0F12] bg-white p-7 sm:p-10 shadow-[6px_6px_0_#0F0F12]">
+          <section className="mt-10 sm:mt-12" aria-labelledby="editorial-context">
+            <div className="rounded-2xl border-2 border-[#0F0F12] bg-white p-6 sm:p-8 shadow-[4px_4px_0_#0F0F12]">
               <div className="flex items-center gap-2.5">
                 <span className="flex size-9 items-center justify-center rounded-lg border-2 border-[#0F0F12] bg-[#EC3C2D] text-white shadow-[2px_2px_0_#0F0F12]">
                   <SlidersHorizontal className="size-5" />

@@ -1,0 +1,1902 @@
+[
+  {
+    "canonicalSlug": "comprimir-pdf",
+    "routes": {
+      "es": "/es/herramientas/comprimir-pdf",
+      "ca": "/ca/eines/comprimeix-pdf",
+      "en": "/en/tools/compress-pdf"
+    },
+    "incomingLinks": {
+      "es": 59,
+      "ca": 58,
+      "en": 58,
+      "total": 175
+    },
+    "depth": {
+      "es": 1,
+      "ca": 1,
+      "en": 1
+    },
+    "ssr": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "canonical": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "hreflang": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "gscStatus": "Impresiones / Clicks activos"
+  },
+  {
+    "canonicalSlug": "unir-pdf",
+    "routes": {
+      "es": "/es/herramientas/unir-pdf",
+      "ca": "/ca/eines/uneix-pdf",
+      "en": "/en/tools/merge-pdf"
+    },
+    "incomingLinks": {
+      "es": 59,
+      "ca": 58,
+      "en": 58,
+      "total": 175
+    },
+    "depth": {
+      "es": 1,
+      "ca": 1,
+      "en": 1
+    },
+    "ssr": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "canonical": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "hreflang": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "gscStatus": "Impresiones / Clicks activos"
+  },
+  {
+    "canonicalSlug": "dividir-pdf",
+    "routes": {
+      "es": "/es/herramientas/dividir-pdf",
+      "ca": "/ca/eines/divideix-pdf",
+      "en": "/en/tools/split-pdf"
+    },
+    "incomingLinks": {
+      "es": 59,
+      "ca": 58,
+      "en": 58,
+      "total": 175
+    },
+    "depth": {
+      "es": 1,
+      "ca": 1,
+      "en": 1
+    },
+    "ssr": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "canonical": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "hreflang": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "gscStatus": "Descubierta / Sin impresiones"
+  },
+  {
+    "canonicalSlug": "pdf-a-jpg",
+    "routes": {
+      "es": "/es/herramientas/pdf-a-jpg",
+      "ca": "/ca/eines/pdf-a-jpg",
+      "en": "/en/tools/pdf-to-jpg"
+    },
+    "incomingLinks": {
+      "es": 59,
+      "ca": 58,
+      "en": 58,
+      "total": 175
+    },
+    "depth": {
+      "es": 1,
+      "ca": 1,
+      "en": 1
+    },
+    "ssr": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "canonical": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "hreflang": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "gscStatus": "Descubierta / Sin impresiones"
+  },
+  {
+    "canonicalSlug": "jpg-a-pdf",
+    "routes": {
+      "es": "/es/herramientas/jpg-a-pdf",
+      "ca": "/ca/eines/jpg-a-pdf",
+      "en": "/en/tools/jpg-to-pdf"
+    },
+    "incomingLinks": {
+      "es": 59,
+      "ca": 58,
+      "en": 58,
+      "total": 175
+    },
+    "depth": {
+      "es": 1,
+      "ca": 1,
+      "en": 1
+    },
+    "ssr": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "canonical": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "hreflang": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "gscStatus": "Descubierta / Sin impresiones"
+  },
+  {
+    "canonicalSlug": "rotar-pdf",
+    "routes": {
+      "es": "/es/herramientas/rotar-pdf",
+      "ca": "/ca/eines/gira-pdf",
+      "en": "/en/tools/rotate-pdf"
+    },
+    "incomingLinks": {
+      "es": 59,
+      "ca": 58,
+      "en": 58,
+      "total": 175
+    },
+    "depth": {
+      "es": 1,
+      "ca": 1,
+      "en": 1
+    },
+    "ssr": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "canonical": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "hreflang": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "gscStatus": "Descubierta / Sin impresiones"
+  },
+  {
+    "canonicalSlug": "extraer-paginas-pdf",
+    "routes": {
+      "es": "/es/herramientas/extraer-paginas-pdf",
+      "ca": "/ca/eines/extreu-pagines-pdf",
+      "en": "/en/tools/extract-pdf-pages"
+    },
+    "incomingLinks": {
+      "es": 18,
+      "ca": 17,
+      "en": 17,
+      "total": 52
+    },
+    "depth": {
+      "es": 1,
+      "ca": 1,
+      "en": 1
+    },
+    "ssr": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "canonical": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "hreflang": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "gscStatus": "Descubierta / Sin impresiones"
+  },
+  {
+    "canonicalSlug": "eliminar-paginas-pdf",
+    "routes": {
+      "es": "/es/herramientas/eliminar-paginas-pdf",
+      "ca": "/ca/eines/elimina-pagines-pdf",
+      "en": "/en/tools/delete-pdf-pages"
+    },
+    "incomingLinks": {
+      "es": 9,
+      "ca": 9,
+      "en": 9,
+      "total": 27
+    },
+    "depth": {
+      "es": 1,
+      "ca": 1,
+      "en": 1
+    },
+    "ssr": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "canonical": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "hreflang": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "gscStatus": "Descubierta / Sin impresiones"
+  },
+  {
+    "canonicalSlug": "extraer-texto-pdf",
+    "routes": {
+      "es": "/es/herramientas/extraer-texto-pdf",
+      "ca": "/ca/eines/extreu-text-pdf",
+      "en": "/en/tools/extract-pdf-text"
+    },
+    "incomingLinks": {
+      "es": 21,
+      "ca": 21,
+      "en": 21,
+      "total": 63
+    },
+    "depth": {
+      "es": 1,
+      "ca": 1,
+      "en": 1
+    },
+    "ssr": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "canonical": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "hreflang": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "gscStatus": "Descubierta / Sin impresiones"
+  },
+  {
+    "canonicalSlug": "pdf-a-word",
+    "routes": {
+      "es": "/es/herramientas/pdf-a-word",
+      "ca": "/ca/eines/pdf-a-word",
+      "en": "/en/tools/pdf-to-word"
+    },
+    "incomingLinks": {
+      "es": 22,
+      "ca": 22,
+      "en": 22,
+      "total": 66
+    },
+    "depth": {
+      "es": 1,
+      "ca": 1,
+      "en": 1
+    },
+    "ssr": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "canonical": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "hreflang": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "gscStatus": "Descubierta / Sin impresiones"
+  },
+  {
+    "canonicalSlug": "word-a-pdf",
+    "routes": {
+      "es": "/es/herramientas/word-a-pdf",
+      "ca": "/ca/eines/word-a-pdf",
+      "en": "/en/tools/word-to-pdf"
+    },
+    "incomingLinks": {
+      "es": 9,
+      "ca": 9,
+      "en": 9,
+      "total": 27
+    },
+    "depth": {
+      "es": 1,
+      "ca": 1,
+      "en": 1
+    },
+    "ssr": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "canonical": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "hreflang": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "gscStatus": "Descubierta / Sin impresiones"
+  },
+  {
+    "canonicalSlug": "marca-de-agua",
+    "routes": {
+      "es": "/es/herramientas/marca-de-agua",
+      "ca": "/ca/eines/marca-daigua",
+      "en": "/en/tools/watermark-pdf"
+    },
+    "incomingLinks": {
+      "es": 10,
+      "ca": 10,
+      "en": 10,
+      "total": 30
+    },
+    "depth": {
+      "es": 1,
+      "ca": 1,
+      "en": 1
+    },
+    "ssr": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "canonical": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "hreflang": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "gscStatus": "Descubierta / Sin impresiones"
+  },
+  {
+    "canonicalSlug": "numerar-paginas",
+    "routes": {
+      "es": "/es/herramientas/numerar-paginas",
+      "ca": "/ca/eines/numerar-pagines",
+      "en": "/en/tools/number-pdf-pages"
+    },
+    "incomingLinks": {
+      "es": 9,
+      "ca": 9,
+      "en": 9,
+      "total": 27
+    },
+    "depth": {
+      "es": 1,
+      "ca": 1,
+      "en": 1
+    },
+    "ssr": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "canonical": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "hreflang": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "gscStatus": "Descubierta / Sin impresiones"
+  },
+  {
+    "canonicalSlug": "ocr-pdf",
+    "routes": {
+      "es": "/es/herramientas/ocr-pdf",
+      "ca": "/ca/eines/ocr-pdf",
+      "en": "/en/tools/ocr-pdf"
+    },
+    "incomingLinks": {
+      "es": 9,
+      "ca": 8,
+      "en": 8,
+      "total": 25
+    },
+    "depth": {
+      "es": 1,
+      "ca": 1,
+      "en": 1
+    },
+    "ssr": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "canonical": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "hreflang": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "gscStatus": "Descubierta / Sin impresiones"
+  },
+  {
+    "canonicalSlug": "reparar-pdf",
+    "routes": {
+      "es": "/es/herramientas/reparar-pdf",
+      "ca": "/ca/eines/reparar-pdf",
+      "en": "/en/tools/repair-pdf"
+    },
+    "incomingLinks": {
+      "es": 12,
+      "ca": 12,
+      "en": 12,
+      "total": 36
+    },
+    "depth": {
+      "es": 1,
+      "ca": 1,
+      "en": 1
+    },
+    "ssr": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "canonical": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "hreflang": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "gscStatus": "Descubierta / Sin impresiones"
+  },
+  {
+    "canonicalSlug": "proteger-pdf",
+    "routes": {
+      "es": "/es/herramientas/proteger-pdf",
+      "ca": "/ca/eines/protegir-pdf",
+      "en": "/en/tools/protect-pdf"
+    },
+    "incomingLinks": {
+      "es": 10,
+      "ca": 10,
+      "en": 10,
+      "total": 30
+    },
+    "depth": {
+      "es": 1,
+      "ca": 1,
+      "en": 1
+    },
+    "ssr": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "canonical": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "hreflang": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "gscStatus": "Descubierta / Sin impresiones"
+  },
+  {
+    "canonicalSlug": "desbloquear-pdf",
+    "routes": {
+      "es": "/es/herramientas/desbloquear-pdf",
+      "ca": "/ca/eines/desbloquejar-pdf",
+      "en": "/en/tools/unlock-pdf"
+    },
+    "incomingLinks": {
+      "es": 10,
+      "ca": 10,
+      "en": 10,
+      "total": 30
+    },
+    "depth": {
+      "es": 1,
+      "ca": 1,
+      "en": 1
+    },
+    "ssr": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "canonical": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "hreflang": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "gscStatus": "Descubierta / Sin impresiones"
+  },
+  {
+    "canonicalSlug": "firmar-pdf",
+    "routes": {
+      "es": "/es/herramientas/firmar-pdf",
+      "ca": "/ca/eines/signar-pdf",
+      "en": "/en/tools/sign-pdf"
+    },
+    "incomingLinks": {
+      "es": 10,
+      "ca": 10,
+      "en": 10,
+      "total": 30
+    },
+    "depth": {
+      "es": 1,
+      "ca": 1,
+      "en": 1
+    },
+    "ssr": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "canonical": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "hreflang": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "gscStatus": "Descubierta / Sin impresiones"
+  },
+  {
+    "canonicalSlug": "pdf-a-excel",
+    "routes": {
+      "es": "/es/herramientas/pdf-a-excel",
+      "ca": "/ca/eines/pdf-a-excel",
+      "en": "/en/tools/pdf-to-excel"
+    },
+    "incomingLinks": {
+      "es": 5,
+      "ca": 5,
+      "en": 5,
+      "total": 15
+    },
+    "depth": {
+      "es": 1,
+      "ca": 1,
+      "en": 1
+    },
+    "ssr": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "canonical": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "hreflang": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "gscStatus": "Descubierta / Sin impresiones"
+  },
+  {
+    "canonicalSlug": "comparar-pdf",
+    "routes": {
+      "es": "/es/herramientas/comparar-pdf",
+      "ca": "/ca/eines/comparar-pdf",
+      "en": "/en/tools/compare-pdf"
+    },
+    "incomingLinks": {
+      "es": 9,
+      "ca": 8,
+      "en": 8,
+      "total": 25
+    },
+    "depth": {
+      "es": 1,
+      "ca": 1,
+      "en": 1
+    },
+    "ssr": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "canonical": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "hreflang": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "gscStatus": "Descubierta / Sin impresiones"
+  },
+  {
+    "canonicalSlug": "resumir-pdf",
+    "routes": {
+      "es": "/es/herramientas/resumir-pdf",
+      "ca": "/ca/eines/resumir-pdf",
+      "en": "/en/tools/summarize-pdf"
+    },
+    "incomingLinks": {
+      "es": 9,
+      "ca": 8,
+      "en": 8,
+      "total": 25
+    },
+    "depth": {
+      "es": 1,
+      "ca": 1,
+      "en": 1
+    },
+    "ssr": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "canonical": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "hreflang": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "gscStatus": "Descubierta / Sin impresiones"
+  },
+  {
+    "canonicalSlug": "extraer-datos",
+    "routes": {
+      "es": "/es/herramientas/extraer-datos",
+      "ca": "/ca/eines/extreure-dades",
+      "en": "/en/tools/extract-pdf-data"
+    },
+    "incomingLinks": {
+      "es": 9,
+      "ca": 8,
+      "en": 8,
+      "total": 25
+    },
+    "depth": {
+      "es": 1,
+      "ca": 1,
+      "en": 1
+    },
+    "ssr": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "canonical": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "hreflang": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "gscStatus": "Descubierta / Sin impresiones"
+  },
+  {
+    "canonicalSlug": "pdf-a-powerpoint",
+    "routes": {
+      "es": "/es/herramientas/pdf-a-powerpoint",
+      "ca": "/ca/eines/pdf-a-powerpoint",
+      "en": "/en/tools/pdf-to-powerpoint"
+    },
+    "incomingLinks": {
+      "es": 5,
+      "ca": 5,
+      "en": 5,
+      "total": 15
+    },
+    "depth": {
+      "es": 1,
+      "ca": 1,
+      "en": 1
+    },
+    "ssr": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "canonical": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "hreflang": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "gscStatus": "Descubierta / Sin impresiones"
+  },
+  {
+    "canonicalSlug": "pdf-a-webp",
+    "routes": {
+      "es": "/es/herramientas/pdf-a-webp",
+      "ca": "/ca/eines/pdf-a-webp",
+      "en": "/en/tools/pdf-to-webp"
+    },
+    "incomingLinks": {
+      "es": 5,
+      "ca": 5,
+      "en": 5,
+      "total": 15
+    },
+    "depth": {
+      "es": 1,
+      "ca": 1,
+      "en": 1
+    },
+    "ssr": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "canonical": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "hreflang": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "gscStatus": "Descubierta / Sin impresiones"
+  },
+  {
+    "canonicalSlug": "qr-pdf",
+    "routes": {
+      "es": "/es/herramientas/qr-pdf",
+      "ca": "/ca/eines/qr-pdf",
+      "en": "/en/tools/qr-to-pdf"
+    },
+    "incomingLinks": {
+      "es": 9,
+      "ca": 8,
+      "en": 8,
+      "total": 25
+    },
+    "depth": {
+      "es": 1,
+      "ca": 1,
+      "en": 1
+    },
+    "ssr": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "canonical": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "hreflang": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "gscStatus": "Descubierta / Sin impresiones"
+  },
+  {
+    "canonicalSlug": "censurar-pdf",
+    "routes": {
+      "es": "/es/herramientas/censurar-pdf",
+      "ca": "/ca/eines/censurar-pdf",
+      "en": "/en/tools/redact-pdf"
+    },
+    "incomingLinks": {
+      "es": 9,
+      "ca": 9,
+      "en": 9,
+      "total": 27
+    },
+    "depth": {
+      "es": 1,
+      "ca": 1,
+      "en": 1
+    },
+    "ssr": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "canonical": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "hreflang": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "gscStatus": "Descubierta / Sin impresiones"
+  },
+  {
+    "canonicalSlug": "recortar-pdf",
+    "routes": {
+      "es": "/es/herramientas/recortar-pdf",
+      "ca": "/ca/eines/retallar-pdf",
+      "en": "/en/tools/crop-pdf"
+    },
+    "incomingLinks": {
+      "es": 9,
+      "ca": 9,
+      "en": 9,
+      "total": 27
+    },
+    "depth": {
+      "es": 1,
+      "ca": 1,
+      "en": 1
+    },
+    "ssr": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "canonical": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "hreflang": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "gscStatus": "Impresiones / Clicks activos"
+  },
+  {
+    "canonicalSlug": "pdf-a-markdown",
+    "routes": {
+      "es": "/es/herramientas/pdf-a-markdown",
+      "ca": "/ca/eines/pdf-a-markdown",
+      "en": "/en/tools/pdf-to-markdown"
+    },
+    "incomingLinks": {
+      "es": 5,
+      "ca": 5,
+      "en": 5,
+      "total": 15
+    },
+    "depth": {
+      "es": 1,
+      "ca": 1,
+      "en": 1
+    },
+    "ssr": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "canonical": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "hreflang": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "gscStatus": "Descubierta / Sin impresiones"
+  },
+  {
+    "canonicalSlug": "pdf-a-pdfa",
+    "routes": {
+      "es": "/es/herramientas/pdf-a-pdfa",
+      "ca": "/ca/eines/pdf-a-pdfa",
+      "en": "/en/tools/pdf-to-pdfa"
+    },
+    "incomingLinks": {
+      "es": 5,
+      "ca": 5,
+      "en": 5,
+      "total": 15
+    },
+    "depth": {
+      "es": 1,
+      "ca": 1,
+      "en": 1
+    },
+    "ssr": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "canonical": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "hreflang": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "gscStatus": "Descubierta / Sin impresiones"
+  },
+  {
+    "canonicalSlug": "excel-a-pdf",
+    "routes": {
+      "es": "/es/herramientas/excel-a-pdf",
+      "ca": "/ca/eines/excel-a-pdf",
+      "en": "/en/tools/excel-to-pdf"
+    },
+    "incomingLinks": {
+      "es": 5,
+      "ca": 5,
+      "en": 5,
+      "total": 15
+    },
+    "depth": {
+      "es": 1,
+      "ca": 1,
+      "en": 1
+    },
+    "ssr": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "canonical": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "hreflang": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "gscStatus": "Descubierta / Sin impresiones"
+  },
+  {
+    "canonicalSlug": "reordenar-paginas-pdf",
+    "routes": {
+      "es": "/es/herramientas/reordenar-paginas-pdf",
+      "ca": "/ca/eines/reordenar-pagines-pdf",
+      "en": "/en/tools/reorder-pdf-pages"
+    },
+    "incomingLinks": {
+      "es": 5,
+      "ca": 5,
+      "en": 5,
+      "total": 15
+    },
+    "depth": {
+      "es": 1,
+      "ca": 1,
+      "en": 1
+    },
+    "ssr": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "canonical": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "hreflang": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "gscStatus": "Descubierta / Sin impresiones"
+  },
+  {
+    "canonicalSlug": "aplanar-pdf",
+    "routes": {
+      "es": "/es/herramientas/aplanar-pdf",
+      "ca": "/ca/eines/aplanar-pdf",
+      "en": "/en/tools/flatten-pdf"
+    },
+    "incomingLinks": {
+      "es": 12,
+      "ca": 12,
+      "en": 12,
+      "total": 36
+    },
+    "depth": {
+      "es": 1,
+      "ca": 1,
+      "en": 1
+    },
+    "ssr": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "canonical": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "hreflang": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "gscStatus": "Descubierta / Sin impresiones"
+  },
+  {
+    "canonicalSlug": "eliminar-metadatos-pdf",
+    "routes": {
+      "es": "/es/herramientas/eliminar-metadatos-pdf",
+      "ca": "/ca/eines/eliminar-metadades-pdf",
+      "en": "/en/tools/remove-pdf-metadata"
+    },
+    "incomingLinks": {
+      "es": 12,
+      "ca": 12,
+      "en": 12,
+      "total": 36
+    },
+    "depth": {
+      "es": 1,
+      "ca": 1,
+      "en": 1
+    },
+    "ssr": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "canonical": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "hreflang": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "gscStatus": "Descubierta / Sin impresiones"
+  },
+  {
+    "canonicalSlug": "pdf-a-png",
+    "routes": {
+      "es": "/es/herramientas/pdf-a-png",
+      "ca": "/ca/eines/pdf-a-png",
+      "en": "/en/tools/pdf-to-png"
+    },
+    "incomingLinks": {
+      "es": 5,
+      "ca": 5,
+      "en": 5,
+      "total": 15
+    },
+    "depth": {
+      "es": 1,
+      "ca": 1,
+      "en": 1
+    },
+    "ssr": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "canonical": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "hreflang": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "gscStatus": "Impresiones / Clicks activos"
+  },
+  {
+    "canonicalSlug": "png-a-pdf",
+    "routes": {
+      "es": "/es/herramientas/png-a-pdf",
+      "ca": "/ca/eines/png-a-pdf",
+      "en": "/en/tools/png-to-pdf"
+    },
+    "incomingLinks": {
+      "es": 5,
+      "ca": 5,
+      "en": 5,
+      "total": 15
+    },
+    "depth": {
+      "es": 1,
+      "ca": 1,
+      "en": 1
+    },
+    "ssr": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "canonical": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "hreflang": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "gscStatus": "Descubierta / Sin impresiones"
+  },
+  {
+    "canonicalSlug": "redimensionar-pdf",
+    "routes": {
+      "es": "/es/herramientas/redimensionar-pdf",
+      "ca": "/ca/eines/redimensionar-pdf",
+      "en": "/en/tools/resize-pdf"
+    },
+    "incomingLinks": {
+      "es": 9,
+      "ca": 9,
+      "en": 9,
+      "total": 27
+    },
+    "depth": {
+      "es": 1,
+      "ca": 1,
+      "en": 1
+    },
+    "ssr": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "canonical": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "hreflang": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "gscStatus": "Descubierta / Sin impresiones"
+  },
+  {
+    "canonicalSlug": "editar-metadatos-pdf",
+    "routes": {
+      "es": "/es/herramientas/editar-metadatos-pdf",
+      "ca": "/ca/eines/editar-metadades-pdf",
+      "en": "/en/tools/edit-pdf-metadata"
+    },
+    "incomingLinks": {
+      "es": 9,
+      "ca": 9,
+      "en": 9,
+      "total": 27
+    },
+    "depth": {
+      "es": 1,
+      "ca": 1,
+      "en": 1
+    },
+    "ssr": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "canonical": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "hreflang": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "gscStatus": "Descubierta / Sin impresiones"
+  },
+  {
+    "canonicalSlug": "anadir-texto-pdf",
+    "routes": {
+      "es": "/es/herramientas/anadir-texto-pdf",
+      "ca": "/ca/eines/afegir-text-pdf",
+      "en": "/en/tools/add-text-to-pdf"
+    },
+    "incomingLinks": {
+      "es": 9,
+      "ca": 9,
+      "en": 9,
+      "total": 27
+    },
+    "depth": {
+      "es": 1,
+      "ca": 1,
+      "en": 1
+    },
+    "ssr": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "canonical": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "hreflang": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "gscStatus": "Impresiones / Clicks activos"
+  },
+  {
+    "canonicalSlug": "insertar-paginas-pdf",
+    "routes": {
+      "es": "/es/herramientas/insertar-paginas-pdf",
+      "ca": "/ca/eines/inserir-pagines-pdf",
+      "en": "/en/tools/insert-pages-pdf"
+    },
+    "incomingLinks": {
+      "es": 5,
+      "ca": 5,
+      "en": 5,
+      "total": 15
+    },
+    "depth": {
+      "es": 1,
+      "ca": 1,
+      "en": 1
+    },
+    "ssr": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "canonical": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "hreflang": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "gscStatus": "Descubierta / Sin impresiones"
+  },
+  {
+    "canonicalSlug": "optimizar-pdf-para-impresion",
+    "routes": {
+      "es": "/es/herramientas/optimizar-pdf-para-impresion",
+      "ca": "/ca/eines/optimitzar-pdf-per-impressio",
+      "en": "/en/tools/optimize-pdf-for-print"
+    },
+    "incomingLinks": {
+      "es": 5,
+      "ca": 5,
+      "en": 5,
+      "total": 15
+    },
+    "depth": {
+      "es": 1,
+      "ca": 1,
+      "en": 1
+    },
+    "ssr": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "canonical": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "hreflang": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "gscStatus": "Descubierta / Sin impresiones"
+  },
+  {
+    "canonicalSlug": "webp-a-pdf",
+    "routes": {
+      "es": "/es/herramientas/webp-a-pdf",
+      "ca": "/ca/eines/webp-a-pdf",
+      "en": "/en/tools/webp-to-pdf"
+    },
+    "incomingLinks": {
+      "es": 5,
+      "ca": 5,
+      "en": 5,
+      "total": 15
+    },
+    "depth": {
+      "es": 1,
+      "ca": 1,
+      "en": 1
+    },
+    "ssr": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "canonical": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "hreflang": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "gscStatus": "Descubierta / Sin impresiones"
+  },
+  {
+    "canonicalSlug": "markdown-a-pdf",
+    "routes": {
+      "es": "/es/herramientas/markdown-a-pdf",
+      "ca": "/ca/eines/markdown-a-pdf",
+      "en": "/en/tools/markdown-to-pdf"
+    },
+    "incomingLinks": {
+      "es": 5,
+      "ca": 5,
+      "en": 5,
+      "total": 15
+    },
+    "depth": {
+      "es": 1,
+      "ca": 1,
+      "en": 1
+    },
+    "ssr": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "canonical": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "hreflang": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "gscStatus": "Descubierta / Sin impresiones"
+  },
+  {
+    "canonicalSlug": "powerpoint-a-pdf",
+    "routes": {
+      "es": "/es/herramientas/powerpoint-a-pdf",
+      "ca": "/ca/eines/powerpoint-a-pdf",
+      "en": "/en/tools/powerpoint-to-pdf"
+    },
+    "incomingLinks": {
+      "es": 5,
+      "ca": 5,
+      "en": 5,
+      "total": 15
+    },
+    "depth": {
+      "es": 1,
+      "ca": 1,
+      "en": 1
+    },
+    "ssr": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "canonical": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "hreflang": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "gscStatus": "Descubierta / Sin impresiones"
+  },
+  {
+    "canonicalSlug": "svg-a-pdf",
+    "routes": {
+      "es": "/es/herramientas/svg-a-pdf",
+      "ca": "/ca/eines/svg-a-pdf",
+      "en": "/en/tools/svg-to-pdf"
+    },
+    "incomingLinks": {
+      "es": 5,
+      "ca": 5,
+      "en": 5,
+      "total": 15
+    },
+    "depth": {
+      "es": 1,
+      "ca": 1,
+      "en": 1
+    },
+    "ssr": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "canonical": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "hreflang": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "gscStatus": "Descubierta / Sin impresiones"
+  },
+  {
+    "canonicalSlug": "extraer-imagenes-pdf",
+    "routes": {
+      "es": "/es/herramientas/extraer-imagenes-pdf",
+      "ca": "/ca/eines/extreure-imatges-pdf",
+      "en": "/en/tools/extract-pdf-images"
+    },
+    "incomingLinks": {
+      "es": 5,
+      "ca": 5,
+      "en": 5,
+      "total": 15
+    },
+    "depth": {
+      "es": 1,
+      "ca": 1,
+      "en": 1
+    },
+    "ssr": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "canonical": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "hreflang": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "gscStatus": "Impresiones / Clicks activos"
+  },
+  {
+    "canonicalSlug": "dividir-pdf-por-tamano",
+    "routes": {
+      "es": "/es/herramientas/dividir-pdf-por-tamano",
+      "ca": "/ca/eines/dividir-pdf-per-mida",
+      "en": "/en/tools/split-pdf-by-size"
+    },
+    "incomingLinks": {
+      "es": 5,
+      "ca": 5,
+      "en": 5,
+      "total": 15
+    },
+    "depth": {
+      "es": 1,
+      "ca": 1,
+      "en": 1
+    },
+    "ssr": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "canonical": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "hreflang": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "gscStatus": "Descubierta / Sin impresiones"
+  },
+  {
+    "canonicalSlug": "eliminar-paginas-en-blanco",
+    "routes": {
+      "es": "/es/herramientas/eliminar-paginas-en-blanco",
+      "ca": "/ca/eines/eliminar-pagines-en-blanc",
+      "en": "/en/tools/remove-blank-pages-pdf"
+    },
+    "incomingLinks": {
+      "es": 5,
+      "ca": 5,
+      "en": 5,
+      "total": 15
+    },
+    "depth": {
+      "es": 1,
+      "ca": 1,
+      "en": 1
+    },
+    "ssr": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "canonical": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "hreflang": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "gscStatus": "Descubierta / Sin impresiones"
+  },
+  {
+    "canonicalSlug": "imagen-a-webp",
+    "routes": {
+      "es": "/es/herramientas/imagen-a-webp",
+      "ca": "/ca/eines/imatge-a-webp",
+      "en": "/en/tools/image-to-webp"
+    },
+    "incomingLinks": {
+      "es": 5,
+      "ca": 5,
+      "en": 5,
+      "total": 15
+    },
+    "depth": {
+      "es": 1,
+      "ca": 1,
+      "en": 1
+    },
+    "ssr": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "canonical": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "hreflang": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "gscStatus": "Descubierta / Sin impresiones"
+  },
+  {
+    "canonicalSlug": "sanear-pdf",
+    "routes": {
+      "es": "/es/herramientas/sanear-pdf",
+      "ca": "/ca/eines/sanear-pdf",
+      "en": "/en/tools/sanitize-pdf"
+    },
+    "incomingLinks": {
+      "es": 5,
+      "ca": 5,
+      "en": 5,
+      "total": 15
+    },
+    "depth": {
+      "es": 1,
+      "ca": 1,
+      "en": 1
+    },
+    "ssr": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "canonical": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "hreflang": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "gscStatus": "Descubierta / Sin impresiones"
+  },
+  {
+    "canonicalSlug": "rellenar-formulario-pdf",
+    "routes": {
+      "es": "/es/herramientas/rellenar-formulario-pdf",
+      "ca": "/ca/eines/emplenar-formulari-pdf",
+      "en": "/en/tools/fill-pdf-form"
+    },
+    "incomingLinks": {
+      "es": 9,
+      "ca": 9,
+      "en": 9,
+      "total": 27
+    },
+    "depth": {
+      "es": 1,
+      "ca": 1,
+      "en": 1
+    },
+    "ssr": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "canonical": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "hreflang": {
+      "es": true,
+      "ca": true,
+      "en": true,
+      "allOk": true
+    },
+    "gscStatus": "Descubierta / Sin impresiones"
+  }
+]

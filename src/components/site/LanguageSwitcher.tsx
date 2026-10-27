@@ -46,12 +46,12 @@ export function LanguageSwitcher({ variant = "menu" }: { variant?: "menu" | "inl
   /* ── Menu / Header — compact clean neo-brutalist capsule [ ES  CA  EN ] ────────────────────── */
   return (
     <div
-      className="inline-flex items-center rounded-xl border-2 border-[#0F0F12] bg-white p-1 shadow-[2px_2px_0_#0F0F12]"
+      className="inline-flex items-center rounded-xl border-2 border-[#0F0F12] bg-white p-1 shadow-[2px_2px_0_#0F0F12] min-w-[108px] h-[36px]"
       role="group"
       aria-label={t.nav.languageAria}
     >
       {/* Locale switch links — Real Links for SEO & accessibility with animated sliding pill effect */}
-      <div className="flex items-center gap-1">
+      <div className="flex items-center gap-0.5 h-full">
         {LOCALES.map((item) => {
           const isActive = item === locale;
           return (
@@ -61,7 +61,7 @@ export function LanguageSwitcher({ variant = "menu" }: { variant?: "menu" | "inl
               onClick={() => rememberLocale(item)}
               aria-current={isActive ? "true" : undefined}
               title={LOCALE_LABEL[item]}
-              className={`site-lang-btn px-2.5 py-1 text-xs font-black tracking-wider uppercase rounded-lg transition-all duration-150 select-none ${
+              className={`site-lang-btn flex items-center justify-center min-w-[30px] px-2.5 h-full text-xs font-black tracking-wider uppercase rounded-lg transition-all duration-150 select-none ${
                 isActive
                   ? "bg-[#E8372C] text-white shadow-[1px_1px_0_#0F0F12]"
                   : "text-[#0F0F12] hover:bg-[#FEF08A] hover:text-[#0F0F12]"

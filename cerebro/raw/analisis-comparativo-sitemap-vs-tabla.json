@@ -1,0 +1,312 @@
+{
+  "sitemapCount": 201,
+  "indexedCount": 94,
+  "missingInCsvCount": 117,
+  "missingInCsv": [
+    "https://breadpdf.com/es/sobre-nosotros",
+    "https://breadpdf.com/es/cookies",
+    "https://breadpdf.com/es/terminos",
+    "https://breadpdf.com/es/herramientas/unir-pdf",
+    "https://breadpdf.com/es/herramientas/jpg-a-pdf",
+    "https://breadpdf.com/es/herramientas/extraer-paginas-pdf",
+    "https://breadpdf.com/es/herramientas/eliminar-paginas-pdf",
+    "https://breadpdf.com/es/herramientas/extraer-texto-pdf",
+    "https://breadpdf.com/es/herramientas/pdf-a-word",
+    "https://breadpdf.com/es/herramientas/word-a-pdf",
+    "https://breadpdf.com/es/herramientas/marca-de-agua",
+    "https://breadpdf.com/es/herramientas/ocr-pdf",
+    "https://breadpdf.com/es/herramientas/reparar-pdf",
+    "https://breadpdf.com/es/herramientas/desbloquear-pdf",
+    "https://breadpdf.com/es/herramientas/pdf-a-excel",
+    "https://breadpdf.com/es/herramientas/comparar-pdf",
+    "https://breadpdf.com/es/herramientas/resumir-pdf",
+    "https://breadpdf.com/es/herramientas/pdf-a-powerpoint",
+    "https://breadpdf.com/es/herramientas/pdf-a-webp",
+    "https://breadpdf.com/es/herramientas/qr-pdf",
+    "https://breadpdf.com/es/herramientas/censurar-pdf",
+    "https://breadpdf.com/es/herramientas/pdf-a-markdown",
+    "https://breadpdf.com/es/herramientas/pdf-a-pdfa",
+    "https://breadpdf.com/es/herramientas/excel-a-pdf",
+    "https://breadpdf.com/es/herramientas/aplanar-pdf",
+    "https://breadpdf.com/es/herramientas/eliminar-metadatos-pdf",
+    "https://breadpdf.com/es/herramientas/redimensionar-pdf",
+    "https://breadpdf.com/es/herramientas/editar-metadatos-pdf",
+    "https://breadpdf.com/es/herramientas/insertar-paginas-pdf",
+    "https://breadpdf.com/es/herramientas/webp-a-pdf",
+    "https://breadpdf.com/es/herramientas/markdown-a-pdf",
+    "https://breadpdf.com/es/herramientas/powerpoint-a-pdf",
+    "https://breadpdf.com/es/herramientas/svg-a-pdf",
+    "https://breadpdf.com/es/herramientas/extraer-imagenes-pdf",
+    "https://breadpdf.com/es/herramientas/sanear-pdf",
+    "https://breadpdf.com/es/herramientas/rellenar-formulario-pdf",
+    "https://breadpdf.com/es/herramientas/mejorar-imagenes",
+    "https://breadpdf.com/es/guias/webp-vs-jpg-png-tiendas-online",
+    "https://breadpdf.com/es/guias/ocultar-datos-personales-pdf",
+    "https://breadpdf.com/es/guias/pasar-tablas-pdf-a-excel",
+    "https://breadpdf.com/es/guias/hacer-buscable-pdf-escaneado-ocr",
+    "https://breadpdf.com/es/guias/rellenar-y-firmar-formulario-pdf",
+    "https://breadpdf.com/ca/sobre-nosaltres",
+    "https://breadpdf.com/ca/cookies",
+    "https://breadpdf.com/ca/eines/divideix-pdf",
+    "https://breadpdf.com/ca/eines/pdf-a-jpg",
+    "https://breadpdf.com/ca/eines/elimina-pagines-pdf",
+    "https://breadpdf.com/ca/eines/extreu-text-pdf",
+    "https://breadpdf.com/ca/eines/pdf-a-word",
+    "https://breadpdf.com/ca/eines/word-a-pdf",
+    "https://breadpdf.com/ca/eines/marca-daigua",
+    "https://breadpdf.com/ca/eines/ocr-pdf",
+    "https://breadpdf.com/ca/eines/reparar-pdf",
+    "https://breadpdf.com/ca/eines/desbloquejar-pdf",
+    "https://breadpdf.com/ca/eines/pdf-a-excel",
+    "https://breadpdf.com/ca/eines/comparar-pdf",
+    "https://breadpdf.com/ca/eines/pdf-a-powerpoint",
+    "https://breadpdf.com/ca/eines/pdf-a-webp",
+    "https://breadpdf.com/ca/eines/censurar-pdf",
+    "https://breadpdf.com/ca/eines/retallar-pdf",
+    "https://breadpdf.com/ca/eines/pdf-a-markdown",
+    "https://breadpdf.com/ca/eines/pdf-a-pdfa",
+    "https://breadpdf.com/ca/eines/excel-a-pdf",
+    "https://breadpdf.com/ca/eines/aplanar-pdf",
+    "https://breadpdf.com/ca/eines/eliminar-metadades-pdf",
+    "https://breadpdf.com/ca/eines/redimensionar-pdf",
+    "https://breadpdf.com/ca/eines/afegir-text-pdf",
+    "https://breadpdf.com/ca/eines/inserir-pagines-pdf",
+    "https://breadpdf.com/ca/eines/webp-a-pdf",
+    "https://breadpdf.com/ca/eines/markdown-a-pdf",
+    "https://breadpdf.com/ca/eines/powerpoint-a-pdf",
+    "https://breadpdf.com/ca/eines/svg-a-pdf",
+    "https://breadpdf.com/ca/eines/sanear-pdf",
+    "https://breadpdf.com/ca/eines/emplenar-formulari-pdf",
+    "https://breadpdf.com/ca/eines/millorar-imatges",
+    "https://breadpdf.com/ca/guies/webp-vs-jpg-png-botigues-online",
+    "https://breadpdf.com/ca/guies/ocultar-dades-personals-pdf",
+    "https://breadpdf.com/ca/guies/passar-taules-pdf-a-excel",
+    "https://breadpdf.com/ca/guies/fer-buscable-pdf-escanejat-ocr",
+    "https://breadpdf.com/ca/guies/omplir-i-signar-formulari-pdf",
+    "https://breadpdf.com/en/about",
+    "https://breadpdf.com/en/tools/split-pdf",
+    "https://breadpdf.com/en/tools/delete-pdf-pages",
+    "https://breadpdf.com/en/tools/extract-pdf-text",
+    "https://breadpdf.com/en/tools/pdf-to-word",
+    "https://breadpdf.com/en/tools/word-to-pdf",
+    "https://breadpdf.com/en/tools/watermark-pdf",
+    "https://breadpdf.com/en/tools/ocr-pdf",
+    "https://breadpdf.com/en/tools/repair-pdf",
+    "https://breadpdf.com/en/tools/unlock-pdf",
+    "https://breadpdf.com/en/tools/sign-pdf",
+    "https://breadpdf.com/en/tools/pdf-to-excel",
+    "https://breadpdf.com/en/tools/compare-pdf",
+    "https://breadpdf.com/en/tools/summarize-pdf",
+    "https://breadpdf.com/en/tools/pdf-to-powerpoint",
+    "https://breadpdf.com/en/tools/pdf-to-webp",
+    "https://breadpdf.com/en/tools/redact-pdf",
+    "https://breadpdf.com/en/tools/pdf-to-markdown",
+    "https://breadpdf.com/en/tools/pdf-to-pdfa",
+    "https://breadpdf.com/en/tools/excel-to-pdf",
+    "https://breadpdf.com/en/tools/reorder-pdf-pages",
+    "https://breadpdf.com/en/tools/flatten-pdf",
+    "https://breadpdf.com/en/tools/remove-pdf-metadata",
+    "https://breadpdf.com/en/tools/png-to-pdf",
+    "https://breadpdf.com/en/tools/edit-pdf-metadata",
+    "https://breadpdf.com/en/tools/insert-pages-pdf",
+    "https://breadpdf.com/en/tools/webp-to-pdf",
+    "https://breadpdf.com/en/tools/markdown-to-pdf",
+    "https://breadpdf.com/en/tools/powerpoint-to-pdf",
+    "https://breadpdf.com/en/tools/svg-to-pdf",
+    "https://breadpdf.com/en/tools/split-pdf-by-size",
+    "https://breadpdf.com/en/tools/image-to-webp",
+    "https://breadpdf.com/en/tools/sanitize-pdf",
+    "https://breadpdf.com/en/tools/fill-pdf-form",
+    "https://breadpdf.com/en/tools/enhance-image",
+    "https://breadpdf.com/en/guides/webp-vs-jpg-png-online-stores",
+    "https://breadpdf.com/en/guides/hide-personal-data-in-pdf"
+  ],
+  "indexedNotInSitemap": [
+    "https://breadpdf.com/en/category/convert",
+    "https://breadpdf.com/en/guides",
+    "https://breadpdf.com/es/premium",
+    "https://breadpdf.com/en/category/optimize",
+    "https://breadpdf.com/ca/categoria/convertir",
+    "https://breadpdf.com/es/categoria/convertir",
+    "https://breadpdf.com/es/categoria/optimizar",
+    "https://breadpdf.com/es/categoria/organizar",
+    "https://breadpdf.com/en/premium",
+    "https://breadpdf.com/ca/premium"
+  ],
+  "breakdownMissing": {
+    "byLang": {
+      "es": 42,
+      "ca": 38,
+      "en": 37
+    },
+    "byType": {
+      "home": 0,
+      "catalogo": 0,
+      "herramienta": 99,
+      "guia": 12,
+      "categoria": 0,
+      "institucional": 6,
+      "otro": 0
+    }
+  },
+  "breakdownIndexed": {
+    "byLang": {
+      "es": 29,
+      "ca": 31,
+      "en": 34
+    },
+    "byType": {
+      "home": 3,
+      "catalogo": 3,
+      "herramienta": 54,
+      "guia": 18,
+      "categoria": 6,
+      "institucional": 6,
+      "otro": 4
+    }
+  },
+  "toolDisparities": [
+    {
+      "canonicalSlug": "unir-pdf",
+      "name": "Unir PDF",
+      "es": false,
+      "ca": true,
+      "en": true
+    },
+    {
+      "canonicalSlug": "dividir-pdf",
+      "name": "Dividir PDF",
+      "es": true,
+      "ca": false,
+      "en": false
+    },
+    {
+      "canonicalSlug": "pdf-a-jpg",
+      "name": "PDF a JPG",
+      "es": true,
+      "ca": false,
+      "en": true
+    },
+    {
+      "canonicalSlug": "jpg-a-pdf",
+      "name": "JPG a PDF",
+      "es": false,
+      "ca": true,
+      "en": true
+    },
+    {
+      "canonicalSlug": "extraer-paginas-pdf",
+      "name": "Extraer páginas",
+      "es": false,
+      "ca": true,
+      "en": true
+    },
+    {
+      "canonicalSlug": "firmar-pdf",
+      "name": "Firmar PDF",
+      "es": true,
+      "ca": true,
+      "en": false
+    },
+    {
+      "canonicalSlug": "resumir-pdf",
+      "name": "Resumir PDF",
+      "es": false,
+      "ca": true,
+      "en": false
+    },
+    {
+      "canonicalSlug": "qr-pdf",
+      "name": "Generar QR a PDF",
+      "es": false,
+      "ca": true,
+      "en": true
+    },
+    {
+      "canonicalSlug": "recortar-pdf",
+      "name": "Recortar PDF",
+      "es": true,
+      "ca": false,
+      "en": true
+    },
+    {
+      "canonicalSlug": "reordenar-paginas-pdf",
+      "name": "Reordenar páginas",
+      "es": true,
+      "ca": true,
+      "en": false
+    },
+    {
+      "canonicalSlug": "png-a-pdf",
+      "name": "PNG a PDF",
+      "es": true,
+      "ca": true,
+      "en": false
+    },
+    {
+      "canonicalSlug": "redimensionar-pdf",
+      "name": "Ajustar tamaño de página",
+      "es": false,
+      "ca": false,
+      "en": true
+    },
+    {
+      "canonicalSlug": "editar-metadatos-pdf",
+      "name": "Editar metadatos PDF",
+      "es": false,
+      "ca": true,
+      "en": false
+    },
+    {
+      "canonicalSlug": "anadir-texto-pdf",
+      "name": "Añadir texto al PDF",
+      "es": true,
+      "ca": false,
+      "en": true
+    },
+    {
+      "canonicalSlug": "extraer-imagenes-pdf",
+      "name": "Extraer imágenes de PDF",
+      "es": false,
+      "ca": true,
+      "en": true
+    },
+    {
+      "canonicalSlug": "dividir-pdf-por-tamano",
+      "name": "Dividir PDF por tamaño",
+      "es": true,
+      "ca": true,
+      "en": false
+    },
+    {
+      "canonicalSlug": "imagen-a-webp",
+      "name": "Imagen a WebP",
+      "es": true,
+      "ca": true,
+      "en": false
+    }
+  ],
+  "guideDisparities": [
+    {
+      "canonicalSlug": "pasar-tablas-pdf-a-excel",
+      "title": "Cómo pasar tablas de un PDF a Excel sin perder el formato de las columnas",
+      "es": false,
+      "ca": false,
+      "en": true
+    },
+    {
+      "canonicalSlug": "hacer-buscable-pdf-escaneado-ocr",
+      "title": "Cómo hacer buscable un PDF escaneado con OCR",
+      "es": false,
+      "ca": false,
+      "en": true
+    },
+    {
+      "canonicalSlug": "rellenar-y-firmar-formulario-pdf",
+      "title": "Cómo rellenar y firmar un formulario PDF desde el navegador",
+      "es": false,
+      "ca": false,
+      "en": true
+    }
+  ]
+}

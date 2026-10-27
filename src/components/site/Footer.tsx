@@ -130,37 +130,41 @@ export function Footer() {
       </div>
 
       {/* ── CUERPO PRINCIPAL DEL FOOTER ── */}
-      <div className="w-full max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-12 pt-14 pb-12 sm:pt-16 sm:pb-16">
+      <div className="w-full max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-12 pt-10 pb-8 sm:pt-12 sm:pb-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 items-start">
           
-          {/* COL 1: MARCA + DESCRIPCIÓN + IDIOMAS (lg:col-span-4) */}
+          {/* COL 1: MARCA + MASCOTA + DESCRIPCIÓN + IDIOMAS (lg:col-span-4) */}
           <div className="lg:col-span-4 space-y-4">
-            <Link
-              to={HOME_ROUTE}
-              params={homeParams(locale)}
-              className="inline-flex items-center gap-3.5 group select-none"
-            >
-              <img
-                src={BRAND_ASSETS.iconWebp}
-                alt="BreadPDF"
-                width={56}
-                height={54}
-                className="h-12 sm:h-13 w-auto object-contain drop-shadow-xs transition-transform duration-200 group-hover:scale-105"
-                loading="lazy"
-                decoding="async"
-              />
-              <span className="font-heading text-[26px] sm:text-[30px] font-black tracking-tight leading-none">
-                <span className="text-[#592316]">{BRAND_WORDMARK.bread}</span>
-                <span className="text-[#EC3C2D]">{BRAND_WORDMARK.pdf}</span>
-              </span>
-            </Link>
+            <div className="flex items-center gap-4">
+              <Link
+                to={HOME_ROUTE}
+                params={homeParams(locale)}
+                className="inline-flex items-center gap-3 group select-none"
+              >
+                <img
+                  src={BRAND_ASSETS.iconWebp}
+                  alt="BreadPDF"
+                  width={56}
+                  height={54}
+                  className="h-11 sm:h-12 w-auto object-contain drop-shadow-xs transition-transform duration-200 group-hover:scale-105"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <span className="font-heading text-[24px] sm:text-[27px] font-black tracking-tight leading-none">
+                  <span className="text-[#592316]">{BRAND_WORDMARK.bread}</span>
+                  <span className="text-[#EC3C2D]">{BRAND_WORDMARK.pdf}</span>
+                </span>
+              </Link>
+              {/* Mascota integrada junto al logo — compacta y sin tarjeta */}
+              <BreadPDFFooterMascot className="h-[72px] w-auto" />
+            </div>
 
             <p className="text-[15px] sm:text-[15.5px] leading-relaxed text-slate-700 max-w-[340px] font-medium">
               {copy.description}
             </p>
 
             {/* Selector de idioma con borde neo-brutalista */}
-            <div className="pt-2">
+            <div className="pt-1">
               <LanguageSwitcher />
             </div>
           </div>
@@ -257,13 +261,12 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* COL 4: LEGAL + MASCOTA (lg:col-span-3) */}
-          <div className="lg:col-span-3 flex flex-col justify-between h-full space-y-6">
-            <div>
-              <h4 className="mb-5 text-[17px] sm:text-[18px] font-black uppercase tracking-wider text-[#0F0F12] leading-tight">
-                {copy.colLegal}
-              </h4>
-              <ul className="space-y-3.5">
+          {/* COL 4: LEGAL (lg:col-span-3) */}
+          <div className="lg:col-span-3">
+            <h4 className="mb-5 text-[17px] sm:text-[18px] font-black uppercase tracking-wider text-[#0F0F12] leading-tight">
+              {copy.colLegal}
+            </h4>
+            <ul className="space-y-3.5">
                 <li>
                   <Link
                     to={SECTION_ROUTE}
@@ -295,18 +298,6 @@ export function Footer() {
                   </Link>
                 </li>
               </ul>
-            </div>
-
-            {/* Tarjeta Mascota BreadPDF */}
-            <div className="pt-2">
-              <div className="rounded-2xl border-2 border-[#0F0F12] bg-white p-4 shadow-[3px_3px_0_#0F0F12] flex items-center gap-3">
-                <BreadPDFFooterMascot />
-                <div className="text-[13px] font-bold text-slate-700 leading-snug">
-                  <span className="text-[#0F0F12] font-black block">BreadPDF</span>
-                  100% privado en memoria local
-                </div>
-              </div>
-            </div>
           </div>
 
         </div>

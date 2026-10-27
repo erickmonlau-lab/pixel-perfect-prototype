@@ -1,4 +1,4 @@
-﻿import { BRAND_ASSETS } from "@/lib/brand";
+import { BRAND_ASSETS } from "@/lib/brand";
 
 interface BreadPDFFooterMascotProps {
   className?: string;
@@ -10,6 +10,8 @@ interface BreadPDFFooterMascotProps {
  * Se inyecta la animación vía etiqueta <style> inline para garantizar al 100%
  * que ningún filtro de navegador (como prefers-reduced-motion en Windows) ni
  * caché de estilos CSS bloquee la animación.
+ *
+ * Acepta `className` para controlar altura/tamaño en usos inline (ej. footer brand col).
  */
 export function BreadPDFFooterMascot({ className = "" }: BreadPDFFooterMascotProps) {
   return (
@@ -77,13 +79,14 @@ export function BreadPDFFooterMascot({ className = "" }: BreadPDFFooterMascotPro
         alt="BreadPDF Mascot"
         width={501}
         height={473}
-        className="breadpdf-live-mascot relative z-10 w-auto h-[215px] sm:h-[235px] md:h-[250px] xl:h-[265px] object-contain drop-shadow-[0_12px_24px_rgba(0,0,0,0.5)] pointer-events-none"
+        className="breadpdf-live-mascot relative z-10 w-auto h-full object-contain drop-shadow-[0_8px_16px_rgba(0,0,0,0.4)] pointer-events-none"
+        style={{ height: "inherit" }}
         loading="lazy"
         decoding="async"
       />
 
       {/* Sombra de suelo sincronizada con el salto y vaivén */}
-      <div className="breadpdf-live-shadow mt-1 h-3.5 w-44 sm:w-50 rounded-[100%] bg-black/60 blur-[4px]" />
+      <div className="breadpdf-live-shadow mt-1 h-2.5 w-[60%] rounded-[100%] bg-black/50 blur-[3px]" />
     </div>
   );
 }

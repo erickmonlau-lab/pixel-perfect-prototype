@@ -1,0 +1,1020 @@
+[
+  {
+    "slug": "optimizar",
+    "category": "",
+    "status": "",
+    "h1": "",
+    "tagline": "",
+    "seoTitle": "",
+    "seoDesc": "",
+    "faqCount": 0,
+    "howCount": 0,
+    "kwCount": 0,
+    "keywords": [],
+    "hasRun": false
+  },
+  {
+    "slug": "organizar",
+    "category": "",
+    "status": "",
+    "h1": "",
+    "tagline": "",
+    "seoTitle": "",
+    "seoDesc": "",
+    "faqCount": 0,
+    "howCount": 0,
+    "kwCount": 0,
+    "keywords": [],
+    "hasRun": false
+  },
+  {
+    "slug": "convertir",
+    "category": "",
+    "status": "",
+    "h1": "",
+    "tagline": "",
+    "seoTitle": "",
+    "seoDesc": "",
+    "faqCount": 0,
+    "howCount": 0,
+    "kwCount": 0,
+    "keywords": [],
+    "hasRun": false
+  },
+  {
+    "slug": "editar",
+    "category": "",
+    "status": "",
+    "h1": "",
+    "tagline": "",
+    "seoTitle": "",
+    "seoDesc": "",
+    "faqCount": 0,
+    "howCount": 0,
+    "kwCount": 0,
+    "keywords": [],
+    "hasRun": false
+  },
+  {
+    "slug": "seguridad",
+    "category": "",
+    "status": "",
+    "h1": "",
+    "tagline": "",
+    "seoTitle": "",
+    "seoDesc": "",
+    "faqCount": 0,
+    "howCount": 0,
+    "kwCount": 0,
+    "keywords": [],
+    "hasRun": false
+  },
+  {
+    "slug": "inteligencia",
+    "category": "",
+    "status": "",
+    "h1": "",
+    "tagline": "",
+    "seoTitle": "",
+    "seoDesc": "",
+    "faqCount": 0,
+    "howCount": 0,
+    "kwCount": 0,
+    "keywords": [],
+    "hasRun": false
+  },
+  {
+    "slug": "comprimir-pdf",
+    "category": "optimizar",
+    "status": "live",
+    "h1": "Comprimir PDF y reducir su tamaño",
+    "tagline": "Baja el peso de tu PDF eligiendo el equilibrio exacto entre tamaño y calidad.",
+    "seoTitle": "Comprimir PDF online gratis y reducir tamaño | BreadPDF",
+    "seoDesc": "Reduce el tamaño de tu PDF en el navegador con cuatro niveles de compresión y comparativa de peso. Rápido, privado y sin subir archivos a servidores.",
+    "faqCount": 8,
+    "howCount": 3,
+    "kwCount": 6,
+    "keywords": [
+      "comprimir pdf",
+      "reducir tamaño pdf",
+      "bajar peso pdf",
+      "comprimir pdf a 2mb",
+      "comprimir pdf moodle 5mb"
+    ],
+    "hasRun": true
+  },
+  {
+    "slug": "unir-pdf",
+    "category": "organizar",
+    "status": "live",
+    "h1": "Unir varios PDF en un solo documento",
+    "tagline": "Combina archivos en el orden que quieras y descarga un único PDF.",
+    "seoTitle": "Unir PDF online gratis y en orden | BreadPDF",
+    "seoDesc": "Combina dos o más PDF en un único documento, reordena los archivos antes de procesar y descarga el resultado al instante desde tu navegador.",
+    "faqCount": 6,
+    "howCount": 6,
+    "kwCount": 3,
+    "keywords": [
+      "unir pdf",
+      "juntar pdf",
+      "combinar pdf"
+    ],
+    "hasRun": true
+  },
+  {
+    "slug": "dividir-pdf",
+    "category": "organizar",
+    "status": "live",
+    "h1": "Dividir un PDF en varios documentos",
+    "tagline": "Separa página a página o por los intervalos que tú definas.",
+    "seoTitle": "Dividir PDF online por páginas o intervalos | BreadPDF",
+    "seoDesc": "Divide un PDF en documentos independientes: una página por archivo o intervalos personalizados como 1-3, 4-8. Todo en tu navegador y sin registro.",
+    "faqCount": 6,
+    "howCount": 3,
+    "kwCount": 3,
+    "keywords": [
+      "dividir pdf",
+      "separar pdf",
+      "cortar pdf"
+    ],
+    "hasRun": true
+  },
+  {
+    "slug": "pdf-a-jpg",
+    "category": "convertir",
+    "status": "live",
+    "h1": "Convertir PDF a JPG",
+    "tagline": "Cada página del PDF se convierte en una imagen JPG nítida.",
+    "seoTitle": "Convertir PDF a JPG online con calidad ajustable | BreadPDF",
+    "seoDesc": "Convierte las páginas de un PDF en imágenes JPG eligiendo la resolución y la calidad. El proceso ocurre en tu navegador, sin subir el documento.",
+    "faqCount": 6,
+    "howCount": 3,
+    "kwCount": 3,
+    "keywords": [
+      "pdf a jpg",
+      "pdf a imagen",
+      "convertir pdf a jpg"
+    ],
+    "hasRun": true
+  },
+  {
+    "slug": "jpg-a-pdf",
+    "category": "convertir",
+    "status": "live",
+    "h1": "Convertir JPG a PDF",
+    "tagline": "Convierte tus imágenes en un PDF ordenado y listo para enviar.",
+    "seoTitle": "Convertir JPG a PDF online en A4 o ajustado | BreadPDF",
+    "seoDesc": "Convierte imágenes JPG o PNG en un único documento PDF, eligiendo tamaño A4 con márgenes o ajustado a la foto. Ordena tus imágenes en el navegador.",
+    "faqCount": 6,
+    "howCount": 3,
+    "kwCount": 3,
+    "keywords": [
+      "jpg a pdf",
+      "imagen a pdf",
+      "png a pdf"
+    ],
+    "hasRun": true
+  },
+  {
+    "slug": "rotar-pdf",
+    "category": "organizar",
+    "status": "live",
+    "h1": "Rotar páginas de un PDF",
+    "tagline": "Gira todo el documento o solo las páginas que indiques.",
+    "seoTitle": "Rotar PDF online y guardar el giro | BreadPDF",
+    "seoDesc": "Gira páginas de un PDF 90, 180 o 270 grados, en todo el documento o en páginas concretas, y guarda el resultado de forma permanente.",
+    "faqCount": 6,
+    "howCount": 3,
+    "kwCount": 3,
+    "keywords": [
+      "rotar pdf",
+      "girar pdf",
+      "voltear pdf"
+    ],
+    "hasRun": true
+  },
+  {
+    "slug": "extraer-paginas-pdf",
+    "category": "organizar",
+    "status": "live",
+    "h1": "Extraer páginas de un PDF",
+    "tagline": "Quédate solo con las páginas que te interesan.",
+    "seoTitle": "Extraer páginas de un PDF en un nuevo archivo | BreadPDF",
+    "seoDesc": "Selecciona y extrae páginas concretas o intervalos de un PDF para crear un nuevo documento independiente, sin alterar el archivo original.",
+    "faqCount": 6,
+    "howCount": 3,
+    "kwCount": 2,
+    "keywords": [
+      "extraer páginas pdf",
+      "separar páginas pdf"
+    ],
+    "hasRun": true
+  },
+  {
+    "slug": "eliminar-paginas-pdf",
+    "category": "organizar",
+    "status": "live",
+    "h1": "Eliminar páginas de un PDF",
+    "tagline": "Borra las páginas que no necesitas y conserva el resto intacto.",
+    "seoTitle": "Eliminar páginas de un PDF y guardar online | BreadPDF",
+    "seoDesc": "Borra las hojas que no necesitas de un documento PDF y descarga el archivo limpio con páginas reindexadas, sin instalar programas ni subir archivos.",
+    "faqCount": 6,
+    "howCount": 3,
+    "kwCount": 3,
+    "keywords": [
+      "eliminar páginas pdf",
+      "borrar páginas pdf",
+      "quitar hojas pdf"
+    ],
+    "hasRun": true
+  },
+  {
+    "slug": "extraer-texto-pdf",
+    "category": "convertir",
+    "status": "live",
+    "h1": "Extraer el texto de un PDF",
+    "tagline": "Obtén todo el texto del documento en un archivo de texto plano.",
+    "seoTitle": "Extraer texto de un PDF a TXT online | BreadPDF",
+    "seoDesc": "Copia y extrae el texto plano de un PDF en un archivo .txt limpio delimitado por páginas. Proceso 100% privado en tu navegador.",
+    "faqCount": 6,
+    "howCount": 3,
+    "kwCount": 3,
+    "keywords": [
+      "extraer texto pdf",
+      "pdf a txt",
+      "copiar texto pdf"
+    ],
+    "hasRun": true
+  },
+  {
+    "slug": "pdf-a-word",
+    "category": "convertir",
+    "status": "live",
+    "h1": "Convertir PDF a Word editable",
+    "tagline": "Extrae el contenido textual y la estructura básica de tu PDF a un archivo .docx editable en tu naveg",
+    "seoTitle": "Convertir PDF a Word (.docx) editable online | BreadPDF",
+    "seoDesc": "Convierte el texto y párrafos de un PDF a un documento Word (.docx) editable en tu navegador. Proceso local y privado sin registro.",
+    "faqCount": 6,
+    "howCount": 3,
+    "kwCount": 4,
+    "keywords": [
+      "pdf a word",
+      "pdf a docx",
+      "convertir pdf editable",
+      "pasar pdf a word"
+    ],
+    "hasRun": true
+  },
+  {
+    "slug": "word-a-pdf",
+    "category": "convertir",
+    "status": "live",
+    "h1": "Convertir Word a PDF",
+    "tagline": "Transforma documentos .docx en archivos PDF estándar y listos para compartir o imprimir.",
+    "seoTitle": "Convertir Word a PDF online en tu navegador | BreadPDF",
+    "seoDesc": "Pasa tus documentos Word (.docx) a PDF conservando párrafos, títulos y estructura limpia. 100% privado en tu navegador.",
+    "faqCount": 5,
+    "howCount": 3,
+    "kwCount": 4,
+    "keywords": [
+      "word a pdf",
+      "docx a pdf",
+      "convertir word a pdf",
+      "pasar docx a pdf"
+    ],
+    "hasRun": true
+  },
+  {
+    "slug": "marca-de-agua",
+    "category": "seguridad",
+    "status": "live",
+    "h1": "Añadir marca de agua a un PDF",
+    "tagline": "Sella cada página con texto o imagen, rotación y control de opacidad.",
+    "seoTitle": "Añadir marca de agua a PDF online gratis | BreadPDF",
+    "seoDesc": "Añade marcas de agua de texto o imagen a tus archivos PDF con control total de ángulo, posición y transparencia, directamente en tu navegador.",
+    "faqCount": 5,
+    "howCount": 3,
+    "kwCount": 3,
+    "keywords": [
+      "marca de agua pdf",
+      "watermark pdf",
+      "sello pdf"
+    ],
+    "hasRun": false
+  },
+  {
+    "slug": "numerar-paginas",
+    "category": "editar",
+    "status": "live",
+    "h1": "Numerar páginas de un PDF",
+    "tagline": "Inserta numeración con formato, posición y márgenes configurables.",
+    "seoTitle": "Numerar páginas PDF online gratis | BreadPDF",
+    "seoDesc": "Añade números de página a tu documento PDF, en el encabezado o pie, personalizando el formato y la tipografía.",
+    "faqCount": 5,
+    "howCount": 3,
+    "kwCount": 3,
+    "keywords": [
+      "numerar pdf",
+      "paginar pdf",
+      "numeros de pagina pdf"
+    ],
+    "hasRun": false
+  },
+  {
+    "slug": "ocr-pdf",
+    "category": "inteligencia",
+    "status": "live",
+    "h1": "Reconocimiento óptico de caracteres (OCR) en PDF",
+    "tagline": "Convierte documentos escaneados en archivos con texto seleccionable y buscable.",
+    "seoTitle": "OCR de PDF online gratis | Reconocimiento de texto BreadPDF",
+    "seoDesc": "Aplica OCR a tus PDF escaneados o imágenes directamente en el navegador. Genera un PDF con texto buscable o extrae el contenido en formato .txt.",
+    "faqCount": 6,
+    "howCount": 3,
+    "kwCount": 4,
+    "keywords": [
+      "ocr pdf",
+      "reconocer texto pdf",
+      "pdf escaneado a texto",
+      "pdf buscable"
+    ],
+    "hasRun": true
+  },
+  {
+    "slug": "reparar-pdf",
+    "category": "optimizar",
+    "status": "live",
+    "h1": "Reparar y recuperar archivos PDF dañados",
+    "tagline": "Recupera documentos corruptos reconstruyendo su estructura y tabla de referencias.",
+    "seoTitle": "Reparar PDF online gratis | Recuperación de documentos BreadPDF",
+    "seoDesc": "Repara archivos PDF que no abren, tienen la estructura rota o errores de XRef. Recupera páginas y descarga un PDF saneado en tu navegador.",
+    "faqCount": 4,
+    "howCount": 3,
+    "kwCount": 4,
+    "keywords": [
+      "reparar pdf",
+      "arreglar pdf",
+      "recuperar pdf dañado",
+      "reconstruir pdf"
+    ],
+    "hasRun": true
+  },
+  {
+    "slug": "proteger-pdf",
+    "category": "seguridad",
+    "status": "live",
+    "h1": "Proteger PDF con contraseña y cifrado fuerte",
+    "tagline": "Añade una contraseña de apertura y cifra tu documento con seguridad AES de alta resistencia.",
+    "seoTitle": "Proteger PDF con contraseña online gratis | BreadPDF",
+    "seoDesc": "Cifra y añade contraseña a tus documentos PDF en tu navegador sin subirlos a internet. Máxima privacidad y compatibilidad con lectores PDF.",
+    "faqCount": 5,
+    "howCount": 3,
+    "kwCount": 4,
+    "keywords": [
+      "proteger pdf",
+      "contraseña pdf",
+      "bloquear pdf",
+      "cifrar pdf"
+    ],
+    "hasRun": true
+  },
+  {
+    "slug": "desbloquear-pdf",
+    "category": "seguridad",
+    "status": "live",
+    "h1": "Desbloquear PDF y quitar contraseña",
+    "tagline": "Retira la contraseña de un PDF del que tienes la clave para abrirlo sin restricciones.",
+    "seoTitle": "Desbloquear PDF online y quitar contraseña | BreadPDF",
+    "seoDesc": "Elimina la contraseña de apertura de tu archivo PDF introduciendo la clave legítima una sola vez. Descarga tu PDF libre de contraseñas.",
+    "faqCount": 5,
+    "howCount": 3,
+    "kwCount": 3,
+    "keywords": [
+      "desbloquear pdf",
+      "quitar contraseña pdf",
+      "eliminar clave pdf"
+    ],
+    "hasRun": true
+  },
+  {
+    "slug": "firmar-pdf",
+    "category": "seguridad",
+    "status": "live",
+    "h1": "Firmar PDF online gratis y a mano alzada",
+    "tagline": "Dibuja o sube tu firma electrónica y estámpala en cualquier página de tu documento.",
+    "seoTitle": "Firmar PDF online gratis | Firma digital BreadPDF",
+    "seoDesc": "Añade tu rúbrica o firma gráfica a tu documento PDF directamente en el navegador. 100% privado, sin subir datos a ningún servidor.",
+    "faqCount": 3,
+    "howCount": 3,
+    "kwCount": 4,
+    "keywords": [
+      "firmar pdf",
+      "firma digital pdf",
+      "firmar documento",
+      "rúbrica pdf"
+    ],
+    "hasRun": false
+  },
+  {
+    "slug": "pdf-a-excel",
+    "category": "convertir",
+    "status": "live",
+    "h1": "Convertir PDF a Excel y CSV online gratis",
+    "tagline": "Extrae tablas y datos estructurados de tu PDF a hojas de cálculo XLSX o CSV.",
+    "seoTitle": "Convertir PDF a Excel online gratis | XLSX y CSV en BreadPDF",
+    "seoDesc": "Convierte tablas y datos de tus archivos PDF a hojas de cálculo Excel (.xlsx) o CSV de forma rápida, exacta y sin subir archivos a servidores externos.",
+    "faqCount": 4,
+    "howCount": 3,
+    "kwCount": 4,
+    "keywords": [
+      "pdf a excel",
+      "convertir pdf a xlsx",
+      "extraer tablas pdf",
+      "pdf a csv"
+    ],
+    "hasRun": true
+  },
+  {
+    "slug": "comparar-pdf",
+    "category": "inteligencia",
+    "status": "live",
+    "h1": "Comparar dos documentos PDF online y ver diferencias",
+    "tagline": "Inspecciona cambios visuales y discrepancias de texto entre dos versiones de un archivo PDF.",
+    "seoTitle": "Comparar dos PDF online y ver diferencias | BreadPDF",
+    "seoDesc": "Compara dos versiones de un documento PDF en paralelo o con cortinilla deslizante interactiva. Detecta cambios de texto y diseño en tu navegador.",
+    "faqCount": 5,
+    "howCount": 3,
+    "kwCount": 5,
+    "keywords": [
+      "comparar pdf",
+      "diferencias pdf",
+      "visualizador de diferencias",
+      "diff pdf",
+      "comparar dos pdf"
+    ],
+    "hasRun": false
+  },
+  {
+    "slug": "resumir-pdf",
+    "category": "inteligencia",
+    "status": "live",
+    "h1": "Resumir PDF y extraer puntos clave",
+    "tagline": "Genera resúmenes ejecutivos y puntos clave de documentos largos directamente en tu navegador.",
+    "seoTitle": "Resumir PDF online y extraer puntos clave | BreadPDF",
+    "seoDesc": "Extrae los puntos clave y oraciones más relevantes de cualquier PDF sin enviar tu documento a la nube ni requerir suscripciones.",
+    "faqCount": 5,
+    "howCount": 3,
+    "kwCount": 4,
+    "keywords": [
+      "resumir pdf",
+      "resumen pdf",
+      "ideas clave pdf",
+      "sintetizar pdf"
+    ],
+    "hasRun": true
+  },
+  {
+    "slug": "extraer-datos",
+    "category": "inteligencia",
+    "status": "live",
+    "h1": "Extraer datos estructurados de PDF",
+    "tagline": "Detecta y extrae correos, teléfonos, fechas e importes monetarios automáticamente.",
+    "seoTitle": "Extraer datos de PDF online gratis | JSON y CSV en BreadPDF",
+    "seoDesc": "Extrae información sensible y estructurada como emails, importes, fechas y teléfonos directamente en formato JSON o CSV.",
+    "faqCount": 5,
+    "howCount": 3,
+    "kwCount": 4,
+    "keywords": [
+      "extraer datos pdf",
+      "extraer facturas pdf",
+      "datos estructurados pdf",
+      "pdf a json"
+    ],
+    "hasRun": true
+  },
+  {
+    "slug": "pdf-a-powerpoint",
+    "category": "convertir",
+    "status": "live",
+    "h1": "Convertir PDF a diapositivas PowerPoint",
+    "tagline": "Convierte cada página de tu PDF en una diapositiva .pptx en formato panorámico 16:9.",
+    "seoTitle": "Convertir PDF a PowerPoint (.pptx) online gratis | BreadPDF",
+    "seoDesc": "Transforma presentaciones en PDF en archivos PowerPoint (.pptx) listos para proyectar y editar en Microsoft PowerPoint o Google Slides.",
+    "faqCount": 5,
+    "howCount": 3,
+    "kwCount": 3,
+    "keywords": [
+      "pdf a powerpoint",
+      "pdf a pptx",
+      "convertir diapositivas pdf"
+    ],
+    "hasRun": true
+  },
+  {
+    "slug": "pdf-a-webp",
+    "category": "convertir",
+    "status": "live",
+    "h1": "Convertir PDF a imágenes WebP",
+    "tagline": "Convierte páginas PDF a formato WebP moderno, nítido y hasta 70% más ligero.",
+    "seoTitle": "Convertir PDF a WebP online gratis | BreadPDF",
+    "seoDesc": "Transforma cada página de tu PDF en imágenes WebP de última generación. Alta calidad visual, compresión superior y 100% procesado en tu navegador.",
+    "faqCount": 6,
+    "howCount": 3,
+    "kwCount": 3,
+    "keywords": [
+      "pdf a webp",
+      "convertir pdf webp",
+      "extraer imagenes webp pdf"
+    ],
+    "hasRun": true
+  },
+  {
+    "slug": "qr-pdf",
+    "category": "inteligencia",
+    "status": "live",
+    "h1": "Crear código QR para un PDF online",
+    "tagline": "Genera códigos QR estáticos de alta resolución y descárgalos maquetados en PDF listos para imprimir.",
+    "seoTitle": "Crear código QR para un PDF online | BreadPDF",
+    "seoDesc": "Genera códigos QR estáticos para enlaces, menús o texto y descárgalos en una hoja PDF A4 lista para imprimir o en PNG transparente.",
+    "faqCount": 6,
+    "howCount": 3,
+    "kwCount": 4,
+    "keywords": [
+      "qr a pdf",
+      "generar codigo qr pdf",
+      "crear qr imprimir",
+      "codigo qr estatico"
+    ],
+    "hasRun": true
+  },
+  {
+    "slug": "censurar-pdf",
+    "category": "seguridad",
+    "status": "live",
+    "h1": "Censurar PDF y tapar datos confidenciales",
+    "tagline": "Oculta visualmente textos, nombres, DNI o cifras confidenciales con bloques opacos permanentes.",
+    "seoTitle": "Censurar PDF online y tapar datos confidenciales | BreadPDF",
+    "seoDesc": "Tapa y cubre información sensible en tu PDF con bloques opacos negros o blancos. Procesamiento 100% privado en tu navegador.",
+    "faqCount": 6,
+    "howCount": 3,
+    "kwCount": 5,
+    "keywords": [
+      "censurar pdf",
+      "redact pdf",
+      "ocultar datos pdf",
+      "tachar pdf confidencial",
+      "tapar datos pdf"
+    ],
+    "hasRun": true
+  },
+  {
+    "slug": "recortar-pdf",
+    "category": "editar",
+    "status": "live",
+    "h1": "Recortar márgenes de páginas PDF",
+    "tagline": "Elimina los márgenes en blanco sobrantes y ajusta el encuadre de todas las páginas.",
+    "seoTitle": "Recortar PDF online gratis | Ajustar márgenes BreadPDF",
+    "seoDesc": "Recorta márgenes vacíos y ajusta la caja de visualización de tus documentos PDF de forma precisa y 100% en tu navegador.",
+    "faqCount": 5,
+    "howCount": 3,
+    "kwCount": 4,
+    "keywords": [
+      "recortar pdf",
+      "crop pdf",
+      "ajustar margenes pdf",
+      "quitar bordes blancos pdf"
+    ],
+    "hasRun": true
+  },
+  {
+    "slug": "pdf-a-markdown",
+    "category": "convertir",
+    "status": "live",
+    "h1": "Convertir PDF a Markdown (.md)",
+    "tagline": "Transforma tus documentos en Markdown limpio estructurado para ChatGPT, Claude y Notion.",
+    "seoTitle": "Convertir PDF a Markdown online gratis (.md) | BreadPDF",
+    "seoDesc": "Convierte PDFs en archivos Markdown estructurados con encabezados, listas y párrafos limpios, listos para alimentar modelos de IA o tus notas en Obsidian.",
+    "faqCount": 5,
+    "howCount": 3,
+    "kwCount": 4,
+    "keywords": [
+      "pdf a markdown",
+      "pdf a md",
+      "convertir pdf obsidian",
+      "pdf para chatgpt"
+    ],
+    "hasRun": true
+  },
+  {
+    "slug": "pdf-a-pdfa",
+    "category": "convertir",
+    "status": "live",
+    "h1": "Convertir PDF a PDF/A para archivo a largo plazo",
+    "tagline": "Estandariza tu PDF bajo la norma ISO 19005-1 para trámites legales y administraciones públicas.",
+    "seoTitle": "Convertir PDF a PDF/A online gratis | Norma ISO BreadPDF",
+    "seoDesc": "Transforma tus documentos al formato PDF/A estándar de conservación a largo plazo, requerido por Hacienda, juzgados y administraciones públicas.",
+    "faqCount": 5,
+    "howCount": 3,
+    "kwCount": 4,
+    "keywords": [
+      "pdf a pdfa",
+      "convertir pdf/a",
+      "pdf hacienda",
+      "iso 19005-1"
+    ],
+    "hasRun": true
+  },
+  {
+    "slug": "excel-a-pdf",
+    "category": "convertir",
+    "status": "live",
+    "h1": "Convertir Excel a PDF online gratis",
+    "tagline": "Convierte hojas de cálculo XLSX y XLS a tablas PDF apaisadas listas para imprimir.",
+    "seoTitle": "Convertir Excel a PDF online gratis | BreadPDF",
+    "seoDesc": "Transforma tus archivos de Excel (.xlsx, .xls) a documentos PDF maquetados y ordenados con total privacidad en tu navegador.",
+    "faqCount": 5,
+    "howCount": 3,
+    "kwCount": 3,
+    "keywords": [
+      "excel a pdf",
+      "convertir xlsx a pdf",
+      "hoja de calculo a pdf"
+    ],
+    "hasRun": true
+  },
+  {
+    "slug": "reordenar-paginas-pdf",
+    "category": "organizar",
+    "status": "live",
+    "h1": "Reordenar páginas de un PDF",
+    "tagline": "Cambia el orden de las páginas arrastrando y soltando visualmente.",
+    "seoTitle": "Reordenar páginas de un PDF online gratis | BreadPDF",
+    "seoDesc": "Cambia el orden de las páginas de tu documento PDF fácilmente con vista previa visual. Arrastra las hojas a la posición deseada y descarga el resultado.",
+    "faqCount": 5,
+    "howCount": 4,
+    "kwCount": 3,
+    "keywords": [
+      "reordenar páginas pdf",
+      "cambiar orden páginas pdf",
+      "mover hojas pdf"
+    ],
+    "hasRun": true
+  },
+  {
+    "slug": "aplanar-pdf",
+    "category": "optimizar",
+    "status": "live",
+    "h1": "Aplanar PDF y consolidar formularios",
+    "tagline": "Convierte campos interactivos y formularios en contenido estático fijo.",
+    "seoTitle": "Aplanar PDF online y bloquear formularios | BreadPDF",
+    "seoDesc": "Consolida formularios interactivos y anotaciones en contenido gráfico no editable. Protege tus datos completados antes de compartir o presentar documentos.",
+    "faqCount": 5,
+    "howCount": 3,
+    "kwCount": 4,
+    "keywords": [
+      "aplanar pdf",
+      "flatten pdf",
+      "bloquear formulario pdf",
+      "pdf no editable"
+    ],
+    "hasRun": true
+  },
+  {
+    "slug": "eliminar-metadatos-pdf",
+    "category": "optimizar",
+    "status": "live",
+    "h1": "Eliminar metadatos ocultos de un PDF",
+    "tagline": "Limpia información oculta: autor, software, fechas y propiedades.",
+    "seoTitle": "Eliminar metadatos de PDF online y limpiar propiedades | BreadPDF",
+    "seoDesc": "Elimina información confidencial oculta en tu PDF como autor, software creador, fechas de modificación y propiedades personales de forma 100% privada.",
+    "faqCount": 5,
+    "howCount": 3,
+    "kwCount": 3,
+    "keywords": [
+      "eliminar metadatos pdf",
+      "limpiar propiedades pdf",
+      "quitar autor pdf"
+    ],
+    "hasRun": true
+  },
+  {
+    "slug": "pdf-a-png",
+    "category": "convertir",
+    "status": "live",
+    "h1": "Convertir PDF a imágenes PNG",
+    "tagline": "Convierte páginas de PDF en imágenes PNG de alta resolución sin pérdidas.",
+    "seoTitle": "Convertir PDF a PNG online gratis en alta calidad | BreadPDF",
+    "seoDesc": "Transforma cada página de tu documento PDF en imágenes PNG nítidas sin artefactos de compresión. Rápido, seguro y procesado localmente en tu navegador.",
+    "faqCount": 5,
+    "howCount": 3,
+    "kwCount": 3,
+    "keywords": [
+      "pdf a png",
+      "convertir pdf a png",
+      "extraer imagenes png pdf"
+    ],
+    "hasRun": true
+  },
+  {
+    "slug": "png-a-pdf",
+    "category": "convertir",
+    "status": "live",
+    "h1": "Convertir imágenes PNG a documento PDF",
+    "tagline": "Une imágenes PNG y capturas en un único documento PDF maquetado.",
+    "seoTitle": "Convertir PNG a PDF online gratis y en orden | BreadPDF",
+    "seoDesc": "Combina una o varias imágenes PNG en un único PDF. Ajusta a formato A4 o mantén las dimensiones originales de tus gráficos con total privacidad.",
+    "faqCount": 5,
+    "howCount": 3,
+    "kwCount": 3,
+    "keywords": [
+      "png a pdf",
+      "convertir png a pdf",
+      "unir png en pdf"
+    ],
+    "hasRun": true
+  },
+  {
+    "slug": "redimensionar-pdf",
+    "category": "optimizar",
+    "status": "live",
+    "h1": "Ajustar tamaño de página y normalizar PDF a A4",
+    "tagline": "Estandariza las dimensiones de tu PDF a A4, Carta u Oficio.",
+    "seoTitle": "Ajustar tamaño de página de PDF online a A4 | BreadPDF",
+    "seoDesc": "Normaliza documentos con páginas heterogéneas o adapta formatos de impresión a estándar A4, Carta o Legal, manteniendo proporciones sin distorsión.",
+    "faqCount": 5,
+    "howCount": 3,
+    "kwCount": 3,
+    "keywords": [
+      "ajustar tamaño pdf",
+      "cambiar tamaño pagina pdf",
+      "pasar pdf a a4"
+    ],
+    "hasRun": true
+  },
+  {
+    "slug": "editar-metadatos-pdf",
+    "category": "editar",
+    "status": "live",
+    "h1": "Editar metadatos de un PDF",
+    "tagline": "Modifica título, autor, asunto y palabras clave directamente en tu navegador.",
+    "seoTitle": "Editar metadatos de PDF online gratis | BreadPDF",
+    "seoDesc": "Cambia las propiedades y metadatos de tu PDF (título, autor, asunto y palabras clave) de forma 100% privada sin subir archivos a servidores.",
+    "faqCount": 3,
+    "howCount": 3,
+    "kwCount": 4,
+    "keywords": [
+      "editar metadatos pdf",
+      "cambiar autor pdf",
+      "modificar titulo pdf",
+      "propiedades pdf"
+    ],
+    "hasRun": true
+  },
+  {
+    "slug": "anadir-texto-pdf",
+    "category": "editar",
+    "status": "live",
+    "h1": "Añadir texto a un documento PDF",
+    "tagline": "Inserta textos, notas o anotaciones tipográficas en la posición y página que elijas.",
+    "seoTitle": "Añadir texto a PDF online gratis | BreadPDF",
+    "seoDesc": "Escribe y añade texto a cualquier página de tu PDF con control de tamaño, color y posición. 100% en tu navegador y sin registro.",
+    "faqCount": 4,
+    "howCount": 3,
+    "kwCount": 4,
+    "keywords": [
+      "añadir texto pdf",
+      "escribir en pdf",
+      "insertar texto pdf",
+      "poner texto pdf"
+    ],
+    "hasRun": true
+  },
+  {
+    "slug": "insertar-paginas-pdf",
+    "category": "organizar",
+    "status": "live",
+    "h1": "Insertar páginas de otro PDF en un documento",
+    "tagline": "Añade páginas de un segundo PDF en una posición exacta dentro del archivo base.",
+    "seoTitle": "Insertar páginas en PDF online gratis y en posición exacta | BreadPDF",
+    "seoDesc": "Inserta páginas procedentes de otro PDF al inicio, al final o entre páginas concretas de tu documento de forma visual y 100% privada.",
+    "faqCount": 5,
+    "howCount": 3,
+    "kwCount": 4,
+    "keywords": [
+      "insertar paginas pdf",
+      "añadir paginas a pdf",
+      "intercalar paginas pdf",
+      "pegar paginas en pdf"
+    ],
+    "hasRun": true
+  },
+  {
+    "slug": "optimizar-pdf-para-impresion",
+    "category": "optimizar",
+    "status": "live",
+    "h1": "Optimizar PDF para impresión y escala de grises",
+    "tagline": "Convierte tu PDF a escala de grises para ahorrar tóner y agilizar la impresión.",
+    "seoTitle": "Optimizar PDF para impresión online gratis a escala de grises | BreadPDF",
+    "seoDesc": "Transforma tu PDF a escala de grises real para imprimir sin gastar tinta de color. Proceso nítido, privado y sin subir archivos a servidores.",
+    "faqCount": 5,
+    "howCount": 3,
+    "kwCount": 4,
+    "keywords": [
+      "optimizar pdf para impresion",
+      "pdf escala de grises",
+      "imprimir pdf monocromo",
+      "ahorrar toner pdf"
+    ],
+    "hasRun": true
+  },
+  {
+    "slug": "webp-a-pdf",
+    "category": "convertir",
+    "status": "live",
+    "h1": "Convertir imágenes WebP a PDF online",
+    "tagline": "Convierte imágenes WebP en un PDF unificado de alta fidelidad.",
+    "seoTitle": "Convertir WebP a PDF online gratis y en orden | BreadPDF",
+    "seoDesc": "Transforma una o varias imágenes WebP en un único archivo PDF sin pérdida de calidad. Rápido, privado en tu navegador y sin subir archivos a servidores.",
+    "faqCount": 5,
+    "howCount": 3,
+    "kwCount": 4,
+    "keywords": [
+      "webp a pdf",
+      "convertir webp a pdf",
+      "pasar imagenes webp a pdf",
+      "unir webp en pdf"
+    ],
+    "hasRun": true
+  },
+  {
+    "slug": "markdown-a-pdf",
+    "category": "convertir",
+    "status": "live",
+    "h1": "Convertir Markdown a PDF online",
+    "tagline": "Convierte archivos Markdown (.md) en documentos PDF limpios y estructurados.",
+    "seoTitle": "Convertir Markdown a PDF online gratis y limpio | BreadPDF",
+    "seoDesc": "Transforma tus notas y documentos Markdown (.md) en PDF elegantes con títulos, párrafos, listas, citas y bloques de código maquetados al instante.",
+    "faqCount": 5,
+    "howCount": 3,
+    "kwCount": 4,
+    "keywords": [
+      "markdown a pdf",
+      "convertir md a pdf",
+      "exportar markdown a pdf",
+      "documento md a pdf"
+    ],
+    "hasRun": true
+  },
+  {
+    "slug": "powerpoint-a-pdf",
+    "category": "convertir",
+    "status": "live",
+    "h1": "Convertir PowerPoint a PDF online",
+    "tagline": "Convierte presentaciones .pptx en diapositivas PDF en formato panorámico (Vista previa beta).",
+    "seoTitle": "Convertir PowerPoint a PDF online gratis (.pptx) | BreadPDF",
+    "seoDesc": "Transforma diapositivas de PowerPoint (.pptx) a documento PDF panorámico en tu navegador. Rápido, 100% privado y sin subir archivos a servidores externos.",
+    "faqCount": 5,
+    "howCount": 3,
+    "kwCount": 4,
+    "keywords": [
+      "powerpoint a pdf",
+      "convertir pptx a pdf",
+      "pasar powerpoint a pdf",
+      "diapositivas a pdf"
+    ],
+    "hasRun": true
+  },
+  {
+    "slug": "svg-a-pdf",
+    "category": "convertir",
+    "status": "live",
+    "h1": "Convertir archivos SVG a PDF online",
+    "tagline": "Transforma gráficos vectoriales SVG en documentos PDF nítidos en alta definición.",
+    "seoTitle": "Convertir SVG a PDF online gratis en alta definición | BreadPDF",
+    "seoDesc": "Convierte archivos vectoriales SVG a documentos PDF conservando curvas, trazados y proporciones visuales nítidas en tu navegador con total privacidad.",
+    "faqCount": 5,
+    "howCount": 3,
+    "kwCount": 4,
+    "keywords": [
+      "svg a pdf",
+      "convertir svg a pdf",
+      "vector a pdf",
+      "pasar svg a pdf"
+    ],
+    "hasRun": true
+  },
+  {
+    "slug": "extraer-imagenes-pdf",
+    "category": "organizar",
+    "status": "live",
+    "h1": "Extraer imágenes embebidas de un PDF",
+    "tagline": "Obtén las fotografías e imágenes incrustadas en tu PDF como archivos PNG independientes.",
+    "seoTitle": "Extraer imágenes de PDF online gratis | BreadPDF",
+    "seoDesc": "Extrae las imágenes embebidas en tu documento PDF como archivos PNG individuales directamente en tu navegador, sin subir nada a ningún servidor.",
+    "faqCount": 5,
+    "howCount": 3,
+    "kwCount": 4,
+    "keywords": [
+      "extraer imágenes pdf",
+      "sacar fotos pdf",
+      "obtener imágenes pdf",
+      "pdf a imágenes"
+    ],
+    "hasRun": true
+  },
+  {
+    "slug": "dividir-pdf-por-tamano",
+    "category": "organizar",
+    "status": "live",
+    "h1": "Dividir un PDF en partes por tamaño máximo en MB",
+    "tagline": "Fragmenta documentos grandes respetando un límite de peso aproximado por parte.",
+    "seoTitle": "Dividir PDF por tamaño en MB online gratis | BreadPDF",
+    "seoDesc": "Divide un PDF grande en fragmentos con un límite de tamaño en MB por parte. Ideal para adjuntos de correo o plataformas con límites de peso. 100% en tu navegado",
+    "faqCount": 5,
+    "howCount": 3,
+    "kwCount": 4,
+    "keywords": [
+      "dividir pdf por tamaño",
+      "partir pdf mb",
+      "fragmentar pdf peso",
+      "dividir pdf email"
+    ],
+    "hasRun": true
+  },
+  {
+    "slug": "eliminar-paginas-en-blanco",
+    "category": "optimizar",
+    "status": "live",
+    "h1": "Eliminar páginas en blanco de un PDF",
+    "tagline": "Detecta y elimina automáticamente las páginas vacías de documentos escaneados o formularios.",
+    "seoTitle": "Eliminar páginas en blanco de PDF online gratis | BreadPDF",
+    "seoDesc": "Detecta y elimina automáticamente las páginas en blanco o vacías de tu PDF. Ideal para documentos escaneados, formularios y reportes. 100% privado.",
+    "faqCount": 5,
+    "howCount": 3,
+    "kwCount": 3,
+    "keywords": [
+      "eliminar páginas en blanco pdf",
+      "quitar páginas vacías pdf",
+      "borrar páginas blancas pdf"
+    ],
+    "hasRun": true
+  },
+  {
+    "slug": "imagen-a-webp",
+    "category": "optimizar",
+    "status": "live",
+    "h1": "Convertir imágenes JPG y PNG a WebP",
+    "tagline": "Reduce el peso de tus imágenes para web convirtiéndolas al formato WebP moderno y eficiente.",
+    "seoTitle": "Convertir imagen a WebP online gratis | JPG y PNG | BreadPDF",
+    "seoDesc": "Convierte imágenes JPG y PNG al formato WebP para optimizar su peso para la web. Ajusta la calidad y descarga el resultado al instante en tu navegador.",
+    "faqCount": 6,
+    "howCount": 3,
+    "kwCount": 5,
+    "keywords": [
+      "imagen a webp",
+      "jpg a webp",
+      "png a webp",
+      "convertir webp",
+      "optimizar imagen web"
+    ],
+    "hasRun": true
+  },
+  {
+    "slug": "sanear-pdf",
+    "category": "seguridad",
+    "status": "live",
+    "h1": "Sanear y limpiar un PDF de elementos no deseados",
+    "tagline": "Elimina JavaScript embebido, acciones automáticas y metadatos de autor de tus documentos PDF.",
+    "seoTitle": "Sanear PDF online gratis — eliminar JavaScript y metadatos | BreadPDF",
+    "seoDesc": "Limpia tu PDF eliminando JavaScript embebido, acciones automáticas de apertura y metadatos de autor. Ideal antes de compartir documentos de terceros.",
+    "faqCount": 5,
+    "howCount": 3,
+    "kwCount": 5,
+    "keywords": [
+      "sanear pdf",
+      "limpiar pdf",
+      "eliminar javascript pdf",
+      "limpiar metadatos pdf",
+      "pdf seguro"
+    ],
+    "hasRun": true
+  },
+  {
+    "slug": "rellenar-formulario-pdf",
+    "category": "editar",
+    "status": "live",
+    "h1": "Rellenar campos de formulario en un PDF online",
+    "tagline": "Detecta y rellena los campos AcroForm de cualquier PDF directamente en tu navegador.",
+    "seoTitle": "Rellenar formulario PDF online gratis sin Adobe | BreadPDF",
+    "seoDesc": "Rellena campos de texto, casillas, desplegables y botones de opción en PDFs con AcroForm sin instalar nada. Exporta el PDF completado al instante.",
+    "faqCount": 5,
+    "howCount": 3,
+    "kwCount": 4,
+    "keywords": [
+      "rellenar formulario pdf",
+      "completar pdf online",
+      "rellenar pdf sin adobe",
+      "formulario pdf interactivo"
+    ],
+    "hasRun": false
+  }
+]

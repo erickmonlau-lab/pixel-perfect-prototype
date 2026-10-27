@@ -275,7 +275,7 @@ export function GuideCallout({
 }
 
 /* -------------------------------------------------------------------------- */
-/* 4. GUIDE STEP (ORDERED SYSTEM STEP - UNIFIED SINGLE NUMBERING)              */
+/* 4. GUIDE STEP (ORDERED SYSTEM STEP — COMPACT LEFT-BORDER VARIANT)          */
 /* -------------------------------------------------------------------------- */
 
 export interface GuideStepProps {
@@ -295,32 +295,38 @@ export function GuideStep({
   const formattedNumber = String(stepNumber).padStart(2, "0");
 
   return (
-    <div className="rounded-2xl border-2 border-[#0F0F12] bg-white p-7 sm:p-8 shadow-[4px_4px_0_#0F0F12] my-6">
-      <div className="flex items-center gap-4 mb-4">
-        <span className="flex size-10 items-center justify-center rounded-xl border-2 border-[#0F0F12] bg-[#0F0F12] text-[16px] font-black text-white shrink-0 shadow-[2px_2px_0_#0F0F12]">
-          {formattedNumber}
-        </span>
-        <h3 className="text-[21px] sm:text-[24px] font-black text-[#0F0F12] tracking-tight">
+    <div className="my-5 flex gap-4 items-start">
+      <span className="flex size-8 items-center justify-center rounded-lg border-2 border-[#0F0F12] bg-[#0F0F12] text-[13px] font-black text-white shrink-0 mt-0.5 shadow-[1.5px_1.5px_0_#4B4B55]">
+        {formattedNumber}
+      </span>
+      <div className="flex-1 min-w-0 border-l-2 border-[#0F0F12] pl-4 pb-1">
+        <h3 className="text-[18px] sm:text-[20px] font-black text-[#0F0F12] tracking-tight leading-snug">
           {title}
         </h3>
+        <div className="mt-2 text-[15.5px] sm:text-[16.5px] leading-relaxed text-slate-700 font-normal">
+          {children}
+        </div>
+        {action && <div className="mt-4">{action}</div>}
       </div>
-      <div className="mt-3 text-[16.5px] sm:text-[17.5px] leading-relaxed text-slate-800 pl-0 sm:pl-14 font-normal">
-        {children}
-      </div>
-      {action && <div className="mt-5 pt-1 pl-0 sm:pl-14">{action}</div>}
     </div>
   );
 }
 
 /* -------------------------------------------------------------------------- */
-/* 5. GUIDE CTA CARD (OFFICIAL RED SOLID CTA)                                 */
+/* 5. GUIDE CTA STRIP (COMPACT INLINE CTA — FIXES PROP MISMATCH)              */
 /* -------------------------------------------------------------------------- */
 
 export interface GuideCTAProps {
-  to: string;
+  /** Primary navigation target */
+  to?: string;
+  /** Alias for `to` accepted from older guide call sites */
+  toolHref?: string;
   eyebrow?: string;
-  title: string;
-  description: string;
+  title?: string;
+  /** Primary description */
+  description?: string;
+  /** Alias for `description` accepted from older guide call sites */
+  helperText?: string;
   buttonText: string;
   icon?: React.ReactNode;
   variant?: "solid-red" | "solid-card";
@@ -328,35 +334,46 @@ export interface GuideCTAProps {
 
 export function GuideCTA({
   to,
+  toolHref,
   eyebrow,
   title,
   description,
+  helperText,
   buttonText,
   icon,
 }: GuideCTAProps) {
+  const href = to ?? toolHref ?? "/";
+  const desc = description ?? helperText;
+
   return (
-    <div className="my-10 rounded-2xl border-2 border-[#0F0F12] bg-[#EC3C2D] text-white p-8 sm:p-9 shadow-[4px_4px_0_#0F0F12]">
-      <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-        <div className="max-w-xl">
+    <div className="my-8 rounded-xl border-2 border-[#0F0F12] bg-white shadow-[3px_3px_0_#0F0F12] overflow-hidden">
+      {/* Franja roja superior característica de BreadPDF */}
+      <div className="h-1.5 bg-[#EC3C2D]" />
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 px-6 py-5">
+        <div className="min-w-0">
           {eyebrow && (
-            <span className="inline-block text-[12px] font-black uppercase tracking-wider text-[#0F0F12] bg-white border-2 border-[#0F0F12] px-3 py-1 rounded-lg mb-3 shadow-[2px_2px_0_#0F0F12]">
+            <span className="inline-block text-[11px] font-black uppercase tracking-wider text-[#EC3C2D] mb-1">
               {eyebrow}
             </span>
           )}
-          <h3 className="text-2xl sm:text-3xl font-black text-white tracking-tight leading-snug">
-            {title}
-          </h3>
-          <p className="mt-2 text-[16px] sm:text-[17px] leading-relaxed text-white/95 font-medium">
-            {description}
-          </p>
+          {title && (
+            <p className="text-[17px] sm:text-[18px] font-black text-[#0F0F12] leading-snug">
+              {title}
+            </p>
+          )}
+          {desc && (
+            <p className="mt-1 text-[14.5px] sm:text-[15px] leading-relaxed text-slate-600 font-medium">
+              {desc}
+            </p>
+          )}
         </div>
         <Link
-          to={to}
-          className="shrink-0 inline-flex items-center gap-2.5 rounded-xl border-2 border-[#0F0F12] bg-white text-[#0F0F12] hover:bg-[#EDEDF0] min-h-[50px] px-7 py-3.5 text-[16px] font-black shadow-[4px_4px_0_#0F0F12] transition-all hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0_#0F0F12]"
+          to={href}
+          className="shrink-0 inline-flex items-center gap-2 rounded-xl border-2 border-[#0F0F12] bg-[#EC3C2D] text-white hover:bg-[#D93426] min-h-[44px] px-5 py-2.5 text-[14.5px] font-black shadow-[3px_3px_0_#0F0F12] transition-all hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0_#0F0F12] whitespace-nowrap"
         >
           {icon}
           <span>{buttonText}</span>
-          <ArrowRight className="size-5" />
+          <ArrowRight className="size-4" />
         </Link>
       </div>
     </div>
