@@ -113,7 +113,7 @@ function Dot() {
 }
 
 const COLUMN_HEADING_CLASS =
-  "mb-5 inline-flex w-fit max-w-full items-center gap-1.5 rounded-full border-2 border-[#0F0F12] bg-white px-2 py-1 text-[13px] font-bold uppercase leading-none tracking-[0.04em] text-[#0F0F12] shadow-[3px_3px_0_#0F0F12] sm:gap-2 sm:px-3 sm:py-1.5 sm:text-[14px]";
+  "mb-3 inline-flex w-fit max-w-full items-center gap-1 rounded-full border-2 border-[#0F0F12] bg-white px-1.5 py-1 text-[11px] font-bold uppercase leading-none tracking-[0.04em] text-[#0F0F12] shadow-[2px_2px_0_#0F0F12] sm:mb-5 sm:gap-2 sm:px-3 sm:py-1.5 sm:text-[14px] sm:shadow-[3px_3px_0_#0F0F12]";
 
 function ColumnHeadingIcon({ children }: { children: ReactNode }) {
   return (
@@ -161,9 +161,9 @@ export function Footer() {
       {/* ─────────────────────────────────────────────────────────────── */}
       <div className="relative overflow-hidden bg-[#F13B32]">
         <div className="relative z-10 w-full max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-16 pt-12 pb-10">
-          <div className="grid grid-cols-2 items-start gap-x-8 gap-y-10 xl:grid-cols-[minmax(220px,1.25fr)_minmax(140px,0.9fr)_minmax(140px,0.9fr)_minmax(155px,0.9fr)_minmax(165px,1fr)] xl:gap-x-6 xl:gap-y-0">
+          <div className="grid grid-cols-2 items-start gap-x-4 gap-y-7 sm:gap-x-8 sm:gap-y-10 xl:grid-cols-[minmax(220px,1.15fr)_minmax(265px,1.1fr)_minmax(140px,0.8fr)_minmax(155px,0.85fr)_minmax(165px,0.9fr)] xl:gap-x-6 xl:gap-y-0">
             {/* ── COL 1: MARCA ── */}
-            <div className="col-span-2 space-y-5 xl:col-span-1">
+            <div className="col-span-2 row-span-1 space-y-4 sm:space-y-5 xl:col-span-1 xl:row-span-2">
               <Link
                 to={HOME_ROUTE}
                 params={homeParams(locale)}
@@ -188,13 +188,13 @@ export function Footer() {
                 {copy.description}
               </p>
 
-              <div>
+              <div className="hidden sm:block">
                 <LanguageSwitcher />
               </div>
             </div>
 
             {/* COL 2: HERRAMIENTAS */}
-            <div>
+            <div className="min-w-0 xl:col-start-2 xl:row-start-1">
               <h4 className={COLUMN_HEADING_CLASS}>
                 <ColumnHeadingIcon>
                   <Wrench className="size-3" strokeWidth={2.5} />
@@ -210,7 +210,7 @@ export function Footer() {
                       <Link
                         to={DETAIL_ROUTE}
                         params={toolParams(locale, item.slug)}
-                        className="group inline-flex items-start gap-2 text-[15px] font-semibold text-white transition-colors hover:text-[#0F0F12] leading-relaxed"
+                        className="group inline-flex items-start gap-2 text-[13px] font-semibold leading-snug text-white transition-colors hover:text-[#0F0F12] sm:text-[15px] sm:leading-relaxed"
                       >
                         <Dot />
                         <span>{name}</span>
@@ -218,37 +218,18 @@ export function Footer() {
                     </li>
                   );
                 })}
-                <li className="pt-1">
-                  <Link
-                    to={HOME_ROUTE}
-                    params={homeParams(locale)}
-                    hash="catalogo"
-                    onClick={() =>
-                      trackToolCatalogViewAllClicked({ source: "footer", language: locale })
-                    }
-                    className="group inline-flex items-center gap-1.5 text-[14px] font-black text-white hover:text-[#0F0F12] hover:underline underline-offset-2"
-                  >
-                    <span>
-                      {locale === "ca"
-                        ? `Totes les ${tools.length} eines →`
-                        : locale === "en"
-                          ? `View all ${tools.length} tools →`
-                          : `Ver las ${tools.length} herramientas →`}
-                    </span>
-                  </Link>
-                </li>
               </ul>
             </div>
 
             {/* COL 3: INFORMACIÓN */}
-            <div>
+            <div className="min-w-0 xl:col-start-3 xl:row-span-2 xl:row-start-1">
               <h4 className={COLUMN_HEADING_CLASS}>
                 <ColumnHeadingIcon>
                   <BookOpen className="size-3" strokeWidth={2.5} />
                 </ColumnHeadingIcon>
                 {copy.colInfo}
               </h4>
-              <ul className="space-y-3 text-[15px] leading-relaxed">
+              <ul className="space-y-2 text-[13px] leading-snug sm:space-y-3 sm:text-[15px] sm:leading-relaxed">
                 <li>
                   <Link
                     to={SECTION_ROUTE}
@@ -266,7 +247,7 @@ export function Footer() {
                     className="group inline-flex items-start gap-2 font-semibold text-white transition-colors hover:text-[#0F0F12] leading-relaxed"
                   >
                     <BookOpen className="mt-[2px] size-3.5 shrink-0 text-white" />
-                    <span>{copy.guides}</span>
+                    <span className="min-w-0">{copy.guides}</span>
                   </Link>
                 </li>
                 <li>
@@ -293,14 +274,14 @@ export function Footer() {
             </div>
 
             {/* COL 4: LEGAL */}
-            <div>
+            <div className="col-span-2 min-w-0 xl:col-span-1 xl:col-start-4 xl:row-span-2 xl:row-start-1">
               <h4 className={COLUMN_HEADING_CLASS}>
                 <ColumnHeadingIcon>
                   <ShieldCheck className="size-3" strokeWidth={2.5} />
                 </ColumnHeadingIcon>
                 {copy.colLegal}
               </h4>
-              <ul className="space-y-3 text-[15px] leading-relaxed">
+              <ul className="grid grid-cols-2 gap-x-3 gap-y-2 text-[13px] leading-snug sm:text-[15px] sm:leading-relaxed xl:block xl:space-y-3">
                 <li>
                   <Link
                     to={SECTION_ROUTE}
@@ -334,8 +315,23 @@ export function Footer() {
               </ul>
             </div>
 
+            {/* CTA de catálogo centrado en la navegación móvil y bajo Herramientas en escritorio */}
+            <Link
+              to={HOME_ROUTE}
+              params={homeParams(locale)}
+              hash="catalogo"
+              onClick={() => trackToolCatalogViewAllClicked({ source: "footer", language: locale })}
+              className="col-span-2 mx-auto inline-flex max-w-full items-center gap-2 whitespace-nowrap rounded-full border-2 border-[#0F0F12] bg-white px-3 py-2 text-[12px] font-bold text-[#171717] shadow-[3px_3px_0_#0F0F12] transition-transform hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[1px_1px_0_#0F0F12] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:px-4 sm:text-[14px] xl:col-span-1 xl:col-start-2 xl:row-start-2"
+            >
+              <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-[#F13B32] text-[13px] font-black text-white">
+                {tools.length}
+              </span>
+              <span>{copy.bannerCta}</span>
+              <ArrowRight className="size-4 shrink-0 stroke-[2.5]" />
+            </Link>
+
             {/* ── MASCOTA — a la derecha de Legal en escritorio, independiente en móvil ── */}
-            <div className="col-span-2 flex justify-center xl:col-span-1 xl:items-end xl:justify-center xl:pb-2">
+            <div className="col-span-2 flex justify-end pt-1 xl:col-span-1 xl:col-start-5 xl:row-span-2 xl:row-start-1 xl:items-end xl:justify-center xl:pb-2 xl:pt-0">
               <BreadPDFFooterMascot size="lg" />
             </div>
           </div>
@@ -345,21 +341,21 @@ export function Footer() {
       {/* /fondo difuminado */}
 
       {/* ── BARRA INFERIOR LEGAL ── */}
-      <div className="border-t border-[#0F0F12]/20 bg-[#e6e2e9]">
-        <div className="w-full max-w-[1440px] mx-auto flex flex-col gap-2.5 px-6 sm:px-10 lg:px-16 py-4 text-[13px] font-semibold text-[#45434b] sm:flex-row sm:items-center sm:justify-between">
+      <div className="border-t border-white/25 bg-[#D92F28] text-white">
+        <div className="mx-auto flex w-full max-w-[1440px] flex-col items-center gap-1 px-6 py-3 text-center text-[12px] font-semibold sm:flex-row sm:items-center sm:justify-between sm:gap-2 sm:px-10 sm:py-3 sm:text-left sm:text-[13px] lg:px-16">
           <p>{copy.copyright(year)}</p>
-          <div className="flex flex-wrap items-center gap-5">
+          <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 sm:gap-x-5">
             <Link
               to={SECTION_ROUTE}
               params={aboutParams(locale)}
-              className="transition-colors hover:text-[#EC3C2D] hover:underline underline-offset-2"
+              className="px-2 py-1 transition-colors hover:text-white/80 hover:underline underline-offset-2 sm:px-0 sm:py-0"
             >
               {copy.about}
             </Link>
             <Link
               to={SECTION_ROUTE}
               params={privacyParams(locale)}
-              className="transition-colors hover:text-[#EC3C2D] hover:underline underline-offset-2"
+              className="px-2 py-1 transition-colors hover:text-white/80 hover:underline underline-offset-2 sm:px-0 sm:py-0"
             >
               {copy.bottomPrivacy}
             </Link>
@@ -367,7 +363,7 @@ export function Footer() {
               to={HOME_ROUTE}
               params={homeParams(locale)}
               hash="catalogo"
-              className="transition-colors hover:text-[#EC3C2D] hover:underline underline-offset-2"
+              className="px-2 py-1 transition-colors hover:text-white/80 hover:underline underline-offset-2 sm:px-0 sm:py-0"
             >
               {copy.bottomTools}
             </Link>
