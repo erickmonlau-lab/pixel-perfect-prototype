@@ -140,11 +140,11 @@ export function PageCard({
       </div>
 
       {/* Bottom metadata */}
-      <div className="mt-1.5 flex w-full items-center justify-between gap-1 text-[10.5px] font-semibold text-slate-500">
-        <span className="truncate max-w-[120px]" title={document.fileName}>
+      <div className="mt-2 flex w-full flex-col items-start gap-1 text-[#0F0F12]">
+        <span className="w-full break-all text-[12px] font-bold leading-snug" title={document.fileName}>
           {document.fileName}
         </span>
-        <span className="shrink-0 rounded-md bg-[#0F0F12] px-1.5 py-0.5 text-white">{t.workspace.pageLabel} {page.sourcePageIndex + 1}</span>
+        <span className="shrink-0 rounded-md border border-[#0F0F12] bg-[#0F0F12] px-1.5 py-0.5 text-[11px] font-bold text-white">{t.workspace.pageLabel} {page.sourcePageIndex + 1}</span>
       </div>
     </div>
   );

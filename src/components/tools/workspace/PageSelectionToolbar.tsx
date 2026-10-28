@@ -37,13 +37,13 @@ export function PageSelectionToolbar({
   const allSelected = selectedCount > 0 && selectedCount === totalCount;
 
   return (
-    <div className="flex flex-wrap items-center justify-between gap-2 rounded-xl border-2 border-[#0F0F12] bg-[#0F0F12] px-2.5 py-2 text-white shadow-[2px_2px_0_#0F0F12]">
+    <div className="flex flex-wrap items-center justify-between gap-2 rounded-xl border-2 border-[#0F0F12] bg-white px-2.5 py-2 text-[#0F0F12] shadow-[2px_2px_0_#0F0F12]">
       <div className="flex items-center gap-2">
         <button
           type="button"
           onClick={allSelected ? onClearSelection : onSelectAll}
           style={allSelected ? { backgroundColor: accentColor, borderColor: accentColor } : undefined}
-          className={`inline-flex min-h-9 items-center gap-1.5 rounded-lg border-2 border-white px-3 py-1.5 text-[13px] font-bold transition-colors cursor-pointer ${allSelected ? "text-white" : "bg-white text-[#0F0F12] hover:bg-slate-100"}`}
+          className={`inline-flex min-h-9 items-center gap-1.5 rounded-lg border-2 border-[#0F0F12] px-3 py-1.5 text-[13px] font-bold transition-colors cursor-pointer ${allSelected ? "text-white" : "bg-white text-[#0F0F12] hover:bg-slate-100"}`}
         >
           {allSelected ? <CheckSquare className="size-4 text-white" /> : <Square className="size-4 text-[#0F0F12]" />}
           <span>
@@ -55,7 +55,7 @@ export function PageSelectionToolbar({
           <button
             type="button"
             onClick={onClearSelection}
-            className="ml-1 cursor-pointer text-[13px] font-semibold text-white underline underline-offset-2 hover:text-slate-200"
+            className="ml-1 cursor-pointer text-[13px] font-semibold text-[#0F0F12] underline underline-offset-2 hover:text-slate-700"
           >
             {t.workspace.clearSelection}
           </button>
@@ -69,7 +69,7 @@ export function PageSelectionToolbar({
           disabled={!canUndo}
           onClick={onUndo}
           title={t.workspace.undo}
-          className="h-8 rounded-lg border-2 border-white/30 bg-[#24242C] px-2 text-white hover:bg-[#3A3A44] disabled:opacity-40"
+          className="h-8 rounded-lg border-2 border-[#0F0F12] bg-white px-2 text-[#0F0F12] hover:bg-slate-100 disabled:bg-slate-100 disabled:text-[#0F0F12]"
         >
           <Undo2 className="size-3.5" />
         </button>
@@ -78,19 +78,19 @@ export function PageSelectionToolbar({
           disabled={!canRedo}
           onClick={onRedo}
           title={t.workspace.redo}
-          className="h-8 rounded-lg border-2 border-white/30 bg-[#24242C] px-2 text-white hover:bg-[#3A3A44] disabled:opacity-40"
+          className="h-8 rounded-lg border-2 border-[#0F0F12] bg-white px-2 text-[#0F0F12] hover:bg-slate-100 disabled:bg-slate-100 disabled:text-[#0F0F12]"
         >
           <Redo2 className="size-3.5" />
         </button>
 
-        <div className="mx-1 h-5 w-px bg-white/25" />
+        <div className="mx-1 h-5 w-px bg-[#0F0F12]/25" />
 
         {/* Rotate controls */}
         {showRotationControls && (selectedCount > 0 ? (
           <button
             type="button"
             onClick={onRotateSelected}
-            style={{ backgroundColor: accentColor, borderColor: "white" }}
+            style={{ backgroundColor: accentColor, borderColor: "#0F0F12" }}
             className="inline-flex h-8 items-center gap-1.5 rounded-lg border-2 px-3 text-[13px] font-black text-white shadow-[2px_2px_0_#0F0F12] hover:brightness-110"
           >
             <RotateCw className="size-3.5" />
@@ -100,7 +100,7 @@ export function PageSelectionToolbar({
           <button
             type="button"
             onClick={onRotateAll}
-            style={{ backgroundColor: accentColor, borderColor: "white" }}
+            style={{ backgroundColor: accentColor, borderColor: "#0F0F12" }}
             className="inline-flex h-8 items-center gap-1.5 rounded-lg border-2 px-3 text-[13px] font-black text-white shadow-[2px_2px_0_#0F0F12] hover:brightness-110"
           >
             <RotateCw className="size-3.5" />
@@ -113,7 +113,7 @@ export function PageSelectionToolbar({
           <button
             type="button"
             onClick={onRemoveSelected}
-            className="inline-flex h-8 items-center gap-1.5 rounded-lg border-2 border-white bg-white px-3 text-[13px] font-bold text-[#0F0F12] hover:bg-slate-100"
+            className="inline-flex h-8 items-center gap-1.5 rounded-lg border-2 border-[#0F0F12] bg-white px-3 text-[13px] font-bold text-[#0F0F12] hover:bg-slate-100"
           >
             <Trash2 className="size-3.5" />
             <span>{t.workspace.deleteSelected(selectedCount)}</span>

@@ -78,6 +78,7 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
   const { locale, t } = useLocale();
   const navigate = useNavigate();
   const inputRef = useRef<HTMLInputElement>(null);
+  const attachedWorkspaceRef = useRef<HTMLDivElement>(null);
   const [files, setFiles] = useState<File[]>([]);
   const [dragging, setDragging] = useState(false);
   const [phase, setPhase] = useState<Phase>("idle");
@@ -218,6 +219,14 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tool.slug]);
+
+  useEffect(() => {
+    if (canonicalSlug !== "unir-pdf" || files.length === 0 || phase === "loading-pages") return;
+    const frame = window.requestAnimationFrame(() => {
+      attachedWorkspaceRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, [canonicalSlug, files.length, phase]);
 
   useEffect(() => {
     const created = outputs.map((output) => URL.createObjectURL(output.blob));
@@ -787,7 +796,7 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
 
       {/* Zona de configuraciÃ³n / archivos para herramientas interactivas o de configuraciÃ³n manual */}
       {!isAutoFlow && (files.length > 0 || tool.minFiles === 0) && phase !== "loading-pages" && (
-        <div key={files.map((file) => `${file.name}-${file.size}`).join("|")} className="animate-rise border-t-2 border-[#0F0F12] bg-white p-3 sm:p-4">
+        <div ref={attachedWorkspaceRef} key={files.map((file) => `${file.name}-${file.size}`).join("|")} className="animate-rise border-t-2 border-[#0F0F12] bg-white p-3 sm:p-4">
           <div className="mb-3 flex flex-wrap items-center justify-between gap-2 rounded-xl border-2 border-[#0F0F12] bg-white p-2.5 shadow-[2px_2px_0_#0F0F12]">
             <div className="flex min-w-0 items-center gap-3">
               <span className="flex size-8 shrink-0 items-center justify-center rounded-lg border-2 border-[#0F0F12] text-white shadow-[2px_2px_0_#0F0F12]" style={{ backgroundColor: workspaceAccent }}>
@@ -802,9 +811,9 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                         ? t.workspace.filesReady(files.length)
                         : t.workspace.configureToStart}
                   </h3>
-                  {files.length > 0 && <span className="rounded-md border border-[#0F0F12] bg-[#86EFAC] px-1.5 py-0.5 text-[9px] font-black uppercase tracking-wide text-[#0F0F12]">{t.workspace.fileDetected}</span>}
+                  {files.length > 0 && <span className="rounded-md border-2 border-[#0F0F12] bg-[#86EFAC] px-2 py-0.5 text-[11px] font-black uppercase tracking-wide text-[#0F0F12]">{t.workspace.fileDetected}</span>}
                 </div>
-                <span className="text-[12px] font-medium text-slate-500">
+                <span className="text-[14px] font-semibold text-[#334155]">
                   {files.length > 0
                     ? t.workspace.totalSize(formatBytes(files.reduce((acc, f) => acc + f.size, 0)))
                     : t.workspace.readyForProcessing}
@@ -836,7 +845,7 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                     className={`flex items-center gap-1.5 rounded-md border px-2.5 py-1.5 text-[13px] font-semibold transition-all ${
                       viewMode === "visual"
                         ? "text-white shadow-[1px_1px_0_#0F0F12]"
-                        : "text-slate-500 hover:text-slate-800"
+                        : "text-[#0F0F12] hover:bg-slate-100"
                     }`}
                   >
                     <LayoutGrid className="size-3.5" />
@@ -849,7 +858,7 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                     className={`flex items-center gap-1.5 rounded-md border px-2.5 py-1.5 text-[13px] font-semibold transition-all ${
                       viewMode === "list"
                         ? "text-white shadow-[1px_1px_0_#0F0F12]"
-                        : "text-slate-500 hover:text-slate-800"
+                        : "text-[#0F0F12] hover:bg-slate-100"
                     }`}
                   >
                     <List className="size-3.5" />
@@ -994,7 +1003,7 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                         <span className="block truncate text-[15px] sm:text-[15.5px] font-bold text-[#0F172A]">
                           {file.name}
                         </span>
-                        <span className="text-[13px] text-slate-500 font-medium">
+                        <span className="text-[14px] text-[#334155] font-semibold">
                           {formatBytes(file.size)}
                         </span>
                       </span>
