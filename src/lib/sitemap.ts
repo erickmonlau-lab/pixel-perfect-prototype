@@ -5,24 +5,23 @@
  *
  * Includes:
  *  - Homepage × 3 locales
- *  - Catalog × 3 locales
+ *  - Institutional/legal pages × 3 locales
  *  - Live tool pages × 3 locales
- *  - Category pages × 3 locales
+ *  - Guides hub × 3 locales
  *
  * Excludes:
  *  - Pending/draft tools (no crawlable content)
- *  - Privacy/legal pages (not the primary search intent pages)
+ *  - Redirecting catalog/category routes and transacting pages
  *  - Any URL with parameters or duplicate paths
  *
  * Domain: VITE_SITE_URL env var (defaults to https://breadpdf.com)
  */
 
 import { LOCALES, SEGMENTS, type Locale } from "./i18n/config";
-import { TOOLS, CATEGORIES } from "./tools/registry";
-import { toolSlugFor, categorySlugFor } from "./tools/localize";
+import { TOOLS } from "./tools/registry";
+import { toolSlugFor } from "./tools/localize";
 import { GUIDES, guideSlugFor } from "./guides/registry";
 import { SITE_URL } from "./brand";
-import type { ToolCategory } from "./tools/types";
 
 interface UrlEntry {
   loc: string;
@@ -33,10 +32,6 @@ interface UrlEntry {
 
 function buildToolPath(locale: Locale, canonicalSlug: string): string {
   return `/${locale}/${SEGMENTS[locale].tools}/${toolSlugFor(locale, canonicalSlug)}`;
-}
-
-function buildCategoryPath(locale: Locale, category: ToolCategory): string {
-  return `/${locale}/${SEGMENTS[locale].category}/${categorySlugFor(locale, category)}`;
 }
 
 function buildGuidePath(locale: Locale, canonicalSlug: string): string {
@@ -58,18 +53,7 @@ export function generateSitemap(): string {
       ],
     });
 
-    // 2. Full catalog
-    entries.push({
-      loc: `${SITE_URL}/${locale}/${SEGMENTS[locale].tools}`,
-      priority: "0.9",
-      changefreq: "weekly",
-      alternates: [
-        ...LOCALES.map((l) => ({ lang: l, href: `${SITE_URL}/${l}/${SEGMENTS[l].tools}` })),
-        { lang: "x-default", href: `${SITE_URL}/es/${SEGMENTS.es.tools}` },
-      ],
-    });
-
-    // 2.1 Institutional & Legal pages (About, Privacy, Cookies, Terms)
+    // 2. Institutional & Legal pages (About, Privacy, Cookies, Terms)
     entries.push({
       loc: `${SITE_URL}/${locale}/${SEGMENTS[locale].about}`,
       priority: "0.7",
@@ -104,6 +88,17 @@ export function generateSitemap(): string {
       alternates: [
         ...LOCALES.map((l) => ({ lang: l, href: `${SITE_URL}/${l}/${SEGMENTS[l].terms}` })),
         { lang: "x-default", href: `${SITE_URL}/es/${SEGMENTS.es.terms}` },
+      ],
+    });
+
+    // 2.1 Guides hub — indexable landing page, distinct from the redirecting catalog route.
+    entries.push({
+      loc: `${SITE_URL}/${locale}/${SEGMENTS[locale].guides}`,
+      priority: "0.7",
+      changefreq: "weekly",
+      alternates: [
+        ...LOCALES.map((l) => ({ lang: l, href: `${SITE_URL}/${l}/${SEGMENTS[l].guides}` })),
+        { lang: "x-default", href: `${SITE_URL}/es/${SEGMENTS.es.guides}` },
       ],
     });
 

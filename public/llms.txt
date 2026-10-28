@@ -1,76 +1,205 @@
 # BreadPDF
 
-> BreadPDF is a high-performance, privacy-first online PDF workstation that runs core document processing directly in the user's browser using WebAssembly and client-side processing, with zero server storage of uploaded files.
+> Suite de herramientas y guías para trabajar con documentos PDF.
 
-BreadPDF provides 50 specialized tools and technical guides across Spanish, Catalan, and English. Files remain on the client device for security and GDPR compliance.
+## Catálogos por idioma
+- [Español](https://breadpdf.com/es#catalogo)
+- [Català](https://breadpdf.com/ca#catalogo)
+- [English](https://breadpdf.com/en#catalogo)
 
-## Tools: Optimize
+## Herramientas
+### Español
+- [Comprimir PDF](https://breadpdf.com/es/herramientas/comprimir-pdf): Reduce el tamaño de tu PDF en el navegador con cuatro niveles de compresión y comparativa de peso. Rápido, privado y sin subir archivos a servidores.
+- [Unir PDF](https://breadpdf.com/es/herramientas/unir-pdf): Combina dos o más PDF en un único documento, reordena los archivos antes de procesar y descarga el resultado al instante desde tu navegador.
+- [Dividir PDF](https://breadpdf.com/es/herramientas/dividir-pdf): Divide un PDF en documentos independientes: una página por archivo o intervalos personalizados como 1-3, 4-8. Todo en tu navegador y sin registro.
+- [PDF a JPG](https://breadpdf.com/es/herramientas/pdf-a-jpg): Convierte las páginas de un PDF en imágenes JPG eligiendo la resolución y la calidad. El proceso ocurre en tu navegador, sin subir el documento.
+- [JPG a PDF](https://breadpdf.com/es/herramientas/jpg-a-pdf): Convierte imágenes JPG o PNG en un único documento PDF, eligiendo tamaño A4 con márgenes o ajustado a la foto. Ordena tus imágenes en el navegador.
+- [Rotar PDF](https://breadpdf.com/es/herramientas/rotar-pdf): Gira páginas de un PDF 90, 180 o 270 grados, en todo el documento o en páginas concretas, y guarda el resultado de forma permanente.
+- [Extraer páginas](https://breadpdf.com/es/herramientas/extraer-paginas-pdf): Selecciona y extrae páginas concretas o intervalos de un PDF para crear un nuevo documento independiente, sin alterar el archivo original.
+- [Eliminar páginas](https://breadpdf.com/es/herramientas/eliminar-paginas-pdf): Borra las hojas que no necesitas de un documento PDF y descarga el archivo limpio con páginas reindexadas, sin instalar programas ni subir archivos.
+- [Extraer texto](https://breadpdf.com/es/herramientas/extraer-texto-pdf): Copia y extrae el texto plano de un PDF en un archivo .txt limpio delimitado por páginas. Proceso 100% privado en tu navegador.
+- [PDF a Word](https://breadpdf.com/es/herramientas/pdf-a-word): Convierte el texto y párrafos de un PDF a un documento Word (.docx) editable en tu navegador. Proceso local y privado sin registro.
+- [Word a PDF](https://breadpdf.com/es/herramientas/word-a-pdf): Pasa tus documentos Word (.docx) a PDF conservando párrafos, títulos y estructura limpia. 100% privado en tu navegador.
+- [Marca de agua](https://breadpdf.com/es/herramientas/marca-de-agua): Añade marcas de agua de texto o imagen a tus archivos PDF con control total de ángulo, posición y transparencia, directamente en tu navegador.
+- [Numerar páginas](https://breadpdf.com/es/herramientas/numerar-paginas): Añade números de página y folia tus documentos PDF en el encabezado o pie. Personaliza formato, tipografía y excluye portadas o índices para tesis y memorias.
+- [OCR de PDF](https://breadpdf.com/es/herramientas/ocr-pdf): Aplica OCR a tus PDF escaneados o imágenes directamente en el navegador. Genera un PDF con texto buscable o extrae el contenido en formato .txt.
+- [Reparar PDF](https://breadpdf.com/es/herramientas/reparar-pdf): Repara archivos PDF que no abren, tienen la estructura rota o errores de XRef. Recupera páginas y descarga un PDF saneado en tu navegador.
+- [Proteger PDF](https://breadpdf.com/es/herramientas/proteger-pdf): Cifra y añade contraseña a tus documentos PDF en tu navegador sin subirlos a internet. Máxima privacidad y compatibilidad con lectores PDF.
+- [Desbloquear PDF](https://breadpdf.com/es/herramientas/desbloquear-pdf): Elimina la contraseña de apertura de tu archivo PDF introduciendo la clave legítima una sola vez. Descarga tu PDF libre de contraseñas.
+- [Firmar PDF](https://breadpdf.com/es/herramientas/firmar-pdf): Añade tu rúbrica o firma gráfica a tu documento PDF directamente en el navegador. 100% privado, sin subir datos a ningún servidor.
+- [PDF a Excel](https://breadpdf.com/es/herramientas/pdf-a-excel): Convierte tablas y datos de tus archivos PDF a hojas de cálculo Excel (.xlsx) o CSV de forma rápida, exacta y sin subir archivos a servidores externos.
+- [Comparar PDF](https://breadpdf.com/es/herramientas/comparar-pdf): Compara dos versiones de un documento PDF en paralelo o con cortinilla deslizante interactiva. Detecta cambios de texto y diseño en tu navegador.
+- [Resumir PDF](https://breadpdf.com/es/herramientas/resumir-pdf): Extrae los puntos clave y oraciones más relevantes de cualquier PDF sin enviar tu documento a la nube ni requerir suscripciones.
+- [Extraer datos](https://breadpdf.com/es/herramientas/extraer-datos): Extrae información sensible y estructurada como emails, importes, fechas y teléfonos directamente en formato JSON o CSV.
+- [PDF a PowerPoint](https://breadpdf.com/es/herramientas/pdf-a-powerpoint): Transforma presentaciones en PDF en archivos PowerPoint (.pptx) listos para proyectar y editar en Microsoft PowerPoint o Google Slides.
+- [PDF a WebP](https://breadpdf.com/es/herramientas/pdf-a-webp): Transforma cada página de tu PDF en imágenes WebP de última generación. Alta calidad visual, compresión superior y 100% procesado en tu navegador.
+- [Generar QR a PDF](https://breadpdf.com/es/herramientas/qr-pdf): Genera códigos QR estáticos para enlaces, menús o texto y descárgalos en una hoja PDF A4 lista para imprimir o en PNG transparente.
+- [Censurar PDF](https://breadpdf.com/es/herramientas/censurar-pdf): Tapa y cubre información sensible en tu PDF con bloques opacos negros o blancos. Procesamiento 100% privado en tu navegador.
+- [Recortar PDF](https://breadpdf.com/es/herramientas/recortar-pdf): Recorta páginas de un PDF online y ajusta los márgenes perimetrales con precisión milimétrica. Elimina bordes blancos para impresión o lectores e-reader 100% en tu navegador.
+- [PDF a Markdown](https://breadpdf.com/es/herramientas/pdf-a-markdown): Convierte PDFs en archivos Markdown estructurados con encabezados, listas y párrafos limpios, listos para alimentar modelos de IA o tus notas en Obsidian.
+- [PDF a PDF/A](https://breadpdf.com/es/herramientas/pdf-a-pdfa): Transforma tus documentos al formato PDF/A estándar de conservación a largo plazo, requerido por Hacienda, juzgados, LexNET y administraciones públicas. Sin subir archivos.
+- [Excel a PDF](https://breadpdf.com/es/herramientas/excel-a-pdf): Transforma tus archivos de Excel (.xlsx, .xls) a documentos PDF maquetados y ordenados con total privacidad en tu navegador.
+- [Reordenar páginas](https://breadpdf.com/es/herramientas/reordenar-paginas-pdf): Cambia el orden de las páginas de tu documento PDF fácilmente con vista previa visual. Arrastra las hojas a la posición deseada y descarga el resultado.
+- [Aplanar PDF](https://breadpdf.com/es/herramientas/aplanar-pdf): Consolida formularios interactivos y anotaciones en contenido gráfico no editable. Protege tus datos completados antes de compartir o presentar documentos.
+- [Eliminar metadatos](https://breadpdf.com/es/herramientas/eliminar-metadatos-pdf): Elimina información confidencial oculta en tu PDF como autor, software creador, fechas de modificación y propiedades personales de forma 100% privada.
+- [PDF a PNG](https://breadpdf.com/es/herramientas/pdf-a-png): Transforma cada página de tu documento PDF en imágenes PNG nítidas sin artefactos de compresión. Rápido, seguro y procesado localmente en tu navegador.
+- [PNG a PDF](https://breadpdf.com/es/herramientas/png-a-pdf): Combina una o varias imágenes PNG en un único PDF. Ajusta a formato A4 o mantén las dimensiones originales de tus gráficos con total privacidad.
+- [Ajustar tamaño de página](https://breadpdf.com/es/herramientas/redimensionar-pdf): Normaliza documentos con páginas heterogéneas o adapta formatos de impresión a estándar A4, Carta o Legal, manteniendo proporciones sin distorsión.
+- [Editar metadatos PDF](https://breadpdf.com/es/herramientas/editar-metadatos-pdf): Cambia las propiedades y metadatos de tu PDF (título, autor, asunto y palabras clave) de forma 100% privada sin subir archivos a servidores.
+- [Añadir texto al PDF](https://breadpdf.com/es/herramientas/anadir-texto-pdf): Escribe y añade texto a cualquier página de tu PDF con control de tamaño, color y posición. 100% en tu navegador y sin registro.
+- [Insertar páginas en PDF](https://breadpdf.com/es/herramientas/insertar-paginas-pdf): Inserta páginas procedentes de otro PDF al inicio, al final o entre páginas concretas de tu documento de forma visual y 100% privada.
+- [Optimizar PDF para impresión](https://breadpdf.com/es/herramientas/optimizar-pdf-para-impresion): Transforma tu PDF a escala de grises real para imprimir sin gastar tinta de color. Proceso nítido, privado y sin subir archivos a servidores.
+- [WebP a PDF](https://breadpdf.com/es/herramientas/webp-a-pdf): Transforma una o varias imágenes WebP en un único archivo PDF sin pérdida de calidad. Rápido, privado en tu navegador y sin subir archivos a servidores.
+- [Markdown a PDF](https://breadpdf.com/es/herramientas/markdown-a-pdf): Transforma tus notas y documentos Markdown (.md) en PDF elegantes con títulos, párrafos, listas, citas y bloques de código maquetados al instante.
+- [PowerPoint a PDF](https://breadpdf.com/es/herramientas/powerpoint-a-pdf): Transforma diapositivas de PowerPoint (.pptx) a documento PDF panorámico en tu navegador. Rápido, 100% privado y sin subir archivos a servidores externos.
+- [SVG a PDF](https://breadpdf.com/es/herramientas/svg-a-pdf): Convierte archivos vectoriales SVG a documentos PDF conservando curvas, trazados y proporciones visuales nítidas en tu navegador con total privacidad.
+- [Extraer imágenes de PDF](https://breadpdf.com/es/herramientas/extraer-imagenes-pdf): Extrae las imágenes incrustadas en tu archivo PDF con su resolución original y descárgalas en PNG o ZIP. Sin convertir páginas enteras y 100% en tu navegador.
+- [Dividir PDF por tamaño](https://breadpdf.com/es/herramientas/dividir-pdf-por-tamano): Divide un PDF grande en fragmentos con un límite de tamaño en MB por parte. Perfecto para adjuntos de correo (25 MB), Moodle (5-10 MB) o LexNET. 100% en tu navegador.
+- [Eliminar páginas en blanco](https://breadpdf.com/es/herramientas/eliminar-paginas-en-blanco): Detecta y elimina automáticamente las páginas en blanco o vacías de tu PDF. Ideal para documentos escaneados, formularios y reportes. 100% privado.
+- [Imagen a WebP](https://breadpdf.com/es/herramientas/imagen-a-webp): Convierte imágenes JPG y PNG al formato WebP para optimizar su peso y mejorar el rendimiento web. Ideal para Core Web Vitals, PageSpeed Insights y SEO. Privado en tu navegador.
+- [Sanear PDF](https://breadpdf.com/es/herramientas/sanear-pdf): Limpia tu PDF eliminando JavaScript embebido, acciones automáticas de apertura y metadatos de autor. Ideal antes de compartir documentos de terceros.
+- [Rellenar formulario PDF](https://breadpdf.com/es/herramientas/rellenar-formulario-pdf): Rellena campos de texto, casillas, desplegables y botones de opción en PDFs con AcroForm sin instalar nada. Exporta el PDF completado al instante.
+- [Mejorar imágenes](https://breadpdf.com/es/herramientas/mejorar-imagenes): Mejora la calidad, nitidez y resolución de imágenes JPG, PNG y WebP en tu navegador. Enfoque adaptativo y realce de documentos sin subir archivos.
 
-- [Comprimir PDF](https://breadpdf.com/es/herramientas/comprimir-pdf): Reduce el tamaño de archivos PDF manteniendo la calidad visual con modos recomendado, extremo y ligero.
-- [Optimizar PDF para impresión](https://breadpdf.com/es/herramientas/optimizar-pdf-para-impresion): Prepara la resolución y espacio de color de documentos PDF para imprenta física.
-- [Redimensionar PDF](https://breadpdf.com/es/herramientas/redimensionar-pdf): Ajusta el tamaño de página a estándares A4, Carta, Legal o dimensiones personalizadas.
-- [Eliminar páginas en blanco](https://breadpdf.com/es/herramientas/eliminar-paginas-en-blanco-pdf): Detecta y suprime automáticamente páginas vacías generadas durante el escaneo.
+### Català
+- [Comprimeix PDF](https://breadpdf.com/ca/eines/comprimeix-pdf): Redueix la mida del teu PDF al navegador amb quatre nivells de compressió i comparativa de pes. Ràpid, privat i sense pujar fitxers a servidors.
+- [Uneix PDF](https://breadpdf.com/ca/eines/uneix-pdf): Combina dos o més PDF en un únic document, reordena els fitxers abans de processar i descarrega el resultat al moment des del navegador.
+- [Divideix PDF](https://breadpdf.com/ca/eines/divideix-pdf): Divideix un PDF en documents independents: una pàgina per fitxer o intervals personalitzats com 1-3, 4-8. Tot al navegador i sense registre.
+- [PDF a JPG](https://breadpdf.com/ca/eines/pdf-a-jpg): Converteix les pàgines d
+- [JPG a PDF](https://breadpdf.com/ca/eines/jpg-a-pdf): Converteix imatges JPG o PNG en un únic document PDF, triant mida A4 amb marges o ajustat a la foto. Ordena les imatges al teu navegador.
+- [Gira PDF](https://breadpdf.com/ca/eines/gira-pdf): Gira pàgines d
+- [Extreu pàgines](https://breadpdf.com/ca/eines/extreu-pagines-pdf): Selecciona i extreu pàgines concretes o intervals d
+- [Elimina pàgines](https://breadpdf.com/ca/eines/elimina-pagines-pdf): Esborra les pàgines que no necessites d
+- [Extreu text](https://breadpdf.com/ca/eines/extreu-text-pdf): Copia i extreu el text pla d
+- [PDF a Word](https://breadpdf.com/ca/eines/pdf-a-word): Converteix el text i paràgrafs d
+- [Word a PDF](https://breadpdf.com/ca/eines/word-a-pdf): Passa els teus documents Word (.docx) a PDF conservant paràgrafs, títols i estructura neta. 100% privat al teu navegador.
+- [](https://breadpdf.com/ca/eines/marca-daigua): Añade marcas de agua de texto o imagen a tus archivos PDF con control total de ángulo, posición y transparencia, directamente en tu navegador.
+- [](https://breadpdf.com/ca/eines/numerar-pagines): Añade números de página y folia tus documentos PDF en el encabezado o pie. Personaliza formato, tipografía y excluye portadas o índices para tesis y memorias.
+- [](https://breadpdf.com/ca/eines/ocr-pdf): Aplica OCR a tus PDF escaneados o imágenes directamente en el navegador. Genera un PDF con texto buscable o extrae el contenido en formato .txt.
+- [](https://breadpdf.com/ca/eines/reparar-pdf): Repara archivos PDF que no abren, tienen la estructura rota o errores de XRef. Recupera páginas y descarga un PDF saneado en tu navegador.
+- [](https://breadpdf.com/ca/eines/protegir-pdf): Cifra y añade contraseña a tus documentos PDF en tu navegador sin subirlos a internet. Máxima privacidad y compatibilidad con lectores PDF.
+- [](https://breadpdf.com/ca/eines/desbloquejar-pdf): Elimina la contraseña de apertura de tu archivo PDF introduciendo la clave legítima una sola vez. Descarga tu PDF libre de contraseñas.
+- [](https://breadpdf.com/ca/eines/signar-pdf): Añade tu rúbrica o firma gráfica a tu documento PDF directamente en el navegador. 100% privado, sin subir datos a ningún servidor.
+- [](https://breadpdf.com/ca/eines/pdf-a-excel): Convierte tablas y datos de tus archivos PDF a hojas de cálculo Excel (.xlsx) o CSV de forma rápida, exacta y sin subir archivos a servidores externos.
+- [](https://breadpdf.com/ca/eines/comparar-pdf): Compara dos versiones de un documento PDF en paralelo o con cortinilla deslizante interactiva. Detecta cambios de texto y diseño en tu navegador.
+- [](https://breadpdf.com/ca/eines/resumir-pdf): Extrae los puntos clave y oraciones más relevantes de cualquier PDF sin enviar tu documento a la nube ni requerir suscripciones.
+- [](https://breadpdf.com/ca/eines/extreure-dades): Extrae información sensible y estructurada como emails, importes, fechas y teléfonos directamente en formato JSON o CSV.
+- [](https://breadpdf.com/ca/eines/pdf-a-powerpoint): Transforma presentaciones en PDF en archivos PowerPoint (.pptx) listos para proyectar y editar en Microsoft PowerPoint o Google Slides.
+- [PDF a WebP](https://breadpdf.com/ca/eines/pdf-a-webp): Transforma cada pàgina del teu PDF en imatges WebP d
+- [](https://breadpdf.com/ca/eines/qr-pdf): Genera códigos QR estáticos para enlaces, menús o texto y descárgalos en una hoja PDF A4 lista para imprimir o en PNG transparente.
+- [](https://breadpdf.com/ca/eines/censurar-pdf): Tapa y cubre información sensible en tu PDF con bloques opacos negros o blancos. Procesamiento 100% privado en tu navegador.
+- [](https://breadpdf.com/ca/eines/retallar-pdf): Recorta páginas de un PDF online y ajusta los márgenes perimetrales con precisión milimétrica. Elimina bordes blancos para impresión o lectores e-reader 100% en tu navegador.
+- [](https://breadpdf.com/ca/eines/pdf-a-markdown): Convierte PDFs en archivos Markdown estructurados con encabezados, listas y párrafos limpios, listos para alimentar modelos de IA o tus notas en Obsidian.
+- [](https://breadpdf.com/ca/eines/pdf-a-pdfa): Transforma tus documentos al formato PDF/A estándar de conservación a largo plazo, requerido por Hacienda, juzgados, LexNET y administraciones públicas. Sin subir archivos.
+- [](https://breadpdf.com/ca/eines/excel-a-pdf): Transforma tus archivos de Excel (.xlsx, .xls) a documentos PDF maquetados y ordenados con total privacidad en tu navegador.
+- [Reordenar pàgines](https://breadpdf.com/ca/eines/reordenar-pagines-pdf): Canvia l
+- [Aplanar PDF](https://breadpdf.com/ca/eines/aplanar-pdf): Consolida formularis interactius i anotacions en contingut gràfic no editable. Protegeix les teves dades abans de compartir documents.
+- [Eliminar metadades](https://breadpdf.com/ca/eines/eliminar-metadades-pdf): Elimina informació confidencial oculta al teu PDF com autor, programari creador, dates de modificació i propietats de forma 100% privada.
+- [PDF a PNG](https://breadpdf.com/ca/eines/pdf-a-png): Transforma cada pàgina del teu document PDF en imatges PNG nítides sense artefactes de compressió. Ràpid, segur i al teu navegador.
+- [PNG a PDF](https://breadpdf.com/ca/eines/png-a-pdf): Combina una o diverses imatges PNG en un únic PDF. Ajusta a format A4 o mantén les dimensions originals amb total privadesa.
+- [Ajustar mida de pàgina](https://breadpdf.com/ca/eines/redimensionar-pdf): Normalitza documents amb pàgines heterogènies o adapta formats d
+- [Editar metadades PDF](https://breadpdf.com/ca/eines/editar-metadades-pdf): Canvia les propietats i metadades del teu PDF (títol, autor, assumpte i paraules clau) de manera 100% privada sense pujar fitxers a servidors.
+- [Afegir text al PDF](https://breadpdf.com/ca/eines/afegir-text-pdf): Escriu i afegeix text a qualsevol pàgina del teu PDF amb control de mida, color i posició. 100% al teu navegador i sense registre.
+- [Inserir pàgines a PDF](https://breadpdf.com/ca/eines/inserir-pagines-pdf): Insereix pàgines procedents d
+- [Optimitzar PDF per a impressió](https://breadpdf.com/ca/eines/optimitzar-pdf-per-impressio): Transforma el teu PDF a escala de grisos real per imprimir sense gastar tinta de color. Procés nítid, privat i sense pujar fitxers a servidors.
+- [WebP a PDF](https://breadpdf.com/ca/eines/webp-a-pdf): Transforma una o diverses imatges WebP en un únic fitxer PDF sense pèrdua de qualitat. Ràpid, privat al teu navegador i sense pujar fitxers a servidors.
+- [Markdown a PDF](https://breadpdf.com/ca/eines/markdown-a-pdf): Transforma les teves notes i documents Markdown (.md) en PDF elegants amb títols, paràgrafs, llistes, cites i blocs de codi maquetats a l
+- [PowerPoint a PDF](https://breadpdf.com/ca/eines/powerpoint-a-pdf): Transforma diapositives de PowerPoint (.pptx) a document PDF panoràmic al teu navegador. Ràpid, 100% privat i sense pujar fitxers a servidors externs.
+- [SVG a PDF](https://breadpdf.com/ca/eines/svg-a-pdf): Converteix fitxers vectorials SVG a documents PDF preservant corbes, traçats i proporcions visuals al teu navegador amb total privadesa.
+- [Extreure imatges de PDF](https://breadpdf.com/ca/eines/extreure-imatges-pdf): Extreu les imatges incrustades al teu arxiu PDF amb la seva resolució original i descarrega-les en PNG o ZIP. Sense convertir pàgines senceres i 100% al navegador.
+- [Dividir PDF per mida](https://breadpdf.com/ca/eines/dividir-pdf-per-mida): Divideix un PDF gran en fragments amb un límit de mida en MB per part. Ideal per a fitxers adjunts de correu o plataformes amb límits de pes.
+- [Eliminar pàgines en blanc](https://breadpdf.com/ca/eines/eliminar-pagines-en-blanc): Detecta i elimina automàticament les pàgines en blanc o buides del teu PDF. Ideal per a documents escanejats, formularis i informes.
+- [Imatge a WebP](https://breadpdf.com/ca/eines/imatge-a-webp): Converteix imatges JPG i PNG al format WebP per optimitzar-ne el pes per al web. Ajusta la qualitat i descarrega el resultat al instant al teu navegador.
+- [Sanejar PDF](https://breadpdf.com/ca/eines/sanear-pdf): Neteja el teu PDF eliminant JavaScript incrustat, accions automàtiques d
+- [Emplenar formulari PDF](https://breadpdf.com/ca/eines/emplenar-formulari-pdf): Emplena camps de text, caselles, desplegables i botons d
+- [Millorar imatges](https://breadpdf.com/ca/eines/millorar-imatges): Augmenta la resolució i nitidesa de fotos, documents i rebuts escanejats amb màscara d
 
-## Tools: Organize
+### English
+- [Compress PDF](https://breadpdf.com/en/tools/compress-pdf): Reduce PDF file size directly in your browser with four compression modes and size comparison. Fast, private, and no files uploaded to servers.
+- [Merge PDF](https://breadpdf.com/en/tools/merge-pdf): Combine two or more PDFs into one document, reorder the files before processing and download the result instantly from your browser.
+- [Split PDF](https://breadpdf.com/en/tools/split-pdf): Split a PDF into separate documents: one page per file or custom ranges like 1-3, 4-8. Everything runs in your browser with no sign-up.
+- [PDF to JPG](https://breadpdf.com/en/tools/pdf-to-jpg): Turn the pages of a PDF into JPG images, choosing resolution and quality. Everything happens in your browser, with no upload.
+- [JPG to PDF](https://breadpdf.com/en/tools/jpg-to-pdf): Convert JPG or PNG images into a single PDF document, choosing A4 with margins or fit to photo. Reorder images directly in your browser.
+- [Rotate PDF](https://breadpdf.com/en/tools/rotate-pdf): Rotate PDF pages by 90, 180 or 270 degrees, across the whole document or on specific pages, and save the result permanently.
+- [Extract pages](https://breadpdf.com/en/tools/extract-pdf-pages): Select and extract specific pages or ranges from a PDF into a new standalone document, keeping the original intact.
+- [Delete pages](https://breadpdf.com/en/tools/delete-pdf-pages): Delete unwanted pages from a PDF and download a clean document with re-indexed pages, without installing software or uploading files.
+- [Extract text](https://breadpdf.com/en/tools/extract-pdf-text): Copy and extract clean plain text from a PDF into a formatted .txt file page by page. 100% private in your browser.
+- [PDF to Word](https://breadpdf.com/en/tools/pdf-to-word): Convert text and paragraphs from a PDF into an editable Word (.docx) document in your browser. 100% private and sign-up free.
+- [Word to PDF](https://breadpdf.com/en/tools/word-to-pdf): Convert Word documents (.docx) to PDF while preserving paragraphs, headings, and clean structure. 100% private in your browser.
+- [](https://breadpdf.com/en/tools/watermark-pdf): Añade marcas de agua de texto o imagen a tus archivos PDF con control total de ángulo, posición y transparencia, directamente en tu navegador.
+- [](https://breadpdf.com/en/tools/number-pdf-pages): Añade números de página y folia tus documentos PDF en el encabezado o pie. Personaliza formato, tipografía y excluye portadas o índices para tesis y memorias.
+- [](https://breadpdf.com/en/tools/ocr-pdf): Aplica OCR a tus PDF escaneados o imágenes directamente en el navegador. Genera un PDF con texto buscable o extrae el contenido en formato .txt.
+- [](https://breadpdf.com/en/tools/repair-pdf): Repara archivos PDF que no abren, tienen la estructura rota o errores de XRef. Recupera páginas y descarga un PDF saneado en tu navegador.
+- [](https://breadpdf.com/en/tools/protect-pdf): Cifra y añade contraseña a tus documentos PDF en tu navegador sin subirlos a internet. Máxima privacidad y compatibilidad con lectores PDF.
+- [](https://breadpdf.com/en/tools/unlock-pdf): Elimina la contraseña de apertura de tu archivo PDF introduciendo la clave legítima una sola vez. Descarga tu PDF libre de contraseñas.
+- [](https://breadpdf.com/en/tools/sign-pdf): Añade tu rúbrica o firma gráfica a tu documento PDF directamente en el navegador. 100% privado, sin subir datos a ningún servidor.
+- [](https://breadpdf.com/en/tools/pdf-to-excel): Convierte tablas y datos de tus archivos PDF a hojas de cálculo Excel (.xlsx) o CSV de forma rápida, exacta y sin subir archivos a servidores externos.
+- [](https://breadpdf.com/en/tools/compare-pdf): Compara dos versiones de un documento PDF en paralelo o con cortinilla deslizante interactiva. Detecta cambios de texto y diseño en tu navegador.
+- [](https://breadpdf.com/en/tools/summarize-pdf): Extrae los puntos clave y oraciones más relevantes de cualquier PDF sin enviar tu documento a la nube ni requerir suscripciones.
+- [](https://breadpdf.com/en/tools/extract-pdf-data): Extrae información sensible y estructurada como emails, importes, fechas y teléfonos directamente en formato JSON o CSV.
+- [](https://breadpdf.com/en/tools/pdf-to-powerpoint): Transforma presentaciones en PDF en archivos PowerPoint (.pptx) listos para proyectar y editar en Microsoft PowerPoint o Google Slides.
+- [PDF to WebP](https://breadpdf.com/en/tools/pdf-to-webp): Transform every page of your PDF into next-generation WebP images. High visual quality, superior compression, and 100% processed in your browser.
+- [](https://breadpdf.com/en/tools/qr-to-pdf): Genera códigos QR estáticos para enlaces, menús o texto y descárgalos en una hoja PDF A4 lista para imprimir o en PNG transparente.
+- [](https://breadpdf.com/en/tools/redact-pdf): Tapa y cubre información sensible en tu PDF con bloques opacos negros o blancos. Procesamiento 100% privado en tu navegador.
+- [](https://breadpdf.com/en/tools/crop-pdf): Recorta páginas de un PDF online y ajusta los márgenes perimetrales con precisión milimétrica. Elimina bordes blancos para impresión o lectores e-reader 100% en tu navegador.
+- [](https://breadpdf.com/en/tools/pdf-to-markdown): Convierte PDFs en archivos Markdown estructurados con encabezados, listas y párrafos limpios, listos para alimentar modelos de IA o tus notas en Obsidian.
+- [](https://breadpdf.com/en/tools/pdf-to-pdfa): Transforma tus documentos al formato PDF/A estándar de conservación a largo plazo, requerido por Hacienda, juzgados, LexNET y administraciones públicas. Sin subir archivos.
+- [](https://breadpdf.com/en/tools/excel-to-pdf): Transforma tus archivos de Excel (.xlsx, .xls) a documentos PDF maquetados y ordenados con total privacidad en tu navegador.
+- [Reorder PDF Pages](https://breadpdf.com/en/tools/reorder-pdf-pages): Change the page order of your PDF document visually with live page thumbnails. Drag pages into your preferred sequence and download instantly.
+- [Flatten PDF](https://breadpdf.com/en/tools/flatten-pdf): Consolidate fillable form fields and interactive annotations into static document content. Lock filled values securely before sharing.
+- [Remove PDF Metadata](https://breadpdf.com/en/tools/remove-pdf-metadata): Strip hidden personal data from your PDF such as author, creation tool, revision timestamps, and document properties 100% privately.
+- [PDF to PNG](https://breadpdf.com/en/tools/pdf-to-png): Transform every page of your PDF into crisp, lossless PNG images without compression artifacts. Fast, private, and browser-powered.
+- [PNG to PDF](https://breadpdf.com/en/tools/png-to-pdf): Merge one or multiple PNG images into a single PDF document. Fit to A4 with neat margins or keep original dimensions with complete privacy.
+- [Resize PDF Pages](https://breadpdf.com/en/tools/resize-pdf): Normalize documents with mixed page sizes or adapt print formats to standard A4, Letter, or Legal while preserving proportions without distortion.
+- [Edit PDF Metadata](https://breadpdf.com/en/tools/edit-pdf-metadata): Modify title, author, subject, and keywords in your PDF file with 100% client-side privacy. No files are sent to remote servers.
+- [Add Text to PDF](https://breadpdf.com/en/tools/add-text-to-pdf): Type and add text overlays to any PDF page with font size, color, and positioning controls. Fast, private, and no signup required.
+- [Insert Pages into PDF](https://breadpdf.com/en/tools/insert-pages-pdf): Insert pages from another PDF at the beginning, end, or specific point of your document. Fast, private, and no signup needed.
+- [Optimize PDF for Print](https://breadpdf.com/en/tools/optimize-pdf-for-print): Transform your PDF to true grayscale for cost-effective monochrome printing. Sharp, private, and runs directly in your browser.
+- [WebP to PDF](https://breadpdf.com/en/tools/webp-to-pdf): Turn one or multiple WebP images into a single PDF file without quality loss. Fast, private in your browser, and no files uploaded to servers.
+- [Markdown to PDF](https://breadpdf.com/en/tools/markdown-to-pdf): Transform your Markdown (.md) notes and documents into elegant PDFs with headings, paragraphs, lists, quotes, and code blocks rendered instantly.
+- [PowerPoint to PDF](https://breadpdf.com/en/tools/powerpoint-to-pdf): Transform PowerPoint slides (.pptx) into a widescreen PDF document directly in your browser. Fast, 100% private, and no files uploaded to external servers.
+- [SVG to PDF](https://breadpdf.com/en/tools/svg-to-pdf): Convert SVG vector files into sharp PDF documents preserving curves, paths, and visual proportions directly in your browser with complete privacy.
+- [Extract Images from PDF](https://breadpdf.com/en/tools/extract-pdf-images): Extract embedded pictures and photographs from your PDF at original quality. Separate images from PDF into individual PNG files or a ZIP archive 100% in your browser.
+- [Split PDF by Size](https://breadpdf.com/en/tools/split-pdf-by-size): Split a large PDF into fragments with a size limit in MB per part. Ideal for email attachments or platforms with file size restrictions. 100% in your browser.
+- [Remove Blank Pages](https://breadpdf.com/en/tools/remove-blank-pages-pdf): Automatically detect and remove blank or empty pages from your PDF. Ideal for scanned documents, forms, and reports. 100% private and browser-based.
+- [Image to WebP](https://breadpdf.com/en/tools/image-to-webp): Convert JPG and PNG images to WebP to reduce their weight for the web. Adjust quality and download the result instantly, all in your browser.
+- [Sanitize PDF](https://breadpdf.com/en/tools/sanitize-pdf): Clean your PDF by removing embedded JavaScript, automatic open actions, and author metadata. Ideal before sharing third-party documents.
+- [Fill PDF Form](https://breadpdf.com/en/tools/fill-pdf-form): Fill text fields, checkboxes, dropdowns, and radio buttons in AcroForm PDFs without installing anything. Export the completed PDF instantly.
+- [Enhance Images](https://breadpdf.com/en/tools/enhance-image): Boost image resolution and crispness for photos, documents, and receipts using unsharp masking and bicubic upscaling. 100% private in-browser tool.
 
-- [Unir PDF](https://breadpdf.com/es/herramientas/unir-pdf): Combina múltiples documentos PDF en un único archivo ordenado.
-- [Dividir PDF](https://breadpdf.com/es/herramientas/dividir-pdf): Separa un archivo PDF por rangos de páginas o páginas individuales.
-- [Dividir PDF por tamaño](https://breadpdf.com/es/herramientas/dividir-pdf-por-tamano): Fragmenta archivos PDF respetando límites máximos en MB para plataformas educativas o administrativas.
-- [Girar PDF](https://breadpdf.com/es/herramientas/girar-pdf): Rota la orientación de páginas horizontales o verticales a 90°, 180° o 270°.
-- [Reordenar páginas PDF](https://breadpdf.com/es/herramientas/reordenar-paginas-pdf): Cambia el orden de páginas mediante interfaz visual arrastrable.
-- [Eliminar páginas PDF](https://breadpdf.com/es/herramientas/eliminar-paginas-pdf): Selecciona y elimina páginas innecesarias de un documento.
-- [Extraer páginas PDF](https://breadpdf.com/es/herramientas/extraer-paginas-pdf): Extrae páginas específicas y genera un nuevo documento independiente.
-- [Insertar páginas PDF](https://breadpdf.com/es/herramientas/insertar-paginas-pdf): Inserta páginas procedentes de otro archivo PDF en posiciones determinadas.
+## Guías
+### Español
+- [Reducir PDF para Moodle y campus virtuales | BreadPDF](https://breadpdf.com/es/guias/reducir-pdf-limite-subida-campus-virtual): Aprende a reducir un PDF que supera el límite de subida de Moodle o tu campus virtual. Comprímelo o divídelo por tamaño antes de entregar tu trabajo.
+- [WebP vs JPG vs PNG: qué formato usar en una tienda online | BreadPDF](https://breadpdf.com/es/guias/webp-vs-jpg-png-tiendas-online): Descubre las diferencias entre WebP, JPG y PNG para ecommerce y aprende a optimizar imágenes de producto sin sacrificar calidad innecesariamente.
+- [Cómo unir memoria, anexos y portada en un PDF para TFG o TFM | BreadPDF](https://breadpdf.com/es/guias/unificar-memoria-anexos-portada-tfg-tfm): Aprende a reunir memoria, portada y anexos en un único PDF para un TFG o TFM y comprueba el orden, la numeración y el tamaño antes de entregarlo.
+- [Cómo ocultar datos personales en un PDF antes de compartirlo | BreadPDF](https://breadpdf.com/es/guias/ocultar-datos-personales-pdf): Aprende a ocultar datos personales en un PDF, revisar sus metadatos y sanear determinados elementos técnicos antes de compartir un documento.
+- [Cómo pasar tablas de un PDF a Excel y mantener las columnas | BreadPDF](https://breadpdf.com/es/guias/pasar-tablas-pdf-a-excel): Aprende a convertir tablas de un PDF a Excel, detectar problemas de columnas y revisar números, fechas y totales antes de utilizar los datos.
+- [Cómo hacer buscable un PDF escaneado con OCR | BreadPDF](https://breadpdf.com/es/guias/hacer-buscable-pdf-escaneado-ocr): Aprende a convertir un PDF escaneado en un documento buscable con OCR, comprobar el texto reconocido y detectar los errores más habituales.
+- [Cómo rellenar y firmar un formulario PDF desde el navegador | BreadPDF](https://breadpdf.com/es/guias/rellenar-y-firmar-formulario-pdf): Aprende a rellenar campos AcroForm, añadir una firma visual y revisar un formulario PDF antes de enviarlo. Incluye diferencias entre firma visual y digital.
+- [Qué es PDF/A y cuándo convertir un PDF a PDF/A | BreadPDF](https://breadpdf.com/es/guias/que-es-pdfa-cuando-convertir): Descubre qué es PDF/A, en qué se diferencia de un PDF normal y cuándo puede ser necesario convertir un documento para archivo y conservación digital.
+- [Subir archivos grandes a WordPress y WooCommerce | BreadPDF](https://breadpdf.com/es/guias/subir-archivos-grandes-wordpress-woocommerce): Descubre por qué WordPress puede rechazar archivos grandes, dónde comprobar el límite real y cómo reducir PDFs o imágenes antes de volver a subirlos.
+- [Cómo eliminar páginas en blanco de un PDF escaneado | BreadPDF](https://breadpdf.com/es/guias/eliminar-paginas-en-blanco-pdf-escaneado): Aprende a detectar y eliminar páginas en blanco de un PDF escaneado, ajustar la sensibilidad y revisar el resultado antes de aplicar OCR o compartirlo.
 
-## Tools: Convert
+### Català
+- [Reduir PDF per a Moodle i campus virtuals | BreadPDF](https://breadpdf.com/ca/guies/reduir-pdf-limit-pujada-campus-virtual): Aprèn a reduir un PDF que supera el límit de pujada de Moodle o el teu campus virtual. Comprimeix-lo o divideix-lo per mida abans de lliurar la teva feina.
+- [WebP vs JPG vs PNG: quin format fer servir a una botiga online | BreadPDF](https://breadpdf.com/ca/guies/webp-vs-jpg-png-botigues-online): Descobreix les diferències entre WebP, JPG i PNG per a ecommerce i aprèn a optimitzar imatges de producte sense sacrificar qualitat innecessàriament.
+- [Com unir memòria, annexos i portada en un PDF per a TFG o TFM | BreadPDF](https://breadpdf.com/ca/guies/unificar-memoria-annexos-portada-tfg-tfm): Aprèn a reunir memòria, portada i annexos en un únic PDF per a un TFG o TFM i comprova l'ordre, la numeració i el pes abans de lliurar-lo.
+- [Com ocultar dades personals en un PDF abans de compartir-lo | BreadPDF](https://breadpdf.com/ca/guies/ocultar-dades-personals-pdf): Aprèn a ocultar dades personals en un PDF, revisar les metadades i sanejar determinats elements tècnics abans de compartir un document.
+- [Com passar taules d'un PDF a Excel i mantenir les columnes | BreadPDF](https://breadpdf.com/ca/guies/passar-taules-pdf-a-excel): Aprèn a convertir taules d'un PDF a Excel, detectar problemes de columnes i revisar números, dates i totals abans d'utilitzar les dades.
+- [Com fer cercable un PDF escanejat amb OCR | BreadPDF](https://breadpdf.com/ca/guies/fer-buscable-pdf-escanejat-ocr): Aprèn a convertir un PDF escanejat en un document cercable amb OCR, comprovar el text reconegut i detectar els errors més habituals.
+- [Com omplir i signar un formulari PDF des del navegador | BreadPDF](https://breadpdf.com/ca/guies/omplir-i-signar-formulari-pdf): Aprèn a omplir camps AcroForm, afegir una signatura visual i revisar un formulari PDF abans d'enviar-lo. Inclou diferències entre signatura visual i digital.
+- [Què és PDF/A i quan convertir un PDF a PDF/A | BreadPDF](https://breadpdf.com/ca/guies/que-es-pdfa-quan-convertir): Descobreix què és PDF/A, en què es diferencia d'un PDF normal i quan pot ser necessari convertir un document per a arxiu i conservació digital.
+- [Pujar fitxers grans a WordPress i WooCommerce | BreadPDF](https://breadpdf.com/ca/guies/pujar-fitxers-grans-wordpress-woocommerce): Descobreix per què WordPress pot rebutjar fitxers grans, on comprovar el límit real i com reduir PDFs o imatges abans de tornar-los a pujar.
+- [Com eliminar pàgines en blanc d'un PDF escanejat | BreadPDF](https://breadpdf.com/ca/guies/eliminar-pagines-en-blanc-pdf-escanejat): Aprèn a detectar i eliminar pàgines en blanc d'un PDF escanejat, ajustar la sensibilitat i revisar el resultat abans d'aplicar OCR o compartir-lo.
 
-- [PDF a JPG](https://breadpdf.com/es/herramientas/pdf-a-jpg): Convierte cada página de un PDF en imágenes JPG de alta resolución.
-- [PDF a PNG](https://breadpdf.com/es/herramientas/pdf-a-png): Exporta páginas de PDF a imágenes PNG con fidelidad y transparencia.
-- [PDF a WebP](https://breadpdf.com/es/herramientas/pdf-a-webp): Convierte documentos PDF al formato moderno WebP optimizado para web.
-- [JPG a PDF](https://breadpdf.com/es/herramientas/jpg-a-pdf): Convierte imágenes JPG en documentos PDF con ajuste de orientación y márgenes.
-- [PNG a PDF](https://breadpdf.com/es/herramientas/png-a-pdf): Empaqueta imágenes PNG en formato PDF de forma limpia.
-- [WebP a PDF](https://breadpdf.com/es/herramientas/webp-a-pdf): Convierte imágenes WebP a documentos PDF estándar.
-- [SVG a PDF](https://breadpdf.com/es/herramientas/svg-a-pdf): Convierte gráficos vectoriales SVG a páginas PDF vectoriales.
-- [PDF a Word](https://breadpdf.com/es/herramientas/pdf-a-word): Transforma documentos PDF en archivos editables DOCX de Microsoft Word.
-- [PDF a Excel](https://breadpdf.com/es/herramientas/pdf-a-excel): Extrae tablas y datos estructurados de PDF a hojas de cálculo XLSX.
-- [PDF a PowerPoint](https://breadpdf.com/es/herramientas/pdf-a-powerpoint): Convierte presentaciones y páginas PDF en diapositivas PPTX.
-- [Word a PDF](https://breadpdf.com/es/herramientas/word-a-pdf): Convierte documentos DOC y DOCX a formato PDF.
-- [Excel a PDF](https://breadpdf.com/es/herramientas/excel-a-pdf): Convierte hojas de cálculo XLSX a formato PDF estructurado.
-- [PowerPoint a PDF](https://breadpdf.com/es/herramientas/powerpoint-a-pdf): Convierte presentaciones PPTX a formato PDF estándar.
-- [PDF a PDF/A](https://breadpdf.com/es/herramientas/pdf-a-pdfa): Convierte documentos a la norma ISO 19005 para preservación legal y archivo digital a largo plazo.
-- [PDF a Markdown](https://breadpdf.com/es/herramientas/pdf-a-markdown): Extrae la estructura y contenido del PDF en formato Markdown (.md).
-- [Markdown a PDF](https://breadpdf.com/es/herramientas/markdown-a-pdf): Genera documentos PDF a partir de código o texto Markdown estilizado.
-
-## Tools: Edit
-
-- [OCR PDF](https://breadpdf.com/es/herramientas/ocr-pdf): Reconocimiento óptico de caracteres para convertir documentos escaneados en texto seleccionable y buscable.
-- [Extraer texto de PDF](https://breadpdf.com/es/herramientas/extraer-texto-pdf): Extrae el texto plano de documentos PDF sin alterar el archivo original.
-- [Extraer imágenes de PDF](https://breadpdf.com/es/herramientas/extraer-imagenes-pdf): Detecta y extrae todas las imágenes incrustadas dentro de un PDF.
-- [Recortar PDF](https://breadpdf.com/es/herramientas/recortar-pdf): Recorta márgenes y define áreas visibles personalizadas en páginas PDF.
-- [Añadir texto a PDF](https://breadpdf.com/es/herramientas/anadir-texto-al-pdf): Inserta anotaciones de texto, encabezados y pies de página en cualquier posición.
-- [Generar QR en PDF](https://breadpdf.com/es/herramientas/generar-qr-en-pdf): Genera e inserta códigos QR verificables en las páginas del documento.
-- [Firmar PDF](https://breadpdf.com/es/herramientas/firmar-pdf): Aplica firmas digitales o manuscritas sobre documentos PDF sin subir archivos a servidores.
-- [Comparar PDF](https://breadpdf.com/es/herramientas/comparar-pdf): Compara visual y textualmente dos versiones de un documento identificando diferencias.
-- [Rellenar formulario PDF](https://breadpdf.com/es/herramientas/rellenar-formulario-pdf): Completa y guarda formularios interactivos AcroForms en el navegador.
-
-## Tools: Security
-
-- [Sanitizar PDF](https://breadpdf.com/es/herramientas/sanitizar-pdf): Elimina metadatos invisibles, scripts activos, capas ocultas y revisiones confidenciales.
-- [Censurar PDF](https://breadpdf.com/es/herramientas/censurar-pdf): Redacta y oculta permanentemente datos personales o sensibles.
-- [Proteger PDF](https://breadpdf.com/es/herramientas/proteger-pdf): Cifra documentos PDF mediante contraseñas con cifrado estándar AES.
-- [Desbloquear PDF](https://breadpdf.com/es/herramientas/desbloquear-pdf): Elimina restricciones de lectura o edición en documentos autorizados.
-- [Eliminar metadatos de PDF](https://breadpdf.com/es/herramientas/eliminar-metadatos-pdf): Borra información de autor, software de creación y fechas de modificación.
-- [Reparar PDF](https://breadpdf.com/es/herramientas/reparar-pdf): Corrige tablas de referencia cruzada (XREF) y encabezados dañados en archivos corruptos.
-
-## Technical Guides
-
-- [Reducir PDF para campus virtual](https://breadpdf.com/es/guias/reducir-pdf-limite-subida-campus-virtual): Guía paso a paso para comprimir y dividir archivos PDF para Moodle y plataformas universitarias.
-- [Unificar TFG y TFM en PDF](https://breadpdf.com/es/guias/unificar-tfg-tfm-pdf): Cómo consolidar memoria, anexos y portadas de trabajos académicos respetando normativas.
-- [WebP vs JPG vs PNG en e-commerce](https://breadpdf.com/es/guias/webp-vs-jpg-png-ecommerce): Análisis de rendimiento y calidad para conversión y compresión de catálogos.
-- [Pasar tablas de PDF a Excel](https://breadpdf.com/es/guias/pasar-tablas-pdf-a-excel): Procedimiento para extraer tablas financieras y datos sin perder formato de columnas.
-- [Qué es PDF/A y cuándo convertir](https://breadpdf.com/es/guias/que-es-pdfa-cuando-convertir): Estándares de preservación documental legal y requerimientos de la administración pública.
-- [Hacer buscable un PDF escaneado con OCR](https://breadpdf.com/es/guias/hacer-buscable-pdf-escaneado-ocr): Conversión de páginas escaneadas a texto indexable directamente en local.
-- [Ocultar datos personales en PDF (RGPD)](https://breadpdf.com/es/guias/ocultar-datos-personales-pdf): Buenas prácticas y errores comunes al redactar información confidencial.
-- [Subir archivos grandes a WordPress y WooCommerce](https://breadpdf.com/es/guias/subir-archivos-grandes-wordpress-woocommerce): Técnicas de optimización de peso y resolución para tiendas online.
-- [Eliminar páginas en blanco de PDFs escaneados](https://breadpdf.com/es/guias/eliminar-paginas-en-blanco-pdf-escaneado): Detección automática y limpieza de documentos digitalizados.
-- [Rellenar y firmar formularios oficiales en PDF](https://breadpdf.com/es/guias/rellenar-y-firmar-formulario-pdf): Guía para completar trámites administrativos y firmar electrónicamente en el navegador.
+### English
+- [How to Reduce PDF Size for Moodle and Campus Submissions | BreadPDF](https://breadpdf.com/en/guides/reduce-pdf-file-size-for-virtual-campus-submission): Learn how to reduce a PDF exceeding Moodle or virtual campus upload limits. Compress or split it by file size before submitting your assignment.
+- [WebP vs JPG vs PNG: Which Format to Use in an Online Store | BreadPDF](https://breadpdf.com/en/guides/webp-vs-jpg-png-online-stores): Discover the differences between WebP, JPG, and PNG for ecommerce and learn how to optimize product images without unnecessary visual quality loss.
+- [How to Merge Thesis Body, Cover, and Appendices into One PDF | BreadPDF](https://breadpdf.com/en/guides/merge-thesis-appendices-cover-pdf): Learn how to assemble thesis body, cover page, and appendices into a single PDF and verify page numbering, order, and file size before turn-in.
+- [How to Hide Personal Data in a PDF Before Sharing | BreadPDF](https://breadpdf.com/en/guides/hide-personal-data-in-pdf): Learn how to hide personal data in a PDF, clear metadata properties, and sanitize technical elements before sharing any document.
+- [How to Convert PDF Tables to Excel and Keep Columns | BreadPDF](https://breadpdf.com/en/guides/convert-pdf-tables-to-excel): Learn how to convert tables from PDF to Excel, troubleshoot column alignment, and audit figures, dates, and sums before using the data.
+- [How to Make a Scanned PDF Searchable with OCR | BreadPDF](https://breadpdf.com/en/guides/make-scanned-pdf-searchable-with-ocr): Learn how to make a scanned PDF searchable with OCR, verify recognized text, and troubleshoot common character detection issues.
+- [How to Fill and Sign a PDF Form in Your Browser | BreadPDF](https://breadpdf.com/en/guides/fill-and-sign-pdf-form): Learn how to complete interactive AcroForm fields, stamp a visual signature, and inspect a PDF form before submission. Clarifies visual vs. digital certificates.
+- [What Is PDF/A and When to Convert a PDF to PDF/A | BreadPDF](https://breadpdf.com/en/guides/what-is-pdf-a-and-when-to-use-it): Discover what PDF/A is, how it differs from a standard PDF, and when you may need to convert a document for digital archiving and long-term preservation.
+- [Upload Large Files to WordPress & WooCommerce | BreadPDF](https://breadpdf.com/en/guides/upload-large-files-to-wordpress-woocommerce): Learn why WordPress rejects large files, where to verify your real upload ceiling, and how to optimize PDFs or images before retrying your upload.
+- [How to Remove Blank Pages from a Scanned PDF | BreadPDF](https://breadpdf.com/en/guides/remove-blank-pages-from-scanned-pdf): Learn how to detect and remove blank pages from scanned PDFs, configure sensitivity thresholds, and audit outputs before applying OCR or sharing.

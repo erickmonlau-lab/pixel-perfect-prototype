@@ -150,11 +150,11 @@ export function Header() {
         {/* ============================================================
             ZONA IZQUIERDA: LOGO BREADPDF
             ============================================================ */}
-        <div className="site-header-brand flex shrink-0 items-center">
+        <div className="site-header-brand flex min-w-0 shrink items-center">
           <Link
             to={HOME_ROUTE}
             params={homeParams(locale)}
-            className="transition-standard shrink-0 hover:opacity-90"
+            className="transition-standard min-w-0 shrink hover:opacity-90"
             aria-label={`BreadPDF · ${t.nav.home}`}
           >
             <Logo />
@@ -563,12 +563,12 @@ export function Header() {
         {/* ============================================================
             MÓVIL: IDIOMA + HAMBURGUESA
             ============================================================ */}
-        <div className="site-header-mobile-controls ml-auto flex shrink-0 items-center gap-2 max-[430px]:gap-1 lg:hidden">
+        <div className="site-header-mobile-controls ml-auto flex shrink-0 items-center gap-4 max-[430px]:gap-3 lg:hidden">
           <LanguageSwitcher />
           <button
             type="button"
             onClick={() => setMobileOpen((value) => !value)}
-            className="transition-standard inline-flex size-11 max-[430px]:size-10 items-center justify-center rounded-xl border border-[#E5E7EB] text-[#0F172A] hover:bg-[#F5F7FA]"
+            className="transition-standard inline-flex size-11 shrink-0 items-center justify-center rounded-xl border-2 border-[#0F0F12] bg-white text-[#0F172A] shadow-[2px_2px_0_#0F0F12] hover:bg-[#FEECEB] active:translate-y-0.5 active:shadow-none"
             aria-expanded={mobileOpen}
             aria-label={mobileOpen ? t.nav.closeMenu : t.nav.openMenu}
           >
@@ -579,8 +579,8 @@ export function Header() {
 
       {/* MOBILE ACCORDION DRAWER */}
       {mobileOpen && (
-        <div className="animate-rise border-t border-[#E5E7EB] bg-white px-4 py-4 lg:hidden max-h-[calc(100vh-4rem)] overflow-y-auto">
-          <nav className="flex flex-col gap-1.5" aria-label={t.nav.menu}>
+        <div className="animate-rise absolute left-2.5 right-2.5 top-full z-50 mx-auto max-h-[min(78dvh,680px)] max-w-[420px] overflow-y-auto overscroll-contain rounded-b-2xl border-2 border-t-0 border-[#0F0F12] bg-[#F5F7FA] px-3 py-3 shadow-[3px_6px_0_#0F0F12] lg:hidden">
+          <nav className="mx-auto flex max-w-xl flex-col gap-3" aria-label={t.nav.menu}>
             {/* Quick Catalog Link */}
             <Link
               to={SECTION_ROUTE}
@@ -589,133 +589,149 @@ export function Header() {
                 trackToolCatalogViewAllClicked({ source: "mobile_menu", language: locale });
                 setMobileOpen(false);
               }}
-              className="rounded-xl bg-[#FEECEB] px-4 py-3 text-[15px] font-bold text-[#EC3C2D] flex items-center justify-between border border-[#FDCAC7]/60"
+              className="flex min-h-12 items-center justify-between rounded-xl border-2 border-[#0F0F12] bg-[#EC3C2D] px-4 py-2.5 text-[15px] font-bold text-white shadow-[2px_2px_0_#0F0F12]"
             >
               <span className="flex items-center gap-2">
                 <span>{t.nav.allTools}</span>
               </span>
-              <span className="font-mono text-[12px] bg-[#EC3C2D]/10 text-[#EC3C2D] px-2 py-0.5 rounded-md font-bold">
+              <span className="rounded-md border-2 border-[#0F0F12] bg-white px-2 py-1 text-[12px] font-bold text-[#0F0F12]">
                 {tools.length}{" "}
                 {locale === "ca" ? "eines" : locale === "en" ? "tools" : "herramientas"}
               </span>
             </Link>
 
-            {/* Expandable Categories ordenadas por número de herramientas */}
-            {sortedCategories.map((category) => {
-              const accent = FAMILY_ACCENTS[category.category];
-              const isExpanded = mobileExpandedCat === category.category;
-              const catTools = tools.filter((tool) => tool.category === category.category);
+            {/* Categorías en cuadrícula compacta; al tocar, la lista se abre debajo. */}
+            <div className="grid grid-cols-2 gap-2">
+              {sortedCategories.map((category) => {
+                const accent = FAMILY_ACCENTS[category.category];
+                const isExpanded = mobileExpandedCat === category.category;
+                const catTools = tools.filter((tool) => tool.category === category.category);
+                const toggleAction = isExpanded
+                  ? locale === "ca"
+                    ? "Tancar"
+                    : locale === "en"
+                      ? "Collapse"
+                      : "Cerrar"
+                  : locale === "ca"
+                    ? "Ampliar"
+                    : locale === "en"
+                      ? "Expand"
+                      : "Expandir";
 
-              return (
-                <div
-                  key={category.category}
-                  className="rounded-xl border border-[#E5E7EB] bg-slate-50/50 overflow-hidden"
-                >
-                  <div className="flex items-center justify-between p-3">
-                    <Link
-                      to={DETAIL_ROUTE}
-                      params={categoryParams(locale, category.category)}
-                      onClick={() => setMobileOpen(false)}
-                      className="inline-flex items-center gap-3 text-[15px] font-bold text-[#0F172A]"
-                    >
-                      <span
-                        className={`inline-flex size-7 items-center justify-center rounded-lg ${accent.iconBg} ${accent.icon}`}
+                return (
+                  <div
+                    key={category.category}
+                    className={`overflow-hidden rounded-xl border-2 border-[#0F0F12] shadow-[2px_2px_0_#0F0F12] ${isExpanded ? "col-span-2 bg-white" : "bg-white"}`}
+                  >
+                    <div className="flex min-h-12 items-center justify-between gap-1.5 px-2 py-1.5">
+                      <Link
+                        to={DETAIL_ROUTE}
+                        params={categoryParams(locale, category.category)}
+                        onClick={() => setMobileOpen(false)}
+                        className="inline-flex min-w-0 flex-1 items-center gap-2 text-[14px] font-bold text-[#0F172A]"
                       >
-                        <ToolIcon name={FAMILY_ICONS[category.category]} className="size-3.5" />
-                      </span>
-                      {category.name}
-                    </Link>
-
-                    <button
-                      type="button"
-                      onClick={() => setMobileExpandedCat(isExpanded ? null : category.category)}
-                      className="p-2 text-[#64748B] hover:text-[#0F172A]"
-                      aria-label={`Expandir ${category.name}`}
-                    >
-                      <ChevronDown
-                        className={`size-4 stroke-[2.2] transition-transform ${isExpanded ? "rotate-180" : ""}`}
-                      />
-                    </button>
-                  </div>
-
-                  {isExpanded && (
-                    <div className="border-t border-[#E5E7EB] bg-white px-3 py-2 space-y-1">
-                      {catTools.map((tool) => (
-                        <Link
-                          key={tool.slug}
-                          to={DETAIL_ROUTE}
-                          params={toolParams(locale, tool.canonicalSlug)}
-                          onClick={() => setMobileOpen(false)}
-                          className="flex items-center gap-3 py-2.5 px-2.5 text-[14.5px] font-medium text-[#1E293B] hover:bg-[#F5F7FA] rounded-xl transition-colors"
+                        <span
+                          className={`inline-flex size-8 shrink-0 items-center justify-center rounded-lg border-2 border-[#0F0F12] ${accent.iconBg} ${accent.icon} shadow-[1px_1px_0_#0F0F12]`}
                         >
-                          <span
-                            className={`inline-flex size-7 shrink-0 items-center justify-center rounded-lg ${accent.iconBg} ${accent.icon}`}
-                          >
-                            <ToolIcon
-                              name={tool.icon}
-                              canonicalSlug={tool.canonicalSlug}
-                              className="size-4"
-                            />
-                          </span>
-                          <span className="flex-1 truncate">{tool.name}</span>
-                          <ArrowRight className="size-3.5 text-[#94A3B8]" />
-                        </Link>
-                      ))}
+                          <ToolIcon name={FAMILY_ICONS[category.category]} className="size-3.5" />
+                        </span>
+                        <span className="min-w-0 whitespace-normal text-left leading-tight">
+                          {category.name}
+                        </span>
+                      </Link>
+
+                      <button
+                        type="button"
+                        onClick={() => setMobileExpandedCat(isExpanded ? null : category.category)}
+                        className="inline-flex size-9 shrink-0 items-center justify-center rounded-lg border-2 border-[#0F0F12] bg-white text-[#0F172A] transition-colors hover:bg-[#FEECEB] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EC3C2D]"
+                        aria-label={`${toggleAction} ${category.name}`}
+                        aria-expanded={isExpanded}
+                      >
+                        <ChevronDown
+                          className={`size-4 stroke-[2.2] transition-transform ${isExpanded ? "rotate-180" : ""}`}
+                        />
+                      </button>
                     </div>
-                  )}
-                </div>
-              );
-            })}
 
-            {/* Sobre BreadPDF en Móvil */}
-            <Link
-              to={SECTION_ROUTE}
-              params={aboutParams(locale)}
-              onClick={() => setMobileOpen(false)}
-              className="flex items-center gap-2.5 rounded-xl px-4 py-3 text-[14.5px] font-semibold text-slate-800 hover:bg-[#F5F7FA] hover:text-[#EC3C2D] transition-colors"
-            >
-              <span>
-                {locale === "ca"
-                  ? "Sobre BreadPDF"
-                  : locale === "en"
-                    ? "About BreadPDF"
-                    : "Sobre BreadPDF"}
-              </span>
-            </Link>
+                    {isExpanded && (
+                      <div className="space-y-1 border-t-2 border-[#0F0F12] bg-[#F7F8FA] px-3 py-2">
+                        {catTools.map((tool) => (
+                          <Link
+                            key={tool.slug}
+                            to={DETAIL_ROUTE}
+                            params={toolParams(locale, tool.canonicalSlug)}
+                            onClick={() => setMobileOpen(false)}
+                            className="flex min-h-11 items-center gap-3 rounded-lg border-2 border-[#0F0F12] bg-white px-2.5 py-2 text-[14.5px] font-semibold text-[#1E293B] transition-colors hover:bg-[#FEECEB] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EC3C2D]"
+                          >
+                            <span
+                              className={`inline-flex size-7 shrink-0 items-center justify-center rounded-lg border border-[#0F0F12] ${accent.iconBg} ${accent.icon}`}
+                            >
+                              <ToolIcon
+                                name={tool.icon}
+                                canonicalSlug={tool.canonicalSlug}
+                                className="size-4"
+                              />
+                            </span>
+                            <span className="min-w-0 flex-1 break-words">{tool.name}</span>
+                            <ArrowRight className="size-4 shrink-0 text-[#0F172A]" />
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
 
-            {/* Guías & Tutoriales Link */}
-            <Link
-              to={SECTION_ROUTE}
-              params={guidesHubParams(locale)}
-              onClick={() => setMobileOpen(false)}
-              className="flex items-center gap-2.5 rounded-xl px-4 py-3 text-[14.5px] font-semibold text-slate-800 hover:bg-[#F5F7FA] hover:text-[#EC3C2D] transition-colors"
-            >
-              <BookOpen className="size-4 text-[#EC3C2D]" />
-              <span>
-                {locale === "ca"
-                  ? "Guies & Tutorials"
-                  : locale === "en"
-                    ? "Guides & Tutorials"
-                    : "Guías & Tutoriales"}
-              </span>
-            </Link>
+            {/* Enlaces secundarios en dos columnas para no alargar el menú. */}
+            <div className="grid grid-cols-2 gap-2">
+              <Link
+                to={SECTION_ROUTE}
+                params={aboutParams(locale)}
+                onClick={() => setMobileOpen(false)}
+                className="flex min-h-11 items-center gap-2 rounded-lg border-2 border-[#0F0F12] bg-white px-3 py-2 text-[13.5px] font-semibold leading-tight text-[#0F172A] shadow-[2px_2px_0_#0F0F12] transition-colors hover:bg-[#FEECEB] hover:text-[#C92E25]"
+              >
+                <span>
+                  {locale === "ca"
+                    ? "Sobre BreadPDF"
+                    : locale === "en"
+                      ? "About BreadPDF"
+                      : "Sobre BreadPDF"}
+                </span>
+              </Link>
 
-            {/* Privacy Link */}
-            <Link
-              to={SECTION_ROUTE}
-              params={privacyParams(locale)}
-              onClick={() => setMobileOpen(false)}
-              className="rounded-xl px-4 py-3 text-[14.5px] font-normal text-[#64748B] hover:bg-[#F5F7FA] hover:text-[#0F172A]"
-            >
-              {t.nav.privacy}
-            </Link>
+              <Link
+                to={SECTION_ROUTE}
+                params={guidesHubParams(locale)}
+                onClick={() => setMobileOpen(false)}
+                className="flex min-h-11 items-center gap-2 rounded-lg border-2 border-[#0F0F12] bg-white px-3 py-2 text-[13.5px] font-semibold leading-tight text-[#0F172A] shadow-[2px_2px_0_#0F0F12] transition-colors hover:bg-[#FEECEB] hover:text-[#C92E25]"
+              >
+                <BookOpen className="size-4 text-[#EC3C2D]" />
+                <span>
+                  {locale === "ca"
+                    ? "Guies & Tutorials"
+                    : locale === "en"
+                      ? "Guides & Tutorials"
+                      : "Guías & Tutoriales"}
+                </span>
+              </Link>
+
+              <Link
+                to={SECTION_ROUTE}
+                params={privacyParams(locale)}
+                onClick={() => setMobileOpen(false)}
+                className="rounded-lg border-2 border-[#0F0F12] bg-white px-3 py-2 text-[13.5px] font-semibold text-[#0F172A] shadow-[2px_2px_0_#0F0F12] transition-colors hover:bg-[#FEECEB]"
+              >
+                {t.nav.privacy}
+              </Link>
+            </div>
 
             {/* Mobile CTA */}
             <div className="pt-2">
               <Button
                 asChild
                 size="lg"
-                className="w-full font-bold bg-primary hover:bg-primary-dark text-white"
+                className="w-full border-2 border-[#0F0F12] bg-[#EC3C2D] font-bold text-white shadow-[3px_3px_0_#0F0F12] hover:bg-[#D93426] active:translate-y-0.5 active:shadow-none"
               >
                 <Link
                   to={DETAIL_ROUTE}
@@ -728,13 +744,6 @@ export function Header() {
             </div>
           </nav>
 
-          {/* Language selector footer in mobile */}
-          <div className="mt-5 border-t border-[#E5E7EB] pt-4">
-            <p className="text-[11px] font-bold uppercase tracking-wider text-[#64748B] mb-2">
-              {t.nav.language}
-            </p>
-            <LanguageSwitcher variant="inline" />
-          </div>
         </div>
       )}
     </header>

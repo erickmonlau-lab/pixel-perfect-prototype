@@ -131,11 +131,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         { rel: "manifest", href: "/site.webmanifest" },
       ],
       scripts: [
-        {
-          src: `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${GOOGLE_ADSENSE_CLIENT_ID}`,
-          async: true,
-          crossOrigin: "anonymous",
-        },
+        ...(import.meta.env["VITE_ADSENSE_ENABLED"] === "true"
+          ? [{
+              src: `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${GOOGLE_ADSENSE_CLIENT_ID}`,
+              async: true,
+              crossOrigin: "anonymous" as const,
+            }]
+          : []),
         {
           type: "application/ld+json",
           children: JSON.stringify(organizationSchema),

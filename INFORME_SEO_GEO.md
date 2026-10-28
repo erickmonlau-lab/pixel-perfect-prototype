@@ -1,134 +1,98 @@
-# INFORME FASE SEO & GEO: BREADPDF
+# Auditoría SEO y GEO de BreadPDF
 
-**Fecha:** 19 de Septiembre de 2026  
-**Dominio de Producción:** `https://breadpdf.com`  
-**Alcance:** Arquitectura de URLs, Sitemap XML dinámico, Canonicals, Hreflang multilingüe (ES/CA/EN + x-default), Datos Estructurados JSON-LD, Robots.txt, Directivas para motores de búsqueda tradicionales e IA (GEO).
+**Revisión del código:** 28 de octubre de 2026
+**Dominio objetivo configurado:** `https://breadpdf.com`
+**Estado de producción:** no verificado en esta ejecución
+**Alcance:** rutas y metadatos, sitemap, localización, contenido rastreable, señales de indexación disponibles, analítica, monetización, rendimiento registrado, descubrimiento para asistentes y prioridades.
 
----
+## Resumen
 
-## 1. URLs Indexables
+La arquitectura tiene una base técnica útil: páginas localizadas en ES/CA/EN, slugs traducidos, canonicals y alternates generados por ruta, sitemap dinámico, metadatos por herramienta y diez guías. El inventario reproducible desde el código tiene **201 URLs en el sitemap**: 3 home, 3 hubs de guías, 12 páginas institucionales, 153 páginas de herramientas y 30 guías. Los enlaces `/es/herramientas` y equivalentes redirigen a `/{lang}#catalogo`; las 18 rutas de categoría redirigen a la home con la familia preseleccionada. Ninguna de esas rutas de redirección debe aparecer como URL indexable del sitemap.
 
-BreadPDF cuenta con un total exacto de **207 URLs indexables** con contenido de valor real, único y localizado, libre de páginas duplicadas o thin content:
+La auditoría anterior `INFORME_SEO_GEO.md` contenía cifras y detalles que no coincidían con el código. Se reemplazó aquí con el recuento actual. También se regeneró `public/llms.txt` desde el registro real de herramientas y guías, que antes anunciaba 50 herramientas y enlazaba a varios slugs inexistentes.
 
-| Tipo de Página | ES | CA | EN | Total | Descripción / Patrón |
-|---|---|---|---|---|---|
-| **Páginas Principales (Home)** | 1 | 1 | 1 | **3** | `/{lang}` (Hero, catálogo categorizado, beneficios) |
-| **Catálogo Completo** | 1 | 1 | 1 | **3** | `/{lang}/{tools_segment}` (Explorador de herramientas) |
-| **Landing Planes / Premium** | 1 | 1 | 1 | **3** | `/{lang}/{premium_segment}` (Comparativa de planes y pricing) |
-| **Herramientas Operativas (50)** | 50 | 50 | 50 | **150** | `/{lang}/{tools_segment}/{tool_slug}` (Workspace real + FAQ + Guía paso a paso) |
-| **Páginas de Categoría (6)** | 6 | 6 | 6 | **18** | `/{lang}/{category_segment}/{category_slug}` (Organizar, Convertir a PDF, etc.) |
-| **Guías Editoriales (10)** | 10 | 10 | 10 | **30** | `/{lang}/{guides_segment}/{guide_slug}` (Artículos técnicos profundos) |
-| **TOTAL GENERAL** | **69** | **69** | **69** | **207** | **URLs indexables en sitemap.xml** |
+Los datos disponibles no permiten afirmar tráfico, CTR, posiciones ni demanda de palabras clave. El extracto de Search Console es una instantánea de indexación fechada el 23 de octubre de 2026; no incluye consultas, clics ni impresiones. La última medición Lighthouse de producción encontrada es del 30 de septiembre, y no sustituye datos de campo actuales. La compilación local no pudo arrancar porque falta Vite en `node_modules`.
 
----
+Una revisión independiente del repositorio confirmó los riesgos de `llms.txt` obsoleto, la carga global de AdSense pese a la configuración apagada y la ausencia de una llamada de publicación para IndexNow; cada punto se volvió a cotejar con los archivos señalados antes de documentar los cambios.
 
-## 2. URLs No Indexables y Motivo
+## Inventario verificable
 
-Se han configurado directivas explícitas de **`robots: noindex, nofollow`** tanto a nivel de cabeceras/meta tags como en `robots.txt` para las siguientes rutas:
+| Tipo | ES | CA | EN | Total en sitemap |
+|---|---:|---:|---:|---:|
+| Inicio | 1 | 1 | 1 | 3 |
+| Hub de guías | 1 | 1 | 1 | 3 |
+| Sobre nosotros, privacidad, cookies y términos | 4 | 4 | 4 | 12 |
+| Herramientas con estado `live` | 51 | 51 | 51 | 153 |
+| Guías editoriales | 10 | 10 | 10 | 30 |
+| **Total** | **67** | **67** | **67** | **201** |
 
-1. **Rutas de Autenticación (`/login`, `/registro`, `/recuperar-password`) en los 3 idiomas:**
-   - **Motivo:** Formularios transaccionales idénticos sin valor de contenido orgánico público. Evita canibalización, soft 404s y consumo inútil de crawl budget.
-2. **Panel de Usuario / Dashboard (`/cuenta`, `/compte`, `/account`):**
-   - **Motivo:** Área privada protegida por sesión Supabase Auth. Los motores de búsqueda no deben ni pueden indexar información de perfil privado.
-3. **Endpoints de API (`/api/*`):**
-   - **Motivo:** Respuestas JSON internas de servicios backend.
-4. **Parámetros transaccionales o de callback (`?mode=updatePassword`, tokens):**
-   - **Motivo:** Bloqueados para evitar indexación accidental de tokens efímeros.
+Hay además 3 rutas de catálogo y 18 rutas de categoría que redirigen a la home, 15 páginas transaccionales de premium/cuenta/autenticación con `noindex, nofollow` y la raíz `/`, que redirige a `/es` con código 301. Estas rutas no se cuentan como páginas indexables del sitemap. Aunque el `head` de la ruta de detalle todavía contiene metadatos `noindex` para categorías, el loader dispara antes una redirección; comprobar la respuesta real en producción y retirar código muerto tras verificación.
 
----
+El CSV [`docs/SEO_ROUTE_INVENTORY.csv`](docs/SEO_ROUTE_INVENTORY.csv) lista la URL localizada, tipo, estado de indexabilidad, inclusión en sitemap, canonical y metadatos objetivo. Se genera con `node scripts/generate-seo-inventory.mjs`. El inventario es estático y se deriva del código; no comprueba el estado HTTP de cada URL en producción.
 
-## 3. Sitemap Generado
+## Hallazgos y cambios realizados
 
-- **Ruta física:** `/sitemap.xml` (servida dinámicamente vía endpoint Nitro/TanStack Start en `src/routes/sitemap.xml.ts`).
-- **Formato y Namespace:**
-  - Cumple el estándar Sitemaps 0.9 (`xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"`).
-  - Incluye extensión oficial W3C XHTML (`xmlns:xhtml="http://www.w3.org/1999/xhtml"`).
-- **Atributos de entrada:** Cada uno de los 207 nodos `<url>` incluye:
-  - `<loc>`: URL canónica absoluta con HTTPS.
-  - `<lastmod>`: Fecha ISO actualizada.
-  - `<changefreq>`: Ajustado por relevancia (`daily` para home/catálogo, `weekly` para herramientas, `monthly` para guías y legal).
-  - `<priority>`: `1.0` (Home), `0.9` (Herramientas más populares), `0.8` (Resto de herramientas), `0.7` (Categorías y guías).
-  - **Enlaces cruzados `<xhtml:link rel="alternate">`** declarando las versiones `es`, `ca`, `en` y `x-default` para esa misma entidad.
+### P1 — `llms.txt` tenía URLs obsoletas
 
----
+El archivo anterior anunciaba 50 herramientas y contenía slugs inexistentes como `girar-pdf`, `anadir-texto-al-pdf` y `sanitizar-pdf`. Ahora el mismo script que genera los inventarios vuelve a producir `public/llms.txt` a partir de los 51 registros activos, los mapas ES/CA/EN y las guías. Se validó el número de enlaces generados frente al inventario local; la resolución HTTP en producción queda pendiente.
 
-## 4. Hreflang Implementado
+### P1 — carga incondicional de AdSense
 
-Se ha garantizado la reciprocidad absoluta y bidireccional entre las tres lenguas principales y el fallback global:
-- **`es`**: Español (idioma por defecto).
-- **`ca`**: Catalán (con traducción de slugs canónicos adaptados a búsquedas locales: e.g. `/ca/eines/uneix-pdf`).
-- **`en`**: Inglés (slugs internacionales: e.g. `/en/tools/merge-pdf`).
-- **`x-default`**: Apunta siempre a la versión en español (`/es/...`) como fallback para regiones e idiomas no coincidentes.
-- **Implementación dual:**
-  1. En el encabezado `<head>` de cada página mediante etiquetas `<link rel="alternate" hreflang="..." href="...">`.
-  2. Dentro del propio `sitemap.xml` con nodos `<xhtml:link>`, maximizando el descubrimiento por parte de Googlebot.
+`src/routes/__root.tsx` cargaba el JavaScript de AdSense aunque `.env.example` indicara que no se activara todavía y aunque `ADSENSE_CONFIG.isEnabled` controlara los slots. La carga del script ahora requiere `VITE_ADSENSE_ENABLED=true`, y el ejemplo deja el valor en `false`. Se eliminó del comentario de configuración la afirmación incorrecta de que anuncios no personalizados son seguros sin plataforma de consentimiento.
 
----
+Esto **no implementa un CMP ni constituye una revisión legal**. El texto de cookies afirma que habrá un panel de consentimiento para aceptar, configurar o rechazar publicidad, pero no encontramos una interfaz de consentimiento en `src`. Antes de activar publicidad hay que elegir e integrar una plataforma adecuada, probar sus señales reales y revisar el texto del sitio. El cambio actual evita la carga por defecto; no declara que la web ya cumpla requisitos de consentimiento.
 
-## 5. Canonicals
+### P2 — material anterior mezclaba objetivos e indicadores medidos
 
-- Cada página cuenta con su etiqueta única `<link rel="canonical" href="...">`.
-- **Comportamiento:**
-  - En las URLs de herramientas, apunta exactamente a la URL localizada con el slug correspondiente a su idioma actual.
-  - No hay canónicos cruzados entre idiomas (se usa `hreflang` para la relación multilingüe, no `canonical`).
-  - La raíz `/` redirige de forma limpia a `/{locale}` según cabecera del navegador o `/es` por defecto, manteniendo siempre canónicos absolutos y consistentes.
+`BREADPDF_MASTER_KEYWORDS.csv` contiene bandas de volumen presentadas como agregados históricos, con fuentes y fechas genéricas; no se encontró exportación primaria que permita verificarlas. [`docs/SEO_KEYWORD_MAP.csv`](docs/SEO_KEYWORD_MAP.csv) ofrece un mapa auditable de 485 términos presentes en el código y asociados a landing pages, con `volume: not measured`. Son objetivos editoriales, no datos de demanda ni posiciones.
 
----
+### P2 — automatización IndexNow descrita sin evidencia de ejecución
 
-## 6. Structured Data (JSON-LD)
+`src/lib/indexnow.ts` implementa una función que necesita clave y URLs, pero no encontramos una llamada desde el build, despliegue o flujo de publicación. Por tanto, no se debe describir IndexNow como automático ni configurado. La activación requiere una clave guardada en entorno seguro y un flujo de envío explícito; el protocolo solo notifica rastreo y no garantiza indexación.
 
-Se implementó una estrategia estricta de marcado semántico Schema.org basado **exclusivamente en contenido visible real** (sin datos ficticios):
+### Base multilingüe
 
-1. **`BreadcrumbList` (en todas las páginas jerárquicas):**
-   - Refleja el camino de migas de pan visible: Inicio → Sección/Categoría → Herramienta / Guía.
-2. **`WebApplication` (en las 50 herramientas):**
-   - Propiedades: `@type: "WebApplication"`, `applicationCategory: "UtilitiesApplication"`, `operatingSystem: "All"`, `offers: { price: "0", priceCurrency: "EUR" }`.
-3. **`FAQPage` (en las herramientas):**
-   - Extraído directamente del array de preguntas y respuestas reales visibles en el acordeón de FAQ inferior de cada herramienta.
-4. **`HowTo` (en las herramientas):**
-   - Construido a partir de las secciones "Cómo funciona" visibles en pantalla (`tool.howItWorks`), con pasos secuenciales reales (`HowToStep`).
-5. **`Organization` y `WebSite` (en la Home):**
-   - Declara la marca BreadPDF, logo SVG, URL base y descripción general en el idioma activo.
-6. **`Article` (en las 10 guías técnicas):**
-   - Datos de autoría, fecha de publicación y cuerpo temático del artículo.
+`src/lib/i18n/config.ts` define las tres locales y segmentos localizados. Las rutas de herramientas usan slugs traducidos, `alternateLinks` emite canonical, alternates de `es`, `ca`, `en` y `x-default`, y el sitemap repite las alternativas XHTML recíprocas. El sitemap lo sirve `src/server.ts` en `/sitemap.xml`, e incluye `changefreq` y `priority`; **no incluye `lastmod`**. Los hubs de guías sí están en el sitemap. Las rutas de catálogo/categoría que redirigen se excluyen. Evitar editar los slugs a mano: deben salir de los mapas compartidos.
 
----
+### Marcado estructurado
 
-## 7. Robots.txt y Motores de IA (GEO)
+El código de rutas de detalle genera `BreadcrumbList`; páginas de herramientas generan además `WebApplication`, `FAQPage` y `HowTo`; páginas de guía generan `Article` y breadcrumbs. La existencia del código no confirma que el JSON-LD renderizado esté libre de errores en producción ni garantiza resultados enriquecidos. Hace falta validar HTML renderizado y probar una muestra en validadores de Schema/Rich Results.
 
-Ubicación: `public/robots.txt`.
-- **Rastreadores tradicionales:** Permitido explícitamente `Googlebot`, `Bingbot`, `Applebot`.
-- **Optimización para Motores Generativos (GEO / AI Overviews):**
-  - Se permite expresamente el acceso a `OAI-SearchBot` y `PerplexityBot` para que los motores de búsqueda basados en LLMs puedan citar y enlazar a las herramientas de BreadPDF en respuestas generativas.
-- **Restricciones:**
-  - Bloqueo de directorios `/api/`, `/*/cuenta`, `/*/login`, `/*/registro`, `/*/recuperar-password`.
-- **Referencia a sitemap:**
-  - `Sitemap: https://breadpdf.com/sitemap.xml`.
+### Robots y asistentes
 
----
+`public/robots.txt` permite el rastreo general y declara explícitamente Googlebot, Bingbot, Applebot, OAI-SearchBot y PerplexityBot; bloquea rutas de API, cuenta y autenticación y anuncia el sitemap. Esto permite el acceso de rastreadores, pero no garantiza indexación o inclusión en respuestas generativas.
 
-## 8. Problemas Encontrados y Corregidos
+## Señales de búsqueda y límites
 
-1. **Falta de namespaces XHTML en el sitemap:**
-   - *Problema:* El generador de sitemap XML no declaraba `xmlns:xhtml="http://www.w3.org/1999/xhtml"`, lo que provocaba que las etiquetas `<xhtml:link>` fueran rechazadas por validadores estrictos de Google Search Console.
-   - *Corrección:* Se añadió el namespace W3C XHTML y la generación automática de los bloques de idiomas alternativos (`es`, `ca`, `en`, `x-default`) en cada entrada.
-2. **Inconsistencia en slugs catalanes de herramientas:**
-   - *Problema:* Algunas herramientas compartían slugs castellanos en catalán (`unir-pdf` frente a `uneix-pdf`).
-   - *Corrección:* Se mapearon correctamente los slugs nativos en catalán en `routing.ts`, asegurando URLs 100% orgánicas para la intención de búsqueda catalana.
-3. **Ausencia de marcado HowTo en herramientas:**
-   - *Problema:* Las herramientas contaban con pasos explicativos visuales ("Cómo funciona"), pero no contaban con el marcado Schema `HowTo`.
-   - *Corrección:* Se integró en `@graph` de la ruta `$slug.tsx` la conversión directa de `tool.howItWorks` a `HowToStep`.
-4. **Metadatos OpenGraph y Twitter unificados:**
-   - *Problema:* Algunas páginas no contaban con OpenGraph localized tags (`og:locale:alternate`).
-   - *Corrección:* Se completó la metainformación de redes sociales con imágenes de preview, locale primario y locales alternativos.
+- `cerebro/raw/Tabla.csv` y la comparación adjunta reflejan una instantánea aportada de Search Console del **23 de octubre de 2026**: 94 URLs indexadas en el listado, de las cuales 84 coinciden con el sitemap usado en esa comparación; 117 URLs del sitemap no aparecían en ese listado. La tabla no contiene consultas ni métricas de rendimiento. Tratarlo como una foto histórica de cobertura, no como estado actual.
+- Hay auditorías Lighthouse guardadas. La última de producción encontrada es `lh-final-check.json` del 30 de septiembre de 2026: una ejecución sintética móvil de `/es` registró Performance 0,95, LCP 2,39 s y CLS 0. La herramienta `/es/herramientas/comprimir-pdf` tiene una captura del 30 de septiembre (`lh-live-compress.json`) con Performance 0,74 y LCP 4,98 s. Son ejecuciones antiguas y aisladas, no percentiles de usuarios reales ni CWV actuales. No se encontró métrica INP en esos informes.
+- `lh-initial-local.json`, del 26 de octubre, mide `localhost` con LCP de 92 s y no representa producción de forma válida.
+- No había una conexión de Search Console/GA4 disponible para esta ejecución ni se halló un export actual de consultas. No se deben crear estimaciones de clics, CTR, posiciones o demanda a partir de estos archivos.
+- Se compararon páginas oficiales de compresión de iLovePDF, Smallpdf, PDF24 y Adobe. Todas hacen visibles la carga y los niveles/resultado; PDF24 y Adobe describen procesamiento en servidor, mientras la implementación de BreadPDF declara procesamiento del documento en el navegador. La comparación sirve para revisar patrones de producto, no posiciones orgánicas: [iLovePDF](https://www.ilovepdf.com/compress_pdf), [Smallpdf](https://smallpdf.com/compress-pdf), [PDF24](https://tools.pdf24.org/es/comprimir-pdf), [Adobe Acrobat](https://www.adobe.com/acrobat/online/compress-pdf.html).
 
----
+## GEO / contenido útil
 
-## 9. Decisiones SEO que Requieren Revisión antes de Continuar
+La oportunidad de BreadPDF es describir tareas concretas (límite de Moodle, unir anexos, OCR, censurar, comprimir a un límite) enlazándolas a la herramienta que las resuelve. Mantener respuestas visibles y verificables; evitar páginas programáticas que solo cambian una keyword, promesas de rankings o volúmenes no documentados. Las diez guías actuales ya cubren varios de esos contextos; la prioridad es comprobar calidad, idioma, enlaces de ida y vuelta y utilidad real antes de crear más.
 
-1. **Verificación de Propiedades en Google Search Console y Bing Webmaster Tools:**
-   - Recomiendo registrar la propiedad de dominio `breadpdf.com` mediante registro DNS (TXT) para abarcar todos los subdominios y protocolos.
-2. **Estrategia de IndexNow:**
-   - BreadPDF está listo para enviar automáticamente pings a Bing e IndexNow cada vez que se actualice el sitemap en despliegues futuros.
-3. **Dominio principal y certificados SSL en Cloudflare:**
-   - Asegurar que la redirección de `http://` a `https://` y de `www.breadpdf.com` a `breadpdf.com` esté forzada a nivel de Edge en Cloudflare para evitar bifurcación de PageRank.
+## Validación ejecutada y bloqueos
+
+- `node scripts/generate-seo-inventory.mjs`: correcto; produjo 238 filas de rutas (201 incluidas en sitemap) y 485 objetivos keyword.
+- Auditoría del repositorio: `git diff --check` correcto antes de la última iteración de UI.
+- `npm run build`: no ejecutable porque el comando `vite` no está instalado/resuelto desde `node_modules`. No se declara compilación satisfactoria.
+- Comprobación pública HTTP: falló la resolución DNS de `breadpdf.com` desde el entorno de ejecución. No se verificaron códigos HTTP, HTML, sitemap servido ni despliegue.
+
+## Fuentes de referencia
+
+- [Google Search Central: versiones localizadas y `hreflang`](https://developers.google.com/search/docs/specialty/international/localized-versions)
+- [Google Search Central: Core Web Vitals](https://developers.google.com/search/docs/appearance/core-web-vitals)
+- [Google AdSense: CMP y requisito de consentimiento para EEE/Reino Unido/Suiza](https://support.google.com/adsense/answer/13554116?hl=en)
+- [Bing Webmaster Tools: IndexNow](https://www.bing.com/webmasters/help/indexnow-0z209wby)
+
+## Referencias internas
+
+- Inventario de rutas: [`docs/SEO_ROUTE_INVENTORY.csv`](docs/SEO_ROUTE_INVENTORY.csv)
+- Mapa de keywords no medido: [`docs/SEO_KEYWORD_MAP.csv`](docs/SEO_KEYWORD_MAP.csv)
+- Hoja de ruta: [`docs/SEO_ROADMAP_BREADPDF.md`](docs/SEO_ROADMAP_BREADPDF.md)
+- Internacionalización: [`docs/SEO_INTERNATIONALIZATION.md`](docs/SEO_INTERNATIONALIZATION.md)
+- Analítica y medición: [`docs/SEO_MONITORING.md`](docs/SEO_MONITORING.md)
+- AdSense y consentimiento: [`docs/SEO_ADSENSE_AUDIT.md`](docs/SEO_ADSENSE_AUDIT.md)

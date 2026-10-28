@@ -64,7 +64,7 @@ export function LanguageSwitcher({ variant = "menu" }: { variant?: "menu" | "inl
               className={`site-lang-btn flex items-center justify-center min-w-[30px] px-2.5 h-full text-xs font-black tracking-wider uppercase rounded-lg transition-all duration-150 select-none ${
                 isActive
                   ? "bg-[#E8372C] text-white shadow-[1px_1px_0_#0F0F12]"
-                  : "text-[#0F0F12] hover:bg-[#FEF08A] hover:text-[#0F0F12]"
+                  : "text-[#0F0F12] hover:bg-[#FEECEB] hover:text-[#C92E25]"
               }`}
             >
               {LOCALE_SHORT[item]}

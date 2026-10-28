@@ -3,10 +3,10 @@
  *
  * All ad IDs are read from environment variables — NEVER hardcoded.
  *
- * To enable ads:
- *   1. Copy .env.example to .env.local
- *   2. Fill in your real AdSense IDs obtained from your Google AdSense account
- *   3. Restart the dev server
+ * Ads remain disabled until a consent platform is integrated and reviewed.
+ * Do not enable them by adding a publisher/slot ID alone.
+ * Once consent handling is ready, set VITE_ADSENSE_ENABLED=true and configure
+ * the publisher and slot IDs from the AdSense account.
  *
  * Without these variables set, AdSlot shows a visible placeholder in dev mode
  * and renders nothing in production (safe default).
@@ -22,8 +22,8 @@ export const ADS_CONFIG = {
 
   /**
    * Whether to request non-personalized ads (NPA).
-   * Default: true — safe for GDPR/Spain without a CMP.
-   * Set to false only once a certified CMP (IAB TCF 2.x) is integrated.
+   * This preference does not replace a consent platform or legally required consent.
+   * Keep advertising disabled until the site's consent flow is implemented and reviewed.
    */
   nonPersonalizedAds: import.meta.env["VITE_ADSENSE_NPA"] !== "false",
 
