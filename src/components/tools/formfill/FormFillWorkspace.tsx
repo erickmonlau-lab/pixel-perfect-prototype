@@ -107,6 +107,7 @@ async function fillAndExport(file: File, fields: FormField[]): Promise<Uint8Arra
 export function FormFillWorkspace() {
   const { locale, t } = useLocale();
   const inputRef = useRef<HTMLInputElement>(null);
+  const workspaceRef = useRef<HTMLElement>(null);
   const [file, setFile] = useState<File | null>(null);
   const [dragging, setDragging] = useState(false);
   const [phase, setPhase] = useState<Phase>("idle");
@@ -166,9 +167,17 @@ export function FormFillWorkspace() {
     }
   };
 
+  useEffect(() => {
+    if (phase === "idle") return;
+    const frame = window.requestAnimationFrame(() => {
+      workspaceRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, [phase, fields.length]);
+
   if (phase === "idle" || phase === "error") {
     return (
-      <section className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm" aria-label="Rellenar formulario PDF">
+      <section ref={workspaceRef} className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm" aria-label="Rellenar formulario PDF">
         <div onDragOver={(e) => { e.preventDefault(); setDragging(true); }} onDragLeave={() => setDragging(false)} onDrop={handleDrop} onClick={() => inputRef.current?.click()}
           className={`transition-all m-3 sm:m-4 rounded-2xl border-2 border-dashed px-5 py-7 sm:py-9 text-center cursor-pointer ${dragging ? "border-[#EC3C2D] bg-[#FEECEB] scale-[1.004]" : "border-slate-300 bg-slate-50 hover:border-[#EC3C2D] hover:bg-white"}`}>
           <input ref={inputRef} type="file" accept="application/pdf,.pdf" className="sr-only" onChange={(e) => addFromInput(e.target.files)} />
@@ -184,12 +193,12 @@ export function FormFillWorkspace() {
   }
 
   if (phase === "loading") {
-    return (<section className="surface-card p-8 shadow-raised rounded-3xl border border-border/80 flex items-center justify-center gap-3 text-primary font-semibold"><Loader2 className="size-5 animate-spin" /><span>Detectando campos del formulario…</span></section>);
+    return (<section ref={workspaceRef} className="surface-card p-8 shadow-raised rounded-3xl border border-border/80 flex items-center justify-center gap-3 text-primary font-semibold"><Loader2 className="size-5 animate-spin" /><span>Detectando campos del formulario…</span></section>);
   }
 
   if (phase === "done" && outputUrl) {
     return (
-      <section className="surface-card overflow-hidden shadow-raised rounded-3xl border border-border/80">
+      <section ref={workspaceRef} className="surface-card overflow-hidden shadow-raised rounded-3xl border border-border/80">
         <div className="animate-rise border-t border-border bg-gradient-to-b from-success-soft/30 to-surface p-6 sm:p-8">
           <div className="flex items-center gap-2.5 text-success"><CheckCircle2 className="size-6" aria-hidden /><h3 className="text-[18px] font-bold">Formulario exportado con éxito</h3></div>
           <p className="mt-2 text-[15px] font-medium text-foreground/85">{fields.filter((f) => !f.readOnly).length} campos rellenados y guardados.</p>
@@ -211,7 +220,7 @@ export function FormFillWorkspace() {
   }
 
   return (
-    <section className="surface-card overflow-hidden shadow-raised rounded-3xl border border-border/80">
+    <section ref={workspaceRef} className="surface-card overflow-hidden shadow-raised rounded-3xl border border-border/80">
       <div className="border-b border-border bg-slate-50/60 px-6 py-4 flex items-center gap-3">
         <div className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-primary-soft text-primary"><FileText className="size-5" /></div>
         <div className="min-w-0 flex-1">

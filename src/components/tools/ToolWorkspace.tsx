@@ -79,6 +79,10 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
   const navigate = useNavigate();
   const inputRef = useRef<HTMLInputElement>(null);
   const attachedWorkspaceRef = useRef<HTMLDivElement>(null);
+  const loadingWorkspaceRef = useRef<HTMLDivElement>(null);
+  const processingWorkspaceRef = useRef<HTMLDivElement>(null);
+  const resultsWorkspaceRef = useRef<HTMLDivElement>(null);
+  const errorWorkspaceRef = useRef<HTMLDivElement>(null);
   const [files, setFiles] = useState<File[]>([]);
   const [dragging, setDragging] = useState(false);
   const [phase, setPhase] = useState<Phase>("idle");
@@ -155,6 +159,7 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
 
   const canonicalSlug = (tool as any).canonicalSlug || tool.slug;
   const isPageWorkspace = PAGE_BASED_TOOLS.has(canonicalSlug);
+  const isAutoFlow = Boolean(tool.autoProcess && !isPageWorkspace);
   const [splitTargetMode, setSplitTargetMode] = useState<"combined" | "individual">("combined");
 
   const {
@@ -221,12 +226,26 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
   }, [tool.slug]);
 
   useEffect(() => {
-    if (canonicalSlug !== "unir-pdf" || files.length === 0 || phase === "loading-pages") return;
+    if (files.length === 0 && phase !== "error") return;
+    let target: HTMLDivElement | null = null;
+    if (phase === "done" && outputs.length > 0) {
+      target = resultsWorkspaceRef.current;
+    } else if (phase === "error") {
+      target = errorWorkspaceRef.current;
+    } else if (phase === "loading-pages") {
+      target = loadingWorkspaceRef.current;
+    } else if (isAutoFlow && (phase === "uploading" || phase === "processing")) {
+      target = processingWorkspaceRef.current;
+    } else if (!isAutoFlow && phase !== "loading-pages") {
+      target = attachedWorkspaceRef.current;
+    }
+    if (!target) return;
+    const scrollTarget = target;
     const frame = window.requestAnimationFrame(() => {
-      attachedWorkspaceRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
+      scrollTarget.scrollIntoView({ behavior: "smooth", block: "end" });
     });
     return () => window.cancelAnimationFrame(frame);
-  }, [canonicalSlug, files.length, phase]);
+  }, [files.length, phase, outputs.length, isAutoFlow]);
 
   useEffect(() => {
     const created = outputs.map((output) => URL.createObjectURL(output.blob));
@@ -680,7 +699,6 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
     );
   }
 
-  const isAutoFlow = Boolean(tool.autoProcess && !isPageWorkspace);
   const isBusy = phase === "uploading" || phase === "processing";
   const resultAccent = tool.category === "optimizar"
     ? "#2563EB"
@@ -755,8 +773,8 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
             </div>
 
             {/* Error antes de cargar */}
-            {phase === "error" && message && files.length === 0 && (
-              <div className="mt-4 inline-flex items-center gap-2 rounded-xl border border-red-200 bg-[#FEECEB] px-4 py-2 text-[13px] font-semibold text-[#EC3C2D]">
+      {phase === "error" && message && files.length === 0 && (
+              <div ref={errorWorkspaceRef} className="mt-4 inline-flex items-center gap-2 rounded-xl border border-red-200 bg-[#FEECEB] px-4 py-2 text-[13px] font-semibold text-[#EC3C2D]">
                 <AlertCircle className="size-4 shrink-0" />
                 <span>{message}</span>
               </div>
@@ -769,7 +787,7 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
 
       {/* Pantalla interactiva de MÃ¡quina BREADPDF durante subida / procesamiento */}
       {isBusy && (
-        <div className="p-6 sm:p-10 flex flex-col items-center">
+        <div ref={processingWorkspaceRef} className="p-6 sm:p-10 flex flex-col items-center">
           <BreadProcessingMachine
             phase={phase === "uploading" ? "uploading" : "processing"}
             progress={progress}
@@ -788,7 +806,7 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
       )}
 
       {phase === "loading-pages" && (
-        <div className="flex items-center justify-center gap-3 p-8 text-primary font-semibold">
+        <div ref={loadingWorkspaceRef} className="flex items-center justify-center gap-3 p-8 text-primary font-semibold">
           <Loader2 className="size-5 animate-spin" />
           <span>{t.workspace.loadingPages}</span>
         </div>
@@ -1198,7 +1216,7 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
           )}
 
           {phase === "error" && message && (
-            <div className="mt-5 flex items-center gap-4 rounded-2xl border border-red-200 bg-[#FEECEB] p-5 text-[15px] font-medium text-[#0F172A] shadow-sm">
+            <div ref={files.length > 0 ? errorWorkspaceRef : undefined} className="mt-5 flex items-center gap-4 rounded-2xl border border-red-200 bg-[#FEECEB] p-5 text-[15px] font-medium text-[#0F172A] shadow-sm">
               <img
                 src={BRAND_ASSETS.mascots.sad}
                 alt="Error BreadPDF"
@@ -1220,7 +1238,7 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
       )}
 
       {phase === "done" && outputs.length > 0 && (
-        <div className="animate-rise border-t-2 border-[#0F0F12] bg-white p-4 sm:p-6 lg:p-8">
+        <div ref={resultsWorkspaceRef} className="animate-rise border-t-2 border-[#0F0F12] bg-white p-4 sm:p-6 lg:p-8">
           <div className="mx-auto mb-4 flex max-w-5xl flex-col justify-between gap-4 rounded-2xl border-2 border-[#0F0F12] bg-white p-4 text-[#0F0F12] shadow-[4px_4px_0_#0F0F12] sm:flex-row sm:items-center sm:p-5">
             <div className="flex items-center gap-4">
               <img

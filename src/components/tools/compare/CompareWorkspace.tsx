@@ -40,6 +40,8 @@ export function CompareWorkspace() {
   const canvasRefB = useRef<HTMLCanvasElement>(null);
   const canvasRefSplitA = useRef<HTMLCanvasElement>(null);
   const canvasRefSplitB = useRef<HTMLCanvasElement>(null);
+  const workspaceRef = useRef<HTMLDivElement>(null);
+  const controlsRef = useRef<HTMLDivElement>(null);
 
   const [loading, setLoading] = useState(false);
   const [isExporting, setIsExporting] = useState(false);
@@ -281,8 +283,19 @@ export function CompareWorkspace() {
     return () => { cancelled = true; };
   }, [docA, docB, currentPage, viewMode]);
 
+  useEffect(() => {
+    if (!fileA && !fileB) return;
+    if (loading || (fileA && !docA) || (fileB && !docB)) return;
+    const target = docA && docB ? controlsRef.current : workspaceRef.current;
+    if (!target) return;
+    const frame = window.requestAnimationFrame(() => {
+      target.scrollIntoView({ behavior: "smooth", block: docA && docB ? "center" : "end" });
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, [fileA, fileB, docA, docB, loading]);
+
   return (
-    <div className="flex flex-col gap-6">
+    <div ref={workspaceRef} className="flex flex-col gap-6">
       {/* Selector dual de archivos */}
       {(!docA || !docB) && (
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -328,7 +341,7 @@ export function CompareWorkspace() {
 
       {/* Barra de control y navegación cuando ambos archivos están listos */}
       {docA && docB && (
-        <div className="flex flex-wrap items-center justify-between gap-4 rounded-xl border border-slate-200 bg-white p-4 shadow-xs">
+        <div ref={controlsRef} className="flex flex-wrap items-center justify-between gap-4 rounded-xl border border-slate-200 bg-white p-4 shadow-xs">
           {/* Navegación de páginas */}
           <div className="flex items-center gap-2">
             <button
