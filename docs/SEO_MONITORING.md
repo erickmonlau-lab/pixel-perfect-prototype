@@ -15,7 +15,7 @@
 - `https://breadpdf.com/robots.txt` y `/sitemap.xml` responden 200. El sitemap contiene 201 URLs únicas repartidas en 67 por idioma (ES/CA/EN); canonical y alternates se revisaron en la muestra de compresión localizada. Esto solo describe sitemap y respuestas HTTP; no demuestra indexación de Google.
 - Las tres rutas públicas de compresión —`/es/herramientas/comprimir-pdf`, `/ca/eines/comprimeix-pdf`, `/en/tools/compress-pdf`— responden 200 con contenido localizado y canonical. `/es/herramientas` redirige a `/es#catalogo`; la categoría optimizar lleva a `/es?categoria=optimizar#catalogo`; un slug desconocido da una respuesta real 404.
 - La medición de PSI nueva quedó **bloqueada**: `pagespeedonline/v5/runPagespeed` respondió HTTP 429 y el informe público no pudo leerse desde el navegador/lector disponible. Los scores del brief siguen siendo históricos y no se comparan directamente con Lighthouse.
-- Lighthouse CLI con Chrome sí midió producción dos veces por dispositivo (resultados de laboratorio, no PSI), antes de los cambios locales de imagen/contraste:
+- Lighthouse CLI con Chrome midió producción antes y después (resultados de laboratorio, no PSI). Las cuatro corridas originales, previas a cambios:
 
   | Dispositivo/corrida | Rendimiento | Accesibilidad | Buenas prácticas | SEO | FCP | LCP | TBT | CLS |
   |---|---:|---:|---:|---:|---:|---:|---:|---:|
@@ -24,19 +24,30 @@
   | Escritorio 1 (12:28) | 98 | 97 | 100 | 100 | 0,3 s | 1,1 s | 0 ms | 0,005 |
   | Escritorio 2 (12:32) | 98 | 97 | 100 | 100 | 0,3 s | 1,2 s | 0 ms | 0,005 |
 
-  El LCP observado fue texto del hero en móvil y la mascota hero en escritorio. La auditoría de contraste encontró 30 nodos móviles y 32 de escritorio; los tonos locales ya ajustados superan 4,5:1 según cálculo estático, pero aún falta repetir Lighthouse sobre esos cambios.
-- La compilación cliente y SSR de `npm run build` pasó. El build conserva bundles grandes de catálogo y herramientas; no se modificó su división porque la traza móvil local quedó bloqueada antes de obtener un informe válido.
-- Enlaces de producción observados responden desde Vercel (`Server: Vercel`, `x-vercel-id`). No se accedió a los logs ni al SHA publicado por falta de sesión del proveedor. Véase [`SEO_ADSENSE_AUDIT.md`](SEO_ADSENSE_AUDIT.md) para el estado público de publicidad y consentimiento.
-- Cambio local derivado de la evidencia: la mascota visible de 36 px en móvil pasa de un PNG de 245.4 KB a un icono WebP de 3.1 KB (ahorro bruto aproximado 242.4 KB, 98.8%). La imagen hero desktop se mantiene en `<picture>` con prioridad alta. La medición local posterior no pudo ejecutarse: Chrome mostró un interstitial al navegar al servidor preview por `localhost`, incluso con el proxy desactivado. La compilación sí pasó, pero no se atribuye ninguna mejora de score o LCP a este cambio.
-- Iteración local posterior: se añadieron preload de las dos fuentes que dibujan el hero de portada (Plus Jakarta Sans 800 e Inter 500, solo en rutas de inicio) y la descarga del script AdSense se pospuso hasta `load` + tiempo ocioso con timeout. No se alteran el publisher ID, las señales CMP/TCF, los slots ni el flag de monetización. El build volvió a pasar; falta una medición Lighthouse post-cambio porque el preview local activa un interstitial. No hay evidencia aún de mejora de producción.
-- La medición Lighthouse previa atribuyó aproximadamente 235 KiB de JavaScript no usado en móvil y 247 KiB en escritorio; 136 KiB correspondían al script gestionado de AdSense y unos 38 KiB al marco de mensajes Funding Choices. La métrica es una oportunidad de laboratorio, no una indicación para desactivar anuncios ni consentimiento. Las variantes locales con colores accesibles corrigen algunos de los nodos detectados, pero el total de avisos de contraste requiere volver a medir la compilación actual.
-- Validación de este árbol: `npm run build` pasó. No hay script de pruebas automatizadas en `package.json`; ESLint enfocado a los archivos tocados sigue fallando por problemas de formato y una advertencia de hooks presentes en esos archivos. No se declara aprobada la validación integral ni se publicará hasta aclarar este estado.
+  En la referencia Lighthouse, el LCP observado fue texto del hero en móvil y la mascota hero en escritorio. Accesibilidad marcaba 30 nodos móviles y 32 de escritorio con contraste insuficiente.
+
+### Resultados finales de producción — 28-10-2026
+
+Después de publicar `98542c5` y la corrección puntual `ef28cd3`, Lighthouse cargó nuevos hashes de los bundles públicos; esa es evidencia de que ambos cambios llegaron al dominio, aunque no se consultó el SHA desde el panel de Vercel. Las dos mediciones finales corresponden a la versión con `ef28cd3`:
+
+| Dispositivo/corrida | Rendimiento | Accesibilidad | Buenas prácticas | SEO | FCP | LCP | TBT | CLS |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| Móvil final (12:48) | 98 | 100 | 100 | 100 | 1,1 s | 1,1 s | 70 ms | 0 |
+| Escritorio final (12:47) | 99 | 100 | 100 | 100 | 0,5 s | 0,8 s | 0 ms | 0,002 |
+
+El contraste reportó 0 nodos con error en móvil y escritorio. Rendimiento varió entre corridas previas de 97–100 móvil y 97–100 escritorio; las puntuaciones son laboratorio y no demuestran una mejora estable ni sustituyen a PSI/CWV de campo. En estas corridas el FCP/LCP quedaron bajo los objetivos técnicos de 1,8/2,5 s. El ahorro estimado de JavaScript no usado siguió siendo 246 KiB móvil y 224 KiB escritorio, principalmente scripts publicitarios/consentimiento; diferir AdSense no elimina ese trabajo reportado por Lighthouse.
+
+- Cambios de código publicados: precarga de Plus Jakarta Sans 800 e Inter 500 solo en la portada; carga de AdSense tras `load` y tiempo ocioso cuando `VITE_ADSENSE_ENABLED=true` (sin cambiar publisher, consentimiento, CMP, slots ni estado de anuncios); variante WebP ligera para la mascota de 36 px; fondos oscuros en etiquetas pequeñas para contraste legible; color corregido del chip “Todas”.
+- Verificación: `npm run build` pasó con `VITE_ADSENSE_ENABLED=true` en el entorno de build. `git diff --check` pasó. No hay script de pruebas automatizadas en `package.json`; ESLint no pasó en archivos tocados (errores de Prettier/formato y un warning de hooks), así que no se declara validación integral ni se afirma que todos los flujos funcionales de herramientas se hayan reejecutado.
+- PSI oficial continúa sin medición: el endpoint previamente devolvió HTTP 429. Los números de esta sección son Lighthouse CLI contra producción, no PageSpeed Insights.
+- La mascota visible móvil usa WebP de 3,1 KB frente al PNG previo de 245,4 KB (ahorro bruto aproximado 242,4 KB / 98,8%). No se atribuye una mejora de LCP a ese ahorro: el LCP móvil medido es texto del hero.
+- Véase [`SEO_ADSENSE_AUDIT.md`](SEO_ADSENSE_AUDIT.md) para cuenta, `ads.txt`, CMP/TCF y estado de anuncios. La aprobación y publicación real de anuncios no se verificaron desde la cuenta.
 
 ### Accesos para completar la medición
 
 - Para repetir PSI sin cuota excedida, proporcionar una clave de API de PageSpeed Insights o habilitar una cuota/proyecto autorizado. Una clave no debe guardarse en el repositorio.
 - Para Search Console y GA4 hace falta autorizar los scopes oficiales de solo lectura (`webmasters.readonly` y `analytics.readonly`) en una conexión disponible; las métricas siguen sin estar verificadas.
-- Para confirmar producción hace falta acceso de lectura al proyecto/pipeline de Vercel o evidencia equivalente del deployment SHA. No declarar el commit publicado solo por el estado de Git.
+- El commit en GitHub y los assets con hash nuevo se comprobaron; para confirmar el SHA exacto del deployment hace falta acceso de lectura al panel/pipeline de Vercel.
 
 ## No confundir con evidencia de negocio
 
