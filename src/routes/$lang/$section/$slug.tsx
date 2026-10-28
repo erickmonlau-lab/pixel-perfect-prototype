@@ -1,4 +1,4 @@
-import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { createFileRoute, Link, notFound, redirect } from "@tanstack/react-router";
 import { Archive, BookOpen, ChevronRight, ClipboardEdit, FileSearch, FileSpreadsheet, GraduationCap, LayoutGrid, ScanText, Server, ShieldCheck, SlidersHorizontal, Star } from "lucide-react";
 import { useFavorites } from "@/lib/auth/favorites-store";
 import { CategoryTiles } from "@/components/site/CategoryTiles";
@@ -81,6 +81,12 @@ export const Route = createFileRoute("/$lang/$section/$slug")({
     if (!isLocale(params.lang)) throw notFound();
     const resolved = resolve(params.lang, params.section, params.slug);
     if (!resolved) throw notFound();
+    if (resolved.kind === "category") {
+      throw redirect({
+        href: catalogCategoryPath(params.lang, resolved.category),
+        statusCode: 301,
+      });
+    }
     return resolved;
   },
   head: ({ params }) => {
