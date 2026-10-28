@@ -539,7 +539,7 @@ export function GuideMascotCallout({
               {badge}
             </span>
           )}
-          <h3
+          <p
             className={`font-black leading-snug tracking-tight ${
               compact
                 ? "guide-mascot-callout__title text-[19px] sm:text-[22px]"
@@ -547,7 +547,7 @@ export function GuideMascotCallout({
             }`}
           >
             {title}
-          </h3>
+          </p>
           <p
             className={`mt-1.5 text-[15px] font-normal leading-relaxed text-slate-700 sm:text-[16px] ${
               compact ? "guide-mascot-callout__description" : ""
