@@ -102,13 +102,13 @@ export function ToolCatalogCard({
         </div>
 
         {/* Title & Tagline in bold neo-brutalist hierarchy */}
-        <div className={mtTitle}>
+        <div className={`${mtTitle} min-w-0`}>
           <h3
             className={`${titleSize} tracking-tight text-[#0F0F12] transition-colors group-hover:text-[#0F0F12]`}
           >
             {tool.name}
           </h3>
-          <p className={`mt-1.5 ${descSize} text-slate-600 font-medium line-clamp-3`}>{tool.tagline}</p>
+          <p className={`mt-1.5 ${descSize} break-words [overflow-wrap:anywhere] text-slate-600 font-medium`}>{tool.tagline}</p>
         </div>
       </div>
 
