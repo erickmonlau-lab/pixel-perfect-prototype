@@ -51,7 +51,7 @@ export function Breadcrumb({ items, className = "", showHomeIcon = true }: Bread
             <li
               key={index}
               className={`flex min-w-0 items-center gap-2 ${
-                isLast ? "flex-[1_1_15rem] max-w-[min(100%,24rem)]" : "shrink-0"
+                isLast ? "flex-none max-w-full" : "shrink-0"
               }`}
             >
               <span
@@ -62,7 +62,7 @@ export function Breadcrumb({ items, className = "", showHomeIcon = true }: Bread
               </span>
               {isLast || !item.to ? (
                 <span
-                  className="block w-full min-w-0 whitespace-normal break-words rounded-lg border-2 border-[#0F0F12] bg-[#F4F4F6] px-2.5 py-1 font-black leading-snug text-[#0F0F12] shadow-[2px_2px_0_#0F0F12]"
+                  className="inline-block w-fit max-w-[min(65vw,24rem)] min-w-0 whitespace-normal break-words rounded-lg border-2 border-[#0F0F12] bg-[#F4F4F6] px-2.5 py-1 font-black leading-snug text-[#0F0F12] shadow-[2px_2px_0_#0F0F12]"
                   aria-current="page"
                   title={item.label}
                 >

@@ -193,6 +193,10 @@ const es = {
     related: "Herramientas relacionadas",
     details: "Ver detalles",
     viewMoreCategory: (name: string) => `Ver más de ${name}`,
+    favorite: "Favorito",
+    favorited: "Favorita",
+    addFavorite: "Añadir a mis favoritos",
+    removeFavorite: "Quitar de mis favoritos",
   },
   status: {
     pending: "En construcción",
@@ -588,6 +592,10 @@ const ca: Dict = {
     related: "Eines relacionades",
     details: "Mostra els detalls",
     viewMoreCategory: (name: string) => `Veure més de ${name}`,
+    favorite: "Preferit",
+    favorited: "Preferida",
+    addFavorite: "Afegeix als meus preferits",
+    removeFavorite: "Treu dels meus preferits",
   },
   status: {
     pending: "En construcció",
@@ -981,6 +989,10 @@ const en: Dict = {
     related: "Related tools",
     details: "See details",
     viewMoreCategory: (name: string) => `More ${name} tools`,
+    favorite: "Favorite",
+    favorited: "Favorited",
+    addFavorite: "Add to favorites",
+    removeFavorite: "Remove from favorites",
   },
   status: {
     pending: "In progress",

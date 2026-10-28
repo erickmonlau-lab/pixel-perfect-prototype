@@ -409,10 +409,11 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
                     ? "bg-[#FEF08A] text-[#0F0F12]"
                     : "bg-white text-[#0F0F12] hover:bg-[#FEF08A]"
                 }`}
-                title={isFav ? "Herramienta en favoritos" : "Añadir a mis favoritos"}
+                title={isFav ? t.tool.removeFavorite : t.tool.addFavorite}
+                aria-label={isFav ? t.tool.removeFavorite : t.tool.addFavorite}
               >
                 <Star className={`size-3.5 ${isFav ? "fill-[#0F0F12] text-[#0F0F12]" : "fill-transparent text-[#0F0F12] stroke-[2.5]"}`} />
-                <span>{isFav ? "Favorita" : "Favorito"}</span>
+                <span>{isFav ? t.tool.favorited : t.tool.favorite}</span>
               </button>
             </div>
 
