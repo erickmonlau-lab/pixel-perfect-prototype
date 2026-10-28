@@ -23,7 +23,7 @@ const CATEGORY_CONFIG = {
       ca: "Educació & Universitat",
       en: "Education & University",
     },
-    badgeBg: "bg-emerald-600 text-white",
+    badgeBg: "bg-emerald-700 text-white",
     accent: "bg-emerald-600",
   },
   empresas: {
@@ -33,7 +33,7 @@ const CATEGORY_CONFIG = {
       ca: "Empreses & Administració",
       en: "Business & Administration",
     },
-    badgeBg: "bg-purple-600 text-white",
+    badgeBg: "bg-purple-700 text-white",
     accent: "bg-purple-600",
   },
   ecommerce: {
@@ -43,7 +43,7 @@ const CATEGORY_CONFIG = {
       ca: "Ecommerce & Web",
       en: "Ecommerce & Web",
     },
-    badgeBg: "bg-blue-600 text-white",
+    badgeBg: "bg-blue-700 text-white",
     accent: "bg-blue-600",
   },
   tecnica: {
@@ -53,7 +53,7 @@ const CATEGORY_CONFIG = {
       ca: "Tècnica & Formats",
       en: "Technical & Formats",
     },
-    badgeBg: "bg-sky-600 text-white",
+    badgeBg: "bg-sky-700 text-white",
     accent: "bg-sky-600",
   },
 } as const;
@@ -99,7 +99,7 @@ export function GuidesHubPage() {
 
       {/* Header Banner Editorial Contundente */}
       <section className="mt-4 rounded-2xl border-2 border-[#0F0F12] bg-white p-5 shadow-[4px_4px_0_#0F0F12] sm:p-7 lg:p-9">
-        <div className="flex w-fit items-center gap-2 rounded-lg border-2 border-[#0F0F12] bg-[#EC3C2D] px-3 py-1.5 text-[11px] font-black uppercase tracking-wide text-white shadow-[2px_2px_0_#0F0F12]">
+        <div className="flex w-fit items-center gap-2 rounded-lg border-2 border-[#0F0F12] bg-[#C9302C] px-3 py-1.5 text-[11px] font-black uppercase tracking-wide text-white shadow-[2px_2px_0_#0F0F12]">
           <BookOpen className="size-4 text-white" />
           <span>{hubEyebrow}</span>
         </div>
@@ -111,7 +111,7 @@ export function GuidesHubPage() {
         </p>
         <div className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-2 text-xs font-bold text-slate-800 sm:text-[13px]">
           <span className="inline-flex items-center gap-2 rounded-lg border-2 border-[#0F0F12] bg-[#0F0F12] px-3 py-1.5 text-white shadow-[2px_2px_0_#0F0F12]">
-            <Sparkles className="size-4 text-[#EC3C2D]" />
+            <Sparkles className="size-4 text-[#C9302C]" />
             <span>
               {GUIDES.length}{" "}
               {isCa ? "guies pràctiques" : isEn ? "practical guides" : "guías prácticas"}
@@ -172,10 +172,10 @@ export function GuidesHubPage() {
                     </span>
                   </div>
 
-                  <h2 className="text-[19px] font-black leading-snug tracking-tight transition-colors group-hover:text-[#EC3C2D] sm:text-[21px]">
+                  <h2 className="text-[19px] font-black leading-snug tracking-tight transition-colors group-hover:text-[#C9302C] sm:text-[21px]">
                     <Link
                       to={targetPath as never}
-                      className="rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#EC3C2D]"
+                      className="rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C9302C]"
                     >
                       {title}
                     </Link>
@@ -192,7 +192,7 @@ export function GuidesHubPage() {
                   </span>
                   <Link
                     to={targetPath as never}
-                    className="inline-flex shrink-0 items-center gap-2 rounded-lg border-2 border-[#0F0F12] bg-[#EC3C2D] px-3.5 py-2 text-[13px] font-black text-white shadow-[2px_2px_0_#0F0F12] transition-colors hover:bg-[#D93426] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0F0F12] sm:text-sm"
+                    className="inline-flex shrink-0 items-center gap-2 rounded-lg border-2 border-[#0F0F12] bg-[#C9302C] px-3.5 py-2 text-[13px] font-black text-white shadow-[2px_2px_0_#0F0F12] transition-colors hover:bg-[#B3261E] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0F0F12] sm:text-sm"
                   >
                     <span>{readGuideText}</span>
                     <ArrowRight className="size-4" aria-hidden="true" />
