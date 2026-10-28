@@ -54,25 +54,24 @@ function isH3SwallowedErrorBody(body: string): boolean {
   }
 }
 
-function pruneModulepreloads(html: string): string {
-  // Prunes non-essential modulepreloads from the initial SSR HTML.
-  // Critical boot modules (router runtime, Radix UI base, localized route layout) are preserved.
-  // Secondary component modules (icons, buttons, search modal, sub-components) are dynamically fetched upon need.
-  return html.replace(/<link\s+[^>]*rel="modulepreload"[^>]*\/?>/gi, (match) => {
-    const hrefMatch = match.match(/href="([^"]+)"/);
-    if (!hrefMatch) return match;
-    const href = hrefMatch[1]!;
-    const filename = href.split("/").pop() || "";
-    const isEssential =
-      filename.startsWith("index-") ||
-      filename.startsWith("rolldown-runtime-") ||
-      filename.startsWith("ui-") ||
-      filename.startsWith("_lang-") ||
-      filename.startsWith("brand-") ||
-      filename.startsWith("preload-helper-");
+// Every modulepreload the router emits is fetched at High priority, in the same
+// bandwidth bucket as the render-critical fonts. On Slow 4G that pushes the LCP
+// text font behind ~350 KB of JavaScript, so we drop the hints and let the
+// module graph load after the first paint instead.
+function removeModulepreloads(html: string): string {
+  return html.replace(/<link\s+[^>]*rel="modulepreload"[^>]*\/?>/gi, "");
+}
 
-    return isEssential ? match : "";
-  });
+// The app is fully server-rendered, so the client bundle is only needed to
+// hydrate. Loading it one task after the first paint keeps the pre-paint
+// network and main thread free for HTML, CSS and the hero font. A timer keeps
+// hydration working in background tabs, where requestAnimationFrame is paused.
+function deferHydration(html: string): string {
+  return html.replace(
+    /<script\s+type="module"[^>]*\ssrc="(\/assets\/index-[^"]+\.js)"[^>]*><\/script>/i,
+    (_match, src: string) =>
+      `<script>(function(){var src=${JSON.stringify(src)},done=false;function load(){if(done)return;done=true;var s=document.createElement("script");s.type="module";s.src=src;document.head.appendChild(s);}requestAnimationFrame(function(){setTimeout(load,0);});setTimeout(load,3000);})();</script>`,
+  );
 }
 
 async function optimizeSsrResponse(response: Response): Promise<Response> {
@@ -80,8 +79,8 @@ async function optimizeSsrResponse(response: Response): Promise<Response> {
   if (!contentType.includes("text/html")) return response;
 
   const html = await response.text();
-  const prunedHtml = pruneModulepreloads(html);
-  return new Response(prunedHtml, {
+  const optimizedHtml = deferHydration(removeModulepreloads(html));
+  return new Response(optimizedHtml, {
     status: response.status,
     statusText: response.statusText,
     headers: response.headers,
