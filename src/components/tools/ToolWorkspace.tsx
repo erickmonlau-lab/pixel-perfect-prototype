@@ -1308,8 +1308,8 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
       )}
 
       {phase === "done" && outputs.length > 0 && (
-        <div className="animate-rise border-t border-slate-200 bg-linear-to-b from-[#FFF8F7] to-white p-6 sm:p-9">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+        <div className="animate-rise border-t-2 border-[#0F0F12] bg-[#F4F5F7] p-4 sm:p-6 lg:p-8">
+          <div className="mx-auto mb-5 flex max-w-5xl flex-col justify-between gap-4 rounded-2xl border-2 border-[#0F0F12] bg-[#86EFAC] p-4 shadow-[4px_4px_0_#0F0F12] sm:flex-row sm:items-center sm:p-5">
             <div className="flex items-center gap-4">
               <img
                 src={BRAND_ASSETS.mascots.celebrate}
@@ -1321,17 +1321,17 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
               />
               <div>
                 <div className="flex items-center gap-2.5">
-                  <span className="flex size-6.5 items-center justify-center rounded-full bg-[#059669] text-white shrink-0 shadow-xs">
+                  <span className="flex size-8 shrink-0 items-center justify-center rounded-xl border-2 border-[#0F0F12] bg-white text-[#087443] shadow-[2px_2px_0_#0F0F12]">
                     <CheckCircle2 className="size-4.5" aria-hidden />
                   </span>
-                  <h3 className="text-[21px] sm:text-[23px] font-black text-[#0F172A] tracking-normal leading-snug">
+                  <h3 className="text-[21px] font-black leading-snug tracking-tight text-[#0F0F12] sm:text-[25px]">
                     {t.workspace.done}
                   </h3>
                 </div>
                 {note ? (
-                  <p className="mt-1 text-[14.5px] font-medium text-slate-700 leading-normal">{note}</p>
+                  <p className="mt-1 text-[14.5px] font-semibold leading-normal text-[#173A2C]">{note}</p>
                 ) : (
-                  <p className="mt-1 text-[14px] text-slate-600 font-medium leading-normal">{locale === "ca" ? "El document ja està processat i a punt per descarregar." : locale === "en" ? "Your document is ready to download." : "¡Listo! Tu documento está preparado para descargar."}</p>
+                  <p className="mt-1 text-[14.5px] font-semibold leading-normal text-[#173A2C]">{locale === "ca" ? "El document ja està processat i a punt per descarregar." : locale === "en" ? "Your document is ready to download." : "Tu documento está preparado para descargar."}</p>
                 )}
               </div>
             </div>
@@ -1362,7 +1362,7 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                     console.error("Error creating ZIP", err);
                   }
                 }}
-                className="inline-flex items-center gap-2 rounded-xl bg-[#0F172A] px-4 py-2.5 text-[13.5px] font-bold text-white shadow-sm hover:bg-slate-800 transition-all cursor-pointer self-start sm:self-auto shrink-0"
+                className="inline-flex min-h-11 items-center gap-2 rounded-xl border-2 border-[#0F0F12] bg-white px-4 py-2.5 text-[13.5px] font-black text-[#0F0F12] shadow-[2px_2px_0_#0F0F12] transition-all hover:translate-y-0.5 hover:shadow-none cursor-pointer self-start sm:self-auto shrink-0"
               >
                 <Download className="size-4" />
                 <span>{t.workspace.downloadAllZip ?? "Descargar todo en un ZIP"}</span>
@@ -1371,56 +1371,52 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
           </div>
 
           {/* Botones de descarga de gran impacto visual en Rojo BREADPDF */}
-          <div className="grid gap-3.5 sm:grid-cols-1 max-w-xl mx-auto" aria-label={t.workspace.downloads}>
+          <div className="mx-auto grid max-w-5xl gap-3 sm:grid-cols-1" aria-label={t.workspace.downloads}>
             {outputs.map((output, index) => (
               <a
                 key={output.name}
                 href={urls[index]}
                 download={output.name}
                 onClick={() => trackDownloadClicked({ tool: tool.slug, language: locale })}
-                className="group relative flex items-center justify-between gap-4 rounded-2xl bg-[#EC3C2D] hover:bg-[#D93426] p-4.5 sm:p-5.5 text-white shadow-lg shadow-[#EC3C2D]/25 transition-all hover:shadow-xl hover:shadow-[#EC3C2D]/35 hover:-translate-y-0.5 active:translate-y-0"
+                className="group relative flex min-h-[86px] items-center justify-between gap-4 rounded-2xl border-2 border-[#0F0F12] bg-[#EC3C2D] p-4 text-white shadow-[4px_4px_0_#0F0F12] transition-all hover:-translate-y-0.5 hover:bg-[#D93426] hover:shadow-[5px_5px_0_#0F0F12] active:translate-y-0 active:shadow-[2px_2px_0_#0F0F12] sm:p-5"
               >
                 <div className="flex items-center gap-4 min-w-0">
-                  <div className="flex size-13 sm:size-14 shrink-0 items-center justify-center rounded-xl bg-white/20 text-white backdrop-blur-xs group-hover:scale-105 transition-transform">
+                  <div className="flex size-12 shrink-0 items-center justify-center rounded-xl border-2 border-white bg-[#B9271D] text-white transition-transform group-hover:scale-105 sm:size-14">
                     <Download className="size-7 text-white stroke-[2.5]" aria-hidden />
                   </div>
                   <div className="min-w-0 text-left">
-                    <span className="block truncate text-[16.5px] sm:text-[18px] font-black text-white tracking-tight">
+                    <span className="block truncate text-[16.5px] font-black tracking-tight text-white sm:text-[19px]">
                       {output.name}
                     </span>
-                    <span className="inline-flex items-center gap-1.5 mt-0.5 text-[13.5px] font-semibold text-white/90">
+                    <span className="mt-1 inline-flex flex-wrap items-center gap-1.5 text-[13.5px] font-semibold text-white">
                       <span>{formatBytes(output.blob.size)}</span>
                       <span>•</span>
-                      <span className="underline decoration-white/50 underline-offset-2">
+                      <span>
                         {output.name.endsWith(".zip")
-                          ? (locale === "ca" ? "Descarregar ZIP gratis" : locale === "en" ? "Download ZIP free" : "Descargar ZIP gratis")
+                          ? t.workspace.downloadZip
                           : output.name.match(/\.(png|jpe?g|webp|bmp)$/i)
-                          ? (locale === "ca" ? "Descarregar imatge gratis" : locale === "en" ? "Download image free" : "Descargar imagen gratis")
-                          : (locale === "ca" ? "Descarregar PDF gratis" : locale === "en" ? "Download PDF free" : "Descargar PDF gratis")}
+                          ? t.workspace.downloadImage
+                          : t.workspace.downloadPdf}
                       </span>
                     </span>
                   </div>
                 </div>
 
-                <span className="hidden sm:inline-flex items-center justify-center rounded-xl bg-white px-4 py-2.5 text-[14px] font-black text-[#EC3C2D] shadow-xs shrink-0 group-hover:bg-[#FFF5F4] transition-colors">
-                  {locale === "ca" ? "Descarregar" : locale === "en" ? "Download" : "Descargar"}
+                <span className="inline-flex shrink-0 items-center justify-center rounded-xl border-2 border-[#0F0F12] bg-white px-3 py-2.5 text-[13px] font-black text-[#0F0F12] shadow-[2px_2px_0_#0F0F12] transition-colors group-hover:bg-[#FEF08A] sm:px-4 sm:text-[14px]">
+                  {t.workspace.downloadAction}
                 </span>
               </a>
             ))}
           </div>
 
           {/* Siguiente acciÃ³n sugerida y Descubrimiento del CatÃ¡logo Completo */}
-          <div className="mt-8 max-w-xl mx-auto space-y-4">
-            <div className="flex items-center justify-between border-b border-slate-200/80 pb-2">
-              <span className="text-[14px] font-bold text-[#0F172A] tracking-tight">
-                {locale === "ca"
-                  ? "Què necessites fer ara?"
-                  : locale === "en"
-                  ? "What do you need to do next?"
-                  : "¿Qué necesitas hacer ahora?"}
-              </span>
-              <span className="text-[12px] font-medium text-slate-500">
-                {locale === "ca" ? "Suite BreadPDF" : locale === "en" ? "BreadPDF Suite" : "Suite BreadPDF"}
+          <div className="mx-auto mt-6 grid max-w-5xl gap-4 lg:grid-cols-2">
+            <div className="flex items-center justify-between gap-3 lg:col-span-2">
+              <h4 className="text-[18px] font-black tracking-tight text-[#0F0F12] sm:text-[20px]">
+                {t.workspace.nextStepTitle}
+              </h4>
+              <span className="rounded-lg border-2 border-[#0F0F12] bg-[#2563EB] px-3 py-1 text-[11px] font-black uppercase tracking-wide text-white shadow-[2px_2px_0_#0F0F12]">
+                {t.workspace.suiteLabel}
               </span>
             </div>
 
@@ -1430,20 +1426,20 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
               if (!workflow || outputs.length === 0) return null;
 
               return (
-                <div className="rounded-2xl border border-amber-200/90 bg-linear-to-r from-amber-50/70 via-orange-50/40 to-white p-4.5 sm:p-5 shadow-xs">
+                <div className="rounded-2xl border-2 border-[#0F0F12] bg-[#FEF08A] p-4 shadow-[3px_3px_0_#0F0F12] sm:p-5">
                   <div className="flex items-center justify-between gap-2 mb-2">
-                    <span className="inline-flex items-center gap-1.5 rounded-md bg-amber-100/80 px-2 py-0.5 text-[11px] font-bold tracking-wide uppercase text-amber-900">
-                      <ArrowRight className="size-3 text-amber-700" />
+                    <span className="inline-flex items-center gap-1.5 rounded-md border border-[#0F0F12] bg-[#EC3C2D] px-2 py-1 text-[11px] font-black uppercase tracking-wide text-white">
+                      <ArrowRight className="size-3 text-white" />
                       <span>{workflow.badge[locale] ?? workflow.badge.es}</span>
                     </span>
-                    <span className="text-[12px] font-semibold text-slate-500">
-                      {locale === "ca" ? "Continuar sense descarregar" : locale === "en" ? "Continue directly" : "Continuar sin descargar"}
+                    <span className="text-[11px] font-bold text-[#3F3A1B]">
+                      {t.workspace.continueWithoutDownload}
                     </span>
                   </div>
-                  <h4 className="text-[15.5px] sm:text-[16.5px] font-black text-[#0F172A] tracking-tight">
+                  <h5 className="text-[16px] font-black tracking-tight text-[#0F0F12] sm:text-[18px]">
                     {workflow.title[locale] ?? workflow.title.es}
-                  </h4>
-                  <p className="mt-1 text-[13px] text-slate-600 leading-relaxed font-medium">
+                  </h5>
+                  <p className="mt-1 text-[14px] font-medium leading-relaxed text-[#302D1B]">
                     {workflow.description[locale] ?? workflow.description.es}
                   </p>
                   <div className="mt-3.5 flex items-center justify-end">
@@ -1466,10 +1462,10 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                           console.error("Error transitioning to next tool in workflow", err);
                         }
                       }}
-                      className="inline-flex items-center gap-2 rounded-xl bg-[#0F172A] hover:bg-slate-800 text-white px-4.5 py-2.5 text-[13.5px] font-bold shadow-sm transition-all cursor-pointer hover:shadow hover:-translate-y-0.5"
+                      className="inline-flex min-h-11 items-center gap-2 rounded-xl border-2 border-[#0F0F12] bg-[#0F0F12] px-4 py-2.5 text-[13.5px] font-black text-white shadow-[2px_2px_0_#EC3C2D] transition-all hover:translate-y-0.5 hover:shadow-none cursor-pointer"
                     >
                       <span>{workflow.cta[locale] ?? workflow.cta.es}</span>
-                      <ArrowRight className="size-4 text-amber-400" />
+                      <ArrowRight className="size-4 text-[#FEF08A]" />
                     </button>
                   </div>
                 </div>
@@ -1477,25 +1473,17 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
             })()}
 
             {/* TERTIARY: All tools discoverability button */}
-            <div className="flex items-center justify-between rounded-2xl border border-slate-200/90 bg-white p-4 shadow-2xs">
+            <div className="flex items-center justify-between gap-3 rounded-2xl border-2 border-[#0F0F12] bg-[#BFDBFE] p-4 shadow-[3px_3px_0_#0F0F12]">
               <div className="flex items-center gap-3">
-                <span className="flex size-9 items-center justify-center rounded-xl bg-slate-100 text-[#0F172A]">
-                  <Grid className="size-4.5 text-slate-700" />
+                <span className="flex size-10 shrink-0 items-center justify-center rounded-xl border-2 border-[#0F0F12] bg-white text-[#0F172A] shadow-[2px_2px_0_#0F0F12]">
+                  <Grid className="size-4.5 text-[#0F172A]" />
                 </span>
                 <div>
-                  <h5 className="text-[14px] font-bold text-[#0F172A]">
-                    {locale === "ca"
-                      ? "Descobreix la suite completa"
-                      : locale === "en"
-                      ? "Explore the full PDF suite"
-                      : "Descubre la suite completa"}
+                  <h5 className="text-[15px] font-black text-[#0F172A]">
+                    {t.workspace.discoverSuite}
                   </h5>
-                  <p className="text-[13px] text-slate-500">
-                    {locale === "ca"
-                      ? "51 eines per a conversió, organització i seguretat"
-                      : locale === "en"
-                      ? "51 tools for conversion, organizing and security"
-                      : "51 herramientas de conversión, organización y seguridad"}
+                  <p className="text-[13px] font-medium text-[#26364A]">
+                    {t.workspace.suiteDescription}
                   </p>
                 </div>
               </div>
@@ -1503,9 +1491,9 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                 to={SECTION_ROUTE}
                 params={catalogParams(locale)}
                 onClick={() => trackToolCatalogViewAllClicked({ source: "result_screen", language: locale })}
-                className="inline-flex items-center gap-1.5 rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2 text-[13px] font-bold text-slate-800 hover:bg-slate-100 hover:border-slate-300 transition-all shrink-0"
+                className="inline-flex min-h-10 shrink-0 items-center gap-1.5 rounded-lg border-2 border-[#0F0F12] bg-white px-3 text-[12px] font-black text-[#0F172A] shadow-[2px_2px_0_#0F0F12] transition-colors hover:bg-[#FEF08A]"
               >
-                <span>{locale === "ca" ? "Totes les eines" : locale === "en" ? "All tools" : "Ver todas las herramientas"}</span>
+                <span>{t.workspace.discoverSuite}</span>
                 <ArrowRight className="size-3.5 text-slate-600" />
               </Link>
             </div>
