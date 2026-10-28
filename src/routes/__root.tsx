@@ -131,13 +131,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         { rel: "manifest", href: "/site.webmanifest" },
       ],
       scripts: [
-        ...(import.meta.env["VITE_ADSENSE_ENABLED"] === "true"
-          ? [{
-              src: `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${GOOGLE_ADSENSE_CLIENT_ID}`,
-              async: true,
-              crossOrigin: "anonymous" as const,
-            }]
-          : []),
         {
           type: "application/ld+json",
           children: JSON.stringify(organizationSchema),
@@ -179,6 +172,13 @@ function RootShell({ children }: { children: ReactNode }) {
         </noscript>
         {/* End Google Tag Manager (noscript) */}
         {children}
+        {import.meta.env["VITE_ADSENSE_ENABLED"] === "true" && (
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `(function(){var src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${GOOGLE_ADSENSE_CLIENT_ID}';var load=function(){if(document.querySelector('script[src^="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"]'))return;var s=document.createElement('script');s.src=src;s.async=true;s.crossOrigin='anonymous';document.head.appendChild(s);};var idle=function(){if('requestIdleCallback' in window){window.requestIdleCallback(load,{timeout:1800});}else{setTimeout(load,900);}};if(document.readyState==='complete'){idle();}else{window.addEventListener('load',idle,{once:true});}})();`,
+            }}
+          />
+        )}
         {/* Carga diferida de gtm.js y registro de service worker sin bloquear pintura ni hidratación */}
         <script
           dangerouslySetInnerHTML={{

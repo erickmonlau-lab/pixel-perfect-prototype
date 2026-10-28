@@ -40,7 +40,23 @@ export const Route = createFileRoute("/$lang/")({
         { property: "og:type", content: "website" },
         { name: "twitter:card", content: "summary_large_image" },
       ],
-      links: alternateLinks(locale, { kind: "home" }),
+      links: [
+        ...alternateLinks(locale, { kind: "home" }),
+        {
+          rel: "preload",
+          href: "/fonts/plus-jakarta-sans-latin-800.woff2",
+          as: "font",
+          type: "font/woff2",
+          crossOrigin: "anonymous",
+        },
+        {
+          rel: "preload",
+          href: "/fonts/inter-latin-500.woff2",
+          as: "font",
+          type: "font/woff2",
+          crossOrigin: "anonymous",
+        },
+      ],
     };
   },
   component: Home,
@@ -258,15 +274,23 @@ function Home() {
 
             {/* Mascota BreadPDF original en carrera dinámica con documento PDF */}
             <div className="relative mt-2 transition-transform hover:scale-105 duration-300 pointer-events-auto cursor-pointer">
-              <img
-                src="/brand/hero-mascot-perfect.png"
-                alt="Mascota BreadPDF"
-                width={280}
-                height={290}
-                className="w-52 h-auto 2xl:w-64 drop-shadow-[5px_5px_0_#0F0F12] object-contain"
-                loading="eager"
-                fetchPriority="high"
-              />
+              <picture>
+                <source
+                  media="(min-width: 1280px)"
+                  srcSet="/brand/hero-mascot-perfect.png"
+                  type="image/png"
+                />
+                <img
+                  src={BRAND_ASSETS.iconWebp}
+                  alt="Mascota BreadPDF"
+                  width={280}
+                  height={290}
+                  className="w-52 h-auto 2xl:w-64 drop-shadow-[5px_5px_0_#0F0F12] object-contain"
+                  loading="eager"
+                  fetchPriority="high"
+                  decoding="async"
+                />
+              </picture>
             </div>
           </div>
 
@@ -284,7 +308,7 @@ function Home() {
                 title="Explorar el catálogo completo"
               >
                 {/* Acento rojo sólido con el número verificado del catálogo */}
-                <span className="flex items-center justify-center h-6 sm:h-6.5 px-2 rounded-md bg-[#EC3C2D] text-white text-xs sm:text-[13.5px] font-black border border-black/20 tabular-nums">
+                <span className="flex items-center justify-center h-6 sm:h-6.5 px-2 rounded-md bg-[#D93426] text-white text-xs sm:text-[13.5px] font-black border border-black/20 tabular-nums">
                   {totalToolsCount}
                 </span>
 
@@ -427,11 +451,12 @@ function Home() {
         <div className="mt-4 xl:hidden max-w-lg mx-auto px-4 flex flex-col items-center text-center">
           <div className="inline-flex items-center gap-2 mb-2">
             <img
-              src={BRAND_ASSETS.mascotPng}
-              alt="BreadPDF Mascot"
+              src={BRAND_ASSETS.iconWebp}
+              alt=""
               width={36}
               height={36}
               className="size-9 object-contain drop-shadow-[2px_2px_0_#0F0F12]"
+              decoding="async"
             />
             <span className="text-xs font-black text-[#0F0F12] uppercase tracking-wider">
               100% Local en RAM · Sin Servidores
@@ -468,7 +493,7 @@ function Home() {
       <section className="border-b-2 border-[#0F0F12] bg-[#F1F1F4] py-14 sm:py-18">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center">
-            <span className="inline-flex items-center gap-1.5 rounded-lg border-2 border-[#0F0F12] bg-[#EC3C2D] px-4 py-1.5 text-[13px] sm:text-[14px] font-black tracking-wider text-white uppercase shadow-[3px_3px_0_#0F0F12]">
+            <span className="inline-flex items-center gap-1.5 rounded-lg border-2 border-[#0F0F12] bg-[#D93426] px-4 py-1.5 text-[13px] sm:text-[14px] font-black tracking-wider text-white uppercase shadow-[3px_3px_0_#0F0F12]">
               {t.home.editorial.eyebrow}
             </span>
             <h2 className="mt-4 text-3xl sm:text-4xl lg:text-[42px] font-black tracking-[-0.025em] leading-[1.1] text-[#0F0F12]">
@@ -500,7 +525,7 @@ function Home() {
                   iconBg: "bg-[#06B6D4] text-white",
                   hoverShadow: "hover:shadow-[6px_6px_0_#06B6D4]",
                   tag: locale === "ca" ? "NAVEGADOR LOCAL" : locale === "en" ? "IN-BROWSER" : "NAVEGADOR LOCAL",
-                  tagBg: "bg-[#06B6D4] text-white",
+                  tagBg: "bg-[#087E8B] text-white",
                 },
                 {
                   icon: UserCheck,
@@ -508,7 +533,7 @@ function Home() {
                   iconBg: "bg-[#EC3C2D] text-white",
                   hoverShadow: "hover:shadow-[6px_6px_0_#EC3C2D]",
                   tag: locale === "ca" ? "SENSE REGISTRES" : locale === "en" ? "NO SIGN-UP" : "SIN REGISTROS",
-                  tagBg: "bg-[#EC3C2D] text-white",
+                  tagBg: "bg-[#D93426] text-white",
                 },
                 {
                   icon: ArrowLeftRight,
@@ -524,7 +549,7 @@ function Home() {
                   iconBg: "bg-[#EA580C] text-white",
                   hoverShadow: "hover:shadow-[6px_6px_0_#EA580C]",
                   tag: locale === "ca" ? "OPTIMITZACIÓ" : locale === "en" ? "OPTIMIZATION" : "OPTIMIZACIÓN",
-                  tagBg: "bg-[#EA580C] text-white",
+                  tagBg: "bg-[#C2410C] text-white",
                 },
               ];
               const theme = BENTO_THEMES[idx % BENTO_THEMES.length]!;
@@ -579,7 +604,7 @@ function Home() {
           {/* Header amplio con botón alineado a la derecha en escritorio y centrado verticalmente */}
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-12 sm:mb-14">
             <div className="max-w-3xl">
-              <span className="inline-flex items-center gap-2 rounded-lg border-2 border-[#0F0F12] bg-[#EC3C2D] px-4 py-1.5 text-[13px] sm:text-[14px] font-black uppercase tracking-wider text-white shadow-[3px_3px_0_#0F0F12] whitespace-nowrap mb-3.5">
+              <span className="inline-flex items-center gap-2 rounded-lg border-2 border-[#0F0F12] bg-[#D93426] px-4 py-1.5 text-[13px] sm:text-[14px] font-black uppercase tracking-wider text-white shadow-[3px_3px_0_#0F0F12] whitespace-nowrap mb-3.5">
                 <BookOpen className="size-4 stroke-[2.5]" />
                 <span>{locale === "ca" ? "GUIES I TUTORIALS" : locale === "en" ? "GUIDES AND TUTORIALS" : "GUÍAS Y TUTORIALES"}</span>
               </span>
@@ -603,7 +628,7 @@ function Home() {
             <Link
               to={SECTION_ROUTE}
               params={guidesHubParams(locale)}
-              className="group inline-flex items-center justify-center gap-2 self-start md:self-auto rounded-xl border-2 border-[#0F0F12] bg-[#EC3C2D] px-7 py-3.5 text-[15px] sm:text-[16px] font-black text-white transition-all shadow-[4px_4px_0_#0F0F12] hover:-translate-y-0.5 hover:shadow-[6px_6px_0_#0F0F12] cursor-pointer shrink-0"
+              className="group inline-flex items-center justify-center gap-2 self-start md:self-auto rounded-xl border-2 border-[#0F0F12] bg-[#D93426] px-7 py-3.5 text-[15px] sm:text-[16px] font-black text-white transition-all shadow-[4px_4px_0_#0F0F12] hover:-translate-y-0.5 hover:shadow-[6px_6px_0_#0F0F12] cursor-pointer shrink-0"
             >
               <span>{locale === "ca" ? "Totes les guies" : locale === "en" ? "All guides" : "Todas las guías"}</span>
               <ArrowRight className="size-4 stroke-[2.5] transition-transform duration-200 group-hover:translate-x-1" />
@@ -624,7 +649,7 @@ function Home() {
               const GUIDE_THEMES = [
                 {
                   border: "border-t-[6px] border-t-[#EC3C2D]",
-                  badgeBg: "bg-[#EC3C2D]",
+                  badgeBg: "bg-[#D93426]",
                   iconBoxBg: "bg-[#EC3C2D] text-white",
                   hoverShadow: "hover:shadow-[7px_7px_0_#EC3C2D]",
                   Icon: GraduationCap,
@@ -638,7 +663,7 @@ function Home() {
                 },
                 {
                   border: "border-t-[6px] border-t-[#8B5CF6]",
-                  badgeBg: "bg-[#8B5CF6]",
+                  badgeBg: "bg-[#6D28D9]",
                   iconBoxBg: "bg-[#8B5CF6] text-white",
                   hoverShadow: "hover:shadow-[7px_7px_0_#8B5CF6]",
                   Icon: Layers,
@@ -693,7 +718,7 @@ function Home() {
                   <div className="mt-7 pt-2">
                     <Link
                       to={guideUrl}
-                      className="inline-flex w-full items-center justify-center text-[15px] sm:text-[16px] font-black text-white bg-[#EC3C2D] hover:bg-[#D93426] border-2 border-[#0F0F12] rounded-xl h-12 shadow-[3px_3px_0_#0F0F12] transition-all hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0_#0F0F12]"
+                      className="inline-flex w-full items-center justify-center text-[15px] sm:text-[16px] font-black text-white bg-[#D93426] hover:bg-[#C92A22] border-2 border-[#0F0F12] rounded-xl h-12 shadow-[3px_3px_0_#0F0F12] transition-all hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0_#0F0F12]"
                     >
                       {locale === "ca" ? "Llegir la guia" : locale === "en" ? "Read guide" : "Leer la guía"}
                     </Link>

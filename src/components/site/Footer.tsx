@@ -147,7 +147,7 @@ export function Footer() {
       {/* ─────────────────────────────────────────────────────────────── */}
       {/* CUERPO PRINCIPAL — fondo con iluminación ambiental difuminada   */}
       {/* ─────────────────────────────────────────────────────────────── */}
-      <div className="relative overflow-hidden bg-[#F13B32]">
+      <div className="relative overflow-hidden bg-[#C92A22]">
         <div className="relative z-10 mx-auto w-full max-w-[1600px] px-6 pb-10 pt-12 sm:px-10 sm:pt-12 lg:px-16 xl:px-16 xl:pb-9 xl:pt-14 2xl:px-24">
           <div className="grid grid-cols-[minmax(0,1fr)_minmax(0,1fr)] items-start gap-x-4 gap-y-7 sm:gap-x-8 sm:gap-y-10 xl:grid-cols-[minmax(170px,1.1fr)_minmax(235px,1.2fr)_minmax(150px,0.9fr)_minmax(160px,1fr)_minmax(280px,1.2fr)] xl:gap-x-4 xl:gap-y-4">
             {/* ── COL 1: MARCA ── */}
@@ -317,7 +317,7 @@ export function Footer() {
                 }
                 className="inline-flex max-w-full items-center gap-2 whitespace-nowrap rounded-full border-2 border-[#0F0F12] bg-white px-3 py-1.5 text-[12px] font-bold text-[#171717] shadow-[3px_3px_0_#0F0F12] transition-transform hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[1px_1px_0_#0F0F12] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:px-3.5 sm:py-2 sm:text-[14px] xl:px-4 xl:text-[14px]"
               >
-                <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-[#F13B32] text-[12px] font-black text-white">
+                <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-[#C92A22] text-[12px] font-black text-white">
                   {tools.length}
                 </span>
                 <span>{copy.bannerCta}</span>

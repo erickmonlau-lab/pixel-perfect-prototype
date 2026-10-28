@@ -134,7 +134,7 @@ export function TrustBanner() {
         
         {/* Cabecera coordinada con la identidad visual: Titular 44–52px */}
         <div className="mx-auto max-w-3xl text-center mb-12 sm:mb-14">
-          <span className="inline-flex items-center rounded-lg border-2 border-[#0F0F12] bg-[#EC3C2D] px-4 py-1.5 text-[13px] sm:text-[14px] font-black tracking-widest text-white uppercase shadow-[3px_3px_0_#0F0F12]">
+          <span className="inline-flex items-center rounded-lg border-2 border-[#0F0F12] bg-[#D93426] px-4 py-1.5 text-[13px] sm:text-[14px] font-black tracking-widest text-white uppercase shadow-[3px_3px_0_#0F0F12]">
             {current.eyebrow}
           </span>
           
