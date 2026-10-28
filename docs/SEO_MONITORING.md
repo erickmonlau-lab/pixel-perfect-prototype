@@ -28,19 +28,19 @@
 
 ### Resultados finales de producción — 28-10-2026
 
-Después de publicar `98542c5` y la corrección puntual `ef28cd3`, Lighthouse cargó nuevos hashes de los bundles públicos; esa es evidencia de que ambos cambios llegaron al dominio, aunque no se consultó el SHA desde el panel de Vercel. Las dos mediciones finales corresponden a la versión con `ef28cd3`:
+Después de publicar `98542c5`, `ef28cd3` y `8cd0b0e`, Lighthouse cargó nuevos hashes de los bundles y la variante WebP pública; esa es evidencia de que los cambios llegaron al dominio, aunque no se consultó el SHA desde el panel de Vercel. Las mediciones finales siguientes corresponden a la versión con WebP:
 
 | Dispositivo/corrida | Rendimiento | Accesibilidad | Buenas prácticas | SEO | FCP | LCP | TBT | CLS |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|
-| Móvil final (12:48) | 98 | 100 | 100 | 100 | 1,1 s | 1,1 s | 70 ms | 0 |
-| Escritorio final (12:47) | 99 | 100 | 100 | 100 | 0,5 s | 0,8 s | 0 ms | 0,002 |
+| Móvil final repetida (12:55) | 98 | 100 | 100 | 100 | 1,1 s | 1,1 s | 80 ms | 0 |
+| Escritorio final repetida (12:55) | 100 | 100 | 100 | 100 | 0,4 s | 0,7 s | 0 ms | 0,002 |
 
-El contraste reportó 0 nodos con error en móvil y escritorio. Rendimiento varió entre corridas previas de 97–100 móvil y 97–100 escritorio; las puntuaciones son laboratorio y no demuestran una mejora estable ni sustituyen a PSI/CWV de campo. En estas corridas el FCP/LCP quedaron bajo los objetivos técnicos de 1,8/2,5 s. El ahorro estimado de JavaScript no usado siguió siendo 246 KiB móvil y 224 KiB escritorio, principalmente scripts publicitarios/consentimiento; diferir AdSense no elimina ese trabajo reportado por Lighthouse.
+El contraste reportó 0 nodos con error en móvil y escritorio. Rendimiento móvil osciló entre 97–98 en las corridas; escritorio quedó entre 99–100 antes de la variante final y 100 en la repetición final. Son resultados de laboratorio y no sustituyen PSI/CWV de campo. En las últimas corridas FCP/LCP quedaron bajo los objetivos técnicos de 1,8/2,5 s. El ahorro estimado de JavaScript no usado fue 246 KiB móvil y 224 KiB escritorio, principalmente scripts publicitarios/consentimiento; diferir AdSense no elimina ese trabajo reportado por Lighthouse. La oportunidad estimada de imágenes en escritorio bajó de 103 KiB a 13 KiB tras servir el WebP de 27,2 KB.
 
-- Cambios de código publicados: precarga de Plus Jakarta Sans 800 e Inter 500 solo en la portada; carga de AdSense tras `load` y tiempo ocioso cuando `VITE_ADSENSE_ENABLED=true` (sin cambiar publisher, consentimiento, CMP, slots ni estado de anuncios); variante WebP ligera para la mascota de 36 px; fondos oscuros en etiquetas pequeñas para contraste legible; color corregido del chip “Todas”.
+- Cambios de código publicados: precarga de Plus Jakarta Sans 800 e Inter 500 solo en la portada; carga de AdSense tras `load` y tiempo ocioso cuando `VITE_ADSENSE_ENABLED=true` (sin cambiar publisher, consentimiento, CMP, slots ni estado de anuncios); variante WebP de escritorio para la mascota hero (113,45 KB → 27,08 KB, ahorro 86,37 KB / 76,1%) y WebP ligera para la mascota de 36 px; fondos oscuros en etiquetas pequeñas para contraste legible; color corregido del chip “Todas”.
 - Verificación: `npm run build` pasó con `VITE_ADSENSE_ENABLED=true` en el entorno de build. `git diff --check` pasó. No hay script de pruebas automatizadas en `package.json`; ESLint no pasó en archivos tocados (errores de Prettier/formato y un warning de hooks), así que no se declara validación integral ni se afirma que todos los flujos funcionales de herramientas se hayan reejecutado.
 - PSI oficial continúa sin medición: el endpoint previamente devolvió HTTP 429. Los números de esta sección son Lighthouse CLI contra producción, no PageSpeed Insights.
-- La mascota visible móvil usa WebP de 3,1 KB frente al PNG previo de 245,4 KB (ahorro bruto aproximado 242,4 KB / 98,8%). No se atribuye una mejora de LCP a ese ahorro: el LCP móvil medido es texto del hero.
+- La mascota visible móvil usa WebP de 3,1 KB frente al PNG previo de 245,4 KB (ahorro bruto aproximado 242,4 KB / 98,8%). No se atribuye una mejora de LCP a ese ahorro: el LCP móvil medido es texto del hero. En escritorio Lighthouse descargó el WebP hero de 27,2 KB.
 - Véase [`SEO_ADSENSE_AUDIT.md`](SEO_ADSENSE_AUDIT.md) para cuenta, `ads.txt`, CMP/TCF y estado de anuncios. La aprobación y publicación real de anuncios no se verificaron desde la cuenta.
 
 ### Accesos para completar la medición
