@@ -1,7 +1,8 @@
 import React from "react";
 import { formatBytes } from "@/lib/tools/pdf-runtime";
 import { BRAND_ASSETS } from "@/lib/brand";
-import { Check } from "lucide-react";
+import { Loader2 } from "lucide-react";
+import { useLocale } from "@/lib/i18n/context";
 
 export type MachinePhase = "uploading" | "processing" | "done";
 
@@ -11,6 +12,7 @@ interface BreadProcessingMachineProps {
   files: File[];
   activeFileIndex?: number;
   statusMessage?: string | undefined;
+  accentColor?: string;
 }
 
 export function BreadProcessingMachine({
@@ -19,55 +21,41 @@ export function BreadProcessingMachine({
   files,
   activeFileIndex = 0,
   statusMessage,
+  accentColor = "#EC3C2D",
 }: BreadProcessingMachineProps) {
+  const { locale, t } = useLocale();
   const percent = Math.min(100, Math.max(0, Math.round(progress * 100)));
   const currentFile = files[activeFileIndex] || files[0];
+  const activityLabel = phase === "uploading"
+    ? locale === "ca" ? "Carregant fitxer" : locale === "en" ? "Uploading file" : "Subiendo archivo"
+    : locale === "ca" ? "Analitzant i processant" : locale === "en" ? "Analyzing and processing" : "Analizando y procesando";
 
   return (
-    <div className="w-full flex flex-col items-center justify-center py-8 px-4 select-none">
-      <div className="relative flex flex-col items-center max-w-sm w-full text-center">
-        {/* Mascota oficial de BreadPDF con animación de correr (zancada, inclinación y rebote rítmico) */}
-        <div className="relative flex flex-col items-center mb-5">
-          <img
-            src={BRAND_ASSETS.mascots.run}
-            alt="Procesando documento en BreadPDF"
-            width={140}
-            height={140}
-            className="size-28 sm:size-32 object-contain select-none pointer-events-none animate-bread-run"
-          />
-          {/* Sombra dinámica de apoyo en el suelo */}
-          <div className="w-16 h-2.5 bg-slate-800/20 rounded-full blur-[2px] mt-1 animate-bread-shadow-run" />
+    <div className="w-full flex items-center justify-center px-3 py-3 sm:px-5 sm:py-4 select-none">
+      <div className="w-full max-w-2xl rounded-2xl border-2 border-[#0F0F12] bg-white p-3 shadow-[4px_4px_0_#0F0F12] sm:p-4">
+        <div className="flex items-center gap-3">
+          <span className="flex size-11 shrink-0 items-center justify-center overflow-hidden rounded-xl border-2 border-[#0F0F12] shadow-[2px_2px_0_#0F0F12]" style={{ backgroundColor: accentColor }}>
+            <img src={BRAND_ASSETS.mascots.run} alt="" width={44} height={44} className="size-10 object-contain animate-bread-run" />
+          </span>
+          <div className="min-w-0 flex-1">
+            <div className="flex flex-wrap items-center gap-2">
+              <h3 className="text-base font-black leading-tight tracking-tight text-[#0F0F12] sm:text-lg">
+                {statusMessage || (phase === "uploading" ? t.workspace.loadingPreview : t.workspace.processing)}
+              </h3>
+              <span className="inline-flex items-center gap-1 rounded-full border-2 border-[#0F0F12] px-2 py-0.5 text-[11px] font-black text-white" style={{ backgroundColor: accentColor }}>
+                <Loader2 className="size-3 animate-spin" aria-hidden />{activityLabel}
+              </span>
+            </div>
+            {currentFile && <p className="mt-1 break-all text-sm font-semibold leading-snug text-[#253047]">{currentFile.name} <span className="font-bold">· {formatBytes(currentFile.size)}</span></p>}
+          </div>
+          <span className="shrink-0 rounded-lg border-2 border-[#0F0F12] px-2 py-1 font-mono text-sm font-black text-white shadow-[2px_2px_0_#0F0F12]" style={{ backgroundColor: accentColor }}>{percent}%</span>
         </div>
 
-        {/* Título de estado */}
-        <h3 className="text-xl sm:text-2xl font-black text-[#0F172A] tracking-tight">
-          {statusMessage || (phase === "uploading" ? "Preparando tus archivos..." : "Procesando archivos...")}
-        </h3>
-
-        {/* Nombre del archivo actual y peso */}
-        {currentFile && (
-          <p className="mt-1 text-[14px] text-slate-500 font-medium truncate max-w-xs">
-            {currentFile.name} ({formatBytes(currentFile.size)})
-          </p>
-        )}
-
-        {/* Barra de progreso nítida y moderna */}
-        <div className="w-full mt-5">
-          <div className="flex justify-between items-center text-[13px] font-bold text-slate-600 mb-1.5">
-            <span>{phase === "uploading" ? "Cargando..." : "Optimizando..."}</span>
-            <span className="text-[#EC3C2D] font-mono">{percent}%</span>
-          </div>
-          <div className="h-3 w-full bg-slate-100 rounded-full overflow-hidden p-0.5 border border-slate-200">
-            <div
-              className="h-full bg-[#EC3C2D] rounded-full transition-all duration-300 ease-out"
-              style={{ width: `${percent}%` }}
-            />
-          </div>
+        <div className="mt-3 h-3 overflow-hidden rounded-full border-2 border-[#0F0F12] bg-white p-[1px]" role="progressbar" aria-label={t.workspace.progress(percent)} aria-valuemin={0} aria-valuemax={100} aria-valuenow={percent}>
+          <div className="h-full rounded-full transition-[width] duration-300 ease-out" style={{ width: `${percent}%`, backgroundColor: accentColor }} />
         </div>
-
-        {/* Nota de privacidad */}
-        <p className="mt-3 text-[12px] text-slate-400 font-medium">
-          Tus archivos se procesan 100% en tu navegador y nunca salen de tu dispositivo.
+        <p className="mt-2 rounded-lg border border-[#0F0F12] bg-[#FFF7F5] px-2.5 py-1.5 text-xs font-semibold leading-snug text-[#0F0F12] sm:text-sm">
+          {t.workspace.privacyNote}
         </p>
       </div>
     </div>

@@ -1,6 +1,6 @@
 ﻿import { useEffect, useRef, useState } from "react";
 import { loadPdfjs } from "@/lib/tools/pdf-runtime";
-import { FileWarning } from "lucide-react";
+import { FileWarning, Loader2 } from "lucide-react";
 import { useLocale } from "@/lib/i18n/context";
 
 type ThumbnailProps = {
@@ -8,9 +8,10 @@ type ThumbnailProps = {
   pageIndex: number;
   rotation: number;
   className?: string;
+  accentColor?: string;
 };
 
-export function PdfThumbnail({ arrayBuffer, pageIndex, rotation, className = "" }: ThumbnailProps) {
+export function PdfThumbnail({ arrayBuffer, pageIndex, rotation, className = "", accentColor = "#EC3C2D" }: ThumbnailProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [loading, setLoading] = useState(true);
   const [failed, setFailed] = useState(false);
@@ -83,10 +84,13 @@ export function PdfThumbnail({ arrayBuffer, pageIndex, rotation, className = "" 
   }, [arrayBuffer, pageIndex, rotation]);
 
   return (
-    <div className={`relative flex items-center justify-center overflow-hidden bg-slate-50 ${className}`}>
+    <div className={`relative flex items-center justify-center overflow-hidden bg-white ${className}`}>
       {loading && (
-        <div className="absolute inset-0 flex items-center justify-center bg-slate-100/80 animate-pulse text-[11px] font-medium text-slate-400">
-          <span className="rounded-lg border border-[#0F0F12]/15 bg-white px-2 py-1 text-[10px] font-bold text-slate-600 shadow-sm">{t.workspace.loadingPreview}</span>
+        <div className="absolute inset-0 flex items-center justify-center bg-white p-2">
+          <span className="inline-flex items-center gap-1.5 rounded-lg border-2 border-[#0F0F12] bg-white px-2 py-1 text-[11px] font-black text-[#0F0F12] shadow-[2px_2px_0_#0F0F12]">
+            <Loader2 className="size-3 animate-spin" style={{ color: accentColor }} aria-hidden />
+            {t.workspace.loadingPreview}
+          </span>
         </div>
       )}
       {failed && (

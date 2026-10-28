@@ -11,6 +11,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { formatBytes, loadPdfLib, loadPdfjs } from "@/lib/tools/pdf-runtime";
 import { useLocale } from "@/lib/i18n/context";
+import { WorkspaceLoadingState } from "../workspace/WorkspaceLoadingState";
 import {
   trackFileSelected,
   trackProcessingStarted,
@@ -193,7 +194,16 @@ export function FormFillWorkspace() {
   }
 
   if (phase === "loading") {
-    return (<section ref={workspaceRef} className="surface-card p-8 shadow-raised rounded-3xl border border-border/80 flex items-center justify-center gap-3 text-primary font-semibold"><Loader2 className="size-5 animate-spin" /><span>Detectando campos del formulario…</span></section>);
+    const loadingTitle = locale === "ca"
+      ? "Analitzant els camps del formulari…"
+      : locale === "en"
+        ? "Analyzing form fields…"
+        : "Analizando los campos del formulario…";
+    return (
+      <section ref={workspaceRef}>
+        <WorkspaceLoadingState title={loadingTitle} accentColor="#EC3C2D" detail={file?.name} />
+      </section>
+    );
   }
 
   if (phase === "done" && outputUrl) {

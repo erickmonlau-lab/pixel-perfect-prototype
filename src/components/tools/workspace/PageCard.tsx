@@ -124,6 +124,7 @@ export function PageCard({
           arrayBuffer={document.arrayBuffer}
           pageIndex={page.sourcePageIndex}
           rotation={page.rotation}
+          accentColor={accentColor}
           className="w-full h-full"
         />
 

@@ -58,6 +58,7 @@ import type {
   TextOverlayConfig,
 } from "./workspace/overlayTypes";
 import { BreadProcessingMachine } from "./workspace/BreadProcessingMachine";
+import { WorkspaceLoadingState } from "./workspace/WorkspaceLoadingState";
 
 type Phase = "idle" | "uploading" | "loading-pages" | "processing" | "done" | "error";
 
@@ -787,7 +788,7 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
 
       {/* Pantalla interactiva de MÃ¡quina BREADPDF durante subida / procesamiento */}
       {isBusy && (
-        <div ref={processingWorkspaceRef} className="p-6 sm:p-10 flex flex-col items-center">
+        <div ref={processingWorkspaceRef} className="p-2 sm:p-3 flex flex-col items-center">
           <BreadProcessingMachine
             phase={phase === "uploading" ? "uploading" : "processing"}
             progress={progress}
@@ -801,14 +802,14 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                   : "Cargando documento..."
                 : undefined
             }
+            accentColor={workspaceAccent}
           />
         </div>
       )}
 
       {phase === "loading-pages" && (
-        <div ref={loadingWorkspaceRef} className="flex items-center justify-center gap-3 p-8 text-primary font-semibold">
-          <Loader2 className="size-5 animate-spin" />
-          <span>{t.workspace.loadingPages}</span>
+        <div ref={loadingWorkspaceRef} className="p-3 sm:p-4">
+          <WorkspaceLoadingState title={t.workspace.loadingPages} accentColor={workspaceAccent} />
         </div>
       )}
 
@@ -1201,15 +1202,15 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
           </div>
 
           {phase === "processing" && (
-            <div className="mt-6 rounded-xl border border-primary/20 bg-primary-soft/40 p-4">
-              <div className="flex items-center justify-between text-[13px] font-semibold text-primary">
+            <div className="mt-4 rounded-xl border-2 border-[#0F0F12] bg-white p-3 shadow-[3px_3px_0_#0F0F12]">
+              <div className="flex items-center justify-between gap-3 text-sm font-black text-[#0F0F12]">
                 <span>{t.workspace.processing}</span>
-                <span>{Math.round(progress * 100)}%</span>
+                <span className="rounded-md border-2 border-[#0F0F12] px-2 py-0.5 text-white" style={{ backgroundColor: workspaceAccent }}>{Math.round(progress * 100)}%</span>
               </div>
-              <div className="mt-2 h-2.5 overflow-hidden rounded-full bg-surface">
+              <div className="mt-2 h-3 overflow-hidden rounded-full border-2 border-[#0F0F12] bg-white p-[1px]" role="progressbar" aria-label={t.workspace.progress(Math.round(progress * 100))} aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(progress * 100)}>
                 <div
-                  className="h-full rounded-full bg-primary transition-[width] duration-200 ease-out"
-                  style={{ width: `${Math.round(progress * 100)}%` }}
+                  className="h-full rounded-full transition-[width] duration-200 ease-out"
+                  style={{ width: `${Math.round(progress * 100)}%`, backgroundColor: workspaceAccent }}
                 />
               </div>
             </div>
