@@ -194,7 +194,7 @@ export function BlankPagesGuide({ locale, guide }: GuideArticleProps) {
               action={
                 <Link
                   to={toolPath(locale, "eliminar-paginas-pdf")}
-                  className="inline-flex items-center gap-1.5 text-[14px] font-semibold text-[#EC3C2D] hover:underline"
+                  className="inline-flex items-center gap-1.5 text-[14px] font-semibold text-[#C9302C] hover:underline"
                 >
                   <Trash2 className="size-4" />
                   <span>

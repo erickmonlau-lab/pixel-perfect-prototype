@@ -221,7 +221,7 @@ export function FillAndSignGuide({ locale, guide }: GuideArticleProps) {
               action={
                 <Link
                   to={toolPath(locale, "aplanar-pdf")}
-                  className="inline-flex items-center gap-1.5 text-[14px] font-semibold text-[#EC3C2D] hover:underline"
+                  className="inline-flex items-center gap-1.5 text-[14px] font-semibold text-[#C9302C] hover:underline"
                 >
                   <span>
                     {isCa
@@ -256,7 +256,7 @@ export function FillAndSignGuide({ locale, guide }: GuideArticleProps) {
 
           <div className="mt-4 space-y-3 text-[14px]">
             <div className="flex items-start gap-3 rounded-2xl border border-red-200 bg-red-50/70 p-4 text-red-950">
-              <AlertTriangle className="size-4.5 text-[#EC3C2D] shrink-0 mt-0.5" />
+              <AlertTriangle className="size-4.5 text-[#C9302C] shrink-0 mt-0.5" />
               <div>
                 <strong className="font-semibold">
                   {isCa
@@ -275,7 +275,7 @@ export function FillAndSignGuide({ locale, guide }: GuideArticleProps) {
               </div>
             </div>
             <div className="flex items-start gap-3 rounded-2xl border border-red-200 bg-red-50/70 p-4 text-red-950">
-              <AlertTriangle className="size-4.5 text-[#EC3C2D] shrink-0 mt-0.5" />
+              <AlertTriangle className="size-4.5 text-[#C9302C] shrink-0 mt-0.5" />
               <div>
                 <strong className="font-semibold">
                   {isCa

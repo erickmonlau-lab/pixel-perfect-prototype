@@ -21,7 +21,7 @@
 }
 
 .webp-comparison__panel--optimized {
-  border-top: 6px solid #f13b32;
+  border-top: 6px solid #C9302C;
   background: #fff;
 }
 
@@ -44,7 +44,7 @@
 }
 
 .webp-comparison__eyebrow--optimized {
-  background: #f13b32;
+  background: #C9302C;
   color: #fff;
 }
 
@@ -86,7 +86,7 @@
 }
 
 .webp-comparison__panel--optimized .webp-comparison__file-icon {
-  color: #f13b32;
+  color: #C9302C;
 }
 
 .webp-comparison .webp-comparison__metric strong {
@@ -101,7 +101,7 @@
 }
 
 .webp-comparison__panel--optimized .webp-comparison__metric strong {
-  color: #f13b32;
+  color: #C9302C;
 }
 
 .webp-comparison__panel > .webp-comparison__note {
@@ -125,7 +125,7 @@
   padding: 0.65rem;
   border: 2px solid #0f0f12;
   border-radius: 999px;
-  background: #f13b32;
+  background: #C9302C;
   box-shadow: 3px 3px 0 #0f0f12;
   stroke-width: 3;
 }
@@ -201,7 +201,7 @@
 }
 
 .webp-hero-visual__format--webp {
-  background: #f13b32;
+  background: #C9302C;
   color: #fff;
 }
 
@@ -249,7 +249,7 @@
   place-items: center;
   border: 2px solid #171717;
   border-radius: 0.7rem;
-  background: #f13b32;
+  background: #C9302C;
   color: #fff;
 }
 
@@ -292,7 +292,7 @@
   flex: 0 0 2.2rem;
   place-items: center;
   border-radius: 0.55rem;
-  background: #f13b32;
+  background: #C9302C;
   color: #fff;
 }
 
@@ -347,7 +347,7 @@
   padding: clamp(1.25rem, 3vw, 2rem);
   border: 2px solid #0f0f12;
   border-radius: 1.1rem;
-  background: #f13b32;
+  background: #C9302C;
   box-shadow: 4px 4px 0 #171717;
 }
 

@@ -137,7 +137,7 @@ export function OcrSearchableGuide({ locale, guide }: GuideArticleProps) {
           <div className="mt-5 grid sm:grid-cols-3 gap-3.5 text-[14px]">
             <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
               <div className="flex items-center gap-2 font-bold text-slate-900">
-                <Search className="size-4 text-[#EC3C2D]" />
+                <Search className="size-4 text-[#C9302C]" />
                 <span>1. Prova amb Ctrl + F</span>
               </div>
               <p className="mt-2 text-[13px] text-slate-600 leading-relaxed">
@@ -151,7 +151,7 @@ export function OcrSearchableGuide({ locale, guide }: GuideArticleProps) {
 
             <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
               <div className="flex items-center gap-2 font-bold text-slate-900">
-                <FileText className="size-4 text-[#EC3C2D]" />
+                <FileText className="size-4 text-[#C9302C]" />
                 <span>2. Selecció amb cursor</span>
               </div>
               <p className="mt-2 text-[13px] text-slate-600 leading-relaxed">
@@ -165,7 +165,7 @@ export function OcrSearchableGuide({ locale, guide }: GuideArticleProps) {
 
             <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
               <div className="flex items-center gap-2 font-bold text-slate-900">
-                <Layers className="size-4 text-[#EC3C2D]" />
+                <Layers className="size-4 text-[#C9302C]" />
                 <span>3. Copiar al porta-retalls</span>
               </div>
               <p className="mt-2 text-[13px] text-slate-600 leading-relaxed">
@@ -205,7 +205,7 @@ export function OcrSearchableGuide({ locale, guide }: GuideArticleProps) {
               </p>
             </div>
             <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-              <span className="text-xs font-mono font-bold text-[#EC3C2D]">PAS 2</span>
+              <span className="text-xs font-mono font-bold text-[#C9302C]">PAS 2</span>
               <h4 className="font-bold text-slate-900 mt-1">Anàlisi de glifs</h4>
               <p className="text-slate-500 text-xs mt-1">
                 Detecció de formes, línies i separació de paraules.
@@ -338,7 +338,7 @@ export function OcrSearchableGuide({ locale, guide }: GuideArticleProps) {
             >
               <div className="space-y-2 text-[13.5px] text-slate-700 mt-2">
                 <div className="flex items-center gap-2.5 rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2.5">
-                  <span className="font-bold text-[#EC3C2D]">✓</span>
+                  <span className="font-bold text-[#C9302C]">✓</span>
                   <span>
                     {isCa
                       ? "Ctrl+F troba paraules clau a diferents pàgines del document"
@@ -348,7 +348,7 @@ export function OcrSearchableGuide({ locale, guide }: GuideArticleProps) {
                   </span>
                 </div>
                 <div className="flex items-center gap-2.5 rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2.5">
-                  <span className="font-bold text-[#EC3C2D]">✓</span>
+                  <span className="font-bold text-[#C9302C]">✓</span>
                   <span>
                     {isCa
                       ? "El text es pot seleccionar netament amb el ratolí línia per línia"
@@ -358,7 +358,7 @@ export function OcrSearchableGuide({ locale, guide }: GuideArticleProps) {
                   </span>
                 </div>
                 <div className="flex items-center gap-2.5 rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2.5">
-                  <span className="font-bold text-[#EC3C2D]">✓</span>
+                  <span className="font-bold text-[#C9302C]">✓</span>
                   <span>
                     {isCa
                       ? "El text copiat i enganxat conserva els caràcters accentuats i la lletra 'ç' o 'ñ'"
@@ -368,7 +368,7 @@ export function OcrSearchableGuide({ locale, guide }: GuideArticleProps) {
                   </span>
                 </div>
                 <div className="flex items-center gap-2.5 rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2.5">
-                  <span className="font-bold text-[#EC3C2D]">✓</span>
+                  <span className="font-bold text-[#C9302C]">✓</span>
                   <span>
                     {isCa
                       ? "La imatge de fons no ha sofert distorsió i manté la resolució d'origen"
@@ -465,7 +465,7 @@ export function OcrSearchableGuide({ locale, guide }: GuideArticleProps) {
                   <td className="py-3.5 px-4 font-semibold text-slate-900">
                     Llibre o article d'arxiu escanejat
                   </td>
-                  <td className="py-3.5 px-4 text-[#EC3C2D] font-semibold">
+                  <td className="py-3.5 px-4 text-[#C9302C] font-semibold">
                     Rotar PDF → OCR de PDF
                   </td>
                   <td className="py-3.5 px-4">
@@ -476,7 +476,7 @@ export function OcrSearchableGuide({ locale, guide }: GuideArticleProps) {
                   <td className="py-3.5 px-4 font-semibold text-slate-900">
                     Apunts de classe impresos
                   </td>
-                  <td className="py-3.5 px-4 text-[#EC3C2D] font-semibold">
+                  <td className="py-3.5 px-4 text-[#C9302C] font-semibold">
                     OCR de PDF → Extraer texto (.txt)
                   </td>
                   <td className="py-3.5 px-4">Copiar resums a Word o processadors d'apunts.</td>
@@ -485,7 +485,7 @@ export function OcrSearchableGuide({ locale, guide }: GuideArticleProps) {
                   <td className="py-3.5 px-4 font-semibold text-slate-900">
                     Factura o balanç en paper escanejat
                   </td>
-                  <td className="py-3.5 px-4 text-[#EC3C2D] font-semibold">
+                  <td className="py-3.5 px-4 text-[#C9302C] font-semibold">
                     OCR de PDF → PDF a Excel
                   </td>
                   <td className="py-3.5 px-4">Estructurar columnes i auditar xifres amb sumes.</td>
@@ -494,7 +494,7 @@ export function OcrSearchableGuide({ locale, guide }: GuideArticleProps) {
                   <td className="py-3.5 px-4 font-semibold text-slate-900">
                     Expedient jurídic o administratiu
                   </td>
-                  <td className="py-3.5 px-4 text-[#EC3C2D] font-semibold">
+                  <td className="py-3.5 px-4 text-[#C9302C] font-semibold">
                     OCR de PDF + Comprovació ocular
                   </td>
                   <td className="py-3.5 px-4">Localitzar antecedents i números de procediment.</td>

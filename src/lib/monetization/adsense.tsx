@@ -89,6 +89,7 @@ export function AdSlot({ slotType, slotId, className = '' }: AdPlacementProps) {
     <div
       className={`mx-auto w-full max-w-5xl my-8 overflow-hidden rounded-xl bg-slate-50/40 p-2 text-center ${className}`}
       style={{ minHeight: SLOT_DIMENSIONS[slotType].minHeight }}
+      role="region"
       aria-label={SLOT_DIMENSIONS[slotType].label}
     >
       <ins

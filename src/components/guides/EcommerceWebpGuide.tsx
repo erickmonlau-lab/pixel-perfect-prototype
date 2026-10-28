@@ -416,7 +416,7 @@ export function EcommerceWebpGuide({ locale, guide }: GuideArticleProps) {
                   <th
                     scope="row"
                     data-label={isCa ? "Format" : isEn ? "Format" : "Formato"}
-                    className="px-5 py-3.5 font-black text-[#F13B32]"
+                    className="px-5 py-3.5 font-black text-[#C9302C]"
                   >
                     WebP
                   </th>

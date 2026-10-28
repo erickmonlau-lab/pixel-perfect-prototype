@@ -667,7 +667,7 @@ export function CampusUploadGuide({ locale, guide }: GuideArticleProps) {
                   <td className="px-5 py-3">
                     <Link
                       to={toolPath(locale, "comprimir-pdf")}
-                      className="font-semibold text-[#EC3C2D] hover:underline"
+                      className="font-semibold text-[#C9302C] hover:underline"
                     >
                       {isCa ? "Comprimir PDF" : isEn ? "Compress PDF" : "Comprimir PDF"}
                     </Link>
@@ -691,7 +691,7 @@ export function CampusUploadGuide({ locale, guide }: GuideArticleProps) {
                   <td className="px-5 py-3">
                     <Link
                       to={toolPath(locale, "dividir-pdf-por-tamano")}
-                      className="font-semibold text-[#EC3C2D] hover:underline"
+                      className="font-semibold text-[#C9302C] hover:underline"
                     >
                       {isCa
                         ? "Dividir PDF per mida"
@@ -719,7 +719,7 @@ export function CampusUploadGuide({ locale, guide }: GuideArticleProps) {
                   <td className="px-5 py-3">
                     <Link
                       to={toolPath(locale, "eliminar-paginas-pdf")}
-                      className="font-semibold text-[#EC3C2D] hover:underline"
+                      className="font-semibold text-[#C9302C] hover:underline"
                     >
                       {isCa ? "Eliminar pàgines" : isEn ? "Delete Pages" : "Eliminar páginas"}
                     </Link>
@@ -743,7 +743,7 @@ export function CampusUploadGuide({ locale, guide }: GuideArticleProps) {
                   <td className="px-5 py-3">
                     <Link
                       to={toolPath(locale, "eliminar-paginas-en-blanco")}
-                      className="font-semibold text-[#EC3C2D] hover:underline"
+                      className="font-semibold text-[#C9302C] hover:underline"
                     >
                       {isCa
                         ? "Eliminar pàgines en blanc"

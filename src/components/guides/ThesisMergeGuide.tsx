@@ -228,7 +228,7 @@ export function ThesisMergeGuide({ locale, guide }: GuideArticleProps) {
               action={
                 <Link
                   to={toolPath(locale, "word-a-pdf")}
-                  className="inline-flex items-center gap-1.5 text-[15px] font-black text-[#EC3C2D] hover:underline"
+                  className="inline-flex items-center gap-1.5 text-[15px] font-black text-[#C9302C] hover:underline"
                 >
                   <FileText className="size-4.5" />
                   {isCa
@@ -259,7 +259,7 @@ export function ThesisMergeGuide({ locale, guide }: GuideArticleProps) {
               action={
                 <Link
                   to={toolPath(locale, "jpg-a-pdf")}
-                  className="inline-flex items-center gap-1.5 text-[15px] font-black text-[#EC3C2D] hover:underline"
+                  className="inline-flex items-center gap-1.5 text-[15px] font-black text-[#C9302C] hover:underline"
                 >
                   <FileSpreadsheet className="size-4.5" />
                   {isCa
@@ -337,7 +337,7 @@ export function ThesisMergeGuide({ locale, guide }: GuideArticleProps) {
               action={
                 <Link
                   to={toolPath(locale, "numerar-paginas")}
-                  className="inline-flex items-center gap-1.5 text-[15px] font-black text-[#EC3C2D] hover:underline"
+                  className="inline-flex items-center gap-1.5 text-[15px] font-black text-[#C9302C] hover:underline"
                 >
                   <Hash className="size-4.5" />
                   {isCa
@@ -477,7 +477,7 @@ export function ThesisMergeGuide({ locale, guide }: GuideArticleProps) {
           <div className="mt-5 grid gap-4 sm:grid-cols-2 text-[15px] sm:text-[15.5px]">
             <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
               <div className="flex items-center gap-2.5 text-[#0F172A] font-black text-[17px] sm:text-[18px]">
-                <FileDown className="size-5.5 text-[#EC3C2D]" />
+                <FileDown className="size-5.5 text-[#C9302C]" />
                 {isCa
                   ? "El PDF supera la quota del campus"
                   : isEn
@@ -492,7 +492,7 @@ export function ThesisMergeGuide({ locale, guide }: GuideArticleProps) {
                     : "Las gráficas o fotos de anexos pueden disparar el peso por encima de los 25 o 50 MB permitidos. Utiliza "}
                 <Link
                   to={toolPath(locale, "comprimir-pdf")}
-                  className="font-bold text-[#EC3C2D] underline"
+                  className="font-bold text-[#C9302C] underline"
                 >
                   {isCa ? "Comprimir PDF" : isEn ? "Compress PDF" : "Comprimir PDF"}
                 </Link>{" "}

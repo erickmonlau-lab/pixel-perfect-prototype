@@ -37,7 +37,7 @@
   flex: 0 0 auto;
   align-items: center;
   justify-content: center;
-  background: #f13b32;
+  background: #C9302C;
   color: #fff;
   border-radius: 0.65rem;
 }
@@ -67,7 +67,7 @@
 
 .campus-hero-visual__file-icon {
   flex: 0 0 auto;
-  color: #f13b32;
+  color: #C9302C;
   stroke-width: 2.25;
 }
 
@@ -82,7 +82,7 @@
   margin-left: auto;
   border-radius: 0.35rem;
   padding: 0.18rem 0.4rem;
-  background: #f13b32;
+  background: #C9302C;
   color: #fff;
   font-size: 0.68rem;
   font-weight: 900;
@@ -94,12 +94,12 @@
   gap: 0.55rem;
   margin-top: 1.15rem;
   padding-left: 0.7rem;
-  border-left: 3px solid #f13b32;
+  border-left: 3px solid #C9302C;
   color: #171717;
 }
 
 .campus-hero-visual__warning > svg {
-  color: #f13b32;
+  color: #C9302C;
 }
 
 .campus-hero-visual__warning span {
@@ -146,7 +146,7 @@
 
 .campus-hero-visual__solution svg {
   flex: 0 0 auto;
-  color: #f13b32;
+  color: #C9302C;
   stroke-width: 2.25;
 }
 
@@ -169,7 +169,7 @@
   border: 1.5px solid #171717;
   border-radius: 999px;
   padding: 0.28rem 0.65rem;
-  background: #f13b32;
+  background: #C9302C;
   color: #fff;
   font-size: 0.75rem;
   font-weight: 900;
@@ -208,7 +208,7 @@
 }
 
 .campus-diagnostic__choice--recommended {
-  border-left: 6px solid #f13b32;
+  border-left: 6px solid #C9302C;
 }
 
 .campus-diagnostic__icon,
@@ -220,7 +220,7 @@
   justify-content: center;
   border: 2px solid #171717;
   border-radius: 0.65rem;
-  background: #f13b32;
+  background: #C9302C;
   color: #fff;
 }
 
@@ -292,7 +292,7 @@
   min-width: 0;
   padding: 1rem;
   border: 1.5px solid #171717;
-  border-bottom: 4px solid #f13b32;
+  border-bottom: 4px solid #C9302C;
   border-radius: 0.8rem;
   background: #f7f8fa;
 }
@@ -347,7 +347,7 @@
   justify-content: center;
   border: 2px solid #171717;
   border-radius: 0.65rem;
-  background: #f13b32;
+  background: #C9302C;
   box-shadow: 2px 2px 0 #171717;
   color: #fff;
   font-size: 0.8rem;
@@ -413,7 +413,7 @@
 }
 
 .campus-option--recommended {
-  border-top: 6px solid #f13b32;
+  border-top: 6px solid #C9302C;
 }
 
 .campus-option__heading {
@@ -435,7 +435,7 @@
 }
 
 .campus-option__badge--secondary {
-  background: #f13b32;
+  background: #C9302C;
 }
 
 .campus-option__heading > div {
@@ -463,7 +463,7 @@
   padding: 0.85rem 1rem;
   border: 2px solid #171717;
   border-radius: 0.75rem;
-  background: #f13b32;
+  background: #C9302C;
   color: #fff;
 }
 
@@ -529,7 +529,7 @@
 }
 
 .campus-decision__eyebrow {
-  background: #f13b32;
+  background: #C9302C;
 }
 
 .campus-guide .campus-decision .campus-section__title {
@@ -561,7 +561,7 @@
   justify-content: center;
   border: 2px solid #171717;
   border-radius: 0.75rem;
-  background: #f13b32;
+  background: #C9302C;
   box-shadow: 2px 2px 0 #171717;
   color: #fff;
 }
@@ -593,7 +593,7 @@
   height: 1.9rem;
   justify-self: center;
   align-self: center;
-  color: #f13b32;
+  color: #C9302C;
   stroke-width: 3;
   transform: rotate(90deg);
 }

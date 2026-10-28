@@ -36,25 +36,25 @@ export const CATEGORY_ACCENTS: Record<
     badgeBg: "bg-[#0F0F12]",
     badgeText: "text-white",
     badgeBorder: "border-[#0F0F12]",
-    iconText: "text-[#EC3C2D]",
+    iconText: "text-[#C9302C]",
   },
   ecommerce: {
     badgeBg: "bg-[#0F0F12]",
     badgeText: "text-white",
     badgeBorder: "border-[#0F0F12]",
-    iconText: "text-[#EC3C2D]",
+    iconText: "text-[#C9302C]",
   },
   empresas: {
     badgeBg: "bg-[#0F0F12]",
     badgeText: "text-white",
     badgeBorder: "border-[#0F0F12]",
-    iconText: "text-[#EC3C2D]",
+    iconText: "text-[#C9302C]",
   },
   tecnica: {
     badgeBg: "bg-[#0F0F12]",
     badgeText: "text-white",
     badgeBorder: "border-[#0F0F12]",
-    iconText: "text-[#EC3C2D]",
+    iconText: "text-[#C9302C]",
   },
 };
 
@@ -95,7 +95,7 @@ export function GuideHero({
   const catAccent = CATEGORY_ACCENTS[guide.category as GuideCategory] || CATEGORY_ACCENTS.educacion;
   const badgeColors =
     badgeVariant === "brand"
-      ? "bg-[#F13B32] border-[#0F0F12] text-white"
+      ? "bg-[#C9302C] border-[#0F0F12] text-white"
       : `${catAccent.badgeBg} ${catAccent.badgeBorder} ${catAccent.badgeText}`;
 
   const guidesLabel = isCa ? "Guies" : isEn ? "Guides" : "Guías";
@@ -241,7 +241,7 @@ export function GuideInfographic({ src, alt, caption, borderless = false }: Guid
           <div className="grid sm:grid-cols-2 gap-6">
             <div className="rounded-2xl border-2 border-[#0F0F12] bg-white p-6 shadow-[3px_3px_0_#0F0F12]">
               <div className="flex items-center gap-3 mb-3">
-                <span className="size-8 rounded-lg border-2 border-[#0F0F12] bg-[#EC3C2D] text-white flex items-center justify-center font-black text-sm shadow-[1px_1px_0_#0F0F12]">
+                <span className="size-8 rounded-lg border-2 border-[#0F0F12] bg-[#C9302C] text-white flex items-center justify-center font-black text-sm shadow-[1px_1px_0_#0F0F12]">
                   1
                 </span>
                 <h5 className="font-black text-[18px] text-[#0F0F12]">
@@ -319,7 +319,7 @@ export function GuideCallout({
     >
       {title && (
         <div className={`mb-2 flex items-center gap-2.5 font-black text-[16px] ${titleStyles}`}>
-          {icon || <Info className="size-5 shrink-0 text-[#F13B32]" />}
+          {icon || <Info className="size-5 shrink-0 text-[#C9302C]" />}
           <span>{title}</span>
         </div>
       )}
@@ -345,7 +345,7 @@ export function GuideStep({ stepNumber, title, children, action }: GuideStepProp
 
   return (
     <div className="my-5 flex gap-4 items-start">
-      <span className="flex size-8 items-center justify-center rounded-lg border-2 border-[#171717] bg-[#F13B32] text-[13px] font-black text-white shrink-0 mt-0.5 shadow-[2px_2px_0_#171717]">
+      <span className="flex size-8 items-center justify-center rounded-lg border-2 border-[#171717] bg-[#C9302C] text-[13px] font-black text-white shrink-0 mt-0.5 shadow-[2px_2px_0_#171717]">
         {formattedNumber}
       </span>
       <div className="flex-1 min-w-0 border-l-2 border-[#171717] pl-4 pb-1">
@@ -401,7 +401,7 @@ export function GuideCTA({
       <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
         <div className="min-w-0">
           {eyebrow && (
-            <span className="inline-block text-[11px] font-black uppercase tracking-wider text-[#EC3C2D] mb-1">
+            <span className="inline-block text-[11px] font-black uppercase tracking-wider text-[#C9302C] mb-1">
               {eyebrow}
             </span>
           )}
@@ -418,7 +418,7 @@ export function GuideCTA({
         </div>
         <Link
           to={href}
-          className="shrink-0 inline-flex items-center gap-2 rounded-xl border-2 border-[#0F0F12] bg-[#EC3C2D] text-white hover:bg-[#D93426] min-h-[44px] px-5 py-2.5 text-[14.5px] font-black shadow-[3px_3px_0_#0F0F12] transition-all hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0_#0F0F12] whitespace-nowrap"
+          className="shrink-0 inline-flex items-center gap-2 rounded-xl border-2 border-[#0F0F12] bg-[#C9302C] text-white hover:bg-[#D93426] min-h-[44px] px-5 py-2.5 text-[14.5px] font-black shadow-[3px_3px_0_#0F0F12] transition-all hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0_#0F0F12] whitespace-nowrap"
         >
           {icon}
           <span>{buttonText}</span>
@@ -532,14 +532,14 @@ export function GuideMascotCallout({
         <div className={`min-w-0 flex-1 ${compact ? "text-left" : "text-center sm:text-left"}`}>
           {badge && (
             <span
-              className={`mb-1.5 inline-block text-[11px] font-black uppercase tracking-[0.12em] text-[#EC3C2D] ${
+              className={`mb-1.5 inline-block text-[11px] font-black uppercase tracking-[0.12em] text-[#C9302C] ${
                 compact ? "guide-mascot-callout__badge" : ""
               }`}
             >
               {badge}
             </span>
           )}
-          <h4
+          <h3
             className={`font-black leading-snug tracking-tight ${
               compact
                 ? "guide-mascot-callout__title text-[19px] sm:text-[22px]"
@@ -547,7 +547,7 @@ export function GuideMascotCallout({
             }`}
           >
             {title}
-          </h4>
+          </h3>
           <p
             className={`mt-1.5 text-[15px] font-normal leading-relaxed text-slate-700 sm:text-[16px] ${
               compact ? "guide-mascot-callout__description" : ""
@@ -584,7 +584,7 @@ export function GuideFAQ({ title, faqs }: GuideFAQProps) {
         id="faq-section-title"
         className="flex items-center gap-2.5 text-[26px] font-black tracking-tight text-[#0F0F12] sm:text-[32px]"
       >
-        <HelpCircle className="size-6 shrink-0 text-[#EC3C2D]" />
+        <HelpCircle className="size-6 shrink-0 text-[#C9302C]" />
         <span>{title}</span>
       </h2>
       <div className="guide-faq__list mt-6 overflow-hidden border-2 border-[#171717] bg-white">
@@ -711,10 +711,10 @@ export function GuideFooterSources({
   return (
     <footer className="mt-14 border-t border-slate-200 py-6 sm:py-8">
       <div className="mb-3 flex items-center gap-2.5">
-        <BookOpen className="size-5 shrink-0 text-[#EC3C2D]" />
-        <h4 className="font-black text-[#0F0F12] text-[19px] sm:text-[21px] tracking-tight">
+        <BookOpen className="size-5 shrink-0 text-[#C9302C]" />
+        <h3 className="font-black text-[#0F0F12] text-[19px] sm:text-[21px] tracking-tight">
           {title}
-        </h4>
+        </h3>
       </div>
       <div className="space-y-2 text-[14.5px] font-normal leading-relaxed text-slate-700 sm:text-[15.5px]">
         {children}

@@ -733,6 +733,7 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
               accept={tool.accept}
               multiple={tool.multiple}
               className="sr-only"
+              aria-label={`${tool.name}: ${tool.multiple ? t.workspace.selectMany : t.workspace.selectOne}`}
               onClick={(e) => e.stopPropagation()}
               onChange={(event) => { addFiles(event.target.files); event.target.value = ""; }}
             />

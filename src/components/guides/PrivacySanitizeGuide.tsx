@@ -121,7 +121,7 @@ export function PrivacySanitizeGuide({ locale, guide }: GuideArticleProps) {
 
           <div className="mt-5 grid sm:grid-cols-2 gap-3.5 text-[14px]">
             <div className="flex items-start gap-2.5 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm text-slate-800">
-              <CheckCircle2 className="size-4 text-[#EC3C2D] shrink-0 mt-0.5" />
+              <CheckCircle2 className="size-4 text-[#C9302C] shrink-0 mt-0.5" />
               <div>
                 <strong className="font-semibold">
                   {isCa
@@ -134,7 +134,7 @@ export function PrivacySanitizeGuide({ locale, guide }: GuideArticleProps) {
               </div>
             </div>
             <div className="flex items-start gap-2.5 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm text-slate-800">
-              <CheckCircle2 className="size-4 text-[#EC3C2D] shrink-0 mt-0.5" />
+              <CheckCircle2 className="size-4 text-[#C9302C] shrink-0 mt-0.5" />
               <div>
                 <strong className="font-semibold">
                   {isCa
@@ -147,7 +147,7 @@ export function PrivacySanitizeGuide({ locale, guide }: GuideArticleProps) {
               </div>
             </div>
             <div className="flex items-start gap-2.5 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm text-slate-800">
-              <CheckCircle2 className="size-4 text-[#EC3C2D] shrink-0 mt-0.5" />
+              <CheckCircle2 className="size-4 text-[#C9302C] shrink-0 mt-0.5" />
               <div>
                 <strong className="font-semibold">
                   {isCa
@@ -160,7 +160,7 @@ export function PrivacySanitizeGuide({ locale, guide }: GuideArticleProps) {
               </div>
             </div>
             <div className="flex items-start gap-2.5 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm text-slate-800">
-              <CheckCircle2 className="size-4 text-[#EC3C2D] shrink-0 mt-0.5" />
+              <CheckCircle2 className="size-4 text-[#C9302C] shrink-0 mt-0.5" />
               <div>
                 <strong className="font-semibold">
                   {isCa
@@ -284,7 +284,7 @@ export function PrivacySanitizeGuide({ locale, guide }: GuideArticleProps) {
               action={
                 <Link
                   to={toolPath(locale, "sanear-pdf")}
-                  className="inline-flex items-center gap-1.5 text-[14px] font-semibold text-[#EC3C2D] hover:underline"
+                  className="inline-flex items-center gap-1.5 text-[14px] font-semibold text-[#C9302C] hover:underline"
                 >
                   <ShieldOff className="size-4" />
                   {isCa

@@ -125,21 +125,21 @@ export function WordPressUploadGuide({ locale, guide }: GuideArticleProps) {
 
           <div className="mt-5 grid gap-3 sm:grid-cols-3 text-[14.5px]">
             <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-              <span className="font-mono text-xs font-bold text-[#EC3C2D]">DIRECTIVA 1</span>
+              <span className="font-mono text-xs font-bold text-[#C9302C]">DIRECTIVA 1</span>
               <h3 className="font-mono font-bold text-[#0F172A] mt-1">upload_max_filesize</h3>
               <p className="text-slate-600 text-[13px] mt-1">
                 El pes individual màxim permès per a un sol fitxer.
               </p>
             </div>
             <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-              <span className="font-mono text-xs font-bold text-[#EC3C2D]">DIRECTIVA 2</span>
+              <span className="font-mono text-xs font-bold text-[#C9302C]">DIRECTIVA 2</span>
               <h3 className="font-mono font-bold text-[#0F172A] mt-1">post_max_size</h3>
               <p className="text-slate-600 text-[13px] mt-1">
                 La mida màxima de tota la petició HTTP POST conjunta.
               </p>
             </div>
             <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-              <span className="font-mono text-xs font-bold text-[#EC3C2D]">DIRECTIVA 3</span>
+              <span className="font-mono text-xs font-bold text-[#C9302C]">DIRECTIVA 3</span>
               <h3 className="font-mono font-bold text-[#0F172A] mt-1">memory_limit</h3>
               <p className="text-slate-600 text-[13px] mt-1">
                 Memòria RAM assignada a PHP per processar i reescalar fotos.
@@ -257,7 +257,7 @@ export function WordPressUploadGuide({ locale, guide }: GuideArticleProps) {
                         ? "Inspect pixel canvas and format"
                         : "Comprobar píxeles y formato"}
                   </td>
-                  <td className="p-3.5 text-[#EC3C2D] font-semibold">
+                  <td className="p-3.5 text-[#C9302C] font-semibold">
                     <Link to={toolPath(locale, "imagen-a-webp")}>
                       {isCa
                         ? "Convertir a WebP a BreadPDF"
@@ -282,7 +282,7 @@ export function WordPressUploadGuide({ locale, guide }: GuideArticleProps) {
                         ? "Check ceiling in Site Health"
                         : "Verificar límite en Salud del sitio"}
                   </td>
-                  <td className="p-3.5 text-[#EC3C2D] font-semibold">
+                  <td className="p-3.5 text-[#C9302C] font-semibold">
                     <Link to={toolPath(locale, "comprimir-pdf")}>
                       {isCa
                         ? "Comprimir PDF a BreadPDF"

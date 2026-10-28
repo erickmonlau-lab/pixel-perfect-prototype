@@ -417,7 +417,7 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
                     : "bg-white text-[#0F0F12] hover:bg-[#FEF08A]"
                 }`}
                 title={isFav ? t.tool.removeFavorite : t.tool.addFavorite}
-                aria-label={isFav ? t.tool.removeFavorite : t.tool.addFavorite}
+                aria-label={`${isFav ? t.tool.favorited : t.tool.favorite} — ${isFav ? t.tool.removeFavorite : t.tool.addFavorite}`}
               >
                 <Star className={`size-3.5 ${isFav ? "fill-[#0F0F12] text-[#0F0F12]" : "fill-transparent text-[#0F0F12] stroke-[2.5]"}`} />
                 <span>{isFav ? t.tool.favorited : t.tool.favorite}</span>
@@ -469,7 +469,7 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
                 className="group rounded-2xl border-2 border-[#0F0F12] bg-white p-5 sm:p-6 shadow-[3px_3px_0_#0F0F12] flex flex-col justify-start transition-all duration-120 hover:-translate-y-0.5"
               >
                 <div className="flex items-center gap-3">
-                  <span className="flex size-9 items-center justify-center rounded-xl border-2 border-[#0F0F12] bg-[#EC3C2D] text-white text-[15px] font-black shadow-[1.5px_1.5px_0_#0F0F12]">
+                  <span className="flex size-9 items-center justify-center rounded-xl border-2 border-[#0F0F12] bg-[#C9302C] text-white text-[15px] font-black shadow-[1.5px_1.5px_0_#0F0F12]">
                     0{index + 1}
                   </span>
                   {title && <h3 className="text-[17px] sm:text-[18px] font-black text-[#0F0F12] leading-snug">{title}</h3>}
@@ -498,7 +498,7 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
             <section className="mt-8 sm:mt-9" aria-labelledby="editorial-context">
               <div className="rounded-2xl border-2 border-[#0F0F12] bg-white p-4 sm:p-5 shadow-[3px_3px_0_#0F0F12]">
                 {/* Etiqueta superior prominente con icono técnico de ajuste */}
-                <div className="inline-flex items-center gap-2 rounded-lg border-2 border-[#0F0F12] bg-[#EC3C2D] px-3 py-1 text-[11px] sm:text-[12px] font-black uppercase tracking-wide text-white shadow-[2px_2px_0_#0F0F12]">
+                <div className="inline-flex items-center gap-2 rounded-lg border-2 border-[#0F0F12] bg-[#C9302C] px-3 py-1 text-[11px] sm:text-[12px] font-black uppercase tracking-wide text-white shadow-[2px_2px_0_#0F0F12]">
                   <SlidersHorizontal className="size-4" />
                   <span>{eyebrow}</span>
                 </div>
@@ -517,7 +517,7 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
                 <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-3 pt-4 border-t-2 border-slate-100">
                   <div className={`rounded-xl border-2 border-[#0F0F12] ${accent.iconBg} ${accent.icon} p-3.5 shadow-[2px_2px_0_#0F0F12] flex flex-col justify-start`}>
                     <div className="flex items-center gap-2.5">
-                      <span className="size-7 rounded-lg bg-[#EC3C2D] text-white flex items-center justify-center font-black text-[14px] border border-[#0F0F12] shadow-[1px_1px_0_#0F0F12]">
+                      <span className="size-7 rounded-lg bg-[#C9302C] text-white flex items-center justify-center font-black text-[14px] border border-[#0F0F12] shadow-[1px_1px_0_#0F0F12]">
                         ✓
                       </span>
                       <h3 className="text-[16px] sm:text-[17px] font-black text-white">
@@ -610,10 +610,10 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
           <section className="mt-10 sm:mt-12" aria-labelledby="editorial-context">
             <div className="rounded-2xl border-2 border-[#0F0F12] bg-white p-6 sm:p-8 shadow-[4px_4px_0_#0F0F12]">
               <div className="flex items-center gap-2.5">
-                <span className="flex size-9 items-center justify-center rounded-lg border-2 border-[#0F0F12] bg-[#EC3C2D] text-white shadow-[2px_2px_0_#0F0F12]">
+                <span className="flex size-9 items-center justify-center rounded-lg border-2 border-[#0F0F12] bg-[#C9302C] text-white shadow-[2px_2px_0_#0F0F12]">
                   <SlidersHorizontal className="size-5" />
                 </span>
-                <span className="inline-flex items-center rounded-md border-2 border-[#0F0F12] bg-[#EC3C2D] px-3 py-1 text-[12.5px] sm:text-[13px] font-black uppercase tracking-wider text-white shadow-[2px_2px_0_#0F0F12]">
+                <span className="inline-flex items-center rounded-md border-2 border-[#0F0F12] bg-[#C9302C] px-3 py-1 text-[12.5px] sm:text-[13px] font-black uppercase tracking-wider text-white shadow-[2px_2px_0_#0F0F12]">
                   {locale === "ca"
                     ? "Criteris tècnics & Aplicació documental"
                     : locale === "en"
@@ -679,7 +679,7 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
             >
               <summary className="flex cursor-pointer items-center justify-between text-[16.5px] sm:text-[17.5px] font-black text-[#0F0F12] select-none list-none [&::-webkit-details-marker]:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0F0F12] rounded-lg">
                 <span className="pr-4 leading-snug">{item.q}</span>
-                <span className="shrink-0 rounded-lg border-2 border-[#0F0F12] bg-[#F1F2F4] text-[#0F0F12] p-1.5 shadow-[1px_1px_0_#0F0F12] group-hover:bg-[#E4E6EA] group-open:bg-[#EC3C2D] group-open:text-white group-open:shadow-[1px_1px_0_#0F0F12] transition-all duration-200 group-open:rotate-180">
+                <span className="shrink-0 rounded-lg border-2 border-[#0F0F12] bg-[#F1F2F4] text-[#0F0F12] p-1.5 shadow-[1px_1px_0_#0F0F12] group-hover:bg-[#E4E6EA] group-open:bg-[#C9302C] group-open:text-white group-open:shadow-[1px_1px_0_#0F0F12] transition-all duration-200 group-open:rotate-180">
                   <ChevronRight className="size-4 rotate-90 stroke-[2.5]" />
                 </span>
               </summary>
@@ -703,10 +703,10 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
             className="group inline-flex items-center gap-2 rounded-xl border-2 border-[#0F0F12] bg-white px-5 py-2.5 text-[15px] font-black text-[#0F0F12] hover:bg-[#FEF08A] transition-all shadow-[3px_3px_0_#0F0F12] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0_#0F0F12] cursor-pointer"
             aria-label={
               locale === "ca"
-                ? "Veure el catàleg complet d'eines"
+                ? "Veure catàleg complet d'eines"
                 : locale === "en"
-                ? "View full tools catalog"
-                : "Ver el catálogo completo de herramientas"
+                ? "View full catalog of tools"
+                : "Ver catálogo completo de herramientas"
             }
           >
             <span>
@@ -733,11 +733,11 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
         >
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
             <div className="flex items-start gap-4">
-              <span className="flex size-12 shrink-0 items-center justify-center rounded-xl border-2 border-[#0F0F12] bg-[#EC3C2D] text-white shadow-[2px_2px_0_#0F0F12]">
+              <span className="flex size-12 shrink-0 items-center justify-center rounded-xl border-2 border-[#0F0F12] bg-[#C9302C] text-white shadow-[2px_2px_0_#0F0F12]">
                 <BookOpen className="size-6" />
               </span>
               <div>
-                <span className="inline-flex items-center rounded-md border-2 border-[#0F0F12] bg-[#EC3C2D] px-2.5 py-0.5 text-[12px] font-black uppercase tracking-wider text-white shadow-[2px_2px_0_#0F0F12]">
+                <span className="inline-flex items-center rounded-md border-2 border-[#0F0F12] bg-[#C9302C] px-2.5 py-0.5 text-[12px] font-black uppercase tracking-wider text-white shadow-[2px_2px_0_#0F0F12]">
                   {locale === "ca" ? "Guia Educativa" : locale === "en" ? "Academic Guide" : "Guía Educativa"}
                 </span>
                 <h3 className="text-[18px] sm:text-[19px] font-black text-[#0F0F12] mt-2">
@@ -758,7 +758,7 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
             </div>
             <Link
               to={`/${locale}/${SEGMENTS[locale].guides}/${guideSlugFor(locale, "reducir-pdf-limite-subida-campus-virtual")}` as any}
-              className="shrink-0 inline-flex items-center gap-2 rounded-xl border-2 border-[#0F0F12] bg-[#EC3C2D] hover:bg-[#D93426] px-6 py-3 text-[15px] font-black text-white shadow-[3px_3px_0_#0F0F12] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0_#0F0F12] transition-all cursor-pointer"
+              className="shrink-0 inline-flex items-center gap-2 rounded-xl border-2 border-[#0F0F12] bg-[#C9302C] hover:bg-[#D93426] px-6 py-3 text-[15px] font-black text-white shadow-[3px_3px_0_#0F0F12] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0_#0F0F12] transition-all cursor-pointer"
             >
               <span>{locale === "ca" ? "Llegir la guia" : locale === "en" ? "Read guide" : "Leer la guía"}</span>
             </Link>
@@ -799,7 +799,7 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
             </div>
             <Link
               to={`/${locale}/${SEGMENTS[locale].guides}/${guideSlugFor(locale, "webp-vs-jpg-png-tiendas-online")}` as any}
-              className="shrink-0 inline-flex items-center gap-2 rounded-xl border-2 border-[#0F0F12] bg-[#EC3C2D] hover:bg-[#D93426] px-6 py-3 text-[15px] font-black text-white shadow-[3px_3px_0_#0F0F12] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0_#0F0F12] transition-all cursor-pointer"
+              className="shrink-0 inline-flex items-center gap-2 rounded-xl border-2 border-[#0F0F12] bg-[#C9302C] hover:bg-[#D93426] px-6 py-3 text-[15px] font-black text-white shadow-[3px_3px_0_#0F0F12] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0_#0F0F12] transition-all cursor-pointer"
             >
               <span>{locale === "ca" ? "Llegir la guia" : locale === "en" ? "Read guide" : "Leer la guía"}</span>
             </Link>
@@ -855,7 +855,7 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
               <div className="mt-6 flex justify-center md:justify-start">
                 <Link
                   to={guidePath(locale, "unificar-memoria-anexos-portada-tfg-tfm")}
-                  className="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-[#0F0F12] bg-[#EC3C2D] hover:bg-[#D93426] px-7 py-3.5 text-[16px] font-black text-white shadow-[4px_4px_0_#0F0F12] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0_#0F0F12] transition-all cursor-pointer"
+                  className="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-[#0F0F12] bg-[#C9302C] hover:bg-[#D93426] px-7 py-3.5 text-[16px] font-black text-white shadow-[4px_4px_0_#0F0F12] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0_#0F0F12] transition-all cursor-pointer"
                 >
                   <span>{locale === "ca" ? "Llegir la guia" : locale === "en" ? "Read guide" : "Leer la guía"}</span>
                 </Link>
@@ -900,7 +900,7 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
             </div>
             <Link
               to={`/${locale}/${SEGMENTS[locale].guides}/${guideSlugFor(locale, "ocultar-datos-personales-pdf")}` as any}
-              className="shrink-0 inline-flex items-center gap-2 rounded-xl border-2 border-[#0F0F12] bg-[#EC3C2D] hover:bg-[#D93426] px-6 py-3 text-[15px] font-black text-white shadow-[3px_3px_0_#0F0F12] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0_#0F0F12] transition-all cursor-pointer"
+              className="shrink-0 inline-flex items-center gap-2 rounded-xl border-2 border-[#0F0F12] bg-[#C9302C] hover:bg-[#D93426] px-6 py-3 text-[15px] font-black text-white shadow-[3px_3px_0_#0F0F12] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0_#0F0F12] transition-all cursor-pointer"
             >
               <span>{locale === "ca" ? "Llegir la guia" : locale === "en" ? "Read guide" : "Leer la guía"}</span>
             </Link>
@@ -942,7 +942,7 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
             </div>
             <Link
               to={`/${locale}/${SEGMENTS[locale].guides}/${guideSlugFor(locale, "pasar-tablas-pdf-a-excel")}` as any}
-              className="shrink-0 inline-flex items-center gap-2 rounded-xl border-2 border-[#0F0F12] bg-[#EC3C2D] hover:bg-[#D93426] px-6 py-3 text-[15px] font-black text-white shadow-[3px_3px_0_#0F0F12] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0_#0F0F12] transition-all cursor-pointer"
+              className="shrink-0 inline-flex items-center gap-2 rounded-xl border-2 border-[#0F0F12] bg-[#C9302C] hover:bg-[#D93426] px-6 py-3 text-[15px] font-black text-white shadow-[3px_3px_0_#0F0F12] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0_#0F0F12] transition-all cursor-pointer"
             >
               <span>{locale === "ca" ? "Llegir la guia" : locale === "en" ? "Read guide" : "Leer la guía"}</span>
             </Link>
@@ -985,7 +985,7 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
             </div>
             <Link
               to={`/${locale}/${SEGMENTS[locale].guides}/${guideSlugFor(locale, "hacer-buscable-pdf-escaneado-ocr")}` as any}
-              className="shrink-0 inline-flex items-center gap-2 rounded-xl border-2 border-[#0F0F12] bg-[#EC3C2D] hover:bg-[#D93426] px-6 py-3 text-[15px] font-black text-white shadow-[3px_3px_0_#0F0F12] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0_#0F0F12] transition-all cursor-pointer"
+              className="shrink-0 inline-flex items-center gap-2 rounded-xl border-2 border-[#0F0F12] bg-[#C9302C] hover:bg-[#D93426] px-6 py-3 text-[15px] font-black text-white shadow-[3px_3px_0_#0F0F12] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0_#0F0F12] transition-all cursor-pointer"
             >
               <span>{locale === "ca" ? "Llegir la guia" : locale === "en" ? "Read guide" : "Leer la guía"}</span>
             </Link>
@@ -1028,7 +1028,7 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
             </div>
             <Link
               to={`/${locale}/${SEGMENTS[locale].guides}/${guideSlugFor(locale, "rellenar-y-firmar-formulario-pdf")}` as any}
-              className="shrink-0 inline-flex items-center gap-2 rounded-xl border-2 border-[#0F0F12] bg-[#EC3C2D] hover:bg-[#D93426] px-6 py-3 text-[15px] font-black text-white shadow-[3px_3px_0_#0F0F12] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0_#0F0F12] transition-all cursor-pointer"
+              className="shrink-0 inline-flex items-center gap-2 rounded-xl border-2 border-[#0F0F12] bg-[#C9302C] hover:bg-[#D93426] px-6 py-3 text-[15px] font-black text-white shadow-[3px_3px_0_#0F0F12] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0_#0F0F12] transition-all cursor-pointer"
             >
               <span>{locale === "ca" ? "Llegir la guia" : locale === "en" ? "Read guide" : "Leer la guía"}</span>
             </Link>
@@ -1071,7 +1071,7 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
             </div>
             <Link
               to={`/${locale}/${SEGMENTS[locale].guides}/${guideSlugFor(locale, "que-es-pdfa-cuando-convertir")}` as any}
-              className="shrink-0 inline-flex items-center gap-2 rounded-xl border-2 border-[#0F0F12] bg-[#EC3C2D] hover:bg-[#D93426] px-6 py-3 text-[15px] font-black text-white shadow-[3px_3px_0_#0F0F12] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0_#0F0F12] transition-all cursor-pointer"
+              className="shrink-0 inline-flex items-center gap-2 rounded-xl border-2 border-[#0F0F12] bg-[#C9302C] hover:bg-[#D93426] px-6 py-3 text-[15px] font-black text-white shadow-[3px_3px_0_#0F0F12] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0_#0F0F12] transition-all cursor-pointer"
             >
               <span>{locale === "ca" ? "Llegir la guia" : locale === "en" ? "Read guide" : "Leer la guía"}</span>
             </Link>
@@ -1112,7 +1112,7 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
             </div>
             <Link
               to={`/${locale}/${SEGMENTS[locale].guides}/${guideSlugFor(locale, "subir-archivos-grandes-wordpress-woocommerce")}` as any}
-              className="shrink-0 inline-flex items-center gap-2 rounded-xl border-2 border-[#0F0F12] bg-[#EC3C2D] hover:bg-[#D93426] px-6 py-3 text-[15px] font-black text-white shadow-[3px_3px_0_#0F0F12] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0_#0F0F12] transition-all cursor-pointer"
+              className="shrink-0 inline-flex items-center gap-2 rounded-xl border-2 border-[#0F0F12] bg-[#C9302C] hover:bg-[#D93426] px-6 py-3 text-[15px] font-black text-white shadow-[3px_3px_0_#0F0F12] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0_#0F0F12] transition-all cursor-pointer"
             >
               <span>{locale === "ca" ? "Llegir la guia" : locale === "en" ? "Read guide" : "Leer la guía"}</span>
             </Link>
@@ -1155,7 +1155,7 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
             </div>
             <Link
               to={`/${locale}/${SEGMENTS[locale].guides}/${guideSlugFor(locale, "eliminar-paginas-en-blanco-pdf-escaneado")}` as any}
-              className="shrink-0 inline-flex items-center gap-2 rounded-xl border-2 border-[#0F0F12] bg-[#EC3C2D] hover:bg-[#D93426] px-6 py-3 text-[15px] font-black text-white shadow-[3px_3px_0_#0F0F12] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0_#0F0F12] transition-all cursor-pointer"
+              className="shrink-0 inline-flex items-center gap-2 rounded-xl border-2 border-[#0F0F12] bg-[#C9302C] hover:bg-[#D93426] px-6 py-3 text-[15px] font-black text-white shadow-[3px_3px_0_#0F0F12] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0_#0F0F12] transition-all cursor-pointer"
             >
               <span>{locale === "ca" ? "Llegir la guia" : locale === "en" ? "Read guide" : "Leer la guía"}</span>
             </Link>
@@ -1164,11 +1164,11 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
       )}
 
       {/* 7. FINAL CATALOG CTA: Neo-Brutalist High-Impact with BreadPDF Mascot and Solid 8px Shadow */}
-      <section className="mt-10 mb-4 rounded-3xl border-3 border-[#0F0F12] bg-[#EC3C2D] p-8 sm:p-12 text-center shadow-[8px_8px_0_#0F0F12] text-white relative overflow-hidden">
+      <section className="mt-10 mb-4 rounded-3xl border-3 border-[#0F0F12] bg-[#C9302C] p-8 sm:p-12 text-center shadow-[8px_8px_0_#0F0F12] text-white relative overflow-hidden">
         <div className="relative max-w-3xl mx-auto z-10 flex flex-col md:flex-row items-center justify-between gap-8">
           <div className="flex-1 text-center md:text-left">
             <span className="inline-flex items-center gap-2 rounded-lg border-2 border-[#0F0F12] bg-white px-4 py-1.5 text-[13px] sm:text-[14px] font-black uppercase tracking-wider text-[#0F0F12] shadow-[2px_2px_0_#0F0F12]">
-              <span className="size-2 rounded-full bg-[#EC3C2D] shrink-0" />
+              <span className="size-2 rounded-full bg-[#C9302C] shrink-0" />
               <span>{tools.length} {locale === "ca" ? "EINES DISPONIBLES" : locale === "en" ? "AVAILABLE TOOLS" : "HERRAMIENTAS DISPONIBLES"}</span>
             </span>
 
@@ -1180,7 +1180,7 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
                 : "Explora todas las herramientas de BreadPDF"}
             </h2>
 
-            <p className="mt-3 text-[16px] sm:text-[17.5px] text-white/95 leading-relaxed font-semibold">
+            <p className="mt-3 text-[16px] sm:text-[17.5px] text-white leading-relaxed font-semibold">
               {locale === "ca"
                 ? "Troba la utilitat exacta per a cada tasca: conversió d'Office, extracció OCR, signatura, seguretat i molt més."
                 : locale === "en"
