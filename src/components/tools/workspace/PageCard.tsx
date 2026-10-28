@@ -12,6 +12,7 @@ import type {
 } from "./overlayTypes";
 
 type PageCardProps = {
+  accentColor: string;
   page: PageItem;
   document: PageWorkspaceDocument;
   displayIndex: number;
@@ -31,6 +32,7 @@ type PageCardProps = {
 };
 
 export function PageCard({
+  accentColor,
   page,
   document,
   displayIndex,
@@ -53,16 +55,19 @@ export function PageCard({
   return (
     <div
       draggable
-      style={{ animationDelay: `${Math.min(displayIndex * 55, 385)}ms` }}
       onDragStart={(e) => onDragStart(e, displayIndex)}
       onDragOver={(e) => onDragOver(e, displayIndex)}
       onDrop={(e) => onDrop(e, displayIndex)}
       onClick={() => onToggleSelect(page.id, true)}
-      className={`animate-page-detected group relative flex flex-col items-center rounded-2xl border-2 bg-white p-2.5 transition-all duration-200 cursor-pointer select-none ${
+      className={`animate-page-detected group relative flex flex-col items-center rounded-xl border-2 bg-white p-2 transition-all duration-200 cursor-pointer select-none ${
         isSelected
-          ? "border-[#0F0F12] bg-[#FFF1EF] shadow-[3px_3px_0_#EC3C2D] -translate-y-0.5"
-          : "border-[#0F0F12] shadow-[2px_2px_0_#0F0F12] hover:-translate-y-1 hover:bg-[#FFF9F7] hover:shadow-[3px_3px_0_#EC3C2D]"
+          ? "border-[#0F0F12] shadow-[3px_3px_0_var(--page-accent)] -translate-y-0.5"
+          : "border-[#0F0F12] shadow-[2px_2px_0_#0F0F12] hover:-translate-y-0.5 hover:shadow-[3px_3px_0_#0F0F12]"
       }`}
+      style={{
+        animationDelay: `${Math.min(displayIndex * 55, 385)}ms`,
+        ...(isSelected ? { boxShadow: `3px 3px 0 ${accentColor}` } : {}),
+      }}
     >
       {/* Top action bar: Selection badge + Grip */}
       <div className="mb-1.5 flex w-full items-center justify-between gap-1">
@@ -73,10 +78,11 @@ export function PageCard({
             onToggleSelect(page.id, true);
           }}
           title={isSelected ? t.workspace.deselectPage : t.workspace.selectPage}
-          className={`flex size-6 items-center justify-center rounded-lg border-2 border-[#0F0F12] text-[10px] font-black transition-all cursor-pointer ${
+          style={isSelected ? { backgroundColor: accentColor, borderColor: "#0F0F12" } : undefined}
+          className={`flex size-7 items-center justify-center rounded-lg border-2 border-[#0F0F12] text-[11px] font-black transition-all cursor-pointer ${
             isSelected
-              ? "bg-[#EC3C2D] text-white scale-105 shadow-[1px_1px_0_#0F0F12]"
-              : "bg-[#FEF08A] text-[#0F0F12] group-hover:bg-[#EC3C2D] group-hover:text-white"
+              ? "text-white scale-105 shadow-[1px_1px_0_#0F0F12]"
+              : "bg-white text-[#0F0F12]"
           }`}
         >
           {isSelected ? <Check className="size-3.5" /> : displayIndex + 1}
@@ -91,7 +97,7 @@ export function PageCard({
               e.stopPropagation();
               onRotate(page.id);
             }}
-            className="rounded-lg border-2 border-[#0F0F12] bg-white p-1 text-[#0F0F12] shadow-[1px_1px_0_#0F0F12] hover:bg-[#FEF08A] transition-colors"
+            className="rounded-lg border-2 border-[#0F0F12] bg-white p-1 text-[#0F0F12] shadow-[1px_1px_0_#0F0F12] hover:bg-slate-100 transition-colors"
           >
             <RotateCw className="size-3.5" />
           </button>}
@@ -113,7 +119,7 @@ export function PageCard({
       </div>
 
       {/* Canvas preview with Real-Time Overlay */}
-      <div className="relative w-full aspect-[1/1.38] rounded-xl overflow-hidden border-2 border-[#0F0F12] bg-[#F4F5F7] flex items-center justify-center">
+      <div className="relative w-full aspect-[1/1.38] rounded-lg overflow-hidden border-2 border-[#0F0F12] bg-slate-100 flex items-center justify-center">
         <PdfThumbnail
           arrayBuffer={document.arrayBuffer}
           pageIndex={page.sourcePageIndex}

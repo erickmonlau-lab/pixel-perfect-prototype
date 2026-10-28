@@ -27,6 +27,7 @@ import { localizeOutputName } from "@/lib/tools/output-names";
 import { BRAND_NAME } from "@/lib/i18n/config";
 import { BRAND_ASSETS, mascotForTool } from "@/lib/brand";
 import { getToolColorTheme } from "@/lib/tools/color-system";
+import { FAMILY_ACCENTS } from "@/lib/tools/catalog";
 import { Link, useNavigate } from "@tanstack/react-router";
 import { ArrowRight, ArrowUpRight, Grid } from "lucide-react";
 import {
@@ -675,6 +676,7 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
   const resultAccent = tool.category === "optimizar"
     ? "#2563EB"
     : getToolColorTheme(canonicalSlug, tool.category).bgHex;
+  const workspaceAccent = FAMILY_ACCENTS[tool.category].hex;
 
   return (
     <section
@@ -708,7 +710,7 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
             />
 
             {/* Icono de subida â€” cuadrado rojo con pictograma blanco */}
-            <span className="mx-auto flex size-16 sm:size-20 items-center justify-center rounded-2xl border-2 border-[#0F0F12] bg-[#EC3C2D] text-white shadow-[4px_4px_0_#0F0F12] transition-transform group-hover:scale-105 shrink-0">
+            <span className="mx-auto flex size-14 sm:size-16 items-center justify-center rounded-xl border-2 border-[#0F0F12] text-white shadow-[3px_3px_0_#0F0F12] transition-transform group-hover:scale-105 shrink-0" style={{ backgroundColor: workspaceAccent }}>
               <Upload className="size-8 sm:size-10 text-white stroke-[2.4]" aria-hidden />
             </span>
 
@@ -726,7 +728,8 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
             <div className="mt-7 flex justify-center">
               <Button
                 size="lg"
-                className="h-13 sm:h-14 px-8 sm:px-10 text-[16px] sm:text-[17px] font-black rounded-xl border-2 border-[#0F0F12] bg-[#EC3C2D] text-white shadow-[4px_4px_0_#0F0F12] hover:bg-[#D43426] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0_#0F0F12] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none transition-all cursor-pointer"
+                style={{ backgroundColor: workspaceAccent }}
+                className="h-11 sm:h-12 px-6 sm:px-8 text-[15px] font-black rounded-xl border-2 border-[#0F0F12] text-white shadow-[3px_3px_0_#0F0F12] hover:brightness-95 hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0_#0F0F12] active:translate-x-[3px] active:translate-y-[3px] active:shadow-none transition-all cursor-pointer"
                 onClick={(e) => { e.stopPropagation(); inputRef.current?.click(); }}
                 type="button"
               >
@@ -736,7 +739,7 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
 
             {/* Privacidad */}
             <div className="mt-5 flex items-center justify-center">
-              <div className="inline-flex items-center gap-2 rounded-lg border-2 border-[#0F0F12] bg-white px-4 py-1.5 text-[13px] sm:text-[13.5px] font-bold text-[#0F0F12] shadow-[2px_2px_0_#0F0F12]">
+              <div className="inline-flex items-center gap-2 rounded-lg border-2 border-[#0F0F12] bg-white px-3 py-1.5 text-[13px] font-bold text-[#0F0F12] shadow-[2px_2px_0_#0F0F12]">
                 <ShieldCheck className="size-4.5 text-[#2563EB] shrink-0" />
                 <span>{t.workspace.privacyNote}</span>
               </div>
@@ -784,10 +787,10 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
 
       {/* Zona de configuraciÃ³n / archivos para herramientas interactivas o de configuraciÃ³n manual */}
       {!isAutoFlow && (files.length > 0 || tool.minFiles === 0) && phase !== "loading-pages" && (
-        <div key={files.map((file) => `${file.name}-${file.size}`).join("|")} className="animate-rise border-t-2 border-[#0F0F12] bg-[#FFF7F5] p-4 sm:p-5">
-          <div className="mb-3 flex flex-wrap items-center justify-between gap-3 rounded-2xl border-2 border-[#0F0F12] bg-white p-3 shadow-[3px_3px_0_#0F0F12]">
+        <div key={files.map((file) => `${file.name}-${file.size}`).join("|")} className="animate-rise border-t-2 border-[#0F0F12] bg-white p-3 sm:p-4">
+          <div className="mb-3 flex flex-wrap items-center justify-between gap-2 rounded-xl border-2 border-[#0F0F12] bg-white p-2.5 shadow-[2px_2px_0_#0F0F12]">
             <div className="flex min-w-0 items-center gap-3">
-              <span className="flex size-9 shrink-0 items-center justify-center rounded-xl border-2 border-[#0F0F12] bg-[#EC3C2D] text-white shadow-[2px_2px_0_#0F0F12]">
+              <span className="flex size-8 shrink-0 items-center justify-center rounded-lg border-2 border-[#0F0F12] text-white shadow-[2px_2px_0_#0F0F12]" style={{ backgroundColor: workspaceAccent }}>
                 <CheckCircle2 className="size-4.5" />
               </span>
               <div className="min-w-0">
@@ -816,7 +819,8 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                   variant="outline"
                   size="sm"
                   onClick={() => inputRef.current?.click()}
-                  className="h-8.5 border-2 border-[#0F0F12] bg-[#FEF08A] px-3 text-[12px] font-black text-[#0F0F12] hover:bg-[#FDE047] gap-1.5 shadow-[2px_2px_0_#0F0F12]"
+                  className="h-8.5 border-2 border-[#0F0F12] bg-white px-3 text-[13px] font-black text-[#0F0F12] hover:bg-slate-50 gap-1.5 shadow-[2px_2px_0_#0F0F12]"
+                  style={{ borderColor: workspaceAccent }}
                 >
                   <Plus className="size-3.5" />
                   <span>{t.workspace.addMoreFiles}</span>
@@ -824,13 +828,14 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
               )}
 
               {isPageWorkspace && (
-                <div className="flex items-center gap-1 rounded-xl border-2 border-[#0F0F12] bg-[#F1F2F4] p-1">
+                <div className="flex items-center gap-1 rounded-lg border-2 border-[#0F0F12] bg-white p-1">
                   <button
                     type="button"
                     onClick={() => setViewMode("visual")}
-                    className={`flex items-center gap-1.5 rounded-md px-2.5 py-1 text-[12px] font-semibold transition-all ${
+                    style={viewMode === "visual" ? { backgroundColor: workspaceAccent, borderColor: "#0F0F12" } : undefined}
+                    className={`flex items-center gap-1.5 rounded-md border px-2.5 py-1.5 text-[13px] font-semibold transition-all ${
                       viewMode === "visual"
-                        ? "border border-[#0F0F12] bg-[#0F0F12] text-white shadow-[1px_1px_0_#EC3C2D]"
+                        ? "text-white shadow-[1px_1px_0_#0F0F12]"
                         : "text-slate-500 hover:text-slate-800"
                     }`}
                   >
@@ -840,9 +845,10 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                   <button
                     type="button"
                     onClick={() => setViewMode("list")}
-                    className={`flex items-center gap-1.5 rounded-md px-2.5 py-1 text-[12px] font-semibold transition-all ${
+                    style={viewMode === "list" ? { backgroundColor: workspaceAccent, borderColor: "#0F0F12" } : undefined}
+                    className={`flex items-center gap-1.5 rounded-md border px-2.5 py-1.5 text-[13px] font-semibold transition-all ${
                       viewMode === "list"
-                        ? "border border-[#0F0F12] bg-[#0F0F12] text-white shadow-[1px_1px_0_#EC3C2D]"
+                        ? "text-white shadow-[1px_1px_0_#0F0F12]"
                         : "text-slate-500 hover:text-slate-800"
                     }`}
                   >
@@ -872,10 +878,10 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
           {isPageWorkspace && viewMode === "visual" ? (
             <div className="mt-4 flex flex-col gap-3">
               {/* Ayuda visual amigable para seleccionar o dividir pÃ¡ginas */}
-              <div className="flex flex-col gap-2 rounded-xl border-2 border-[#0F0F12] bg-[#FEF08A] p-3 text-[12.5px] font-medium text-[#0F0F12] shadow-[2px_2px_0_#0F0F12]">
+              <div className="flex flex-col gap-2 rounded-xl border-2 border-[#0F0F12] p-2.5 text-[13px] font-semibold text-white shadow-[2px_2px_0_#0F0F12] sm:flex-row sm:items-center sm:justify-between" style={{ backgroundColor: workspaceAccent }}>
                 <div className="flex flex-wrap items-center justify-between gap-2">
                   <div className="flex items-center gap-2">
-                    <span className="flex size-6 shrink-0 items-center justify-center rounded-lg border border-[#0F0F12] bg-[#EC3C2D] text-[11px] font-black text-white">
+                    <span className="flex size-6 shrink-0 items-center justify-center rounded-lg border border-white bg-white text-[11px] font-black" style={{ color: workspaceAccent }}>
                       <CheckCircle2 className="size-3.5" />
                     </span>
                     <span>
@@ -898,7 +904,7 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                     </span>
                   </div>
                   {workspaceState.selectedPageIds.length > 0 && (
-                    <span className="rounded-lg border border-[#0F0F12] bg-white px-2 py-1 text-[11px] font-black text-[#0F0F12]">
+                    <span className="rounded-lg border border-white bg-white px-2 py-1 text-[12px] font-black text-[#0F0F12]">
                       {t.workspace.pagesOutOfTotal(workspaceState.selectedPageIds.length, workspaceState.pages.length)}
                     </span>
                   )}
@@ -906,17 +912,18 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
 
                 {/* Selector interactivo: Â¿1 solo PDF con las pÃ¡ginas elegidas o archivos individuales? */}
                 {canonicalSlug === "dividir-pdf" && workspaceState.selectedPageIds.length > 1 && (
-                  <div className="mt-1 flex flex-wrap items-center gap-2 pt-2 border-t border-primary/10">
+                  <div className="mt-1 flex flex-wrap items-center gap-2 border-t border-white/30 pt-2">
                     <span className="text-[12.5px] font-semibold text-slate-800">
                       {t.workspace.splitTargetLabel}
                     </span>
-                    <div className="inline-flex rounded-lg border border-primary/20 bg-white p-0.5 shadow-2xs">
+                    <div className="inline-flex rounded-lg border-2 border-[#0F0F12] bg-white p-0.5 shadow-[1px_1px_0_#0F0F12]">
                       <button
                         type="button"
                         onClick={() => setSplitTargetMode("combined")}
+                        style={splitTargetMode === "combined" ? { backgroundColor: workspaceAccent } : undefined}
                         className={`rounded-md px-2.5 py-1 text-[12px] font-semibold transition-all cursor-pointer ${
                           splitTargetMode === "combined"
-                            ? "bg-primary text-white shadow-xs"
+                            ? "text-white shadow-xs"
                             : "text-slate-600 hover:text-slate-900"
                         }`}
                       >
@@ -925,9 +932,10 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                       <button
                         type="button"
                         onClick={() => setSplitTargetMode("individual")}
+                        style={splitTargetMode === "individual" ? { backgroundColor: workspaceAccent } : undefined}
                         className={`rounded-md px-2.5 py-1 text-[12px] font-semibold transition-all cursor-pointer ${
                           splitTargetMode === "individual"
-                            ? "bg-primary text-white shadow-xs"
+                            ? "text-white shadow-xs"
                             : "text-slate-600 hover:text-slate-900"
                         }`}
                       >
@@ -939,6 +947,7 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
               </div>
 
               <PageGrid
+                accentColor={workspaceAccent}
                 documents={workspaceState.documents}
                 pages={workspaceState.pages}
                 selectedPageIds={workspaceState.selectedPageIds}
@@ -977,7 +986,7 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                           />
                         </div>
                       ) : (
-                        <div className="flex size-11 shrink-0 items-center justify-center rounded-xl border-2 border-[#0F0F12] bg-[#EC3C2D] text-white shadow-[2px_2px_0_#0F0F12]">
+                        <div className="flex size-10 shrink-0 items-center justify-center rounded-lg border-2 border-[#0F0F12] text-white shadow-[2px_2px_0_#0F0F12]" style={{ backgroundColor: workspaceAccent }}>
                           <FileText className="size-5.5" />
                         </div>
                       )}
@@ -1035,9 +1044,9 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                 <button
                   type="button"
                   onClick={() => inputRef.current?.click()}
-                  className="w-full flex items-center justify-center gap-2.5 rounded-xl border border-slate-200 bg-[#F1F5FA] hover:bg-[#E4ECF5] p-3 text-[14px] font-bold text-[#0F172A] transition-all cursor-pointer shadow-2xs"
+                  className="w-full flex items-center justify-center gap-2.5 rounded-lg border-2 border-[#0F0F12] bg-white hover:bg-slate-100 p-2.5 text-[14px] font-bold text-[#0F172A] transition-all cursor-pointer shadow-[1px_1px_0_#0F0F12]"
                 >
-                  <Plus className="size-4.5 text-[#2563EB]" />
+                  <Plus className="size-4.5" style={{ color: workspaceAccent }} />
                   <span>{t.workspace.addMoreFiles}</span>
                 </button>
               )}
@@ -1048,14 +1057,14 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
           {tool.options && canonicalSlug !== "anadir-texto-pdf" &&
             tool.options.length > 0 &&
             !(tool.slug === "dividir-pdf" && workspaceState.selectedPageIds.length > 0) && (
-              <div className="mt-4 rounded-2xl border-2 border-[#0F0F12] bg-[#F1F5FA] p-4 sm:p-5 shadow-[3px_3px_0_#0F0F12] animate-fade-in">
-                <div className="flex items-center gap-2.5 mb-4 pb-3 border-b-2 border-[#0F0F12]/15">
-                  <SlidersHorizontal className="size-5 text-[#2563EB]" />
-                  <h4 className="text-[16px] sm:text-[17px] font-black text-[#0F172A] m-0 tracking-tight">
+              <div className="mt-3 rounded-xl border-2 border-[#0F0F12] bg-white p-3 sm:p-4 shadow-[2px_2px_0_#0F0F12] animate-fade-in">
+                <div className="-mx-3 -mt-3 mb-3 flex items-center gap-2 rounded-t-[10px] border-b-2 border-[#0F0F12] px-3 py-2.5 text-white sm:-mx-4 sm:-mt-4" style={{ backgroundColor: workspaceAccent }}>
+                  <SlidersHorizontal className="size-4.5" />
+                  <h4 className="text-[15px] sm:text-[16px] font-black m-0 tracking-tight">
                     {t.workspace.settingsTitle}
                   </h4>
                 </div>
-                <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+                <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                   {tool.options
                     .filter((opt) => {
                       // En dividir-pdf, solo mostrar el campo de texto "ranges" si el modo es "ranges"
@@ -1065,13 +1074,13 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                       return true;
                     })
                     .map((opt) => (
-                      <div key={opt.key} className="flex flex-col gap-2">
+                      <div key={opt.key} className="flex flex-col gap-1.5">
                         <div className="flex items-center justify-between">
-                          <label htmlFor={`opt-${opt.key}`} className="text-[14.5px] font-bold text-slate-800">
+                          <label htmlFor={`opt-${opt.key}`} className="text-[14px] font-bold text-slate-800">
                             {opt.label}
                           </label>
                           {opt.type === "range" && (
-                            <span className="text-[13px] font-mono font-bold text-[#EC3C2D] bg-white border border-slate-200 rounded-md px-2.5 py-0.5 shadow-2xs">
+                            <span className="text-[13px] font-mono font-bold bg-white border rounded-md px-2.5 py-0.5 shadow-2xs" style={{ color: workspaceAccent, borderColor: workspaceAccent }}>
                               {values[opt.key]}
                               {opt.unit ?? ""}
                             </span>
@@ -1082,7 +1091,8 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                             id={`opt-${opt.key}`}
                             value={values[opt.key] ?? opt.default}
                             onChange={(e) => setValues((v) => ({ ...v, [opt.key]: e.target.value }))}
-                            className="rounded-xl border-2 border-[#0F0F12] bg-white px-3.5 py-2.5 text-[14.5px] font-semibold text-[#0F172A] shadow-[2px_2px_0_#0F0F12] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB]"
+                            className="min-h-10 rounded-lg border-2 border-[#0F0F12] bg-white px-3 py-2 text-[14px] font-semibold text-[#0F172A] shadow-[1px_1px_0_#0F0F12] transition-all focus-visible:outline-2 focus-visible:outline-offset-1"
+                            style={{ outlineColor: workspaceAccent }}
                           >
                             {opt.options.map((o) => (
                               <option key={o.value} value={o.value}>
@@ -1098,7 +1108,8 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                             value={values[opt.key] ?? opt.default}
                             placeholder={opt.placeholder}
                             onChange={(e) => setValues((v) => ({ ...v, [opt.key]: e.target.value }))}
-                            className="rounded-xl border-2 border-[#0F0F12] bg-white px-3.5 py-2.5 text-[14.5px] font-medium text-[#0F172A] placeholder:text-slate-400 shadow-[2px_2px_0_#0F0F12] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB]"
+                            className="min-h-10 rounded-lg border-2 border-[#0F0F12] bg-white px-3 py-2 text-[14px] font-medium text-[#0F172A] placeholder:text-slate-400 shadow-[1px_1px_0_#0F0F12] transition-all focus-visible:outline-2 focus-visible:outline-offset-1"
+                            style={{ outlineColor: workspaceAccent }}
                           />
                         )}
                         {opt.type === "range" && (
@@ -1113,7 +1124,8 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                               onChange={(e) =>
                                 setValues((v) => ({ ...v, [opt.key]: parseFloat(e.target.value) }))
                               }
-                              className="h-2.5 flex-1 cursor-pointer appearance-none rounded-full bg-slate-300 accent-[#EC3C2D] [&::-webkit-slider-thumb]:size-5 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-[#EC3C2D] [&::-webkit-slider-thumb]:shadow-md hover:[&::-webkit-slider-thumb]:scale-110 transition-transform"
+                              className="h-2.5 flex-1 cursor-pointer appearance-none rounded-full bg-slate-300 [&::-webkit-slider-thumb]:size-5 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:shadow-md hover:[&::-webkit-slider-thumb]:scale-110 transition-transform"
+                              style={{ accentColor: workspaceAccent }}
                             />
                           </div>
                         )}
@@ -1131,12 +1143,13 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                   size="lg"
                   type="button"
                   onClick={() => inputRef.current?.click()}
-                  className="h-13 px-8 text-[16px] font-black rounded-xl sm:rounded-2xl shadow-md bg-[#EC3C2D] hover:bg-[#D93426] text-white gap-2 transition-all hover:-translate-y-0.5 cursor-pointer"
+                  style={{ backgroundColor: workspaceAccent }}
+                  className="h-11 px-6 text-[15px] font-black rounded-xl border-2 border-[#0F0F12] shadow-[3px_3px_0_#0F0F12] text-white gap-2 transition-all hover:-translate-y-0.5 cursor-pointer"
                 >
                   <Plus className="size-5" />
                   <span>{t.workspace.addMoreFiles}</span>
                 </Button>
-                <span className="text-[14px] font-medium text-slate-700 bg-[#F1F5FA] rounded-xl px-4 py-2.5 border border-slate-200">
+                <span className="text-[14px] font-medium text-slate-700 bg-white rounded-lg px-3 py-2 border-2 border-[#0F0F12]">
                   {t.workspace.addMoreFilesSubtitle ?? t.workspace.minFiles(tool.minFiles)}
                 </span>
               </div>
@@ -1145,7 +1158,8 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                 size="lg"
                 onClick={() => run()}
                 disabled={phase === "processing"}
-                className="h-13 sm:h-14 px-9 sm:px-11 text-[16.5px] sm:text-[17.5px] font-black rounded-xl sm:rounded-2xl bg-[#EC3C2D] text-white shadow-md hover:bg-[#D93426] transition-all hover:-translate-y-0.5 cursor-pointer disabled:opacity-60 disabled:hover:translate-y-0"
+                  style={{ backgroundColor: workspaceAccent }}
+                  className="h-11 sm:h-12 px-7 sm:px-9 text-[15px] font-black rounded-xl border-2 border-[#0F0F12] text-white shadow-[3px_3px_0_#0F0F12] hover:brightness-95 transition-all hover:-translate-y-0.5 cursor-pointer disabled:opacity-60 disabled:hover:translate-y-0"
               >
                 {phase === "processing" && <Loader2 className="mr-2.5 size-5 animate-spin" />}
                 {phase === "processing"

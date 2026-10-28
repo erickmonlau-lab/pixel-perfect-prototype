@@ -12,6 +12,7 @@ import type {
 } from "./overlayTypes";
 
 type PageGridProps = {
+  accentColor: string;
   documents: Record<string, PageWorkspaceDocument>;
   pages: PageItem[];
   selectedPageIds: string[];
@@ -29,6 +30,7 @@ type PageGridProps = {
 };
 
 export function PageGrid({
+  accentColor,
   documents,
   pages,
   selectedPageIds,
@@ -83,6 +85,7 @@ export function PageGrid({
   return (
     <div className="flex flex-col gap-4">
       <PageSelectionToolbar
+        accentColor={accentColor}
         selectedCount={selectedPageIds.length}
         totalCount={pages.length}
         onRotateSelected={() => onDispatch({ type: "ROTATE_PAGES", pageIds: selectedPageIds, degrees: 90 })}
@@ -97,7 +100,7 @@ export function PageGrid({
         showRotationControls={showRotationControls}
       />
 
-      <div className="grid grid-cols-[repeat(auto-fill,minmax(min(100%,190px),220px))] gap-3 sm:gap-4">
+      <div className="grid grid-cols-[repeat(auto-fill,minmax(min(100%,140px),160px))] gap-2.5 sm:gap-3">
         {pages.map((page, index) => {
           const doc = documents[page.sourceDocumentId];
           if (!doc) return null;
@@ -111,6 +114,7 @@ export function PageGrid({
               displayIndex={index}
               totalPages={pages.length}
               isSelected={isSelected}
+              accentColor={accentColor}
               watermarkConfig={watermarkConfig}
               pageNumberConfig={pageNumberConfig}
               signatureConfig={signatureConfig}
@@ -130,12 +134,12 @@ export function PageGrid({
           <button
             type="button"
             onClick={onAddFiles}
-            className="animate-file-enter group flex min-h-[190px] flex-col items-center justify-center rounded-2xl border-2 border-dashed border-[#0F0F12] bg-[#FFF1EF] p-4 text-[#0F0F12] shadow-[2px_2px_0_#0F0F12] hover:-translate-y-1 hover:bg-[#FFE1DC] hover:shadow-[3px_3px_0_#0F0F12] transition-all duration-200 cursor-pointer"
+            className="animate-file-enter group flex min-h-[210px] flex-col items-center justify-center rounded-xl border-2 border-dashed border-[#0F0F12] bg-white p-3 text-[#0F0F12] shadow-[2px_2px_0_#0F0F12] hover:-translate-y-0.5 hover:bg-slate-50 hover:shadow-[3px_3px_0_#0F0F12] transition-all duration-200 cursor-pointer"
           >
-            <div className="flex size-11 items-center justify-center rounded-2xl border-2 border-[#0F0F12] bg-[#EC3C2D] text-white shadow-[2px_2px_0_#0F0F12] group-hover:rotate-90 group-hover:scale-105 transition-all">
+            <div className="flex size-10 items-center justify-center rounded-xl border-2 border-[#0F0F12] text-white shadow-[2px_2px_0_#0F0F12] group-hover:scale-105 transition-all" style={{ backgroundColor: accentColor }}>
               <Plus className="size-5" />
             </div>
-            <span className="mt-2.5 text-[12.5px] font-bold text-center leading-tight">
+            <span className="mt-2 text-[13px] font-bold text-center leading-tight">
               {t.workspace.addMorePdfs}
             </span>
           </button>

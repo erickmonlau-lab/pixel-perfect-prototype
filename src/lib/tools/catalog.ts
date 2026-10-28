@@ -6,6 +6,8 @@ import type { ToolCategory } from "./types";
  */
 
 export type FamilyAccent = {
+  /** Solid family colour used by shared workspace controls. */
+  hex: string;
   /** Icon foreground colour class. */
   icon: string;
   /** Solid icon background class. */
@@ -30,6 +32,7 @@ export type FamilyAccent = {
 
 export const FAMILY_ACCENTS: Record<ToolCategory, FamilyAccent> = {
   optimizar: {
+    hex: "#2563EB",
     icon: "text-white",
     iconBg: "bg-[#2563EB]",
     dot: "bg-[#2563EB]",
@@ -42,6 +45,7 @@ export const FAMILY_ACCENTS: Record<ToolCategory, FamilyAccent> = {
     activeRing: "ring-[#BFDBFE]",
   },
   organizar: {
+    hex: "#7C3AED",
     icon: "text-white",
     iconBg: "bg-[#7C3AED]",
     dot: "bg-[#7C3AED]",
@@ -54,6 +58,7 @@ export const FAMILY_ACCENTS: Record<ToolCategory, FamilyAccent> = {
     activeRing: "ring-[#DDD6FE]",
   },
   convertir: {
+    hex: "#059669",
     icon: "text-white",
     iconBg: "bg-[#059669]",
     dot: "bg-[#059669]",
@@ -66,6 +71,7 @@ export const FAMILY_ACCENTS: Record<ToolCategory, FamilyAccent> = {
     activeRing: "ring-[#6EE7B7]",
   },
   editar: {
+    hex: "#EA580C",
     icon: "text-white",
     iconBg: "bg-[#EA580C]",
     dot: "bg-[#EA580C]",
@@ -78,6 +84,7 @@ export const FAMILY_ACCENTS: Record<ToolCategory, FamilyAccent> = {
     activeRing: "ring-[#FED7AA]",
   },
   seguridad: {
+    hex: "#0284C7",
     icon: "text-white",
     iconBg: "bg-[#0284C7]",
     dot: "bg-[#0284C7]",
@@ -90,6 +97,7 @@ export const FAMILY_ACCENTS: Record<ToolCategory, FamilyAccent> = {
     activeRing: "ring-[#BAE6FD]",
   },
   inteligencia: {
+    hex: "#9333EA",
     icon: "text-white",
     iconBg: "bg-[#9333EA]",
     dot: "bg-[#9333EA]",

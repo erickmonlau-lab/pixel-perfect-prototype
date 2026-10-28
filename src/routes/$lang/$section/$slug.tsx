@@ -449,7 +449,7 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
 
       {/* 3. WORKSPACE / UPLOADER: The centerpiece of action */}
       <div className="mt-5 sm:mt-6 animate-paper-open [animation-delay:70ms]">
-        <ToolWorkspace tool={tool} />
+        <ToolWorkspace key={canonicalSlug} tool={tool} />
       </div>
 
       {/* 4. CÓMO FUNCIONA: 3 clear, sequential steps with solid surfaces and category numbering */}
