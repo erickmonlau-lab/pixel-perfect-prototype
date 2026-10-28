@@ -277,6 +277,11 @@ function Home() {
               <picture>
                 <source
                   media="(min-width: 1280px)"
+                  srcSet="/brand/hero-mascot-perfect.webp"
+                  type="image/webp"
+                />
+                <source
+                  media="(min-width: 1280px)"
                   srcSet="/brand/hero-mascot-perfect.png"
                   type="image/png"
                 />
