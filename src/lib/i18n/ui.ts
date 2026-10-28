@@ -745,7 +745,7 @@ const ca: Dict = {
   cookies: {
     eyebrow: "Consentiment i Transparència",
     title: "Política de Cookies de BreadPDF",
-    seoTitle: "Política de Cookies | BreadPDF",
+    seoTitle: "Política de Cookies de BreadPDF",
     seoDescription:
       "Informació detallada sobre l'ús de cookies tècniques, preferències i preparació de consentiment publicitari a BreadPDF.",
     body: [
@@ -1176,7 +1176,7 @@ const en: Dict = {
   cookies: {
     eyebrow: "Consent & Transparency",
     title: "Cookie Policy",
-    seoTitle: "Cookie Policy | BreadPDF",
+    seoTitle: "Cookie Policy: Cookies, Consent and Ads | BreadPDF",
     seoDescription:
       "Detailed information about technical cookies, local storage preferences, and advertising consent preparation on BreadPDF.",
     body: [

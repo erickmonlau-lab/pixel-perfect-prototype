@@ -70,6 +70,17 @@ export const Route = createFileRoute("/$lang/")({
           type: "font/woff2",
           crossOrigin: "anonymous",
         },
+        // La portada usa la mascota grande como LCP en escritorio (>=1280px).
+        // Precargarla con el mismo media query evita descubrirla tarde y no
+        // añade bytes en móvil, donde el LCP es el titular del hero.
+        {
+          rel: "preload",
+          href: "/brand/hero-mascot-perfect.webp",
+          as: "image",
+          type: "image/webp",
+          media: "(min-width: 1280px)",
+          fetchPriority: "high",
+        },
       ],
     };
   },

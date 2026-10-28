@@ -33,3 +33,10 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+.vercel
+.env*
+
+# Artefactos regenerables de auditoría/medición
+docs/seo-crawl-report.json
+docs/internal-links.json
+/lh-*/

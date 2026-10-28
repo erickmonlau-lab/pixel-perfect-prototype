@@ -56,6 +56,14 @@ export function ToolSearch({ size = "md" }: { size?: "md" | "lg" }) {
 
   useEffect(() => {
     if (focused) return;
+    // Respeta la preferencia del sistema de movimiento reducido: la rotación
+    // del placeholder es un cambio visual continuo y no aporta información.
+    if (
+      typeof window !== "undefined" &&
+      window.matchMedia?.("(prefers-reduced-motion: reduce)").matches
+    ) {
+      return;
+    }
     const interval = setInterval(() => {
       setPlaceholderIndex((prev) => (prev + 1) % rotatingPlaceholders.length);
     }, 3200);

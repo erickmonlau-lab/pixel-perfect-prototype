@@ -9,7 +9,10 @@
     "build:dev": "vite build --mode development",
     "preview": "vite preview",
     "lint": "eslint src",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "seo:audit": "node scripts/crawl-seo-audit.mjs",
+    "seo:links": "node scripts/internal-links-audit.mjs",
+    "seo:indexnow": "node scripts/indexnow.mjs"
   },
   "overrides": {
     "rolldown": "1.2.1"
