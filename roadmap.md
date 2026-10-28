@@ -13,7 +13,7 @@
 
 - [ ] Motor de procesamiento en servidor con cola de jobs (queued/processing/completed/failed/expired)
 - [ ] PDF a Word y Word a PDF sobre ese motor
-- [ ] sitemap.xml dinámico y robots afinado
+- [x] sitemap.xml dinámico y robots afinado (rutas y exclusiones revisadas en código; comprobación HTTP de producción pendiente)
 - [x] Catalán e inglés con contenido propio y URLs por idioma (ES/CA/EN verificados)
 - [ ] Cuentas de usuario, historial de trabajos y límites gratuitos
 - [ ] AdSense en posiciones que no compitan con la herramienta

@@ -629,7 +629,7 @@ export const protectPdf: ToolRunner = async (files, options, { onProgress }) => 
   const buffer = await file.arrayBuffer();
   onProgress(0.4);
 
-  const encryptedBuffer = await encryptPDF(Buffer.from(buffer), password);
+  const encryptedBuffer = await encryptPDF(new Uint8Array(buffer), password);
   onProgress(1);
 
   return {
@@ -655,7 +655,7 @@ export const unlockPdf: ToolRunner = async (files, options, { onProgress }) => {
   onProgress(0.4);
 
   try {
-    const decryptedBuffer = await decryptPDF(Buffer.from(buffer), password);
+    const decryptedBuffer = await decryptPDF(new Uint8Array(buffer), password);
     onProgress(1);
 
     return {

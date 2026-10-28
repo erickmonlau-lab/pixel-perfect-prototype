@@ -2,6 +2,8 @@
 
 **Estado:** publicidad desactivada por defecto en el ejemplo; CMP no encontrada en el código revisado. Este documento es técnico, no asesoramiento jurídico.
 
+**Revisión:** 28-10-2026. `public/ads.txt` está presente y su publisher ID coincide con la configuración central de BreadPDF; no se pudo comprobar su respuesta HTTP en producción. La guía oficial de Google consultada mantiene el requisito de CMP certificada e integrada con TCF para anuncios personalizados en EEE/Reino Unido/Suiza.
+
 ## Hallazgos
 
 1. `src/routes/__root.tsx` cargaba `adsbygoogle.js` en todas las páginas desde un ID de marca fijo. Esto contradecía `.env.example`, donde AdSense estaba marcado como no activar, y el flag de los componentes de slots.

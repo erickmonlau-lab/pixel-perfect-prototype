@@ -21,7 +21,7 @@ dist-ssr
 .dev.vars
 
 # Temporary browser profiles (headless screenshots)
-.temp-edge-profile/
+.temp-edge-profile*/
 
 # Editor directories and files
 .vscode/*

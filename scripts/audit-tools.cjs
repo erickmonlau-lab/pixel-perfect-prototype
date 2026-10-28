@@ -2,7 +2,7 @@ const fs = require('fs');
 const http = require('http');
 
 console.log('====================================================');
-console.log('   ARVIO COMPREHENSIVE QA AUTOMATION SUITE');
+console.log('   BREADPDF TOOL AND ROUTE QA SUITE');
 console.log('====================================================\n');
 
 // 1. Audit Tool Definitions & Routing
@@ -33,7 +33,7 @@ blocks.forEach((block, idx) => {
 });
 
 if (issues.length === 0) {
-  console.log('  ✓ All 30 tools have complete metadata, accept filters, H1, ctaLabels, and FAQs.');
+  console.log(`  ✓ All ${blocks.length} registered tools have metadata, accept filters, H1, CTA labels, and FAQs.`);
 } else {
   console.error('  ✗ Issues found:', issues);
 }
@@ -91,22 +91,33 @@ const urlsToTest = [
   '/es/herramientas/ruta-inexistente-xyz',
 ];
 
-console.log(`\n[TEST 2] Testing HTTP Statuses against http://localhost:8080 (${urlsToTest.length} routes)...`);
+const qaHost = process.env.QA_HOST || '127.0.0.1';
+const qaPort = Number(process.env.QA_PORT || 8080);
+const expectedRedirects = new Set([
+  '/es/herramientas', '/ca/eines', '/en/tools',
+  '/es/categoria/optimizar', '/es/categoria/organizar', '/es/categoria/convertir',
+  '/es/categoria/editar', '/es/categoria/seguridad', '/es/categoria/inteligencia',
+  '/ca/categoria/optimitzar', '/en/category/security',
+]);
+
+console.log(`\n[TEST 2] Testing HTTP statuses against http://${qaHost}:${qaPort} (${urlsToTest.length} routes)...`);
 
 function testUrl(path) {
   return new Promise((resolve) => {
-    http.get({
-      host: 'localhost',
-      port: 8080,
+    const req = http.get({
+      host: qaHost,
+      port: qaPort,
       path: path,
-      headers: { 'User-Agent': 'ARVIO-QA-Tester/1.0' }
+      headers: { 'User-Agent': 'BreadPDF-QA/1.0' }
     }, (res) => {
       let data = '';
       res.on('data', chunk => data += chunk);
       res.on('end', () => {
         resolve({ path, status: res.statusCode, length: data.length });
       });
-    }).on('error', (err) => {
+    });
+    req.setTimeout(5000, () => req.destroy(new Error('Request timed out')));
+    req.on('error', (err) => {
       resolve({ path, error: err.message });
     });
   });
@@ -114,7 +125,7 @@ function testUrl(path) {
 
 (async () => {
   let passed = 0;
-  let failed = 0;
+  let failed = issues.length > 0 ? 1 : 0;
 
   for (const p of urlsToTest) {
     const res = await testUrl(p);
@@ -123,8 +134,12 @@ function testUrl(path) {
       failed++;
     } else {
       const isExpected404 = p.includes('inexistente');
-      if (isExpected404 && (res.status === 404 || res.status === 200)) {
-        console.log(`  ✓ [HANDLED 404] ${p} -> Status ${res.status}`);
+      const isExpectedRedirect = expectedRedirects.has(p);
+      if (isExpected404 && res.status === 404) {
+        console.log(`  ✓ [404] ${p} -> Status ${res.status}`);
+        passed++;
+      } else if (isExpectedRedirect && res.status >= 300 && res.status < 400) {
+        console.log(`  ✓ [REDIRECT] ${p} -> Status ${res.status}`);
         passed++;
       } else if (!isExpected404 && res.status === 200) {
         console.log(`  ✓ [200 OK] ${p} (${res.length} bytes)`);
@@ -136,6 +151,9 @@ function testUrl(path) {
     }
   }
 
-  console.log(`\nQA HTTP Route Check: ${passed} passed, ${failed} failed.`);
+  const routeFailed = failed - (issues.length > 0 ? 1 : 0);
+  console.log(`\nQA HTTP Route Check: ${passed} passed, ${routeFailed} failed.`);
+  if (issues.length > 0) console.log(`QA Tool Metadata Check: ${blocks.length} registered, ${issues.length} issues.`);
+  if (failed > 0) process.exitCode = 1;
 })();
 

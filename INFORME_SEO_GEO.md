@@ -11,7 +11,7 @@ La arquitectura tiene una base técnica útil: páginas localizadas en ES/CA/EN,
 
 La auditoría anterior `INFORME_SEO_GEO.md` contenía cifras y detalles que no coincidían con el código. Se reemplazó aquí con el recuento actual. También se regeneró `public/llms.txt` desde el registro real de herramientas y guías, que antes anunciaba 50 herramientas y enlazaba a varios slugs inexistentes.
 
-Los datos disponibles no permiten afirmar tráfico, CTR, posiciones ni demanda de palabras clave. El extracto de Search Console es una instantánea de indexación fechada el 23 de octubre de 2026; no incluye consultas, clics ni impresiones. La última medición Lighthouse de producción encontrada es del 30 de septiembre, y no sustituye datos de campo actuales. La compilación local no pudo arrancar porque falta Vite en `node_modules`.
+Los datos disponibles no permiten afirmar tráfico, CTR, posiciones ni demanda de palabras clave. El extracto de Search Console es una instantánea de indexación fechada el 23 de octubre de 2026; no incluye consultas, clics ni impresiones. La última medición Lighthouse de producción encontrada es del 30 de septiembre, y no sustituye datos de campo actuales. En esta intervención se restauró la instalación con `npm ci` y el build local terminó correctamente; no se obtuvo acceso a Search Console/GA4 ni se pudo verificar la web pública.
 
 Una revisión independiente del repositorio confirmó los riesgos de `llms.txt` obsoleto, la carga global de AdSense pese a la configuración apagada y la ausencia de una llamada de publicación para IndexNow; cada punto se volvió a cotejar con los archivos señalados antes de documentar los cambios.
 
@@ -41,6 +41,16 @@ El archivo anterior anunciaba 50 herramientas y contenía slugs inexistentes com
 `src/routes/__root.tsx` cargaba el JavaScript de AdSense aunque `.env.example` indicara que no se activara todavía y aunque `ADSENSE_CONFIG.isEnabled` controlara los slots. La carga del script ahora requiere `VITE_ADSENSE_ENABLED=true`, y el ejemplo deja el valor en `false`. Se eliminó del comentario de configuración la afirmación incorrecta de que anuncios no personalizados son seguros sin plataforma de consentimiento.
 
 Esto **no implementa un CMP ni constituye una revisión legal**. El texto de cookies afirma que habrá un panel de consentimiento para aceptar, configurar o rechazar publicidad, pero no encontramos una interfaz de consentimiento en `src`. Antes de activar publicidad hay que elegir e integrar una plataforma adecuada, probar sus señales reales y revisar el texto del sitio. El cambio actual evita la carga por defecto; no declara que la web ya cumpla requisitos de consentimiento.
+
+La documentación oficial de Google confirma que servir anuncios personalizados en el EEE/Reino Unido/Suiza requiere CMP certificada por Google e integrada con TCF. AdSense permanece desactivado por defecto. `public/ads.txt` contiene el publisher ID configurado en el código, pero su respuesta en producción no se verificó.
+
+### P1 — protección y desbloqueo usaban `Buffer` en el navegador
+
+Los runners pasaban `Buffer.from(ArrayBuffer)` a `cryptpdf`, aunque la librería acepta `Uint8Array` y la herramienta se ejecuta en cliente; los navegadores no garantizan un global `Buffer`. Se cambió la entrada a `new Uint8Array(buffer)`. Una comprobación funcional creó, cifró y descifró un PDF de una página y confirmó que una contraseña incorrecta se rechaza. El build de cliente/SSR terminó después del cambio.
+
+### QA heredado — salida engañosa y alcance del lint
+
+`scripts/audit-tools.cjs` mostraba 30 herramientas al comprobar 51, imprimía `Status undefined` al fallar la conexión y siempre salía con código 0. Ahora informa el total real, distingue redirects esperados y errores de conexión, comprueba un 404 auténtico y devuelve código distinto de cero si falla. El entorno bloquea conexiones a loopback (`EACCES`/`ETIMEDOUT`), por lo que la parte HTTP no se pudo validar aquí. El comando de lint se limita a `src` y excluye perfiles temporales; el lint aún informa problemas heredados de formato y tipos, no corregidos masivamente en este lote.
 
 ### P2 — material anterior mezclaba objetivos e indicadores medidos
 
@@ -78,8 +88,12 @@ La oportunidad de BreadPDF es describir tareas concretas (límite de Moodle, uni
 
 - `node scripts/generate-seo-inventory.mjs`: correcto; produjo 238 filas de rutas (201 incluidas en sitemap) y 485 objetivos keyword.
 - Auditoría del repositorio: `git diff --check` correcto antes de la última iteración de UI.
-- `npm run build`: no ejecutable porque el comando `vite` no está instalado/resuelto desde `node_modules`. No se declara compilación satisfactoria.
-- Comprobación pública HTTP: falló la resolución DNS de `breadpdf.com` desde el entorno de ejecución. No se verificaron códigos HTTP, HTML, sitemap servido ni despliegue.
+- `npm ci --no-audit --no-fund`: correcto; instaló 519 paquetes desde `package-lock.json` sin modificar el lockfile.
+- `npm run build`: correcto para cliente y SSR; el bundler advierte que `cryptpdf` contiene un fallback a `node:crypto`, mientras la comprobación funcional de cifrado pasó con Web Crypto disponible.
+- `node scripts/generate-seo-inventory.mjs`: correcto; produjo 238 filas de rutas (201 incluidas en sitemap) y 485 objetivos keyword; no modificó el inventario existente.
+- `node scripts/audit-tools.cjs`: la comprobación estática de metadatos pasó para 51 herramientas. La batería HTTP no pudo conectar a loopback desde este entorno; no se cuentan esas rutas como validadas.
+- `npm run lint`: no pasa por problemas preexistentes de formato y tipos en `src` (2.733 errores y 17 avisos en la ejecución local); no se reformateó masivamente el repositorio.
+- La apertura directa de las URLs públicas y las solicitudes HTTP locales no estuvieron disponibles desde este entorno. No se verificaron códigos HTTP, HTML desplegado, sitemap servido, métricas de campo ni publicación.
 
 ## Fuentes de referencia
 
