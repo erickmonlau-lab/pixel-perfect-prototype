@@ -42,30 +42,35 @@ export const Route = createFileRoute("/$lang/")({
       ],
       links: [
         ...alternateLinks(locale, { kind: "home" }),
+        // El subtítulo del hero (elemento LCP en móvil) se pinta con Inter 600,
+        // así que esa cara va primero y con máxima prioridad. Las otras tres se
+        // usan más abajo o en textos pequeños del header y pueden esperar.
         {
           rel: "preload",
-          href: "/fonts/plus-jakarta-sans-latin-800.woff2",
+          href: "/fonts/inter-latin-600-v2.woff2",
+          as: "font",
+          type: "font/woff2",
+          crossOrigin: "anonymous",
+          fetchPriority: "high",
+        },
+        {
+          rel: "preload",
+          href: "/fonts/plus-jakarta-sans-latin-800-v2.woff2",
+          as: "font",
+          type: "font/woff2",
+          crossOrigin: "anonymous",
+          fetchPriority: "high",
+        },
+        {
+          rel: "preload",
+          href: "/fonts/inter-latin-500-v2.woff2",
           as: "font",
           type: "font/woff2",
           crossOrigin: "anonymous",
         },
         {
           rel: "preload",
-          href: "/fonts/inter-latin-500.woff2",
-          as: "font",
-          type: "font/woff2",
-          crossOrigin: "anonymous",
-        },
-        {
-          rel: "preload",
-          href: "/fonts/inter-latin-600.woff2",
-          as: "font",
-          type: "font/woff2",
-          crossOrigin: "anonymous",
-        },
-        {
-          rel: "preload",
-          href: "/fonts/plus-jakarta-sans-latin-700.woff2",
+          href: "/fonts/plus-jakarta-sans-latin-700-v2.woff2",
           as: "font",
           type: "font/woff2",
           crossOrigin: "anonymous",

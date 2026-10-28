@@ -74,16 +74,27 @@ function deferHydration(html: string): string {
   );
 }
 
+// The SSR HTML is byte-for-byte the same for every visitor (auth lives behind
+// /api/auth and is resolved on the client), so the edge can hold it briefly.
+// Without s-maxage Vercel answers every request with X-Vercel-Cache: MISS and
+// re-runs the function (~220 ms TTFB from Europe, more on a cold start); that
+// latency is what made the PSI mobile runs swing between 63 and 93.
+// stale-while-revalidate serves the cached copy while revalidating in the
+// background, so a deploy is visible within a minute without hurting TTFB.
+const HTML_CACHE_CONTROL = "public, max-age=0, s-maxage=60, stale-while-revalidate=300";
+
 async function optimizeSsrResponse(response: Response): Promise<Response> {
   const contentType = response.headers.get("content-type") ?? "";
   if (!contentType.includes("text/html")) return response;
 
   const html = await response.text();
   const optimizedHtml = deferHydration(removeModulepreloads(html));
+  const headers = new Headers(response.headers);
+  if (response.status === 200) headers.set("Cache-Control", HTML_CACHE_CONTROL);
   return new Response(optimizedHtml, {
     status: response.status,
     statusText: response.statusText,
-    headers: response.headers,
+    headers,
   });
 }
 
