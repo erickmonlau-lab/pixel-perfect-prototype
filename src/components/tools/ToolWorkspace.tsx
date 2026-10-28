@@ -1198,7 +1198,7 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
 
       {phase === "done" && outputs.length > 0 && (
         <div className="animate-rise border-t-2 border-[#0F0F12] bg-white p-4 sm:p-6 lg:p-8">
-          <div className="mx-auto mb-4 flex max-w-5xl flex-col justify-between gap-4 rounded-2xl border-2 border-[#0F0F12] bg-[#EC3C2D] p-4 text-white shadow-[4px_4px_0_#0F0F12] sm:flex-row sm:items-center sm:p-5">
+          <div className="mx-auto mb-4 flex max-w-5xl flex-col justify-between gap-4 rounded-2xl border-2 border-[#0F0F12] bg-white p-4 text-[#0F0F12] shadow-[4px_4px_0_#0F0F12] sm:flex-row sm:items-center sm:p-5">
             <div className="flex items-center gap-4">
               <img
                 src={BRAND_ASSETS.mascots.celebrate}
@@ -1210,17 +1210,17 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
               />
               <div>
                 <div className="flex items-center gap-2.5">
-                  <span className="flex size-9 shrink-0 items-center justify-center rounded-xl border-2 border-[#0F0F12] bg-white text-[#EC3C2D] shadow-[2px_2px_0_#0F0F12]">
+                  <span className="flex size-9 shrink-0 items-center justify-center rounded-xl border-2 border-[#0F0F12] bg-[#86EFAC] text-[#0F0F12] shadow-[2px_2px_0_#0F0F12]">
                     <CheckCircle2 className="size-4.5" aria-hidden />
                   </span>
-                  <h3 className="text-[23px] font-black leading-snug tracking-tight text-white sm:text-[27px]">
+                  <h3 className="text-[23px] font-black leading-snug tracking-tight text-[#0F0F12] sm:text-[27px]">
                     {t.workspace.done}
                   </h3>
                 </div>
                 {note ? (
-                  <p className="mt-1 text-[16px] font-semibold leading-normal text-white">{note}</p>
+                  <p className="mt-1 text-[16px] font-semibold leading-normal text-slate-700">{note}</p>
                 ) : (
-                  <p className="mt-1 text-[16px] font-semibold leading-normal text-white">{locale === "ca" ? "El document ja està processat i a punt per descarregar." : locale === "en" ? "Your document is ready to download." : "Tu documento está preparado para descargar."}</p>
+                  <p className="mt-1 text-[16px] font-semibold leading-normal text-slate-700">{locale === "ca" ? "El document ja està processat i a punt per descarregar." : locale === "en" ? "Your document is ready to download." : "Tu documento está preparado para descargar."}</p>
                 )}
               </div>
             </div>
@@ -1282,8 +1282,8 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
               className="group relative flex min-h-[94px] items-center justify-between gap-4 rounded-2xl border-2 border-[#0F0F12] bg-[#EC3C2D] p-4 text-white shadow-[4px_4px_0_#0F0F12] transition-all hover:-translate-y-0.5 hover:bg-[#D93426] hover:shadow-[5px_5px_0_#0F0F12] active:translate-y-0 active:shadow-[2px_2px_0_#0F0F12] sm:p-5"
               >
                 <div className="flex items-center gap-4 min-w-0">
-                  <div className="flex size-14 shrink-0 items-center justify-center rounded-xl border-2 border-white bg-[#C92F23] text-white transition-transform group-hover:scale-105 sm:size-16">
-                    <Download className="size-8 text-white stroke-[2.5]" aria-hidden />
+                  <div className="flex size-14 shrink-0 items-center justify-center rounded-xl border-2 border-[#0F0F12] bg-white text-[#EC3C2D] transition-transform group-hover:scale-105 sm:size-16">
+                    <Download className="size-8 text-[#EC3C2D] stroke-[2.5]" aria-hidden />
                   </div>
                   <div className="min-w-0 text-left">
                     <span className="block truncate text-[18px] font-black tracking-tight text-white sm:text-[20px]">
