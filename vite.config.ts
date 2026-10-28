@@ -10,6 +10,12 @@ export default defineConfig({
   tanstackStart: {
     // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
     // nitro/vite builds from this
-    server: { entry: "server" },
+    server: {
+      entry: "server",
+      // Serve the stylesheet inside the SSR HTML so the first paint never waits
+      // for a second round trip on slow connections (PSI reports 1300 ms of
+      // render-blocking CSS on mobile). All url() references are absolute.
+      build: { inlineCss: true },
+    },
   },
 });

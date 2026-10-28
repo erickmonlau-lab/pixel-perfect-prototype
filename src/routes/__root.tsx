@@ -10,7 +10,7 @@ import {
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
 
-import appCss from "../styles.css?url";
+import "../styles.css";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { DEFAULT_LOCALE, HTML_LANG } from "@/lib/i18n/config";
 import { parsePath } from "@/lib/i18n/routing";
@@ -122,7 +122,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         { name: "google-adsense-account", content: GOOGLE_ADSENSE_CLIENT_ID },
       ],
       links: [
-        { rel: "stylesheet", href: appCss },
         { rel: "icon", href: "/favicon.ico?v=3", sizes: "48x48 32x32 16x16" },
         { rel: "icon", href: "/favicon.svg?v=3", type: "image/svg+xml" },
         { rel: "icon", href: "/favicon-32x32.png?v=3", sizes: "32x32", type: "image/png" },
