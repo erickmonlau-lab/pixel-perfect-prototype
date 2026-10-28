@@ -318,12 +318,17 @@ function Home() {
             </h1>
 
             {/* DESCRIPCIÓN PROTAGONISTA: Negro sólido #0F0F12, 17-18px en escritorio, peso semibold y ritmo cómodo */}
-            <p className="mx-auto mt-4.5 sm:mt-5 mb-3.5 sm:mb-4 max-w-[650px] text-[15.5px] sm:text-[17px] lg:text-[17.5px] font-semibold text-[#0F0F12] leading-[1.5] tracking-tight">
-              {locale === "ca"
-                ? "Comprimeix, converteix, uneix, divideix i edita els teus documents online. Ràpid, clar i sense complicacions."
-                : locale === "en"
-                ? "Compress, convert, merge, split and edit your documents online. Fast, clear and hassle-free."
-                : "Comprime, convierte, une, divide y edita tus documentos online. Rápido, claro y sin complicaciones."}
+            <p className="mx-auto mt-4.5 mb-3.5 flex max-w-[650px] flex-col items-center text-[15.5px] font-semibold leading-[1.5] tracking-tight text-[#0F0F12] sm:mt-5 sm:mb-4 sm:text-[17px] lg:text-[17.5px]">
+              <span>
+                {locale === "ca"
+                  ? "Comprimeix, converteix, uneix, divideix i edita els teus documents online."
+                  : locale === "en"
+                  ? "Compress, convert, merge, split and edit your documents online."
+                  : "Comprime, convierte, une, divide y edita tus documentos online."}
+              </span>
+              <span className="whitespace-nowrap">
+                {locale === "ca" ? "Ràpid, clar i sense complicacions." : locale === "en" ? "Fast, clear and hassle-free." : "Rápido, claro y sin complicaciones."}
+              </span>
             </p>
 
             {/* BUSCADOR PROMINENTE */}

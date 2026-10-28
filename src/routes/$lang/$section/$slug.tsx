@@ -441,7 +441,7 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
       </header>
 
       {/* 3. WORKSPACE / UPLOADER: The centerpiece of action */}
-      <div className="mt-5 sm:mt-6 animate-fade-in [animation-delay:60ms]">
+      <div className="mt-5 sm:mt-6 animate-paper-open [animation-delay:70ms]">
         <ToolWorkspace tool={tool} />
       </div>
 

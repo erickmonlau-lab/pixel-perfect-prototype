@@ -114,8 +114,8 @@ export function ToolCatalogCard({
 
       {/* 2. Botón circular con flecha diagonal ↗ interactivo en la esquina inferior derecha */}
       {!isPending && (
-        <div className="absolute bottom-4 right-4 flex items-center justify-center">
-          <span className={`flex size-8 items-center justify-center rounded-full border-2 border-[#0F0F12] bg-[#EDEDF0] text-[#0F0F12] shadow-[2px_2px_0_#0F0F12] transition-all duration-150 group-hover:${colorTheme.bg} group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5`}>
+      <div className="absolute bottom-4 right-4 flex items-center justify-center">
+          <span className="flex size-8 items-center justify-center rounded-full border-2 border-[#0F0F12] bg-[#FEF08A] text-[#0F0F12] shadow-[2px_2px_0_#0F0F12] transition-all duration-150 group-hover:bg-[#EC3C2D] group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-active:bg-[#D93426] group-focus-visible:bg-[#EC3C2D] group-focus-visible:text-white">
             <ArrowUpRight className="size-4 stroke-[2.8]" />
           </span>
         </div>
@@ -131,7 +131,7 @@ export function ToolCatalogCard({
     <Link
       to={DETAIL_ROUTE}
       params={toolParams(locale, canonicalSlug)}
-      className="block h-full focus:outline-none focus-visible:ring-3 focus-visible:ring-[#EC3C2D] rounded-2xl"
+      className="block h-full rounded-2xl focus:outline-none focus-visible:ring-3 focus-visible:ring-[#EC3C2D] focus-visible:ring-offset-4"
     >
       {cardContent}
     </Link>
