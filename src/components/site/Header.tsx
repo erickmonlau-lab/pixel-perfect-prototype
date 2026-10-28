@@ -579,7 +579,7 @@ export function Header() {
 
       {/* MOBILE ACCORDION DRAWER */}
       {mobileOpen && (
-        <div className="animate-rise absolute left-2.5 right-2.5 top-full z-50 mx-auto max-h-[min(78dvh,680px)] max-w-[420px] overflow-y-auto overscroll-contain rounded-b-2xl border-2 border-t-0 border-[#0F0F12] bg-[#F5F7FA] px-3 py-3 shadow-[3px_6px_0_#0F0F12] lg:hidden">
+        <div className="animate-rise absolute left-2.5 right-2.5 top-[calc(100%+0.5rem)] z-50 mx-auto max-h-[min(78dvh,680px)] max-w-[420px] overflow-y-auto overscroll-contain rounded-2xl border-2 border-[#0F0F12] bg-[#F5F7FA] px-3 py-3 shadow-[4px_5px_0_#0F0F12] lg:hidden">
           <nav className="mx-auto flex max-w-xl flex-col gap-3" aria-label={t.nav.menu}>
             {/* Quick Catalog Link */}
             <Link
@@ -643,7 +643,7 @@ export function Header() {
                       <button
                         type="button"
                         onClick={() => setMobileExpandedCat(isExpanded ? null : category.category)}
-                        className="inline-flex size-9 shrink-0 items-center justify-center rounded-lg border-2 border-[#0F0F12] bg-white text-[#0F172A] transition-colors hover:bg-[#FEECEB] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EC3C2D]"
+                        className={`inline-flex size-9 shrink-0 items-center justify-center rounded-lg border-2 border-[#0F0F12] ${accent.iconBg} ${accent.icon} transition-[filter,transform] hover:brightness-95 active:translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0F0F12]`}
                         aria-label={`${toggleAction} ${category.name}`}
                         aria-expanded={isExpanded}
                       >
@@ -720,7 +720,7 @@ export function Header() {
                 to={SECTION_ROUTE}
                 params={privacyParams(locale)}
                 onClick={() => setMobileOpen(false)}
-                className="rounded-lg border-2 border-[#0F0F12] bg-white px-3 py-2 text-[13.5px] font-semibold text-[#0F172A] shadow-[2px_2px_0_#0F0F12] transition-colors hover:bg-[#FEECEB]"
+                className="col-span-2 flex min-h-11 items-center justify-center rounded-lg border-2 border-[#0F0F12] bg-white px-3 py-2 text-[13.5px] font-semibold text-[#0F172A] shadow-[2px_2px_0_#0F0F12] transition-colors hover:bg-[#FEECEB]"
               >
                 {t.nav.privacy}
               </Link>
