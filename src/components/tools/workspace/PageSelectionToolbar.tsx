@@ -1,6 +1,7 @@
 ﻿import React from "react";
 import { RotateCw, Trash2, CheckSquare, Square, Undo2, Redo2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useLocale } from "@/lib/i18n/context";
 
 type ToolbarProps = {
   selectedCount: number;
@@ -29,19 +30,20 @@ export function PageSelectionToolbar({
   onUndo,
   onRedo,
 }: ToolbarProps) {
+  const { t } = useLocale();
   const allSelected = selectedCount > 0 && selectedCount === totalCount;
 
   return (
-    <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-slate-200 bg-white px-4 py-2.5 shadow-xs">
+    <div className="flex flex-wrap items-center justify-between gap-2 rounded-xl border-2 border-[#0F0F12] bg-[#0F0F12] px-3 py-2 text-white shadow-[3px_3px_0_#EC3C2D]">
       <div className="flex items-center gap-2">
         <button
           type="button"
           onClick={allSelected ? onClearSelection : onSelectAll}
-          className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-slate-700 hover:text-primary transition-colors cursor-pointer"
+          className="inline-flex items-center gap-1.5 rounded-lg bg-white/10 px-2.5 py-1.5 text-[12.5px] font-bold text-white hover:bg-white/20 transition-colors cursor-pointer"
         >
-          {allSelected ? <CheckSquare className="size-4 text-primary" /> : <Square className="size-4 text-slate-400" />}
+          {allSelected ? <CheckSquare className="size-4 text-[#FEF08A]" /> : <Square className="size-4 text-white/60" />}
           <span>
-            {selectedCount > 0 ? `${selectedCount} seleccionada(s)` : `Todas (${totalCount})`}
+            {selectedCount > 0 ? t.workspace.selectedPages(selectedCount) : t.workspace.allPages(totalCount)}
           </span>
         </button>
 
@@ -49,9 +51,9 @@ export function PageSelectionToolbar({
           <button
             type="button"
             onClick={onClearSelection}
-            className="text-[12px] font-medium text-slate-400 hover:text-slate-600 underline cursor-pointer ml-1"
+            className="ml-1 cursor-pointer text-[12px] font-semibold text-white/70 underline hover:text-white"
           >
-            Desmarcar
+            {t.workspace.clearSelection}
           </button>
         )}
       </div>
@@ -64,8 +66,8 @@ export function PageSelectionToolbar({
           size="sm"
           disabled={!canUndo}
           onClick={onUndo}
-          title="Deshacer"
-          className="h-8 px-2 text-slate-600"
+          title={t.workspace.undo}
+          className="h-8 border-white/20 bg-white/10 px-2 text-white hover:bg-white/20 hover:text-white"
         >
           <Undo2 className="size-3.5" />
         </Button>
@@ -75,13 +77,13 @@ export function PageSelectionToolbar({
           size="sm"
           disabled={!canRedo}
           onClick={onRedo}
-          title="Rehacer"
-          className="h-8 px-2 text-slate-600"
+          title={t.workspace.redo}
+          className="h-8 border-white/20 bg-white/10 px-2 text-white hover:bg-white/20 hover:text-white"
         >
           <Redo2 className="size-3.5" />
         </Button>
 
-        <div className="h-4 w-px bg-slate-200 mx-1" />
+        <div className="mx-1 h-5 w-px bg-white/20" />
 
         {/* Rotate controls */}
         {selectedCount > 0 ? (
@@ -90,10 +92,10 @@ export function PageSelectionToolbar({
             variant="outline"
             size="sm"
             onClick={onRotateSelected}
-            className="h-8 text-[12.5px] font-medium gap-1.5 text-slate-700"
+            className="h-8 gap-1.5 border-2 border-white bg-[#EC3C2D] px-3 text-[12px] font-black text-white shadow-[2px_2px_0_#fff] hover:bg-[#D93426]"
           >
             <RotateCw className="size-3.5" />
-            <span>Girar ({selectedCount})</span>
+            <span>{t.workspace.rotateSelected(selectedCount)}</span>
           </Button>
         ) : (
           <Button
@@ -101,10 +103,10 @@ export function PageSelectionToolbar({
             variant="outline"
             size="sm"
             onClick={onRotateAll}
-            className="h-8 text-[12.5px] font-medium gap-1.5 text-slate-700"
+            className="h-8 gap-1.5 border-2 border-white bg-[#EC3C2D] px-3 text-[12px] font-black text-white shadow-[2px_2px_0_#fff] hover:bg-[#D93426]"
           >
             <RotateCw className="size-3.5" />
-            <span>Girar todas</span>
+            <span>{t.workspace.rotateAll}</span>
           </Button>
         )}
 
@@ -115,10 +117,10 @@ export function PageSelectionToolbar({
             variant="outline"
             size="sm"
             onClick={onRemoveSelected}
-            className="h-8 text-[12.5px] font-medium gap-1.5 text-red-600 hover:bg-red-50 hover:text-red-700 hover:border-red-200"
+            className="h-8 gap-1.5 border-white/20 bg-white/10 px-3 text-[12px] font-bold text-white hover:bg-white/20 hover:text-white"
           >
             <Trash2 className="size-3.5" />
-            <span>Eliminar ({selectedCount})</span>
+            <span>{t.workspace.deleteSelected(selectedCount)}</span>
           </Button>
         )}
       </div>

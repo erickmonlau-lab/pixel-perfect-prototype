@@ -119,7 +119,7 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
   // ConfiguraciÃ³n de NumeraciÃ³n de pÃ¡ginas
   const [pageNumberConfig, setPageNumberConfig] = useState<PageNumberConfig>({
     position: "bottom-center",
-    format: "PÃ¡gina {n} de {total}",
+    format: "Página {n} de {total}",
     startFrom: 1,
     excludeCover: false,
     fontSize: 11,
@@ -230,6 +230,7 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
       if (!isPageWorkspace || fileList.length === 0) return;
       try {
         setPhase("loading-pages");
+        setMessage(null);
         const { PDFDocument } = await loadPdfLib();
         const docs: PageWorkspaceDocument[] = [];
         const allPages: PageItem[] = [];
@@ -271,10 +272,11 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
         setPhase("idle");
       } catch (err) {
         console.error("Error loading PDF pages", err);
-        setPhase("idle");
+        setMessage(t.workspace.pdfLoadError);
+        setPhase("error");
       }
     },
-    [isPageWorkspace, resetWorkspace]
+    [isPageWorkspace, resetWorkspace, t]
   );
 
   const MAX_FILE_SIZE = 100 * 1024 * 1024; // 100MB por archivo para seguridad de memoria en navegador
@@ -292,10 +294,10 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
         setPhase("error");
         setMessage(
           locale === "ca"
-            ? `L'arxiu "${oversized.name}" supera el lÃ­mit recomanat de 100MB per a processament local.`
+            ? `L'arxiu "${oversized.name}" supera el límit recomanat de 100 MB per al processament local.`
             : locale === "en"
             ? `The file "${oversized.name}" exceeds the recommended 100MB limit for in-browser processing.`
-            : `El archivo "${oversized.name}" supera el lÃ­mite recomendado de 100MB para procesamiento en navegador.`
+            : `El archivo "${oversized.name}" supera el límite recomendado de 100 MB para procesarlo en el navegador.`
         );
         return;
       }
@@ -316,10 +318,10 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
         setPhase("error");
         setMessage(
           locale === "ca"
-            ? `Pots afegir un mÃ xim de ${MAX_TOTAL_FILES} arxius simultanis.`
+            ? `Pots afegir un màxim de ${MAX_TOTAL_FILES} fitxers alhora.`
             : locale === "en"
             ? `You can add a maximum of ${MAX_TOTAL_FILES} files simultaneously.`
-            : `Puedes aÃ±adir un mÃ¡ximo de ${MAX_TOTAL_FILES} archivos simultÃ¡neos.`
+            : `Puedes añadir un máximo de ${MAX_TOTAL_FILES} archivos a la vez.`
         );
         return;
       }
@@ -408,12 +410,12 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
               setOutputs(outItems);
               setNote(
                 selectedIndices.length === 1
-                  ? (locale === "ca" ? "1 pÃ gina extreta amb Ã¨xit." : locale === "en" ? "1 page extracted successfully." : "1 pÃ¡gina extraÃ­da con Ã©xito.")
+                  ? (locale === "ca" ? "S'ha extret 1 pàgina correctament." : locale === "en" ? "1 page extracted successfully." : "Se ha extraído 1 página correctamente.")
                   : (locale === "ca"
-                    ? `${selectedIndices.length} pÃ gines separades guardades en 1 sol PDF.`
+                    ? `${selectedIndices.length} pàgines separades desades en un sol PDF.`
                     : locale === "en"
                     ? `${selectedIndices.length} split pages saved together in 1 single PDF.`
-                    : `${selectedIndices.length} pÃ¡ginas separadas guardadas en 1 solo PDF.`)
+                    : `${selectedIndices.length} páginas separadas guardadas en un solo PDF.`)
               );
             } else {
               // Guardar en archivos individuales (1 por cada pÃ¡gina seleccionada)
@@ -432,10 +434,10 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
               setOutputs(outItems);
               setNote(
                 locale === "ca"
-                  ? `${selectedIndices.length} pÃ gines separades en fitxers individuals.`
+                  ? `${selectedIndices.length} pàgines separades en fitxers individuals.`
                   : locale === "en"
                   ? `${selectedIndices.length} pages split into individual files.`
-                  : `${selectedIndices.length} pÃ¡ginas separadas en archivos individuales.`
+                  : `${selectedIndices.length} páginas separadas en archivos individuales.`
               );
             }
           } else {
@@ -456,10 +458,10 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
               setOutputs(outItems);
               setNote(
                 locale === "ca"
-                  ? `${totalPdfPages} PDF d'una pÃ gina generats.`
+                  ? `${totalPdfPages} PDF d'una pàgina generats.`
                   : locale === "en"
                   ? `${totalPdfPages} single-page PDFs generated.`
-                  : `${totalPdfPages} PDF de una pÃ¡gina generados.`
+                  : `${totalPdfPages} PDF de una página generados.`
               );
             } else {
               // Modo intervalos
@@ -468,10 +470,10 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
               if (groups.length === 0) {
                 throw new Error(
                   locale === "ca"
-                    ? "Indica almenys un interval (ex: 1-3, 4, 5-9) o selecciona pÃ gines a les miniatures."
+                    ? "Indica almenys un interval (ex.: 1-3, 4, 5-9) o selecciona les pàgines a les miniatures."
                     : locale === "en"
                     ? "Specify at least one range (e.g. 1-3, 4, 5-9) or select pages in the thumbnails."
-                    : "Indica al menos un intervalo (ej: 1-3, 4, 5-9) o selecciona pÃ¡ginas en las miniaturas."
+                    : "Indica al menos un intervalo (p. ej.: 1-3, 4, 5-9) o selecciona páginas en las miniaturas."
                 );
               }
               for (let g = 0; g < groups.length; g++) {
@@ -894,21 +896,29 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
 
       {/* Zona de configuraciÃ³n / archivos para herramientas interactivas o de configuraciÃ³n manual */}
       {!isAutoFlow && (files.length > 0 || tool.minFiles === 0) && phase !== "loading-pages" && (
-        <div className="animate-rise border-t border-border p-6 sm:p-8">
-          <div className="flex items-center justify-between mb-4">
-            <div>
-              <h3 className="text-[16px] font-bold text-foreground">
-                {isPageWorkspace
-                  ? `${workspaceState.pages.length} pÃ¡ginas listas para interactuar`
-                  : files.length > 0
-                    ? t.workspace.filesReady(files.length)
-                    : "Configura las opciones y genera tu documento"}
-              </h3>
-              <span className="text-[13px] text-muted-foreground">
-                {files.length > 0
-                  ? `Total: ${formatBytes(files.reduce((acc, f) => acc + f.size, 0))}`
-                  : "Listo para procesar"}
+        <div key={files.map((file) => `${file.name}-${file.size}`).join("|")} className="animate-rise border-t-2 border-[#0F0F12] bg-[#FFF7F5] p-4 sm:p-5">
+          <div className="mb-3 flex flex-wrap items-center justify-between gap-3 rounded-2xl border-2 border-[#0F0F12] bg-white p-3 shadow-[3px_3px_0_#0F0F12]">
+            <div className="flex min-w-0 items-center gap-3">
+              <span className="flex size-9 shrink-0 items-center justify-center rounded-xl border-2 border-[#0F0F12] bg-[#EC3C2D] text-white shadow-[2px_2px_0_#0F0F12]">
+                <CheckCircle2 className="size-4.5" />
               </span>
+              <div className="min-w-0">
+                <div className="flex flex-wrap items-center gap-2">
+                  <h3 className="text-[15px] font-black text-[#0F0F12] sm:text-[16px]">
+                    {isPageWorkspace
+                      ? t.workspace.pagesReady(workspaceState.pages.length)
+                      : files.length > 0
+                        ? t.workspace.filesReady(files.length)
+                        : t.workspace.configureToStart}
+                  </h3>
+                  {files.length > 0 && <span className="rounded-md border border-[#0F0F12] bg-[#86EFAC] px-1.5 py-0.5 text-[9px] font-black uppercase tracking-wide text-[#0F0F12]">{t.workspace.fileDetected}</span>}
+                </div>
+                <span className="text-[12px] font-medium text-slate-500">
+                  {files.length > 0
+                    ? t.workspace.totalSize(formatBytes(files.reduce((acc, f) => acc + f.size, 0)))
+                    : t.workspace.readyForProcessing}
+                </span>
+              </div>
             </div>
 
             <div className="flex items-center gap-2">
@@ -918,38 +928,38 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                   variant="outline"
                   size="sm"
                   onClick={() => inputRef.current?.click()}
-                  className="h-8.5 px-3 text-[12.5px] font-bold text-slate-700 hover:text-primary hover:border-primary/40 gap-1.5 shadow-2xs"
+                  className="h-8.5 border-2 border-[#0F0F12] bg-[#FEF08A] px-3 text-[12px] font-black text-[#0F0F12] hover:bg-[#FDE047] gap-1.5 shadow-[2px_2px_0_#0F0F12]"
                 >
                   <Plus className="size-3.5" />
-                  <span>{t.workspace.addMoreFiles ?? "AÃ±adir mÃ¡s archivos"}</span>
+                  <span>{t.workspace.addMoreFiles}</span>
                 </Button>
               )}
 
               {isPageWorkspace && (
-                <div className="flex items-center gap-1 rounded-lg border border-slate-200 bg-slate-50 p-1">
+                <div className="flex items-center gap-1 rounded-xl border-2 border-[#0F0F12] bg-[#F1F2F4] p-1">
                   <button
                     type="button"
                     onClick={() => setViewMode("visual")}
                     className={`flex items-center gap-1.5 rounded-md px-2.5 py-1 text-[12px] font-semibold transition-all ${
                       viewMode === "visual"
-                        ? "bg-white text-slate-900 shadow-xs"
+                        ? "border border-[#0F0F12] bg-[#0F0F12] text-white shadow-[1px_1px_0_#EC3C2D]"
                         : "text-slate-500 hover:text-slate-800"
                     }`}
                   >
                     <LayoutGrid className="size-3.5" />
-                    <span>Miniaturas</span>
+                    <span>{t.workspace.viewThumbnails}</span>
                   </button>
                   <button
                     type="button"
                     onClick={() => setViewMode("list")}
                     className={`flex items-center gap-1.5 rounded-md px-2.5 py-1 text-[12px] font-semibold transition-all ${
                       viewMode === "list"
-                        ? "bg-white text-slate-900 shadow-xs"
+                        ? "border border-[#0F0F12] bg-[#0F0F12] text-white shadow-[1px_1px_0_#EC3C2D]"
                         : "text-slate-500 hover:text-slate-800"
                     }`}
                   >
                     <List className="size-3.5" />
-                    <span>Archivos</span>
+                    <span>{t.workspace.viewFiles}</span>
                   </button>
                 </div>
               )}
@@ -974,36 +984,34 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
           {isPageWorkspace && viewMode === "visual" ? (
             <div className="mt-4 flex flex-col gap-3">
               {/* Ayuda visual amigable para seleccionar o dividir pÃ¡ginas */}
-              <div className="flex flex-col gap-2.5 rounded-xl border border-primary/20 bg-primary/5 p-3.5 sm:px-4 sm:py-3 text-[13px] text-slate-700">
+              <div className="flex flex-col gap-2 rounded-xl border-2 border-[#0F0F12] bg-[#FEF08A] p-3 text-[12.5px] font-medium text-[#0F0F12] shadow-[2px_2px_0_#0F0F12]">
                 <div className="flex flex-wrap items-center justify-between gap-2">
                   <div className="flex items-center gap-2">
-                    <span className="flex size-5 shrink-0 items-center justify-center rounded-full bg-primary text-[11px] font-bold text-white">
-                      â„¹
+                    <span className="flex size-6 shrink-0 items-center justify-center rounded-lg border border-[#0F0F12] bg-[#EC3C2D] text-[11px] font-black text-white">
+                      <CheckCircle2 className="size-3.5" />
                     </span>
                     <span>
                       {canonicalSlug === "dividir-pdf" ? (
                         workspaceState.selectedPageIds.length > 0 ? (
                           <>
-                            <strong className="font-semibold text-primary">
-                              {workspaceState.selectedPageIds.length} pÃ¡gina(s) seleccionada(s).
-                            </strong>{" "}
-                            Haz clic en cualquier pÃ¡gina para aÃ±adirla o quitarla.
+                            <strong className="font-black">{t.workspace.selectedPages(workspaceState.selectedPageIds.length)}.</strong>{" "}
+                            {t.workspace.pageSelectionHelp}
                           </>
                         ) : (
                           <>
-                            <strong>Haz clic en cualquier pÃ¡gina</strong> para seleccionarla y separarla, o usa los ajustes inferiores para dividir por intervalos o todas a la vez.
+                            <strong>{t.workspace.splitPageSelectionHelp}</strong>
                           </>
                         )
                       ) : (
                         <>
-                          <strong>Haz clic en cualquier pÃ¡gina</strong> para seleccionarla, girarla o moverla a tu gusto.
+                          <strong>{t.workspace.pageSelectionHelp}</strong>
                         </>
                       )}
                     </span>
                   </div>
                   {workspaceState.selectedPageIds.length > 0 && (
-                    <span className="text-[12px] font-semibold text-primary bg-white border border-primary/20 px-2 py-0.5 rounded-md">
-                      {workspaceState.selectedPageIds.length} de {workspaceState.pages.length} pÃ¡ginas
+                    <span className="rounded-lg border border-[#0F0F12] bg-white px-2 py-1 text-[11px] font-black text-[#0F0F12]">
+                      {t.workspace.pagesOutOfTotal(workspaceState.selectedPageIds.length, workspaceState.pages.length)}
                     </span>
                   )}
                 </div>
@@ -1012,7 +1020,7 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                 {canonicalSlug === "dividir-pdf" && workspaceState.selectedPageIds.length > 1 && (
                   <div className="mt-1 flex flex-wrap items-center gap-2 pt-2 border-t border-primary/10">
                     <span className="text-[12.5px] font-semibold text-slate-800">
-                      {t.workspace.splitTargetLabel ?? "Â¿CÃ³mo quieres guardar las pÃ¡ginas seleccionadas?"}
+                      {t.workspace.splitTargetLabel}
                     </span>
                     <div className="inline-flex rounded-lg border border-primary/20 bg-white p-0.5 shadow-2xs">
                       <button
@@ -1024,7 +1032,7 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                             : "text-slate-600 hover:text-slate-900"
                         }`}
                       >
-                        {t.workspace.splitTargetCombined ?? "En 1 solo PDF (juntas)"}
+                        {t.workspace.splitTargetCombined}
                       </button>
                       <button
                         type="button"
@@ -1035,7 +1043,7 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                             : "text-slate-600 hover:text-slate-900"
                         }`}
                       >
-                        {t.workspace.splitTargetIndividual ?? "En varios PDFs (1 por cada pÃ¡gina)"}
+                        {t.workspace.splitTargetIndividual}
                       </button>
                     </div>
                   </div>
@@ -1062,16 +1070,17 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
             </div>
           ) : (
             <div className="mt-4 space-y-3">
-              <ul className="divide-y divide-slate-100 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xs">
+              <ul className="overflow-hidden rounded-2xl border-2 border-[#0F0F12] bg-white shadow-[3px_3px_0_#0F0F12]">
                 {files.map((file, index) => {
                   const previewUrl = filePreviews.get(`${file.name}-${file.size}-${file.lastModified}`);
                   return (
                     <li
                       key={`${file.name}-${index}`}
-                      className="animate-file-enter flex items-center gap-3.5 p-3.5 sm:p-4 bg-white transition-colors hover:bg-slate-50"
+                      style={{ animationDelay: `${Math.min(index * 65, 390)}ms` }}
+                      className="animate-file-detected flex items-center gap-3 border-b border-[#0F0F12]/10 bg-white p-3 transition-colors last:border-b-0 hover:bg-[#FFF7F5] sm:gap-3.5 sm:p-3.5"
                     >
                       {previewUrl ? (
-                        <div className="relative size-12 sm:size-13 shrink-0 overflow-hidden rounded-xl border border-slate-200 bg-slate-100 shadow-2xs">
+                        <div className="relative size-12 shrink-0 overflow-hidden rounded-xl border-2 border-[#0F0F12] bg-[#F1F2F4] shadow-[2px_2px_0_#0F0F12]">
                           <img
                             src={previewUrl}
                             alt={file.name}
@@ -1079,7 +1088,7 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                           />
                         </div>
                       ) : (
-                        <div className="flex size-11 sm:size-12 shrink-0 items-center justify-center rounded-xl bg-slate-100 text-[#EC3C2D] border border-slate-200">
+                        <div className="flex size-11 shrink-0 items-center justify-center rounded-xl border-2 border-[#0F0F12] bg-[#EC3C2D] text-white shadow-[2px_2px_0_#0F0F12]">
                           <FileText className="size-5.5" />
                         </div>
                       )}
@@ -1113,6 +1122,9 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                           </button>
                         </span>
                       )}
+                      <span className="flex size-7 shrink-0 items-center justify-center rounded-full border-2 border-[#0F0F12] bg-[#86EFAC] text-[#0F0F12] shadow-[1px_1px_0_#0F0F12]" aria-label={t.workspace.readyForProcessing}>
+                        <CheckCircle2 className="size-4" />
+                      </span>
                       <button
                         type="button"
                         onClick={() => {
@@ -1137,7 +1149,7 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                   className="w-full flex items-center justify-center gap-2.5 rounded-xl border border-slate-200 bg-[#F1F5FA] hover:bg-[#E4ECF5] p-3 text-[14px] font-bold text-[#0F172A] transition-all cursor-pointer shadow-2xs"
                 >
                   <Plus className="size-4.5 text-[#2563EB]" />
-                  <span>{t.workspace.addMoreFiles ?? "AÃ±adir mÃ¡s archivos"}</span>
+                  <span>{t.workspace.addMoreFiles}</span>
                 </button>
               )}
             </div>
@@ -1233,7 +1245,7 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                   className="h-13 px-8 text-[16px] font-black rounded-xl sm:rounded-2xl shadow-md bg-[#EC3C2D] hover:bg-[#D93426] text-white gap-2 transition-all hover:-translate-y-0.5 cursor-pointer"
                 >
                   <Plus className="size-5" />
-                  <span>{t.workspace.addMoreFiles ?? "AÃ±adir mÃ¡s archivos"}</span>
+                  <span>{t.workspace.addMoreFiles}</span>
                 </Button>
                 <span className="text-[14px] font-medium text-slate-700 bg-[#F1F5FA] rounded-xl px-4 py-2.5 border border-slate-200">
                   {t.workspace.addMoreFilesSubtitle ?? t.workspace.minFiles(tool.minFiles)}
@@ -1250,7 +1262,9 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                 {phase === "processing"
                   ? t.workspace.processing
                   : tool.slug === "dividir-pdf" && workspaceState.selectedPageIds.length > 0
-                  ? `Separar ${workspaceState.selectedPageIds.length} pÃ¡gina${workspaceState.selectedPageIds.length > 1 ? "s" : ""}`
+                    ? locale === "ca"
+                      ? `Separa ${workspaceState.selectedPageIds.length} ${workspaceState.selectedPageIds.length === 1 ? "pàgina" : "pàgines"}`
+                      : `Separar ${workspaceState.selectedPageIds.length} ${workspaceState.selectedPageIds.length === 1 ? "página" : "páginas"}`
                   : tool.ctaLabel}
               </Button>
             )}
@@ -1299,7 +1313,7 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
             <div className="flex items-center gap-4">
               <img
                 src={BRAND_ASSETS.mascots.celebrate}
-                alt="OperaciÃ³n completada con Ã©xito"
+                alt={locale === "ca" ? "Operació completada correctament" : locale === "en" ? "Operation completed successfully" : "Operación completada con éxito"}
                 width={440}
                 height={452}
                 className="size-20 sm:size-24 shrink-0 object-contain drop-shadow-md select-none pointer-events-none"
@@ -1317,7 +1331,7 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                 {note ? (
                   <p className="mt-1 text-[14.5px] font-medium text-slate-700 leading-normal">{note}</p>
                 ) : (
-                  <p className="mt-1 text-[14px] text-slate-600 font-medium leading-normal">Â¡Listo! Tu documento ha sido procesado con Ã©xito y estÃ¡ preparado para descargar.</p>
+                  <p className="mt-1 text-[14px] text-slate-600 font-medium leading-normal">{locale === "ca" ? "El document ja està processat i a punt per descarregar." : locale === "en" ? "Your document is ready to download." : "¡Listo! Tu documento está preparado para descargar."}</p>
                 )}
               </div>
             </div>
@@ -1376,7 +1390,7 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                     </span>
                     <span className="inline-flex items-center gap-1.5 mt-0.5 text-[13.5px] font-semibold text-white/90">
                       <span>{formatBytes(output.blob.size)}</span>
-                      <span>â€¢</span>
+                      <span>•</span>
                       <span className="underline decoration-white/50 underline-offset-2">
                         {output.name.endsWith(".zip")
                           ? (locale === "ca" ? "Descarregar ZIP gratis" : locale === "en" ? "Download ZIP free" : "Descargar ZIP gratis")
@@ -1400,10 +1414,10 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
             <div className="flex items-center justify-between border-b border-slate-200/80 pb-2">
               <span className="text-[14px] font-bold text-[#0F172A] tracking-tight">
                 {locale === "ca"
-                  ? "QuÃ¨ necessites fer ara?"
+                  ? "Què necessites fer ara?"
                   : locale === "en"
                   ? "What do you need to do next?"
-                  : "Â¿QuÃ© necesitas hacer ahora?"}
+                  : "¿Qué necesitas hacer ahora?"}
               </span>
               <span className="text-[12px] font-medium text-slate-500">
                 {locale === "ca" ? "Suite BreadPDF" : locale === "en" ? "BreadPDF Suite" : "Suite BreadPDF"}
@@ -1478,10 +1492,10 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                   </h5>
                   <p className="text-[13px] text-slate-500">
                     {locale === "ca"
-                      ? "51 eines per a conversiÃ³, organitzaciÃ³ i seguretat"
+                      ? "51 eines per a conversió, organització i seguretat"
                       : locale === "en"
                       ? "51 tools for conversion, organizing and security"
-                      : "51 herramientas de conversiÃ³n, organizaciÃ³n y seguridad"}
+                      : "51 herramientas de conversión, organización y seguridad"}
                   </p>
                 </div>
               </div>
@@ -1539,26 +1553,26 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                     {locale === "ca" ? "Equilibrat (recomanat)" : locale === "en" ? "Balanced (recommended)" : "Equilibrado (recomendado)"}
                   </option>
                   <option value="target_2mb">
-                    {locale === "ca" ? "Objectiu â‰¤ 2 MB (CV, portals)" : locale === "en" ? "Target â‰¤ 2 MB (Resume)" : "Objetivo â‰¤ 2 MB (CV, empleo)"}
+                    {locale === "ca" ? "Objectiu ≤ 2 MB (CV, portals)" : locale === "en" ? "Target ≤ 2 MB (résumé, portals)" : "Objetivo ≤ 2 MB (CV, empleo)"}
                   </option>
                   <option value="target_5mb">
-                    {locale === "ca" ? "Objectiu â‰¤ 5 MB (Moodle)" : locale === "en" ? "Target â‰¤ 5 MB (Moodle)" : "Objetivo â‰¤ 5 MB (Moodle)"}
+                    {locale === "ca" ? "Objectiu ≤ 5 MB (Moodle)" : locale === "en" ? "Target ≤ 5 MB (Moodle)" : "Objetivo ≤ 5 MB (Moodle)"}
                   </option>
                   <option value="target_10mb">
-                    {locale === "ca" ? "Objectiu â‰¤ 10 MB (LexNET)" : locale === "en" ? "Target â‰¤ 10 MB (Legal)" : "Objetivo â‰¤ 10 MB (LexNET)"}
+                    {locale === "ca" ? "Objectiu ≤ 10 MB (LexNET)" : locale === "en" ? "Target ≤ 10 MB (Legal)" : "Objetivo ≤ 10 MB (LexNET)"}
                   </option>
                   <option value="lossless">
                     {locale === "ca"
-                      ? "Sense pÃ¨rdua (estructural)"
+                      ? "Sense pèrdua (estructural)"
                       : locale === "en"
                       ? "Lossless (structural)"
-                      : "Sin pÃ©rdida (estructural)"}
+                      : "Sin pérdida (estructural)"}
                   </option>
                   <option value="light">
                     {locale === "ca" ? "Lleuger (alta qualitat)" : locale === "en" ? "Light (high quality)" : "Ligero (alta calidad)"}
                   </option>
                   <option value="strong">
-                    {locale === "ca" ? "MÃ xim (mÃ©s reducciÃ³)" : locale === "en" ? "Maximum (highest reduction)" : "MÃ¡ximo (mÃ¡s reducciÃ³n)"}
+                    {locale === "ca" ? "Màxima (més reducció)" : locale === "en" ? "Maximum (highest reduction)" : "Máximo (mayor reducción)"}
                   </option>
                 </select>
               </div>

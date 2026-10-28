@@ -3,6 +3,7 @@ import { Plus } from "lucide-react";
 import { PageCard } from "./PageCard";
 import { PageSelectionToolbar } from "./PageSelectionToolbar";
 import type { PageItem, PageWorkspaceDocument, WorkspaceAction } from "./types";
+import { useLocale } from "@/lib/i18n/context";
 import type {
   WatermarkConfig,
   PageNumberConfig,
@@ -41,6 +42,7 @@ export function PageGrid({
   onRedo,
   onAddFiles,
 }: PageGridProps) {
+  const { t } = useLocale();
   const draggedIndex = useRef<number | null>(null);
 
   const handleDragStart = (e: React.DragEvent, index: number) => {
@@ -92,7 +94,7 @@ export function PageGrid({
         onRedo={onRedo}
       />
 
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+      <div className="grid grid-cols-[repeat(auto-fill,minmax(min(100%,164px),164px))] gap-3 sm:gap-4">
         {pages.map((page, index) => {
           const doc = documents[page.sourceDocumentId];
           if (!doc) return null;
@@ -124,13 +126,13 @@ export function PageGrid({
           <button
             type="button"
             onClick={onAddFiles}
-            className="group flex flex-col items-center justify-center rounded-xl border-2 border-dashed border-slate-300 bg-slate-50/70 p-4 min-h-[160px] text-slate-500 hover:border-primary hover:bg-[#FEECEB]/40 hover:text-primary transition-all duration-150 cursor-pointer"
+            className="animate-file-enter group flex min-h-[190px] flex-col items-center justify-center rounded-2xl border-2 border-dashed border-[#0F0F12] bg-[#FFF1EF] p-4 text-[#0F0F12] shadow-[2px_2px_0_#0F0F12] hover:-translate-y-1 hover:bg-[#FFE1DC] hover:shadow-[3px_3px_0_#0F0F12] transition-all duration-200 cursor-pointer"
           >
-            <div className="flex size-11 items-center justify-center rounded-full bg-white border border-slate-200 shadow-2xs group-hover:border-primary group-hover:scale-105 transition-all text-slate-600 group-hover:text-primary">
+            <div className="flex size-11 items-center justify-center rounded-2xl border-2 border-[#0F0F12] bg-[#EC3C2D] text-white shadow-[2px_2px_0_#0F0F12] group-hover:rotate-90 group-hover:scale-105 transition-all">
               <Plus className="size-5" />
             </div>
             <span className="mt-2.5 text-[12.5px] font-bold text-center leading-tight">
-              Añadir más PDFs
+              {t.workspace.addMorePdfs}
             </span>
           </button>
         )}
