@@ -1257,22 +1257,28 @@ function CategoryPage({ category }: { category: ToolCategory }) {
         ]}
       />
 
-      <header className="animate-rise mt-6 rounded-3xl border border-border bg-surface px-6 py-10 shadow-subtle sm:px-12">
-        <span
-          className={`inline-flex size-14 items-center justify-center rounded-2xl ${accent.iconBg} ${accent.icon}`}
-        >
-          <ToolIcon name={FAMILY_ICONS[category]} className="size-7" />
-        </span>
-        <h1 className="text-display mt-5 text-4xl sm:text-[2.9rem]">{info.name}</h1>
-        <p className="mt-4 max-w-2xl text-[19px] leading-relaxed text-muted-foreground">
-          {info.description}
-        </p>
-        <p className={`mt-4 text-[15px] font-semibold ${accent.text}`}>
-          {t.catalog.count(tools.length + soon.length)}
-        </p>
-        <div className="mt-8 max-w-2xl">
-          <ToolSearch />
+      <header className="animate-rise mt-6 grid gap-5 rounded-3xl border-2 border-[#0F0F12] bg-white p-5 shadow-[4px_4px_0_#0F0F12] sm:p-8 lg:grid-cols-[minmax(0,1fr)_250px] lg:items-stretch lg:gap-8">
+        <div className="min-w-0">
+          <span className={`inline-flex size-12 items-center justify-center rounded-xl border-2 border-[#0F0F12] ${accent.iconBg} ${accent.icon} shadow-[2px_2px_0_#0F0F12]`}>
+            <ToolIcon name={FAMILY_ICONS[category]} className="size-6" />
+          </span>
+          <h1 className="text-display mt-3 text-4xl sm:text-[2.9rem]">{info.name}</h1>
+          <p className="mt-2 max-w-2xl text-[17px] leading-relaxed text-slate-700 sm:text-[18px]">
+            {info.description}
+          </p>
+          <div className="mt-5 max-w-4xl">
+            <ToolSearch size="lg" />
+          </div>
         </div>
+        <aside className={`flex flex-row items-center justify-between gap-3 rounded-2xl border-2 border-[#0F0F12] p-4 shadow-[3px_3px_0_#0F0F12] sm:p-5 lg:flex-col lg:items-start lg:justify-center ${accent.iconBg} ${accent.icon}`}>
+          <span className="flex size-11 items-center justify-center rounded-xl border-2 border-[#0F0F12] bg-white text-[#0F0F12] shadow-[2px_2px_0_#0F0F12]">
+            <ToolIcon name={FAMILY_ICONS[category]} className="size-6" />
+          </span>
+          <span className="text-[40px] font-black leading-none tabular-nums sm:text-[48px]">{tools.length + soon.length}</span>
+          <span className="rounded-lg border-2 border-[#0F0F12] bg-white px-3 py-1 text-[12px] font-black text-[#0F0F12] shadow-[2px_2px_0_#0F0F12]">
+            {t.catalog.count(tools.length + soon.length)}
+          </span>
+        </aside>
       </header>
 
       <section className="mt-10" aria-labelledby="cat-tools">
