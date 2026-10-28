@@ -709,17 +709,13 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
             <div className="mx-4 sm:mx-6 mb-6 sm:mb-8 rounded-2xl border-2 border-[#0F0F12] bg-white shadow-[3px_3px_0_#0F0F12]" onClick={(e) => e.stopPropagation()}>
 
               {/* Encabezado */}
-              <div className="flex items-center justify-between px-5 sm:px-6 py-4 border-b-2 border-[#F1F1F4]">
+              <div className="flex items-center gap-2.5 px-5 sm:px-6 py-4 border-b-2 border-[#F1F1F4]">
                 <div className="flex items-center gap-2.5">
-                  <SlidersHorizontal className="size-4 text-[#EC3C2D] shrink-0" />
-                  <span className="text-[13px] sm:text-[14px] font-black uppercase tracking-widest text-[#0F0F12]">
+                  <SlidersHorizontal className="size-5 text-[#EC3C2D] shrink-0" />
+                  <span className="text-[16px] sm:text-[18px] font-black uppercase tracking-wide text-[#0F0F12]">
                     Nivel de compresion
                   </span>
                 </div>
-                <span className="shrink-0 inline-flex items-center gap-1.5 rounded-md border border-[#0F0F12] bg-[#F1F1F4] px-2.5 py-1 text-[11px] font-bold text-[#0F0F12]">
-                  <span className="size-2 rounded-full bg-[#10B981] shrink-0" />
-                  WASM local
-                </span>
               </div>
 
               {/* Grid de presets */}
@@ -760,7 +756,7 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                               key={o.value}
                               type="button"
                               onClick={(e) => { e.stopPropagation(); setValues((v) => ({ ...v, [opt.key]: o.value })); }}
-                              className={`flex flex-col gap-2 p-4 sm:p-5 rounded-xl border-2 text-left w-full transition-all duration-120 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F13B32] ${
+                              className={`flex flex-col gap-2.5 p-5 sm:p-6 min-h-[112px] rounded-xl border-2 text-left w-full transition-all duration-120 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F13B32] ${
                                 isSelected
                                   ? "bg-[#F13B32] border-[#0F0F12] shadow-[3px_3px_0_#0F0F12]"
                                   : "bg-white border-[#0F0F12] shadow-[2px_2px_0_#0F0F12] hover:bg-[#FFF5F5] hover:shadow-[3px_3px_0_#0F0F12]"
@@ -768,7 +764,7 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                             >
                               {/* Fila superior: nombre + radio de seleccion */}
                               <div className="flex items-center justify-between gap-3">
-                                <span className={`text-[15px] sm:text-[16px] font-bold leading-snug ${isSelected ? "text-white" : "text-[#0F0F12]"}`}>
+                                <span className={`text-[17px] sm:text-[18px] font-bold leading-snug ${isSelected ? "text-white" : "text-[#0F0F12]"}`}>
                                   {mainLabel}
                                 </span>
                                 {/* Indicador de seleccion: circulo vacio / relleno blanco con check */}
@@ -786,7 +782,7 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
 
                               {/* Descripcion / caso de uso */}
                               {subLabel && (
-                                <p className={`text-[13.5px] sm:text-[14px] leading-relaxed font-medium m-0 ${isSelected ? "text-white/85" : "text-slate-500"}`}>
+                                <p className={`text-[15px] sm:text-[16px] leading-relaxed font-medium m-0 ${isSelected ? "text-white/95" : "text-slate-600"}`}>
                                   {subLabel}
                                 </p>
                               )}
@@ -795,7 +791,7 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                               {(isBalanced || reductionPct) && (
                                 <div className="flex items-center gap-2 flex-wrap mt-0.5">
                                   {isBalanced && (
-                                    <span className={`inline-flex items-center text-[11px] font-black uppercase tracking-wide px-2 py-0.5 rounded-md border ${
+                                    <span className={`inline-flex items-center text-[12px] font-black uppercase tracking-wide px-2.5 py-1 rounded-md border ${
                                       isSelected
                                         ? "bg-white text-[#F13B32] border-white"
                                         : "bg-[#F13B32] text-white border-[#0F0F12]"
@@ -804,7 +800,7 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                                     </span>
                                   )}
                                   {reductionPct && (
-                                    <span className={`inline-flex items-center text-[11px] font-bold px-2 py-0.5 rounded-md border ${
+                                    <span className={`inline-flex items-center text-[13px] font-bold px-2.5 py-1 rounded-md border ${
                                       isSelected
                                         ? "bg-white/25 text-white border-white/30"
                                         : "bg-[#F4F4F6] text-[#0F0F12] border-[#D1D5DB]"
@@ -858,7 +854,7 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                 ))}
 
                 {/* Pie del panel */}
-                <div className="flex items-center justify-between text-[12.5px] text-slate-500 font-medium pt-2 border-t border-[#F1F1F4]">
+                <div className="flex flex-wrap items-center justify-between gap-2 text-[14px] text-slate-600 font-medium pt-3 border-t border-[#F1F1F4]">
                   <span>Ajusta las opciones antes o despuÃ©s de aÃ±adir el archivo</span>
                   <span className="font-black text-[#0F0F12] shrink-0 ml-4">100% privado</span>
                 </div>
