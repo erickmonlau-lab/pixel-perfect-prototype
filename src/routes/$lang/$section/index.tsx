@@ -19,7 +19,7 @@ export const Route = createFileRoute("/$lang/$section/")({
     if (!isLocale(params.lang)) throw notFound();
     const kind = sectionKind(params.lang, params.section);
     if (!kind) throw notFound();
-    if (kind === "catalog") {
+    if (kind === "tools") {
       throw redirect({ href: `/${params.lang}#catalogo`, statusCode: 301 });
     }
     return { kind };
