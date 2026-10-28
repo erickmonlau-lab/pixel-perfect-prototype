@@ -4,6 +4,7 @@ import { useLocale } from "@/lib/i18n/context";
 import type { ToolCategory } from "@/lib/tools/types";
 import { ToolCatalogCard } from "./ToolCatalogCard";
 import { CATEGORY_COLORS } from "@/lib/tools/color-system";
+import { ChevronDown, SlidersHorizontal } from "lucide-react";
 
 type Filter = ToolCategory | "all";
 
@@ -60,9 +61,33 @@ export function CatalogBrowser() {
 
   return (
     <div className="w-full">
+      <div className="px-4 sm:hidden">
+        <label htmlFor="catalog-category-filter" className="mb-2 block text-sm font-black text-[#0F0F12]">
+          {t.catalog.filters}
+        </label>
+        <div className="relative">
+          <span className="pointer-events-none absolute inset-y-0 left-3 flex items-center text-[#0F0F12]" aria-hidden>
+            <SlidersHorizontal className="size-4" />
+          </span>
+          <select
+            id="catalog-category-filter"
+            value={filter}
+            onChange={(event) => selectFilter(event.target.value as Filter)}
+            className="h-12 w-full appearance-none rounded-xl border-2 border-[#0F0F12] bg-white pl-10 pr-11 text-[15px] font-black text-[#0F0F12] shadow-[3px_3px_0_#0F0F12] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0F0F12]"
+          >
+            {filters.map((item) => (
+              <option key={item.id} value={item.id}>{item.label} · {item.count}</option>
+            ))}
+          </select>
+          <span className="pointer-events-none absolute inset-y-0 right-3 flex items-center text-[#0F0F12]" aria-hidden>
+            <ChevronDown className="size-5" />
+          </span>
+        </div>
+      </div>
+
       {/* Category Filter Pills — Neo-Brutalist Vivid Colored Pills */}
       <div
-        className="scrollbar-none -mx-4 flex items-center justify-start gap-2.5 overflow-x-auto px-4 pb-3 pt-1 sm:mx-0 sm:flex-wrap sm:justify-center sm:px-0"
+        className="hidden items-center justify-center gap-2.5 pb-3 pt-1 sm:flex sm:flex-wrap"
         role="tablist"
         aria-label="Filtrar por categoría"
       >
