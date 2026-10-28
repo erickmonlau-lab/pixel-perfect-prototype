@@ -6,7 +6,7 @@
 
 - `src/lib/analytics/gtm.ts` declara `GTM-M6D3R3JF` y eventos de página, selección, inicio/fin de proceso, descarga y navegación de catálogo. Los comentarios indican que no se transmiten nombres ni contenido de archivos; revisar la configuración publicada del contenedor para confirmar los tags y variables reales.
 - `src/routes/__root.tsx` inicializa el dataLayer y carga GTM tras interacción o demora. La vista SPA envía `page_view` al cambiar ruta.
-- `src/lib/indexnow.ts` ofrece una función con endpoint de envío, pero el repositorio no muestra un llamador automático desde publicación ni una clave configurada. No anunciarlo como activado.
+- `src/lib/indexnow.ts` ofrece una función con endpoint de envío, pero no tiene llamador automático en el despliegue. La integración real se ejecuta con `scripts/indexnow.mjs` (ver la sección de IndexNow al final); la clave vive en Vercel, nunca en el bundle del cliente.
 - Hay archivos Lighthouse históricos y un extracto de URLs de Search Console aportado al repositorio. No hay export de consultas/rendimiento reciente ni acceso conectado de solo lectura en esta ejecución.
 
 ## Cierre de validación pública — 28-10-2026
@@ -196,4 +196,44 @@ Dos vías evaluadas y descartadas con medidas, para no repetirlas:
 
 Para repetir las fuentes subsetadas: `pyftsubset public/fonts/<cara>.woff2 --output-file=public/fonts/<cara>-v2.woff2 --flavor=woff2 --unicodes="U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD" --layout-features="kern,liga,calt"`, y comprobar cobertura con `python scripts/check-font-glyphs.py`. Los `.woff2` originales se conservan como fuente del subset.
 
-Límites: siguen siendo datos de laboratorio sintéticos que varían entre corridas; no son Core Web Vitals de campo. Sin acceso a Search Console, GA4, AdSense ni Bing no se puede confirmar indexación, ingresos ni el estado de la CMP. IndexNow sigue pendiente de acción del propietario (`npm run seo:indexnow`, `--write-key`).
+Límites: siguen siendo datos de laboratorio sintéticos que varían entre corridas; no son Core Web Vitals de campo. Sin acceso a Search Console, GA4, AdSense ni Bing no se puede confirmar indexación, ingresos ni el estado de la CMP.
+
+## Cobertura de catálogo, rastreo e IndexNow — 28-10-2026
+
+Cambios de esta tanda: no se tocó PageSpeed, la carga de anuncios, el consentimiento ni el diseño de la portada.
+
+**Cadena commit → deployment verificada.** `0fd8815` se publicó en `main`. La API de Vercel devuelve `dpl_7PjKbRPWNT9NVVdZVVNB7Aen2ogr`, `READY`, entorno `production`, `meta.githubCommitSha=0fd8815030b8c9afd1b93432c19f8e5736ece25e`, rama `main`, con alias `breadpdf.com`. No se reescribió historial.
+
+**Cobertura editorial.** El catálogo mantiene 51 herramientas y pasa de 10 a 11 guías por idioma (33 rutas de guía). El sitemap pasa de 201 a 204 URLs: 68 por idioma, con 4 alternates por entrada. Se añadió la guía «PDF a Word editable» en ES/CA/EN, basada en el comportamiento real de `pdfToWord` (texto por líneas, marcadores `--- Página N ---`, sin imágenes, fuentes, maquetación ni tablas reales), con enlaces a `pdf-a-word`, `ocr-pdf`, `pdf-a-excel` y `desbloquear-pdf`.
+
+**Enlaces herramienta → guía.** `src/lib/guides/tool-links.ts` define 21 relaciones contextuales y la ficha de herramienta las renderiza en una sección «Guías relacionadas». Las 30 herramientas restantes no tienen una guía que cubra su flujo y no se les impone un enlace genérico.
+
+**Pendientes editoriales cerrados.** Se revisaron individualmente los 29 títulos >65 caracteres y las 6 descripciones >165 del rastreo anterior. Se reescribieron 17 títulos de herramienta (ES/CA/EN), 12 títulos de guía y 6 descripciones; no se truncó mecánicamente ni se eliminó el sufijo `| BreadPDF`. El rastreo de producción posterior da **0 títulos >65 y 0 descripciones >165**.
+
+**Rastreo de producción (`scripts/crawl-seo-audit.mjs`).** 204 URLs:
+
+| Comprobación | Resultado |
+|---|---|
+| Respuestas no-200 / redirecciones | 0 |
+| Sin `title` / sin `description` | 0 / 0 |
+| Títulos >65 / descripciones >165 | 0 / 0 |
+| Títulos o descripciones duplicados | 0 / 0 |
+| Canonical ausente o distinta | 0 / 0 |
+| `noindex` en sitemap | 0 |
+| Hreflang incompleto (<4) | 0 |
+| H1 por página | exactamente 1 en las 204 |
+| Páginas delgadas (<120 palabras) | 0 |
+
+El script ahora decodifica entidades numéricas (`&#x27;`) antes de medir longitudes; antes contaba el apóstrofo codificado como 5 caracteres y producía un falso positivo en una guía catalana. Esto solo afecta a la medición, no al HTML publicado. El rastreo demuestra respuestas y metadatos correctos; **no demuestra indexación**.
+
+**IndexNow.** Integración completada en la parte que depende del repositorio y de Vercel:
+
+- Clave de 32 caracteres hexadecimales generada con `--write-key`, publicada en `public/1f5bfb210e76ba8ac575efbf8124d72a.txt`. La URL `https://breadpdf.com/1f5bfb210e76ba8ac575efbf8124d72a.txt` responde **200**, `text/plain`, 32 bytes y contenido idéntico a la clave, también con user-agent de Bingbot. El fichero es público por diseño del protocolo, no un secreto.
+- `INDEXNOW_API_KEY` creada en Vercel como variable **encrypted** de Production (proyecto `prj_FH4dl5iBfOGZELX4VPhEQOPFJG7N`). No se ha escrito en el repositorio ni en el bundle; se eliminó el fallback `VITE_INDEXNOW_API_KEY` de `src/lib/indexnow.ts` para que Vite no pueda inlinelarla en el cliente.
+- `scripts/indexnow.mjs` lee el sitemap y envía `host`, `key`, `keyLocation` y `urlList` a `https://api.indexnow.org/indexnow`. Resultados reales:
+  - Antes de publicar el fichero: **403 `SiteVerificationNotCompleted`** (esperado).
+  - Tras publicar: **202 Accepted** para 3 URLs nuevas y para un lote de 50 URLs.
+  - Los envíos masivos posteriores (100, 150 y 204 URLs) y las repeticiones inmediatas devolvieron **403** (`SiteVerificationNotCompleted` / `UserForbiddedToAccessSite`), compatible con verificación de sitio aún pendiente y límite de peticiones. `https://yandex.com/indexnow` aceptó el envío con **200 `{"success":true}`**.
+- Estado real: clave publicada y envío ejecutado; Bing mantiene la verificación pendiente en el momento de cerrar esta nota. **No se afirma que IndexNow esté verificando ni que las URLs estén indexadas.** Reintento previsto: `INDEXNOW_API_KEY=<clave> npm run seo:indexnow -- --urls=<3 URLs nuevas>` pasadas 24-48 h, o `npm run seo:indexnow` cuando el endpoint deje de devolver 403.
+
+**Datos externos que siguen faltando.** Sin acceso autorizado a Search Console, Bing Webmaster Tools, GA4 ni AdSense no hay consultas, impresiones, clics, CTR, posiciones, CWV de campo, estado de indexación, ingresos ni confirmación de aprobación/CMP. El panel de Vercel y la API sí se usaron para verificar el deployment; el estado de la cuenta de AdSense no es visible desde ahí.

@@ -79,7 +79,7 @@ function resolve(locale: Locale, section: string, slug: string): Resolved | unde
 }
 
 export const Route = createFileRoute("/$lang/$section/$slug")({
-  loader: ({ params }) => {
+  loader: ({ params }): Resolved => {
     if (!isLocale(params.lang)) throw notFound();
     const resolved = resolve(params.lang, params.section, params.slug);
     if (!resolved) throw notFound();
