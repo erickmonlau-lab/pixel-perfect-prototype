@@ -119,7 +119,9 @@ El único rojo de marca que se cambió en plantillas de herramienta y guía, hub
 
 **Diagnóstico del Speed Index móvil (3,8–4,1 s).** Se descartaron como causa el bundle de la aplicación, las fuentes y los terceros: con el JS propio bloqueado, el primer pintado observado siguió en ~2,4 s; con terceros y fuentes bloqueados ocurrió lo mismo (~2,6 s). Las capturas de las tramas 2–6 del informe son `#111111` (marcador de «sin fotograma») y la primera trama con contenido aparece en ~3 s, aunque el DOM y el texto del hero están en el HTML SSR inicial y el FCP simulado es ~1,08 s. El retraso se interpreta como artefacto del pipeline de captura de Lighthouse con este diseño animado, no como una pantalla bloqueada para el usuario; no se modificó el producto para maquillar la métrica. Solo se añadió un guard de `prefers-reduced-motion` en el placeholder animado del buscador.
 
-**AdSense, consentimiento y datos externos.** Hechos comprobados: `ads.txt` contiene `pub-7477829897419785`, cada página carga un único `adsbygoogle.js`, las guías y la portada no renderizan `<ins class="adsbygoogle">`, las herramientas renderizan uno, y se observan peticiones a Funding Choices. `VITE_ADSENSE_ENABLED` existe solo en Production, por lo que un deployment de preview no muestra anuncios y no sirve para comparar rendimiento publicitario. No verificados por falta de acceso: aprobación de la cuenta, anuncios realmente servidos, certificación TCF de la CMP, mensajes publicados y estado en Search Console/GA4/Bing. Tampoco se pudo enviar IndexNow: no hay `INDEXNOW_API_KEY` ni archivo de clave en el sitio; el script `npm run seo:indexnow` falla con un mensaje explícito y `--write-key` genera la clave para publicarla.
+> Corregido el 28-10-2026: aquel «artefacto de captura» era en buena parte carga real. Con las correcciones de la sección «PSI móvil del 28-10-2026» (fuentes sin preload, JS de hidratación diferido y AdSense bajo demanda) el Speed Index móvil bajó de 2,9–3,0 s a 1,5–1,8 s y el TBT de 180–270 ms a 0–5 ms.
+
+**AdSense, consentimiento y datos externos.** Hechos comprobados: `ads.txt` contiene `pub-7477829897419785`, la portada y las guías no renderizan `<ins class="adsbygoogle">`, las herramientas renderizan uno, y se observan peticiones a Funding Choices. Desde `194809b` (28-10-2026) `adsbygoogle.js` ya no se carga en todas las páginas: lo pide `AdSlot` cuando su hueco está a 600 px del viewport (ver la sección siguiente). `VITE_ADSENSE_ENABLED` existe solo en Production, por lo que un deployment de preview no muestra anuncios y no sirve para comparar rendimiento publicitario. No verificados por falta de acceso: aprobación de la cuenta, anuncios realmente servidos, certificación TCF de la CMP, mensajes publicados y estado en Search Console/GA4/Bing. Tampoco se pudo enviar IndexNow: no hay `INDEXNOW_API_KEY` ni archivo de clave en el sitio; el script `npm run seo:indexnow` falla con un mensaje explícito y `--write-key` genera la clave para publicarla.
 
 **Herramientas añadidas al repositorio.** `scripts/crawl-seo-audit.mjs` (metadatos, canonical, robots, hreflang, h1, palabras), `scripts/internal-links-audit.mjs` (enlaces entrantes desde el sitemap) y `scripts/indexnow.mjs` (envío y generación de clave). Se ejecutan con `npm run seo:audit`, `npm run seo:links` y `npm run seo:indexnow`; no requieren credenciales salvo IndexNow.
 
@@ -151,3 +153,44 @@ En Analytics, primero comprobar que la medición respeta la política de consent
 ## Objetivos técnicos
 
 Utilizar los umbrales recomendados actualmente por Google para datos de campo al percentil 75: LCP ≤ 2,5 s, INP ≤ 200 ms y CLS ≤ 0,1. Revisar tendencias y plantillas; no marcar una tarea como aprobada con un único test local. Fuente: [Core Web Vitals en Search Central](https://developers.google.com/search/docs/appearance/core-web-vitals).
+
+## PSI móvil del 28-10-2026: de 86–95 a 98–100
+
+Mediciones contra producción con PageSpeed Insights (informe público, formulario móvil). La API `runPagespeed` sigue respondiendo HTTP 429, así que los datos se extraen de los informes compartidos (`scripts/extract-psi-report.mjs` y `scripts/net-table.mjs`, guardados en `lh-psi/`).
+
+| Commit | Score | FCP | LCP | TBT | CLS | SI |
+|---|---|---|---|---|---|---|
+| `aad9e74` | 86 | 2,2 s | 3,4 s | 181 ms | 0 | 2,9 s |
+| `3b8a967` | 99 | 1,1 s | 2,2 s | 38 ms | 0 | 1,9 s |
+| `12efb86` | 95 | 1,8 s | 1,9 s | 204 ms | 0 | 3,0 s |
+| `194809b` (8 corridas) | 100, 100, 100, 99, 98, 98, 99, 99 | 1,5–1,8 s | 1,5–1,8 s | 0 ms | 0 | 1,5–1,8 s |
+
+Causa raíz verificada, en cadena y por separado:
+
+1. **CSS bloqueante del primer render** (1300 ms según PSI). Se pasó a `inlineCss: true`; el `<style>` viaja en el HTML y todos sus `url()` son absolutos.
+2. **JavaScript de hidratación antes del primer pintado.** Se eliminaron los `modulepreload` del router y el bundle de entrada se carga tras `load` + `requestAnimationFrame`.
+3. **`preload` de fuentes.** Prueba local con CPU 4x y Slow 4G: bloquear una sola `*.woff2` no cambiaba el FCP, pero quitar los cuatro `<link rel="preload" as="font">` bajó el FCP de ~1.950 ms a ~1.160 ms. Con `font-display: swap` y preload, Chrome esperaba a las cuatro caras antes del primer texto. Ahora no hay preloads de fuente y las caras usan `font-display: optional`: el texto pinta con la fuente del sistema y no hay intercambio posterior (CLS 0). Las fuentes están subsetadas con `pyftsubset` al `unicode-range` declarado (Inter 48.432 → 34.936 B; Plus Jakarta 27.272 → 22.248 B por cara; 151.632 → 114.368 B en total) y se renombraron a `*-v2.woff2`.
+4. **AdSense en páginas sin anuncios.** La portada no renderiza ningún `<ins class="adsbygoogle">`, pero cargaba `adsbygoogle.js` (58 KB), `show_ads_impl_fy2021.js` (169 KB) y el mensaje de `fundingchoices` (73 KB) con tareas de 90–160 ms. Era la causa directa del TBT de 180–270 ms y contribuía a la varianza del FCP al competir por ancho de banda y CPU con las fuentes. Desde `194809b` el script lo pide `AdSlot` (IntersectionObserver, `rootMargin: 600px`) y en la portada no se solicita nada a `googlesyndication.com`.
+5. **TTFB de la función SSR.** Cabecera `Cache-Control: public, max-age=0, s-maxage=60, stale-while-revalidate=300` en el HTML SSR. Vercel normaliza la cabecera servida a `public, max-age=0`, pero respeta la caché: `X-Vercel-Cache: HIT` con `Age` de 1–4 s. TTFB medido desde Europa: 207–266 ms en MISS frente a 13–25 ms en HIT.
+
+Comprobaciones de regresión en producción tras `194809b`:
+
+- Portada ES/CA/EN: mismo HTML SSR, `font-display:optional` ×4, 0 preloads de fuente, 0 `modulepreload`, 0 peticiones a Google Ads.
+- Ficha de herramienta (`/es/herramientas/unir-pdf`): el `<ins>` sigue en el HTML del servidor (visible para el rastreador) y, al llegar al pie, el navegador pide `adsbygoogle.js` y se rellenan 4 iframes. Sin scroll no hay ninguna petición publicitaria.
+- Navegación SPA e hidratación: el clic en una tarjeta de la portada cambia de ruta sin recargar y conserva el estado del cliente.
+- Misma tanda de mediciones: `/ca` móvil 99 (FCP 1,5 / LCP 1,8 / TBT 0 / SI 1,5); `/es` escritorio 100 (0,3 / 0,3 / 10 ms / 0,7); `/es/herramientas/jpg-a-pdf` móvil 98 (1,8 / 2,0 / 0 / 2,8). El Speed Index de las fichas de herramienta es el punto más flojo de la muestra.
+
+Nota sobre la caché y las URL con parámetros: una corrida sobre `/es?run=5` dio 98 con SI 2,7 s porque el CDN cachea por URL completa y ese parámetro provoca MISS. Las URL canónicas (las que reciben tráfico real) son las que se sirven desde el edge.
+
+Compromiso de producto que conviene revisar con el propietario: los anuncios de pie de página de las fichas ya no se piden hasta que el hueco está a 600 px del viewport. Es carga diferida estándar (el anuncio se rellena en cuanto el usuario se acerca al pie), pero las impresiones dependen del scroll. Si se prefiere maximizar impresiones, basta ampliar `rootMargin` en `src/lib/monetization/adsense.tsx`.
+
+Lo que **no** se hizo: no se quitó ni se alteró el código de Google, no se desactivó el consentimiento, no se añadieron animaciones ni retrasos artificiales para maquillar métricas, no se cambió el diseño y no se tocaron las rutas ES/CA/EN ni el contenido SEO.
+
+Dos vías evaluadas y descartadas con medidas, para no repetirlas:
+
+- **Dividir el CSS global en chunks por área** (sacar las utilidades de `components/tools` y `components/guides` del bundle que se inyecta en todas las páginas). Medido con `scripts/css-budget.mjs`: el CSS completo comprime a 24,7 KB brotli y sin esas dos áreas a 23,5 KB; el ahorro de 1,2 KB no compensa el riesgo de dejar una plantilla sin estilos.
+- **`content-visibility: auto` en las secciones bajo el pliegue.** En 8 corridas locales apareadas no hubo diferencia (FCP 408–672 ms base frente a 400–736 ms con `content-visibility`); el coste de estilo/maquetación previo al primer pintado medido con `scripts/trace-paint.mjs` es de ~47 ms a 4x, así que no había nada que recortar ahí.
+
+Para repetir las fuentes subsetadas: `pyftsubset public/fonts/<cara>.woff2 --output-file=public/fonts/<cara>-v2.woff2 --flavor=woff2 --unicodes="U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD" --layout-features="kern,liga,calt"`, y comprobar cobertura con `python scripts/check-font-glyphs.py`. Los `.woff2` originales se conservan como fuente del subset.
+
+Límites: siguen siendo datos de laboratorio sintéticos que varían entre corridas; no son Core Web Vitals de campo. Sin acceso a Search Console, GA4, AdSense ni Bing no se puede confirmar indexación, ingresos ni el estado de la CMP. IndexNow sigue pendiente de acción del propietario (`npm run seo:indexnow`, `--write-key`).
