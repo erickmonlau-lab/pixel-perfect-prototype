@@ -164,6 +164,9 @@ Mediciones contra producción con PageSpeed Insights (informe público, formular
 | `3b8a967` | 99 | 1,1 s | 2,2 s | 38 ms | 0 | 1,9 s |
 | `12efb86` | 95 | 1,8 s | 1,9 s | 204 ms | 0 | 3,0 s |
 | `194809b` (8 corridas) | 100, 100, 100, 99, 98, 98, 99, 99 | 1,5–1,8 s | 1,5–1,8 s | 0 ms | 0 | 1,5–1,8 s |
+| `4d1a4ef` (3 corridas) | 100, 100, 100 | 1,1 s | 1,1 s | 8–10 ms | 0 | 1,1 s |
+
+Total: 11 corridas espaciadas sobre URL canónica, mínimo 98 y mediana 99–100. En la última corrida guardada (`lh-psi/psi-100-final.json`) el FCP observado fue 445 ms con el documento servido en 245 ms desde el edge, el TBT de 8 ms y ninguna petición a `googlesyndication.com`.
 
 Causa raíz verificada, en cadena y por separado:
 
