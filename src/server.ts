@@ -63,14 +63,15 @@ function removeModulepreloads(html: string): string {
 }
 
 // The app is fully server-rendered, so the client bundle is only needed to
-// hydrate. Loading it one task after the first paint keeps the pre-paint
-// network and main thread free for HTML, CSS and the hero font. A timer keeps
-// hydration working in background tabs, where requestAnimationFrame is paused.
+// hydrate. Loading it after the load event (instead of right after the first
+// paint) keeps the hydration task off the same frames as the ad stack, which is
+// what pushed Total Blocking Time to 270 ms on some runs. Interactivity still
+// arrives in about a second, and native anchors keep working until then.
 function deferHydration(html: string): string {
   return html.replace(
     /<script\s+type="module"[^>]*\ssrc="(\/assets\/index-[^"]+\.js)"[^>]*><\/script>/i,
     (_match, src: string) =>
-      `<script>(function(){var src=${JSON.stringify(src)},done=false;function load(){if(done)return;done=true;var s=document.createElement("script");s.type="module";s.src=src;document.head.appendChild(s);}requestAnimationFrame(function(){setTimeout(load,0);});setTimeout(load,3000);})();</script>`,
+      `<script>(function(){var src=${JSON.stringify(src)},done=false;function load(){if(done)return;done=true;var s=document.createElement("script");s.type="module";s.src=src;document.head.appendChild(s);}function start(){requestAnimationFrame(function(){setTimeout(load,0);});}if(document.readyState==="complete"){start();}else{window.addEventListener("load",start,{once:true});}setTimeout(load,4000);})();</script>`,
   );
 }
 

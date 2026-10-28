@@ -130,12 +130,23 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         { rel: "manifest", href: "/site.webmanifest" },
       ],
       scripts: [
+        // El cargador de AdSense se inyecta después del evento load y en un
+        // hueco libre del hilo principal. El script es el mismo de Google (no se
+        // modifica), solo cambia cuándo se pide: así el CMP y show_ads_impl no
+        // compiten con el primer pintado ni con la hidratación. Los bloques
+        // <ins class="adsbygoogle"> siguen funcionando porque encolan sus push.
         ...(import.meta.env["VITE_ADSENSE_ENABLED"] === "true"
           ? [
               {
-                src: `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${GOOGLE_ADSENSE_CLIENT_ID}`,
-                async: true,
-                crossOrigin: "anonymous",
+                children:
+                  `(function(){var src=${JSON.stringify(
+                    `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${GOOGLE_ADSENSE_CLIENT_ID}`,
+                  )},done=false;` +
+                  `function load(){if(done)return;done=true;var s=document.createElement("script");s.async=true;s.crossOrigin="anonymous";s.src=src;document.head.appendChild(s);}` +
+                  `function idle(){(window.requestIdleCallback||function(cb){setTimeout(cb,1);})(load,{timeout:1500});}` +
+                  `function start(){idle();}` +
+                  `if(document.readyState==="complete"){start();}else{window.addEventListener("load",start,{once:true});}` +
+                  `setTimeout(load,5000);})();`,
               },
             ]
           : []),
