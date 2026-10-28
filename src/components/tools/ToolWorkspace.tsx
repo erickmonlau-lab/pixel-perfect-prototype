@@ -672,6 +672,9 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
 
   const isAutoFlow = Boolean(tool.autoProcess && !isPageWorkspace);
   const isBusy = phase === "uploading" || phase === "processing";
+  const resultAccent = tool.category === "optimizar"
+    ? "#2563EB"
+    : getToolColorTheme(canonicalSlug, tool.category).bgHex;
 
   return (
     <section
@@ -1194,8 +1197,8 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
       )}
 
       {phase === "done" && outputs.length > 0 && (
-        <div className="animate-rise border-t-2 border-[#0F0F12] bg-[#F4F5F7] p-4 sm:p-6 lg:p-8">
-          <div className="mx-auto mb-5 flex max-w-5xl flex-col justify-between gap-4 rounded-2xl border-2 border-[#0F0F12] bg-[#86EFAC] p-4 shadow-[4px_4px_0_#0F0F12] sm:flex-row sm:items-center sm:p-5">
+        <div className="animate-rise border-t-2 border-[#0F0F12] bg-white p-4 sm:p-6 lg:p-8">
+          <div className="mx-auto mb-4 flex max-w-5xl flex-col justify-between gap-4 rounded-2xl border-2 border-[#0F0F12] bg-[#EC3C2D] p-4 text-white shadow-[4px_4px_0_#0F0F12] sm:flex-row sm:items-center sm:p-5">
             <div className="flex items-center gap-4">
               <img
                 src={BRAND_ASSETS.mascots.celebrate}
@@ -1207,17 +1210,17 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
               />
               <div>
                 <div className="flex items-center gap-2.5">
-                  <span className="flex size-8 shrink-0 items-center justify-center rounded-xl border-2 border-[#0F0F12] bg-white text-[#087443] shadow-[2px_2px_0_#0F0F12]">
+                  <span className="flex size-9 shrink-0 items-center justify-center rounded-xl border-2 border-[#0F0F12] bg-white text-[#EC3C2D] shadow-[2px_2px_0_#0F0F12]">
                     <CheckCircle2 className="size-4.5" aria-hidden />
                   </span>
-                  <h3 className="text-[21px] font-black leading-snug tracking-tight text-[#0F0F12] sm:text-[25px]">
+                  <h3 className="text-[23px] font-black leading-snug tracking-tight text-white sm:text-[27px]">
                     {t.workspace.done}
                   </h3>
                 </div>
                 {note ? (
-                  <p className="mt-1 text-[14.5px] font-semibold leading-normal text-[#173A2C]">{note}</p>
+                  <p className="mt-1 text-[16px] font-semibold leading-normal text-white">{note}</p>
                 ) : (
-                  <p className="mt-1 text-[14.5px] font-semibold leading-normal text-[#173A2C]">{locale === "ca" ? "El document ja està processat i a punt per descarregar." : locale === "en" ? "Your document is ready to download." : "Tu documento está preparado para descargar."}</p>
+                  <p className="mt-1 text-[16px] font-semibold leading-normal text-white">{locale === "ca" ? "El document ja està processat i a punt per descarregar." : locale === "en" ? "Your document is ready to download." : "Tu documento está preparado para descargar."}</p>
                 )}
               </div>
             </div>
@@ -1242,7 +1245,7 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                     document.body.appendChild(a);
                     a.click();
                     document.body.removeChild(a);
-                    URL.revokeObjectURL(zipUrl);
+                    window.setTimeout(() => URL.revokeObjectURL(zipUrl), 30_000);
                     trackDownloadClicked({ tool: tool.slug, language: locale });
                   } catch (err) {
                     console.error("Error creating ZIP", err);
@@ -1261,20 +1264,32 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
             {outputs.map((output, index) => (
               <a
                 key={output.name}
-                href={urls[index]}
+                href={urls[index] ?? "#download"}
                 download={output.name}
-                onClick={() => trackDownloadClicked({ tool: tool.slug, language: locale })}
-                className="group relative flex min-h-[86px] items-center justify-between gap-4 rounded-2xl border-2 border-[#0F0F12] bg-[#EC3C2D] p-4 text-white shadow-[4px_4px_0_#0F0F12] transition-all hover:-translate-y-0.5 hover:bg-[#D93426] hover:shadow-[5px_5px_0_#0F0F12] active:translate-y-0 active:shadow-[2px_2px_0_#0F0F12] sm:p-5"
+                onClick={(event) => {
+                  event.preventDefault();
+                  trackDownloadClicked({ tool: tool.slug, language: locale });
+                  const temporaryUrl = URL.createObjectURL(output.blob);
+                  const anchor = document.createElement("a");
+                  anchor.href = temporaryUrl;
+                  anchor.download = output.name;
+                  anchor.style.display = "none";
+                  document.body.appendChild(anchor);
+                  anchor.click();
+                  anchor.remove();
+                  window.setTimeout(() => URL.revokeObjectURL(temporaryUrl), 30_000);
+                }}
+              className="group relative flex min-h-[94px] items-center justify-between gap-4 rounded-2xl border-2 border-[#0F0F12] bg-[#EC3C2D] p-4 text-white shadow-[4px_4px_0_#0F0F12] transition-all hover:-translate-y-0.5 hover:bg-[#D93426] hover:shadow-[5px_5px_0_#0F0F12] active:translate-y-0 active:shadow-[2px_2px_0_#0F0F12] sm:p-5"
               >
                 <div className="flex items-center gap-4 min-w-0">
-                  <div className="flex size-12 shrink-0 items-center justify-center rounded-xl border-2 border-white bg-[#B9271D] text-white transition-transform group-hover:scale-105 sm:size-14">
-                    <Download className="size-7 text-white stroke-[2.5]" aria-hidden />
+                  <div className="flex size-14 shrink-0 items-center justify-center rounded-xl border-2 border-white bg-[#C92F23] text-white transition-transform group-hover:scale-105 sm:size-16">
+                    <Download className="size-8 text-white stroke-[2.5]" aria-hidden />
                   </div>
                   <div className="min-w-0 text-left">
-                    <span className="block truncate text-[16.5px] font-black tracking-tight text-white sm:text-[19px]">
+                    <span className="block truncate text-[18px] font-black tracking-tight text-white sm:text-[20px]">
                       {output.name}
                     </span>
-                    <span className="mt-1 inline-flex flex-wrap items-center gap-1.5 text-[13.5px] font-semibold text-white">
+                    <span className="mt-1 inline-flex flex-wrap items-center gap-1.5 text-[15px] font-semibold text-white">
                       <span>{formatBytes(output.blob.size)}</span>
                       <span>•</span>
                       <span>
@@ -1288,47 +1303,33 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                   </div>
                 </div>
 
-                <span className="inline-flex shrink-0 items-center justify-center rounded-xl border-2 border-[#0F0F12] bg-white px-3 py-2.5 text-[13px] font-black text-[#0F0F12] shadow-[2px_2px_0_#0F0F12] transition-colors group-hover:bg-[#FEF08A] sm:px-4 sm:text-[14px]">
+                <span className="inline-flex min-h-12 shrink-0 items-center justify-center rounded-xl border-2 border-[#0F0F12] bg-white px-4 py-2.5 text-[15px] font-black text-[#0F0F12] shadow-[2px_2px_0_#0F0F12] transition-colors group-hover:bg-[#F4F5F7] sm:px-5 sm:text-[16px]">
                   {t.workspace.downloadAction}
                 </span>
               </a>
             ))}
           </div>
 
-          {/* Siguiente acciÃ³n sugerida y Descubrimiento del CatÃ¡logo Completo */}
-          <div className="mx-auto mt-6 grid max-w-5xl gap-4 lg:grid-cols-2">
-            <div className="flex items-center justify-between gap-3 lg:col-span-2">
-              <h4 className="text-[18px] font-black tracking-tight text-[#0F0F12] sm:text-[20px]">
-                {t.workspace.nextStepTitle}
-              </h4>
-              <span className="rounded-lg border-2 border-[#0F0F12] bg-[#2563EB] px-3 py-1 text-[11px] font-black uppercase tracking-wide text-white shadow-[2px_2px_0_#0F0F12]">
-                {t.workspace.suiteLabel}
-              </span>
-            </div>
+          {/* Acciones secundarias compactas: primero continuar, luego descubrir herramientas. */}
+          <div className="mx-auto mt-4 max-w-5xl">
+            <h4 className="mb-2.5 text-[18px] font-black tracking-tight text-[#0F0F12] sm:text-[20px]">
+              {t.workspace.nextStepTitle}
+            </h4>
+            <div className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,420px),1fr))] gap-3">
+              {(() => {
+                const workflow = TOOL_WORKFLOW_MAP[canonicalSlug] || TOOL_WORKFLOW_MAP[tool.slug];
+                if (!workflow || outputs.length === 0) return null;
 
-            {/* SECONDARY: Workflow next action (if available for this tool) */}
-            {(() => {
-              const workflow = TOOL_WORKFLOW_MAP[canonicalSlug] || TOOL_WORKFLOW_MAP[tool.slug];
-              if (!workflow || outputs.length === 0) return null;
-
-              return (
-                <div className="rounded-2xl border-2 border-[#0F0F12] bg-[#FEF08A] p-4 shadow-[3px_3px_0_#0F0F12] sm:p-5">
-                  <div className="flex items-center justify-between gap-2 mb-2">
-                    <span className="inline-flex items-center gap-1.5 rounded-md border border-[#0F0F12] bg-[#EC3C2D] px-2 py-1 text-[11px] font-black uppercase tracking-wide text-white">
-                      <ArrowRight className="size-3 text-white" />
-                      <span>{workflow.badge[locale] ?? workflow.badge.es}</span>
-                    </span>
-                    <span className="text-[11px] font-bold text-[#3F3A1B]">
-                      {t.workspace.continueWithoutDownload}
-                    </span>
-                  </div>
-                  <h5 className="text-[16px] font-black tracking-tight text-[#0F0F12] sm:text-[18px]">
-                    {workflow.title[locale] ?? workflow.title.es}
-                  </h5>
-                  <p className="mt-1 text-[14px] font-medium leading-relaxed text-[#302D1B]">
-                    {workflow.description[locale] ?? workflow.description.es}
-                  </p>
-                  <div className="mt-3.5 flex items-center justify-end">
+                return (
+                  <div className="flex min-h-[86px] items-center justify-between gap-3 rounded-xl border-2 border-[#0F0F12] bg-white p-3.5 shadow-[3px_3px_0_#0F0F12]">
+                    <div className="min-w-0">
+                      <span className="inline-flex rounded-md border-2 border-[#0F0F12] bg-[#EC3C2D] px-2 py-0.5 text-[12px] font-black uppercase tracking-wide text-white">
+                        {workflow.badge[locale] ?? workflow.badge.es}
+                      </span>
+                      <h5 className="mt-1.5 text-[16px] font-black leading-snug text-[#0F0F12]">
+                        {workflow.title[locale] ?? workflow.title.es}
+                      </h5>
+                    </div>
                     <button
                       type="button"
                       onClick={() => {
@@ -1337,56 +1338,44 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                             (out) => new File([out.blob], out.name, { type: out.blob.type || "application/pdf" }),
                           );
                           setPendingWorkflowFiles(workflow.targetToolSlug, filesToHandoff);
-                          trackWorkflowNextClicked({
-                            fromTool: canonicalSlug,
-                            toTool: workflow.targetToolSlug,
-                            language: locale,
-                          });
-                          const targetPath = toolPath(locale, workflow.targetToolSlug);
-                          navigate({ to: targetPath });
+                          trackWorkflowNextClicked({ fromTool: canonicalSlug, toTool: workflow.targetToolSlug, language: locale });
+                          navigate({ to: toolPath(locale, workflow.targetToolSlug) });
                         } catch (err) {
                           console.error("Error transitioning to next tool in workflow", err);
                         }
                       }}
-                      className="inline-flex min-h-11 items-center gap-2 rounded-xl border-2 border-[#0F0F12] bg-[#0F0F12] px-4 py-2.5 text-[13.5px] font-black text-white shadow-[2px_2px_0_#EC3C2D] transition-all hover:translate-y-0.5 hover:shadow-none cursor-pointer"
+                      className="inline-flex min-h-11 shrink-0 items-center gap-2 rounded-lg border-2 border-[#0F0F12] bg-[#EC3C2D] px-3.5 py-2 text-[14px] font-black text-white shadow-[2px_2px_0_#0F0F12] transition-all hover:bg-[#D93426] cursor-pointer"
                     >
                       <span>{workflow.cta[locale] ?? workflow.cta.es}</span>
-                      <ArrowRight className="size-4 text-[#FEF08A]" />
+                      <ArrowRight className="size-4 text-white" />
                     </button>
                   </div>
-                </div>
-              );
-            })()}
+                );
+              })()}
 
-            {/* TERTIARY: All tools discoverability button */}
-            <div className="flex items-center justify-between gap-3 rounded-2xl border-2 border-[#0F0F12] bg-[#BFDBFE] p-4 shadow-[3px_3px_0_#0F0F12]">
-              <div className="flex items-center gap-3">
-                <span className="flex size-10 shrink-0 items-center justify-center rounded-xl border-2 border-[#0F0F12] bg-white text-[#0F172A] shadow-[2px_2px_0_#0F0F12]">
-                  <Grid className="size-4.5 text-[#0F172A]" />
-                </span>
-                <div>
-                  <h5 className="text-[15px] font-black text-[#0F172A]">
-                    {t.workspace.discoverSuite}
-                  </h5>
-                  <p className="text-[13px] font-medium text-[#26364A]">
-                    {t.workspace.suiteDescription}
-                  </p>
-                </div>
-              </div>
               <Link
                 to={SECTION_ROUTE}
                 params={catalogParams(locale)}
                 onClick={() => trackToolCatalogViewAllClicked({ source: "result_screen", language: locale })}
-                className="inline-flex min-h-10 shrink-0 items-center gap-1.5 rounded-lg border-2 border-[#0F0F12] bg-white px-3 text-[12px] font-black text-[#0F172A] shadow-[2px_2px_0_#0F0F12] transition-colors hover:bg-[#FEF08A]"
+                style={{ backgroundColor: resultAccent }}
+                className="flex min-h-[86px] items-center justify-between gap-3 rounded-xl border-2 border-[#0F0F12] p-3.5 text-white shadow-[3px_3px_0_#0F0F12] transition-all hover:-translate-y-0.5"
               >
-                <span>{t.workspace.discoverSuite}</span>
-                <ArrowRight className="size-3.5 text-slate-600" />
+                <span className="flex items-center gap-3">
+                  <span className="flex size-10 shrink-0 items-center justify-center rounded-lg border-2 border-white bg-white" style={{ color: resultAccent }}>
+                    <Grid className="size-5" />
+                  </span>
+                  <span>
+                    <span className="block text-[16px] font-black">{t.workspace.discoverSuite}</span>
+                    <span className="block text-[14px] font-semibold text-white">{t.workspace.suiteDescription}</span>
+                  </span>
+                </span>
+                <ArrowRight className="size-5 shrink-0 text-white" />
               </Link>
             </div>
           </div>
 
           {/* Barra de acciones secundarias: procesar mÃ¡s archivos o volver a empezar */}
-          <div className="mt-6 pt-5 border-t border-slate-200/80 flex flex-wrap items-center justify-between gap-3">
+          <div className="mt-4 flex flex-col gap-3 rounded-2xl border-2 border-[#0F0F12] p-3.5 text-white shadow-[3px_3px_0_#0F0F12] sm:flex-row sm:items-center sm:justify-between sm:p-4" style={{ backgroundColor: resultAccent }}>
             <button
               type="button"
               onClick={() => {
@@ -1397,9 +1386,11 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                 setNote(null);
                 if (inputRef.current) inputRef.current.value = "";
               }}
-              className="inline-flex items-center gap-2 text-[13.5px] font-semibold text-slate-600 hover:text-primary transition-colors cursor-pointer"
+              className="inline-flex min-h-12 items-center gap-3 rounded-xl border-2 border-[#0F0F12] bg-white px-4 text-[16px] font-black text-[#0F0F12] shadow-[2px_2px_0_#0F0F12] transition-all hover:translate-y-0.5 hover:shadow-none cursor-pointer"
             >
-              <PlusCircle className="size-4 text-primary" />
+              <span className="flex size-8 items-center justify-center rounded-lg border-2 border-[#0F0F12] bg-[#EC3C2D] text-white">
+                <PlusCircle className="size-5 text-white" />
+              </span>
               <span>
                 {tool.slug === "comprimir-pdf"
                   ? (locale === "ca" ? "Comprimir altres arxius" : locale === "en" ? "Compress other files" : "Comprimir otros archivos")
@@ -1409,7 +1400,7 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
 
             {tool.slug === "comprimir-pdf" && tool.options && tool.options.length > 0 && (
               <div className="flex items-center gap-2">
-                <span className="text-[12.5px] text-slate-500 font-medium">
+                <span className="text-[15px] text-white font-black">
                   {t.workspace.compressionLevel}
                 </span>
                 <select
@@ -1421,7 +1412,7 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                       run(files, nextVal);
                     }
                   }}
-                  className="rounded-lg border border-slate-300 bg-white px-2.5 py-1 text-[12.5px] font-bold text-slate-700 shadow-2xs hover:border-primary focus:border-primary focus:outline-hidden"
+                  className="min-h-12 rounded-xl border-2 border-[#0F0F12] bg-white px-4 py-2 text-[15px] font-black text-[#0F0F12] shadow-[2px_2px_0_#0F0F12] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
                 >
                   <option value="balanced">
                     {locale === "ca" ? "Equilibrat (recomanat)" : locale === "en" ? "Balanced (recommended)" : "Equilibrado (recomendado)"}

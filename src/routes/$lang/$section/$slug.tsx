@@ -508,38 +508,38 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
 
                 {/* 2 Tarjetas: Casos de Uso (blanco + rojo) vs Aspectos (blanco + amarillo) — identidad BreadPDF */}
                 <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-3 pt-4 border-t-2 border-slate-100">
-                  <div className="rounded-xl border-2 border-[#0F0F12] bg-[#FFF7F5] p-3.5 shadow-[2px_2px_0_#0F0F12] flex flex-col justify-start">
+                  <div className={`rounded-xl border-2 border-[#0F0F12] ${accent.iconBg} ${accent.icon} p-3.5 shadow-[2px_2px_0_#0F0F12] flex flex-col justify-start`}>
                     <div className="flex items-center gap-2.5">
                       <span className="size-7 rounded-lg bg-[#EC3C2D] text-white flex items-center justify-center font-black text-[14px] border border-[#0F0F12] shadow-[1px_1px_0_#0F0F12]">
                         ✓
                       </span>
-                      <h3 className="text-[16px] sm:text-[17px] font-black text-[#0F172A]">
+                      <h3 className="text-[16px] sm:text-[17px] font-black text-white">
                         {locale === "ca" ? "Casos d'ús recomanats" : locale === "en" ? "Recommended use cases" : "Casos de uso recomendados"}
                       </h3>
                     </div>
-                    <ul className="mt-2.5 space-y-1.5 text-[14px] sm:text-[14.5px] text-slate-800 font-medium leading-snug">
+                    <ul className="mt-2.5 space-y-1.5 text-[14px] sm:text-[15px] text-white font-semibold leading-snug">
                       {bestFor.map((item, idx) => (
                         <li key={idx} className="flex items-start gap-2.5">
-                          <span className="size-2 rounded-full bg-[#EC3C2D] mt-[7px] shrink-0" />
+                          <span className="size-2 rounded-full bg-white mt-[7px] shrink-0" />
                           <span>{item}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
 
-                  <div className="rounded-xl border-2 border-[#0F0F12] bg-[#F4F5F7] p-3.5 shadow-[2px_2px_0_#0F0F12] flex flex-col justify-start">
+                  <div className="rounded-xl border-2 border-[#0F0F12] bg-[#0F0F12] p-3.5 text-white shadow-[2px_2px_0_#0F0F12] flex flex-col justify-start">
                     <div className="flex items-center gap-2.5">
                       <span className="size-7 rounded-lg bg-[#F4B942] text-[#0F0F12] flex items-center justify-center font-black text-[14px] border border-[#0F0F12] shadow-[1px_1px_0_#0F0F12]">
                         !
                       </span>
-                      <h3 className="text-[16px] sm:text-[17px] font-black text-[#0F172A]">
+                      <h3 className="text-[16px] sm:text-[17px] font-black text-white">
                         {locale === "ca" ? "Aspectes a tenir en compte" : locale === "en" ? "Technical constraints & trade-offs" : "Aspectos a tener en cuenta"}
                       </h3>
                     </div>
-                    <ul className="mt-2.5 space-y-1.5 text-[14px] sm:text-[14.5px] text-slate-800 font-medium leading-snug">
+                    <ul className="mt-2.5 space-y-1.5 text-[14px] sm:text-[15px] text-white font-semibold leading-snug">
                       {limitations.map((item, idx) => (
                         <li key={idx} className="flex items-start gap-2.5">
-                          <span className="size-2 rounded-full bg-[#0F0F12] mt-[7px] shrink-0" />
+                          <span className="size-2 rounded-full bg-[#FEF08A] mt-[7px] shrink-0" />
                           <span>{item}</span>
                         </li>
                       ))}
@@ -734,7 +734,7 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
                 <BookOpen className="size-6" />
               </span>
               <div>
-                <span className="inline-flex items-center rounded-md border-2 border-[#0F0F12] bg-[#FEECEB] px-2.5 py-0.5 text-[12px] font-black uppercase tracking-wider text-[#EC3C2D] shadow-[2px_2px_0_#0F0F12]">
+                <span className="inline-flex items-center rounded-md border-2 border-[#0F0F12] bg-[#EC3C2D] px-2.5 py-0.5 text-[12px] font-black uppercase tracking-wider text-white shadow-[2px_2px_0_#0F0F12]">
                   {locale === "ca" ? "Guia Educativa" : locale === "en" ? "Academic Guide" : "Guía Educativa"}
                 </span>
                 <h3 className="text-[18px] sm:text-[19px] font-black text-[#0F0F12] mt-2">
