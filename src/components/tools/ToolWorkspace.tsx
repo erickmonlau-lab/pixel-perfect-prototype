@@ -713,7 +713,7 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                 <div className="flex items-center gap-2.5">
                   <SlidersHorizontal className="size-5 text-[#EC3C2D] shrink-0" />
                   <span className="text-[16px] sm:text-[18px] font-black uppercase tracking-wide text-[#0F0F12]">
-                    Nivel de compresion
+                    {t.workspace.optionsTitle}
                   </span>
                 </div>
               </div>
@@ -1151,11 +1151,7 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                 <div className="flex items-center gap-2.5 mb-5 pb-3 border-b border-slate-200">
                   <SlidersHorizontal className="size-5 text-[#2563EB]" />
                   <h4 className="text-[16px] sm:text-[17px] font-black text-[#0F172A] m-0 tracking-tight">
-                    {locale === "ca"
-                      ? "Ajustos de la configuraciÃ³"
-                      : locale === "en"
-                      ? "Configuration settings"
-                      : "Ajustes de la herramienta"}
+                    {t.workspace.settingsTitle}
                   </h4>
                 </div>
                 <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
@@ -1526,11 +1522,7 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
             {tool.slug === "comprimir-pdf" && tool.options && tool.options.length > 0 && (
               <div className="flex items-center gap-2">
                 <span className="text-[12.5px] text-slate-500 font-medium">
-                  {locale === "ca"
-                    ? "Nivell de compressiÃ³:"
-                    : locale === "en"
-                    ? "Compression level:"
-                    : "Nivel de compresiÃ³n:"}
+                  {t.workspace.compressionLevel}
                 </span>
                 <select
                   value={values["level"] ?? "balanced"}
