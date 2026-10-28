@@ -45,7 +45,7 @@ export function OverlaySettingsPanel({
   }
 
   return (
-    <div className="mt-4 rounded-xl border border-slate-200 bg-slate-50/70 p-5 shadow-xs">
+    <div className="mt-4 rounded-2xl border-2 border-[#0F0F12] bg-white p-4 shadow-[3px_3px_0_#0F0F12]">
       {activeToolSlug === "marca-de-agua" && (
         <div className="flex flex-col gap-4">
           <div className="flex items-center justify-between border-b border-slate-200 pb-3">

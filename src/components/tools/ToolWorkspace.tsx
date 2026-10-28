@@ -1,4 +1,4 @@
-﻿import {
+import {
   ArrowDown,
   ArrowUp,
   CheckCircle2,
@@ -86,7 +86,6 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
   const [outputs, setOutputs] = useState<ToolOutput[]>([]);
   const [urls, setUrls] = useState<string[]>([]);
   const [viewMode, setViewMode] = useState<"visual" | "list">("visual");
-  const [showInitialSettings, setShowInitialSettings] = useState(false);
   const [filePreviews, setFilePreviews] = useState<Map<string, string>>(new Map());
 
   // Generar miniaturas ligeras para imÃ¡genes cargadas y limpiar memoria
@@ -509,10 +508,51 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
         }
 
         let pagesToExport = workspaceState.pages;
+        const selected = new Set(workspaceState.selectedPageIds);
+        const selectedPages = workspaceState.pages.filter((page) => selected.has(page.id));
+        const parseOptionPages = (value: unknown) => {
+          const parsed = parsePageRanges(String(value ?? ""), workspaceState.pages.length);
+          if (!parsed.length) throw new Error(t.workspace.noPagesSelected);
+          return parsed.map((number) => number - 1);
+        };
 
-        if (tool.slug === "extraer-paginas-pdf" && workspaceState.selectedPageIds.length > 0) {
-          const selectedSet = new Set(workspaceState.selectedPageIds);
-          pagesToExport = workspaceState.pages.filter((p) => selectedSet.has(p.id));
+        if (tool.slug === "extraer-paginas-pdf") {
+          const range = String(targetOptions.pages ?? "").trim();
+          pagesToExport = range
+            ? parseOptionPages(range).map((index) => workspaceState.pages[index]).filter((page): page is PageItem => Boolean(page))
+            : selectedPages;
+          if (!pagesToExport.length) throw new Error(t.workspace.noPagesSelected);
+        } else if (tool.slug === "eliminar-paginas-pdf") {
+          const range = String(targetOptions.pages ?? "").trim();
+          if (range) {
+            const removed = new Set(parseOptionPages(range));
+            pagesToExport = workspaceState.pages.filter((_, index) => !removed.has(index));
+          } else if (selectedPages.length) {
+            pagesToExport = workspaceState.pages.filter((page) => !selected.has(page.id));
+          }
+          if (!pagesToExport.length) throw new Error(t.workspace.noPagesSelected);
+        } else if (tool.slug === "reordenar-paginas-pdf") {
+          const order = String(targetOptions.order ?? "").trim();
+          if (order) {
+            const indexes = order.split(",").map((entry) => {
+              const page = Number(entry.trim());
+              if (!Number.isInteger(page) || page < 1 || page > workspaceState.pages.length) throw new Error("INVALID_PAGE_RANGE");
+              return page - 1;
+            });
+            if (indexes.length !== workspaceState.pages.length || new Set(indexes).size !== indexes.length) {
+              throw new Error(locale === "en" ? "Enter every page once, for example: 3, 1, 2." : locale === "ca" ? "Indica cada pàgina una sola vegada, per exemple: 3, 1, 2." : "Indica cada página una sola vez, por ejemplo: 3, 1, 2.");
+            }
+            pagesToExport = indexes.map((index) => workspaceState.pages[index]).filter((page): page is PageItem => Boolean(page));
+          }
+        } else if (tool.slug === "rotar-pdf") {
+          const range = String(targetOptions.pages ?? "").trim();
+          const indexes = range ? parseOptionPages(range) : selectedPages.length
+            ? workspaceState.pages.map((page, index) => selected.has(page.id) ? index : -1).filter((index) => index >= 0)
+            : workspaceState.pages.map((_, index) => index);
+          const degrees = Number(targetOptions.angle ?? 90);
+          pagesToExport = workspaceState.pages.map((page, index) => indexes.includes(index)
+            ? { ...page, rotation: ((page.rotation + degrees) % 360 + 360) % 360 }
+            : page);
         }
 
         if (pagesToExport.length === 0) {
@@ -587,7 +627,10 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
       });
     } catch (error) {
       setPhase("error");
-      setMessage(error instanceof Error ? error.message : t.workspace.genericError);
+      const errorMessage = error instanceof Error ? error.message : "";
+      setMessage(errorMessage === "INVALID_PAGE_RANGE"
+        ? (locale === "en" ? `Check the page range. Use pages from 1 to ${workspaceState.pages.length}, for example 1, 3-5.` : locale === "ca" ? `Revisa el rang de pàgines. Fes servir pàgines de l'1 al ${workspaceState.pages.length}, per exemple 1, 3-5.` : `Revisa el rango de páginas. Usa páginas del 1 al ${workspaceState.pages.length}, por ejemplo 1, 3-5.`)
+        : errorMessage || t.workspace.genericError);
     }
   };
 
@@ -705,164 +748,6 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
             )}
           </div>
 
-
-          {/* Panel de configuracion debajo del dropzone */}
-          {tool.options && tool.options.length > 0 && (
-            <div className="mx-4 sm:mx-6 mb-6 sm:mb-8 rounded-2xl border-2 border-[#0F0F12] bg-white shadow-[3px_3px_0_#0F0F12]" onClick={(e) => e.stopPropagation()}>
-
-              {/* Encabezado */}
-              <div className="flex items-center gap-2.5 px-5 sm:px-6 py-4 border-b-2 border-[#F1F1F4]">
-                <div className="flex items-center gap-2.5">
-                  <SlidersHorizontal className="size-5 text-[#EC3C2D] shrink-0" />
-                  <span className="text-[16px] sm:text-[18px] font-black uppercase tracking-wide text-[#0F0F12]">
-                    {t.workspace.optionsTitle}
-                  </span>
-                </div>
-              </div>
-
-              {/* Grid de presets */}
-              <div className="p-4 sm:p-5 flex flex-col gap-4">
-                {tool.options.map((opt) => (
-                  <div key={opt.key}>
-                    {opt.type === "select" && (
-                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                        {opt.options.map((o) => {
-                          const isSelected = (values[opt.key] ?? opt.default) === o.value;
-
-                          // Parse label into main title + subtitle
-                          const isTarget = o.value.startsWith("target_");
-                          let mainLabel = o.label;
-                          let subLabel = "";
-                          if (isTarget) {
-                            const parenIdx = o.label.indexOf(" (");
-                            if (parenIdx !== -1) {
-                              mainLabel = o.label.slice(0, parenIdx);
-                              subLabel = o.label.slice(parenIdx + 2, -1);
-                            }
-                          } else if (o.label.includes(" - ")) {
-                            const parts = o.label.split(" - ");
-                            mainLabel = parts[0]?.trim() ?? o.label;
-                            subLabel = parts.slice(1).join(" - ").trim();
-                          }
-
-                          const isBalanced = o.value === "balanced";
-                          const reductionPct =
-                            o.value === "lossless" ? "-15%" :
-                            o.value === "light" ? "-40%" :
-                            o.value === "balanced" ? "-70%" :
-                            (o.value === "strong" || o.value === "aggressive" || o.value === "max") ? "-85%" :
-                            null;
-
-                          return (
-                            <button
-                              key={o.value}
-                              type="button"
-                              onClick={(e) => { e.stopPropagation(); setValues((v) => ({ ...v, [opt.key]: o.value })); }}
-                              className={`flex flex-col gap-2.5 p-5 sm:p-6 min-h-[112px] rounded-xl border-2 text-left w-full transition-all duration-120 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F13B32] ${
-                                isSelected
-                                  ? "bg-[#F13B32] border-[#0F0F12] shadow-[3px_3px_0_#0F0F12]"
-                                  : "bg-white border-[#0F0F12] shadow-[2px_2px_0_#0F0F12] hover:bg-[#FFF5F5] hover:shadow-[3px_3px_0_#0F0F12]"
-                              }`}
-                            >
-                              {/* Fila superior: nombre + radio de seleccion */}
-                              <div className="flex items-center justify-between gap-3">
-                                <span className={`text-[17px] sm:text-[18px] font-bold leading-snug ${isSelected ? "text-white" : "text-[#0F0F12]"}`}>
-                                  {mainLabel}
-                                </span>
-                                {/* Indicador de seleccion: circulo vacio / relleno blanco con check */}
-                                <span
-                                  aria-hidden
-                                  className={`shrink-0 size-5 rounded-full border-2 flex items-center justify-center text-[11px] font-black transition-all ${
-                                    isSelected
-                                      ? "bg-white border-white text-[#F13B32]"
-                                      : "border-slate-300 bg-transparent"
-                                  }`}
-                                >
-                                  {isSelected ? "âœ“" : ""}
-                                </span>
-                              </div>
-
-                              {/* Descripcion / caso de uso */}
-                              {subLabel && (
-                                <p className={`text-[15px] sm:text-[16px] leading-relaxed font-medium m-0 ${isSelected ? "text-white/95" : "text-slate-600"}`}>
-                                  {subLabel}
-                                </p>
-                              )}
-
-                              {/* Zona de badges: RECOMENDADO + reduccion */}
-                              {(isBalanced || reductionPct) && (
-                                <div className="flex items-center gap-2 flex-wrap mt-0.5">
-                                  {isBalanced && (
-                                    <span className={`inline-flex items-center text-[12px] font-black uppercase tracking-wide px-2.5 py-1 rounded-md border ${
-                                      isSelected
-                                        ? "bg-white text-[#F13B32] border-white"
-                                        : "bg-[#F13B32] text-white border-[#0F0F12]"
-                                    }`}>
-                                      RECOMENDADO
-                                    </span>
-                                  )}
-                                  {reductionPct && (
-                                    <span className={`inline-flex items-center text-[13px] font-bold px-2.5 py-1 rounded-md border ${
-                                      isSelected
-                                        ? "bg-white/25 text-white border-white/30"
-                                        : "bg-[#F4F4F6] text-[#0F0F12] border-[#D1D5DB]"
-                                    }`}>
-                                      {reductionPct}
-                                    </span>
-                                  )}
-                                </div>
-                              )}
-                            </button>
-                          );
-                        })}
-                      </div>
-                    )}
-
-                    {opt.type === "range" && (
-                      <div className="flex flex-col gap-2">
-                        <div className="flex items-center justify-between">
-                          <label className="text-[13.5px] font-black text-[#0F0F12]">
-                            {opt.label}
-                            {opt.help && <span className="ml-1 text-[12px] font-normal text-slate-500">({opt.help})</span>}
-                          </label>
-                          {values[opt.key] != null && (
-                            <span className="text-[13px] font-mono font-black text-[#0F0F12] bg-[#FEF08A] border-2 border-[#0F0F12] rounded-lg px-2.5 py-0.5 shadow-[1px_1px_0_#0F0F12]">
-                              {values[opt.key]}{opt.unit ?? ""}
-                            </span>
-                          )}
-                        </div>
-                        <div className="p-3 rounded-xl border-2 border-[#0F0F12] bg-[#F8FAFC] shadow-[1.5px_1.5px_0_#0F0F12]">
-                          <input
-                            type="range"
-                            min={opt.min} max={opt.max} step={opt.step}
-                            value={Number(values[opt.key] ?? opt.default)}
-                            onChange={(e) => setValues((v) => ({ ...v, [opt.key]: Number(e.target.value) }))}
-                            className="h-2.5 w-full cursor-pointer appearance-none rounded-full bg-slate-200 accent-[#EC3C2D] border border-[#0F0F12] [&::-webkit-slider-thumb]:size-4.5 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-[#EC3C2D] [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-[#0F0F12] [&::-webkit-slider-thumb]:shadow-[1.5px_1.5px_0_#0F0F12]"
-                          />
-                        </div>
-                      </div>
-                    )}
-
-                    {opt.type === "text" && (
-                      <input
-                        type="text"
-                        value={String(values[opt.key] ?? opt.default)}
-                        placeholder={(opt as any).placeholder}
-                        onChange={(e) => setValues((v) => ({ ...v, [opt.key]: e.target.value }))}
-                        className="w-full rounded-xl border-2 border-[#0F0F12] bg-white px-3.5 py-2 text-[14px] font-bold text-[#0F172A] shadow-[1.5px_1.5px_0_#0F0F12] focus:shadow-[2px_2px_0_#2563EB] focus:outline-hidden"
-                      />
-                    )}
-                  </div>
-                ))}
-
-                {/* Pie del panel */}
-                <div className="flex flex-wrap items-center justify-between gap-2 text-[14px] text-slate-600 font-medium pt-3 border-t border-[#F1F1F4]">
-                  <span>{t.workspace.adjustOptions}</span>
-                  <span className="font-black text-[#0F0F12] shrink-0 ml-4">{t.workspace.privateLabel}</span>
-                </div>
-              </div>
-            </div>
-          )}
 
         </div>
       )}
@@ -1066,6 +951,7 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                 onUndo={undo}
                 onRedo={redo}
                 onAddFiles={tool.multiple ? () => inputRef.current?.click() : undefined}
+                showRotationControls={canonicalSlug !== "rotar-pdf"}
               />
             </div>
           ) : (
@@ -1156,11 +1042,11 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
           )}
 
           {/* Opciones configurables de la herramienta: Fondo sÃ³lido diferenciado #F1F5FA sin marcos excesivos */}
-          {tool.options &&
+          {tool.options && canonicalSlug !== "anadir-texto-pdf" &&
             tool.options.length > 0 &&
             !(tool.slug === "dividir-pdf" && workspaceState.selectedPageIds.length > 0) && (
-              <div className="mt-6 rounded-2xl bg-[#F1F5FA] p-5 sm:p-7 shadow-xs animate-fade-in border border-slate-200/80">
-                <div className="flex items-center gap-2.5 mb-5 pb-3 border-b border-slate-200">
+              <div className="mt-4 rounded-2xl border-2 border-[#0F0F12] bg-[#F1F5FA] p-4 sm:p-5 shadow-[3px_3px_0_#0F0F12] animate-fade-in">
+                <div className="flex items-center gap-2.5 mb-4 pb-3 border-b-2 border-[#0F0F12]/15">
                   <SlidersHorizontal className="size-5 text-[#2563EB]" />
                   <h4 className="text-[16px] sm:text-[17px] font-black text-[#0F172A] m-0 tracking-tight">
                     {t.workspace.settingsTitle}
@@ -1193,7 +1079,7 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                             id={`opt-${opt.key}`}
                             value={values[opt.key] ?? opt.default}
                             onChange={(e) => setValues((v) => ({ ...v, [opt.key]: e.target.value }))}
-                            className="rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-[14.5px] font-semibold text-[#0F172A] shadow-2xs transition-all hover:border-slate-400 focus:border-[#2563EB] focus:outline-hidden"
+                            className="rounded-xl border-2 border-[#0F0F12] bg-white px-3.5 py-2.5 text-[14.5px] font-semibold text-[#0F172A] shadow-[2px_2px_0_#0F0F12] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB]"
                           >
                             {opt.options.map((o) => (
                               <option key={o.value} value={o.value}>
@@ -1209,7 +1095,7 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
                             value={values[opt.key] ?? opt.default}
                             placeholder={opt.placeholder}
                             onChange={(e) => setValues((v) => ({ ...v, [opt.key]: e.target.value }))}
-                            className="rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-[14.5px] font-medium text-[#0F172A] placeholder:text-slate-400 shadow-2xs transition-all hover:border-slate-400 focus:border-[#2563EB] focus:outline-hidden"
+                            className="rounded-xl border-2 border-[#0F0F12] bg-white px-3.5 py-2.5 text-[14.5px] font-medium text-[#0F172A] placeholder:text-slate-400 shadow-[2px_2px_0_#0F0F12] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB]"
                           />
                         )}
                         {opt.type === "range" && (

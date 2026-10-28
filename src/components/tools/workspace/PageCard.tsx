@@ -21,6 +21,7 @@ type PageCardProps = {
   pageNumberConfig?: PageNumberConfig | null | undefined;
   signatureConfig?: SignatureConfig | null | undefined;
   textOverlayConfig?: TextOverlayConfig | null | undefined;
+  showRotationControl?: boolean;
   onToggleSelect: (pageId: string, isMulti: boolean) => void;
   onRotate: (pageId: string) => void;
   onRemove: (pageId: string) => void;
@@ -39,6 +40,7 @@ export function PageCard({
   pageNumberConfig,
   signatureConfig,
   textOverlayConfig,
+  showRotationControl = true,
   onToggleSelect,
   onRotate,
   onRemove,
@@ -82,17 +84,17 @@ export function PageCard({
 
         {/* Hover quick tools */}
         <div className="flex items-center gap-0.5">
-          <button
+          {showRotationControl && <button
             type="button"
             title={t.workspace.rotatePage}
             onClick={(e) => {
               e.stopPropagation();
               onRotate(page.id);
             }}
-            className="rounded-lg border border-[#0F0F12]/15 bg-[#F1F2F4] p-1 text-slate-700 hover:bg-[#FEF08A] transition-colors"
+            className="rounded-lg border-2 border-[#0F0F12] bg-white p-1 text-[#0F0F12] shadow-[1px_1px_0_#0F0F12] hover:bg-[#FEF08A] transition-colors"
           >
             <RotateCw className="size-3.5" />
-          </button>
+          </button>}
           <button
             type="button"
             title={t.workspace.deletePage}
@@ -100,18 +102,18 @@ export function PageCard({
               e.stopPropagation();
               onRemove(page.id);
             }}
-            className="rounded-lg border border-[#0F0F12]/15 bg-[#F1F2F4] p-1 text-slate-700 hover:bg-[#FEE2E2] hover:text-red-700 transition-colors"
+            className="rounded-lg border-2 border-[#0F0F12] bg-white p-1 text-[#0F0F12] shadow-[1px_1px_0_#0F0F12] hover:bg-[#FEE2E2] transition-colors"
           >
             <Trash2 className="size-3.5" />
           </button>
-          <span title={t.workspace.reorderPage} className="cursor-grab rounded-lg bg-[#F1F2F4] p-1 text-slate-500 hover:text-slate-800">
+          <span title={t.workspace.reorderPage} className="cursor-grab rounded-lg border-2 border-[#0F0F12] bg-white p-1 text-[#0F0F12] shadow-[1px_1px_0_#0F0F12]">
             <GripVertical className="size-3.5" />
           </span>
         </div>
       </div>
 
       {/* Canvas preview with Real-Time Overlay */}
-      <div className="relative w-full aspect-[1/1.38] rounded-xl overflow-hidden border-2 border-[#0F0F12]/15 bg-[#F4F5F7] flex items-center justify-center">
+      <div className="relative w-full aspect-[1/1.38] rounded-xl overflow-hidden border-2 border-[#0F0F12] bg-[#F4F5F7] flex items-center justify-center">
         <PdfThumbnail
           arrayBuffer={document.arrayBuffer}
           pageIndex={page.sourcePageIndex}

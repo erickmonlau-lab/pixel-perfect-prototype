@@ -25,6 +25,7 @@ type PageGridProps = {
   onUndo: () => void;
   onRedo: () => void;
   onAddFiles?: (() => void) | undefined;
+  showRotationControls?: boolean;
 };
 
 export function PageGrid({
@@ -41,6 +42,7 @@ export function PageGrid({
   onUndo,
   onRedo,
   onAddFiles,
+  showRotationControls = true,
 }: PageGridProps) {
   const { t } = useLocale();
   const draggedIndex = useRef<number | null>(null);
@@ -92,9 +94,10 @@ export function PageGrid({
         canRedo={canRedo}
         onUndo={onUndo}
         onRedo={onRedo}
+        showRotationControls={showRotationControls}
       />
 
-      <div className="grid grid-cols-[repeat(auto-fill,minmax(min(100%,164px),164px))] gap-3 sm:gap-4">
+      <div className="grid grid-cols-[repeat(auto-fill,minmax(min(100%,190px),220px))] gap-3 sm:gap-4">
         {pages.map((page, index) => {
           const doc = documents[page.sourceDocumentId];
           if (!doc) return null;
@@ -112,6 +115,7 @@ export function PageGrid({
               pageNumberConfig={pageNumberConfig}
               signatureConfig={signatureConfig}
               textOverlayConfig={textOverlayConfig}
+              showRotationControl={showRotationControls}
               onToggleSelect={handleToggleSelect}
               onRotate={handleRotate}
               onRemove={handleRemove}

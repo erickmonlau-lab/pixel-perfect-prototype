@@ -22,21 +22,24 @@ export function parsePageRanges(spec: string, total: number): number[] {
   if (!cleaned) return [];
 
   for (const chunk of cleaned.split(",")) {
-    if (!chunk) continue;
+    if (!chunk) throw new Error("INVALID_PAGE_RANGE");
     const range = chunk.split("-");
     if (range.length === 1) {
       const page = Number(range[0]);
-      if (Number.isInteger(page) && page >= 1 && page <= total) pages.add(page);
+      if (!Number.isInteger(page) || page < 1 || page > total) throw new Error("INVALID_PAGE_RANGE");
+      pages.add(page);
       continue;
     }
     if (range.length === 2) {
-      const from = Number(range[0] || 1);
-      const to = Number(range[1] || total);
-      if (!Number.isInteger(from) || !Number.isInteger(to)) continue;
-      for (let p = Math.max(1, Math.min(from, to)); p <= Math.min(total, Math.max(from, to)); p++) {
+      const from = Number(range[0]);
+      const to = Number(range[1]);
+      if (!Number.isInteger(from) || !Number.isInteger(to) || from < 1 || to < 1 || from > total || to > total) throw new Error("INVALID_PAGE_RANGE");
+      for (let p = Math.min(from, to); p <= Math.max(from, to); p++) {
         pages.add(p);
       }
+      continue;
     }
+    throw new Error("INVALID_PAGE_RANGE");
   }
 
   return [...pages].sort((a, b) => a - b);
