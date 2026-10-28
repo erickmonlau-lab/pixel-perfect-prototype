@@ -98,7 +98,7 @@ export function CatalogBrowser() {
           // Compute active & hover styles
           let activeClass = "";
           if (isActive) {
-            activeClass = `${catColor?.bg ?? "bg-[#EC3C2D]"} ${catColor?.text ?? "text-white"} shadow-[3px_3px_0_#0F0F12] translate-x-[1px] translate-y-[1px]`;
+            activeClass = `${catColor?.bg ?? "bg-[#D93426]"} ${catColor?.text ?? "text-white"} shadow-[3px_3px_0_#0F0F12] translate-x-[1px] translate-y-[1px]`;
           } else {
             activeClass = "bg-white text-[#0F0F12] shadow-[3px_3px_0_#0F0F12] hover:bg-[#F8FAFC] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0_#0F0F12]";
           }
