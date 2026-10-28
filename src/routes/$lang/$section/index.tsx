@@ -1,4 +1,4 @@
-import { createFileRoute, notFound } from "@tanstack/react-router";
+import { createFileRoute, notFound, redirect } from "@tanstack/react-router";
 import { CatalogBrowser } from "@/components/site/CatalogBrowser";
 import { GuidesHubPage } from "@/components/site/GuidesHubPage";
 import { ToolSearch } from "@/components/site/ToolSearch";
@@ -19,6 +19,9 @@ export const Route = createFileRoute("/$lang/$section/")({
     if (!isLocale(params.lang)) throw notFound();
     const kind = sectionKind(params.lang, params.section);
     if (!kind) throw notFound();
+    if (kind === "catalog") {
+      throw redirect({ href: `/${params.lang}#catalogo`, statusCode: 301 });
+    }
     return { kind };
   },
   head: ({ params }) => {
