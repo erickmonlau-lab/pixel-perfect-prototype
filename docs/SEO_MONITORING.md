@@ -228,7 +228,7 @@ El script ahora decodifica entidades numéricas (`&#x27;`) antes de medir longit
 
 **IndexNow.** Integración completada en la parte que depende del repositorio y de Vercel:
 
-- Clave de 32 caracteres hexadecimales generada con `--write-key`, publicada en `public/1f5bfb210e76ba8ac575efbf8124d72a.txt`. La URL `https://breadpdf.com/1f5bfb210e76ba8ac575efbf8124d72a.txt` responde **200**, `text/plain`, 32 bytes y contenido idéntico a la clave, también con user-agent de Bingbot. El fichero es público por diseño del protocolo, no un secreto.
+- Clave de 32 caracteres hexadecimales generada y publicada en `public/192dafabfbdc0c53168d58b9afaf86bb.txt`. La URL `https://breadpdf.com/192dafabfbdc0c53168d58b9afaf86bb.txt` responde **200**, `text/plain`, 32 bytes y contenido idéntico a la clave, también con user-agent de Bingbot. El fichero es público por diseño del protocolo, no un secreto.
 - `INDEXNOW_API_KEY` creada en Vercel como variable **encrypted** de Production (proyecto `prj_FH4dl5iBfOGZELX4VPhEQOPFJG7N`). No se ha escrito en el repositorio ni en el bundle; se eliminó el fallback `VITE_INDEXNOW_API_KEY` de `src/lib/indexnow.ts` para que Vite no pueda inlinelarla en el cliente.
 - `scripts/indexnow.mjs` lee el sitemap y envía `host`, `key`, `keyLocation` y `urlList` a `https://api.indexnow.org/indexnow`. Resultados reales:
   - Antes de publicar el fichero: **403 `SiteVerificationNotCompleted`** (esperado).
