@@ -56,6 +56,20 @@ export const Route = createFileRoute("/$lang/")({
           type: "font/woff2",
           crossOrigin: "anonymous",
         },
+        {
+          rel: "preload",
+          href: "/fonts/inter-latin-600.woff2",
+          as: "font",
+          type: "font/woff2",
+          crossOrigin: "anonymous",
+        },
+        {
+          rel: "preload",
+          href: "/fonts/plus-jakarta-sans-latin-700.woff2",
+          as: "font",
+          type: "font/woff2",
+          crossOrigin: "anonymous",
+        },
       ],
     };
   },

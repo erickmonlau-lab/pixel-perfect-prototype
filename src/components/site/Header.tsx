@@ -38,7 +38,6 @@ import {
 } from "@/lib/i18n/routing";
 import { useAuth } from "@/lib/auth/auth-context";
 import { Logo } from "./Logo";
-import "./header-responsive.css";
 import { ToolIcon } from "./ToolIcon";
 import { getRichToolIcon } from "./RichToolIcon";
 import { getToolColorTheme } from "@/lib/tools/color-system";
@@ -146,7 +145,7 @@ export function Header() {
         }
       }}
     >
-      <div className="site-header mx-auto flex w-full max-w-[1440px] items-center justify-between px-4 max-[430px]:px-3 sm:px-6 lg:px-8">
+      <div className="site-header mx-auto flex w-full max-w-[1440px] items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* ============================================================
             ZONA IZQUIERDA: LOGO BREADPDF
             ============================================================ */}
@@ -563,7 +562,7 @@ export function Header() {
         {/* ============================================================
             MÓVIL: IDIOMA + HAMBURGUESA
             ============================================================ */}
-        <div className="site-header-mobile-controls ml-auto flex shrink-0 items-center gap-4 max-[430px]:gap-3 lg:hidden">
+        <div className="site-header-mobile-controls ml-auto flex shrink-0 items-center gap-4 lg:hidden">
           <LanguageSwitcher />
           <button
             type="button"
