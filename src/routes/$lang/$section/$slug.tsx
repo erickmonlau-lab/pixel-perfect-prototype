@@ -292,7 +292,7 @@ export const Route = createFileRoute("/$lang/$section/$slug")({
                 description: tool.tagline,
                 step: tool.howItWorks.map((step, idx) => {
                   const isObj = typeof step === "object" && step !== null;
-                  const stepTitle = isObj ? step.title : `Paso ${idx + 1}`;
+                  const stepTitle = isObj ? step.title : `${locale === "ca" ? "Pas" : locale === "en" ? "Step" : "Paso"} ${idx + 1}`;
                   const stepText = isObj ? step.desc : step;
                   return {
                     "@type": "HowToStep",
@@ -452,13 +452,7 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
         <ol className="mt-5 grid gap-4 sm:grid-cols-3 list-none pl-0">
           {tool.howItWorks.map((step, index) => {
             const isObject = typeof step === "object" && step !== null;
-            const title = isObject
-              ? step.title
-              : index === 0
-                ? "Añade tus archivos"
-                : index === 1
-                  ? "Configura u ordena"
-                  : "Descarga el resultado";
+            const title = isObject ? step.title : null;
             const desc = isObject ? step.desc : step;
 
             return (
@@ -470,9 +464,7 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
                   <span className="flex size-9 items-center justify-center rounded-xl border-2 border-[#0F0F12] bg-[#EC3C2D] text-white text-[15px] font-black shadow-[1.5px_1.5px_0_#0F0F12]">
                     0{index + 1}
                   </span>
-                  <h3 className="text-[17px] sm:text-[18px] font-black text-[#0F0F12] leading-snug">
-                    {title}
-                  </h3>
+                  {title && <h3 className="text-[17px] sm:text-[18px] font-black text-[#0F0F12] leading-snug">{title}</h3>}
                 </div>
                 <p className="mt-3 text-[15px] sm:text-[15.5px] leading-relaxed text-slate-700 m-0 font-normal">
                   {desc}
@@ -495,36 +487,36 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
           const proTip = practical.proTip[locale] || practical.proTip.es;
 
           return (
-            <section className="mt-10 sm:mt-12" aria-labelledby="editorial-context">
-              <div className="rounded-2xl border-2 border-[#0F0F12] bg-white p-6 sm:p-8 shadow-[4px_4px_0_#0F0F12]">
+            <section className="mt-8 sm:mt-9" aria-labelledby="editorial-context">
+              <div className="rounded-2xl border-2 border-[#0F0F12] bg-white p-4 sm:p-5 shadow-[3px_3px_0_#0F0F12]">
                 {/* Etiqueta superior prominente con icono técnico de ajuste */}
-                <div className="inline-flex items-center gap-2 rounded-lg border-2 border-[#0F0F12] bg-[#EC3C2D] px-3.5 py-1 text-[13px] sm:text-[14px] font-black uppercase tracking-wide text-white shadow-[2px_2px_0_#0F0F12]">
-                  <SlidersHorizontal className="size-5" />
+                <div className="inline-flex items-center gap-2 rounded-lg border-2 border-[#0F0F12] bg-[#EC3C2D] px-3 py-1 text-[11px] sm:text-[12px] font-black uppercase tracking-wide text-white shadow-[2px_2px_0_#0F0F12]">
+                  <SlidersHorizontal className="size-4" />
                   <span>{eyebrow}</span>
                 </div>
 
                 {/* Título de sección editorial grande y jerarquizado */}
-                <h2 id="editorial-context" className="mt-3 text-[28px] sm:text-[34px] font-black text-[#0F172A] tracking-tight leading-snug">
+                <h2 id="editorial-context" className="mt-2 text-[22px] sm:text-[26px] font-black text-[#0F172A] tracking-tight leading-snug">
                   {title}
                 </h2>
 
                 {/* Explicación técnica legible */}
-                <p className="mt-4 text-[17.5px] sm:text-[19px] leading-relaxed text-slate-800 font-medium">
+                <p className="mt-2 text-[15px] sm:text-[16px] leading-relaxed text-slate-700 font-medium">
                   {engineDesc}
                 </p>
 
                 {/* 2 Tarjetas: Casos de Uso (blanco + rojo) vs Aspectos (blanco + amarillo) — identidad BreadPDF */}
-                <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6 pt-6 border-t-2 border-slate-100">
-                  <div className="rounded-2xl border-2 border-[#0F0F12] bg-white p-5 shadow-[3px_3px_0_#0F0F12] flex flex-col justify-start">
-                    <div className="flex items-center gap-3">
-                      <span className="size-8 rounded-lg bg-[#EC3C2D] text-white flex items-center justify-center font-black text-[16px] border border-[#0F0F12] shadow-[1px_1px_0_#0F0F12]">
+                <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-3 pt-4 border-t-2 border-slate-100">
+                  <div className="rounded-xl border-2 border-[#0F0F12] bg-[#FFF7F5] p-3.5 shadow-[2px_2px_0_#0F0F12] flex flex-col justify-start">
+                    <div className="flex items-center gap-2.5">
+                      <span className="size-7 rounded-lg bg-[#EC3C2D] text-white flex items-center justify-center font-black text-[14px] border border-[#0F0F12] shadow-[1px_1px_0_#0F0F12]">
                         ✓
                       </span>
-                      <h3 className="text-[18px] sm:text-[20px] font-black text-[#0F172A]">
+                      <h3 className="text-[16px] sm:text-[17px] font-black text-[#0F172A]">
                         {locale === "ca" ? "Casos d'ús recomanats" : locale === "en" ? "Recommended use cases" : "Casos de uso recomendados"}
                       </h3>
                     </div>
-                    <ul className="mt-4 space-y-3 text-[15px] sm:text-[16px] text-slate-800 font-medium leading-relaxed">
+                    <ul className="mt-2.5 space-y-1.5 text-[14px] sm:text-[14.5px] text-slate-800 font-medium leading-snug">
                       {bestFor.map((item, idx) => (
                         <li key={idx} className="flex items-start gap-2.5">
                           <span className="size-2 rounded-full bg-[#EC3C2D] mt-[7px] shrink-0" />
@@ -534,16 +526,16 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
                     </ul>
                   </div>
 
-                  <div className="rounded-2xl border-2 border-[#0F0F12] bg-white p-5 shadow-[3px_3px_0_#0F0F12] flex flex-col justify-start">
-                    <div className="flex items-center gap-3">
-                      <span className="size-8 rounded-lg bg-[#FEF08A] text-[#0F0F12] flex items-center justify-center font-black text-[16px] border border-[#0F0F12] shadow-[1px_1px_0_#0F0F12]">
+                  <div className="rounded-xl border-2 border-[#0F0F12] bg-[#F4F5F7] p-3.5 shadow-[2px_2px_0_#0F0F12] flex flex-col justify-start">
+                    <div className="flex items-center gap-2.5">
+                      <span className="size-7 rounded-lg bg-[#F4B942] text-[#0F0F12] flex items-center justify-center font-black text-[14px] border border-[#0F0F12] shadow-[1px_1px_0_#0F0F12]">
                         !
                       </span>
-                      <h3 className="text-[18px] sm:text-[20px] font-black text-[#0F172A]">
+                      <h3 className="text-[16px] sm:text-[17px] font-black text-[#0F172A]">
                         {locale === "ca" ? "Aspectes a tenir en compte" : locale === "en" ? "Technical constraints & trade-offs" : "Aspectos a tener en cuenta"}
                       </h3>
                     </div>
-                    <ul className="mt-4 space-y-3 text-[15px] sm:text-[16px] text-slate-800 font-medium leading-relaxed">
+                    <ul className="mt-2.5 space-y-1.5 text-[14px] sm:text-[14.5px] text-slate-800 font-medium leading-snug">
                       {limitations.map((item, idx) => (
                         <li key={idx} className="flex items-start gap-2.5">
                           <span className="size-2 rounded-full bg-[#0F0F12] mt-[7px] shrink-0" />
@@ -555,14 +547,14 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
                 </div>
 
                 {/* Consejo Pro con Mascota ilustrada */}
-                <div className="mt-6 rounded-xl border-2 border-[#0F0F12] bg-[#FEF08A] p-4 sm:p-5 shadow-[3px_3px_0_#0F0F12] flex flex-col sm:flex-row items-start sm:items-center gap-4">
-                  <div className="flex items-center gap-3 shrink-0">
+                <div className="mt-3 rounded-xl border-2 border-[#0F0F12] bg-[#FEF08A] p-3 sm:p-3.5 shadow-[2px_2px_0_#0F0F12] flex flex-col sm:flex-row items-start sm:items-center gap-3">
+                  <div className="flex items-center gap-2.5 shrink-0">
                     <img
                       src={BRAND_ASSETS.mascots.think}
                       alt="BreadPDF Pro Tip"
                       width={40}
                       height={40}
-                      className="size-10 object-contain animate-neo-wiggle shrink-0 drop-shadow-xs"
+                      className="size-8 object-contain shrink-0 drop-shadow-xs"
                     />
                     <span className="inline-flex items-center justify-center rounded-lg border-2 border-[#0F0F12] bg-[#0F0F12] px-3 py-1 text-[12px] font-black uppercase text-white shrink-0 tracking-wide shadow-[2px_2px_0_#0F0F12]">
                       {locale === "ca" ? "Consell Pro" : locale === "en" ? "Pro Tip" : "Consejo Pro"}
@@ -573,7 +565,7 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
                   </p>
                 </div>
 
-                <div className="mt-7 pt-5 border-t border-slate-100 flex flex-wrap items-center justify-between gap-4 text-slate-700 font-medium">
+                <div className="mt-4 pt-3 border-t border-slate-100 flex flex-wrap items-center justify-between gap-3 text-slate-700 font-medium">
                   <div className="flex items-center gap-2.5">
                     <span className={`inline-flex size-3 rounded-full ${accent.iconBg} shrink-0 shadow-2xs`} />
                     <span className="text-[15.5px] sm:text-[16.5px] font-bold text-[#0F172A] leading-snug">
@@ -673,12 +665,11 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
           {tool.faq.map((item, idx) => (
             <details
               key={item.q}
-              open={idx === 0}
-              className="group rounded-2xl border-2 border-[#0F0F12] bg-white p-5 sm:p-6 shadow-[2.5px_2.5px_0_#0F0F12] transition-all duration-120 open:bg-[#FDFDFE]"
+              className="group rounded-2xl border-2 border-[#0F0F12] bg-white p-4 sm:p-5 shadow-[2.5px_2.5px_0_#0F0F12] transition-all duration-120 open:bg-white open:shadow-[2px_2px_0_#0F0F12]"
             >
               <summary className="flex cursor-pointer items-center justify-between text-[16.5px] sm:text-[17.5px] font-black text-[#0F0F12] select-none list-none [&::-webkit-details-marker]:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0F0F12] rounded-lg">
                 <span className="pr-4 leading-snug">{item.q}</span>
-                <span className="shrink-0 rounded-lg border-2 border-[#0F0F12] bg-[#EDEDF0] text-[#0F0F12] p-1.5 shadow-[1px_1px_0_#0F0F12] group-hover:bg-[#FEF08A] group-open:bg-[#EC3C2D] group-open:text-white group-open:shadow-[1px_1px_0_#0F0F12] transition-all duration-200 group-open:rotate-180">
+                <span className="shrink-0 rounded-lg border-2 border-[#0F0F12] bg-[#F1F2F4] text-[#0F0F12] p-1.5 shadow-[1px_1px_0_#0F0F12] group-hover:bg-[#E4E6EA] group-open:bg-[#EC3C2D] group-open:text-white group-open:shadow-[1px_1px_0_#0F0F12] transition-all duration-200 group-open:rotate-180">
                   <ChevronRight className="size-4 rotate-90 stroke-[2.5]" />
                 </span>
               </summary>

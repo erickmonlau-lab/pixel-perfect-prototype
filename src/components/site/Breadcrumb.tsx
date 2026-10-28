@@ -26,7 +26,7 @@ export function Breadcrumb({ items, className = "", showHomeIcon = true }: Bread
 
   return (
     <nav
-      aria-label="Breadcrumb"
+      aria-label={locale === "ca" ? "Fil d'Ariadna" : locale === "en" ? "Breadcrumb" : "Ruta de navegación"}
       className={`mb-3 w-full min-w-0 text-[14px] font-bold text-slate-700 sm:mb-4 sm:text-[14.5px] ${className}`}
     >
       <ol className="flex w-full min-w-0 flex-wrap items-center gap-2 leading-snug">
@@ -51,7 +51,7 @@ export function Breadcrumb({ items, className = "", showHomeIcon = true }: Bread
             <li
               key={index}
               className={`flex min-w-0 items-center gap-2 ${
-                isLast ? "flex-[1_1_15rem]" : "shrink-0"
+                isLast ? "flex-[1_1_15rem] max-w-[min(100%,24rem)]" : "shrink-0"
               }`}
             >
               <span

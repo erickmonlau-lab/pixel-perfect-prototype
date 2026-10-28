@@ -855,8 +855,8 @@ export function ToolWorkspace({ tool }: { tool: ToolDefinition }) {
 
                 {/* Pie del panel */}
                 <div className="flex flex-wrap items-center justify-between gap-2 text-[14px] text-slate-600 font-medium pt-3 border-t border-[#F1F1F4]">
-                  <span>Ajusta las opciones antes o despuÃ©s de aÃ±adir el archivo</span>
-                  <span className="font-black text-[#0F0F12] shrink-0 ml-4">100% privado</span>
+                  <span>{t.workspace.adjustOptions}</span>
+                  <span className="font-black text-[#0F0F12] shrink-0 ml-4">{t.workspace.privateLabel}</span>
                 </div>
               </div>
             </div>
