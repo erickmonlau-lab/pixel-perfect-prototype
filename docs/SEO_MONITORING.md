@@ -37,7 +37,7 @@ Después de publicar `98542c5`, `ef28cd3` y `8cd0b0e`, Lighthouse cargó nuevos 
 
 El contraste reportó 0 nodos con error en móvil y escritorio. Rendimiento móvil osciló entre 97–98 en las corridas; escritorio quedó entre 99–100 antes de la variante final y 100 en la repetición final. Son resultados de laboratorio y no sustituyen PSI/CWV de campo. En las últimas corridas FCP/LCP quedaron bajo los objetivos técnicos de 1,8/2,5 s. El ahorro estimado de JavaScript no usado fue 246 KiB móvil y 224 KiB escritorio, principalmente scripts publicitarios/consentimiento; diferir AdSense no elimina ese trabajo reportado por Lighthouse. La oportunidad estimada de imágenes en escritorio bajó de 103 KiB a 13 KiB tras servir el WebP de 27,2 KB.
 
-- Cambios de código publicados: precarga de Plus Jakarta Sans 800 e Inter 500 solo en la portada; carga de AdSense tras `load` y tiempo ocioso cuando `VITE_ADSENSE_ENABLED=true` (sin cambiar publisher, consentimiento, CMP, slots ni estado de anuncios); variante WebP de escritorio para la mascota hero (113,45 KB → 27,08 KB, ahorro 86,37 KB / 76,1%) y WebP ligera para la mascota de 36 px; fondos oscuros en etiquetas pequeñas para contraste legible; color corregido del chip “Todas”.
+- Cambios de código publicados: precarga de Plus Jakarta Sans 800 e Inter 500 solo en la portada; integración asíncrona de AdSense (el estado inicial se midió con espera tras `load`, actualizada el 28-10 para cargar el script oficial en la cabecera sin espera artificial); variante WebP de escritorio para la mascota hero (113,45 KB → 27,08 KB, ahorro 86,37 KB / 76,1%) y WebP ligera para la mascota de 36 px; fondos oscuros en etiquetas pequeñas para contraste legible; color corregido del chip “Todas”.
 - Verificación: `npm run build` pasó con `VITE_ADSENSE_ENABLED=true` en el entorno de build. `git diff --check` pasó. No hay script de pruebas automatizadas en `package.json`; ESLint no pasó en archivos tocados (errores de Prettier/formato y un warning de hooks), así que no se declara validación integral ni se afirma que todos los flujos funcionales de herramientas se hayan reejecutado.
 - PSI oficial continúa sin medición: el endpoint previamente devolvió HTTP 429. Los números de esta sección son Lighthouse CLI contra producción, no PageSpeed Insights.
 - La mascota visible móvil usa WebP de 3,1 KB frente al PNG previo de 245,4 KB (ahorro bruto aproximado 242,4 KB / 98,8%). No se atribuye una mejora de LCP a ese ahorro: el LCP móvil medido es texto del hero. En escritorio Lighthouse descargó el WebP hero de 27,2 KB.
@@ -48,6 +48,25 @@ El contraste reportó 0 nodos con error en móvil y escritorio. Rendimiento móv
 - Para repetir PSI sin cuota excedida, proporcionar una clave de API de PageSpeed Insights o habilitar una cuota/proyecto autorizado. Una clave no debe guardarse en el repositorio.
 - Para Search Console y GA4 hace falta autorizar los scopes oficiales de solo lectura (`webmasters.readonly` y `analytics.readonly`) en una conexión disponible; las métricas siguen sin estar verificadas.
 - El commit en GitHub y los assets con hash nuevo se comprobaron; para confirmar el SHA exacto del deployment hace falta acceso de lectura al panel/pipeline de Vercel.
+
+### Verificación posterior — AdSense/CMP y hub de guías — 28-10-2026
+
+- `a0494ce` se subió a `main`. Una consulta posterior a `https://breadpdf.com/es` respondió 200 y el HTML público contenía exactamente una referencia al script oficial `adsbygoogle.js` y no contenía el antiguo temporizador `requestIdleCallback(load)`. Las corridas Lighthouse observaron solicitudes a Google Funding Choices; eso prueba la carga técnica de la CMP, pero no su certificación TCF, la configuración de consentimiento ni la aprobación de la cuenta.
+- Lighthouse CLI 13.6.0, producción, tres ejecuciones comparables por dispositivo. Móvil usó preset móvil; escritorio usó `--preset=desktop`. Las primeras corridas etiquetadas como escritorio se descartaron: aplicaban por error red móvil y no son comparables.
+
+  | Dispositivo/corrida | Rendimiento | Accesibilidad | Buenas prácticas | SEO | FCP | LCP | TBT | CLS |
+  |---|---:|---:|---:|---:|---:|---:|---:|---:|
+  | Móvil 1 | 98 | 100 | 100 | 100 | 1,1 s | 1,1 s | 50 ms | 0 |
+  | Móvil 2 | 98 | 100 | 100 | 100 | 1,1 s | 1,1 s | 70 ms | 0 |
+  | Móvil 3 | 98 | 100 | 100 | 100 | 1,1 s | 1,1 s | 90 ms | 0 |
+  | Escritorio 1 | 99 | 100 | 100 | 100 | 0,3 s | 0,8 s | 0 ms | 0,003 |
+  | Escritorio 2 | 99 | 100 | 100 | 100 | 0,3 s | 0,9 s | 0 ms | 0,003 |
+  | Escritorio 3 | 99 | 100 | 100 | 100 | 0,3 s | 1,0 s | 0 ms | 0,003 |
+
+- Las mediciones siguen siendo Lighthouse de laboratorio, no PageSpeed Insights ni Core Web Vitals de campo. No se repitió PSI porque su API ya había respondido 429. El LCP queda bajo 2,5 s en ambas configuraciones; las puntuaciones de Rendimiento observadas fueron 98 móvil y 99 escritorio. El JavaScript de anuncios y Funding Choices aparece en la red y en el trabajo de terceros; no se modificó ni bloqueó ese código.
+- Las auditorías Lighthouse no identifican una causa concreta para la redistribución forzada de 50 ms de la captura inicial. No se añadió una corrección especulativa al DOM. La oportunidad de CSS bloqueante se mantiene pequeña y el CSS global pesa unos 31,4 KB comprimido; no se introdujo CSS crítico duplicado.
+- El índice editorial de guías se compactó en ES/CA/EN: contenedor más estrecho, encabezado blanco sólido, jerarquía tipográfica reducida, tarjetas blancas con borde negro y acento cromático sólido por categoría. Se conservaron títulos, descripciones, autores y rutas localizadas. Esta modificación está en el árbol local pendiente de build final y publicación; todavía no se atribuyen resultados públicos.
+- La cuenta de AdSense y su aprobación no son visibles desde esta sesión. `ads.txt`, CMP/TCF y publicación real de anuncios mantienen el estado de la auditoría existente en [`SEO_ADSENSE_AUDIT.md`](SEO_ADSENSE_AUDIT.md); la presencia de scripts no prueba que haya anuncios servidos.
 
 ## No confundir con evidencia de negocio
 
