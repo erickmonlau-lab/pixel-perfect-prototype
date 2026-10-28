@@ -179,6 +179,7 @@ async function measure(variant, run) {
       fcp: fcp ? fcp.t : null,
       lcp: lastLcp ? lastLcp.t : null,
       lcpTag: lastLcp ? lastLcp.tag : null,
+      lcpAll: v.lcp.map((e) => `${e.tag}:${e.size}@${e.t}`),
       ttfb: v.ttfb,
       responseEnd: v.responseEnd,
       resources: v.resources,

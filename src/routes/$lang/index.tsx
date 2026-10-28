@@ -42,39 +42,11 @@ export const Route = createFileRoute("/$lang/")({
       ],
       links: [
         ...alternateLinks(locale, { kind: "home" }),
-        // El subtítulo del hero (elemento LCP en móvil) se pinta con Inter 600,
-        // así que esa cara va primero y con máxima prioridad. Las otras tres se
-        // usan más abajo o en textos pequeños del header y pueden esperar.
-        {
-          rel: "preload",
-          href: "/fonts/inter-latin-600-v2.woff2",
-          as: "font",
-          type: "font/woff2",
-          crossOrigin: "anonymous",
-          fetchPriority: "high",
-        },
-        {
-          rel: "preload",
-          href: "/fonts/plus-jakarta-sans-latin-800-v2.woff2",
-          as: "font",
-          type: "font/woff2",
-          crossOrigin: "anonymous",
-          fetchPriority: "high",
-        },
-        {
-          rel: "preload",
-          href: "/fonts/inter-latin-500-v2.woff2",
-          as: "font",
-          type: "font/woff2",
-          crossOrigin: "anonymous",
-        },
-        {
-          rel: "preload",
-          href: "/fonts/plus-jakarta-sans-latin-700-v2.woff2",
-          as: "font",
-          type: "font/woff2",
-          crossOrigin: "anonymous",
-        },
+        // Sin <link rel="preload" as="font">: en Chrome un preload de fuente en
+        // vuelo retrasa el primer pintado de texto hasta que la fuente llega (o
+        // hasta el timeout), justo el efecto contrario al buscado. Las fuentes se
+        // descubren al parsear el CSS inline (unos ms después) y entran con swap,
+        // así que el texto pinta con la fuente local de inmediato.
         // La portada usa la mascota grande como LCP en escritorio (>=1280px).
         // Precargarla con el mismo media query evita descubrirla tarde y no
         // añade bytes en móvil, donde el LCP es el titular del hero.
