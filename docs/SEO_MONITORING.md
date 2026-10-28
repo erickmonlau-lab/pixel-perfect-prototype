@@ -68,6 +68,63 @@ El contraste reportó 0 nodos con error en móvil y escritorio. Rendimiento móv
 - El índice editorial de guías se compactó en ES/CA/EN: contenedor más estrecho, encabezado blanco sólido, jerarquía tipográfica reducida, tarjetas blancas con borde negro y acento cromático sólido por categoría. Se conservaron títulos, descripciones, autores y rutas localizadas. Tras subir `0e1a5d3`, `/es/guias`, `/ca/guies` y `/en/guides` respondieron 200 con las diez tarjetas localizadas y el nuevo marcado de tarjeta. `vercel inspect` mostró el deployment más reciente en estado Ready, entorno Production, con el alias `breadpdf.com`; Vercel CLI no expuso el SHA de Git, por lo que el enlace commit-deployment se infiere de la hora y el HTML público, no del campo de SHA en Vercel.
 - La cuenta de AdSense y su aprobación no son visibles desde esta sesión. `ads.txt`, CMP/TCF y publicación real de anuncios mantienen el estado de la auditoría existente en [`SEO_ADSENSE_AUDIT.md`](SEO_ADSENSE_AUDIT.md); la presencia de scripts no prueba que haya anuncios servidos.
 
+### Cierre de optimización de plantillas y accesibilidad — 28-10-2026
+
+Esta sección cierra la tanda iniciada en `ec0f79a`. Todas las cifras son Lighthouse CLI 13.6.0 contra producción (laboratorio, throttling simulado), no PageSpeed Insights ni datos de campo.
+
+**Cadena commit → deployment.** Verificada con la API de Vercel leyendo `meta.githubCommitSha` de cada deployment, no por fecha ni por inferencia. Los cinco deployments están en estado `READY`, entorno `production`, y el log de build indica la rama y el commit clonados.
+
+| Commit | Deployment | Log de build |
+|---|---|---|
+| `ec0f79a` | `dpl_67H89ios3hKmaKDU82UcSKMT9nmW` | referencia inicial medida |
+| `dbef8f3` | `dpl_7KD1AYRSCAmbSt43oV5ETQZKAWN5` | `Cloning … (Branch: main, Commit: dbef8f3)` · `Build Completed in /vercel/output [15s]` |
+| `976f53e` | `dpl_92vqEAzEks4F6u5PG25nTLUad3gD` | commit `976f53e` en `meta.githubCommitSha`, sin errores de compilación |
+| `0540fb2` | `dpl_8ZLBo3Yr55iMv8SrFsCYTuxbth4S` | `Cloning … (Branch: main, Commit: 0540fb2)` · `Build Completed in /vercel/output [13s]` |
+| `316ce5a` | `dpl_9yAmXXe53upLc2ESz23QKbKzKayg` | `Cloning … (Branch: main, Commit: 316ce5a)` · `Build Completed in /vercel/output [13s]` |
+
+El endpoint `v5/now/deployments/<id>` devolvió el campo `alias` vacío en estas consultas, así que la publicación en `breadpdf.com` no se deduce de ese campo. Se comprobó por contenido servido: el HTML público de `/es/guias` incluye `bg-emerald-700`, el CSS servido cambió a `/assets/styles-DGlQA_iw.css` y contiene `.text-eyebrow` con `#C9302C`, y `/es/guias/pasar-tablas-pdf-a-excel` sirve el título del callout como `<p class="…guide-mascot-callout__title">`. El log de build no mostró errores; solo los avisos conocidos de npm y de Vite.
+
+**Portada (`/es`) tras `316ce5a`:**
+
+| Corrida | Rendimiento | Accesibilidad | Buenas prácticas | SEO | FCP | LCP | TBT | SI | CLS |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| Móvil 1 | 98 | 100 | 100 | 100 | 1079 ms | 1079 ms | 49 ms | 3821 ms | 0 |
+| Móvil 2 | 97 | 100 | 100 | 100 | 1079 ms | 1079 ms | 111 ms | 3793 ms | 0 |
+| Escritorio 1 | 99 | 100 | 100 | 100 | 320 ms | 857 ms | 0 ms | 466 ms | 0 |
+| Escritorio 2 | 99 | 100 | 100 | 100 | 318 ms | 878 ms | 0 ms | 434 ms | 0 |
+
+La diferencia frente a `dbef8f3` (móvil 98/98/98, escritorio 99/99/99) está dentro de la variación del laboratorio: el TBT móvil osciló 49–111 ms y el SI 3793–3821 ms en la misma versión. No se atribuye ninguna mejora de rendimiento a los cambios de color o de etiquetado.
+
+**Plantillas medidas antes/después (móvil, una corrida por estado):**
+
+| Plantilla | Antes | Después | Cambios que la explican |
+|---|---|---|---|
+| Herramienta `/es/herramientas/comprimir-pdf` | 98 / **87** / 100 / 100 | 99 / **100** / 100 / 100 | Contraste `#C9302C`, `role="region"` en el contenedor de anuncio, `aria-label` en el input de archivo, nombre accesible del botón de favorito y del enlace de catálogo alineado con el texto visible |
+| Guía `/es/guias/pasar-tablas-pdf-a-excel` | 98 / **94** / 100 / 100 | 98 / **100** / 100 / 100 | Contraste y orden de encabezados (callout y pie de guía) |
+| Guía `/es/guias/eliminar-paginas-en-blanco-pdf-escaneado` | no medida | 98 / **100** / 100 / 100 | Validación cruzada del mismo componente de guía |
+| Hub `/es/guias` | no medida (a11y **96**) | 97 / **100** / 100 / 100 | Insignias de categoría a `-700`, CTA y cifra destacada a `#C9302C` |
+| Legal `/es/privacidad` | no medida (a11y **96**) | 98 / **100** / 100 / 100 | `.text-eyebrow` a `#C9302C` |
+| Portadas `/ca` y `/en`; herramienta `/ca/eines/comprimeix-pdf`; guía `/ca/guies/ocultar-dades-personals-pdf` | — | a11y **100** en las cuatro | Mismos tokens compartidos |
+
+El único rojo de marca que se cambió en plantillas de herramienta y guía, hub y etiquetas pequeñas es `#EC3C2D`/`#F13B32` → `#C9302C` (contraste 4,56–5,33 según fondo claro). La portada y la cabecera conservan su paleta. No se ocultaron elementos, no se desactivaron animaciones ni anuncios y no se alteró el orden visual.
+
+**Rastreo y enlaces internos (repetidos tras `316ce5a`).** Los resultados actualizados están en [`SEO_CRAWL_SUMMARY.csv`](SEO_CRAWL_SUMMARY.csv) y [`SEO_INTERNAL_LINKS.csv`](SEO_INTERNAL_LINKS.csv), generados con `npm run seo:audit` y `npm run seo:links`:
+
+- 201 URLs: 0 respuestas no-200, 0 sin `title`/`description`/`canonical`, 0 canonical distinta, 0 `noindex`, 0 páginas delgadas, exactamente un `h1` en cada una y 0 sin hreflang.
+- Títulos duplicados: 0 (antes 1, ES/CA de cookies). Títulos cortos: 0 (antes 1, EN de cookies; ahora «Cookie Policy: Cookies, Consent and Ads | BreadPDF», 50 caracteres).
+- Pendiente editorial, no técnico: 29 títulos de 66–74 caracteres (17 de herramienta, 12 de guía) y 6 descripciones de 166–176 caracteres. Superan la guía de longitud de SERP pero no rompen canonical, indexabilidad ni deduplicación.
+- Enlaces internos: 0 páginas huérfanas y 0 páginas con solo 1–2 enlaces entrantes; las 201 tienen al menos 3.
+
+**Precarga de la mascota de escritorio (`dbef8f3`).** Se añadió `preload` de `hero-mascot-perfect.webp` con `media="(min-width: 1280px)"` y `fetchPriority="high"`. En producción el preload aparece en el HTML. El LCP de escritorio no mejoró de forma medible: 837 ms antes frente a 846/834/839 ms después; la latencia de carga del recurso varió 159 ms frente a 123 ms. Se mantiene porque elimina un descubrimiento tardío, pero no se presenta como mejora demostrada.
+
+**Diagnóstico del Speed Index móvil (3,8–4,1 s).** Se descartaron como causa el bundle de la aplicación, las fuentes y los terceros: con el JS propio bloqueado, el primer pintado observado siguió en ~2,4 s; con terceros y fuentes bloqueados ocurrió lo mismo (~2,6 s). Las capturas de las tramas 2–6 del informe son `#111111` (marcador de «sin fotograma») y la primera trama con contenido aparece en ~3 s, aunque el DOM y el texto del hero están en el HTML SSR inicial y el FCP simulado es ~1,08 s. El retraso se interpreta como artefacto del pipeline de captura de Lighthouse con este diseño animado, no como una pantalla bloqueada para el usuario; no se modificó el producto para maquillar la métrica. Solo se añadió un guard de `prefers-reduced-motion` en el placeholder animado del buscador.
+
+**AdSense, consentimiento y datos externos.** Hechos comprobados: `ads.txt` contiene `pub-7477829897419785`, cada página carga un único `adsbygoogle.js`, las guías y la portada no renderizan `<ins class="adsbygoogle">`, las herramientas renderizan uno, y se observan peticiones a Funding Choices. `VITE_ADSENSE_ENABLED` existe solo en Production, por lo que un deployment de preview no muestra anuncios y no sirve para comparar rendimiento publicitario. No verificados por falta de acceso: aprobación de la cuenta, anuncios realmente servidos, certificación TCF de la CMP, mensajes publicados y estado en Search Console/GA4/Bing. Tampoco se pudo enviar IndexNow: no hay `INDEXNOW_API_KEY` ni archivo de clave en el sitio; el script `npm run seo:indexnow` falla con un mensaje explícito y `--write-key` genera la clave para publicarla.
+
+**Herramientas añadidas al repositorio.** `scripts/crawl-seo-audit.mjs` (metadatos, canonical, robots, hreflang, h1, palabras), `scripts/internal-links-audit.mjs` (enlaces entrantes desde el sitemap) y `scripts/indexnow.mjs` (envío y generación de clave). Se ejecutan con `npm run seo:audit`, `npm run seo:links` y `npm run seo:indexnow`; no requieren credenciales salvo IndexNow.
+
+**Límites de esta validación.** No se probaron los flujos funcionales de las 51 herramientas ni la descarga/procesado real de archivos; el alcance fue HTML servido, metadatos, enlaces y auditorías de plantilla. Las cifras de rendimiento son de laboratorio y varían entre corridas. PSI sigue sin medirse por HTTP 429.
+
 ## No confundir con evidencia de negocio
 
 - `cerebro/raw/Tabla.csv` registra URL y último rastreo, no clics/impresiones/CTR/consulta. Su fecha de referencia es 23-10-2026.
