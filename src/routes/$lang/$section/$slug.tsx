@@ -605,7 +605,7 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
                 <span className="flex size-9 items-center justify-center rounded-lg border-2 border-[#0F0F12] bg-[#EC3C2D] text-white shadow-[2px_2px_0_#0F0F12]">
                   <SlidersHorizontal className="size-5" />
                 </span>
-                <span className="inline-flex items-center rounded-md border-2 border-[#0F0F12] bg-[#FEECEB] px-3 py-1 text-[12.5px] sm:text-[13px] font-black uppercase tracking-wider text-[#EC3C2D] shadow-[2px_2px_0_#0F0F12]">
+                <span className="inline-flex items-center rounded-md border-2 border-[#0F0F12] bg-[#EC3C2D] px-3 py-1 text-[12.5px] sm:text-[13px] font-black uppercase tracking-wider text-white shadow-[2px_2px_0_#0F0F12]">
                   {locale === "ca"
                     ? "Criteris tècnics & Aplicació documental"
                     : locale === "en"
@@ -768,25 +768,25 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
       {tool.canonicalSlug === "imagen-a-webp" && (
         <aside
           aria-label="Guía técnica de ecommerce relacionada"
-          className="mt-10 rounded-2xl border-2 border-[#0F0F12] bg-[#F0FDF4] p-6 sm:p-7 shadow-[4px_4px_0_#0F0F12] hover:shadow-[6px_6px_0_#0F0F12] transition-all"
+          className="mt-10 rounded-2xl border-2 border-[#0F0F12] bg-[#059669] p-6 sm:p-7 text-white shadow-[4px_4px_0_#0F0F12] hover:shadow-[6px_6px_0_#0F0F12] transition-all"
         >
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
             <div className="flex items-start gap-4">
-              <span className="flex size-12 shrink-0 items-center justify-center rounded-xl border-2 border-[#0F0F12] bg-[#059669] text-white shadow-[2px_2px_0_#0F0F12]">
+              <span className="flex size-12 shrink-0 items-center justify-center rounded-xl border-2 border-[#0F0F12] bg-white text-[#047857] shadow-[2px_2px_0_#0F0F12]">
                 <BookOpen className="size-6" />
               </span>
               <div>
-                <span className="inline-flex items-center rounded-md border-2 border-[#0F0F12] bg-[#D1FAE5] px-2.5 py-0.5 text-[12px] font-black uppercase tracking-wider text-[#065F46] shadow-[2px_2px_0_#0F0F12]">
+                <span className="inline-flex items-center rounded-md border-2 border-[#0F0F12] bg-white px-2.5 py-0.5 text-[12px] font-black uppercase tracking-wider text-[#047857] shadow-[2px_2px_0_#0F0F12]">
                   {locale === "ca" ? "Guia Ecommerce" : locale === "en" ? "Ecommerce Guide" : "Guía Ecommerce"}
                 </span>
-                <h3 className="text-[18px] sm:text-[19px] font-black text-[#0F0F12] mt-2">
+                <h3 className="text-[18px] sm:text-[19px] font-black text-white mt-2">
                   {locale === "ca"
                     ? "WebP vs JPG i PNG a botigues online: quin format fer servir"
                     : locale === "en"
                       ? "WebP vs JPG and PNG for Online Stores: Format Selection Guide"
                       : "WebP vs JPG y PNG en tiendas online: qué formato usar y cómo optimizar"}
                 </h3>
-                <p className="text-[15px] sm:text-[16px] text-slate-700 font-medium mt-1.5 max-w-2xl leading-relaxed">
+                <p className="text-[15px] sm:text-[16px] text-white font-medium mt-1.5 max-w-2xl leading-relaxed">
                   {locale === "ca"
                     ? "Compara avantatges, transparències i regles pràctiques per millorar el rendiment del catàleg sense degradar la resolució."
                     : locale === "en"
@@ -958,25 +958,25 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
         tool.canonicalSlug === "pdf-a-word") && (
         <aside
           aria-label="Guía editorial de OCR y documentos escaneados buscables"
-          className="mt-7 rounded-2xl border-2 border-[#0F0F12] bg-[#EEF2FF] p-6 sm:p-7 shadow-[4px_4px_0_#0F0F12] hover:shadow-[6px_6px_0_#0F0F12] transition-all"
+          className="mt-7 rounded-2xl border-2 border-[#0F0F12] bg-[#4F46E5] p-6 sm:p-7 text-white shadow-[4px_4px_0_#0F0F12] hover:shadow-[6px_6px_0_#0F0F12] transition-all"
         >
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
             <div className="flex items-start gap-4">
-              <span className="flex size-12 shrink-0 items-center justify-center rounded-xl border-2 border-[#0F0F12] bg-[#4F46E5] text-white shadow-[2px_2px_0_#0F0F12]">
+              <span className="flex size-12 shrink-0 items-center justify-center rounded-xl border-2 border-[#0F0F12] bg-white text-[#4338CA] shadow-[2px_2px_0_#0F0F12]">
                 <ScanText className="size-6" />
               </span>
               <div>
-                <span className="inline-flex items-center rounded-md border-2 border-[#0F0F12] bg-[#E0E7FF] px-2.5 py-0.5 text-[12px] font-black uppercase tracking-wider text-[#3730A3] shadow-[2px_2px_0_#0F0F12]">
+                <span className="inline-flex items-center rounded-md border-2 border-[#0F0F12] bg-white px-2.5 py-0.5 text-[12px] font-black uppercase tracking-wider text-[#4338CA] shadow-[2px_2px_0_#0F0F12]">
                   {locale === "ca" ? "Guia d'Investigació" : locale === "en" ? "Research Guide" : "Guía de Investigación"}
                 </span>
-                <h3 className="text-[18px] sm:text-[19px] font-black text-[#0F0F12] mt-2">
+                <h3 className="text-[18px] sm:text-[19px] font-black text-white mt-2">
                   {locale === "ca"
                     ? "Com fer cercable un PDF escanejat amb OCR"
                     : locale === "en"
                       ? "How to Make a Scanned PDF Searchable with OCR"
                       : "Cómo hacer buscable un PDF escaneado con OCR"}
                 </h3>
-                <p className="text-[15px] sm:text-[16px] text-slate-700 font-medium mt-1.5 max-w-2xl leading-relaxed">
+                <p className="text-[15px] sm:text-[16px] text-white font-medium mt-1.5 max-w-2xl leading-relaxed">
                   {locale === "ca"
                     ? "Aprèn a incrustar una capa de text invisible, habilitar Ctrl+F i evitar confusions de caràcters en documents escanejats."
                     : locale === "en"
@@ -1088,25 +1088,25 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
       {(tool.canonicalSlug === "comprimir-pdf" || tool.canonicalSlug === "imagen-a-webp") && (
         <aside
           aria-label="Guía editorial para solucionar subidas a WordPress y WooCommerce"
-          className="mt-7 rounded-2xl border-2 border-[#0F0F12] bg-[#EEF2FF] p-6 sm:p-7 shadow-[4px_4px_0_#0F0F12] hover:shadow-[6px_6px_0_#0F0F12] transition-all"
+          className="mt-7 rounded-2xl border-2 border-[#0F0F12] bg-[#4F46E5] p-6 sm:p-7 text-white shadow-[4px_4px_0_#0F0F12] hover:shadow-[6px_6px_0_#0F0F12] transition-all"
         >
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
             <div className="flex items-start gap-4">
-              <span className="flex size-12 shrink-0 items-center justify-center rounded-xl border-2 border-[#0F0F12] bg-[#4F46E5] text-white shadow-[2px_2px_0_#0F0F12]">
+              <span className="flex size-12 shrink-0 items-center justify-center rounded-xl border-2 border-[#0F0F12] bg-white text-[#4338CA] shadow-[2px_2px_0_#0F0F12]">
                 <Server className="size-6" />
               </span>
               <div>
-                <span className="inline-flex items-center rounded-md border-2 border-[#0F0F12] bg-[#E0E7FF] px-2.5 py-0.5 text-[12px] font-black uppercase tracking-wider text-[#3730A3] shadow-[2px_2px_0_#0F0F12]">
+                <span className="inline-flex items-center rounded-md border-2 border-[#0F0F12] bg-white px-2.5 py-0.5 text-[12px] font-black uppercase tracking-wider text-[#4338CA] shadow-[2px_2px_0_#0F0F12]">
                   {locale === "ca" ? "Guia WordPress & Ecommerce" : locale === "en" ? "WordPress & Ecommerce Guide" : "Guía WordPress & Ecommerce"}
                 </span>
-                <h3 className="text-[18px] sm:text-[19px] font-black text-[#0F0F12] mt-2">
+                <h3 className="text-[18px] sm:text-[19px] font-black text-white mt-2">
                   {locale === "ca"
                     ? "Com solucionar problemes en pujar fitxers grans a WordPress i WooCommerce"
                     : locale === "en"
                       ? "How to Fix Large File Upload Errors in WordPress & WooCommerce"
                       : "Cómo solucionar problemas al subir archivos grandes a WordPress y WooCommerce"}
                 </h3>
-                <p className="text-[15px] sm:text-[16px] text-slate-700 font-medium mt-1.5 max-w-2xl leading-relaxed">
+                <p className="text-[15px] sm:text-[16px] text-white font-medium mt-1.5 max-w-2xl leading-relaxed">
                   {locale === "ca"
                     ? "Aprèn a distingir límits de PHP (upload_max_filesize) d'errors de memòria o WAF, i com optimitzar catàlegs o imatges abans de modificar el servidor."
                     : locale === "en"
