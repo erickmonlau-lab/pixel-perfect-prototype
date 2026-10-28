@@ -17,7 +17,7 @@
  *     VITE_ADSENSE_CLIENT_ID  = ca-pub-7477829897419785
  */
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useAuth } from '@/lib/auth/auth-context';
 import { GOOGLE_ADSENSE_CLIENT_ID } from '@/lib/brand';
 
@@ -65,16 +65,95 @@ const SLOT_DIMENSIONS: Record<AdSlotType, { minHeight: string; label: string }> 
  *
  * When isEnabled is false (local dev / staging), renders nothing.
  */
+/**
+ * Carga adsbygoogle.js una única vez y solo cuando hay un hueco de anuncio
+ * realmente en juego.
+ *
+ * Motivo (medido con PageSpeed Insights y trazas de Chrome ralentizadas 4x):
+ * el script de Google arrastra ~370 KB de JS de terceros (adsbygoogle.js,
+ * show_ads_impl_fy2021.js y el mensaje de consentimiento de fundingchoices),
+ * con tareas de 90-160 ms que se sumaban al Total Blocking Time de la portada,
+ * donde no hay ningún anuncio. Pedirlo desde el propio AdSlot evita esa carga
+ * en las páginas sin anuncios y la retrasa hasta que el hueco se acerca al
+ * viewport (lazy loading estándar de anuncios de pie de página).
+ */
+let adsensePromise: Promise<void> | null = null;
+
+export function ensureAdSense(): Promise<void> {
+  if (!ADSENSE_CONFIG.isEnabled || typeof document === 'undefined') {
+    return Promise.resolve();
+  }
+  if (adsensePromise) return adsensePromise;
+
+  adsensePromise = new Promise<void>((resolve) => {
+    const selector =
+      'script[src^="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"]';
+    if (document.querySelector(selector)) {
+      resolve();
+      return;
+    }
+    const script = document.createElement('script');
+    script.async = true;
+    script.crossOrigin = 'anonymous';
+    script.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CONFIG.clientId}`;
+    script.onload = () => resolve();
+    script.onerror = () => resolve();
+    document.head.appendChild(script);
+  });
+
+  return adsensePromise;
+}
+
+/** Encola el relleno de un bloque <ins class="adsbygoogle"> ya insertado en el DOM. */
+export function requestAdSlot(): void {
+  if (!ADSENSE_CONFIG.isEnabled || typeof window === 'undefined') return;
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push({});
+  } catch {
+    // Silently ignore — el script de Google reintenta al cargar.
+  }
+}
+
 export function AdSlot({ slotType, slotId, className = '' }: AdPlacementProps) {
   // SSR-safe: start with null (unknown), resolve to isPremium after hydration.
   const { user } = useAuth();
   const [hydrated, setHydrated] = useState(false);
+  const containerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     setHydrated(true);
   }, []);
 
-  // Not enabled → render nothing (dev/staging)
+  useEffect(() => {
+    if (!ADSENSE_CONFIG.isEnabled) return;
+    const node = containerRef.current;
+
+    const activate = () => {
+      void ensureAdSense().then(requestAdSlot);
+    };
+
+    // Sin IntersectionObserver (navegadores antiguos) se comporta como antes.
+    if (!node || typeof IntersectionObserver === 'undefined') {
+      activate();
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          observer.disconnect();
+          activate();
+        }
+      },
+      // 600px de margen: el anuncio está listo antes de que el usuario llegue.
+      { rootMargin: '600px 0px' },
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  // Not enabled — render nothing (dev/staging)
   if (!ADSENSE_CONFIG.isEnabled) {
     return null;
   }
@@ -87,6 +166,7 @@ export function AdSlot({ slotType, slotId, className = '' }: AdPlacementProps) {
 
   return (
     <div
+      ref={containerRef}
       className={`mx-auto w-full max-w-5xl my-8 overflow-hidden rounded-xl bg-slate-50/40 p-2 text-center ${className}`}
       style={{ minHeight: SLOT_DIMENSIONS[slotType].minHeight }}
       role="region"
@@ -111,12 +191,7 @@ export function AdSlot({ slotType, slotId, className = '' }: AdPlacementProps) {
  */
 export function useAdSenseInit() {
   useEffect(() => {
-    if (!ADSENSE_CONFIG.isEnabled || typeof window === 'undefined') return;
-    try {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push({});
-    } catch {
-      // Silently ignore — happens if adsbygoogle.js hasn't loaded yet (handled by async script)
-    }
+    if (!ADSENSE_CONFIG.isEnabled) return;
+    void ensureAdSense().then(requestAdSlot);
   }, []);
 }
