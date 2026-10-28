@@ -50,7 +50,7 @@ Los runners pasaban `Buffer.from(ArrayBuffer)` a `cryptpdf`, aunque la librería
 
 ### QA heredado — salida engañosa y alcance del lint
 
-`scripts/audit-tools.cjs` mostraba 30 herramientas al comprobar 51, imprimía `Status undefined` al fallar la conexión y siempre salía con código 0. Ahora informa el total real, distingue redirects esperados y errores de conexión, comprueba un 404 auténtico y devuelve código distinto de cero si falla. El entorno bloquea conexiones a loopback (`EACCES`/`ETIMEDOUT`), por lo que la parte HTTP no se pudo validar aquí. El comando de lint se limita a `src` y excluye perfiles temporales; el lint aún informa problemas heredados de formato y tipos, no corregidos masivamente en este lote.
+`scripts/audit-tools.cjs` mostraba 30 herramientas al comprobar 51, imprimía `Status undefined` al fallar la conexión y siempre salía con código 0. Ahora informa el total real, comprueba metadatos y que cada herramienta tenga runner o espacio de trabajo dedicado, distingue redirects esperados y errores de conexión, comprueba un 404 auténtico y devuelve código distinto de cero si falla. El chequeo estático pasa para las 51; el entorno bloquea conexiones a loopback (`EACCES`/`ETIMEDOUT`), por lo que la parte HTTP no se pudo validar aquí. El comando de lint se limita a `src` y excluye perfiles temporales; el lint aún informa problemas heredados de formato y tipos, no corregidos masivamente en este lote.
 
 ### P2 — material anterior mezclaba objetivos e indicadores medidos
 
@@ -91,7 +91,7 @@ La oportunidad de BreadPDF es describir tareas concretas (límite de Moodle, uni
 - `npm ci --no-audit --no-fund`: correcto; instaló 519 paquetes desde `package-lock.json` sin modificar el lockfile.
 - `npm run build`: correcto para cliente y SSR; el bundler advierte que `cryptpdf` contiene un fallback a `node:crypto`, mientras la comprobación funcional de cifrado pasó con Web Crypto disponible.
 - `node scripts/generate-seo-inventory.mjs`: correcto; produjo 238 filas de rutas (201 incluidas en sitemap) y 485 objetivos keyword; no modificó el inventario existente.
-- `node scripts/audit-tools.cjs`: la comprobación estática de metadatos pasó para 51 herramientas. La batería HTTP no pudo conectar a loopback desde este entorno; no se cuentan esas rutas como validadas.
+- `node scripts/audit-tools.cjs` con `QA_SKIP_HTTP=1`: metadatos y cobertura de ejecución (runner o espacio de trabajo especializado) pasan para 51 herramientas. La batería HTTP no pudo conectar a loopback desde este entorno; no se cuentan esas rutas como validadas.
 - `npm run lint`: no pasa por problemas preexistentes de formato y tipos en `src` (2.733 errores y 17 avisos en la ejecución local); no se reformateó masivamente el repositorio.
 - La apertura directa de las URLs públicas y las solicitudes HTTP locales no estuvieron disponibles desde este entorno. No se verificaron códigos HTTP, HTML desplegado, sitemap servido, métricas de campo ni publicación.
 

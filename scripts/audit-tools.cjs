@@ -7,8 +7,18 @@ console.log('====================================================\n');
 
 // 1. Audit Tool Definitions & Routing
 const registryContent = fs.readFileSync('src/lib/tools/registry.ts', 'utf8');
+const workspaceContent = fs.readFileSync('src/components/tools/ToolWorkspace.tsx', 'utf8');
 const blocks = registryContent.split(/\n\s*\{\s*\n\s*slug:/).slice(1);
 console.log(`[TEST 1] Registered Tools in registry.ts: ${blocks.length}`);
+
+const pageToolsMatch = workspaceContent.match(/const PAGE_BASED_TOOLS = new Set\(\[([\s\S]*?)\]\);/);
+if (!pageToolsMatch) throw new Error('PAGE_BASED_TOOLS set not found in ToolWorkspace.tsx');
+const customWorkspaceTools = new Set(
+  [...pageToolsMatch[1].matchAll(/"([^"]+)"/g)].map((match) => match[1]),
+);
+for (const slug of ['comparar-pdf', 'rellenar-formulario-pdf']) {
+  if (workspaceContent.includes(`if (tool.slug === "${slug}")`)) customWorkspaceTools.add(slug);
+}
 
 let issues = [];
 
@@ -20,6 +30,8 @@ blocks.forEach((block, idx) => {
   const seoDescription = (block.match(/seoDescription:\s*"([^"]+)"/) || [])[1];
   const accept = (block.match(/accept:\s*"([^"]+)"/) || [])[1];
   const ctaLabel = (block.match(/ctaLabel:\s*"([^"]+)"/) || [])[1];
+  const status = (block.match(/status:\s*"([^"]+)"/) || [])[1];
+  const runner = block.match(/run:\s*([A-Za-z_$][\w$]*)/);
   const faqMatches = block.match(/q:\s*"([^"]+)"/g) || [];
 
   if (!slug) issues.push(`Tool #${idx+1} missing slug`);
@@ -30,10 +42,13 @@ blocks.forEach((block, idx) => {
   if (!accept) issues.push(`Tool ${slug} missing accept mime types`);
   if (!ctaLabel) issues.push(`Tool ${slug} missing ctaLabel`);
   if (faqMatches.length < 1) issues.push(`Tool ${slug} has 0 FAQs`);
+  if (status === 'live' && !runner && !customWorkspaceTools.has(slug)) {
+    issues.push(`Live tool ${slug} has no runner or dedicated workspace handler`);
+  }
 });
 
 if (issues.length === 0) {
-  console.log(`  ✓ All ${blocks.length} registered tools have metadata, accept filters, H1, CTA labels, and FAQs.`);
+  console.log(`  ✓ All ${blocks.length} tools have metadata and an execution path (runner or dedicated workspace).`);
 } else {
   console.error('  ✗ Issues found:', issues);
 }
@@ -126,6 +141,12 @@ function testUrl(path) {
 (async () => {
   let passed = 0;
   let failed = issues.length > 0 ? 1 : 0;
+
+  if (process.env.QA_SKIP_HTTP === '1') {
+    console.log('\n[TEST 2] HTTP route check skipped by QA_SKIP_HTTP=1.');
+    if (failed > 0) process.exitCode = 1;
+    return;
+  }
 
   for (const p of urlsToTest) {
     const res = await testUrl(p);
