@@ -87,6 +87,11 @@ export function catalogPath(locale: Locale) {
   return `/${locale}/${SEGMENTS[locale].tools}`;
 }
 
+/** Main home catalog opened with one family preselected. */
+export function catalogCategoryPath(locale: Locale, category: ToolCategory) {
+  return `/${locale}?categoria=${encodeURIComponent(category)}#catalogo`;
+}
+
 export function guidesHubPath(locale: Locale) {
   return `/${locale}/${SEGMENTS[locale].guides}`;
 }

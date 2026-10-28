@@ -23,12 +23,12 @@ export interface ToolColorTheme {
 
 export const CATEGORY_COLORS: Record<string, ToolColorTheme> = {
   optimizar: {
-    bg: "bg-[#EF4444]",
-    bgHex: "#EF4444",
+    bg: "bg-[#2563EB]",
+    bgHex: "#2563EB",
     text: "text-white",
-    shadowHover: "group-hover:shadow-[6px_6px_0_#EF4444]",
-    tintBg: "group-hover:bg-red-50/50",
-    badgeBg: "bg-[#EF4444]",
+    shadowHover: "group-hover:shadow-[6px_6px_0_#2563EB]",
+    tintBg: "group-hover:bg-blue-50/50",
+    badgeBg: "bg-[#2563EB]",
     badgeText: "text-white",
   },
   organizar: {

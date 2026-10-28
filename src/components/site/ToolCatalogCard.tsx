@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Star, ArrowUpRight } from "lucide-react";
+import { Star } from "lucide-react";
 import type { RoadmapTool } from "@/lib/tools/catalog";
 import type { LocalizedTool } from "@/lib/tools/localize";
 import { useLocale } from "@/lib/i18n/context";
@@ -108,18 +108,10 @@ export function ToolCatalogCard({
           >
             {tool.name}
           </h3>
-          <p className={`mt-1.5 ${descSize} text-slate-600 font-medium line-clamp-3 pr-8`}>{tool.tagline}</p>
+          <p className={`mt-1.5 ${descSize} text-slate-600 font-medium line-clamp-3`}>{tool.tagline}</p>
         </div>
       </div>
 
-      {/* 2. Botón circular con flecha diagonal ↗ interactivo en la esquina inferior derecha */}
-      {!isPending && (
-      <div className="absolute bottom-4 right-4 flex items-center justify-center">
-          <span className="flex size-8 items-center justify-center rounded-full border-2 border-[#0F0F12] bg-[#FEF08A] text-[#0F0F12] shadow-[2px_2px_0_#0F0F12] transition-all duration-150 group-hover:bg-[#EC3C2D] group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-active:bg-[#D93426] group-focus-visible:bg-[#EC3C2D] group-focus-visible:text-white">
-            <ArrowUpRight className="size-4 stroke-[2.8]" />
-          </span>
-        </div>
-      )}
     </div>
   );
 

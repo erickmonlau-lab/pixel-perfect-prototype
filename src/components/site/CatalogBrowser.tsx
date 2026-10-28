@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { ROADMAP_TOOLS } from "@/lib/tools/catalog";
 import { useLocale } from "@/lib/i18n/context";
 import type { ToolCategory } from "@/lib/tools/types";
@@ -10,6 +10,20 @@ type Filter = ToolCategory | "all";
 export function CatalogBrowser() {
   const { tools, categories, t } = useLocale();
   const [filter, setFilter] = useState<Filter>("all");
+
+  useEffect(() => {
+    const requested = new URLSearchParams(window.location.search).get("categoria");
+    const isKnownCategory = categories.some((category) => category.category === requested);
+    setFilter(isKnownCategory ? requested as Filter : "all");
+  }, [categories]);
+
+  const selectFilter = (nextFilter: Filter) => {
+    setFilter(nextFilter);
+    const url = new URL(window.location.href);
+    if (nextFilter === "all") url.searchParams.delete("categoria");
+    else url.searchParams.set("categoria", nextFilter);
+    window.history.replaceState(window.history.state, "", `${url.pathname}${url.search}${url.hash}`);
+  };
 
   const filters: { id: Filter; label: string; count: number }[] = useMemo(() => {
     const catFilters = categories.map((cat) => ({
@@ -59,7 +73,7 @@ export function CatalogBrowser() {
           // Compute active & hover styles
           let activeClass = "";
           if (isActive) {
-            activeClass = "bg-[#EC3C2D] text-white shadow-[3px_3px_0_#0F0F12] translate-x-[1px] translate-y-[1px]";
+            activeClass = `${catColor?.bg ?? "bg-[#EC3C2D]"} ${catColor?.text ?? "text-white"} shadow-[3px_3px_0_#0F0F12] translate-x-[1px] translate-y-[1px]`;
           } else {
             activeClass = "bg-white text-[#0F0F12] shadow-[3px_3px_0_#0F0F12] hover:bg-[#F8FAFC] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0_#0F0F12]";
           }
@@ -70,7 +84,7 @@ export function CatalogBrowser() {
               type="button"
               role="tab"
               aria-selected={isActive}
-              onClick={() => setFilter(item.id)}
+              onClick={() => selectFilter(item.id)}
               className={`transition-all duration-120 inline-flex shrink-0 items-center justify-center gap-2 rounded-xl px-4 py-2 sm:px-5 sm:py-2.5 text-[15px] sm:text-[16px] font-black cursor-pointer select-none leading-none border-2 border-[#0F0F12] ${activeClass} active:translate-x-[3px] active:translate-y-[3px] active:shadow-none`}
             >
               <span className="tracking-tight leading-none pt-[1px] uppercase">{item.label}</span>

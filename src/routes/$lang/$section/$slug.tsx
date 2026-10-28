@@ -1,5 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { Archive, BookOpen, ChevronRight, ClipboardEdit, FileSearch, FileSpreadsheet, GraduationCap, ScanText, Server, ShieldCheck, SlidersHorizontal, Star } from "lucide-react";
+import { Archive, BookOpen, ChevronRight, ClipboardEdit, FileSearch, FileSpreadsheet, GraduationCap, LayoutGrid, ScanText, Server, ShieldCheck, SlidersHorizontal, Star } from "lucide-react";
 import { useFavorites } from "@/lib/auth/favorites-store";
 import { CategoryTiles } from "@/components/site/CategoryTiles";
 import { ToolCatalogCard } from "@/components/site/ToolCatalogCard";
@@ -17,6 +17,7 @@ import {
   catalogParams,
   categoryParams,
   categoryPath,
+  catalogCategoryPath,
   guidePath,
   homeParams,
   toolPath,
@@ -377,7 +378,7 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
         items={[
           {
             label: category.name,
-            to: categoryPath(locale, tool.category),
+            to: catalogCategoryPath(locale, tool.category),
           },
           {
             label: tool.name,
@@ -392,13 +393,13 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
           <div className="flex-1 min-w-0 max-w-3xl">
             {/* Meta badges: Categoría + Favorito */}
             <div className="flex items-center gap-2.5 flex-wrap">
-              <Link
-                to={categoryPath(locale, tool.category)}
+              <a
+                href={catalogCategoryPath(locale, tool.category)}
                 className={`group inline-flex items-center gap-2 rounded-xl border-2 border-[#0F0F12] px-3.5 py-1 text-[12.5px] sm:text-[13px] font-black uppercase tracking-wider text-white shadow-[2px_2px_0_#0F0F12] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0_#0F0F12] transition-all ${accent.iconBg}`}
               >
                 <ToolIcon name={tool.icon} canonicalSlug={canonicalSlug} className="size-4 text-white" />
                 <span>{category.name}</span>
-              </Link>
+              </a>
 
               {/* Botón Favorito Neo-Brutalista */}
               <button
@@ -577,10 +578,12 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
                         : "Procesamiento privado en navegador sin transmisión a servidores"}
                     </span>
                   </div>
-                  <Link
-                    to={categoryPath(locale, tool.category)}
-                    className="group inline-flex items-center gap-2 rounded-xl border-2 border-[#0F0F12] bg-[#0F0F12] hover:bg-[#EC3C2D] text-white px-6 py-3 text-[15px] sm:text-[16px] font-black transition-all shadow-[4px_4px_0_#0F0F12] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0_#0F0F12] cursor-pointer"
+                  <a
+                    href={catalogCategoryPath(locale, tool.category)}
+                    onClick={() => trackToolCatalogViewAllClicked({ source: "tool_category_cta", language: locale })}
+                    className={`inline-flex items-center gap-3 rounded-xl border-2 border-[#0F0F12] ${accent.iconBg} text-white px-5 py-3 text-[15px] sm:text-[16px] font-black transition-all shadow-[4px_4px_0_#0F0F12] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0_#0F0F12] cursor-pointer`}
                   >
+                    <LayoutGrid className="size-5 shrink-0" aria-hidden="true" />
                     <span>
                       {locale === "ca"
                         ? `Explorar més eines de ${category.name}`
@@ -588,8 +591,7 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
                         ? `Explore all ${category.name} tools`
                         : `Explorar más herramientas de ${category.name}`}
                     </span>
-                    <span aria-hidden className="transition-transform group-hover:translate-x-1 font-black text-white">→</span>
-                  </Link>
+                  </a>
                 </div>
               </div>
             </section>
@@ -638,10 +640,12 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
                   </span>
                 </div>
 
-                <Link
-                  to={categoryPath(locale, tool.category)}
-                  className="group inline-flex items-center gap-2 rounded-xl border-2 border-[#0F0F12] bg-[#EC3C2D] hover:bg-[#D93426] text-white px-6 py-3 text-[15px] sm:text-[16px] font-black transition-all shadow-[3px_3px_0_#0F0F12] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0_#0F0F12] cursor-pointer"
+                <a
+                  href={catalogCategoryPath(locale, tool.category)}
+                  onClick={() => trackToolCatalogViewAllClicked({ source: "tool_category_cta", language: locale })}
+                  className={`inline-flex items-center gap-3 rounded-xl border-2 border-[#0F0F12] ${accent.iconBg} text-white px-5 py-3 text-[15px] sm:text-[16px] font-black transition-all shadow-[3px_3px_0_#0F0F12] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0_#0F0F12] cursor-pointer`}
                 >
+                  <LayoutGrid className="size-5 shrink-0" aria-hidden="true" />
                   <span>
                     {locale === "ca"
                       ? `Explorar més eines de ${category.name}`
@@ -649,8 +653,7 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
                       ? `Explore all ${category.name} tools`
                       : `Explorar más herramientas de ${category.name}`}
                   </span>
-                  <span aria-hidden className="transition-transform group-hover:translate-x-1 font-black text-white">→</span>
-                </Link>
+                </a>
               </div>
             </div>
           </section>
@@ -707,12 +710,6 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
                 ? "View full catalog"
                 : "Ver catálogo completo"}
             </span>
-            <span
-              aria-hidden
-              className="inline-block translate-x-0 transition-transform duration-200 group-hover:translate-x-1 font-black"
-            >
-              →
-            </span>
           </Link>
         </div>
         <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -758,7 +755,6 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
               className="shrink-0 inline-flex items-center gap-2 rounded-xl border-2 border-[#0F0F12] bg-[#EC3C2D] hover:bg-[#D93426] px-6 py-3 text-[15px] font-black text-white shadow-[3px_3px_0_#0F0F12] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0_#0F0F12] transition-all cursor-pointer"
             >
               <span>{locale === "ca" ? "Llegir la guia" : locale === "en" ? "Read guide" : "Leer la guía"}</span>
-              <span aria-hidden className="font-bold">→</span>
             </Link>
           </div>
         </aside>
@@ -800,7 +796,6 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
               className="shrink-0 inline-flex items-center gap-2 rounded-xl border-2 border-[#0F0F12] bg-[#EC3C2D] hover:bg-[#D93426] px-6 py-3 text-[15px] font-black text-white shadow-[3px_3px_0_#0F0F12] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0_#0F0F12] transition-all cursor-pointer"
             >
               <span>{locale === "ca" ? "Llegir la guia" : locale === "en" ? "Read guide" : "Leer la guía"}</span>
-              <span aria-hidden className="font-bold">→</span>
             </Link>
           </div>
         </aside>
@@ -857,7 +852,6 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
                   className="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-[#0F0F12] bg-[#EC3C2D] hover:bg-[#D93426] px-7 py-3.5 text-[16px] font-black text-white shadow-[4px_4px_0_#0F0F12] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0_#0F0F12] transition-all cursor-pointer"
                 >
                   <span>{locale === "ca" ? "Llegir la guia" : locale === "en" ? "Read guide" : "Leer la guía"}</span>
-                  <span aria-hidden className="text-lg leading-none font-bold">→</span>
                 </Link>
               </div>
             </div>
@@ -903,7 +897,6 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
               className="shrink-0 inline-flex items-center gap-2 rounded-xl border-2 border-[#0F0F12] bg-[#EC3C2D] hover:bg-[#D93426] px-6 py-3 text-[15px] font-black text-white shadow-[3px_3px_0_#0F0F12] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0_#0F0F12] transition-all cursor-pointer"
             >
               <span>{locale === "ca" ? "Llegir la guia" : locale === "en" ? "Read guide" : "Leer la guía"}</span>
-              <span aria-hidden className="font-bold">→</span>
             </Link>
           </div>
         </aside>
@@ -946,7 +939,6 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
               className="shrink-0 inline-flex items-center gap-2 rounded-xl border-2 border-[#0F0F12] bg-[#EC3C2D] hover:bg-[#D93426] px-6 py-3 text-[15px] font-black text-white shadow-[3px_3px_0_#0F0F12] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0_#0F0F12] transition-all cursor-pointer"
             >
               <span>{locale === "ca" ? "Llegir la guia" : locale === "en" ? "Read guide" : "Leer la guía"}</span>
-              <span aria-hidden className="font-bold">→</span>
             </Link>
           </div>
         </aside>
@@ -990,7 +982,6 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
               className="shrink-0 inline-flex items-center gap-2 rounded-xl border-2 border-[#0F0F12] bg-[#EC3C2D] hover:bg-[#D93426] px-6 py-3 text-[15px] font-black text-white shadow-[3px_3px_0_#0F0F12] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0_#0F0F12] transition-all cursor-pointer"
             >
               <span>{locale === "ca" ? "Llegir la guia" : locale === "en" ? "Read guide" : "Leer la guía"}</span>
-              <span aria-hidden className="font-bold">→</span>
             </Link>
           </div>
         </aside>
@@ -1034,7 +1025,6 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
               className="shrink-0 inline-flex items-center gap-2 rounded-xl border-2 border-[#0F0F12] bg-[#EC3C2D] hover:bg-[#D93426] px-6 py-3 text-[15px] font-black text-white shadow-[3px_3px_0_#0F0F12] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0_#0F0F12] transition-all cursor-pointer"
             >
               <span>{locale === "ca" ? "Llegir la guia" : locale === "en" ? "Read guide" : "Leer la guía"}</span>
-              <span aria-hidden className="font-bold">→</span>
             </Link>
           </div>
         </aside>
@@ -1078,7 +1068,6 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
               className="shrink-0 inline-flex items-center gap-2 rounded-xl border-2 border-[#0F0F12] bg-[#EC3C2D] hover:bg-[#D93426] px-6 py-3 text-[15px] font-black text-white shadow-[3px_3px_0_#0F0F12] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0_#0F0F12] transition-all cursor-pointer"
             >
               <span>{locale === "ca" ? "Llegir la guia" : locale === "en" ? "Read guide" : "Leer la guía"}</span>
-              <span aria-hidden className="font-bold">→</span>
             </Link>
           </div>
         </aside>
@@ -1120,7 +1109,6 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
               className="shrink-0 inline-flex items-center gap-2 rounded-xl border-2 border-[#0F0F12] bg-[#EC3C2D] hover:bg-[#D93426] px-6 py-3 text-[15px] font-black text-white shadow-[3px_3px_0_#0F0F12] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0_#0F0F12] transition-all cursor-pointer"
             >
               <span>{locale === "ca" ? "Llegir la guia" : locale === "en" ? "Read guide" : "Leer la guía"}</span>
-              <span aria-hidden className="font-bold">→</span>
             </Link>
           </div>
         </aside>
@@ -1164,7 +1152,6 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
               className="shrink-0 inline-flex items-center gap-2 rounded-xl border-2 border-[#0F0F12] bg-[#EC3C2D] hover:bg-[#D93426] px-6 py-3 text-[15px] font-black text-white shadow-[3px_3px_0_#0F0F12] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0_#0F0F12] transition-all cursor-pointer"
             >
               <span>{locale === "ca" ? "Llegir la guia" : locale === "en" ? "Read guide" : "Leer la guía"}</span>
-              <span aria-hidden className="font-bold">→</span>
             </Link>
           </div>
         </aside>
@@ -1173,7 +1160,6 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
       {/* 7. FINAL CATALOG CTA: Neo-Brutalist High-Impact with BreadPDF Mascot and Solid 8px Shadow */}
       <section className="mt-10 mb-4 rounded-3xl border-3 border-[#0F0F12] bg-[#EC3C2D] p-8 sm:p-12 text-center shadow-[8px_8px_0_#0F0F12] text-white relative overflow-hidden">
         <div className="relative max-w-3xl mx-auto z-10 flex flex-col md:flex-row items-center justify-between gap-8">
-          
           <div className="flex-1 text-center md:text-left">
             <span className="inline-flex items-center gap-2 rounded-lg border-2 border-[#0F0F12] bg-white px-4 py-1.5 text-[13px] sm:text-[14px] font-black uppercase tracking-wider text-[#0F0F12] shadow-[2px_2px_0_#0F0F12]">
               <span className="size-2 rounded-full bg-[#EC3C2D] shrink-0" />
@@ -1204,10 +1190,10 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
               >
                 <span>
                   {locale === "ca"
-                    ? `Veure catàleg complet (${tools.length}) →`
+                    ? `Veure catàleg complet (${tools.length})`
                     : locale === "en"
-                    ? `View full catalog (${tools.length}) →`
-                    : `Ver catálogo completo (${tools.length}) →`}
+                    ? `View full catalog (${tools.length})`
+                    : `Ver catálogo completo (${tools.length})`}
                 </span>
               </Link>
             </div>
