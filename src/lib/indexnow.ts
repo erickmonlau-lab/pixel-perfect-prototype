@@ -32,12 +32,11 @@ export async function submitToIndexNow(
   options?: { apiKey?: string; keyLocation?: string }
 ): Promise<IndexNowResponse> {
   const host = new URL(SITE_URL).hostname;
+  // Server-side only: the key must never be exposed as a VITE_* variable,
+  // because Vite would inline it into the public client bundle.
   const apiKey =
     options?.apiKey ||
-    (typeof process !== "undefined" ? process.env?.["INDEXNOW_API_KEY"] : undefined) ||
-    (typeof import.meta !== "undefined" && import.meta.env
-      ? (import.meta.env["VITE_INDEXNOW_API_KEY"] as string | undefined)
-      : undefined);
+    (typeof process !== "undefined" ? process.env?.["INDEXNOW_API_KEY"] : undefined);
 
   if (!apiKey) {
     return {

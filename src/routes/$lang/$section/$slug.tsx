@@ -1,5 +1,5 @@
 import { createFileRoute, Link, notFound, redirect } from "@tanstack/react-router";
-import { Archive, BookOpen, ChevronRight, ClipboardEdit, FileSearch, FileSpreadsheet, GraduationCap, LayoutGrid, ScanText, Server, ShieldCheck, SlidersHorizontal, Star } from "lucide-react";
+import { Archive, ArrowRight, BookOpen, ChevronRight, ClipboardEdit, FileSearch, FileSpreadsheet, GraduationCap, LayoutGrid, ScanText, Server, ShieldCheck, SlidersHorizontal, Star } from "lucide-react";
 import { useFavorites } from "@/lib/auth/favorites-store";
 import { CategoryTiles } from "@/components/site/CategoryTiles";
 import { ToolCatalogCard } from "@/components/site/ToolCatalogCard";
@@ -43,6 +43,7 @@ import { TOOL_PRACTICAL_PROFILES } from "@/lib/tools/workflow-definitions";
 import { AdSlot } from "@/lib/monetization/adsense";
 import { getToolColorTheme } from "@/lib/tools/color-system";
 import { findGuideBySlug, guideSlugFor } from "@/lib/guides/registry";
+import { guideSlugsForTool } from "@/lib/guides/tool-links";
 import { CampusUploadGuide } from "@/components/guides/CampusUploadGuide";
 import { EcommerceWebpGuide } from "@/components/guides/EcommerceWebpGuide";
 import { ThesisMergeGuide } from "@/components/guides/ThesisMergeGuide";
@@ -53,6 +54,7 @@ import { FillAndSignGuide } from "@/components/guides/FillAndSignGuide";
 import { PdfaGuide } from "@/components/guides/PdfaGuide";
 import { WordPressUploadGuide } from "@/components/guides/WordPressUploadGuide";
 import { BlankPagesGuide } from "@/components/guides/BlankPagesGuide";
+import { PdfToWordGuide } from "@/components/guides/PdfToWordGuide";
 
 type Resolved =
   | { kind: "tool"; canonicalSlug: string }
@@ -350,6 +352,9 @@ function DetailPage() {
     }
     if (resolved.canonicalSlug === "eliminar-paginas-en-blanco-pdf-escaneado") {
       return <BlankPagesGuide locale={locale} guide={guide} />;
+    }
+    if (resolved.canonicalSlug === "convertir-pdf-a-word-editable") {
+      return <PdfToWordGuide locale={locale} guide={guide} />;
     }
     return <CampusUploadGuide locale={locale} guide={guide} />;
   }
@@ -661,6 +666,55 @@ function ToolPage({ canonicalSlug }: { canonicalSlug: string }) {
                   </span>
                 </a>
               </div>
+            </div>
+          </section>
+        );
+      })()}
+
+      {/* 4.9. GUÍAS RELACIONADAS: contextual editorial links for this workflow */}
+      {(() => {
+        const guideSlugs = guideSlugsForTool(tool.canonicalSlug);
+        if (guideSlugs.length === 0) return null;
+        const relatedGuides = guideSlugs
+          .map((slug) => findGuideBySlug(locale, slug))
+          .filter((guide): guide is NonNullable<typeof guide> => Boolean(guide));
+        if (relatedGuides.length === 0) return null;
+
+        return (
+          <section className="mt-10 sm:mt-12" aria-labelledby="related-guides">
+            <div className="flex items-center gap-3">
+              <span className="flex size-9 shrink-0 items-center justify-center rounded-xl border-2 border-[#0F0F12] bg-[#C9302C] text-white shadow-[2px_2px_0_#0F0F12]">
+                <BookOpen className="size-5" aria-hidden="true" />
+              </span>
+              <h2 id="related-guides" className="text-[24px] sm:text-[28px] font-black tracking-tight text-[#0F0F12]">
+                {locale === "ca" ? "Guies relacionades" : locale === "en" ? "Related guides" : "Guías relacionadas"}
+              </h2>
+            </div>
+            <div className="mt-5 grid gap-4 sm:grid-cols-2">
+              {relatedGuides.map((guide) => (
+                <Link
+                  key={guide.canonicalSlug}
+                  to={guidePath(locale, guide.canonicalSlug)}
+                  className="group flex flex-col justify-between rounded-2xl border-2 border-[#0F0F12] bg-white p-5 shadow-[3px_3px_0_#0F0F12] transition-all hover:-translate-y-0.5 hover:shadow-[5px_5px_0_#0F0F12] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C9302C]"
+                >
+                  <div>
+                    <span className="inline-flex items-center gap-1.5 rounded-md border-2 border-[#0F0F12] bg-[#FEF08A] px-2 py-0.5 text-[11px] font-black uppercase tracking-wide text-[#0F0F12]">
+                      <BookOpen className="size-3.5" aria-hidden="true" />
+                      {locale === "ca" ? "Guia pràctica" : locale === "en" ? "Practical guide" : "Guía práctica"}
+                    </span>
+                    <h3 className="mt-2.5 text-[18px] font-black leading-snug tracking-tight text-[#0F0F12] group-hover:text-[#C9302C]">
+                      {guide.title[locale] || guide.title.es}
+                    </h3>
+                    <p className="mt-2 text-[14.5px] font-medium leading-relaxed text-slate-700">
+                      {guide.seoDescription[locale] || guide.seoDescription.es}
+                    </p>
+                  </div>
+                  <span className="mt-4 inline-flex items-center gap-2 text-[14px] font-black text-[#C9302C]">
+                    {locale === "ca" ? "Llegir guia" : locale === "en" ? "Read guide" : "Leer guía"}
+                    <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
+                  </span>
+                </Link>
+              ))}
             </div>
           </section>
         );

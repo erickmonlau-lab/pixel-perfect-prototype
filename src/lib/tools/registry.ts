@@ -842,7 +842,7 @@ export const TOOLS: ToolDefinition[] = [
     name: "OCR de PDF",
     h1: "Reconocimiento óptico de caracteres (OCR) en PDF",
     tagline: "Convierte documentos escaneados en archivos con texto seleccionable y buscable.",
-    seoTitle: "OCR de PDF online gratis: reconocer texto en escaneados | BreadPDF",
+    seoTitle: "OCR de PDF online: texto buscable en escaneados | BreadPDF",
     seoDescription:
       "Aplica OCR a tus PDF escaneados o imágenes directamente en el navegador. Genera un PDF con texto buscable o extrae el contenido en formato .txt.",
     category: "inteligencia",
@@ -918,7 +918,7 @@ export const TOOLS: ToolDefinition[] = [
     name: "Reparar PDF",
     h1: "Reparar y recuperar archivos PDF dañados",
     tagline: "Recupera documentos corruptos reconstruyendo su estructura y tabla de referencias.",
-    seoTitle: "Reparar PDF dañado online gratis y recuperar el archivo | BreadPDF",
+    seoTitle: "Reparar PDF dañado online y recuperar el archivo | BreadPDF",
     seoDescription:
       "Repara archivos PDF que no abren, tienen la estructura rota o errores de XRef. Recupera páginas y descarga un PDF saneado en tu navegador.",
     category: "optimizar",
@@ -1584,9 +1584,9 @@ export const TOOLS: ToolDefinition[] = [
     name: "Recortar PDF",
     h1: "Recortar márgenes de páginas PDF",
     tagline: "Elimina los márgenes en blanco sobrantes y ajusta el encuadre de todas las páginas.",
-    seoTitle: "Recortar PDF online: ajustar márgenes y cortar páginas | BreadPDF",
+    seoTitle: "Recortar PDF online: ajustar márgenes y páginas | BreadPDF",
     seoDescription:
-      "Recorta páginas de un PDF online y ajusta los márgenes perimetrales con precisión milimétrica. Elimina bordes blancos para impresión o lectores e-reader 100% en tu navegador.",
+      "Recorta páginas de un PDF y ajusta los márgenes con precisión. Elimina bordes blancos para imprimir o leer en e-reader, sin subir el archivo al servidor.",
     category: "editar",
     icon: "Crop",
     status: "live",
@@ -1688,7 +1688,7 @@ export const TOOLS: ToolDefinition[] = [
     tagline: "Estandariza tu PDF bajo la norma ISO 19005-1 para trámites con Hacienda, juzgados y administraciones públicas.",
     seoTitle: "Convertir PDF a PDF/A online gratis para archivo | BreadPDF",
     seoDescription:
-      "Transforma tus documentos al formato PDF/A estándar de conservación a largo plazo, requerido por Hacienda, juzgados, LexNET y administraciones públicas. Sin subir archivos.",
+      "Convierte tus documentos a PDF/A para conservación a largo plazo, el formato que piden Hacienda, juzgados, LexNET y administraciones. Sin subir archivos.",
     category: "convertir",
     icon: "FileCheck",
     status: "live",
@@ -2259,7 +2259,7 @@ export const TOOLS: ToolDefinition[] = [
     name: "Insertar páginas en PDF",
     h1: "Insertar páginas de otro PDF en un documento",
     tagline: "Añade páginas de un segundo PDF en una posición exacta dentro del archivo base.",
-    seoTitle: "Insertar páginas en PDF online gratis y en posición exacta | BreadPDF",
+    seoTitle: "Insertar páginas en un PDF en la posición exacta | BreadPDF",
     seoDescription:
       "Inserta páginas procedentes de otro PDF al inicio, al final o entre páginas concretas de tu documento de forma visual y 100% privada.",
     category: "organizar",
@@ -2317,7 +2317,7 @@ export const TOOLS: ToolDefinition[] = [
     name: "Optimizar PDF para impresión",
     h1: "Optimizar PDF para impresión y escala de grises",
     tagline: "Convierte tu PDF a escala de grises para ahorrar tóner y agilizar la impresión.",
-    seoTitle: "Optimizar PDF para impresión online gratis a escala de grises | BreadPDF",
+    seoTitle: "Optimizar PDF para impresión a escala de grises | BreadPDF",
     seoDescription:
       "Transforma tu PDF a escala de grises real para imprimir sin gastar tinta de color. Proceso nítido, privado y sin subir archivos a servidores.",
     category: "optimizar",
@@ -2581,7 +2581,7 @@ export const TOOLS: ToolDefinition[] = [
     name: "Extraer imágenes de PDF",
     h1: "Extraer imágenes embebidas de un PDF",
     tagline: "Obtén las fotografías e imágenes incrustadas en tu PDF como archivos PNG independientes.",
-    seoTitle: "Extraer imágenes de PDF online: guardar fotos en PNG o ZIP | BreadPDF",
+    seoTitle: "Extraer imágenes de un PDF a PNG o ZIP | BreadPDF",
     seoDescription:
       "Extrae las imágenes incrustadas en tu archivo PDF con su resolución original y descárgalas en PNG o ZIP. Sin convertir páginas enteras y 100% en tu navegador.",
     category: "organizar",
@@ -2630,7 +2630,7 @@ export const TOOLS: ToolDefinition[] = [
     tagline: "Fragmenta documentos grandes respetando un límite de peso por parte, ideal para correo, Moodle o sedes electrónicas.",
     seoTitle: "Dividir PDF por tamaño en MB online gratis | BreadPDF",
     seoDescription:
-      "Divide un PDF grande en fragmentos con un límite de tamaño en MB por parte. Perfecto para adjuntos de correo (25 MB), Moodle (5-10 MB) o LexNET. 100% en tu navegador.",
+      "Divide un PDF grande en fragmentos con el límite de MB que necesites: correo (25 MB), Moodle (5-10 MB) o LexNET. Todo en tu navegador.",
     category: "organizar",
     icon: "SplitSquareHorizontal",
     status: "live",
@@ -2749,7 +2749,7 @@ export const TOOLS: ToolDefinition[] = [
     tagline: "Reduce el peso de tus imágenes para web convirtiéndolas al formato WebP moderno: mejora el PageSpeed y las Core Web Vitals.",
     seoTitle: "Convertir imagen a WebP online gratis | JPG y PNG | BreadPDF",
     seoDescription:
-      "Convierte imágenes JPG y PNG al formato WebP para optimizar su peso y mejorar el rendimiento web. Ideal para Core Web Vitals, PageSpeed Insights y SEO. Privado en tu navegador.",
+      "Convierte JPG y PNG a WebP para reducir peso y acelerar la carga web. Ideal para Core Web Vitals y SEO, con procesamiento privado en tu navegador.",
     category: "optimizar",
     icon: "Zap",
     status: "live",
@@ -2811,7 +2811,7 @@ export const TOOLS: ToolDefinition[] = [
     name: "Sanear PDF",
     h1: "Sanear y limpiar un PDF de elementos no deseados",
     tagline: "Elimina JavaScript embebido, acciones automáticas y metadatos de autor de tus documentos PDF.",
-    seoTitle: "Sanear PDF online gratis — eliminar JavaScript y metadatos | BreadPDF",
+    seoTitle: "Sanear PDF: eliminar JavaScript y metadatos | BreadPDF",
     seoDescription:
       "Limpia tu PDF eliminando JavaScript embebido, acciones automáticas de apertura y metadatos de autor. Ideal antes de compartir documentos de terceros.",
     category: "seguridad",

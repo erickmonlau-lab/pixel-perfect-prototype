@@ -621,7 +621,7 @@ const tools: Record<string, ToolText> = {
     name: "Eliminar metadades",
     h1: "Eliminar metadades ocultes d'un PDF",
     tagline: "Neteja informació oculta: autor, programari, dates i propietats.",
-    seoTitle: "Eliminar metadades de PDF en línia i netejar propietats | BreadPDF",
+    seoTitle: "Eliminar metadades d'un PDF i netejar propietats | BreadPDF",
     seoDescription:
       "Elimina informació confidencial oculta al teu PDF com autor, programari creador, dates de modificació i propietats de forma 100% privada.",
     ctaLabel: "Netejar metadades",
@@ -659,7 +659,7 @@ const tools: Record<string, ToolText> = {
     name: "PDF a PNG",
     h1: "Convertir PDF a imatges PNG",
     tagline: "Converteix pàgines de PDF en imatges PNG d'alta resolució sense pèrdues.",
-    seoTitle: "Convertir PDF a PNG en línia de franc en alta qualitat | BreadPDF",
+    seoTitle: "Convertir PDF a PNG en línia en alta qualitat | BreadPDF",
     seoDescription:
       "Transforma cada pàgina del teu document PDF en imatges PNG nítides sense artefactes de compressió. Ràpid, segur i al teu navegador.",
     ctaLabel: "Convertir a PNG",
@@ -900,7 +900,7 @@ const tools: Record<string, ToolText> = {
     name: "Inserir pàgines a PDF",
     h1: "Inserir pàgines d'un altre PDF en un document",
     tagline: "Afegeix pàgines d'un segon PDF en una posició exacta dins del fitxer base.",
-    seoTitle: "Inserir pàgines a PDF en línia de franc i en posició exacta | BreadPDF",
+    seoTitle: "Inserir pàgines en un PDF a la posició exacta | BreadPDF",
     seoDescription:
       "Insereix pàgines procedents d'un altre PDF a l'inici, al final o entre pàgines concretes del teu document de manera 100% privada.",
     ctaLabel: "Inserir pàgines i descarregar",
@@ -948,7 +948,7 @@ const tools: Record<string, ToolText> = {
     name: "Optimitzar PDF per a impressió",
     h1: "Optimitzar PDF per a impressió i escala de grisos",
     tagline: "Converteix el teu PDF a escala de grisos per estalviar tòner i agilitzar la impressió.",
-    seoTitle: "Optimitzar PDF per a impressió en línia a escala de grisos | BreadPDF",
+    seoTitle: "Optimitzar PDF per a impressió en escala de grisos | BreadPDF",
     seoDescription:
       "Transforma el teu PDF a escala de grisos real per imprimir sense gastar tinta de color. Procés nítid, privat i sense pujar fitxers a servidors.",
     ctaLabel: "Optimitzar per a impressió",
@@ -1118,7 +1118,7 @@ const tools: Record<string, ToolText> = {
     name: "SVG a PDF",
     h1: "Convertir fitxers SVG a PDF en línia",
     tagline: "Transforma gràfics vectorials SVG en documents PDF nítids en alta definició.",
-    seoTitle: "Convertir SVG a PDF en línia gratis en alta definició | BreadPDF",
+    seoTitle: "Convertir SVG a PDF en línia en alta definició | BreadPDF",
     seoDescription:
       "Converteix fitxers vectorials SVG a documents PDF preservant corbes, traçats i proporcions visuals al teu navegador amb total privadesa.",
     ctaLabel: "Convertir a PDF",
@@ -1166,7 +1166,7 @@ const tools: Record<string, ToolText> = {
     name: "Extreure imatges de PDF",
     h1: "Extreure imatges incrustades d'un PDF",
     tagline: "Obtén les fotografies i imatges incrustades al teu PDF com a fitxers PNG independents.",
-    seoTitle: "Extreure imatges de PDF en línia: desar fotos en PNG o ZIP | BreadPDF",
+    seoTitle: "Extreure imatges d'un PDF a PNG o ZIP | BreadPDF",
     seoDescription:
       "Extreu les imatges incrustades al teu arxiu PDF amb la seva resolució original i descarrega-les en PNG o ZIP. Sense convertir pàgines senceres i 100% al navegador.",
     ctaLabel: "Extreu imatges",
@@ -1335,7 +1335,7 @@ const tools: Record<string, ToolText> = {
     name: "Sanejar PDF",
     h1: "Sanejar i netejar un PDF d'elements no desitjats",
     tagline: "Elimina JavaScript incrustat, accions automàtiques i metadades d'autor dels teus documents PDF.",
-    seoTitle: "Sanejar PDF en línia gratis — eliminar JavaScript i metadades | BreadPDF",
+    seoTitle: "Sanejar PDF: eliminar JavaScript i metadades | BreadPDF",
     seoDescription:
       "Neteja el teu PDF eliminant JavaScript incrustat, accions automàtiques d'obertura i metadades d'autor. Ideal abans de compartir documents de tercers.",
     ctaLabel: "Sanejar PDF",
@@ -1638,7 +1638,7 @@ const tools: Record<string, ToolText> = {
     "name": "Signar PDF",
     "h1": "Signar PDF en línia gratis i a mà alçada",
     "tagline": "Dibuixa o puja la teva signatura electrònica i estampa-la a qualsevol pàgina del teu document.",
-    "seoTitle": "Signar PDF en línia gratis amb la teva signatura manuscrita | BreadPDF",
+    "seoTitle": "Signar PDF en línia amb signatura manuscrita | BreadPDF",
     "seoDescription": "Afegeix la teva rúbrica o signatura gràfica al teu document PDF directament al navegador. 100% privat i sense servidors.",
     "ctaLabel": "Signar i descarregar PDF",
     "keywords": [
@@ -1904,7 +1904,7 @@ const tools: Record<string, ToolText> = {
     "h1": "Retallar marges de pàgines PDF",
     "tagline": "Elimina els marges en blanc sobrants i ajusta l'enquadrament de totes les pàgines.",
     "seoTitle": "Retallar PDF en línia: ajustar marges i tallar pàgines | BreadPDF",
-    "seoDescription": "Retalla pàgines d'un PDF en línia i ajusta els marges perimetrals amb precisió mil·limètrica. Elimina vores blanques per a impressió o lectors e-reader 100% al navegador.",
+    "seoDescription": "Retalla pàgines d'un PDF i ajusta'n els marges amb precisió. Elimina vores blanques per imprimir o llegir en e-reader, sense pujar el fitxer.",
     "ctaLabel": "Retallar PDF",
     "keywords": [
       "retallar pdf",

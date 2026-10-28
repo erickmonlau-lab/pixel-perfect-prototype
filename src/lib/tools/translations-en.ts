@@ -894,7 +894,7 @@ const tools: Record<string, ToolText> = {
     name: "Insert Pages into PDF",
     h1: "Insert Pages from Another PDF into a Document",
     tagline: "Add pages from a second PDF at an exact position inside your base document.",
-    seoTitle: "Insert Pages into PDF Online for Free at Exact Position | BreadPDF",
+    seoTitle: "Insert Pages into a PDF at the Exact Position | BreadPDF",
     seoDescription:
       "Insert pages from another PDF at the beginning, end, or specific point of your document. Fast, private, and no signup needed.",
     ctaLabel: "Insert Pages & Download",
@@ -1160,9 +1160,9 @@ const tools: Record<string, ToolText> = {
     name: "Extract Images from PDF",
     h1: "Extract embedded images from a PDF",
     tagline: "Get the photographs and images embedded in your PDF as individual PNG files.",
-    seoTitle: "Extract Images from PDF Online Free: Separate Pictures & Photos | BreadPDF",
+    seoTitle: "Extract Images from PDF to PNG or ZIP | BreadPDF",
     seoDescription:
-      "Extract embedded pictures and photographs from your PDF at original quality. Separate images from PDF into individual PNG files or a ZIP archive 100% in your browser.",
+      "Extract embedded pictures from your PDF at original quality. Save each image as PNG or download them all in a ZIP, entirely in your browser.",
     ctaLabel: "Extract images",
     keywords: ["extract images from pdf", "extract images from pdf online", "separate images from pdf", "extract image from pdf online free", "get photos from pdf", "export pdf images"],
     howItWorks: [
@@ -1333,7 +1333,7 @@ const tools: Record<string, ToolText> = {
     name: "Sanitize PDF",
     h1: "Sanitize and clean a PDF of unwanted elements",
     tagline: "Remove embedded JavaScript, automatic actions, and author metadata from PDF documents.",
-    seoTitle: "Sanitize PDF online free — remove JavaScript and metadata | BreadPDF",
+    seoTitle: "Sanitize PDF: Remove JavaScript and Metadata | BreadPDF",
     seoDescription:
       "Clean your PDF by removing embedded JavaScript, automatic open actions, and author metadata. Ideal before sharing third-party documents.",
     ctaLabel: "Sanitize PDF",
@@ -1644,7 +1644,7 @@ const tools: Record<string, ToolText> = {
     "name": "Sign PDF",
     "h1": "Sign PDF Online for Free and Freehand",
     "tagline": "Draw or upload your electronic signature and place it on any page of your document.",
-    "seoTitle": "Sign PDF Online for Free with Your Handwritten Signature | BreadPDF",
+    "seoTitle": "Sign PDF Online Free with a Handwritten Signature | BreadPDF",
     "seoDescription": "Add your graphic signature or mark to any PDF document right inside your browser. 100% private, no file uploads.",
     "ctaLabel": "Sign & Download PDF",
     "keywords": [
@@ -1770,7 +1770,7 @@ const tools: Record<string, ToolText> = {
     "name": "Extract data",
     "h1": "Extract Structured Data from PDF Documents",
     "tagline": "Automatically detect and extract emails, phone numbers, dates, and currency amounts.",
-    "seoTitle": "Extract Structured Data from PDF Online for Free | JSON & CSV BreadPDF",
+    "seoTitle": "Extract Structured Data from PDF to JSON & CSV | BreadPDF",
     "seoDescription": "Extract structured information like emails, amounts, dates, and phone numbers directly in JSON or CSV format.",
     "ctaLabel": "Extract fields",
     "keywords": [

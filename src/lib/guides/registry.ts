@@ -44,7 +44,7 @@ export const GUIDES: GuideDefinition[] = [
     seoTitle: {
       es: "Reducir PDF para Moodle y campus virtuales | BreadPDF",
       ca: "Reduir PDF per a Moodle i campus virtuals | BreadPDF",
-      en: "How to Reduce PDF Size for Moodle and Campus Submissions | BreadPDF",
+      en: "Reduce PDF Size for Moodle & Campus Submissions | BreadPDF",
     },
     seoDescription: {
       es: "Aprende a reducir un PDF que supera el límite de subida de Moodle o tu campus virtual. Comprímelo o divídelo por tamaño antes de entregar tu trabajo.",
@@ -175,9 +175,9 @@ export const GUIDES: GuideDefinition[] = [
       en: "WebP vs JPG and PNG for Online Stores: Which Format to Choose and How to Optimize Product Images",
     },
     seoTitle: {
-      es: "WebP vs JPG vs PNG: qué formato usar en una tienda online | BreadPDF",
-      ca: "WebP vs JPG vs PNG: quin format fer servir a una botiga online | BreadPDF",
-      en: "WebP vs JPG vs PNG: Which Format to Use in an Online Store | BreadPDF",
+      es: "WebP vs JPG vs PNG: qué formato usar en tu tienda | BreadPDF",
+      ca: "WebP vs JPG vs PNG: quin format usar a la botiga | BreadPDF",
+      en: "WebP vs JPG vs PNG: Best Format for Online Stores | BreadPDF",
     },
     seoDescription: {
       es: "Descubre las diferencias entre WebP, JPG y PNG para ecommerce y aprende a optimizar imágenes de producto sin sacrificar calidad innecesariamente.",
@@ -320,9 +320,9 @@ export const GUIDES: GuideDefinition[] = [
       en: "How to Merge Thesis Cover, Appendices, and Body into a Single PDF",
     },
     seoTitle: {
-      es: "Cómo unir memoria, anexos y portada en un PDF para TFG o TFM | BreadPDF",
-      ca: "Com unir memòria, annexos i portada en un PDF per a TFG o TFM | BreadPDF",
-      en: "How to Merge Thesis Body, Cover, and Appendices into One PDF | BreadPDF",
+      es: "Unir memoria, anexos y portada en un PDF TFG/TFM | BreadPDF",
+      ca: "Unir memòria, annexos i portada en un PDF TFG/TFM | BreadPDF",
+      en: "Merge Thesis Body, Cover and Appendices into One PDF | BreadPDF",
     },
     seoDescription: {
       es: "Aprende a reunir memoria, portada y anexos en un único PDF para un TFG o TFM y comprueba el orden, la numeración y el tamaño antes de entregarlo.",
@@ -453,8 +453,8 @@ export const GUIDES: GuideDefinition[] = [
       en: "How to Hide Personal Data in a PDF Before Sharing It",
     },
     seoTitle: {
-      es: "Cómo ocultar datos personales en un PDF antes de compartirlo | BreadPDF",
-      ca: "Com ocultar dades personals en un PDF abans de compartir-lo | BreadPDF",
+      es: "Ocultar datos personales en un PDF antes de compartir | BreadPDF",
+      ca: "Ocultar dades personals d'un PDF abans de compartir | BreadPDF",
       en: "How to Hide Personal Data in a PDF Before Sharing | BreadPDF",
     },
     seoDescription: {
@@ -598,8 +598,8 @@ export const GUIDES: GuideDefinition[] = [
       en: "How to Convert PDF Tables to Excel While Preserving Column Layout",
     },
     seoTitle: {
-      es: "Cómo pasar tablas de un PDF a Excel y mantener las columnas | BreadPDF",
-      ca: "Com passar taules d'un PDF a Excel i mantenir les columnes | BreadPDF",
+      es: "Pasar tablas de PDF a Excel manteniendo las columnas | BreadPDF",
+      ca: "Passar taules de PDF a Excel mantenint columnes | BreadPDF",
       en: "How to Convert PDF Tables to Excel and Keep Columns | BreadPDF",
     },
     seoDescription: {
@@ -888,7 +888,7 @@ export const GUIDES: GuideDefinition[] = [
       en: "How to Fill and Sign a PDF Form from Your Browser",
     },
     seoTitle: {
-      es: "Cómo rellenar y firmar un formulario PDF desde el navegador | BreadPDF",
+      es: "Rellenar y firmar un formulario PDF en el navegador | BreadPDF",
       ca: "Com omplir i signar un formulari PDF des del navegador | BreadPDF",
       en: "How to Fill and Sign a PDF Form in Your Browser | BreadPDF",
     },
@@ -1451,6 +1451,143 @@ export const GUIDES: GuideDefinition[] = [
         {
           q: "How can I restore a page removed by mistake?",
           a: "BreadPDF processes documents non-destructively in client memory and generates a new output file. Your original master file on your disk remains completely untouched, allowing you to re-process with a more conservative threshold.",
+        },
+      ],
+    },
+  },
+  {
+    canonicalSlug: "convertir-pdf-a-word-editable",
+    slugs: {
+      es: "convertir-pdf-a-word-editable",
+      ca: "passar-pdf-a-word-editable",
+      en: "convert-pdf-to-editable-word",
+    },
+    title: {
+      es: "Cómo convertir un PDF a Word editable (y qué se conserva)",
+      ca: "Com convertir un PDF a Word editable (i què es conserva)",
+      en: "How to Convert a PDF to Editable Word (and What Is Preserved)",
+    },
+    seoTitle: {
+      es: "Convertir PDF a Word editable: qué conserva | BreadPDF",
+      ca: "Convertir PDF a Word editable: què conserva | BreadPDF",
+      en: "Convert PDF to Editable Word: What Is Preserved | BreadPDF",
+    },
+    seoDescription: {
+      es: "Convierte un PDF a Word editable en el navegador. Te explicamos qué conserva el conversor (texto, líneas y orden) y qué no (imágenes, fuentes y diseño).",
+      ca: "Converteix un PDF a Word editable al navegador. T'expliquem què conserva el conversor (text, línies i ordre) i què no (imatges, tipografies i disseny).",
+      en: "Convert a PDF to editable Word in your browser. See what the converter keeps (text, lines, order) and what it does not (images, fonts, layout).",
+    },
+    image: {
+      url: "https://breadpdf.com/convertir-pdf-a-word-editable.svg",
+      alt: {
+        es: "Diagrama del flujo de conversión de PDF a DOCX: extracción de texto por líneas, marcadores de página y límites de fidelidad",
+        ca: "Diagrama del flux de conversió de PDF a DOCX: extracció de text per línies, marcadors de pàgina i límits de fidelitat",
+        en: "PDF to DOCX conversion workflow: line-based text extraction, page markers, and fidelity limits",
+      },
+      width: 1200,
+      height: 630,
+    },
+    publishedDate: "2026-10-28",
+    modifiedDate: "2026-10-28",
+    author: {
+      name: "Equipo Editorial BreadPDF",
+      role: "Especialistas en Documentación Digital y Optimización Web",
+    },
+    readingTimeMinutes: 8,
+    category: "tecnica",
+    faqs: {
+      es: [
+        {
+          q: "¿Qué se conserva exactamente al convertir un PDF a Word?",
+          a: "Se conserva el texto seleccionable, agrupado por líneas visuales y ordenado de arriba abajo y de izquierda a derecha dentro de cada página. Cada página del PDF se separa con un marcador '--- Página N ---'. El resultado es un .docx editable, pero no una réplica del diseño original.",
+        },
+        {
+          q: "¿Se conservan las imágenes, los colores y el diseño?",
+          a: "No. El conversor extrae únicamente la capa de texto. Las imágenes, los fondos, los bordes, las tablas dibujadas como gráficos y la posición exacta de cada bloque no se trasladan al documento Word, que se genera con un estilo uniforme de 12 puntos.",
+        },
+        {
+          q: "¿Funciona con PDF escaneados o fotografías de documentos?",
+          a: "No directamente. Un escaneo no contiene texto digital, sino una imagen. Primero hay que aplicar OCR con la herramienta 'OCR de PDF' para generar una capa de texto y, después, convertir ese PDF resultante a Word.",
+        },
+        {
+          q: "¿El archivo .docx se abre en Word, LibreOffice y Google Docs?",
+          a: "Sí. Se genera un documento estándar .docx compatible con Microsoft Word, LibreOffice Writer y Google Docs. Al abrirlo, puedes aplicar estilos, cambiar tipografías, crear tablas reales y reorganizar el contenido.",
+        },
+        {
+          q: "¿Qué son los marcadores '--- Página N ---'?",
+          a: "Son párrafos en cursiva y gris que el conversor inserta al principio de cada página para que puedas localizar el texto original. Si no los necesitas en la versión final, búscalos y elimínalos en Word antes de compartir el documento.",
+        },
+        {
+          q: "¿Puedo elegir la fuente o el tamaño de letra durante la conversión?",
+          a: "No. La conversión genera todo el texto con el mismo tamaño base para no inventar jerarquías que el PDF no declara de forma fiable. Después, en Word, puedes seleccionar títulos y párrafos y aplicar los estilos que necesites.",
+        },
+        {
+          q: "¿Se sube mi PDF a algún servidor?",
+          a: "No. La conversión se ejecuta en la memoria del navegador con el archivo que tú seleccionas. BreadPDF no envía el documento a un servidor para procesarlo, por lo que el contenido no se almacena en la nube.",
+        },
+      ],
+      ca: [
+        {
+          q: "Què es conserva exactament en convertir un PDF a Word?",
+          a: "Es conserva el text seleccionable, agrupat per línies visuals i ordenat de dalt a baix i d'esquerra a dreta dins de cada pàgina. Cada pàgina del PDF se separa amb un marcador '--- Página N ---'. El resultat és un .docx editable, però no una rèplica del disseny original.",
+        },
+        {
+          q: "Es conserven les imatges, els colors i el disseny?",
+          a: "No. El conversor extreu només la capa de text. Les imatges, els fons, les vores, les taules dibuixades com a gràfics i la posició exacta de cada bloc no passen al document Word, que es genera amb un estil uniforme de 12 punts.",
+        },
+        {
+          q: "Funciona amb PDF escanejats o fotografies de documents?",
+          a: "No directament. Un escaneig no conté text digital, sinó una imatge. Primer cal aplicar OCR amb l'eina 'OCR de PDF' per generar una capa de text i, després, convertir aquest PDF resultant a Word.",
+        },
+        {
+          q: "El fitxer .docx s'obre a Word, LibreOffice i Google Docs?",
+          a: "Sí. Es genera un document estàndard .docx compatible amb Microsoft Word, LibreOffice Writer i Google Docs. En obrir-lo, pots aplicar estils, canviar tipografies, crear taules reals i reorganitzar el contingut.",
+        },
+        {
+          q: "Què són els marcadors '--- Página N ---'?",
+          a: "Són paràgrafs en cursiva i grisos que el conversor insereix a l'inici de cada pàgina perquè puguis localitzar el text original. Si no els necessites a la versió final, cerca'ls i elimina'ls a Word abans de compartir el document.",
+        },
+        {
+          q: "Puc triar la font o la mida de lletra durant la conversió?",
+          a: "No. La conversió genera tot el text amb la mateixa mida base per no inventar jerarquies que el PDF no declara de manera fiable. Després, a Word, pots seleccionar títols i paràgrafs i aplicar-hi els estils que calgui.",
+        },
+        {
+          q: "Es puja el meu PDF a algun servidor?",
+          a: "No. La conversió s'executa a la memòria del navegador amb el fitxer que tu selecciones. BreadPDF no envia el document a un servidor per processar-lo, així que el contingut no s'emmagatzema al núvol.",
+        },
+      ],
+      en: [
+        {
+          q: "What exactly is preserved when converting a PDF to Word?",
+          a: "Selectable text is preserved, grouped into visual lines and ordered top to bottom, left to right within each page. Every PDF page is separated by a '--- Página N ---' marker. The output is an editable .docx, not a replica of the original layout.",
+        },
+        {
+          q: "Are images, colors, and layout preserved?",
+          a: "No. The converter extracts only the text layer. Images, backgrounds, borders, tables drawn as graphics, and the exact position of each block are not carried into the Word document, which is generated with a uniform 12-point style.",
+        },
+        {
+          q: "Does it work with scanned PDFs or photos of documents?",
+          a: "Not directly. A scan contains an image, not digital text. First run OCR with the 'OCR PDF' tool to create a text layer, then convert that resulting PDF to Word.",
+        },
+        {
+          q: "Does the .docx open in Word, LibreOffice, and Google Docs?",
+          a: "Yes. The tool produces a standard .docx file compatible with Microsoft Word, LibreOffice Writer, and Google Docs. Once open, you can apply styles, change fonts, build real tables, and reorganize the content.",
+        },
+        {
+          q: "What are the '--- Página N ---' markers?",
+          a: "They are italic gray paragraphs the converter inserts at the start of each page so you can trace text back to its source. If you do not need them in the final version, search for them and delete them in Word before sharing.",
+        },
+        {
+          q: "Can I choose the font or font size during conversion?",
+          a: "No. Conversion applies the same base size to all text so it does not invent heading levels the PDF cannot reliably declare. In Word you can then select titles and paragraphs and apply the styles you need.",
+        },
+        {
+          q: "Is my PDF uploaded to a server?",
+          a: "No. Conversion runs in your browser memory using the file you select. BreadPDF does not send the document to a server for processing, so the content is not stored in the cloud.",
+        },
+        {
+          q: "Can I convert several PDFs at once?",
+          a: "No. The converter processes one PDF per run so page order and progress stay predictable. If you need a single Word file from several documents, merge them first with the 'Merge PDF' tool, then convert the merged PDF.",
         },
       ],
     },

@@ -120,10 +120,10 @@ export function GuidesHubPage() {
           <span className="hidden text-slate-400 sm:inline">•</span>
           <span className="text-slate-700">
             {isCa
-              ? "Revisió editorial: Setembre 2026"
+              ? "Revisió editorial: Octubre 2026"
               : isEn
-                ? "Editorial review: September 2026"
-                : "Revisión editorial: Septiembre 2026"}
+                ? "Editorial review: October 2026"
+                : "Revisión editorial: Octubre 2026"}
           </span>
           <span className="hidden text-slate-400 sm:inline">•</span>
           <span className="text-slate-700">
