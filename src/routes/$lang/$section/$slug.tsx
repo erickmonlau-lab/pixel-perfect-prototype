@@ -55,6 +55,8 @@ import { PdfaGuide } from "@/components/guides/PdfaGuide";
 import { WordPressUploadGuide } from "@/components/guides/WordPressUploadGuide";
 import { BlankPagesGuide } from "@/components/guides/BlankPagesGuide";
 import { PdfToWordGuide } from "@/components/guides/PdfToWordGuide";
+import { EidasSignatureGuide } from "@/components/guides/EidasSignatureGuide";
+import { LexnetPdfGuide } from "@/components/guides/LexnetPdfGuide";
 
 type Resolved =
   | { kind: "tool"; canonicalSlug: string }

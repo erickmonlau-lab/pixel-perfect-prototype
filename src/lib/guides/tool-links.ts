@@ -7,7 +7,7 @@
  */
 export const TOOL_GUIDE_LINKS: Record<string, string[]> = {
   // Optimizar
-  "comprimir-pdf": ["unificar-memoria-anexos-portada-tfg-tfm"],
+  "comprimir-pdf": ["unificar-memoria-anexos-portada-tfg-tfm", "como-preparar-pdf-para-lexnet"],
   "optimizar-pdf-para-impresion": ["unificar-memoria-anexos-portada-tfg-tfm"],
   "eliminar-paginas-en-blanco": ["eliminar-paginas-en-blanco-pdf-escaneado"],
 
@@ -22,20 +22,20 @@ export const TOOL_GUIDE_LINKS: Record<string, string[]> = {
   "pdf-a-excel": ["pasar-tablas-pdf-a-excel"],
   "extraer-datos": ["pasar-tablas-pdf-a-excel"],
   "extraer-texto-pdf": ["hacer-buscable-pdf-escaneado-ocr"],
-  "pdf-a-pdfa": ["que-es-pdfa-cuando-convertir"],
+  "pdf-a-pdfa": ["que-es-pdfa-cuando-convertir", "como-preparar-pdf-para-lexnet"],
   "word-a-pdf": ["unificar-memoria-anexos-portada-tfg-tfm"],
   "jpg-a-pdf": ["unificar-memoria-anexos-portada-tfg-tfm"],
 
   // Editar / seguridad
   "rellenar-formulario-pdf": ["rellenar-y-firmar-formulario-pdf"],
-  "firmar-pdf": ["rellenar-y-firmar-formulario-pdf"],
-  "aplanar-pdf": ["rellenar-y-firmar-formulario-pdf"],
+  "firmar-pdf": ["rellenar-y-firmar-formulario-pdf", "firma-electronica-simple-avanzada-cualificada-eidas"],
+  "aplanar-pdf": ["rellenar-y-firmar-formulario-pdf", "como-preparar-pdf-para-lexnet"],
   "censurar-pdf": ["ocultar-datos-personales-pdf"],
   "eliminar-metadatos-pdf": ["ocultar-datos-personales-pdf"],
   "sanear-pdf": ["ocultar-datos-personales-pdf"],
 
   // Inteligencia
-  "ocr-pdf": ["hacer-buscable-pdf-escaneado-ocr"],
+  "ocr-pdf": ["hacer-buscable-pdf-escaneado-ocr", "como-preparar-pdf-para-lexnet"],
 };
 
 export function guideSlugsForTool(canonicalSlug: string): string[] {

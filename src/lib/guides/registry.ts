@@ -1592,6 +1592,224 @@ export const GUIDES: GuideDefinition[] = [
       ],
     },
   },
+  {
+    canonicalSlug: "firma-electronica-simple-avanzada-cualificada-eidas",
+    slugs: {
+      es: "firma-electronica-simple-avanzada-cualificada-eidas",
+      ca: "signatura-electronica-simple-avancada-qualificada-eidas",
+      en: "simple-advanced-qualified-electronic-signature-eidas",
+    },
+    title: {
+      es: "Firma electrónica simple, avanzada y cualificada: diferencias bajo eIDAS",
+      ca: "Signatura electrònica simple, avançada i qualificada: diferències sota eIDAS",
+      en: "Simple, Advanced, and Qualified Electronic Signatures under eIDAS",
+    },
+    seoTitle: {
+      es: "Firma electrónica simple, avanzada y cualificada eIDAS | BreadPDF",
+      ca: "Signatura simple, avançada i qualificada eIDAS | BreadPDF",
+      en: "Simple, Advanced, Qualified Electronic Signature eIDAS | BreadPDF",
+    },
+    seoDescription: {
+      es: "Diferencias legales y técnicas entre firma simple, avanzada y cualificada según el Reglamento eIDAS (UE) 910/2014, valor probatorio y límites de firmas visuales.",
+      ca: "Diferències legals i tècniques entre signatura simple, avançada i qualificada segons l'eIDAS (UE) 910/2014, valor probatori i límits de signatures visuals.",
+      en: "Legal and technical differences between simple, advanced, and qualified signatures under EU Regulation 910/2014 (eIDAS), evidentiary weight, and visual stamps.",
+    },
+    image: {
+      url: "https://breadpdf.com/rellenar-y-firmar-formulario-pdf.svg",
+      alt: {
+        es: "Esquema comparativo de los tres niveles de firma electrónica bajo el Reglamento eIDAS de la Unión Europea",
+        ca: "Esquema comparatiu dels tres nivells de signatura electrònica sota el Reglament eIDAS de la Unió Europea",
+        en: "Comparative diagram of the three electronic signature levels under EU eIDAS Regulation",
+      },
+      width: 1200,
+      height: 630,
+    },
+    publishedDate: "2026-10-29",
+    modifiedDate: "2026-10-29",
+    author: {
+      name: "Equipo Editorial BreadPDF",
+      role: "Especialistas en Marco Regulatorio e Identificación Digital",
+    },
+    readingTimeMinutes: 8,
+    category: "empresas",
+    faqs: {
+      es: [
+        {
+          q: "¿Una firma electrónica simple tiene validez legal en España y la Unión Europea?",
+          a: "Sí. El Artículo 25.1 del Reglamento (UE) 910/2014 (eIDAS) prohíbe denegar efectos jurídicos o admisibilidad como prueba en juicio a una firma por el simple hecho de estar en formato electrónico. Sin embargo, no goza de la presunción legal automática de autoría ni de integridad si es impugnada por la otra parte.",
+        },
+        {
+          q: "¿Qué firma tiene el mismo valor que una firma manuscrita sobre papel?",
+          a: "Únicamente la firma electrónica cualificada (Artículo 25.2 eIDAS). Para ser cualificada, debe basarse en un certificado cualificado expedido por un prestador de confianza de la UE y crearse mediante un dispositivo cualificado (QSCD), como el chip del DNI electrónico o tarjetas criptográficas.",
+        },
+        {
+          q: "¿La herramienta 'Firmar PDF' de BreadPDF emite firmas cualificadas?",
+          a: "No. BreadPDF permite dibujar, teclear o estampar una representación gráfica o rúbrica visual sobre el PDF directamente en tu navegador. Constituye una firma electrónica simple; no es un sistema PKI, no genera un contenedor criptográfico PAdES ni valida certificados ante listas de revocación (CRL/OCSP).",
+        },
+        {
+          q: "¿Qué ocurre si modifico un PDF después de haberlo firmado digitalmente?",
+          a: "Cualquier cambio posterior (como comprimir, agregar páginas o editar texto) altera los bytes del documento y rompe el resumen criptográfico (hash). Esto hace que los visores oficiales como Adobe Acrobat o VALIDe muestren la firma como no válida o alterada.",
+        },
+        {
+          q: "¿Cuándo es obligatorio usar firma cualificada y cuándo basta con firma simple?",
+          a: "La firma cualificada es obligatoria para trámites con administraciones públicas, sedes judiciales (LexNET), contratación pública o actos notariales. Para acuerdos privados entre empresas o particulares, partes de trabajo o autorizaciones internas donde existe confianza previa, una firma simple o avanzada suele ser suficiente.",
+        },
+      ],
+      ca: [
+        {
+          q: "Una signatura electrònica simple té validesa legal a Espanya i la Unió Europea?",
+          a: "Sí. L'Article 25.1 del Reglament (UE) 910/2014 (eIDAS) prohibeix denegar efectes jurídics o admissibilitat com a prova en judici a una signatura pel simple fet d'estar en format electrònic. No obstant això, no gaudeix de la presumpció legal automàtica d'autoria si és impugnada per la contrapart.",
+        },
+        {
+          q: "Quina signatura té el mateix valor que una signatura manuscrita en paper?",
+          a: "Únicament la signatura electrònica qualificada (Article 25.2 eIDAS). Per ser qualificada, s'ha de basar en un certificat qualificat expedit per un prestador de confiança de la UE i crear-se mitjançant un dispositiu qualificat (QSCD), com ara el xip del DNIe o targetes criptogràfiques.",
+        },
+        {
+          q: "L'eina 'Signar PDF' de BreadPDF emet signatures qualificades?",
+          a: "No. BreadPDF permet dibuixar o estampar una representació gràfica o rúbrica visual sobre el PDF al teu navegador. Constitueix una signatura simple; no és un sistema PKI, no genera contenidors criptogràfics PAdES ni valida certificats davant llistes de revocació (CRL/OCSP).",
+        },
+        {
+          q: "Què passa si modifico un PDF després d'haver-lo signat digitalment?",
+          a: "Qualsevol canvi posterior (comprimir, afegir pàgines o aplanar camps) altera els bytes del document i trenca el resum criptogràfic (hash). Això fa que els visors com Adobe Acrobat o VALIDe mostrin la signatura com a invàlida o manipulada.",
+        },
+        {
+          q: "Quan és obligatori fer servir signatura qualificada i quan n'hi ha prou amb signatura simple?",
+          a: "La signatura qualificada és obligatòria per a tràmits amb l'administració pública, seus judicials (LexNET) o licitacions. Per a acords privats, fitxes de lliurament o autoritzacions internes amb confiança prèvia, una signatura simple és habitualment suficient.",
+        },
+      ],
+      en: [
+        {
+          q: "Is a simple electronic signature legally valid in the European Union?",
+          a: "Yes. Under Article 25(1) of Regulation (EU) No 910/2014 (eIDAS), an electronic signature shall not be denied legal effect or admissibility in court solely because it is in electronic form. However, it lacks the automatic statutory presumption of authenticity if challenged.",
+        },
+        {
+          q: "Which signature carries statutory equivalence to handwritten ink?",
+          a: "Only a Qualified Electronic Signature (Article 25.2 eIDAS). It must be founded on a qualified certificate from an accredited EU trust provider and generated through a certified qualified signature creation device (QSCD), such as cryptographic hardware smartcards or cloud HSMs.",
+        },
+        {
+          q: "Does BreadPDF's 'Sign PDF' tool generate qualified signatures?",
+          a: "No. BreadPDF lets users draw or position a visual signature stamp across PDF pages locally in the browser. It functions as a simple electronic signature; it is not a PKI trust provider, does not issue PAdES cryptographic envelopes, and does not check CRL/OCSP status.",
+        },
+        {
+          q: "What happens if a PDF is edited after cryptographic signing?",
+          a: "Any subsequent modification (such as compression, splitting, page extraction, or form flattening) changes the file byte stream and invalidates the cryptographic hash. Software like Adobe Acrobat will flag the signature as modified or invalid.",
+        },
+        {
+          q: "When is a qualified signature required versus a simple mark?",
+          a: "Qualified signatures are mandatory for filings with tax authorities, court dockets (LexNET), public procurement, or deeds. For standard commercial receipts, delivery notes, or internal team approvals, simple or advanced signatures are commonplace.",
+        },
+      ],
+    },
+  },
+  {
+    canonicalSlug: "como-preparar-pdf-para-lexnet",
+    slugs: {
+      es: "como-preparar-pdf-para-lexnet",
+      ca: "com-preparar-pdf-per-a-lexnet",
+      en: "how-to-prepare-pdf-for-lexnet",
+    },
+    title: {
+      es: "Cómo preparar un PDF para LexNET: requisitos técnicos, OCR y firma",
+      ca: "Com preparar un PDF per a LexNET: requisits tècnics, OCR i signatura",
+      en: "How to Prepare a PDF for LexNET: Technical Specs, OCR, and Signing",
+    },
+    seoTitle: {
+      es: "Preparar PDF para LexNET: requisitos técnicos y OCR | BreadPDF",
+      ca: "Preparar PDF per a LexNET: requisits tècnics i OCR | BreadPDF",
+      en: "Prepare PDF for LexNET: Technical Specs & OCR | BreadPDF",
+    },
+    seoDescription: {
+      es: "Guía técnica para presentar escritos y documentos en LexNET: límites de tamaño, texto buscable con OCR, aplanado de formularios y orden de firma electrónica.",
+      ca: "Guia tècnica per presentar escrits a LexNET: límits de mida, text cercable amb OCR, aplanat de formularis i ordre de signatura electrònica.",
+      en: "Technical guide to preparing pleadings and evidence for the Spanish LexNET court system: size limits, OCR text layers, form flattening, and digital signing order.",
+    },
+    image: {
+      url: "https://breadpdf.com/que-es-pdfa-cuando-convertir.svg",
+      alt: {
+        es: "Diagrama del flujo procesal de preparación de documentos PDF para la presentación en el sistema judicial LexNET",
+        ca: "Diagrama del flux processal de preparació de documents PDF per a la presentació al sistema judicial LexNET",
+        en: "Technical workflow diagram illustrating PDF preparation steps for the Spanish LexNET court portal",
+      },
+      width: 1200,
+      height: 630,
+    },
+    publishedDate: "2026-10-29",
+    modifiedDate: "2026-10-29",
+    author: {
+      name: "Equipo Editorial BreadPDF",
+      role: "Especialistas en Gestión Documental y Justicia Digital",
+    },
+    readingTimeMinutes: 9,
+    category: "empresas",
+    faqs: {
+      es: [
+        {
+          q: "¿Cuál es el límite máximo de tamaño de archivo admitido en LexNET?",
+          a: "El límite técnico habitual por mensaje en el sistema LexNET del Ministerio de Justicia es de 15 MB para el escrito principal y sus anexos juntos, ampliado hasta 30 MB en determinadas sedes y sistemas autonómicos. Si el expediente supera ese peso, los anexos deben dividirse en presentaciones complementarias vinculadas.",
+        },
+        {
+          q: "¿Es obligatorio convertir todos los documentos a formato PDF/A?",
+          a: "No de forma universal en todos los procedimientos. Las directrices técnicas del Real Decreto 1065/2015 recomiendan el formato PDF/A por motivos de preservación a largo plazo, pero los juzgados admiten PDF estándar (v1.4 a 1.7) siempre que contengan texto seleccionable y no tengan contraseñas.",
+        },
+        {
+          q: "¿Por qué rechaza LexNET un PDF escaneado?",
+          a: "Porque los juzgados exigen que el documento contenga una capa de texto indexable (OCR) para que el personal del juzgado y las partes puedan realizar búsquedas con Ctrl+F. Un escaneo que sea solo una imagen plana sin texto reconocido incumple los requisitos técnicos.",
+        },
+        {
+          q: "¿En qué orden se debe aplanar, comprimir y firmar un PDF para el juzgado?",
+          a: "El orden es crítico: 1º Aplicar OCR si es escaneado; 2º Aplanar campos de formulario interactivo si los hay; 3º Comprimir el archivo para ajustarlo al límite de megabytes; y 4º Firmar electrónicamente con tu certificado digital cualificado en AutoFirma o LexNET. Nunca modifiques el PDF tras firmarlo.",
+        },
+        {
+          q: "¿Puedo usar BreadPDF para firmar un escrito de LexNET?",
+          a: "No para la firma digital oficial. BreadPDF estampa firmas visuales en el navegador sin certificado cualificado PKI. La presentación judicial en LexNET requiere la firma electrónica cualificada del letrado o procurador generada con certificado reconocido (como ACA o FNMT) y AutoFirma.",
+        },
+      ],
+      ca: [
+        {
+          q: "Quin és el límit màxim de mida de fitxer admès a LexNET?",
+          a: "El límit estàndard per missatge al sistema LexNET del Ministeri de Justícia és de 15 MB per a l'escrit principal i els seus annexos, ampliat a 30 MB en determinades seus autonòmiques. Si l'expedient supera aquest llindar, els annexos s'han de fraccionar en enviaments complementaris.",
+        },
+        {
+          q: "És obligatori convertir tots els documents a format PDF/A?",
+          a: "No de manera universal a tots els procediments. El Reial Decret 1065/2015 recomana el format PDF/A per motius d'arxiu i conservació, però els jutjats admeten PDF estàndard (v1.4 a 1.7) sempre que continguin text cercable i no tinguin contrasenyes d'obertura.",
+        },
+        {
+          q: "Per què LexNET rebutja un PDF escanejat?",
+          a: "Perquè la justícia exigeix que el document contingui una capa de text indexable (OCR) per poder fer cerques de paraules clau. Un escaneig pla que sigui només una imatge sense text reconegut incompleix les normes tècniques judicials.",
+        },
+        {
+          q: "En quin ordre s'ha d'aplanar, comprimir i signar un PDF judicial?",
+          a: "L'ordre és fonamental: 1r Aplicar OCR si és escanejat; 2n Aplanar formularis si cal; 3r Comprimir per ajustar-se al límit de mida; i 4t Signar electrònicament amb certificat qualificat a AutoFirma o LexNET. Mai modifiquis el document després de signar-lo.",
+        },
+        {
+          q: "Puc fer servir BreadPDF per signar un escrit de LexNET?",
+          a: "No per a la signatura judicial oficial. BreadPDF estampa signatures visuals simples al navegador. La presentació processal a LexNET requereix signatura electrònica qualificada generada amb certificat reconegut (com ACA o FNMT) i el programari oficial AutoFirma.",
+        },
+      ],
+      en: [
+        {
+          q: "What is the maximum submission file size in the Spanish LexNET court portal?",
+          a: "The standard envelope capacity in the Ministry of Justice LexNET system is 15 MB for the main pleading and exhibits combined, extended to 30 MB in specific regional court jurisdictions. Oversized evidence must be partitioned across linked supplementary filings.",
+        },
+        {
+          q: "Is converting all court exhibits to PDF/A-1b strictly required?",
+          a: "Not universally across all dockets. Technical guidance under Royal Decree 1065/2015 strongly recommends PDF/A for long-term archiving, but court clerks accept standard PDFs (v1.4 to 1.7) provided they carry selectable text and are free from encryption passwords.",
+        },
+        {
+          q: "Why do court portals reject flat scanned PDF documents?",
+          a: "Because judicial workflows mandate searchable text layers (OCR) allowing court staff and opposing counsel to perform word searches with Ctrl+F. A scanned bitmap image with no machine-readable text violates mandatory e-filing rules.",
+        },
+        {
+          q: "What is the correct sequence to flatten, compress, and digitally sign a court filing?",
+          a: "The sequence is critical: 1st Run OCR on scanned materials; 2nd Flatten interactive form fields; 3rd Compress to satisfy size limits; and 4th Digitally sign via your qualified PKI certificate inside AutoFirma or LexNET. Never edit the file after signing.",
+        },
+        {
+          q: "Can I use BreadPDF to digitally sign pleadings for LexNET?",
+          a: "No for official court submissions. BreadPDF applies client-side visual signatures without PKI certificates. Official filings in LexNET mandate a qualified electronic signature backed by an accredited legal certificate (such as ACA or FNMT) and AutoFirma.",
+        },
+      ],
+    },
+  },
 ];
 
 export const ALL_GUIDES = GUIDES;
