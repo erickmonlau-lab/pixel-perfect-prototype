@@ -250,18 +250,18 @@ export function ToolSearch({ size = "md" }: { size?: "md" | "lg" }) {
                           : "bg-white text-[#0F0F12] hover:bg-[#FAF8F5]"
                       }`}
                     >
-                      {/* Icono de la herramienta: en estado seleccionado fondo blanco con icono en rojo #FF2638 y borde negro */}
+                      {/* Icono de la herramienta: en estado normal caja con color de familia; en seleccionado caja sólida negra o color oficial con borde */}
                       <span
                         className={`inline-flex size-10 shrink-0 items-center justify-center rounded-xl border-2 border-[#0F0F12] shadow-[2px_2px_0_#0F0F12] transition-transform ${
                           isSelected
-                            ? "bg-white text-[#FF2638]"
+                            ? `bg-[#0F0F12] text-white shadow-[2px_2px_0_rgba(0,0,0,0.3)]`
                             : `${accent.iconBg} ${accent.icon}`
                         }`}
                       >
                         <ToolIcon
                           name={tool.icon}
                           canonicalSlug={tool.canonicalSlug}
-                          className={`size-5.5 ${isSelected ? "text-[#FF2638]" : "text-white"}`}
+                          className="size-5.5 text-white"
                         />
                       </span>
 
