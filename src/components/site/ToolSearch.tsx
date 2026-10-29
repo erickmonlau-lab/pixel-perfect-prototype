@@ -267,17 +267,17 @@ export function ToolSearch({ size = "md" }: { size?: "md" | "lg" }) {
 
                       {/* Título de herramienta, etiqueta de categoría y descripción */}
                       <div className="min-w-0 flex-1">
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-2.5">
                           <span
-                            className={`text-[15px] font-black tracking-tight ${
+                            className={`text-[15.5px] font-bold tracking-normal ${
                               isSelected ? "text-white" : "text-[#0F0F12]"
                             }`}
                           >
                             {tool.name}
                           </span>
-                          {/* Badge de categoría: si está seleccionado, blanco con texto oscuro #0F0F12; si no, color de familia */}
+                          {/* Badge de categoría: tracking más cómodo y espaciado */}
                           <span
-                            className={`inline-flex items-center rounded-md border border-[#0F0F12] px-2 py-0.5 text-[10px] font-black uppercase tracking-wider shadow-[1px_1px_0_#0F0F12] ${
+                            className={`inline-flex items-center rounded-md border border-[#0F0F12] px-2 py-0.5 text-[10.5px] font-bold uppercase tracking-wide shadow-[1px_1px_0_#0F0F12] ${
                               isSelected
                                 ? "bg-white text-[#0F0F12]"
                                 : `${accent.iconBg} text-white`
@@ -287,8 +287,8 @@ export function ToolSearch({ size = "md" }: { size?: "md" | "lg" }) {
                           </span>
                         </div>
                         <p
-                          className={`truncate text-[12.5px] font-medium mt-0.5 ${
-                            isSelected ? "text-white/95" : "text-slate-600"
+                          className={`truncate text-[13px] font-normal tracking-wide mt-1 ${
+                            isSelected ? "text-white" : "text-slate-600"
                           }`}
                         >
                           {tool.tagline}
@@ -298,9 +298,9 @@ export function ToolSearch({ size = "md" }: { size?: "md" | "lg" }) {
                       {/* Botón «Abrir» seleccionado: blanco con texto rojo #FF2638, contorno negro y sombra dura negra */}
                       <div className="hidden sm:flex items-center shrink-0">
                         {isSelected ? (
-                          <span className="inline-flex items-center gap-1.5 rounded-lg border-2 border-[#0F0F12] bg-white px-2.5 py-1 text-[11px] font-black text-[#FF2638] shadow-[2px_2px_0_#0F0F12]">
+                          <span className="inline-flex items-center gap-1.5 rounded-lg border-2 border-[#0F0F12] bg-white px-2.5 py-1 text-[11.5px] font-bold tracking-normal text-[#FF2638] shadow-[2px_2px_0_#0F0F12]">
                             <span>Abrir</span>
-                            <CornerDownLeft className="size-3 stroke-[3]" />
+                            <CornerDownLeft className="size-3 stroke-[2.5]" />
                           </span>
                         ) : (
                           <span className="flex size-7 items-center justify-center rounded-lg border-2 border-[#0F0F12] bg-white text-[#0F0F12] shadow-[1.5px_1.5px_0_#0F0F12] group-hover:bg-[#0F0F12] group-hover:text-white transition-all">
