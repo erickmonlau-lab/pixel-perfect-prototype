@@ -207,15 +207,15 @@ export function ToolSearch({ size = "md" }: { size?: "md" | "lg" }) {
         )}
       </div>
 
-      {/* Menú flotante de resultados en tiempo real — Contenido más compacto (max 3 items visibles y scroll suave con remate negro) */}
+      {/* Menú flotante de resultados en tiempo real — Borde negro limpio alrededor, sin franja inferior invasiva, scroll funcional */}
       {open && (
         <div
           id="tool-search-results"
-          className="absolute inset-x-0 top-full mt-2 z-60 overflow-hidden rounded-2xl border-2 border-[#0F0F12] bg-white shadow-[5px_6px_0_#0F0F12]"
+          className="absolute inset-x-0 top-full mt-2.5 z-60 overflow-hidden rounded-2xl border-2 border-[#0F0F12] bg-white shadow-[6px_8px_0_#0F0F12]"
         >
           <ul
             ref={listRef}
-            className="max-h-[228px] overflow-y-auto divide-y-2 divide-[#0F0F12]/10 custom-search-scroll"
+            className="max-h-[260px] overflow-y-auto divide-y-2 divide-[#0F0F12]/10 custom-search-scroll"
             role="listbox"
             aria-label={t.search.results}
           >
@@ -244,7 +244,7 @@ export function ToolSearch({ size = "md" }: { size?: "md" | "lg" }) {
                       onMouseDown={(event) => event.preventDefault()}
                       onMouseEnter={() => setActive(index)}
                       onClick={() => go(tool.canonicalSlug)}
-                      className={`group flex w-full items-center gap-3.5 px-4 sm:px-5 py-2.5 text-left transition-colors cursor-pointer ${
+                      className={`group flex w-full items-center gap-3.5 px-4 sm:px-5 py-3 text-left transition-colors cursor-pointer ${
                         isSelected
                           ? "bg-[#FFF5F2]"
                           : "bg-white hover:bg-[#FAF8F5]"
@@ -259,13 +259,16 @@ export function ToolSearch({ size = "md" }: { size?: "md" | "lg" }) {
                         <ToolIcon name={tool.icon} canonicalSlug={tool.canonicalSlug} className="size-5.5 text-white" />
                       </span>
 
-                      {/* Título de herramienta, etiqueta de categoría y descripción */}
+                      {/* Título de herramienta, etiqueta de categoría sólida y descripción */}
                       <div className="min-w-0 flex-1">
                         <div className="flex items-center gap-2">
                           <span className={`text-[15px] font-black tracking-tight ${isSelected ? "text-[#EC3C2D]" : "text-[#0F0F12]"}`}>
                             {tool.name}
                           </span>
-                          <span className="inline-flex items-center rounded-md border border-[#0F0F12] bg-[#FAF8F5] px-2 py-0.5 text-[10px] font-black uppercase tracking-wider text-[#0F0F12] shadow-[1px_1px_0_#0F0F12]">
+                          {/* Badge de categoría con color sólido característico de la familia, texto blanco y borde negro */}
+                          <span
+                            className={`inline-flex items-center rounded-md border border-[#0F0F12] px-2 py-0.5 text-[10px] font-black uppercase tracking-wider text-white shadow-[1px_1px_0_#0F0F12] ${accent.iconBg}`}
+                          >
                             {categoryLabel}
                           </span>
                         </div>
@@ -293,30 +296,6 @@ export function ToolSearch({ size = "md" }: { size?: "md" | "lg" }) {
               })
             )}
           </ul>
-
-          {/* Acabado inferior en negro sólido / franja neo-brutalist de remate con scroll count */}
-          {results.length > 0 && (
-            <div className="flex items-center justify-between border-t-2 border-[#0F0F12] bg-[#0F0F12] px-4 sm:px-5 py-2 text-[11px] font-black text-white">
-              <span className="text-white/90">
-                {results.length} {results.length === 1 ? "herramienta" : "herramientas"} · <span className="text-[#EC3C2D]">desplaza para ver más</span>
-              </span>
-              <div className="hidden sm:flex items-center gap-3 text-slate-300">
-                <span className="inline-flex items-center gap-1">
-                  <kbd className="rounded border border-white/20 bg-white/10 px-1.5 py-0.5 text-[9px] font-black text-white">↑</kbd>
-                  <kbd className="rounded border border-white/20 bg-white/10 px-1.5 py-0.5 text-[9px] font-black text-white">↓</kbd>
-                  <span>navegar</span>
-                </span>
-                <span className="inline-flex items-center gap-1">
-                  <kbd className="rounded border border-white/20 bg-white/10 px-1.5 py-0.5 text-[9px] font-black text-white">↵</kbd>
-                  <span>abrir</span>
-                </span>
-                <span className="inline-flex items-center gap-1">
-                  <kbd className="rounded border border-white/20 bg-white/10 px-1.5 py-0.5 text-[9px] font-black text-white">Esc</kbd>
-                  <span>cerrar</span>
-                </span>
-              </div>
-            </div>
-          )}
         </div>
       )}
 
