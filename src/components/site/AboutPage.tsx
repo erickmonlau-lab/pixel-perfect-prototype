@@ -36,7 +36,7 @@ export function AboutPage() {
           <div className="hidden lg:flex shrink-0 items-center justify-center p-3">
             <div className="size-28 xl:size-32 rounded-2xl border-2 border-[#0F0F12] bg-white p-3 shadow-[4px_4px_0_#0F0F12] flex items-center justify-center rotate-2 hover:rotate-0 transition-transform">
               <img
-                src={BRAND_ASSETS.mascotWebp}
+                src={BRAND_ASSETS.mascots.celebrate}
                 alt="BreadPDF Mascot"
                 width={96}
                 height={96}
