@@ -138,7 +138,7 @@ function Home() {
              en blanco y rojo oficial con bordes 2px y sombras duras.
           Zero cintas amarillas distractoras antes del catálogo.
           ============================================================ */}
-      <section className="relative z-20 border-b-2 border-[#0F0F12] bg-[#FAF8F5] py-5 sm:py-7 lg:py-8 overflow-hidden">
+      <section className="relative z-20 border-b-2 border-[#0F0F12] bg-[#FAF8F5] py-5 sm:py-7 lg:py-8 overflow-visible">
         
         {/* Iluminación ambiental cálida y coral de alta presencia:
             - Izquierda: Cálida pan/crema tostada (#F5A45D, #F4B77C, #FFE0B2) detrás de la mascota
