@@ -33,17 +33,19 @@ export function AboutPage() {
           </div>
 
           {/* Mascota / Brand emblem en el hero */}
-          <div className="hidden lg:flex shrink-0 items-center justify-center p-3">
-            <div className="size-28 xl:size-32 rounded-2xl border-2 border-[#0F0F12] bg-white p-3 shadow-[4px_4px_0_#0F0F12] flex items-center justify-center rotate-2 hover:rotate-0 transition-transform">
+          <div className="hidden lg:flex shrink-0 items-center justify-center p-2">
+            <picture>
+              <source srcSet="/brand/hero-mascot-perfect.webp" type="image/webp" />
               <img
-                src={BRAND_ASSETS.mascots.celebrate}
-                alt="BreadPDF Mascot"
-                width={96}
-                height={96}
-                className="size-full object-contain"
+                src="/brand/hero-mascot-perfect.png"
+                alt="Mascota BreadPDF"
+                width={160}
+                height={160}
+                className="w-36 h-auto drop-shadow-[4px_4px_0_#0F0F12] object-contain rotate-2 hover:rotate-0 transition-transform"
+                loading="eager"
                 decoding="async"
               />
-            </div>
+            </picture>
           </div>
         </div>
       </header>
