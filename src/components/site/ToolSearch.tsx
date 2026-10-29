@@ -244,45 +244,63 @@ export function ToolSearch({ size = "md" }: { size?: "md" | "lg" }) {
                       onMouseDown={(event) => event.preventDefault()}
                       onMouseEnter={() => setActive(index)}
                       onClick={() => go(tool.canonicalSlug)}
-                      className={`group flex w-full items-center gap-3.5 px-4 sm:px-5 py-3 text-left transition-colors cursor-pointer ${
+                      className={`group flex w-full items-center gap-3.5 px-4 sm:px-5 py-3 text-left transition-colors duration-100 cursor-pointer ${
                         isSelected
-                          ? "bg-[#FFF5F2]"
-                          : "bg-white hover:bg-[#FAF8F5]"
+                          ? "bg-[#FF2638] text-white"
+                          : "bg-white text-[#0F0F12] hover:bg-[#FAF8F5]"
                       }`}
                     >
-                      {/* Icono de la herramienta según el lenguaje corporativo del catálogo */}
+                      {/* Icono de la herramienta: en estado seleccionado fondo blanco con icono en rojo #FF2638 y borde negro */}
                       <span
                         className={`inline-flex size-10 shrink-0 items-center justify-center rounded-xl border-2 border-[#0F0F12] shadow-[2px_2px_0_#0F0F12] transition-transform ${
-                          isSelected ? "scale-105" : ""
-                        } ${accent.iconBg} ${accent.icon}`}
+                          isSelected
+                            ? "bg-white text-[#FF2638]"
+                            : `${accent.iconBg} ${accent.icon}`
+                        }`}
                       >
-                        <ToolIcon name={tool.icon} canonicalSlug={tool.canonicalSlug} className="size-5.5 text-white" />
+                        <ToolIcon
+                          name={tool.icon}
+                          canonicalSlug={tool.canonicalSlug}
+                          className={`size-5.5 ${isSelected ? "text-[#FF2638]" : "text-white"}`}
+                        />
                       </span>
 
-                      {/* Título de herramienta, etiqueta de categoría sólida y descripción */}
+                      {/* Título de herramienta, etiqueta de categoría y descripción */}
                       <div className="min-w-0 flex-1">
                         <div className="flex items-center gap-2">
-                          <span className={`text-[15px] font-black tracking-tight ${isSelected ? "text-[#EC3C2D]" : "text-[#0F0F12]"}`}>
+                          <span
+                            className={`text-[15px] font-black tracking-tight ${
+                              isSelected ? "text-white" : "text-[#0F0F12]"
+                            }`}
+                          >
                             {tool.name}
                           </span>
-                          {/* Badge de categoría con color sólido característico de la familia, texto blanco y borde negro */}
+                          {/* Badge de categoría: si está seleccionado, blanco con texto oscuro #0F0F12; si no, color de familia */}
                           <span
-                            className={`inline-flex items-center rounded-md border border-[#0F0F12] px-2 py-0.5 text-[10px] font-black uppercase tracking-wider text-white shadow-[1px_1px_0_#0F0F12] ${accent.iconBg}`}
+                            className={`inline-flex items-center rounded-md border border-[#0F0F12] px-2 py-0.5 text-[10px] font-black uppercase tracking-wider shadow-[1px_1px_0_#0F0F12] ${
+                              isSelected
+                                ? "bg-white text-[#0F0F12]"
+                                : `${accent.iconBg} text-white`
+                            }`}
                           >
                             {categoryLabel}
                           </span>
                         </div>
-                        <p className="truncate text-[12.5px] font-medium text-slate-600 mt-0.5">
+                        <p
+                          className={`truncate text-[12.5px] font-medium mt-0.5 ${
+                            isSelected ? "text-white/95" : "text-slate-600"
+                          }`}
+                        >
                           {tool.tagline}
                         </p>
                       </div>
 
-                      {/* Flechas / Botón de acción con acabado nítido y visible en negro */}
+                      {/* Botón «Abrir» seleccionado: blanco con texto rojo #FF2638, contorno negro y sombra dura negra */}
                       <div className="hidden sm:flex items-center shrink-0">
                         {isSelected ? (
-                          <span className="inline-flex items-center gap-1.5 rounded-lg border-2 border-[#0F0F12] bg-[#EC3C2D] px-2.5 py-1 text-[11px] font-black text-white shadow-[2px_2px_0_#0F0F12]">
+                          <span className="inline-flex items-center gap-1.5 rounded-lg border-2 border-[#0F0F12] bg-white px-2.5 py-1 text-[11px] font-black text-[#FF2638] shadow-[2px_2px_0_#0F0F12]">
                             <span>Abrir</span>
-                            <CornerDownLeft className="size-3 stroke-[2.8]" />
+                            <CornerDownLeft className="size-3 stroke-[3]" />
                           </span>
                         ) : (
                           <span className="flex size-7 items-center justify-center rounded-lg border-2 border-[#0F0F12] bg-white text-[#0F0F12] shadow-[1.5px_1.5px_0_#0F0F12] group-hover:bg-[#0F0F12] group-hover:text-white transition-all">
