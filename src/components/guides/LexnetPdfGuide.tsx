@@ -192,14 +192,14 @@ export function LexnetPdfGuide({ locale, guide }: GuideArticleProps) {
             <div className="rounded-xl border border-slate-200 bg-slate-50 p-5">
               <h3 className="text-[16px] font-bold text-slate-900 flex items-center gap-2">
                 <CheckCircle2 className="size-5 text-[#C9302C]" />
-                {isCa ? "Límits de mida de missatge a LexNET" : isEn ? "Message Size Limits in LexNET" : "Límites de tamaño por mensaje en LexNET"}
+                {isCa ? "Límits de mida i especificacions tècniques" : isEn ? "File Size Ceilings & Technical Specifications" : "Límites de tamaño y especificaciones técnicas"}
               </h3>
               <p className="mt-2 text-[14.5px] text-slate-600">
                 {isCa
-                  ? "El límit tècnic estàndard per missatge a la plataforma LexNET és de 15 MB (ampliat fins a 30 MB en determinats portals o col·legis d'advocats i seus autonòmiques com Justícia de Catalunya o País Basc). Si el teu expedient o prova documental supera aquest llindar, el sistema bloquejarà l'enviament. La solució consisteix a comprimir els fitxers sense perdre resolució de text o dividir els annexos en parts."
+                  ? "El Reial Decret 1065/2015 no fixa un límit numèric universal de megabytes en el seu articulat, sinó que remet a les guies i especificacions tècniques aprovades per la Comissió Jurídica i el Ministeri de Justícia. La capacitat màxima per enviament depèn del canal d'accés (portal web, seu judicial autonòmica o integracions per serveis web de col·legis professionals). Si el teu expedient supera el límit del teu canal, el sistema rebutjarà el lliurament i caldrà optimitzar el pes o presentar annexos en enviaments vinculats."
                   : isEn
-                    ? "The standard technical limit per submission envelope in LexNET is 15 MB (extended up to 30 MB in specific autonomic justice systems such as Catalonia or the Basque Country). If your total package exceeds this threshold, the portal rejects delivery. Legal teams must compress oversized attachments or partition evidence into numbered batches."
-                    : "El límite técnico habitual por mensaje en la plataforma LexNET es de 15 MB (ampliado hasta 30 MB en determinados puntos de acceso autonómicos e integraciones colegiales). Si el conjunto de tu demanda y anexos supera este tope, la plataforma rechaza el envío. La solución procesal consiste en optimizar el peso de los documentos o fraccionarlos en envíos complementarios debidamente identificados."}
+                    ? "Royal Decree 1065/2015 does not legislate a universal numeric megabyte ceiling in its statutory articles, but delegates size rules to technical specifications approved by the Ministry of Justice and governance committees. Capacity depends on the specific filing channel (central portal, regional justice gateways, or web-service integrations). If your total package exceeds the threshold of your access point, compress the file or submit supplementary linked filings."
+                    : "El Real Decreto 1065/2015 no establece un límite numérico universal en megabytes en su articulado, sino que remite a las guías y especificaciones técnicas que aprueben el Ministerio de Justicia y las comisiones técnicas. La capacidad máxima admitida depende del canal de presentación (portal web LexNET, sedes judiciales autonómicas o pasarelas de software colegial). Si tu escrito y anexos superan el tope técnico de tu canal, la plataforma rechazará el envío y deberás optimizar el peso o fraccionar los documentos en presentaciones vinculadas."}
               </p>
             </div>
 
@@ -264,10 +264,10 @@ export function LexnetPdfGuide({ locale, guide }: GuideArticleProps) {
               badge={isCa ? "Pas 2: Optimització de pes" : isEn ? "Step 2: File Size Optimization" : "Paso 2: Optimización de peso"}
               title={
                 isCa
-                  ? "Comprimir sense perdre llegibilitat sota el límit de mida"
+                  ? "Comprimir sota el llindar admès preservant la llegibilitat"
                   : isEn
-                    ? "Compress Document Under Size Limits While Preserving Clarity"
-                    : "Comprimir sin perder legibilidad bajo el límite de peso"
+                    ? "Compress Under Applicable Limits While Preserving Clarity"
+                    : "Comprimir bajo el umbral admisible preservando la legibilidad"
               }
               action={
                 <Link
@@ -281,10 +281,10 @@ export function LexnetPdfGuide({ locale, guide }: GuideArticleProps) {
             >
               <p>
                 {isCa
-                  ? "Si l'escrit o els annexos superen els 15 MB o 30 MB, utilitza la compressió de BreadPDF. Mantén sempre una qualitat visual nítida en signatures, segells o números de compte escanejats per no perjudicar la seva força probatòria."
+                  ? "Si l'expedient supera la capacitat màxima de la teva seu judicial, utilitza la compressió de BreadPDF. Mantén sempre una qualitat visual nítida en signatures, segells i números per no perjudicar la seva vàlua probatòria."
                   : isEn
-                    ? "If attachments exceed 15 MB or 30 MB, compress them locally with BreadPDF. Always inspect the output to ensure signatures, stamps, and small text remain razor-sharp for judicial evaluation."
-                    : "Si el archivo supera los 15 MB o 30 MB, optimiza su peso con la herramienta de compresión de BreadPDF. Verifica siempre que las firmas manuscritas escaneadas, sellos o números de cuenta se lean nítidamente."}
+                    ? "If your docket exceeds your judicial channel capacity, compress files locally with BreadPDF. Always inspect output resolution ensuring stamps, handwriting, and figures remain evidentially legible."
+                    : "Si el expediente excede la capacidad técnica de tu sede judicial, optimiza su peso con la herramienta de compresión de BreadPDF. Comprueba siempre que sellos, firmas manuscritas y cifras mantengan plena nitidez probatoria."}
               </p>
             </GuideStep>
 

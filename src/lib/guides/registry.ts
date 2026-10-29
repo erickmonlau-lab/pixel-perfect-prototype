@@ -1745,7 +1745,7 @@ export const GUIDES: GuideDefinition[] = [
       es: [
         {
           q: "¿Cuál es el límite máximo de tamaño de archivo admitido en LexNET?",
-          a: "El límite técnico habitual por mensaje en el sistema LexNET del Ministerio de Justicia es de 15 MB para el escrito principal y sus anexos juntos, ampliado hasta 30 MB en determinadas sedes y sistemas autonómicos. Si el expediente supera ese peso, los anexos deben dividirse en presentaciones complementarias vinculadas.",
+          a: "El Real Decreto 1065/2015 no establece un tope rígido universal en megabytes en su texto, sino que remite a las especificaciones técnicas aplicables. El límite por envío varía según el punto de acceso (portal web de LexNET, pasarela de software colegial o sede autonómica). Si tu presentación excede la capacidad admitida en tu entorno, debes comprimir los archivos o presentarlos en envíos sucesivos vinculados.",
         },
         {
           q: "¿Es obligatorio convertir todos los documentos a formato PDF/A?",
@@ -1767,7 +1767,7 @@ export const GUIDES: GuideDefinition[] = [
       ca: [
         {
           q: "Quin és el límit màxim de mida de fitxer admès a LexNET?",
-          a: "El límit estàndard per missatge al sistema LexNET del Ministeri de Justícia és de 15 MB per a l'escrit principal i els seus annexos, ampliat a 30 MB en determinades seus autonòmiques. Si l'expedient supera aquest llindar, els annexos s'han de fraccionar en enviaments complementaris.",
+          a: "El Reial Decret 1065/2015 no fixa un sostre rígid universal en megabytes al seu text, sinó que remet a les especificacions tècniques aplicables. El límit per enviament varia segons el punt d'accés (portal web, seu autonòmica o integració col·legial). Si el tràmit supera la capacitat admesa, cal comprimir els fitxers o dividir-los en enviaments vinculats.",
         },
         {
           q: "És obligatori convertir tots els documents a format PDF/A?",
@@ -1789,7 +1789,7 @@ export const GUIDES: GuideDefinition[] = [
       en: [
         {
           q: "What is the maximum submission file size in the Spanish LexNET court portal?",
-          a: "The standard envelope capacity in the Ministry of Justice LexNET system is 15 MB for the main pleading and exhibits combined, extended to 30 MB in specific regional court jurisdictions. Oversized evidence must be partitioned across linked supplementary filings.",
+          a: "Royal Decree 1065/2015 does not legislate a universal megabyte cap in its statutory text, but delegates size rules to applicable technical specifications. Maximum capacity varies depending on the access gateway (central portal, regional justice portals, or bar association web services). Always verify your specific portal specifications and compress files if needed.",
         },
         {
           q: "Is converting all court exhibits to PDF/A-1b strictly required?",
