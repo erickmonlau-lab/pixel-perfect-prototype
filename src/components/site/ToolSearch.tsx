@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "@tanstack/react-router";
 import { Search, X, ArrowRight, CornerDownLeft } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { FAMILY_ACCENTS } from "@/lib/tools/catalog";
 import { localizedPopular, searchLocalizedTools } from "@/lib/tools/localize";
 import { useLocale } from "@/lib/i18n/context";
 import { DETAIL_ROUTE, toolParams } from "@/lib/i18n/routing";
@@ -63,7 +64,7 @@ export function ToolSearch({ size = "md" }: { size?: "md" | "lg" }) {
   const [placeholderIndex, setPlaceholderIndex] = useState(0);
 
   // Search across all real tools
-  const results = useMemo(() => searchLocalizedTools(locale, query).slice(0, 8), [locale, query]);
+  const results = useMemo(() => searchLocalizedTools(locale, query).slice(0, 10), [locale, query]);
 
   useEffect(() => {
     if (focused) return;
@@ -128,20 +129,21 @@ export function ToolSearch({ size = "md" }: { size?: "md" | "lg" }) {
   };
 
   return (
-    <div ref={containerRef} className="relative z-40 w-full">
-      {/* Search Input Bar Neo-Brutalist */}
+    <div ref={containerRef} className="relative z-50 w-full">
+      {/* Search Input Bar - Neo-brutalist limpio y oficial de BreadPDF */}
       <div
-        className={`transition-all duration-150 flex items-center gap-3 sm:gap-4 border-2 border-[#0F0F12] bg-white text-[#0F0F12] ${
+        className={`transition-all duration-150 flex items-center gap-3.5 rounded-2xl border-2 border-[#0F0F12] bg-white shadow-[4px_4px_0_#0F0F12] ${
           open
-            ? "rounded-t-2xl rounded-b-none border-b-2 border-b-[#0F0F12] shadow-[6px_6px_0_#0F0F12]"
-            : "rounded-2xl shadow-[5px_5px_0_#0F0F12] focus-within:shadow-[6px_6px_0_#EC3C2D] focus-within:-translate-y-0.5"
-        } ${large ? "h-[64px] sm:h-[70px] pl-3.5 pr-3 sm:pl-4 sm:pr-4" : "h-13 sm:h-14 px-3 sm:px-4"}`}
+            ? "border-[#0F0F12] ring-3 ring-[#EC3C2D]/15"
+            : "hover:shadow-[5px_5px_0_#0F0F12] focus-within:shadow-[5px_5px_0_#EC3C2D] focus-within:ring-3 focus-within:ring-[#EC3C2D]/15"
+        } ${large ? "h-[58px] sm:h-[64px] px-4 sm:px-5" : "h-13 px-4"}`}
       >
-        {/* Lupa roja corporativa en bloque neo-brutalist */}
-        <span className="flex size-10 sm:size-11 shrink-0 items-center justify-center rounded-xl border-2 border-[#0F0F12] bg-[#EC3C2D] text-white shadow-[2px_2px_0_#0F0F12] select-none">
-          <Search className="size-5 sm:size-5.5 text-white stroke-[2.8]" aria-hidden="true" />
+        {/* Lupa en rojo corporativo oficial #EC3C2D con borde negro sutil */}
+        <span className="flex size-9 sm:size-10 shrink-0 items-center justify-center rounded-xl bg-[#EC3C2D] text-white border-2 border-[#0F0F12] shadow-[2px_2px_0_#0F0F12] select-none">
+          <Search className="size-5 text-white stroke-[2.8]" aria-hidden="true" />
         </span>
 
+        {/* Campo de búsqueda tipografía clara con type="text" para eliminar cancel button nativo de WebKit */}
         <input
           ref={inputRef}
           value={query}
@@ -185,11 +187,11 @@ export function ToolSearch({ size = "md" }: { size?: "md" | "lg" }) {
           placeholder={focused ? t.search.placeholder : (rotatingPlaceholders[placeholderIndex] || "¿Qué quieres hacer con tu PDF?")}
           aria-label={t.search.placeholder}
           className={`w-full bg-transparent outline-none text-[#0F0F12] placeholder:text-slate-400 font-bold ${
-            large ? "text-[17px] sm:text-[19px]" : "text-[15px] sm:text-[16px]"
+            large ? "text-[16.5px] sm:text-[18px]" : "text-[15px] sm:text-[16px]"
           }`}
         />
 
-        {/* Clear input button (solo un único botón X estilizado) */}
+        {/* Botón único de limpiar búsqueda: Coherente con BreadPDF (caja blanca borde negro 2px) */}
         {query.trim().length > 0 && (
           <button
             type="button"
@@ -197,42 +199,42 @@ export function ToolSearch({ size = "md" }: { size?: "md" | "lg" }) {
               setQuery("");
               inputRef.current?.focus();
             }}
-            className="flex size-8 sm:size-9 shrink-0 items-center justify-center rounded-lg border-2 border-[#0F0F12] bg-[#EDEDF0] text-[#0F0F12] hover:bg-[#FEF08A] active:translate-y-0.5 transition-all cursor-pointer"
+            className="flex size-7 sm:size-8 shrink-0 items-center justify-center rounded-lg border-2 border-[#0F0F12] bg-[#EDEDF0] text-[#0F0F12] hover:bg-[#FEF08A] transition-all cursor-pointer shadow-[1px_1px_0_#0F0F12] active:translate-y-0.5"
             aria-label="Limpiar búsqueda"
           >
-            <X className="size-4" strokeWidth={3} />
+            <X className="size-3.5 sm:size-4 stroke-[2.8]" />
           </button>
         )}
       </div>
 
-      {/* Real-time Results Dropdown Neo-Brutalist */}
+      {/* Menú flotante de resultados en tiempo real — Flota por encima con z-60 y mt-2.5 */}
       {open && (
         <div
           id="tool-search-results"
-          className="absolute inset-x-0 top-full z-50 overflow-hidden rounded-b-2xl border-2 border-t-0 border-[#0F0F12] bg-white shadow-[6px_8px_0_#0F0F12]"
+          className="absolute inset-x-0 top-full mt-2.5 z-60 overflow-hidden rounded-2xl border-2 border-[#0F0F12] bg-white shadow-[6px_8px_0_#0F0F12]"
         >
           <ul
             ref={listRef}
-            className="max-h-[360px] sm:max-h-[400px] overflow-y-auto divide-y-2 divide-[#EDEDF0]"
+            className="max-h-[min(380px,calc(100vh-260px))] overflow-y-auto divide-y divide-slate-100 scrollbar-thin"
             role="listbox"
             aria-label={t.search.results}
           >
             {results.length === 0 ? (
               <li className="px-6 py-8 text-center" role="presentation">
-                <div className="mx-auto flex size-12 items-center justify-center rounded-xl border-2 border-[#0F0F12] bg-[#EDEDF0] text-[#0F0F12] shadow-[2px_2px_0_#0F0F12] mb-3">
-                  <Search className="size-5 stroke-[2.5]" />
+                <div className="mx-auto flex size-12 items-center justify-center rounded-xl border-2 border-[#0F0F12] bg-[#EDEDF0] text-slate-500 mb-3 shadow-[2px_2px_0_#0F0F12]">
+                  <Search className="size-5 stroke-[2.4]" />
                 </div>
-                <p className="text-[16px] font-black text-[#0F0F12]">
+                <p className="text-[15.5px] font-black text-[#0F0F12]">
                   {(t.search as { emptyTitle?: string }).emptyTitle ?? "No encontramos ninguna herramienta para esa búsqueda."}
                 </p>
-                <p className="mt-1 text-[13.5px] font-medium text-slate-500 max-w-[380px] mx-auto">
+                <p className="mt-1 text-[13px] font-medium text-slate-500 max-w-[380px] mx-auto">
                   {(t.search as { emptySuggestion?: string }).emptySuggestion ?? "Prueba con términos como comprimir, unir, convertir, firmar u OCR."}
                 </p>
               </li>
             ) : (
               results.map((tool, index) => {
+                const accent = FAMILY_ACCENTS[tool.category];
                 const isSelected = index === active;
-                const theme = getToolColorTheme(tool.canonicalSlug, tool.category);
                 const categoryLabel = CATEGORY_NAMES[tool.category]?.[locale as "es" | "ca" | "en"] ?? tool.category;
 
                 return (
@@ -242,28 +244,28 @@ export function ToolSearch({ size = "md" }: { size?: "md" | "lg" }) {
                       onMouseDown={(event) => event.preventDefault()}
                       onMouseEnter={() => setActive(index)}
                       onClick={() => go(tool.canonicalSlug)}
-                      className={`group flex w-full items-center gap-3 sm:gap-4 px-4 sm:px-5 py-3 text-left transition-colors cursor-pointer ${
+                      className={`group flex w-full items-center gap-3.5 px-4 sm:px-5 py-3 text-left transition-colors cursor-pointer ${
                         isSelected
-                          ? "bg-[#FEF9C3]"
-                          : "bg-white hover:bg-[#F8FAFC]"
+                          ? "bg-[#FFF5F2]"
+                          : "bg-white hover:bg-slate-50/80"
                       }`}
                     >
-                      {/* Tool Icon con caja neo-brutalist y color distintivo */}
+                      {/* Icono de la herramienta según el lenguaje corporativo del mega menu y fichas */}
                       <span
-                        className={`flex size-10 sm:size-11 shrink-0 items-center justify-center rounded-xl border-2 border-[#0F0F12] shadow-[2px_2px_0_#0F0F12] transition-transform ${
+                        className={`inline-flex size-10 sm:size-11 shrink-0 items-center justify-center rounded-xl border-2 border-[#0F0F12] shadow-[2px_2px_0_#0F0F12] transition-transform ${
                           isSelected ? "scale-105" : ""
-                        } ${theme.bg} ${theme.text}`}
+                        } ${accent.iconBg} ${accent.icon}`}
                       >
-                        <ToolIcon name={tool.icon} canonicalSlug={tool.canonicalSlug} className="size-5 sm:size-6" />
+                        <ToolIcon name={tool.icon} canonicalSlug={tool.canonicalSlug} className="size-6 text-white" />
                       </span>
 
-                      {/* Tool Name, Category Badge & Tagline */}
+                      {/* Título de herramienta, etiqueta de categoría y descripción */}
                       <div className="min-w-0 flex-1">
                         <div className="flex items-center gap-2">
                           <span className={`text-[15px] sm:text-[16px] font-black tracking-tight ${isSelected ? "text-[#EC3C2D]" : "text-[#0F0F12]"}`}>
                             {tool.name}
                           </span>
-                          <span className="inline-flex items-center rounded-md border border-[#0F0F12] bg-white px-1.5 py-0.2 text-[10.5px] font-black uppercase tracking-wider text-[#0F0F12] shadow-[1px_1px_0_#0F0F12]">
+                          <span className="inline-flex items-center rounded-md border border-[#0F0F12] bg-white px-2 py-0.5 text-[10.5px] font-black uppercase tracking-wider text-[#0F0F12] shadow-[1px_1px_0_#0F0F12]">
                             {categoryLabel}
                           </span>
                         </div>
@@ -272,16 +274,16 @@ export function ToolSearch({ size = "md" }: { size?: "md" | "lg" }) {
                         </p>
                       </div>
 
-                      {/* Action indicator */}
-                      <div className="hidden sm:flex items-center shrink-0">
+                      {/* Botón de acción indicador */}
+                      <div className="hidden sm:flex items-center text-slate-400 shrink-0">
                         {isSelected ? (
-                          <span className="inline-flex items-center gap-1 rounded-lg border-2 border-[#0F0F12] bg-[#EC3C2D] px-2 py-0.8 text-[11px] font-black text-white shadow-[1.5px_1.5px_0_#0F0F12]">
+                          <span className="inline-flex items-center gap-1.5 rounded-lg border-2 border-[#0F0F12] bg-[#EC3C2D] px-2.5 py-1 text-[11px] font-black text-white shadow-[2px_2px_0_#0F0F12]">
                             <span>Abrir</span>
                             <CornerDownLeft className="size-3 stroke-[2.5]" />
                           </span>
                         ) : (
-                          <span className="flex size-7 items-center justify-center rounded-md border border-slate-300 text-slate-400 group-hover:text-[#0F0F12] group-hover:border-[#0F0F12] transition-colors">
-                            <ArrowRight className="size-3.5" />
+                          <span className="flex size-7 items-center justify-center rounded-lg border border-slate-200 text-slate-400 group-hover:border-[#0F0F12] group-hover:text-[#0F0F12] transition-colors">
+                            <ArrowRight className="size-3.5 stroke-[2.2]" />
                           </span>
                         )}
                       </div>
@@ -292,25 +294,25 @@ export function ToolSearch({ size = "md" }: { size?: "md" | "lg" }) {
             )}
           </ul>
 
-          {/* Neo-brutalist Dropdown Footer */}
+          {/* Pie informativo con indicaciones de teclado */}
           {results.length > 0 && (
-            <div className="hidden sm:flex items-center justify-between border-t-2 border-[#0F0F12] bg-[#EDEDF0] px-4 sm:px-5 py-2 text-[11.5px] font-bold text-[#0F0F12]">
-              <span>
+            <div className="hidden sm:flex items-center justify-between border-t-2 border-[#0F0F12] bg-[#FAF8F5] px-5 py-2 text-[11.5px] font-bold text-[#0F0F12]">
+              <span className="text-slate-600">
                 {results.length} {results.length === 1 ? "herramienta encontrada" : "herramientas encontradas"}
               </span>
               <div className="flex items-center gap-3">
-                <span className="inline-flex items-center gap-1">
-                  <kbd className="rounded border border-[#0F0F12] bg-white px-1 py-0.2 text-[9.5px] font-black shadow-[1px_1px_0_#0F0F12]">↑</kbd>
-                  <kbd className="rounded border border-[#0F0F12] bg-white px-1 py-0.2 text-[9.5px] font-black shadow-[1px_1px_0_#0F0F12]">↓</kbd>
-                  <span>navegar</span>
+                <span className="inline-flex items-center gap-1 text-slate-600">
+                  <kbd className="rounded border border-[#0F0F12] bg-white px-1.5 py-0.5 text-[9.5px] font-black shadow-[1px_1px_0_#0F0F12]">↑</kbd>
+                  <kbd className="rounded border border-[#0F0F12] bg-white px-1.5 py-0.5 text-[9.5px] font-black shadow-[1px_1px_0_#0F0F12]">↓</kbd>
+                  <span>para navegar</span>
                 </span>
-                <span className="inline-flex items-center gap-1">
-                  <kbd className="rounded border border-[#0F0F12] bg-white px-1 py-0.2 text-[9.5px] font-black shadow-[1px_1px_0_#0F0F12]">↵</kbd>
-                  <span>abrir</span>
+                <span className="inline-flex items-center gap-1 text-slate-600">
+                  <kbd className="rounded border border-[#0F0F12] bg-white px-1.5 py-0.5 text-[9.5px] font-black shadow-[1px_1px_0_#0F0F12]">↵</kbd>
+                  <span>para abrir</span>
                 </span>
-                <span className="inline-flex items-center gap-1">
-                  <kbd className="rounded border border-[#0F0F12] bg-white px-1 py-0.2 text-[9.5px] font-black shadow-[1px_1px_0_#0F0F12]">Esc</kbd>
-                  <span>cerrar</span>
+                <span className="inline-flex items-center gap-1 text-slate-600">
+                  <kbd className="rounded border border-[#0F0F12] bg-white px-1.5 py-0.5 text-[9.5px] font-black shadow-[1px_1px_0_#0F0F12]">Esc</kbd>
+                  <span>para cerrar</span>
                 </span>
               </div>
             </div>
@@ -330,7 +332,7 @@ export function ToolSearch({ size = "md" }: { size?: "md" | "lg" }) {
               key={tool.slug}
               to={DETAIL_ROUTE}
               params={toolParams(locale, tool.canonicalSlug)}
-              className="group/pill inline-flex items-center gap-2.5 h-11 sm:h-12 px-3.5 sm:px-4 rounded-xl border-2 border-[#0F0F12] bg-white text-[#0F0F12] shadow-[3.5px_3.5px_0_#0F0F12] whitespace-nowrap transition-all duration-120 cursor-pointer hover:-translate-y-0.5 hover:shadow-[4.5px_4.5px_0_#0F0F12] hover:bg-[#FEF08A] active:translate-y-0 active:shadow-[1px_1px_0_#0F0F12]"
+              className="group/pill inline-flex items-center gap-2.5 h-11 sm:h-12 px-3.5 sm:px-4 rounded-xl border-2 border-[#0F0F12] bg-white text-[#0F0F12] shadow-[3.5px_3.5px_0_#0F0F12] whitespace-nowrap transition-all duration-120 cursor-pointer hover:-translate-y-0.5 hover:shadow-[4.5px_4.5px_0_#0F0F12] hover:bg-[#F8FAFC] active:translate-y-0 active:shadow-[1px_1px_0_#0F0F12]"
             >
               {/* Icono auténtico de la herramienta con su color corporativo del catálogo */}
               <span
