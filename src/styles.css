@@ -1349,3 +1349,24 @@ input[type="search"]::-webkit-search-results-decoration {
 
 /* cache-bust 2026-10-26b: fresh asset hash after a cached 404 on previous hash */
 .bp-cachebust{--bp-v:2}
+
+/* BreadPDF Custom Scrollbar para el buscador */
+.custom-search-scroll::-webkit-scrollbar {
+  width: 7px;
+}
+.custom-search-scroll::-webkit-scrollbar-track {
+  background: #FAF8F5;
+  border-left: 2px solid #0F0F12;
+}
+.custom-search-scroll::-webkit-scrollbar-thumb {
+  background: #0F0F12;
+  border-radius: 4px;
+}
+.custom-search-scroll::-webkit-scrollbar-thumb:hover {
+  background: #EC3C2D;
+}
+.custom-search-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: #0F0F12 #FAF8F5;
+}
+
